@@ -31,3 +31,10 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CanonicalMap.preserves_selected_edges
 #print axioms ThreeUniformDiaries.CanonicalMap.preserves_selected_one_agreement
 #print axioms ThreeUniformDiaries.CanonicalMap.preserves_selected_aux_agreement
+#print axioms ThreeUniformDiaries.GenericEnumerated3Graph.exists_extension_zero_outside
+#print axioms ThreeUniformDiaries.GenericEnumerated3Graph.exists_extension_for_source
+#print axioms ThreeUniformDiaries.AuxNode.succ_eq_iff
+#print axioms ThreeUniformDiaries.OneNode.succ_eq_iff
+#print axioms ThreeUniformDiaries.EnumNode.succ_eq_iff
+#print axioms ThreeUniformDiaries.Ordered3Graph.sameAuxTypeBelow_succ_iff
+#print axioms ThreeUniformDiaries.Ordered3Graph.sameOneTypeBelow_succ_iff

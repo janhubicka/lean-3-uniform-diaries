@@ -20,3 +20,5 @@ type trees and the transport from the vector-tree Milliken statement.
 The equality of explicit finite 1-type and aux-type nodes with agreement of the corresponding edge types below a cut is checked in `TypeRepresentation.lean`.
 
 Additional concrete lemmas: `PrunedTypeTrees.lean` proves that every coordinate-tree node has a child; `CanonicalAgreement.lean` proves preservation/reflection of type agreement at selected cuts. These do not by themselves establish the full auxiliary Ramsey theorem.
+
+The next concrete pieces prove disjointness and simultaneous generic realization of (C1)/(C2), the prescribed triples through one new source vertex, uniqueness of type-tree successor parameters, and one-step type-agreement recurrences. The countable K_I embedding and exact meet-level preservation remain open.
