@@ -25,6 +25,10 @@ structure CanonicalMap where
   mapOne : (n : Nat) → OneNode n → OneNode (level n)
   mapEnum : (n : Nat) → EnumNode n → EnumNode (level n)
 
+  mapAux_injective : ∀ n, Function.Injective (mapAux n)
+  mapOne_injective : ∀ n, Function.Injective (mapOne n)
+  mapEnum_injective : ∀ n, Function.Injective (mapEnum n)
+
   enum_triple_compat :
     ∀ {N i j k : Nat} (H : EnumNode N),
       i < j → j < k → k < N →
@@ -57,6 +61,9 @@ def id : CanonicalMap where
   mapAux := fun _ a => a
   mapOne := fun _ a => a
   mapEnum := fun _ a => a
+  mapAux_injective := fun _ => Function.injective_id
+  mapOne_injective := fun _ => Function.injective_id
+  mapEnum_injective := fun _ => Function.injective_id
   enum_triple_compat := by
     intro N i j k H hij hjk hkN
     rfl
@@ -77,6 +84,12 @@ def comp (G F : CanonicalMap) : CanonicalMap where
   mapAux := fun n a => G.mapAux (F.level n) (F.mapAux n a)
   mapOne := fun n a => G.mapOne (F.level n) (F.mapOne n a)
   mapEnum := fun n a => G.mapEnum (F.level n) (F.mapEnum n a)
+  mapAux_injective := fun n =>
+    (G.mapAux_injective (F.level n)).comp (F.mapAux_injective n)
+  mapOne_injective := fun n =>
+    (G.mapOne_injective (F.level n)).comp (F.mapOne_injective n)
+  mapEnum_injective := fun n =>
+    (G.mapEnum_injective (F.level n)).comp (F.mapEnum_injective n)
   enum_triple_compat := by
     intro N i j k H hij hjk hkN
     rw [G.enum_triple_compat (F.mapEnum N H)
