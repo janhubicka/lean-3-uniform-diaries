@@ -8,3 +8,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.auxType_succ_bit
 #print axioms ThreeUniformDiaries.EnumNode.oneType_succ_pair
 #print axioms ThreeUniformDiaries.EnumNode.truncate_succ_triple
+
+#print axioms ThreeUniformDiaries.homogeneousMillikenFiniteColouring
