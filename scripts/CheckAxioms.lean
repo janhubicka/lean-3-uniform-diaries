@@ -10,3 +10,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.truncate_succ_triple
 
 #print axioms ThreeUniformDiaries.homogeneousMillikenFiniteColouring
+
+#print axioms ThreeUniformDiaries.CanonicalMap.comp
+#print axioms ThreeUniformDiaries.CanonicalMap.comp_assoc

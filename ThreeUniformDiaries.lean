@@ -1,5 +1,6 @@
 import ThreeUniformDiaries.AuxTypes
 import ThreeUniformDiaries.AuxRamseyTransfer
 import ThreeUniformDiaries.TypeTrees
+import ThreeUniformDiaries.CanonicalMap
 import ThreeUniformDiaries.MillikenDependency
 import ThreeUniformDiaries.MillikenFiniteColour
