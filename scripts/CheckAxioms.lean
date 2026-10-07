@@ -50,3 +50,9 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.universalBranch_sameAuxTypeBelow_iff
 #print axioms ThreeUniformDiaries.Ordered3Graph.relativeBranch_sameOneTypeBelow_iff
 #print axioms ThreeUniformDiaries.Ordered3Graph.relativeBranch_sameAuxTypeBelow_iff
+#print axioms ThreeUniformDiaries.gapExample_preserves_all_induced_edges
+#print axioms ThreeUniformDiaries.gapExample_image_strictMono
+#print axioms ThreeUniformDiaries.gapExample_step5_C2
+#print axioms ThreeUniformDiaries.gapExample_step6_C2
+#print axioms ThreeUniformDiaries.gapExample_step7_C2
+#print axioms ThreeUniformDiaries.gapExample_capped_meet_failure
