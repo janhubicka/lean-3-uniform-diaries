@@ -119,8 +119,7 @@ theorem truncate_le (x : CoordNode) {k : Nat} (hk : k ≤ level x) :
     truncate x k ≤ x := by
   refine ⟨?_, ?_⟩
   · simpa using hk
-  · simp only [level_truncate]
-    exact (truncate_truncate x hk).symm.trans (truncate_self (truncate x k))
+  · simp
 
 theorem truncate_mono {x : CoordNode} {k l : Nat}
     (hkl : k ≤ l) (hl : l ≤ level x) :
@@ -230,7 +229,7 @@ theorem meet_le_right {a b : CoordNode}
   refine ⟨meetLevel_le_right a b, ?_⟩
   simp only [level_truncate]
   unfold CommonAt at hs
-  exact hs.symm.trans (truncate_self (truncate a (meetLevel a b)))
+  exact hs.symm
 
 theorem le_meet {a b c : CoordNode} (hca : c ≤ a) (hcb : c ≤ b) :
     c ≤ meet a b := by
@@ -267,7 +266,8 @@ theorem covBy_level {a b : CoordNode} (hab : a ⋖ b) :
   have hazlt : a < z := lt_of_le_of_ne haz (by
     intro h
     have hl := congrArg level h
-    simp [z] at hl)
+    simp [z] at hl
+    omega)
   have hzblt : z < b := lt_of_le_of_ne hzb (by
     intro h
     have hl := congrArg level h
