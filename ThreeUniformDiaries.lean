@@ -12,3 +12,5 @@ import ThreeUniformDiaries.MillikenDependency
 import ThreeUniformDiaries.MillikenFiniteColour
 
 import ThreeUniformDiaries.GenericExtensionStep
+
+import ThreeUniformDiaries.GenericSourceStep
