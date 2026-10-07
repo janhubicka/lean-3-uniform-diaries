@@ -31,3 +31,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CanonicalMap.preserves_selected_edges
 #print axioms ThreeUniformDiaries.CanonicalMap.preserves_selected_one_agreement
 #print axioms ThreeUniformDiaries.CanonicalMap.preserves_selected_aux_agreement
+#print axioms ThreeUniformDiaries.Ordered3Graph.prefix_edge_iff
+#print axioms ThreeUniformDiaries.Ordered3Graph.prefix_truncate
