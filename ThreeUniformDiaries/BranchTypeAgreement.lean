@@ -131,5 +131,66 @@ theorem universalBranch_sameAuxTypeBelow_iff
       h haw
     rw [hedge]
 
+
+/-- Restricting the universal tests to K_I does not lose information:
+all the finite prefixes of H are still present in K_I. -/
+theorem relativeBranch_sameOneTypeBelow_iff
+    (H : Ordered3Graph Nat) {n : Nat}
+    (I : EnumNode n) (hI : H.initialSegment n = I)
+    (w u v : Nat) (hwu : w ≤ u) (hwv : w ≤ v) :
+    (∀ a b : RelativeBranchNode I, a.val.last < b.val.last →
+      b.val.last < w →
+      ((relativeBranchGraph I).edge a b (H.relativeBranchNode I hI u) ↔
+       (relativeBranchGraph I).edge a b (H.relativeBranchNode I hI v))) ↔
+      H.SameOneTypeBelow w u v := by
+  constructor
+  · intro h a b hab hbw
+    have hbranch :=
+      h (H.relativeBranchNode I hI a)
+        (H.relativeBranchNode I hI b) hab hbw
+    change universalBranchGraph.edge
+        (H.branchNode a) (H.branchNode b) (H.branchNode u) ↔
+        universalBranchGraph.edge
+        (H.branchNode a) (H.branchNode b) (H.branchNode v) at hbranch
+    have hbu : b < u := lt_of_lt_of_le hbw hwu
+    have hbv : b < v := lt_of_lt_of_le hbw hwv
+    exact (H.branchNode_edge_iff hab hbu).symm.trans
+      (hbranch.trans (H.branchNode_edge_iff hab hbv))
+  · intro h a b hab hbw
+    have huniversal :=
+      (H.universalBranch_sameOneTypeBelow_iff w u v hwu hwv).mpr h
+    exact huniversal a.val b.val hab hbw
+
+/-- Likewise, restricting auxiliary-bit tests to K_I retains precisely
+the original auxiliary type below the cut. -/
+theorem relativeBranch_sameAuxTypeBelow_iff
+    (H : Ordered3Graph Nat) {n : Nat}
+    (I : EnumNode n) (hI : H.initialSegment n = I)
+    (w u₀ u₁ v₀ v₁ : Nat)
+    (hwu : w ≤ u₀) (hu : u₀ < u₁)
+    (hwv : w ≤ v₀) (hv : v₀ < v₁) :
+    (∀ a : RelativeBranchNode I, a.val.last < w →
+      ((relativeBranchGraph I).edge a
+          (H.relativeBranchNode I hI u₀) (H.relativeBranchNode I hI u₁) ↔
+       (relativeBranchGraph I).edge a
+          (H.relativeBranchNode I hI v₀) (H.relativeBranchNode I hI v₁))) ↔
+      H.SameAuxTypeBelow w u₀ u₁ v₀ v₁ := by
+  constructor
+  · intro h a haw
+    have hbranch := h (H.relativeBranchNode I hI a) haw
+    change universalBranchGraph.edge
+        (H.branchNode a) (H.branchNode u₀) (H.branchNode u₁) ↔
+        universalBranchGraph.edge
+        (H.branchNode a) (H.branchNode v₀) (H.branchNode v₁) at hbranch
+    have hau : a < u₀ := lt_of_lt_of_le haw hwu
+    have hav : a < v₀ := lt_of_lt_of_le haw hwv
+    exact (H.branchNode_edge_iff hau hu).symm.trans
+      (hbranch.trans (H.branchNode_edge_iff hav hv))
+  · intro h a haw
+    have huniversal :=
+      (H.universalBranch_sameAuxTypeBelow_iff
+        w u₀ u₁ v₀ v₁ hwu hu hwv hv).mpr h
+    exact huniversal a.val haw
+
 end Ordered3Graph
 end ThreeUniformDiaries
