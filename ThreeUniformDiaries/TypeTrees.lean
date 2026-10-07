@@ -33,6 +33,27 @@ structure EnumNode (n : Nat) where
   triple : Nat → Nat → Nat → Bool
   support : ∀ i j k, ¬ (i < j ∧ j < k ∧ k < n) → triple i j k = false
 
+@[ext] theorem AuxNode.ext_bits {n : Nat} {a b : AuxNode n}
+    (h : a.bit = b.bit) : a = b := by
+  cases a
+  cases b
+  cases h
+  rfl
+
+@[ext] theorem OneNode.ext_pairs {n : Nat} {a b : OneNode n}
+    (h : a.pair = b.pair) : a = b := by
+  cases a
+  cases b
+  cases h
+  rfl
+
+@[ext] theorem EnumNode.ext_triples {n : Nat} {a b : EnumNode n}
+    (h : a.triple = b.triple) : a = b := by
+  cases a
+  cases b
+  cases h
+  rfl
+
 namespace AuxNode
 
 /-- Add the level-`n` auxiliary bit. -/
@@ -67,9 +88,7 @@ def succ {n : Nat} (b : OneNode n) (c : AuxNode n) : OneNode (n + 1) where
     by_cases hjn : j = n
     · subst j
       rw [if_pos rfl]
-      apply c.support i
-      intro hin
-      exact hbad ⟨hin, by omega⟩
+      exact c.support i (by omega)
     · rw [if_neg hjn]
       apply b.support i j
       intro hvalid
@@ -152,48 +171,62 @@ def auxType {N : Nat} (H : EnumNode N) (l u v : Nat) : AuxNode l where
 theorem auxType_succ_bit {N l u v i : Nat} (H : EnumNode N) :
     (H.auxType (l + 1) u v).bit i =
       ((H.auxType l u v).succ (H.triple l u v)).bit i := by
+  change
+    (if i < l + 1 then H.triple i u v else false) =
+      (if i = l then H.triple l u v
+       else if i < l then H.triple i u v else false)
   by_cases hil : i < l
-  · have hine : i ≠ l := by omega
-    simp [auxType, AuxNode.succ, hil, hine, show i < l + 1 by omega]
+  · rw [if_pos (by omega), if_neg (by omega), if_pos hil]
   · by_cases hieq : i = l
     · subst i
-      simp [auxType, AuxNode.succ]
-    · have hge : l + 1 ≤ i := by omega
-      have hnlt : ¬ i < l := by omega
-      have hnlt' : ¬ i < l + 1 := by omega
-      simp [auxType, AuxNode.succ, hieq, hnlt, hnlt']
+      simp
+    · rw [if_neg (by omega), if_neg hieq, if_neg hil]
 
 theorem oneType_succ_pair {N l v i j : Nat} (H : EnumNode N) :
     (H.oneType (l + 1) v).pair i j =
       ((H.oneType l v).succ (H.auxType l l v)).pair i j := by
+  change
+    (if j < l + 1 then H.triple i j v else false) =
+      (if j = l
+       then (if i < l then H.triple i l v else false)
+       else if j < l then H.triple i j v else false)
   by_cases hjl : j < l
-  · have hjne : j ≠ l := by omega
-    simp [oneType, auxType, OneNode.succ, hjl, hjne,
-      show j < l + 1 by omega]
+  · rw [if_pos (by omega), if_neg (by omega), if_pos hjl]
   · by_cases hjeq : j = l
     · subst j
-      simp [oneType, auxType, OneNode.succ]
-  · have hge : l + 1 ≤ j := by omega
-    have hnlt : ¬ j < l := by omega
-    have hnlt' : ¬ j < l + 1 := by omega
-    have hjne : j ≠ l := by omega
-    simp [oneType, auxType, OneNode.succ, hnlt, hnlt', hjne]
+      rw [if_pos (by omega), if_pos rfl]
+      by_cases hil : i < l
+      · rw [if_pos hil]
+      · rw [if_neg hil]
+        have hzero : H.triple i l v = false := by
+          apply H.support i l v
+          intro hvalid
+          exact hil hvalid.1
+        exact hzero
+    · rw [if_neg (by omega), if_neg hjeq, if_neg hjl]
 
 theorem truncate_succ_triple {N l i j k : Nat} (H : EnumNode N) :
     (H.truncate (l + 1)).triple i j k =
       ((H.truncate l).succ (H.oneType l l)).triple i j k := by
+  change
+    (if k < l + 1 then H.triple i j k else false) =
+      (if k = l
+       then (if j < l then H.triple i j l else false)
+       else if k < l then H.triple i j k else false)
   by_cases hkl : k < l
-  · have hkne : k ≠ l := by omega
-    simp [truncate, oneType, succ, hkl, hkne,
-      show k < l + 1 by omega]
+  · rw [if_pos (by omega), if_neg (by omega), if_pos hkl]
   · by_cases hkeq : k = l
     · subst k
-      simp [truncate, oneType, succ]
-    · have hge : l + 1 ≤ k := by omega
-      have hnlt : ¬ k < l := by omega
-      have hnlt' : ¬ k < l + 1 := by omega
-      have hkne : k ≠ l := by omega
-      simp [truncate, oneType, succ, hnlt, hnlt', hkne]
+      rw [if_pos (by omega), if_pos rfl]
+      by_cases hjl : j < l
+      · rw [if_pos hjl]
+      · rw [if_neg hjl]
+        have hzero : H.triple i j l = false := by
+          apply H.support i j l
+          intro hvalid
+          exact hjl hvalid.2.1
+        exact hzero
+    · rw [if_neg (by omega), if_neg hkeq, if_neg hkl]
 
 end EnumNode
 
@@ -203,7 +236,7 @@ noncomputable instance auxNodeFintype (n : Nat) : Fintype (AuxNode n) := by
     fun a i => a.bit i
   apply Fintype.ofInjective encode
   intro a b hab
-  apply AuxNode.ext
+  apply AuxNode.ext_bits
   funext i
   by_cases hi : i < n
   · let ii : Fin n := ⟨i, hi⟩
@@ -217,7 +250,7 @@ noncomputable instance oneNodeFintype (n : Nat) : Fintype (OneNode n) := by
     fun a i j => a.pair i j
   apply Fintype.ofInjective encode
   intro a b hab
-  apply OneNode.ext
+  apply OneNode.ext_pairs
   funext i j
   by_cases hvalid : i < j ∧ j < n
   · have hi : i < n := lt_trans hvalid.1 hvalid.2
@@ -232,7 +265,7 @@ noncomputable instance enumNodeFintype (n : Nat) : Fintype (EnumNode n) := by
     fun a i j k => a.triple i j k
   apply Fintype.ofInjective encode
   intro a b hab
-  apply EnumNode.ext
+  apply EnumNode.ext_triples
   funext i j k
   by_cases hvalid : i < j ∧ j < k ∧ k < n
   · have hi : i < n := lt_trans hvalid.1 (lt_trans hvalid.2.1 hvalid.2.2)
