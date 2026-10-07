@@ -88,24 +88,29 @@ def succ : CoordNode → List CoordNode → CoordLabel → Option CoordNode
 def incomingParams : CoordNode → List CoordNode
   | .aux _ _ => []
   | .one 0 _ => []
-  | .one 1 _ => []
-  | .one (n + 2) a =>
-      let c := a.boundaryAux (n + 1)
-      [.aux n (c.truncate n)]
+  | .one (n + 1) a =>
+      match n with
+      | 0 => []
+      | k + 1 =>
+          let c := a.boundaryAux (k + 1)
+          [.aux k (c.truncate k)]
   | .enum 0 _ => []
-  | .enum 1 _ => []
-  | .enum (n + 2) a =>
-      let b := a.boundaryOne (n + 1)
-      [.one n (b.truncate n), .aux n (b.boundaryAux n)]
+  | .enum (n + 1) a =>
+      match n with
+      | 0 => []
+      | k + 1 =>
+          let b := a.boundaryOne (k + 1)
+          [.one k (b.truncate k), .aux k (b.boundaryAux k)]
 
 /-- Label determined by the incoming edge of a non-root node. -/
 def incomingLabel : CoordNode → CoordLabel
   | .aux 0 _ => .auxBit false
   | .aux (n + 1) a => .auxBit (a.bit n)
   | .one 0 _ => .oneBit false
-  | .one 1 _ => .oneBit false
-  | .one (n + 2) a =>
-      .oneBit ((a.boundaryAux (n + 1)).bit n)
+  | .one (n + 1) a =>
+      match n with
+      | 0 => .oneBit false
+      | k + 1 => .oneBit ((a.boundaryAux (k + 1)).bit k)
   | .enum _ _ => .enum
 
 theorem succ_incoming (x : CoordNode) (hx : 0 < level x) :
@@ -199,7 +204,7 @@ theorem succ_recover {a x : CoordNode} {p : List CoordNode} {c : CoordLabel}
                             simp [succ] at h
                             subst x
                             simp [level, truncate, incomingParams,
-                              incomingLabel, AuxNode.boundaryAux_succ]
+                              incomingLabel, OneNode.boundaryAux_succ]
                           · simp [succ, hm] at h
                       | enum => simp [succ] at h
                   | one m q => simp [succ] at h
