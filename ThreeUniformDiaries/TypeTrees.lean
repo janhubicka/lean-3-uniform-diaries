@@ -25,13 +25,13 @@ structure AuxNode (n : Nat) where
 the intended use is on increasing pairs. -/
 structure OneNode (n : Nat) where
   pair : Nat → Nat → Bool
-  support : ∀ i j, n ≤ j → pair i j = false
+  support : ∀ i j, ¬ (i < j ∧ j < n) → pair i j = false
 
-/-- Enumerated 3-hypergraphs on level `n`.  Only the largest coordinate
-controls support; the intended use is on increasing triples. -/
+/-- Enumerated 3-hypergraphs on level `n`.  Non-increasing or out-of-level
+triples are forced to zero. -/
 structure EnumNode (n : Nat) where
   triple : Nat → Nat → Nat → Bool
-  support : ∀ i j k, n ≤ k → triple i j k = false
+  support : ∀ i j k, ¬ (i < j ∧ j < k ∧ k < n) → triple i j k = false
 
 namespace AuxNode
 
@@ -63,10 +63,17 @@ level-`n` auxiliary type. -/
 def succ {n : Nat} (b : OneNode n) (c : AuxNode n) : OneNode (n + 1) where
   pair i j := if j = n then c.bit i else b.pair i j
   support := by
-    intro i j hj
-    have hne : j ≠ n := by omega
-    rw [if_neg hne]
-    exact b.support i j (by omega)
+    intro i j hbad
+    by_cases hjn : j = n
+    · subst j
+      rw [if_pos rfl]
+      apply c.support i
+      intro hin
+      exact hbad ⟨hin, by omega⟩
+    · rw [if_neg hjn]
+      apply b.support i j
+      intro hvalid
+      exact hbad ⟨hvalid.1, by omega⟩
 
 @[simp] theorem succ_new {n : Nat} (b : OneNode n) (c : AuxNode n)
     (i : Nat) :
@@ -88,10 +95,17 @@ level-`n` 1-type. -/
 def succ {n : Nat} (a : EnumNode n) (b : OneNode n) : EnumNode (n + 1) where
   triple i j k := if k = n then b.pair i j else a.triple i j k
   support := by
-    intro i j k hk
-    have hne : k ≠ n := by omega
-    rw [if_neg hne]
-    exact a.support i j k (by omega)
+    intro i j k hbad
+    by_cases hkn : k = n
+    · subst k
+      rw [if_pos rfl]
+      apply b.support i j
+      intro hvalid
+      exact hbad ⟨hvalid.1, hvalid.2, by omega⟩
+    · rw [if_neg hkn]
+      apply a.support i j k
+      intro hvalid
+      exact hbad ⟨hvalid.1, hvalid.2.1, by omega⟩
 
 @[simp] theorem succ_new {n : Nat} (a : EnumNode n) (b : OneNode n)
     (i j : Nat) :
@@ -108,15 +122,25 @@ theorem succ_old {n : Nat} (a : EnumNode n) (b : OneNode n)
 def truncate {N : Nat} (H : EnumNode N) (l : Nat) : EnumNode l where
   triple i j k := if k < l then H.triple i j k else false
   support := by
-    intro i j k hk
-    rw [if_neg (Nat.not_lt.mpr hk)]
+    intro i j k hbad
+    by_cases hkl : k < l
+    · rw [if_pos hkl]
+      apply H.support i j k
+      intro hvalid
+      exact hbad ⟨hvalid.1, hvalid.2.1, hkl⟩
+    · rw [if_neg hkl]
 
 /-- The 1-type of `v` over the cut `l`. -/
 def oneType {N : Nat} (H : EnumNode N) (l v : Nat) : OneNode l where
   pair i j := if j < l then H.triple i j v else false
   support := by
-    intro i j hj
-    rw [if_neg (Nat.not_lt.mpr hj)]
+    intro i j hbad
+    by_cases hjl : j < l
+    · rw [if_pos hjl]
+      apply H.support i j v
+      intro hvalid
+      exact hbad ⟨hvalid.1, hjl⟩
+    · rw [if_neg hjl]
 
 /-- The auxiliary type of the ordered pair `u,v` over the cut `l`. -/
 def auxType {N : Nat} (H : EnumNode N) (l u v : Nat) : AuxNode l where
@@ -172,5 +196,51 @@ theorem truncate_succ_triple {N l i j k : Nat} (H : EnumNode N) :
       simp [truncate, oneType, succ, hnlt, hnlt', hkne]
 
 end EnumNode
+
+/-- Each auxiliary-type level is finite. -/
+noncomputable instance auxNodeFintype (n : Nat) : Fintype (AuxNode n) := by
+  let encode : AuxNode n → (Fin n → Bool) :=
+    fun a i => a.bit i
+  apply Fintype.ofInjective encode
+  intro a b hab
+  apply AuxNode.ext
+  funext i
+  by_cases hi : i < n
+  · let ii : Fin n := ⟨i, hi⟩
+    exact congrFun hab ii
+  · rw [a.support i (Nat.le_of_not_gt hi),
+        b.support i (Nat.le_of_not_gt hi)]
+
+/-- Each 1-type level is finite. -/
+noncomputable instance oneNodeFintype (n : Nat) : Fintype (OneNode n) := by
+  let encode : OneNode n → (Fin n → Fin n → Bool) :=
+    fun a i j => a.pair i j
+  apply Fintype.ofInjective encode
+  intro a b hab
+  apply OneNode.ext
+  funext i j
+  by_cases hvalid : i < j ∧ j < n
+  · have hi : i < n := lt_trans hvalid.1 hvalid.2
+    let ii : Fin n := ⟨i, hi⟩
+    let jj : Fin n := ⟨j, hvalid.2⟩
+    exact congrFun (congrFun hab ii) jj
+  · rw [a.support i j hvalid, b.support i j hvalid]
+
+/-- Each enumeration level is finite. -/
+noncomputable instance enumNodeFintype (n : Nat) : Fintype (EnumNode n) := by
+  let encode : EnumNode n → (Fin n → Fin n → Fin n → Bool) :=
+    fun a i j k => a.triple i j k
+  apply Fintype.ofInjective encode
+  intro a b hab
+  apply EnumNode.ext
+  funext i j k
+  by_cases hvalid : i < j ∧ j < k ∧ k < n
+  · have hi : i < n := lt_trans hvalid.1 (lt_trans hvalid.2.1 hvalid.2.2)
+    have hj : j < n := lt_trans hvalid.2.1 hvalid.2.2
+    let ii : Fin n := ⟨i, hi⟩
+    let jj : Fin n := ⟨j, hj⟩
+    let kk : Fin n := ⟨k, hvalid.2.2⟩
+    exact congrFun (congrFun (congrFun hab ii) jj) kk
+  · rw [a.support i j k hvalid, b.support i j k hvalid]
 
 end ThreeUniformDiaries
