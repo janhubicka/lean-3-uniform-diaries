@@ -13,3 +13,6 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.CanonicalMap.comp
 #print axioms ThreeUniformDiaries.CanonicalMap.comp_assoc
+
+#print axioms ThreeUniformDiaries.VectorNode.pred_succ
+#print axioms ThreeUniformDiaries.VectorNode.succ_pred_lastStep
