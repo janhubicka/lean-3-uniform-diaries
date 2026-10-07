@@ -49,7 +49,9 @@ theorem gapExample_preserves_all_induced_edges :
     ∀ i j k : Fin 5, i < j → j < k →
       (sourceDiagram.edge i j k ↔
        gapTarget.edge (imageAt i) (imageAt j) (imageAt k)) := by
-  decide
+  intro i j k hij hjk
+  fin_cases i <;> fin_cases j <;> fin_cases k <;>
+    simp_all [sourceDiagram, gapTarget, imageAt]
 
 /-- The selected image vertices appear in increasing order. -/
 theorem gapExample_image_strictMono : StrictMono imageAt := by
