@@ -1,0 +1,12 @@
+import ThreeUniformDiaries.AuxTypes
+import ThreeUniformDiaries.AuxRamseyTransfer
+import ThreeUniformDiaries.TypeTrees
+import ThreeUniformDiaries.TypeRepresentation
+import ThreeUniformDiaries.CanonicalMap
+import ThreeUniformDiaries.CanonicalTypes
+import ThreeUniformDiaries.CanonicalAgreement
+import ThreeUniformDiaries.VectorTree
+import ThreeUniformDiaries.CoordinateTree
+import ThreeUniformDiaries.PrunedTypeTrees
+import ThreeUniformDiaries.MillikenDependency
+import ThreeUniformDiaries.MillikenFiniteColour

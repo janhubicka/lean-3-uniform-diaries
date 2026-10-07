@@ -1,0 +1,33 @@
+import ThreeUniformDiaries
+
+#print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.AuxTypeRespecting.typeRespecting
+#print axioms ThreeUniformDiaries.AuxRamseyCoding.auxRamsey_of_finiteRamsey
+#print axioms ThreeUniformDiaries.AuxRamseyCoding.auxRamsey_pairwise
+#print axioms ThreeUniformDiaries.homogeneousMillikenAvailable
+
+#print axioms ThreeUniformDiaries.EnumNode.auxType_succ_bit
+#print axioms ThreeUniformDiaries.EnumNode.oneType_succ_pair
+#print axioms ThreeUniformDiaries.EnumNode.truncate_succ_triple
+
+#print axioms ThreeUniformDiaries.homogeneousMillikenFiniteColouring
+
+#print axioms ThreeUniformDiaries.CanonicalMap.comp
+#print axioms ThreeUniformDiaries.CanonicalMap.comp_assoc
+
+#print axioms ThreeUniformDiaries.VectorNode.pred_succ
+#print axioms ThreeUniformDiaries.VectorNode.succ_pred_lastStep
+
+#print axioms ThreeUniformDiaries.CoordNode.covBy_level
+#print axioms ThreeUniformDiaries.CoordNode.le_meet
+
+#print axioms ThreeUniformDiaries.CanonicalMap.oneType_eq_iff
+#print axioms ThreeUniformDiaries.CanonicalMap.auxType_eq_iff
+#print axioms ThreeUniformDiaries.CanonicalMap.enumTriple_true_iff
+
+#print axioms ThreeUniformDiaries.EnumNode.oneType_eq_iff_sameOneTypeBelow
+#print axioms ThreeUniformDiaries.EnumNode.auxType_eq_iff_sameAuxTypeBelow
+#print axioms ThreeUniformDiaries.CoordNode.level_zeroChild
+#print axioms ThreeUniformDiaries.CoordNode.truncate_zeroChild
+#print axioms ThreeUniformDiaries.CanonicalMap.preserves_selected_edges
+#print axioms ThreeUniformDiaries.CanonicalMap.preserves_selected_one_agreement
+#print axioms ThreeUniformDiaries.CanonicalMap.preserves_selected_aux_agreement
