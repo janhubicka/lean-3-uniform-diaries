@@ -26,3 +26,6 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.EnumNode.oneType_eq_iff_sameOneTypeBelow
 #print axioms ThreeUniformDiaries.EnumNode.auxType_eq_iff_sameAuxTypeBelow
+#print axioms ThreeUniformDiaries.CanonicalMap.preserves_selected_edges
+#print axioms ThreeUniformDiaries.CanonicalMap.preserves_selected_one_agreement
+#print axioms ThreeUniformDiaries.CanonicalMap.preserves_selected_aux_agreement
