@@ -24,3 +24,5 @@ Additional concrete lemmas: `PrunedTypeTrees.lean` proves that every coordinate-
 The next concrete pieces prove disjointness and simultaneous generic realization of (C1)/(C2), the prescribed triples through one new source vertex, uniqueness of type-tree successor parameters, and one-step type-agreement recurrences. The countable K_I embedding and exact meet-level preservation remain open.
 
 The branch-hypergraph layer `InfinitePrefixes`, `BranchHypergraph`, `RelativeBranchHypergraph`, and `BranchCountability` checks the finite enumeration coding and the induced map g_H into K_I (including its countable carrier). It does not yet supply the order-respecting enumeration or the generic embedding φ : K_I → G, nor the exact-meet argument.
+
+`BranchTypeAgreement.lean` proves the exact singleton- and auxiliary-type agreement tests on all universal and relative K_I branch nodes below an original length cut (not just on the given branch). The outstanding step is transfer from these length-cut tests to all vertices below the chosen **enumeration positions** in the generic image, including the vertices omitted by φ.
