@@ -38,3 +38,11 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.succ_eq_iff
 #print axioms ThreeUniformDiaries.Ordered3Graph.sameAuxTypeBelow_succ_iff
 #print axioms ThreeUniformDiaries.Ordered3Graph.sameOneTypeBelow_succ_iff
+#print axioms ThreeUniformDiaries.Ordered3Graph.initialSegment_edge_iff
+#print axioms ThreeUniformDiaries.Ordered3Graph.initialSegment_truncate
+#print axioms ThreeUniformDiaries.Ordered3Graph.branchNode_chain
+#print axioms ThreeUniformDiaries.Ordered3Graph.branchNode_edge_iff
+#print axioms ThreeUniformDiaries.Ordered3Graph.branchNode_mem_relative
+#print axioms ThreeUniformDiaries.Ordered3Graph.relativeBranchNode_edge_iff
+#print axioms ThreeUniformDiaries.enumerationBranchNodeCountable
+#print axioms ThreeUniformDiaries.relativeBranchNodeCountable

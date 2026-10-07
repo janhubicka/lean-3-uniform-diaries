@@ -15,3 +15,7 @@ import ThreeUniformDiaries.GenericExtensionStep
 import ThreeUniformDiaries.GenericSourceStep
 import ThreeUniformDiaries.SuccessorUniqueness
 import ThreeUniformDiaries.AgreementSuccessors
+import ThreeUniformDiaries.InfinitePrefixes
+import ThreeUniformDiaries.BranchHypergraph
+import ThreeUniformDiaries.RelativeBranchHypergraph
+import ThreeUniformDiaries.BranchCountability
