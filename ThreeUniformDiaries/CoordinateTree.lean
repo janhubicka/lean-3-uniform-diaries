@@ -229,8 +229,8 @@ theorem meet_le_right {a b : CoordNode}
     (hcommon : ∃ c : CoordNode, c ≤ a ∧ c ≤ b) :
     meet a b ≤ b := by
   classical
-  change meetLevel a b ≤ level b ∧
-    truncate b (meetLevel a b) = truncate a (meetLevel a b)
+  rw [le_def]
+  simp only [meet, level_truncate]
   exact ⟨meetLevel_le_right a b, (meetLevel_spec hcommon).symm⟩
 
 theorem le_meet {a b c : CoordNode} (hca : c ≤ a) (hcb : c ≤ b) :

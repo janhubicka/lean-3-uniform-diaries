@@ -74,24 +74,24 @@ instance : CoeFun (Embedding H K) (fun _ => α → β) :=
 cuts.  This is the relation-level version of preserving singleton meets. -/
 def PreservesOneTypes (f : Embedding H K) : Prop :=
   ∀ l u v, l ≤ u → l ≤ v →
-    H.SameOneTypeBelow l u v ↔
-      K.SameOneTypeBelow (f l) (f u) (f v)
+    (H.SameOneTypeBelow l u v ↔
+      K.SameOneTypeBelow (f l) (f u) (f v))
 
 /-- Preservation and reflection of auxiliary-type equality at corresponding
 cuts.  Only ordered pairs lying above the cut occur in the manuscript. -/
 def PreservesAuxTypes (f : Embedding H K) : Prop :=
   ∀ l u₀ u₁ v₀ v₁,
     l ≤ u₀ → u₀ < u₁ → l ≤ v₀ → v₀ < v₁ →
-    H.SameAuxTypeBelow l u₀ u₁ v₀ v₁ ↔
-      K.SameAuxTypeBelow (f l) (f u₀) (f u₁) (f v₀) (f v₁)
+    (H.SameAuxTypeBelow l u₀ u₁ v₀ v₁ ↔
+      K.SameAuxTypeBelow (f l) (f u₀) (f u₁) (f v₀) (f v₁))
 
 /-- Preservation and reflection of ordinary 2-type equality at corresponding
 cuts, for ordered pairs above the cut. -/
 def PreservesTwoTypes (f : Embedding H K) : Prop :=
   ∀ l u₀ u₁ v₀ v₁,
     l ≤ u₀ → u₀ < u₁ → l ≤ v₀ → v₀ < v₁ →
-    H.SameTwoTypeBelow l u₀ u₁ v₀ v₁ ↔
-      K.SameTwoTypeBelow (f l) (f u₀) (f u₁) (f v₀) (f v₁)
+    (H.SameTwoTypeBelow l u₀ u₁ v₀ v₁ ↔
+      K.SameTwoTypeBelow (f l) (f u₀) (f u₁) (f v₀) (f v₁))
 
 /-- The relation-level form of an aux-type-respecting embedding. -/
 structure AuxTypeRespecting (f : Embedding H K) : Prop where
