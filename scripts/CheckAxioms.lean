@@ -46,3 +46,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.relativeBranchNode_edge_iff
 #print axioms ThreeUniformDiaries.enumerationBranchNodeCountable
 #print axioms ThreeUniformDiaries.relativeBranchNodeCountable
+#print axioms ThreeUniformDiaries.Ordered3Graph.universalBranch_sameOneTypeBelow_iff
+#print axioms ThreeUniformDiaries.Ordered3Graph.universalBranch_sameAuxTypeBelow_iff
+#print axioms ThreeUniformDiaries.Ordered3Graph.relativeBranch_sameOneTypeBelow_iff
+#print axioms ThreeUniformDiaries.Ordered3Graph.relativeBranch_sameAuxTypeBelow_iff
