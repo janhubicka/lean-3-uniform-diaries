@@ -13,8 +13,6 @@ This file derives exactly that interface from the verified topological
 Ramsey-space theorem in `lean-milliken`.
 -/
 
-namespace ThreeUniformDiaries
-
 namespace RamseySpace
 
 universe u v w
@@ -115,6 +113,8 @@ theorem finiteApproximationColouring
     exact Set.disjoint_left.1 hdis hB hBc
 
 end RamseySpace
+
+namespace ThreeUniformDiaries
 
 open Milliken
 
