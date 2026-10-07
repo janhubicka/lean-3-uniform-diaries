@@ -1,85 +1,99 @@
 import Mathlib
 
 /-!
-# The canonical-code transfer step in the aux-type Ramsey proof
+# Transfer from canonical finite codes to the aux-type Ramsey theorem
 
-The repaired manuscript proof has four genuinely separate ingredients:
+The manuscript's finite-code identity is *not* that every embedding `e`
+equals the image of a finite strong subtree: the intermediate embedding
+`g_G ∘ e` lands in the universal branch hypergraph `K_I`.
 
-* every finite aux-type-respecting embedding has a finite strong-tree code;
-* every infinite code gives an aux-type-respecting self-embedding;
-* finite canonical codes compose with an infinite code;
-* Milliken makes all finite codes below one infinite code monochromatic.
+We retain that extra branch layer in the interface. In manuscript notation:
 
-This file formalizes the final implication from precisely those interfaces.
-No combinatorial theorem is postulated as an axiom: the Milliken conclusion
-is an explicit hypothesis, to be discharged by the concrete tree
-formalization.
+* `branch e = g_G ∘ e`;
+* `finiteBranch S = F_I^S ∘ g_A`;
+* `outer B = φ ∘ B`;
+* `lift U B = F_I^U ∘ B`;
+* `decode U = φ ∘ F_I^U ∘ g_G`.
+
+The three compatibility fields are exactly the finite extraction lemma,
+canonical composition, and the construction of the infinite self-embedding.
+The final Ramsey argument then follows solely from these identities and
+the fixed-height finite-colour consequence of Milliken.
 -/
 
 namespace ThreeUniformDiaries
 
-universe u₁ u₂ u₃ u₄
+universe u₁ u₂ u₃ u₄ u₅
 
-/-- Abstract interface of the canonical maps occurring in the repaired proof.
-
-`SmallEmb` represents embeddings of the fixed finite hypergraph,
-`LargeEmb` self-embeddings of the generic hypergraph,
-`FinCode` finite strong-vector-subtree codes, and `InfCode` infinite ones.
--/
+/-- The precise factorisation interfaces for the repaired aux-type Ramsey
+proof, keeping the universal-branch hypergraph separate from the ambient
+generic hypergraph. -/
 structure AuxRamseyCoding
     (SmallEmb : Type u₁) (LargeEmb : Type u₂)
-    (FinCode : Type u₃) (InfCode : Type u₄) where
+    (BranchEmb : Type u₃) (FinCode : Type u₄)
+    (InfCode : Type u₅) where
+  /-- Postcomposition by an aux-type-respecting ambient self-embedding. -/
   act : LargeEmb → SmallEmb → SmallEmb
-  realize : FinCode → SmallEmb
-  encode : SmallEmb → FinCode
+  /-- `g_G ∘ e`, before applying the fixed outer embedding. -/
+  branch : SmallEmb → BranchEmb
+  /-- `F_I^S ∘ g_A`, before applying the fixed outer embedding. -/
+  finiteBranch : FinCode → BranchEmb
+  /-- The fixed outer embedding `φ : K_I → G`. -/
+  outer : BranchEmb → SmallEmb
+  /-- The canonical action of an infinite strong subtree on branch codes. -/
+  lift : InfCode → BranchEmb → BranchEmb
+  /-- The ambient self-embedding constructed from an infinite subtree. -/
   decode : InfCode → LargeEmb
+  /-- Extract a finite strong subtree coding `g_G ∘ e`. -/
+  encode : SmallEmb → FinCode
+  /-- Strong completion inside the homogeneous infinite subtree. -/
   refine : InfCode → FinCode → FinCode
-  encode_spec : ∀ e, realize (encode e) = e
-  composition :
-    ∀ U S, realize (refine U S) = act (decode U) (realize S)
+  /-- The finite encoding identity, corresponding to `lem:Aemb`. -/
+  encode_spec : ∀ e, finiteBranch (encode e) = branch e
+  /-- Canonical composition, corresponding to `lem:canonicalcomposition`. -/
+  refine_spec :
+    ∀ U S, finiteBranch (refine U S) = lift U (finiteBranch S)
+  /-- Construction of the infinite embedding in the target, including `φ`. -/
+  decode_spec :
+    ∀ U e, act (decode U) e = outer (lift U (branch e))
 
 namespace AuxRamseyCoding
 
 variable {SmallEmb : Type u₁} {LargeEmb : Type u₂}
-variable {FinCode : Type u₃} {InfCode : Type u₄}
+variable {BranchEmb : Type u₃} {FinCode : Type u₄}
+variable {InfCode : Type u₅}
 
-/-- The exact finite-colour conclusion needed from vector Milliken. -/
+/-- The fixed-height vector-Milliken conclusion needed in the manuscript. -/
 def FiniteRamsey
-    (C : AuxRamseyCoding SmallEmb LargeEmb FinCode InfCode) : Prop :=
+    (C : AuxRamseyCoding SmallEmb LargeEmb BranchEmb FinCode InfCode) : Prop :=
   ∀ (Color : Type) [Fintype Color] [Nonempty Color]
       (c : FinCode → Color),
     ∃ U : InfCode, ∃ color : Color,
       ∀ S : FinCode, c (C.refine U S) = color
 
-/-- Canonical coding plus the finite-colour Milliken conclusion imply the
-aux-type Ramsey theorem.
-
-This is the formal version of the last paragraph of the repaired proof:
-encode an arbitrary finite embedding, compose its code with the homogeneous
-infinite code, and use the canonical-composition identity. -/
+/-- The manuscript's final Ramsey deduction, with no artificial
+surjectivity assumption on the finite encoding. -/
 theorem auxRamsey_of_finiteRamsey
-    (C : AuxRamseyCoding SmallEmb LargeEmb FinCode InfCode)
+    (C : AuxRamseyCoding SmallEmb LargeEmb BranchEmb FinCode InfCode)
     (hRamsey : C.FiniteRamsey)
     (Color : Type) [Fintype Color] [Nonempty Color]
     (χ : SmallEmb → Color) :
     ∃ f : LargeEmb, ∃ color : Color,
       ∀ e : SmallEmb, χ (C.act f e) = color := by
-  let c : FinCode → Color := fun S => χ (C.realize S)
+  let c : FinCode → Color := fun S => χ (C.outer (C.finiteBranch S))
   rcases hRamsey Color c with ⟨U, color, hU⟩
   refine ⟨C.decode U, color, ?_⟩
   intro e
   have h := hU (C.encode e)
-  change χ (C.realize (C.refine U (C.encode e))) = color at h
-  have hc :
-      C.realize (C.refine U (C.encode e)) =
-        C.act (C.decode U) e := by
-    rw [C.composition U (C.encode e), C.encode_spec e]
-  rw [← hc]
+  change χ (C.outer (C.finiteBranch (C.refine U (C.encode e)))) =
+    color at h
+  rw [C.refine_spec U (C.encode e), C.encode_spec e] at h
+  rw [C.decode_spec U e]
   exact h
 
-/-- Pairwise-constant formulation matching the usual arrow notation. -/
+/-- Pairwise monochromaticity, matching the arrow-form conclusion. -/
 theorem auxRamsey_pairwise
-    (C : AuxRamseyCoding SmallEmb LargeEmb FinCode InfCode)
+    (C : AuxRamseyCoding SmallEmb LargeEmb BranchEmb FinCode InfCode)
     (hRamsey : C.FiniteRamsey)
     (Color : Type) [Fintype Color] [Nonempty Color]
     (χ : SmallEmb → Color) :

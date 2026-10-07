@@ -23,3 +23,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CanonicalMap.oneType_eq_iff
 #print axioms ThreeUniformDiaries.CanonicalMap.auxType_eq_iff
 #print axioms ThreeUniformDiaries.CanonicalMap.enumTriple_true_iff
+
+#print axioms ThreeUniformDiaries.EnumNode.oneType_eq_iff_sameOneTypeBelow
+#print axioms ThreeUniformDiaries.EnumNode.auxType_eq_iff_sameAuxTypeBelow

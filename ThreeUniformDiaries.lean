@@ -1,6 +1,7 @@
 import ThreeUniformDiaries.AuxTypes
 import ThreeUniformDiaries.AuxRamseyTransfer
 import ThreeUniformDiaries.TypeTrees
+import ThreeUniformDiaries.TypeRepresentation
 import ThreeUniformDiaries.CanonicalMap
 import ThreeUniformDiaries.CanonicalTypes
 import ThreeUniformDiaries.VectorTree
