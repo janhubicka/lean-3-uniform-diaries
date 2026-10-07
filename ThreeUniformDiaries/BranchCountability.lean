@@ -25,7 +25,7 @@ noncomputable instance enumerationBranchNodeCountable :
     cases y
     cases h
     rfl
-  exact Countable.of_injective f hinj
+  exact hinj.countable
 
 /-- In particular the relative class of branch nodes K_I is countable. -/
 noncomputable instance relativeBranchNodeCountable
