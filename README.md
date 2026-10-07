@@ -18,3 +18,5 @@ The next layer is the concrete finite/infinite canonical code for the three
 type trees and the transport from the vector-tree Milliken statement.
 
 The equality of explicit finite 1-type and aux-type nodes with agreement of the corresponding edge types below a cut is checked in `TypeRepresentation.lean`.
+
+Additional concrete lemmas: `PrunedTypeTrees.lean` proves that every coordinate-tree node has a child; `CanonicalAgreement.lean` proves preservation/reflection of type agreement at selected cuts. These do not by themselves establish the full auxiliary Ramsey theorem.
