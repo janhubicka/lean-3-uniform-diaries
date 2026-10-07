@@ -19,3 +19,7 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.CoordNode.covBy_level
 #print axioms ThreeUniformDiaries.CoordNode.le_meet
+
+#print axioms ThreeUniformDiaries.CanonicalMap.oneType_eq_iff
+#print axioms ThreeUniformDiaries.CanonicalMap.auxType_eq_iff
+#print axioms ThreeUniformDiaries.CanonicalMap.enumTriple_true_iff

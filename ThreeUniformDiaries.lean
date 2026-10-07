@@ -2,6 +2,7 @@ import ThreeUniformDiaries.AuxTypes
 import ThreeUniformDiaries.AuxRamseyTransfer
 import ThreeUniformDiaries.TypeTrees
 import ThreeUniformDiaries.CanonicalMap
+import ThreeUniformDiaries.CanonicalTypes
 import ThreeUniformDiaries.VectorTree
 import ThreeUniformDiaries.CoordinateTree
 import ThreeUniformDiaries.MillikenDependency
