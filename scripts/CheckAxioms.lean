@@ -39,3 +39,6 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.Ordered3Graph.branchNode_mem_relative
 #print axioms ThreeUniformDiaries.Ordered3Graph.relativeBranchNode_edge_iff
+
+#print axioms ThreeUniformDiaries.enumerationBranchNodeCountable
+#print axioms ThreeUniformDiaries.relativeBranchNodeCountable
