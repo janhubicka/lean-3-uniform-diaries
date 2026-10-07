@@ -34,14 +34,14 @@ noncomputable def initialSegment (H : Ordered3Graph Nat) (n : Nat) : EnumNode n 
 
 /-- A initialSegment remembers precisely the increasing triples of the ambient
 hypergraph that lie below its cut. -/
-theorem prefix_edge_iff (H : Ordered3Graph Nat)
+theorem initialSegment_edge_iff (H : Ordered3Graph Nat)
     {n i j k : Nat} (hij : i < j) (hjk : j < k) (hkn : k < n) :
     (H.initialSegment n).triple i j k = true ↔ H.edge i j k := by
   classical
   simp [initialSegment, hij, hjk, hkn]
 
 /-- Restricting a longer initialSegment gives the shorter initialSegment. -/
-theorem prefix_truncate (H : Ordered3Graph Nat)
+theorem initialSegment_truncate (H : Ordered3Graph Nat)
     {n m : Nat} (hnm : n ≤ m) :
     (H.initialSegment m).truncate n = H.initialSegment n := by
   classical
@@ -58,9 +58,9 @@ theorem prefix_truncate (H : Ordered3Graph Nat)
   · simp [hk]
 
 /-- In particular consecutive prefixes are linked by restriction. -/
-theorem prefix_succ_truncate (H : Ordered3Graph Nat) (n : Nat) :
+theorem initialSegment_succ_truncate (H : Ordered3Graph Nat) (n : Nat) :
     (H.initialSegment (n + 1)).truncate n = H.initialSegment n :=
-  H.prefix_truncate (Nat.le_succ n)
+  H.initialSegment_truncate (Nat.le_succ n)
 
 end Ordered3Graph
 end ThreeUniformDiaries
