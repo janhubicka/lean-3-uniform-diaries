@@ -5,3 +5,5 @@ import ThreeUniformDiaries.CanonicalMap
 import ThreeUniformDiaries.VectorTree
 import ThreeUniformDiaries.MillikenDependency
 import ThreeUniformDiaries.MillikenFiniteColour
+
+import ThreeUniformDiaries.SuccessorBackendTest
