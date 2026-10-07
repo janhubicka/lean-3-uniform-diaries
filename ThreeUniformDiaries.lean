@@ -10,3 +10,5 @@ import ThreeUniformDiaries.CoordinateTree
 import ThreeUniformDiaries.PrunedTypeTrees
 import ThreeUniformDiaries.MillikenDependency
 import ThreeUniformDiaries.MillikenFiniteColour
+
+import ThreeUniformDiaries.AgreementSuccessors

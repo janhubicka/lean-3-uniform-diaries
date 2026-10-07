@@ -31,3 +31,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CanonicalMap.preserves_selected_edges
 #print axioms ThreeUniformDiaries.CanonicalMap.preserves_selected_one_agreement
 #print axioms ThreeUniformDiaries.CanonicalMap.preserves_selected_aux_agreement
+#print axioms ThreeUniformDiaries.Ordered3Graph.sameAuxTypeBelow_succ_iff
+#print axioms ThreeUniformDiaries.Ordered3Graph.sameOneTypeBelow_succ_iff
