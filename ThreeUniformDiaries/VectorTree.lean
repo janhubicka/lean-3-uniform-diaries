@@ -84,11 +84,7 @@ def boundaryAux {N : Nat} (a : OneNode N) (k : Nat) : AuxNode k where
     have hz := a.support i j hbad
     by_cases hjeq : j = n
     · subst j
-      have hi : ¬ i < n := by
-        intro hin
-        exact hj (by simpa using hin)
-      have hci := c.support i (Nat.le_of_not_gt hi)
-      simp [truncate, succ, hj, hz, hci]
+      simp [truncate, hz]
     · simp [truncate, succ, hj, hjeq, hz]
 
 @[simp] theorem boundaryAux_succ {n : Nat} (a : OneNode n) (c : AuxNode n) :
@@ -143,11 +139,7 @@ def boundaryOne {N : Nat} (H : EnumNode N) (k : Nat) : OneNode k where
     have hz := H.support i j k hbad
     by_cases hkeq : k = n
     · subst k
-      have hv : ¬ (i < j ∧ j < n) := by
-        intro h
-        exact hk h.2
-      have hb := b.support i j hv
-      simp [truncate, succ, hk, hz, hb]
+      simp [truncate, hz]
     · simp [truncate, succ, hk, hkeq, hz]
 
 @[simp] theorem boundaryOne_succ {n : Nat} (H : EnumNode n) (b : OneNode n) :
