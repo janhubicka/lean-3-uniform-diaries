@@ -36,3 +36,6 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.Ordered3Graph.branchNode_chain
 #print axioms ThreeUniformDiaries.Ordered3Graph.branchNode_edge_iff
+
+#print axioms ThreeUniformDiaries.Ordered3Graph.branchNode_mem_relative
+#print axioms ThreeUniformDiaries.Ordered3Graph.relativeBranchNode_edge_iff

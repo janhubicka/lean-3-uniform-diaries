@@ -14,3 +14,5 @@ import ThreeUniformDiaries.MillikenFiniteColour
 import ThreeUniformDiaries.InfinitePrefixes
 
 import ThreeUniformDiaries.BranchHypergraph
+
+import ThreeUniformDiaries.RelativeBranchHypergraph
