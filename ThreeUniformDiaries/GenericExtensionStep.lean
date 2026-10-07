@@ -54,7 +54,11 @@ theorem exists_extension_zero_outside
   obtain ⟨v, hv, hpat⟩ := G.extension m (extendPattern m R inside)
   refine ⟨v, hv, ?_, ?_⟩
   · intro i j hij hi hj
-    simpa only [extendPattern, if_pos ⟨hi, hj⟩] using hpat i j hij
+    have hpair : i.val ∈ R ∧ j.val ∈ R := ⟨hi, hj⟩
+    have h := hpat i j hij
+    change G.graph.edge i.val j.val v ↔
+      (if i.val ∈ R ∧ j.val ∈ R then inside i j else false) = true at h
+    simpa only [if_pos hpair] using h
   · intro i j hij hout hEdge
     have hnot : ¬ (i.val ∈ R ∧ j.val ∈ R) := by
       intro hp
