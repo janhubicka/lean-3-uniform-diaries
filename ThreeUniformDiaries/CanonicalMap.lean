@@ -25,6 +25,12 @@ structure CanonicalMap where
   mapOne : (n : Nat) → OneNode n → OneNode (level n)
   mapEnum : (n : Nat) → EnumNode n → EnumNode (level n)
 
+  enum_triple_compat :
+    ∀ {N i j k : Nat} (H : EnumNode N),
+      i < j → j < k → k < N →
+      (mapEnum N H).triple (level i) (level j) (level k) =
+        H.triple i j k
+
   truncate_compat :
     ∀ {N l : Nat} (H : EnumNode N), l ≤ N →
       mapEnum l (H.truncate l) =
@@ -51,6 +57,9 @@ def id : CanonicalMap where
   mapAux := fun _ a => a
   mapOne := fun _ a => a
   mapEnum := fun _ a => a
+  enum_triple_compat := by
+    intro N i j k H hij hjk hkN
+    rfl
   truncate_compat := by
     intro N l H hl
     rfl
@@ -68,6 +77,11 @@ def comp (G F : CanonicalMap) : CanonicalMap where
   mapAux := fun n a => G.mapAux (F.level n) (F.mapAux n a)
   mapOne := fun n a => G.mapOne (F.level n) (F.mapOne n a)
   mapEnum := fun n a => G.mapEnum (F.level n) (F.mapEnum n a)
+  enum_triple_compat := by
+    intro N i j k H hij hjk hkN
+    rw [G.enum_triple_compat (F.mapEnum N H)
+      (F.strictMono hij) (F.strictMono hjk) (F.strictMono hkN)]
+    exact F.enum_triple_compat H hij hjk hkN
   truncate_compat := by
     intro N l H hl
     rw [F.truncate_compat H hl]
