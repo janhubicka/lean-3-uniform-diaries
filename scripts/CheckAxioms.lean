@@ -19,3 +19,5 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.CoordNode.covBy_level
 #print axioms ThreeUniformDiaries.CoordNode.le_meet
+
+#print axioms ThreeUniformDiaries.CoordNode.typeSTree

@@ -4,5 +4,6 @@ import ThreeUniformDiaries.TypeTrees
 import ThreeUniformDiaries.CanonicalMap
 import ThreeUniformDiaries.VectorTree
 import ThreeUniformDiaries.CoordinateTree
+import ThreeUniformDiaries.CoordinateSuccessor
 import ThreeUniformDiaries.MillikenDependency
 import ThreeUniformDiaries.MillikenFiniteColour
