@@ -12,5 +12,10 @@ name = "milliken"
 git = "https://github.com/janhubicka/lean-milliken"
 rev = "fb7ca3f02a20813743fd87e02311ded743dbe956"
 
+[[require]]
+name = "successor-tree-lean"
+git = "https://github.com/janhubicka/lean-successors"
+rev = "f073735fb28c998e419128c16d28d212675f8600"
+
 [[lean_lib]]
 name = "ThreeUniformDiaries"
