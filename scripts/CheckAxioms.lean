@@ -33,3 +33,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CanonicalMap.preserves_selected_aux_agreement
 #print axioms ThreeUniformDiaries.Ordered3Graph.initialSegment_edge_iff
 #print axioms ThreeUniformDiaries.Ordered3Graph.initialSegment_truncate
+
+#print axioms ThreeUniformDiaries.Ordered3Graph.branchNode_chain
+#print axioms ThreeUniformDiaries.Ordered3Graph.branchNode_edge_iff
