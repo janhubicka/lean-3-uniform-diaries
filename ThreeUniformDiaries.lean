@@ -10,3 +10,8 @@ import ThreeUniformDiaries.CoordinateTree
 import ThreeUniformDiaries.PrunedTypeTrees
 import ThreeUniformDiaries.MillikenDependency
 import ThreeUniformDiaries.MillikenFiniteColour
+
+import ThreeUniformDiaries.GenericExtensionStep
+import ThreeUniformDiaries.GenericSourceStep
+import ThreeUniformDiaries.SuccessorUniqueness
+import ThreeUniformDiaries.AgreementSuccessors
