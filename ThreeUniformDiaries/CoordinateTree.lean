@@ -59,10 +59,10 @@ theorem truncate_truncate (x : CoordNode) {k l : Nat} (hkl : k ≤ l) :
       simp only [truncate]
       rw [EnumNode.truncate_truncate a hkl]
 
-def LE (x y : CoordNode) : Prop :=
+def PrefixLE (x y : CoordNode) : Prop :=
   level x ≤ level y ∧ truncate y (level x) = x
 
-instance : LE CoordNode := ⟨LE⟩
+instance : _root_.LE CoordNode := ⟨PrefixLE⟩
 
 @[simp] theorem le_def {x y : CoordNode} :
     x ≤ y ↔ level x ≤ level y ∧ truncate y (level x) = x :=
