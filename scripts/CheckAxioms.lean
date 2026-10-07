@@ -16,3 +16,6 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.VectorNode.pred_succ
 #print axioms ThreeUniformDiaries.VectorNode.succ_pred_lastStep
+
+#print axioms ThreeUniformDiaries.EnumNode.oneType_eq_iff_sameOneTypeBelow
+#print axioms ThreeUniformDiaries.EnumNode.auxType_eq_iff_sameAuxTypeBelow
