@@ -4,3 +4,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.AuxRamseyCoding.auxRamsey_of_finiteRamsey
 #print axioms ThreeUniformDiaries.AuxRamseyCoding.auxRamsey_pairwise
 #print axioms ThreeUniformDiaries.homogeneousMillikenAvailable
+
+#print axioms ThreeUniformDiaries.EnumNode.auxType_succ_bit
+#print axioms ThreeUniformDiaries.EnumNode.oneType_succ_pair
+#print axioms ThreeUniformDiaries.EnumNode.truncate_succ_triple
