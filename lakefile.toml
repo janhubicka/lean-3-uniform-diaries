@@ -1,0 +1,16 @@
+name = "three-uniform-diaries"
+version = "0.1.0"
+defaultTargets = ["ThreeUniformDiaries"]
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "5bd58ac291422a21f412ae354c91e7d172255a2c"
+
+[[require]]
+name = "milliken"
+git = "https://github.com/janhubicka/lean-milliken"
+rev = "fb7ca3f02a20813743fd87e02311ded743dbe956"
+
+[[lean_lib]]
+name = "ThreeUniformDiaries"

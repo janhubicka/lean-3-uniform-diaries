@@ -1,0 +1,6 @@
+import ThreeUniformDiaries
+
+#print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.AuxTypeRespecting.typeRespecting
+#print axioms ThreeUniformDiaries.AuxRamseyCoding.auxRamsey_of_finiteRamsey
+#print axioms ThreeUniformDiaries.AuxRamseyCoding.auxRamsey_pairwise
+#print axioms ThreeUniformDiaries.homogeneousMillikenAvailable
