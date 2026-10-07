@@ -6,11 +6,11 @@ import ThreeUniformDiaries.AuxTypes
 
 An infinite enumerated 3-uniform hypergraph determines the sequence of
 finite enumeration nodes appearing in the manuscript's `g_H` construction.
-We verify that the prefix nodes are nested and that they retain exactly the
+We verify that the initialSegment nodes are nested and that they retain exactly the
 edges on increasing triples inside the finite initial segment.
 
 The branch-hypergraph map `g_H(v) = H|_(v+1)` will be built on top of
-these prefix nodes.
+these initialSegment nodes.
 -/
 
 namespace ThreeUniformDiaries
@@ -19,7 +19,7 @@ namespace Ordered3Graph
 
 /-- The finite enumerated hypergraph induced by the first `n` vertices
 of a hypergraph on the natural numbers. Non-increasing triples are zero. -/
-noncomputable def prefix (H : Ordered3Graph Nat) (n : Nat) : EnumNode n := by
+noncomputable def initialSegment (H : Ordered3Graph Nat) (n : Nat) : EnumNode n := by
   classical
   refine {
     triple := fun i j k =>
@@ -32,18 +32,18 @@ noncomputable def prefix (H : Ordered3Graph Nat) (n : Nat) : EnumNode n := by
     exact hbad ⟨h.1, h.2.1, h.2.2.1⟩
   simp [hnot]
 
-/-- A prefix remembers precisely the increasing triples of the ambient
+/-- A initialSegment remembers precisely the increasing triples of the ambient
 hypergraph that lie below its cut. -/
 theorem prefix_edge_iff (H : Ordered3Graph Nat)
     {n i j k : Nat} (hij : i < j) (hjk : j < k) (hkn : k < n) :
-    (H.prefix n).triple i j k = true ↔ H.edge i j k := by
+    (H.initialSegment n).triple i j k = true ↔ H.edge i j k := by
   classical
-  simp [prefix, hij, hjk, hkn]
+  simp [initialSegment, hij, hjk, hkn]
 
-/-- Restricting a longer prefix gives the shorter prefix. -/
+/-- Restricting a longer initialSegment gives the shorter initialSegment. -/
 theorem prefix_truncate (H : Ordered3Graph Nat)
     {n m : Nat} (hnm : n ≤ m) :
-    (H.prefix m).truncate n = H.prefix n := by
+    (H.initialSegment m).truncate n = H.initialSegment n := by
   classical
   apply EnumNode.ext_triples
   funext i j k
@@ -59,7 +59,7 @@ theorem prefix_truncate (H : Ordered3Graph Nat)
 
 /-- In particular consecutive prefixes are linked by restriction. -/
 theorem prefix_succ_truncate (H : Ordered3Graph Nat) (n : Nat) :
-    (H.prefix (n + 1)).truncate n = H.prefix n :=
+    (H.initialSegment (n + 1)).truncate n = H.initialSegment n :=
   H.prefix_truncate (Nat.le_succ n)
 
 end Ordered3Graph
