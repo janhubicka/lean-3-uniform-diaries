@@ -110,7 +110,8 @@ theorem AuxTypeRespecting.typeRespecting
     {f : Embedding H K} (hf : f.AuxTypeRespecting) :
     f.TypeRespecting := by
   refine ⟨hf.one, ?_⟩
-  intro l u₀ u₁ v₀ v₁ hlu hu hlv hv
+  intro l u₀ u₁ v₀ v₁
+  intro hlu hu hlv hv
   have hlu₁ : l ≤ u₁ := hlu.trans hu.le
   have hlv₁ : l ≤ v₁ := hlv.trans hv.le
   simp only [SameTwoTypeBelow]

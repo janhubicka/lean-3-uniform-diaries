@@ -91,10 +91,14 @@ theorem le_antisymm {x y : CoordNode} (hxy : x ≤ y) (hyx : y ≤ x) :
     _ = y := truncate_self y
 
 instance : PartialOrder CoordNode where
-  le := (· ≤ ·)
-  le_refl := le_refl
-  le_trans := le_trans
-  le_antisymm := le_antisymm
+  le := PrefixLE
+  le_refl := fun x => CoordNode.le_refl x
+  le_trans := by
+    intro x y z hxy hyz
+    exact CoordNode.le_trans hxy hyz
+  le_antisymm := by
+    intro x y hxy hyx
+    exact CoordNode.le_antisymm hxy hyx
 
 theorem level_le_of_le {x y : CoordNode} (h : x ≤ y) :
     level x ≤ level y :=
@@ -225,11 +229,9 @@ theorem meet_le_right {a b : CoordNode}
     (hcommon : ∃ c : CoordNode, c ≤ a ∧ c ≤ b) :
     meet a b ≤ b := by
   classical
-  have hs := meetLevel_spec hcommon
-  refine ⟨meetLevel_le_right a b, ?_⟩
-  simp only [level_truncate]
-  unfold CommonAt at hs
-  exact hs.symm
+  change meetLevel a b ≤ level b ∧
+    truncate b (meetLevel a b) = truncate a (meetLevel a b)
+  exact ⟨meetLevel_le_right a b, (meetLevel_spec hcommon).symm⟩
 
 theorem le_meet {a b c : CoordNode} (hca : c ≤ a) (hcb : c ≤ b) :
     c ≤ meet a b := by
@@ -266,8 +268,7 @@ theorem covBy_level {a b : CoordNode} (hab : a ⋖ b) :
   have hazlt : a < z := lt_of_le_of_ne haz (by
     intro h
     have hl := congrArg level h
-    simp [z] at hl
-    omega)
+    simp [z] at hl)
   have hzblt : z < b := lt_of_le_of_ne hzb (by
     intro h
     have hl := congrArg level h
