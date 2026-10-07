@@ -22,6 +22,24 @@ def truncate {N : Nat} (a : AuxNode N) (l : Nat) : AuxNode l where
     intro i hi
     rw [if_neg (Nat.not_lt.mpr hi)]
 
+@[simp] theorem truncate_self {n : Nat} (a : AuxNode n) :
+    a.truncate n = a := by
+  apply AuxNode.ext_bits
+  funext i
+  by_cases hi : i < n
+  · simp [truncate, hi]
+  · have hz := a.support i (Nat.le_of_not_gt hi)
+    simp [truncate, hi, hz]
+
+theorem truncate_truncate {N l k : Nat} (a : AuxNode N) (hkl : k ≤ l) :
+    (a.truncate l).truncate k = a.truncate k := by
+  apply AuxNode.ext_bits
+  funext i
+  by_cases hik : i < k
+  · have hil : i < l := lt_of_lt_of_le hik hkl
+    simp [truncate, hik, hil]
+  · simp [truncate, hik]
+
 @[simp] theorem truncate_succ {n : Nat} (a : AuxNode n) (e : Bool) :
     (a.succ e).truncate n = a := by
   apply AuxNode.ext_bits
@@ -64,6 +82,27 @@ def truncate {N : Nat} (a : OneNode N) (l : Nat) : OneNode l where
       intro hvalid
       exact hbad ⟨hvalid.1, hj⟩
     · rw [if_neg hj]
+
+@[simp] theorem truncate_self {n : Nat} (a : OneNode n) :
+    a.truncate n = a := by
+  apply OneNode.ext_pairs
+  funext i j
+  by_cases hj : j < n
+  · simp [truncate, hj]
+  · have hbad : ¬ (i < j ∧ j < n) := by
+      intro h
+      exact hj h.2
+    have hz := a.support i j hbad
+    simp [truncate, hj, hz]
+
+theorem truncate_truncate {N l k : Nat} (a : OneNode N) (hkl : k ≤ l) :
+    (a.truncate l).truncate k = a.truncate k := by
+  apply OneNode.ext_pairs
+  funext i j
+  by_cases hjk : j < k
+  · have hjl : j < l := lt_of_lt_of_le hjk hkl
+    simp [truncate, hjk, hjl]
+  · simp [truncate, hjk]
 
 def boundaryAux {N : Nat} (a : OneNode N) (k : Nat) : AuxNode k where
   bit i := if i < k then a.pair i k else false
@@ -119,6 +158,27 @@ def boundaryAux {N : Nat} (a : OneNode N) (k : Nat) : AuxNode k where
 end OneNode
 
 namespace EnumNode
+
+@[simp] theorem truncate_self {n : Nat} (H : EnumNode n) :
+    H.truncate n = H := by
+  apply EnumNode.ext_triples
+  funext i j k
+  by_cases hk : k < n
+  · simp [EnumNode.truncate, hk]
+  · have hbad : ¬ (i < j ∧ j < k ∧ k < n) := by
+      intro h
+      exact hk h.2.2
+    have hz := H.support i j k hbad
+    simp [EnumNode.truncate, hk, hz]
+
+theorem truncate_truncate {N l k : Nat} (H : EnumNode N) (hkl : k ≤ l) :
+    (H.truncate l).truncate k = H.truncate k := by
+  apply EnumNode.ext_triples
+  funext i j r
+  by_cases hrk : r < k
+  · have hrl : r < l := lt_of_lt_of_le hrk hkl
+    simp [EnumNode.truncate, hrk, hrl]
+  · simp [EnumNode.truncate, hrk]
 
 def boundaryOne {N : Nat} (H : EnumNode N) (k : Nat) : OneNode k where
   pair i j := if i < j ∧ j < k then H.triple i j k else false
