@@ -19,3 +19,4 @@ import ThreeUniformDiaries.InfinitePrefixes
 import ThreeUniformDiaries.BranchHypergraph
 import ThreeUniformDiaries.RelativeBranchHypergraph
 import ThreeUniformDiaries.BranchCountability
+import ThreeUniformDiaries.BranchTypeAgreement
