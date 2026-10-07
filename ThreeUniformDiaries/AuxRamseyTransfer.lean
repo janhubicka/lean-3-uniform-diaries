@@ -69,7 +69,12 @@ theorem auxRamsey_of_finiteRamsey
   refine ⟨C.decode U, color, ?_⟩
   intro e
   have h := hU (C.encode e)
-  rw [C.composition U (C.encode e), C.encode_spec e] at h
+  change χ (C.realize (C.refine U (C.encode e))) = color at h
+  have hc :
+      C.realize (C.refine U (C.encode e)) =
+        C.act (C.decode U) e := by
+    rw [C.composition U (C.encode e), C.encode_spec e]
+  rw [← hc]
   exact h
 
 /-- Pairwise-constant formulation matching the usual arrow notation. -/
