@@ -73,21 +73,23 @@ instance : CoeFun (Embedding H K) (fun _ => α → β) :=
 /-- Preservation and reflection of singleton-type equality at corresponding
 cuts.  This is the relation-level version of preserving singleton meets. -/
 def PreservesOneTypes (f : Embedding H K) : Prop :=
-  ∀ l u v,
+  ∀ l u v, l ≤ u → l ≤ v →
     H.SameOneTypeBelow l u v ↔
       K.SameOneTypeBelow (f l) (f u) (f v)
 
 /-- Preservation and reflection of auxiliary-type equality at corresponding
-cuts.  This is the relation-level version of preserving auxiliary meets. -/
+cuts.  Only ordered pairs lying above the cut occur in the manuscript. -/
 def PreservesAuxTypes (f : Embedding H K) : Prop :=
   ∀ l u₀ u₁ v₀ v₁,
+    l ≤ u₀ → u₀ < u₁ → l ≤ v₀ → v₀ < v₁ →
     H.SameAuxTypeBelow l u₀ u₁ v₀ v₁ ↔
       K.SameAuxTypeBelow (f l) (f u₀) (f u₁) (f v₀) (f v₁)
 
 /-- Preservation and reflection of ordinary 2-type equality at corresponding
-cuts. -/
+cuts, for ordered pairs above the cut. -/
 def PreservesTwoTypes (f : Embedding H K) : Prop :=
   ∀ l u₀ u₁ v₀ v₁,
+    l ≤ u₀ → u₀ < u₁ → l ≤ v₀ → v₀ < v₁ →
     H.SameTwoTypeBelow l u₀ u₁ v₀ v₁ ↔
       K.SameTwoTypeBelow (f l) (f u₀) (f u₁) (f v₀) (f v₁)
 
@@ -108,10 +110,13 @@ theorem AuxTypeRespecting.typeRespecting
     {f : Embedding H K} (hf : f.AuxTypeRespecting) :
     f.TypeRespecting := by
   refine ⟨hf.one, ?_⟩
-  intro l u₀ u₁ v₀ v₁
+  intro l u₀ u₁ v₀ v₁ hlu hu hlv hv
+  have hlu₁ : l ≤ u₁ := hlu.trans hu.le
+  have hlv₁ : l ≤ v₁ := hlv.trans hv.le
   simp only [SameTwoTypeBelow]
-  rw [hf.one l u₀ v₀, hf.one l u₁ v₁,
-    hf.aux l u₀ u₁ v₀ v₁]
+  rw [hf.one l u₀ v₀ hlu hlv,
+    hf.one l u₁ v₁ hlu₁ hlv₁,
+    hf.aux l u₀ u₁ v₀ v₁ hlu hu hlv hv]
 
 end Embedding
 end Ordered3Graph
