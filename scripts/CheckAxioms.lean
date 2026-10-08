@@ -70,3 +70,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.GenericEnumerated3Graph.inheritedStages_stable
 #print axioms ThreeUniformDiaries.GenericEnumerated3Graph.exists_countable_inherited_embedding
 #print axioms ThreeUniformDiaries.GenericEnumerated3Graph.inheritedEmbedding_gap_step
+#print axioms ThreeUniformDiaries.enumerationBranch_level_finite
+#print axioms ThreeUniformDiaries.relativeBranch_level_finite
