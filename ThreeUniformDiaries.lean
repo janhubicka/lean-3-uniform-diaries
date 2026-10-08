@@ -38,3 +38,4 @@ import ThreeUniformDiaries.TypeCutTransfer
 import ThreeUniformDiaries.SizeFirstEnumeration
 import ThreeUniformDiaries.FixedPrefixExistence
 import ThreeUniformDiaries.SizeFirstSourceTests
+import ThreeUniformDiaries.SizeFirstParentSchedule
