@@ -100,3 +100,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.relativeBranchSizeFirst_length_mono
 #print axioms ThreeUniformDiaries.GenericEnumerated3Graph.no_empty_prefix_parent_schedule
 #print axioms ThreeUniformDiaries.GenericEnumerated3Graph.exists_induced_embedding_fixing_prefix
+#print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.auxTypeRespecting_of_omitted
