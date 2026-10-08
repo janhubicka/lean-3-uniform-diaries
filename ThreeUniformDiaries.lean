@@ -39,3 +39,4 @@ import ThreeUniformDiaries.SizeFirstEnumeration
 import ThreeUniformDiaries.FixedPrefixExistence
 import ThreeUniformDiaries.SizeFirstSourceTests
 import ThreeUniformDiaries.SizeFirstParentSchedule
+import ThreeUniformDiaries.KIBranchTargetAgreement
