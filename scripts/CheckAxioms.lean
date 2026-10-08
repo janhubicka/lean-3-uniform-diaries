@@ -56,3 +56,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.gapExample_step6_C2
 #print axioms ThreeUniformDiaries.gapExample_step7_C2
 #print axioms ThreeUniformDiaries.gapExample_capped_meet_failure
+#print axioms ThreeUniformDiaries.GenericEnumerated3Graph.exists_extension_inheriting_gaps
+#print axioms ThreeUniformDiaries.Ordered3Graph.gap_oneTypes_constant
+#print axioms ThreeUniformDiaries.Ordered3Graph.gap_auxTypes_zero
