@@ -59,3 +59,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.GenericEnumerated3Graph.exists_extension_inheriting_gaps
 #print axioms ThreeUniformDiaries.Ordered3Graph.gap_oneTypes_constant
 #print axioms ThreeUniformDiaries.Ordered3Graph.gap_auxTypes_zero
+#print axioms ThreeUniformDiaries.GenericEnumerated3Graph.finiteStages_stable
+#print axioms ThreeUniformDiaries.GenericEnumerated3Graph.exists_countable_induced_embedding
