@@ -95,3 +95,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.auxTypeAgreement_transfer
 #print axioms ThreeUniformDiaries.Ordered3Graph.oneType_failure_at_image_cut
 #print axioms ThreeUniformDiaries.Ordered3Graph.auxType_failure_at_image_cut
+#print axioms ThreeUniformDiaries.Ordered3Graph.oneMeetLevel_preserved
+#print axioms ThreeUniformDiaries.Ordered3Graph.auxMeetLevel_preserved
