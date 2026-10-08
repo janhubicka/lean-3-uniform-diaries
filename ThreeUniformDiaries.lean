@@ -27,3 +27,4 @@ import ThreeUniformDiaries.FiniteInheritedStage
 import ThreeUniformDiaries.RelativePrefixClosure
 import ThreeUniformDiaries.CountableInheritedEmbedding
 import ThreeUniformDiaries.RelativeLevelFiniteness
+import ThreeUniformDiaries.FixedPrefixStage
