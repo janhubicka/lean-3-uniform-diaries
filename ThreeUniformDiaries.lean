@@ -31,3 +31,4 @@ import ThreeUniformDiaries.FixedPrefixStage
 import ThreeUniformDiaries.GlobalGapInheritance
 import ThreeUniformDiaries.BranchCutBoundary
 import ThreeUniformDiaries.RelativeLevelPopulation
+import ThreeUniformDiaries.FixedPrefixCountableEmbedding
