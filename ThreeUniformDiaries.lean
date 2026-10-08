@@ -21,3 +21,4 @@ import ThreeUniformDiaries.RelativeBranchHypergraph
 import ThreeUniformDiaries.BranchCountability
 import ThreeUniformDiaries.BranchTypeAgreement
 import ThreeUniformDiaries.GapCounterexample
+import ThreeUniformDiaries.InheritedGapExtension
