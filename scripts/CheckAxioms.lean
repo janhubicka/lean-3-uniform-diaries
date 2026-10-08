@@ -98,3 +98,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.relativeBranchCodeRange_infinite
 #print axioms ThreeUniformDiaries.relativeBranchSizeFirst_code
 #print axioms ThreeUniformDiaries.relativeBranchSizeFirst_length_mono
+#print axioms ThreeUniformDiaries.GenericEnumerated3Graph.no_empty_prefix_parent_schedule
+#print axioms ThreeUniformDiaries.GenericEnumerated3Graph.exists_induced_embedding_fixing_prefix
