@@ -91,3 +91,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.relativeBranchNumericCode_injective
 #print axioms ThreeUniformDiaries.GenericEnumerated3Graph.inherited_branch_omitted_oneType
 #print axioms ThreeUniformDiaries.GenericEnumerated3Graph.inherited_branch_omitted_auxType
+#print axioms ThreeUniformDiaries.Ordered3Graph.oneTypeAgreement_transfer
+#print axioms ThreeUniformDiaries.Ordered3Graph.auxTypeAgreement_transfer
+#print axioms ThreeUniformDiaries.Ordered3Graph.oneType_failure_at_image_cut
+#print axioms ThreeUniformDiaries.Ordered3Graph.auxType_failure_at_image_cut
