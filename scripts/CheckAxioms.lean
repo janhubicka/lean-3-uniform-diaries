@@ -64,3 +64,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.FiniteGenericStage.inheritedVertex_spec
 #print axioms ThreeUniformDiaries.FiniteGenericStage.extendInherited_old
 #print axioms ThreeUniformDiaries.FiniteGenericStage.extendInherited_last
+#print axioms ThreeUniformDiaries.relativeBranch_prefix_mem
+#print axioms ThreeUniformDiaries.relativeBranch_exists_parent
+#print axioms ThreeUniformDiaries.relativeBranch_prefix_unique
