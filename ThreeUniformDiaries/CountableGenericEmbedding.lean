@@ -208,7 +208,17 @@ theorem exists_countable_induced_embedding
     have h := S.edge_iff
       ⟨a, by omega⟩ ⟨b, by omega⟩ (Fin.last c)
       (show a < b from hab) (show b < c from hbc)
-    simpa only [countableEmbedding_at_stage, Fin.val_last] using h
+    have ha : (S.image ⟨a, by omega⟩).val =
+        G.countableEmbedding K a :=
+      G.countableEmbedding_at_stage K (by omega)
+    have hb : (S.image ⟨b, by omega⟩).val =
+        G.countableEmbedding K b :=
+      G.countableEmbedding_at_stage K (by omega)
+    have hc : (S.image (Fin.last c)).val =
+        G.countableEmbedding K c :=
+      G.countableEmbedding_at_stage K (Nat.lt_succ_self c)
+    rw [ha, hb, hc] at h
+    exact h
 
 end GenericEnumerated3Graph
 end ThreeUniformDiaries
