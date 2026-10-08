@@ -33,7 +33,7 @@ theorem selected_aux_edge_implies_branch_prefix
   have hau : A.val.last < u := haux.1
   have hsame :
       H.initialSegment (A.val.last + 1) = A.val.enumeration :=
-    (H.universalBranch_edge_aux_prefix_iff A.val hau huv).mp haux |>.1 |>.symm
+    ((H.universalBranch_edge_aux_prefix_iff A.val hau huv).mp haux).1
   apply Subtype.ext
   exact A.val.eq_branchNode_of_prefix H A.val.last rfl hsame.symm
 
