@@ -32,3 +32,4 @@ import ThreeUniformDiaries.GlobalGapInheritance
 import ThreeUniformDiaries.BranchCutBoundary
 import ThreeUniformDiaries.RelativeLevelPopulation
 import ThreeUniformDiaries.FixedPrefixCountableEmbedding
+import ThreeUniformDiaries.SizeFirstNumericCode

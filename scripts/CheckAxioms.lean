@@ -87,3 +87,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.GenericEnumerated3Graph.fixedInheritedStages_stable
 #print axioms ThreeUniformDiaries.GenericEnumerated3Graph.fixedInheritedEmbedding_prefix
 #print axioms ThreeUniformDiaries.GenericEnumerated3Graph.fixedInheritedEmbedding_isEmbedding
+#print axioms ThreeUniformDiaries.relativeBranchNumericCode_lt_of_last_lt
+#print axioms ThreeUniformDiaries.relativeBranchNumericCode_injective
