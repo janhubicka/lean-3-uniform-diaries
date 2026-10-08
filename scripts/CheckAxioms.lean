@@ -84,3 +84,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.relativeBranch_level_nonempty
 #print axioms ThreeUniformDiaries.relativeBranchCanonical_chain
 #print axioms ThreeUniformDiaries.relativeBranch_initial_unique
+#print axioms ThreeUniformDiaries.GenericEnumerated3Graph.fixedInheritedStages_stable
+#print axioms ThreeUniformDiaries.GenericEnumerated3Graph.fixedInheritedEmbedding_prefix
+#print axioms ThreeUniformDiaries.GenericEnumerated3Graph.fixedInheritedEmbedding_isEmbedding
