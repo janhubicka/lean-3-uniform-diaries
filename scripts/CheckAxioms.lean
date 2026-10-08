@@ -72,3 +72,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.GenericEnumerated3Graph.inheritedEmbedding_gap_step
 #print axioms ThreeUniformDiaries.enumerationBranch_level_finite
 #print axioms ThreeUniformDiaries.relativeBranch_level_finite
+#print axioms ThreeUniformDiaries.GenericEnumerated3Graph.fixedPrefixStage_image
+#print axioms ThreeUniformDiaries.GenericEnumerated3Graph.fixedPrefixStage_extend_old
