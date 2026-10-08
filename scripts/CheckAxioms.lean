@@ -67,3 +67,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.relativeBranch_prefix_mem
 #print axioms ThreeUniformDiaries.relativeBranch_exists_parent
 #print axioms ThreeUniformDiaries.relativeBranch_prefix_unique
+#print axioms ThreeUniformDiaries.GenericEnumerated3Graph.inheritedStages_stable
+#print axioms ThreeUniformDiaries.GenericEnumerated3Graph.exists_countable_inherited_embedding
+#print axioms ThreeUniformDiaries.GenericEnumerated3Graph.inheritedEmbedding_gap_step

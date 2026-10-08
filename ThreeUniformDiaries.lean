@@ -25,3 +25,4 @@ import ThreeUniformDiaries.InheritedGapExtension
 import ThreeUniformDiaries.CountableGenericEmbedding
 import ThreeUniformDiaries.FiniteInheritedStage
 import ThreeUniformDiaries.RelativePrefixClosure
+import ThreeUniformDiaries.CountableInheritedEmbedding
