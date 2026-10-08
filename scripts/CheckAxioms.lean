@@ -74,3 +74,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.relativeBranch_level_finite
 #print axioms ThreeUniformDiaries.GenericEnumerated3Graph.fixedPrefixStage_image
 #print axioms ThreeUniformDiaries.GenericEnumerated3Graph.fixedPrefixStage_extend_old
+#print axioms ThreeUniformDiaries.GenericEnumerated3Graph.omitted_not_in_inherited_stage
+#print axioms ThreeUniformDiaries.GenericEnumerated3Graph.inherited_copy_omitted_pair
+#print axioms ThreeUniformDiaries.GenericEnumerated3Graph.inherited_zero_omitted_parent
