@@ -23,3 +23,4 @@ import ThreeUniformDiaries.BranchTypeAgreement
 import ThreeUniformDiaries.GapCounterexample
 import ThreeUniformDiaries.InheritedGapExtension
 import ThreeUniformDiaries.CountableGenericEmbedding
+import ThreeUniformDiaries.FiniteInheritedStage
