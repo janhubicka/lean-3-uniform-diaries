@@ -81,3 +81,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.no_branch_edge_wrong_first
 #print axioms ThreeUniformDiaries.Ordered3Graph.relativeBranch_sameOneType_at_boundary
 #print axioms ThreeUniformDiaries.Ordered3Graph.relativeBranch_sameAuxType_at_boundary
+#print axioms ThreeUniformDiaries.relativeBranch_level_nonempty
+#print axioms ThreeUniformDiaries.relativeBranchCanonical_chain
+#print axioms ThreeUniformDiaries.relativeBranch_initial_unique
