@@ -27,21 +27,16 @@ theorem fixedInherited_newImage (t : Nat) :
       (G.fixedInheritedStages K n0 hI parent t).inheritedVertex
         (parent t) := by
   let S := G.fixedInheritedStages K n0 hI parent t
-  have hstage :
-      (S.extendInherited (parent t)).image (Fin.last (n0 + t)) =
-        ⟨S.inheritedVertex (parent t), by
-          have hh := (S.inheritedVertex_spec (parent t)).1
-          omega⟩ := by
-    apply Fin.ext
-    exact FiniteGenericStage.extendInherited_last S (parent t)
-  have hfuture :=
-    G.fixedInheritedEmbedding_at_stage K n0 hI parent (t + 1)
-      (n0 + t) (by omega)
-  have hval : ((S.extendInherited (parent t)).image
-      (Fin.last (n0 + t))).val =
-        G.fixedInheritedEmbedding K n0 hI parent (n0 + t) := by
-    simpa [S, fixedInheritedStages, Nat.add_assoc] using hfuture
-  exact hval.symm.trans (congrArg Fin.val hstage)
+  have hfuture := G.fixedInheritedEmbedding_at_stage
+    K n0 hI parent (t + 1) (n0 + t) (by omega)
+  change ((S.extendInherited (parent t)).image
+    ⟨n0 + t, by omega⟩).val =
+      G.fixedInheritedEmbedding K n0 hI parent (n0 + t) at hfuture
+  have hidx : (⟨n0 + t, by omega⟩ : Fin (n0 + t + 1)) =
+      Fin.last (n0 + t) := by rfl
+  rw [hidx] at hfuture
+  exact hfuture.symm.trans
+    (FiniteGenericStage.extendInherited_last S (parent t))
 
 /-- A target vertex outside the complete image of a fixed-prefix
 embedding is absent from every finite source stage. -/
