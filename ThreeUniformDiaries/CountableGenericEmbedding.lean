@@ -90,10 +90,10 @@ theorem newVertex_spec (s : FiniteGenericStage G K n) :
       ∀ i j : Fin n, i < j →
         (K.edge i.val j.val n ↔
           G.graph.edge (s.image i).val (s.image j).val s.newVertex) :=
-  (Classical.choose_spec
-    (G.exists_extension_for_source K n s.bound s.image s.mono)).1.1,
-  (Classical.choose_spec
-    (G.exists_extension_for_source K n s.bound s.image s.mono)).2.1
+  ⟨(Classical.choose_spec
+      (G.exists_extension_for_source K n s.bound s.image s.mono)).1,
+    (Classical.choose_spec
+      (G.exists_extension_for_source K n s.bound s.image s.mono)).2.1⟩
 
 /-- Adjoin the next source vertex without moving earlier images. -/
 noncomputable def extend (s : FiniteGenericStage G K n) :
