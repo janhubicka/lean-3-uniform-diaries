@@ -37,3 +37,4 @@ import ThreeUniformDiaries.BranchGapPropagation
 import ThreeUniformDiaries.TypeCutTransfer
 import ThreeUniformDiaries.SizeFirstEnumeration
 import ThreeUniformDiaries.FixedPrefixExistence
+import ThreeUniformDiaries.SizeFirstSourceTests
