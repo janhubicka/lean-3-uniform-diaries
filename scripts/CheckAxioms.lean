@@ -177,3 +177,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.finiteEnumCandidate_meet
 #print axioms ThreeUniformDiaries.CoordNode.level_zeroExtendTo
 #print axioms ThreeUniformDiaries.CoordNode.le_zeroExtendTo
+#print axioms ThreeUniformDiaries.CoordNode.no_common_upper_same_level
+#print axioms ThreeUniformDiaries.CoordNode.distinct_children_no_common_upper
+#print axioms ThreeUniformDiaries.CoordNode.meet_descendants_distinct_children
