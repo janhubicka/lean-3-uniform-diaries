@@ -267,3 +267,5 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_auxCanonicalMap
 #print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_auxCanonicalMap_root
+
+#print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_auxCanonicalMap_succ
