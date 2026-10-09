@@ -100,8 +100,10 @@ theorem completionChoice_eq_selected
     completionChoice E t L htL = x := by
   have h := completionChoice_eq_truncate E hE l L
     hgap t hlt htL x hx htx (by omega)
-  rw [← hxL, truncate_self] at h
-  exact h
+  have hself : truncate x L = x := by
+    rw [← hxL]
+    exact truncate_self x
+  exact h.trans hself
 
 end CoordNode
 end ThreeUniformDiaries
