@@ -97,8 +97,8 @@ theorem completionPrefix_meetClosed
       subst x
       subst y
       exact ⟨0, le_rfl, by
-        change root ∈ ({root} : Set CoordNode)
-        simpa [meet_self]⟩
+        change meet root root ∈ ({root} : Set CoordNode)
+        simpa only [meet_self, Set.mem_singleton_iff]⟩
   | succ k ih =>
       let old := completionPrefix E lambda hmono root k
       let P := completionLayers E lambda hmono root k
@@ -159,6 +159,8 @@ theorem completionPrefix_meetClosed
           change y ∈ nextLayer E P (lambda k) L hl at hyNew
           rcases hxNew with ⟨g, rfl⟩
           rcases hyNew with ⟨g', rfl⟩
+          change meet (g.chosen E L hl) (g'.chosen E L hl) ∈
+            completionPrefix E lambda hmono root (k + 1)
           have hgp : g.parent ≤ g.chosen E L hl :=
             le_trans g.child_cover.le (g.chosen_extends E L hl)
           have hgp' : g'.parent ≤ g'.chosen E L hl :=
