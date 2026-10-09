@@ -69,8 +69,10 @@ theorem protectedCone_existing_eq
     x = truncate y L := by
   have h := protectedCone_same_truncation S hS l L hgap
     t x y hlt htx hty hx hy (by omega) hLy
-  rw [← hlevel, truncate_self] at h
-  exact h
+  have hxself : truncate x L = x := by
+    rw [← hlevel]
+    exact truncate_self x
+  exact hxself.symm.trans h
 
 /-- The distinguished ancestor at level L can be read from any
 prescribed higher descendant; all choices agree. -/
