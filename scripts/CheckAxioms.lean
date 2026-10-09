@@ -261,3 +261,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.finiteAuxCandidate_next_is_unique
 #print axioms ThreeUniformDiaries.EnumNode.finiteOneCandidate_next_is_unique
 #print axioms ThreeUniformDiaries.EnumNode.finiteEnumCandidate_next_is_unique
+#print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_aux_lift
+#print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_auxStep
+#print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_auxStep_spec
