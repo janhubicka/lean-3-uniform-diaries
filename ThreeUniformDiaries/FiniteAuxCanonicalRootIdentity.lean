@@ -39,8 +39,8 @@ theorem finiteAuxCandidate_root_eq_pairType
         huv, hvm, rfl⟩
     · have h0 : f 0 = 0 := hfix 0 (by omega)
       apply hinc
-      exact Or.inl ⟨0, H.auxType 0 (f u) (f v),
-        by omega, by simp [q, h0]⟩
+      exact Or.inl ⟨f 0, H.auxType (f 0) (f u) (f v),
+        by rw [h0]; omega, rfl⟩
   rcases hS with ⟨_, _, _, hroot, _, _, _⟩
   have hbelow :
       CoordNode.aux (f 0) r ≤ q := hroot q hq
