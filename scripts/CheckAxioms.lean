@@ -192,3 +192,8 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.nextLayer_unique_child
 #print axioms ThreeUniformDiaries.CoordNode.nextLayer_protects
 #print axioms ThreeUniformDiaries.CoordNode.nextLayer_contains_prescribed
+#print axioms ThreeUniformDiaries.EnumNode.oneTypes_agree_at_first_image
+#print axioms ThreeUniformDiaries.EnumNode.auxTypes_agree_at_first_image
+#print axioms ThreeUniformDiaries.EnumNode.finiteOneCandidate_root_zero
+#print axioms ThreeUniformDiaries.EnumNode.finiteAuxCandidate_root_zero
+#print axioms ThreeUniformDiaries.EnumNode.finiteEnumCandidate_root_zero
