@@ -230,3 +230,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.exists_finiteOne_strong_picture
 #print axioms ThreeUniformDiaries.EnumNode.exists_finiteAux_strong_picture
 #print axioms ThreeUniformDiaries.EnumNode.exists_finite_threeCoordinate_strong_pictures
+#print axioms ThreeUniformDiaries.Ordered3Graph.FiniteAuxEmbedding.oneMeetLevel_eq
+#print axioms ThreeUniformDiaries.Ordered3Graph.FiniteAuxEmbedding.auxMeetLevel_eq
