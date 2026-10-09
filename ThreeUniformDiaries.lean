@@ -48,3 +48,5 @@ import ThreeUniformDiaries.RootBranchExactMeets
 import ThreeUniformDiaries.FixedPrefixGlobalGap
 import ThreeUniformDiaries.SizeFirstFixedPrefix
 import ThreeUniformDiaries.FixedPrefixParentSchedule
+import ThreeUniformDiaries.FixedPrefixBranchGap
+import ThreeUniformDiaries.FixedPrefixBranchAuxEmbedding
