@@ -59,3 +59,4 @@ import ThreeUniformDiaries.MixedTypeMeetLevels
 import ThreeUniformDiaries.CoordinateTypeMeets
 import ThreeUniformDiaries.FiniteEncoderMeetLevels
 import ThreeUniformDiaries.FiniteOneMeetClosure
+import ThreeUniformDiaries.FiniteAuxMeetClosure
