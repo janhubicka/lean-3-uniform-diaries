@@ -60,6 +60,7 @@ theorem finiteStrongPicture_selectedSuccessorUnique
         _ = p := hpq.2
   have hptCover : p ⋖ t := by
     apply SuccessorTree.LevelTree.covBy_of_le_level_succ hpt
+    change level t = level p + 1
     rw [htl, hpl]
   obtain ⟨z0, hz0, hunique⟩ :=
     hchildren i hi p hp hpl t hptCover
