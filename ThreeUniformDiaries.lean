@@ -60,3 +60,4 @@ import ThreeUniformDiaries.CoordinateTypeMeets
 import ThreeUniformDiaries.FiniteEncoderMeetLevels
 import ThreeUniformDiaries.FiniteOneMeetClosure
 import ThreeUniformDiaries.FiniteAuxMeetClosure
+import ThreeUniformDiaries.TreeMeetTerminalExtension
