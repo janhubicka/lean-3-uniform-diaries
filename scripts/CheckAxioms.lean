@@ -168,3 +168,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.selectedAux_meetLevel
 #print axioms ThreeUniformDiaries.EnumNode.finiteOneCandidate_meet
 #print axioms ThreeUniformDiaries.EnumNode.finiteAuxCandidate_meet
+#print axioms ThreeUniformDiaries.CoordNode.meet_comm_of_common
+#print axioms ThreeUniformDiaries.CoordNode.meet_self
+#print axioms ThreeUniformDiaries.CoordNode.meet_extension_left
+#print axioms ThreeUniformDiaries.CoordNode.meetClosed_insertAbove
