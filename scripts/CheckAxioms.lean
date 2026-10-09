@@ -228,3 +228,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.finiteEnumCandidate_levels
 #print axioms ThreeUniformDiaries.EnumNode.exists_finiteEnum_strong_picture
 #print axioms ThreeUniformDiaries.EnumNode.exists_finiteOne_strong_picture
+#print axioms ThreeUniformDiaries.EnumNode.exists_finiteAux_strong_picture
+#print axioms ThreeUniformDiaries.EnumNode.exists_finite_threeCoordinate_strong_pictures
