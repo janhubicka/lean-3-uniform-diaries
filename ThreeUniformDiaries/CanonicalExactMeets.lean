@@ -78,7 +78,10 @@ theorem oneMeetLevel_preserved_on_finite
         (by omega : F.level w < F.level w + 1)
       have hl := F.preserves_selected_edges H haw hwul hu
       have hr := F.preserves_selected_edges H haw hwvl hv
-      exact hdiff (hl.trans (htbit.trans hr.symm))
+      have heq := hl.trans (htbit.trans hr.symm)
+      rcases hdiff with h | h
+      · exact h.2 (heq.mp h.1)
+      · exact h.1 (heq.mpr h.2)
     have htop :
         dst.oneMeetLevel (F.level u) (F.level v) < F.level w + 1 := by
       by_contra hn
