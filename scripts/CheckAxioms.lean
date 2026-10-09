@@ -117,3 +117,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.GenericEnumerated3Graph.fixedInherited_newImage
 #print axioms ThreeUniformDiaries.GenericEnumerated3Graph.fixedInherited_omitted_stage
 #print axioms ThreeUniformDiaries.GenericEnumerated3Graph.fixedInherited_gap_step
+#print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.oneMeetLevel_eq_of_auxTypeRespecting
+#print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.auxMeetLevel_eq_of_auxTypeRespecting
