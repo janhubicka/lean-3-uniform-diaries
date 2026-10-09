@@ -83,7 +83,7 @@ theorem finiteAuxCandidate_meet
           CoordNode.meetLevel
             (.aux (e i) (H.auxType (e i) (e u₀) (e u₁)))
             (.aux (e j) (H.auxType (e j) (e v₀) (e v₁))) = e k :=
-        H.selectedAux_meetLevel A e haux
+        A.selectedAux_meetLevel H e haux
           i j u₀ u₁ v₀ v₁ hiu hu hjv hv
       have hmeet :
           CoordNode.meet
@@ -96,7 +96,8 @@ theorem finiteAuxCandidate_meet
               (.aux (e j) (H.auxType (e j) (e v₀) (e v₁))) =
               .aux (e k)
                 ((H.auxType (e i) (e u₀) (e u₁)).truncate (e k)) := by
-                  simp only [CoordNode.meet, CoordNode.truncate, hlev]
+                  simp only [CoordNode.meet, CoordNode.truncate]
+                  rw [hlev]
           _ = .aux (e k) (H.auxType (e k) (e u₀) (e u₁)) := by
               rw [H.auxType_truncate (u := e u₀) (v := e u₁)
                 (e.strictMono.monotone hki)]
