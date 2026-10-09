@@ -81,7 +81,7 @@ theorem finiteStrongPicture_auxStep_spec
       CoordNode.aux (f i + 1) (a.succ bit) ≤
         CoordNode.aux (f (i + 1))
           (finiteStrongPicture_auxStep hS i hi a ha bit) :=
-  Classical.choose_spec (finiteStrongPicture_aux_lift hS i hi a ha bit)
+  (Classical.choose_spec (finiteStrongPicture_aux_lift hS i hi a ha bit)).1
 
 end CoordNode
 end ThreeUniformDiaries
