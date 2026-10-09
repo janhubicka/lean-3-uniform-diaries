@@ -27,8 +27,8 @@ theorem branchIndex_fixed_prefix
   have hprefix : H.initialSegment (k + 1) = I.truncate (k + 1) := by
     rw [← hI]
     exact (H.initialSegment_truncate (by omega)).symm
-  cases hprefix
-  rfl
+  exact congrArg (fun A : EnumNode (k + 1) =>
+    (⟨k, A⟩ : EnumerationBranchNode)) hprefix
 
 /-- Every edge entirely inside the fixed prefix is already correctly
 represented by the source graph's length-first enumeration. -/
