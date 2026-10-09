@@ -72,3 +72,4 @@ import ThreeUniformDiaries.FiniteCompletionIteratedLayers
 import ThreeUniformDiaries.FiniteCompletionAncestors
 import ThreeUniformDiaries.DistinctChildConeMeets
 import ThreeUniformDiaries.DistinctParentDescendantMeets
+import ThreeUniformDiaries.FiniteCompletionMeetClosure
