@@ -247,3 +247,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.scopedExample_finiteAuxEmbedding
 #print axioms ThreeUniformDiaries.scopedExample_not_global_auxTypeRespecting
 #print axioms ThreeUniformDiaries.scopedExample_no_global_aux_extension
+
+#print axioms ThreeUniformDiaries.Ordered3Graph.FiniteAuxEmbedding.target_initialSegment
+#print axioms ThreeUniformDiaries.EnumNode.exists_threeCoordinate_pictures_countable_target
