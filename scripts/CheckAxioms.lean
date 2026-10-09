@@ -156,3 +156,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.auxType_truncate
 #print axioms ThreeUniformDiaries.EnumNode.oneType_prefix_eq_iff
 #print axioms ThreeUniformDiaries.EnumNode.auxType_prefix_eq_iff
+#print axioms ThreeUniformDiaries.EnumNode.oneType_crossCut_prefix_eq_iff
+#print axioms ThreeUniformDiaries.EnumNode.auxType_crossCut_prefix_eq_iff
