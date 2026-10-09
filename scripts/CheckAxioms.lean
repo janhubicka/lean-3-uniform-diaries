@@ -280,3 +280,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_enumCanonicalMap_root
 #print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_oneCanonicalMap_succ
 #print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_enumCanonicalMap_succ
+#print axioms ThreeUniformDiaries.EnumNode.finiteOneCanonicalMap_prescribed_vertexTypes
