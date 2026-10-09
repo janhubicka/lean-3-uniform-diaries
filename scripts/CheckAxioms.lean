@@ -182,3 +182,8 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.protectedGuide_level
 #print axioms ThreeUniformDiaries.CoordNode.protectedGuide_extends
 #print axioms ThreeUniformDiaries.CoordNode.protectedGuide_below
+#print axioms ThreeUniformDiaries.CoordNode.completionChoice_level
+#print axioms ThreeUniformDiaries.CoordNode.completionChoice_extends
+#print axioms ThreeUniformDiaries.CoordNode.completionChoice_below_prescribed
+#print axioms ThreeUniformDiaries.CoordNode.completionChoice_eq_truncate
+#print axioms ThreeUniformDiaries.CoordNode.completionChoice_eq_selected
