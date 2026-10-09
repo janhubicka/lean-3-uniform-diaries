@@ -90,15 +90,18 @@ theorem meetClosed_insertAbove
     (hcommon : ∀ x ∈ S, ∃ c : CoordNode, c ≤ p ∧ c ≤ x) :
     MeetClosed (Set.insert z S) := by
   intro x y hx hy
-  rcases hx with rfl | hx
-  · rcases hy with rfl | hy
-    · left
+  rcases hx with hx | hx
+  · subst x
+    rcases hy with hy | hy
+    · subst y
+      left
       exact meet_self z
     · right
       rw [meet_extension_left p z y hpz (hmax y hy) (hcommon y hy)]
       exact hS hp hy
-  · rcases hy with rfl | hy
-    · right
+  · rcases hy with hy | hy
+    · subst y
+      right
       rw [meet_extension_right x p z hpz (hmax x hx) (hcommon x hx)]
       exact hS hx hp
     · right
