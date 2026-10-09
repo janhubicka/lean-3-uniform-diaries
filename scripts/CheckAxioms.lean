@@ -247,3 +247,11 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.scopedExample_finiteAuxEmbedding
 #print axioms ThreeUniformDiaries.scopedExample_not_global_auxTypeRespecting
 #print axioms ThreeUniformDiaries.scopedExample_no_global_aux_extension
+
+#print axioms ThreeUniformDiaries.EnumNode.auxType_gap_succ
+#print axioms ThreeUniformDiaries.EnumNode.oneType_gap_succ
+#print axioms ThreeUniformDiaries.EnumNode.enum_gap_succ
+#print axioms ThreeUniformDiaries.EnumNode.finite_selected_aux_edge_bit
+#print axioms ThreeUniformDiaries.EnumNode.finite_selected_aux_successor
+#print axioms ThreeUniformDiaries.EnumNode.finite_selected_one_successor
+#print axioms ThreeUniformDiaries.EnumNode.finite_selected_enum_successor
