@@ -123,3 +123,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.SizeFirstBranchPresentation.rootBranch_auxTypeRespecting
 #print axioms ThreeUniformDiaries.SizeFirstBranchPresentation.branchIndex_fixed_prefix
 #print axioms ThreeUniformDiaries.SizeFirstBranchPresentation.graph_prefix_edge_iff
+#print axioms ThreeUniformDiaries.SizeFirstBranchPresentation.graph_initialSegment_eq
