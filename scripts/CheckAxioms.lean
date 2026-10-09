@@ -264,3 +264,8 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_aux_lift
 #print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_auxStep
 #print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_auxStep_spec
+
+#print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_one_lift
+#print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_oneStep_spec
+#print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_enum_lift
+#print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_enumStep_spec
