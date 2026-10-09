@@ -187,3 +187,8 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.completionChoice_below_prescribed
 #print axioms ThreeUniformDiaries.CoordNode.completionChoice_eq_truncate
 #print axioms ThreeUniformDiaries.CoordNode.completionChoice_eq_selected
+#print axioms ThreeUniformDiaries.CoordNode.nextLayer_level
+#print axioms ThreeUniformDiaries.CoordNode.nextLayer_finite
+#print axioms ThreeUniformDiaries.CoordNode.nextLayer_unique_child
+#print axioms ThreeUniformDiaries.CoordNode.nextLayer_protects
+#print axioms ThreeUniformDiaries.CoordNode.nextLayer_contains_prescribed
