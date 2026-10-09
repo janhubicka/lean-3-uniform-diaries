@@ -236,3 +236,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.selectedAux_meetLevel_of_finite
 #print axioms ThreeUniformDiaries.EnumNode.finiteOneCandidate_meet_of_finite
 #print axioms ThreeUniformDiaries.EnumNode.finiteAuxCandidate_meet_of_finite
+#print axioms ThreeUniformDiaries.Ordered3Graph.FiniteAuxEmbedding.target_initialSegment
