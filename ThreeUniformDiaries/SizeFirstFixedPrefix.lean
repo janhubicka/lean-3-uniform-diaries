@@ -50,7 +50,7 @@ hypergraph I as its first n vertices, not merely an isomorphic copy. -/
 theorem graph_initialSegment_eq
     (H : Ordered3Graph Nat) (hI : H.initialSegment n = I) :
     E.graph.initialSegment n = I := by
-  apply EnumNode.ext_bits
+  apply EnumNode.ext_triples
   funext a b c
   by_cases h : a < b ∧ b < c ∧ c < n
   · have hiff :
