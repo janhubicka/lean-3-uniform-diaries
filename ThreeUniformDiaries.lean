@@ -96,3 +96,4 @@ import ThreeUniformDiaries.FiniteStrongTypedAuxLift
 import ThreeUniformDiaries.FiniteAuxCanonicalMap
 
 import ThreeUniformDiaries.FiniteStrongTypedOneEnumLift
+import ThreeUniformDiaries.FiniteCoupledCanonicalMaps
