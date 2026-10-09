@@ -68,3 +68,4 @@ import ThreeUniformDiaries.ZeroExtendLevels
 import ThreeUniformDiaries.ProtectedConeTruncations
 import ThreeUniformDiaries.FiniteCompletionConeChoice
 import ThreeUniformDiaries.FiniteCompletionNextLayer
+import ThreeUniformDiaries.FiniteCompletionIteratedLayers

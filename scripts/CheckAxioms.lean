@@ -192,3 +192,9 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.nextLayer_unique_child
 #print axioms ThreeUniformDiaries.CoordNode.nextLayer_protects
 #print axioms ThreeUniformDiaries.CoordNode.nextLayer_contains_prescribed
+#print axioms ThreeUniformDiaries.CoordNode.completionLayers_level
+#print axioms ThreeUniformDiaries.CoordNode.completionLayers_finite
+#print axioms ThreeUniformDiaries.CoordNode.completionLayers_unique_child
+#print axioms ThreeUniformDiaries.CoordNode.completionLayers_has_parent
+#print axioms ThreeUniformDiaries.CoordNode.completionLayers_protects
+#print axioms ThreeUniformDiaries.CoordNode.completionLayers_contains_prescribed
