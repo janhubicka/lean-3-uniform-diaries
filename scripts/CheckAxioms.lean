@@ -205,3 +205,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.no_common_upper_same_level
 #print axioms ThreeUniformDiaries.CoordNode.distinct_children_no_common_upper
 #print axioms ThreeUniformDiaries.CoordNode.meet_descendants_distinct_children
+#print axioms ThreeUniformDiaries.CoordNode.meet_descendants_distinct_parents
