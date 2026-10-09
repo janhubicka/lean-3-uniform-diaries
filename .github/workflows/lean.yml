@@ -52,6 +52,23 @@ jobs:
             echo "Unexpected sorryAx dependency"
             exit 1
           fi
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+
+          output = Path("proof-audit/axioms.log").read_text()
+          allowed = {"propext", "Classical.choice", "Quot.sound"}
+          reported = re.findall(r"depends on axioms:\s*\[([^\]]*)\]", output, re.S)
+          if not reported and "does not depend on any axioms" not in output:
+              raise SystemExit("No axiom audit results were produced")
+          actual = {name.strip() for group in reported
+                    for name in group.split(",") if name.strip()}
+          unexpected = actual - allowed
+          if unexpected:
+              raise SystemExit("Unexpected Lean axioms: " +
+                               ", ".join(sorted(unexpected)))
+          print(f"Axiom audit passed: only {sorted(actual)}")
+          PY
 
       - name: Reject placeholders
         run: |
