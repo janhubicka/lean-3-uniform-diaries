@@ -90,3 +90,4 @@ import ThreeUniformDiaries.CountableTargetStrongPictures
 import ThreeUniformDiaries.FiniteSelectedSuccessorBridge
 import ThreeUniformDiaries.FiniteSelectedSuccessorUnique
 import ThreeUniformDiaries.FiniteAuxCandidateSuccessor
+import ThreeUniformDiaries.FiniteOneEnumCandidateSuccessor
