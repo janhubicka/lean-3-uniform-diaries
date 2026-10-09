@@ -240,3 +240,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.auxCandidate_levels_of_map
 #print axioms ThreeUniformDiaries.EnumNode.finiteOne_root_of_finite
 #print axioms ThreeUniformDiaries.EnumNode.finiteAux_root_of_finite
+#print axioms ThreeUniformDiaries.EnumNode.exists_finiteEnum_picture_of_finite
+#print axioms ThreeUniformDiaries.EnumNode.exists_finiteOne_picture_of_finite
+#print axioms ThreeUniformDiaries.EnumNode.exists_finiteAux_picture_of_finite
+#print axioms ThreeUniformDiaries.EnumNode.exists_threeCoordinate_picture_of_finite
