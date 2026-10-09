@@ -78,6 +78,15 @@ theorem nextLayer_finite
   intro z hz
   exact nextLayer_level E P l L hl z hz
 
+/-- A completion choice depends on the child node, not on which
+proof is used to establish its level bound. -/
+private theorem completionChoice_congr
+    (E : Set CoordNode) (L : Nat) (t u : CoordNode)
+    (ht : level t ≤ L) (hu : level u ≤ L) (h : t = u) :
+    completionChoice E t L ht = completionChoice E u L hu := by
+  cases h
+  rfl
+
 /-- Every child cone is represented exactly once in the next layer.
 The uniqueness follows from lower-cone linearity at the same level
 l+1, not from choosing any arbitrary enumeration of children. -/
@@ -102,7 +111,7 @@ theorem nextLayer_unique_child
       · exact (eq_of_le_of_level_eq h (by omega)).symm
     change completionChoice E g'.child L _ =
       completionChoice E t L _
-    rw [hchild]
+    exact completionChoice_congr E L g'.child t _ _ hchild
 
 /-- If a prescribed x lies above the next selected level and has a
 parent p already in P at the previous selected level, the new layer
@@ -128,7 +137,8 @@ theorem nextLayer_protects
       _ = p := hpx.2
   have hpt : p ⋖ t := by
     apply SuccessorTree.LevelTree.covBy_of_le_level_succ hpLeT
-    omega
+    change level t = level p + 1
+    rw [htLevel, hpLevel]
   let g : GapChild P l := ⟨p, hp, hpLevel, t, hpt⟩
   refine ⟨g.chosen E L hl, ⟨g, rfl⟩, ?_⟩
   exact completionChoice_below_prescribed E hE l L hgap
