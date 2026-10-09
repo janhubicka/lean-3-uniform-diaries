@@ -121,4 +121,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.SizeFirstBranchPresentation.rootBranch_oneAgreement
 #print axioms ThreeUniformDiaries.SizeFirstBranchPresentation.rootBranch_auxAgreement
 #print axioms ThreeUniformDiaries.SizeFirstBranchPresentation.rootBranch_auxTypeRespecting
-
+#print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.oneMeetLevel_eq_of_auxTypeRespecting
+#print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.auxMeetLevel_eq_of_auxTypeRespecting
