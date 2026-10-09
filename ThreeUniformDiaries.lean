@@ -96,3 +96,5 @@ import ThreeUniformDiaries.FiniteStrongTypedAuxLift
 import ThreeUniformDiaries.FiniteAuxCanonicalMap
 
 import ThreeUniformDiaries.FiniteAuxCanonicalMapSucc
+
+import ThreeUniformDiaries.FiniteCanonicalOneEnumRootIdentities
