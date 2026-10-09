@@ -74,3 +74,5 @@ import ThreeUniformDiaries.DistinctChildConeMeets
 import ThreeUniformDiaries.DistinctParentDescendantMeets
 import ThreeUniformDiaries.FiniteCompletionMeetClosure
 import ThreeUniformDiaries.FiniteStrongCompletion
+import ThreeUniformDiaries.FiniteEncoderRoots
+import ThreeUniformDiaries.FiniteEncoderRootLevels
