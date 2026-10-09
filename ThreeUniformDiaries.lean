@@ -81,3 +81,4 @@ import ThreeUniformDiaries.FiniteEncoderStrongE2
 import ThreeUniformDiaries.ActualFiniteEmbeddingMeets
 import ThreeUniformDiaries.FiniteLocalSelectedMeets
 import ThreeUniformDiaries.FiniteActualCandidateMeetClosure
+import ThreeUniformDiaries.FiniteActualCandidateRoots
