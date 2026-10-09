@@ -45,6 +45,7 @@ theorem fixed_branch_copy (h : Nat → Nat)
     have hyN : y < n0 := by
       have hf := G.fixedInheritedEmbedding_prefix K n0 hI parent (h t) ht
       change y < f (h t) at hy
+      change f (h t) = h t at hf
       rw [hf] at hy
       omega
     have hxN : x < n0 := by omega
@@ -80,6 +81,7 @@ theorem fixed_branch_new_zero (h : Nat → Nat)
     have hxN : x < n0 := by
       have hf := G.fixedInheritedEmbedding_prefix K n0 hI parent (h t) ht
       change x < f (h t) at hx
+      change f (h t) = h t at hf
       rw [hf] at hx
       omega
     exact False.elim (hmiss x
