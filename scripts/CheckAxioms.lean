@@ -236,3 +236,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.selectedAux_meetLevel_of_finite
 #print axioms ThreeUniformDiaries.EnumNode.finiteOneCandidate_meet_of_finite
 #print axioms ThreeUniformDiaries.EnumNode.finiteAuxCandidate_meet_of_finite
+#print axioms ThreeUniformDiaries.EnumNode.oneCandidate_levels_of_map
+#print axioms ThreeUniformDiaries.EnumNode.auxCandidate_levels_of_map
+#print axioms ThreeUniformDiaries.EnumNode.finiteOne_root_of_finite
+#print axioms ThreeUniformDiaries.EnumNode.finiteAux_root_of_finite
