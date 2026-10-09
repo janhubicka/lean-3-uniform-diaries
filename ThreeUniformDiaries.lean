@@ -67,3 +67,4 @@ import ThreeUniformDiaries.FiniteEnumMeetClosure
 import ThreeUniformDiaries.ZeroExtendLevels
 import ThreeUniformDiaries.ProtectedConeTruncations
 import ThreeUniformDiaries.FiniteCompletionConeChoice
+import ThreeUniformDiaries.FiniteCompletionNextLayer
