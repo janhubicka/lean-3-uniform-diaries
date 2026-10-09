@@ -162,3 +162,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.auxType_crossCut_eq_iff_le_meet
 #print axioms ThreeUniformDiaries.EnumNode.oneType_greatest_common_prefix
 #print axioms ThreeUniformDiaries.EnumNode.auxType_greatest_common_prefix
+#print axioms ThreeUniformDiaries.CoordNode.oneType_meetLevel_eq
+#print axioms ThreeUniformDiaries.CoordNode.auxType_meetLevel_eq

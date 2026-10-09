@@ -56,3 +56,4 @@ import ThreeUniformDiaries.CanonicalExactMeets
 import ThreeUniformDiaries.TypeNodePrefix
 import ThreeUniformDiaries.MixedTypeNodeMeets
 import ThreeUniformDiaries.MixedTypeMeetLevels
+import ThreeUniformDiaries.CoordinateTypeMeets
