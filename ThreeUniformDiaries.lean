@@ -94,3 +94,5 @@ import ThreeUniformDiaries.FiniteOneEnumCandidateSuccessor
 import ThreeUniformDiaries.FiniteStrongTypedAuxLift
 
 import ThreeUniformDiaries.FiniteAuxCanonicalMap
+
+import ThreeUniformDiaries.FiniteStrongTypedOneEnumLift
