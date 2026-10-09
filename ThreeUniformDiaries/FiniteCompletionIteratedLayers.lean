@@ -129,7 +129,7 @@ theorem completionLayers_protects
       exact ⟨root, by simp [completionLayers], hroot x hx⟩
   | succ k ih =>
       have hprev : lambda k ≤ level x :=
-        le_trans (hmono.monotone (Nat.le_succ k)) hL
+        (hmono (Nat.lt_succ_self k)).le.trans hL
       rcases ih hprev with ⟨p, hp, hpx⟩
       have hpLevel : level p = lambda k :=
         completionLayers_level E lambda hmono root
