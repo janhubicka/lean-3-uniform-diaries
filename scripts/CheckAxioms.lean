@@ -230,3 +230,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.exists_finiteOne_strong_picture
 #print axioms ThreeUniformDiaries.Ordered3Graph.FiniteAuxEmbedding.oneMeetLevel_eq
 #print axioms ThreeUniformDiaries.Ordered3Graph.FiniteAuxEmbedding.auxMeetLevel_eq
+#print axioms ThreeUniformDiaries.scopedExample_finiteAuxEmbedding
+#print axioms ThreeUniformDiaries.scopedExample_not_global_auxTypeRespecting
+#print axioms ThreeUniformDiaries.scopedExample_no_global_aux_extension

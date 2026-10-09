@@ -78,3 +78,4 @@ import ThreeUniformDiaries.FiniteEncoderRoots
 import ThreeUniformDiaries.FiniteEncoderRootLevels
 import ThreeUniformDiaries.FiniteEncoderStrongE0E1
 import ThreeUniformDiaries.ActualFiniteEmbeddingMeets
+import ThreeUniformDiaries.FiniteVsGlobalCounterexample
