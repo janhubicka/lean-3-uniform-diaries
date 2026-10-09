@@ -21,13 +21,13 @@ namespace EnumNode
 /-- The E1 candidate set in the manuscript's finite encoding. -/
 def finiteOneCandidate
     {m N : Nat} (A : EnumNode m) (H : EnumNode N)
-    (e : Ordered3Graph.Embedding A.toOrdered3Graph H.toOrdered3Graph)
+    (f : Nat → Nat)
     (n : Nat) (x : CoordNode) : Prop :=
   (∃ (k : Nat) (B : OneNode k),
     k < n ∧ x = CoordNode.one k B) ∨
   (∃ i v : Nat,
     n ≤ i ∧ i ≤ v ∧ v < m ∧
-      x = CoordNode.one (e i) (H.oneType (e i) (e v)))
+      x = CoordNode.one (f i) (H.oneType (f i) (f v)))
 
 private theorem oneMeet_prefix_left
     (n i j : Nat) (B : OneNode i) (C : OneNode j)
