@@ -166,3 +166,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.auxType_meetLevel_eq
 #print axioms ThreeUniformDiaries.EnumNode.selectedOne_meetLevel
 #print axioms ThreeUniformDiaries.EnumNode.selectedAux_meetLevel
+#print axioms ThreeUniformDiaries.EnumNode.finiteOneCandidate_meet
