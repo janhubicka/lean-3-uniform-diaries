@@ -66,3 +66,4 @@ import ThreeUniformDiaries.MeetClosedGapRigidity
 import ThreeUniformDiaries.FiniteEnumMeetClosure
 import ThreeUniformDiaries.ZeroExtendLevels
 import ThreeUniformDiaries.ProtectedConeTruncations
+import ThreeUniformDiaries.FiniteCompletionConeChoice
