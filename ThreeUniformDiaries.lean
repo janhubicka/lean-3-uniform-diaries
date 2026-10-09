@@ -92,3 +92,5 @@ import ThreeUniformDiaries.FiniteSelectedSuccessorUnique
 import ThreeUniformDiaries.FiniteAuxCandidateSuccessor
 import ThreeUniformDiaries.FiniteOneEnumCandidateSuccessor
 import ThreeUniformDiaries.FiniteStrongTypedAuxLift
+
+import ThreeUniformDiaries.FiniteStrongTypedOneEnumLift
