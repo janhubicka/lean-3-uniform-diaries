@@ -250,3 +250,10 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.Ordered3Graph.FiniteAuxEmbedding.target_initialSegment
 #print axioms ThreeUniformDiaries.EnumNode.exists_threeCoordinate_pictures_countable_target
+#print axioms ThreeUniformDiaries.EnumNode.auxType_gap_succ
+#print axioms ThreeUniformDiaries.EnumNode.oneType_gap_succ
+#print axioms ThreeUniformDiaries.EnumNode.enum_gap_succ
+#print axioms ThreeUniformDiaries.EnumNode.finite_selected_aux_edge_bit
+#print axioms ThreeUniformDiaries.EnumNode.finite_selected_aux_successor
+#print axioms ThreeUniformDiaries.EnumNode.finite_selected_one_successor
+#print axioms ThreeUniformDiaries.EnumNode.finite_selected_enum_successor
