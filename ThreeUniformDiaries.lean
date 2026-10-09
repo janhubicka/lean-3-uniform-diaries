@@ -83,3 +83,4 @@ import ThreeUniformDiaries.FiniteLocalSelectedMeets
 import ThreeUniformDiaries.FiniteActualCandidateMeetClosure
 import ThreeUniformDiaries.FiniteActualCandidateRoots
 import ThreeUniformDiaries.ActualFiniteCoordinateCompletion
+import ThreeUniformDiaries.FiniteVsGlobalCounterexample
