@@ -226,3 +226,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.finiteOneCandidate_levels
 #print axioms ThreeUniformDiaries.EnumNode.finiteAuxCandidate_levels
 #print axioms ThreeUniformDiaries.EnumNode.finiteEnumCandidate_levels
+#print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.AuxTypeRespecting.finiteSelected
+#print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.finiteOneMeetLevel_eq
+#print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.finiteAuxMeetLevel_eq
