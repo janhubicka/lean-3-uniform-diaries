@@ -278,3 +278,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_enumCanonicalMap
 #print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_oneCanonicalMap_root
 #print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_enumCanonicalMap_root
+#print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_oneCanonicalMap_succ
+#print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_enumCanonicalMap_succ
