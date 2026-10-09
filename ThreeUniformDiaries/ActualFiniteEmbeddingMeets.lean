@@ -46,11 +46,10 @@ structure FiniteAuxEmbedding
 namespace FiniteAuxEmbedding
 
 variable {H G : Ordered3Graph Nat} {f : Nat → Nat} {m : Nat}
-variable (h : FiniteAuxEmbedding H G f m)
-
 /-- Exact singleton meets on actual finite source vertices, proved
 using the first-disagreement witness at the source meet. -/
 theorem oneMeetLevel_eq
+    (h : FiniteAuxEmbedding H G f m)
     (u v : Nat) (hu : u < m) (hv : v < m) :
     G.oneMeetLevel (f u) (f v) = f (H.oneMeetLevel u v) := by
   classical
@@ -118,6 +117,7 @@ theorem oneMeetLevel_eq
 /-- Exact auxiliary meets on actual ordered pairs, requiring edge
 preservation only on triples lying wholly inside the finite source. -/
 theorem auxMeetLevel_eq
+    (h : FiniteAuxEmbedding H G f m)
     (u₀ u₁ v₀ v₁ : Nat)
     (hu : u₀ < u₁) (hv : v₀ < v₁)
     (hu₁ : u₁ < m) (hv₁ : v₁ < m) :
