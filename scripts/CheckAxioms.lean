@@ -198,3 +198,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.completionLayers_has_parent
 #print axioms ThreeUniformDiaries.CoordNode.completionLayers_protects
 #print axioms ThreeUniformDiaries.CoordNode.completionLayers_contains_prescribed
+#print axioms ThreeUniformDiaries.CoordNode.completionLayers_ancestor
+#print axioms ThreeUniformDiaries.CoordNode.completionLayers_unique_ancestor
+#print axioms ThreeUniformDiaries.CoordNode.completionPrefix_finite
+#print axioms ThreeUniformDiaries.CoordNode.completionLayers_root_le
