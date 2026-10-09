@@ -58,3 +58,4 @@ import ThreeUniformDiaries.MixedTypeNodeMeets
 import ThreeUniformDiaries.MixedTypeMeetLevels
 import ThreeUniformDiaries.CoordinateTypeMeets
 import ThreeUniformDiaries.FiniteEncoderMeetLevels
+import ThreeUniformDiaries.TreeMeetTerminalExtension
