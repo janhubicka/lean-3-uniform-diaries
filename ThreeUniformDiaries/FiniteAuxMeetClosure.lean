@@ -20,14 +20,14 @@ namespace EnumNode
 /-- The E2^- candidate set, before the optional final type node. -/
 def finiteAuxCandidate
     {m N : Nat} (A : EnumNode m) (H : EnumNode N)
-    (e : Ordered3Graph.Embedding A.toOrdered3Graph H.toOrdered3Graph)
+    (f : Nat → Nat)
     (n : Nat) (x : CoordNode) : Prop :=
   (∃ (k : Nat) (B : AuxNode k),
     k < n ∧ x = CoordNode.aux k B) ∨
   (∃ i u₀ u₁ : Nat,
     n ≤ i ∧ i ≤ u₀ ∧ u₀ < u₁ ∧ u₁ < m ∧
-      x = CoordNode.aux (e i)
-        (H.auxType (e i) (e u₀) (e u₁)))
+      x = CoordNode.aux (f i)
+        (H.auxType (f i) (f u₀) (f u₁)))
 
 private theorem auxMeet_prefix_left
     (n i j : Nat) (B : AuxNode i) (C : AuxNode j)
