@@ -76,3 +76,6 @@ jobs:
             echo "Found unfinished proof placeholder"
             exit 1
           fi
+
+      - name: Exhaustive finite auxiliary encoding regression
+        run: python3 scripts/check_finite_aux_encoding.py
