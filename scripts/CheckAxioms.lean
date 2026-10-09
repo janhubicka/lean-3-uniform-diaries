@@ -173,3 +173,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.meet_extension_left
 #print axioms ThreeUniformDiaries.CoordNode.meetClosed_insertAbove
 #print axioms ThreeUniformDiaries.EnumNode.finiteAuxCandidate_terminal
+#print axioms ThreeUniformDiaries.EnumNode.finiteEnumCandidate_meet
