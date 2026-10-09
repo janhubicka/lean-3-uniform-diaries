@@ -37,8 +37,8 @@ theorem finiteOneCandidate_root_eq_vertexType
       exact Or.inr ⟨0, v, by omega, Nat.zero_le _, hvm, rfl⟩
     · have h0 : f 0 = 0 := hfix 0 (by omega)
       apply hinc
-      exact Or.inl ⟨0, H.oneType 0 (f v),
-        by omega, by simp [q, h0]⟩
+      exact Or.inl ⟨f 0, H.oneType (f 0) (f v),
+        by rw [h0]; omega, rfl⟩
   rcases hS with ⟨_, _, _, hroot, _, _, _⟩
   have hbelow : CoordNode.one (f 0) r ≤ q := hroot q hq
   have heq : CoordNode.one (f 0) r = q :=
@@ -63,8 +63,8 @@ theorem finiteEnumCandidate_root_eq_initialSegment
       exact Or.inr ⟨0, by omega, hm, rfl⟩
     · have h0 : f 0 = 0 := hfix 0 (by omega)
       apply hinc
-      exact Or.inl ⟨0, H.truncate 0,
-        by omega, by simp [q, h0]⟩
+      exact Or.inl ⟨f 0, H.truncate (f 0),
+        by rw [h0]; omega, rfl⟩
   rcases hS with ⟨_, _, _, hroot, _, _, _⟩
   have hbelow : CoordNode.enum (f 0) r ≤ q := hroot q hq
   have heq : CoordNode.enum (f 0) r = q :=
