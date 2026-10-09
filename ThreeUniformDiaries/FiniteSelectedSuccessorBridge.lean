@@ -92,7 +92,7 @@ theorem finite_selected_aux_successor
           (H.triple (f i) (f u) (f v)) :=
       H.auxType_gap_succ hstep
     _ = (H.auxType (f i) (f u) (f v)).succ (A.triple i u v) := by
-      rw [H.finite_selected_aux_edge_bit A f hf i u v hiu huv hvm]
+      rw [finite_selected_aux_edge_bit A H f hf i u v hiu huv hvm]
 
 /-- The parallel 1-type boundary successor: its parameter is
 the selected auxiliary node for the pair i,v. -/
