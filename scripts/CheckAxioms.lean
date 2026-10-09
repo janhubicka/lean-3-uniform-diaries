@@ -144,3 +144,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.SizeFirstBranchPresentation.fixedBranch_auxTypeRespecting
 #print axioms ThreeUniformDiaries.SizeFirstBranchPresentation.fixedBranch_oneMeet_eq
 #print axioms ThreeUniformDiaries.SizeFirstBranchPresentation.fixedBranch_auxMeet_eq
+#print axioms ThreeUniformDiaries.exists_universal_fixedAuxEmbedding
+#print axioms ThreeUniformDiaries.exists_universal_zeroAuxEmbedding
+#print axioms ThreeUniformDiaries.exists_universal_auxEmbedding
+#print axioms ThreeUniformDiaries.exists_universal_exactMeetEmbedding
