@@ -158,3 +158,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.auxType_prefix_eq_iff
 #print axioms ThreeUniformDiaries.EnumNode.oneType_crossCut_prefix_eq_iff
 #print axioms ThreeUniformDiaries.EnumNode.auxType_crossCut_prefix_eq_iff
+#print axioms ThreeUniformDiaries.EnumNode.oneType_crossCut_eq_iff_le_meet
+#print axioms ThreeUniformDiaries.EnumNode.auxType_crossCut_eq_iff_le_meet
+#print axioms ThreeUniformDiaries.EnumNode.oneType_greatest_common_prefix
+#print axioms ThreeUniformDiaries.EnumNode.auxType_greatest_common_prefix
