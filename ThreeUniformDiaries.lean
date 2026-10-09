@@ -51,3 +51,4 @@ import ThreeUniformDiaries.FixedPrefixParentSchedule
 import ThreeUniformDiaries.FixedPrefixBranchGap
 import ThreeUniformDiaries.FixedPrefixBranchAuxEmbedding
 import ThreeUniformDiaries.UniversalAuxBranchEmbedding
+import ThreeUniformDiaries.FiniteAuxBranchEmbedding

@@ -148,3 +148,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.exists_universal_zeroAuxEmbedding
 #print axioms ThreeUniformDiaries.exists_universal_auxEmbedding
 #print axioms ThreeUniformDiaries.exists_universal_exactMeetEmbedding
+#print axioms ThreeUniformDiaries.EnumNode.toOrdered3Graph_initialSegment
+#print axioms ThreeUniformDiaries.EnumNode.exists_finite_auxTypeEmbedding
