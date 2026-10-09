@@ -42,3 +42,4 @@ import ThreeUniformDiaries.SizeFirstParentSchedule
 import ThreeUniformDiaries.AbstractAuxTypeTransfer
 import ThreeUniformDiaries.ExactTypeMeetLevels
 import ThreeUniformDiaries.FixedPrefixGapStep
+import ThreeUniformDiaries.RootBranchAuxEmbedding
