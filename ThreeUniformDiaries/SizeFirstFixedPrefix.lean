@@ -45,5 +45,30 @@ theorem graph_prefix_edge_iff
     E.branchIndex_fixed_prefix H hI c hc
   ] using h
 
+/-- The indexed relative branch graph has exactly the prescribed
+hypergraph I as its first n vertices, not merely an isomorphic copy. -/
+theorem graph_initialSegment_eq
+    (H : Ordered3Graph Nat) (hI : H.initialSegment n = I) :
+    E.graph.initialSegment n = I := by
+  apply EnumNode.ext_bits
+  funext a b c
+  by_cases h : a < b ∧ b < c ∧ c < n
+  · have hiff :
+        (E.graph.initialSegment n).triple a b c = true ↔
+          I.triple a b c = true := by
+      calc
+        (E.graph.initialSegment n).triple a b c = true ↔
+            E.graph.edge a b c :=
+          E.graph.initialSegment_edge_iff h.1 h.2.1 h.2.2
+        _ ↔ H.edge a b c :=
+          E.graph_prefix_edge_iff H hI h.1 h.2.1 h.2.2
+        _ ↔ I.triple a b c = true := by
+          rw [← hI]
+          exact (H.initialSegment_edge_iff h.1 h.2.1 h.2.2).symm
+    cases hleft : (E.graph.initialSegment n).triple a b c <;>
+      cases hright : I.triple a b c <;> simp_all
+  · rw [(E.graph.initialSegment n).support a b c h,
+        I.support a b c h]
+
 end SizeFirstBranchPresentation
 end ThreeUniformDiaries
