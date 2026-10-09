@@ -24,6 +24,7 @@ theorem oneType_crossCut_eq_iff_le_meet
     (H.oneType l₀ u).truncate k =
         (H.oneType l₁ v).truncate k ↔
       k ≤ H.toOrdered3Graph.oneMeetLevel u v := by
+  classical
   have hk₀ : k ≤ l₀ := hk.trans (min_le_left _ _)
   have hk₁ : k ≤ l₁ := hk.trans (min_le_right _ _)
   constructor
@@ -46,6 +47,7 @@ theorem auxType_crossCut_eq_iff_le_meet
     (H.auxType l₀ u₀ u₁).truncate k =
         (H.auxType l₁ v₀ v₁).truncate k ↔
       k ≤ H.toOrdered3Graph.auxMeetLevel u₀ u₁ v₀ v₁ := by
+  classical
   have hk₀ : k ≤ l₀ := hk.trans (min_le_left _ _)
   have hk₁ : k ≤ l₁ := hk.trans (min_le_right _ _)
   constructor
@@ -62,14 +64,21 @@ theorem auxType_crossCut_eq_iff_le_meet
 
 /-- The last common prefix of singleton-type nodes over different
 levels is exactly min(l0,l1,oneMeet(u,v)). -/
+noncomputable def oneTypeCrossCutMeetLevel {N : Nat} (H : EnumNode N)
+    (l₀ l₁ u v : Nat) : Nat := by
+  classical
+  exact Nat.findGreatest
+    (fun k => (H.oneType l₀ u).truncate k =
+      (H.oneType l₁ v).truncate k) (min l₀ l₁)
+
+/-- Exact common prefix formula for two singleton-type nodes. -/
 theorem oneType_greatest_common_prefix
     {N l₀ l₁ u v : Nat} (H : EnumNode N)
     (hlu : l₀ ≤ u) (hlv : l₁ ≤ v) :
-    Nat.findGreatest
-      (fun k => (H.oneType l₀ u).truncate k =
-        (H.oneType l₁ v).truncate k) (min l₀ l₁) =
+    H.oneTypeCrossCutMeetLevel l₀ l₁ u v =
       min (min l₀ l₁) (H.toOrdered3Graph.oneMeetLevel u v) := by
   classical
+  unfold oneTypeCrossCutMeetLevel
   let L := min l₀ l₁
   let w := H.toOrdered3Graph.oneMeetLevel u v
   let P : Nat → Prop := fun k =>
@@ -95,15 +104,22 @@ theorem oneType_greatest_common_prefix
 
 /-- The auxiliary-type analogue, with the auxiliary meet of the
 two ordered pairs determining their first disagreement. -/
+noncomputable def auxTypeCrossCutMeetLevel {N : Nat} (H : EnumNode N)
+    (l₀ l₁ u₀ u₁ v₀ v₁ : Nat) : Nat := by
+  classical
+  exact Nat.findGreatest
+    (fun k => (H.auxType l₀ u₀ u₁).truncate k =
+      (H.auxType l₁ v₀ v₁).truncate k) (min l₀ l₁)
+
+/-- Exact common prefix formula for two auxiliary-type nodes. -/
 theorem auxType_greatest_common_prefix
     {N l₀ l₁ u₀ u₁ v₀ v₁ : Nat} (H : EnumNode N)
     (hlu : l₀ ≤ u₀) (hlv : l₁ ≤ v₀) :
-    Nat.findGreatest
-      (fun k => (H.auxType l₀ u₀ u₁).truncate k =
-        (H.auxType l₁ v₀ v₁).truncate k) (min l₀ l₁) =
+    H.auxTypeCrossCutMeetLevel l₀ l₁ u₀ u₁ v₀ v₁ =
       min (min l₀ l₁)
         (H.toOrdered3Graph.auxMeetLevel u₀ u₁ v₀ v₁) := by
   classical
+  unfold auxTypeCrossCutMeetLevel
   let L := min l₀ l₁
   let w := H.toOrdered3Graph.auxMeetLevel u₀ u₁ v₀ v₁
   let P : Nat → Prop := fun k =>
