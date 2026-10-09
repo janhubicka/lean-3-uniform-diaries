@@ -30,8 +30,9 @@ private theorem auxNodes_common
   refine ⟨CoordNode.aux 0 (B.truncate 0), ?_, ?_⟩
   · exact ⟨Nat.zero_le i, rfl⟩
   · refine ⟨Nat.zero_le j, ?_⟩
-    change C.truncate 0 = B.truncate 0
-    exact h0.symm
+    change CoordNode.aux 0 (C.truncate 0) =
+      CoordNode.aux 0 (B.truncate 0)
+    exact congrArg (CoordNode.aux 0) h0.symm
 
 /-- For m >= 2 and a proper fixed prefix, there is a terminal
 auxiliary node at e(m-1) extending the last occupied E2^- level.
@@ -68,14 +69,14 @@ theorem finiteAuxCandidate_terminal
         (e (m - 2)) (e (m - 1)), hk, ?_⟩
       change p = CoordNode.aux (m - 2)
         (H.auxType (m - 2) (e (m - 2)) (e (m - 1)))
-      simp only [p, heq]
+      dsimp only [p]
+      rw [heq]
   have hcut : e (m - 2) ≤ e (m - 1) :=
     e.strictMono.monotone (by omega)
   have hpz : p ≤ z := by
     refine ⟨by simpa only [CoordNode.level, p, z] using hcut, ?_⟩
     change CoordNode.aux (e (m - 2))
-        ((H.auxType (e (m - 1)) (e (m - 2)) (e (m - 1)))
-          .truncate (e (m - 2))) =
+        ((H.auxType (e (m - 1)) (e (m - 2)) (e (m - 1))).truncate (e (m - 2))) =
       CoordNode.aux (e (m - 2))
         (H.auxType (e (m - 2)) (e (m - 2)) (e (m - 1)))
     rw [H.auxType_truncate (u := e (m - 2))
