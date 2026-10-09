@@ -215,3 +215,14 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.completionPrefix_on_layer
 #print axioms ThreeUniformDiaries.CoordNode.completionLayers_nonempty
 #print axioms ThreeUniformDiaries.CoordNode.exists_finite_strong_completion
+#print axioms ThreeUniformDiaries.EnumNode.oneTypes_agree_at_first_image
+#print axioms ThreeUniformDiaries.EnumNode.auxTypes_agree_at_first_image
+#print axioms ThreeUniformDiaries.EnumNode.finiteOneCandidate_root_zero
+#print axioms ThreeUniformDiaries.EnumNode.finiteAuxCandidate_root_zero
+#print axioms ThreeUniformDiaries.EnumNode.finiteEnumCandidate_root_zero
+#print axioms ThreeUniformDiaries.EnumNode.finiteOneCandidate_root_positive
+#print axioms ThreeUniformDiaries.EnumNode.finiteAuxCandidate_root_positive
+#print axioms ThreeUniformDiaries.EnumNode.finiteEnumCandidate_root_positive
+#print axioms ThreeUniformDiaries.EnumNode.finiteOneCandidate_levels
+#print axioms ThreeUniformDiaries.EnumNode.finiteAuxCandidate_levels
+#print axioms ThreeUniformDiaries.EnumNode.finiteEnumCandidate_levels
