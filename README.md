@@ -40,7 +40,10 @@ covered by the axiom audit in scripts/CheckAxioms.lean.
    indexed K_I initial segment and predecessor schedule with the
    fixed-prefix inherited recursion. Then verify omitted target tests
    and both exact meets on all canonical branches. Work toward this
-   is in PRs #31 and #32. Lemma Kiemb remains partial.
+   was merged in PR #34: SizeFirstFixedPrefix identifies the source
+  prefix literally, while FixedPrefixGlobalGap establishes omitted-target
+  copy/zero clauses. Propagation along each canonical branch and the
+  exact meet equalities for n > 0 remain open. Lemma Kiemb remains partial.
 2. **Finite strong-tree coding and composition.** Check the three
    meet-closed coordinate sets, their strong vector subtree
    completion, concrete canonical maps and composition (including
