@@ -40,7 +40,7 @@ theorem finiteAuxCanonicalMap_prescribed_pairTypes
       (by omega) (A.auxType i u v)).val =
         H.auxType (f i) (f u) (f v) := by
   have hmain :
-      ∀ j : Nat, j ≤ u →
+      ∀ (j : Nat) (hju : j ≤ u),
         (CoordNode.finiteStrongPicture_auxCanonicalMap hS j
           (by omega) (A.auxType j u v)).val =
           H.auxType (f j) (f u) (f v) := by
@@ -80,18 +80,19 @@ theorem finiteAuxCanonicalMap_prescribed_pairTypes
           · have hfixj : f (j + 1) = j + 1 :=
               hfix (j + 1) hprefix
             apply hinc
-            exact Or.inl ⟨j + 1, target, hprefix,
+            exact Or.inl ⟨j + 1,
+              H.auxType (j + 1) (f u) (f v), hprefix,
               by simp [target, hfixj]⟩
           · apply hinc
             exact Or.inr ⟨j + 1, u, v,
-              Nat.le_of_not_gt hprefix, Nat.le_of_lt hjlt,
+              Nat.le_of_not_gt hprefix, (by omega),
               huv, hvm, rfl⟩
         have htargetCone :
             CoordNode.aux (f j + 1) (old.succ bit) ≤
               CoordNode.aux (f (j + 1)) target := by
-          have hstep : f j + 1 ≤ f (j + 1) := by
-            have hh := hf.strictMono (Nat.lt_succ_self j)
-            omega
+          have hstep : f j + 1 ≤ f (j + 1) :=
+            Nat.succ_le_of_lt
+              (hf.strictMono (Nat.lt_succ_self j))
           refine ⟨hstep, ?_⟩
           change CoordNode.aux (f j + 1)
               (target.truncate (f j + 1)) =
