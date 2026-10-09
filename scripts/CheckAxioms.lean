@@ -177,3 +177,8 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.finiteEnumCandidate_meet
 #print axioms ThreeUniformDiaries.CoordNode.level_zeroExtendTo
 #print axioms ThreeUniformDiaries.CoordNode.le_zeroExtendTo
+#print axioms ThreeUniformDiaries.CoordNode.protectedCone_same_truncation
+#print axioms ThreeUniformDiaries.CoordNode.protectedCone_existing_eq
+#print axioms ThreeUniformDiaries.CoordNode.protectedGuide_level
+#print axioms ThreeUniformDiaries.CoordNode.protectedGuide_extends
+#print axioms ThreeUniformDiaries.CoordNode.protectedGuide_below
