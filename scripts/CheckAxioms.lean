@@ -206,3 +206,8 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.distinct_children_no_common_upper
 #print axioms ThreeUniformDiaries.CoordNode.meet_descendants_distinct_children
 #print axioms ThreeUniformDiaries.CoordNode.meet_descendants_distinct_parents
+#print axioms ThreeUniformDiaries.CoordNode.completionPrefix_succ_iff
+#print axioms ThreeUniformDiaries.CoordNode.completionPrefix_mono
+#print axioms ThreeUniformDiaries.CoordNode.completionPrefix_root_le
+#print axioms ThreeUniformDiaries.CoordNode.completionPrefix_level_le
+#print axioms ThreeUniformDiaries.CoordNode.completionPrefix_meetClosed
