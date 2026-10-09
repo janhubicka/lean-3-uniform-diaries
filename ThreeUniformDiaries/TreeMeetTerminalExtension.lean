@@ -90,7 +90,6 @@ theorem meetClosed_insertAbove
     (hcommon : ∀ x ∈ S, ∃ c : CoordNode, c ≤ p ∧ c ≤ x) :
     MeetClosed (Set.insert z S) := by
   intro x y hx hy
-  simp only [Set.mem_insert_iff] at hx hy ⊢
   rcases hx with rfl | hx
   · rcases hy with rfl | hy
     · left
