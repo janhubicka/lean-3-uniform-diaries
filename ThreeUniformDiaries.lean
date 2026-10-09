@@ -47,3 +47,4 @@ import ThreeUniformDiaries.ExactMeetsFromTypes
 import ThreeUniformDiaries.RootBranchExactMeets
 import ThreeUniformDiaries.FixedPrefixGlobalGap
 import ThreeUniformDiaries.SizeFirstFixedPrefix
+import ThreeUniformDiaries.FixedPrefixBranchGap
