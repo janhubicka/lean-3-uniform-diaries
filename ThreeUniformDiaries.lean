@@ -80,3 +80,4 @@ import ThreeUniformDiaries.FiniteEncoderStrongE0E1
 import ThreeUniformDiaries.FiniteEncoderStrongE2
 import ThreeUniformDiaries.ActualFiniteEmbeddingMeets
 import ThreeUniformDiaries.FiniteLocalSelectedMeets
+import ThreeUniformDiaries.FiniteActualCandidateMeetClosure
