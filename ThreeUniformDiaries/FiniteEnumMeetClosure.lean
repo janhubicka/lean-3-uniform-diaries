@@ -65,8 +65,9 @@ private theorem enum_trunc_chain
     CoordNode.enum a (H.truncate a) ≤
       CoordNode.enum b (H.truncate b) := by
   refine ⟨hab, ?_⟩
-  change (H.truncate b).truncate a = H.truncate a
-  exact H.truncate_truncate hab
+  change CoordNode.enum a ((H.truncate b).truncate a) =
+    CoordNode.enum a (H.truncate a)
+  exact congrArg (CoordNode.enum a) (H.truncate_truncate hab)
 
 /-- The actual E0 set is closed under tree meets. This proof needs
 only the increasing selected level map; no type-respecting
