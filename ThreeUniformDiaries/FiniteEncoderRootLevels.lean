@@ -152,7 +152,7 @@ theorem finiteAuxCandidate_levels
       ⟨i, u₀, u₁, hni, hiu, hu, hum, rfl⟩
   · exact ⟨k, lt_of_lt_of_le hk hnm, by
       simpa only [CoordNode.level] using (hfix k hk).symm⟩
-  · exact ⟨i, lt_of_le_of_lt (lt_of_le_of_lt hiu hu) hum, rfl⟩
+  · exact ⟨i, lt_trans (lt_of_le_of_lt hiu hu) hum, rfl⟩
 
 end EnumNode
 end ThreeUniformDiaries
