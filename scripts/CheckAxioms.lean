@@ -244,3 +244,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.exists_finiteOne_picture_of_finite
 #print axioms ThreeUniformDiaries.EnumNode.exists_finiteAux_picture_of_finite
 #print axioms ThreeUniformDiaries.EnumNode.exists_threeCoordinate_picture_of_finite
+#print axioms ThreeUniformDiaries.scopedExample_finiteAuxEmbedding
+#print axioms ThreeUniformDiaries.scopedExample_not_global_auxTypeRespecting
+#print axioms ThreeUniformDiaries.scopedExample_no_global_aux_extension
