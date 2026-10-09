@@ -211,3 +211,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.completionPrefix_root_le
 #print axioms ThreeUniformDiaries.CoordNode.completionPrefix_level_le
 #print axioms ThreeUniformDiaries.CoordNode.completionPrefix_meetClosed
+#print axioms ThreeUniformDiaries.CoordNode.avoids_gaps_of_selected_levels
+#print axioms ThreeUniformDiaries.CoordNode.completionPrefix_on_layer
+#print axioms ThreeUniformDiaries.CoordNode.completionLayers_nonempty
+#print axioms ThreeUniformDiaries.CoordNode.exists_finite_strong_completion
