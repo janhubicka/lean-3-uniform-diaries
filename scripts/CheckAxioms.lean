@@ -272,3 +272,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_oneStep_spec
 #print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_enum_lift
 #print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_enumStep_spec
+#print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_oneCanonicalMap
+#print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_enumCanonicalMap
+#print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_oneCanonicalMap_root
+#print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_enumCanonicalMap_root
