@@ -211,3 +211,9 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.finiteOneCandidate_root_zero
 #print axioms ThreeUniformDiaries.EnumNode.finiteAuxCandidate_root_zero
 #print axioms ThreeUniformDiaries.EnumNode.finiteEnumCandidate_root_zero
+#print axioms ThreeUniformDiaries.EnumNode.finiteOneCandidate_root_positive
+#print axioms ThreeUniformDiaries.EnumNode.finiteAuxCandidate_root_positive
+#print axioms ThreeUniformDiaries.EnumNode.finiteEnumCandidate_root_positive
+#print axioms ThreeUniformDiaries.EnumNode.finiteEnumCandidate_levels
+#print axioms ThreeUniformDiaries.EnumNode.finiteOneCandidate_levels
+#print axioms ThreeUniformDiaries.EnumNode.finiteAuxCandidate_levels
