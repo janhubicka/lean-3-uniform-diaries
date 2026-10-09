@@ -80,9 +80,8 @@ theorem finiteAuxCanonicalMap_prescribed_pairTypes
           · have hfixj : f (j + 1) = j + 1 :=
               hfix (j + 1) hprefix
             apply hinc
-            exact Or.inl ⟨j + 1,
-              H.auxType (j + 1) (f u) (f v), hprefix,
-              by simp [target, hfixj]⟩
+            exact Or.inl ⟨f (j + 1), target,
+              by rw [hfixj]; exact hprefix, rfl⟩
           · apply hinc
             exact Or.inr ⟨j + 1, u, v,
               Nat.le_of_not_gt hprefix, (by omega),
