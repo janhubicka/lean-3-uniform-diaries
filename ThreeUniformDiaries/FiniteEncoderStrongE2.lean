@@ -67,7 +67,7 @@ theorem exists_finiteAux_strong_picture
       e e.strictMono (m - 1) hlevels r hrootLevel hroot
   exact ⟨r, S, fun x hx => hES hx, hstrong⟩
 
-/-- All three finite candidate pictures admit synchronized strong
+/-- All three finite candidate pictures have synchronized strong
 completions over the SAME selected level map e; this is the strong
 subtree portion of manuscript Lemma Aemb. -/
 theorem exists_finite_threeCoordinate_strong_pictures
