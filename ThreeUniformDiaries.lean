@@ -89,3 +89,4 @@ import ThreeUniformDiaries.FiniteTargetReduction
 import ThreeUniformDiaries.CountableTargetStrongPictures
 import ThreeUniformDiaries.FiniteSelectedSuccessorBridge
 import ThreeUniformDiaries.FiniteSelectedSuccessorUnique
+import ThreeUniformDiaries.FiniteAuxCandidateSuccessor
