@@ -100,3 +100,4 @@ import ThreeUniformDiaries.FiniteAuxCanonicalMapSucc
 import ThreeUniformDiaries.FiniteStrongTypedOneEnumLift
 import ThreeUniformDiaries.FiniteCoupledCanonicalMaps
 import ThreeUniformDiaries.FiniteCoupledCanonicalMapSucc
+import ThreeUniformDiaries.FiniteOneCanonicalCandidateIdentity
