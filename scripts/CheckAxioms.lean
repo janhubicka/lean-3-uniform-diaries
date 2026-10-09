@@ -257,3 +257,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.finite_selected_aux_successor
 #print axioms ThreeUniformDiaries.EnumNode.finite_selected_one_successor
 #print axioms ThreeUniformDiaries.EnumNode.finite_selected_enum_successor
+#print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_selectedSuccessorUnique
