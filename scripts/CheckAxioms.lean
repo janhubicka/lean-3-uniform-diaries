@@ -237,3 +237,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.finiteOneCandidate_meet_of_finite
 #print axioms ThreeUniformDiaries.EnumNode.finiteAuxCandidate_meet_of_finite
 #print axioms ThreeUniformDiaries.Ordered3Graph.FiniteAuxEmbedding.target_initialSegment
+#print axioms ThreeUniformDiaries.EnumNode.exists_threeCoordinate_pictures_countable_target
