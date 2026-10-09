@@ -1,34 +1,58 @@
 # lean-3-uniform-diaries
 
-Lean formalization accompanying the 3-uniform diaries manuscript.
+Lean formalisation accompanying the 3-uniform diaries manuscript. The
+complete auxiliary type-respecting Ramsey theorem has **not** yet been
+formalised, although the root-based generic branch embedding is now checked.
 
-Current branch `formalize-aux-ramsey` follows the repaired proof of the
-aux-type-respecting Ramsey theorem.
+## Verified components
 
-Formalized without `sorry` or `admit` so far:
+All imported proof modules build in CI; the exported results below are
+covered by the axiom audit in scripts/CheckAxioms.lean.
 
-- decomposition of an ordinary ordered 2-type into two 1-types and one
-  auxiliary type;
-- aux-type-respecting implies type-respecting at the type-agreement level;
-- the manuscript-faithful canonical-code/Milliken transfer, explicitly factoring through the universal branch hypergraph K_I;
-- a checked dependency on the unconditional Milliken theorem in
-  `janhubicka/lean-milliken`.
+- Auxiliary/ordinary type representations and their decomposition,
+  successor identities and selected-cut agreement (AuxTypes, TypeTrees,
+  TypeRepresentation, CanonicalAgreement).
+- Abstract canonical maps and their composition (CanonicalMap).
+- Induced branch codes in K_I, including tests against every indexed
+  relative K_I node, not just those on the branch (BranchHypergraph,
+  RelativeBranchHypergraph, BranchTypeAgreement, BranchCutBoundary).
+- Size-first enumeration of K_I and source branch predecessor schedule
+  (SizeFirstEnumeration, SizeFirstSourceTests, SizeFirstParentSchedule).
+- Generic induced embedding recursions with predecessor-relative C1/C2,
+  both root-based and fixing a prescribed nonempty initial segment
+  (InheritedGapExtension, CountableInheritedEmbedding,
+  FixedPrefixCountableEmbedding, FixedPrefixGapStep).
+- **Root-based canonical branch aux-type respect:** RootBranchAuxEmbedding
+  combines indexed source type tests with globally omitted target
+  gap propagation. The global K_I embedding itself need not preserve
+  all aux types.
+- **Exact singleton and auxiliary meet levels:** ExactMeetsFromTypes
+  derives literal capped meet equations from cutwise type agreement.
+  RootBranchExactMeets verifies both equations on actual root-based
+  canonical branches.
+- Conditional final Ramsey transfer through K_I and a checked
+  finite-colour Milliken consequence (AuxRamseyTransfer,
+  MillikenFiniteColour).
 
-The next layer is the concrete finite/infinite canonical code for the three
-type trees and the transport from the vector-tree Milliken statement.
+## Remaining obligations
 
-The equality of explicit finite 1-type and aux-type nodes with agreement of the corresponding edge types below a cut is checked in `TypeRepresentation.lean`.
+1. **Fixed-prefix K_I branch transfer (n > 0).** Combine the actual
+   indexed K_I initial segment and predecessor schedule with the
+   fixed-prefix inherited recursion. Then verify omitted target tests
+   and both exact meets on all canonical branches. Work toward this
+   is in PRs #31 and #32. Lemma Kiemb remains partial.
+2. **Finite strong-tree coding and composition.** Check the three
+   meet-closed coordinate sets, their strong vector subtree
+   completion, concrete canonical maps and composition (including
+   manuscript Lemmas Aemb, auxtypeemb and canonicalcomposition).
+3. **Unconditional Ramsey theorem.** Instantiate the abstract
+   AuxRamseyTransfer coding identities with these constructions.
 
-Additional concrete lemmas: `PrunedTypeTrees.lean` proves that every coordinate-tree node has a child; `CanonicalAgreement.lean` proves preservation/reflection of type agreement at selected cuts. These do not by themselves establish the full auxiliary Ramsey theorem.
+## Adversarial C2 check
 
-The next concrete pieces prove disjointness and simultaneous generic realization of (C1)/(C2), the prescribed triples through one new source vertex, uniqueness of type-tree successor parameters, and one-step type-agreement recurrences. The countable K_I embedding and exact meet-level preservation remain open.
-
-The branch-hypergraph layer `InfinitePrefixes`, `BranchHypergraph`, `RelativeBranchHypergraph`, and `BranchCountability` checks the finite enumeration coding and the induced map g_H into K_I (including its countable carrier). It does not yet supply the order-respecting enumeration or the generic embedding φ : K_I → G, nor the exact-meet argument.
-
-`BranchTypeAgreement.lean` proves the exact singleton- and auxiliary-type agreement tests on all universal and relative K_I branch nodes below an original length cut (not just on the given branch). The outstanding step is transfer from these length-cut tests to all vertices below the chosen **enumeration positions** in the generic image, including the vertices omitted by φ.
-
-**Adversarial gap check:** `GapCounterexample.lean` records a five-node induced diagram consistent with the manuscript's (C1)/(C2) requirements at every step but with a failing capped singleton meet: an edge into a newly skipped gap can be seen at the current image vertex and is then zeroed by (C2) at future image vertices. This refutes that implication of the stated induction, **not** the full Ramsey theorem. Strengthen the induction to handle the new gap vertices or replace the embedding construction; do not mark `lem:Kiemb` verified.
-
-**Repair of the C2 gap.** The new `InheritedGapExtension.lean` replaces zeroing every pair involving omitted vertices by a predecessor-relative rule: copy the parent node's pair bits below its image, and zero the omitted pairs at/above the parent. Genericity realizes both clauses in a single finite pattern. The two abstract branch lemmas verify that omitted pairs have consistent one-types and omitted auxiliary-test vertices contribute no edges, resolving the five-node counterexample at the induction-rule level. The infinite K_I enumeration and full embedding/meet-preservation theorem remain to be formalised; do not label `lem:Kiemb` fully Lean verified.
-
-The module `CountableGenericEmbedding.lean` now constructs a coherent sequence of finite induced embeddings and derives an actual strictly increasing countable induced embedding of any enumerated 3-uniform hypergraph into `G`, using the generic source-extension lemma. The strengthened predecessor-relative inheritance rule is a *separate* finite-step theorem; its integration into this infinite construction, and type-meet preservation, remain open.
+GapCounterexample records a finite diagram refuting the earlier
+zero-on-all-omitted-pairs induction. The predecessor-relative
+inheritance repair copies omitted pairs below their parent and zeros
+them at or above the parent. It has now been validated through the
+**root-based** exact-meet equations; it is not yet a proof of the full
+fixed-prefix lemma or of the Ramsey theorem.
