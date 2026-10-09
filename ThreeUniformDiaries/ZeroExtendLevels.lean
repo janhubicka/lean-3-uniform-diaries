@@ -29,7 +29,9 @@ def zeroExtend (x : CoordNode) : Nat → CoordNode
   induction d with
   | zero => rfl
   | succ d ih =>
-      simp [zeroExtend, ih, Nat.add_succ]
+      change level (zeroChild (zeroExtend x d)) = level x + (d + 1)
+      rw [level_zeroChild, ih]
+      omega
 
 /-- The original node is an ancestor of every zero extension. -/
 theorem le_zeroExtend (x : CoordNode) (d : Nat) :
@@ -50,7 +52,8 @@ def zeroExtendTo (x : CoordNode) (L : Nat) (h : level x ≤ L) :
 @[simp] theorem level_zeroExtendTo
     (x : CoordNode) (L : Nat) (h : level x ≤ L) :
     level (zeroExtendTo x L h) = L := by
-  simp [zeroExtendTo]
+  unfold zeroExtendTo
+  rw [level_zeroExtend]
   omega
 
 /-- The chosen extension preserves all bits of the input prefix. -/
