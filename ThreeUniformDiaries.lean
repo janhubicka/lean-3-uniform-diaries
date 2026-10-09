@@ -63,3 +63,5 @@ import ThreeUniformDiaries.FiniteAuxMeetClosure
 import ThreeUniformDiaries.TreeMeetTerminalExtension
 import ThreeUniformDiaries.FiniteAuxTerminal
 import ThreeUniformDiaries.MeetClosedGapRigidity
+import ThreeUniformDiaries.FiniteEnumMeetClosure
+import ThreeUniformDiaries.ZeroExtendLevels

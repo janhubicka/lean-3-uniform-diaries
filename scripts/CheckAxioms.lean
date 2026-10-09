@@ -174,3 +174,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.meetClosed_insertAbove
 #print axioms ThreeUniformDiaries.EnumNode.finiteAuxCandidate_terminal
 #print axioms ThreeUniformDiaries.CoordNode.unique_above_selected_gap
+#print axioms ThreeUniformDiaries.EnumNode.finiteEnumCandidate_meet
+#print axioms ThreeUniformDiaries.CoordNode.level_zeroExtendTo
+#print axioms ThreeUniformDiaries.CoordNode.le_zeroExtendTo
