@@ -1,6 +1,7 @@
 import ThreeUniformDiaries.FiniteSelectedSuccessorBridge
 import ThreeUniformDiaries.FiniteSelectedSuccessorUnique
 import ThreeUniformDiaries.FiniteActualCandidateMeetClosure
+import ThreeUniformDiaries.FiniteEnumMeetClosure
 
 /-!
 # Concrete singleton and enumeration steps for finite Aemb coding
