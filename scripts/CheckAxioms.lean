@@ -150,3 +150,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.exists_universal_exactMeetEmbedding
 #print axioms ThreeUniformDiaries.EnumNode.toOrdered3Graph_initialSegment
 #print axioms ThreeUniformDiaries.EnumNode.exists_finite_auxTypeEmbedding
+#print axioms ThreeUniformDiaries.CanonicalMap.oneMeetLevel_preserved_on_finite
+#print axioms ThreeUniformDiaries.CanonicalMap.auxMeetLevel_preserved_on_finite
