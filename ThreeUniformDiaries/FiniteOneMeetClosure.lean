@@ -79,7 +79,7 @@ theorem finiteOneCandidate_meet
           CoordNode.meetLevel
             (.one (e i) (H.oneType (e i) (e v)))
             (.one (e j) (H.oneType (e j) (e w))) = e k :=
-        H.selectedOne_meetLevel A e haux i j v w hiv hjw
+        A.selectedOne_meetLevel H e haux i j v w hiv hjw
       have hmeet :
           CoordNode.meet
             (.one (e i) (H.oneType (e i) (e v)))
@@ -91,7 +91,8 @@ theorem finiteOneCandidate_meet
               (.one (e j) (H.oneType (e j) (e w))) =
               .one (e k)
                 ((H.oneType (e i) (e v)).truncate (e k)) := by
-                  simp only [CoordNode.meet, CoordNode.truncate, hlev]
+                  simp only [CoordNode.meet, CoordNode.truncate]
+                  rw [hlev]
           _ = .one (e k) (H.oneType (e k) (e v)) := by
               rw [H.oneType_truncate (u := e v)
                 (e.strictMono.monotone hk)]
