@@ -43,3 +43,4 @@ import ThreeUniformDiaries.AbstractAuxTypeTransfer
 import ThreeUniformDiaries.ExactTypeMeetLevels
 import ThreeUniformDiaries.FixedPrefixGapStep
 import ThreeUniformDiaries.RootBranchAuxEmbedding
+import ThreeUniformDiaries.ExactMeetsFromTypes
