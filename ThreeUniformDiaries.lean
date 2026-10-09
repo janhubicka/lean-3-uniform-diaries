@@ -76,3 +76,4 @@ import ThreeUniformDiaries.FiniteCompletionMeetClosure
 import ThreeUniformDiaries.FiniteStrongCompletion
 import ThreeUniformDiaries.FiniteEncoderRoots
 import ThreeUniformDiaries.FiniteEncoderRootLevels
+import ThreeUniformDiaries.FiniteEncoderStrongE0E1
