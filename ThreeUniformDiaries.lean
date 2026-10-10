@@ -160,3 +160,4 @@ import ThreeUniformDiaries.CanonicalBranchSuccessorFormula
 import ThreeUniformDiaries.CanonicalInfiniteImage
 import ThreeUniformDiaries.PrefixMeetInvariance
 import ThreeUniformDiaries.CanonicalRelativeFixedLevels
+import ThreeUniformDiaries.CanonicalInfiniteBranchFactorization
