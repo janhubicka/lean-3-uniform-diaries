@@ -400,3 +400,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_distinct_child_meet
 #print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_distinct_child_meet
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_distinct_child_meet
+#print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_firstDisagreement_meet
