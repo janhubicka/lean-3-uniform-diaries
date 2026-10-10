@@ -80,8 +80,9 @@ theorem imageGraph_initialSegment_eq
     have hedge : (F.imageGraph H).edge i j k ↔ A.triple i j k = true := by
       constructor
       · rintro ⟨m, hkm, hm⟩
-        have hagree := F.mappedPrefix_triple_agree H hkn hkm
-        exact hagree ▸ hm
+        have hagree := F.mappedPrefix_triple_agree H
+          (i := i) (j := j) (k := k) hkn hkm
+        exact hagree.trans hm
       · intro hbit
         exact ⟨n, hkn, hbit⟩
     by_cases hbit : A.triple i j k = true
