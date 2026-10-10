@@ -384,3 +384,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CanonicalMap.relativeMapBranch_val
 #print axioms ThreeUniformDiaries.CanonicalMap.comp_fixesRelativeCut
 #print axioms ThreeUniformDiaries.CanonicalMap.comp_relativeMapBranch
+#print axioms ThreeUniformDiaries.CanonicalMap.fixesRelativeCut_of_fixed_levels
+#print axioms ThreeUniformDiaries.CanonicalMap.relativeMapBranch_of_fixed_levels
