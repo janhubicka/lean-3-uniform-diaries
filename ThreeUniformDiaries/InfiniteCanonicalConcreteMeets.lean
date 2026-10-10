@@ -13,7 +13,7 @@ CanonicalMap. We now instantiate them with the genuine infinite maps:
 this is valid because *all* CanonicalMap fields have been derived,
 including the ambient nonselected auxiliary-type identities.
 
-This proves exact one-/aux-meet preservation in every finite source
+This proves exact singleton and auxiliary meet preservation in every finite source
 prefix. Passing to a countable union and identifying the infinite
 K_I branch map remains separate.
 -/
