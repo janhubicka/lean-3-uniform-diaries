@@ -401,3 +401,8 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_distinct_child_meet
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_distinct_child_meet
 #print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_firstDisagreement_meet
+#print axioms ThreeUniformDiaries.CanonicalMap.imageGraph_embedding
+#print axioms ThreeUniformDiaries.CanonicalMap.imageGraph_auxTypeRespecting
+#print axioms ThreeUniformDiaries.CanonicalMap.mapBranch_branchNode
+#print axioms ThreeUniformDiaries.CanonicalMap.imageGraph_initialCut
+#print axioms ThreeUniformDiaries.CanonicalMap.relativeMapBranch_branchNode
