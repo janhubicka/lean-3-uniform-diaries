@@ -25,6 +25,8 @@ theorem infiniteAuxCanonicalMap_injective
     Function.Injective
       (fun a : AuxNode N => (infiniteAuxCanonicalMap hS N a).val) := by
   intro a b hab
+  change (infiniteAuxCanonicalMap hS N a).val =
+    (infiniteAuxCanonicalMap hS N b).val at hab
   apply AuxNode.ext_bits
   funext i
   by_cases hi : i < N
@@ -46,6 +48,8 @@ theorem infiniteOneCanonicalMap_injective
     Function.Injective
       (fun a : OneNode N => (infiniteOneCanonicalMap h₁ h₂ N a).val) := by
   intro a b hab
+  change (infiniteOneCanonicalMap h₁ h₂ N a).val =
+    (infiniteOneCanonicalMap h₁ h₂ N b).val at hab
   apply OneNode.ext_pairs
   funext i j
   by_cases h : i < j ∧ j < N
@@ -71,6 +75,8 @@ theorem infiniteEnumCanonicalMap_injective
     Function.Injective
       (fun a : EnumNode N => (infiniteEnumCanonicalMap h₀ h₁ h₂ N a).val) := by
   intro a b hab
+  change (infiniteEnumCanonicalMap h₀ h₁ h₂ N a).val =
+    (infiniteEnumCanonicalMap h₀ h₁ h₂ N b).val at hab
   apply EnumNode.ext_triples
   funext i j k
   by_cases h : i < j ∧ j < k ∧ k < N
