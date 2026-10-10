@@ -163,3 +163,4 @@ import ThreeUniformDiaries.CanonicalRelativeFixedLevels
 import ThreeUniformDiaries.CanonicalInfiniteExactMeets
 import ThreeUniformDiaries.InfiniteAuxDistinctMeets
 import ThreeUniformDiaries.InfiniteOneEnumDistinctMeets
+import ThreeUniformDiaries.InfiniteAuxFirstDisagreement
