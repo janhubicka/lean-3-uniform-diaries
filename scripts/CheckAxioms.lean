@@ -326,3 +326,6 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.CoordNode.finiteEnumCanonicalMap_parent
 #print axioms ThreeUniformDiaries.CoordNode.finiteEnumCanonicalMap_truncate
+#print axioms ThreeUniformDiaries.EnumNode.oneType_last_eq_boundaryOne
+#print axioms ThreeUniformDiaries.CoordNode.finiteBranchMap_fixed_of_coordinate_maps
+#print axioms ThreeUniformDiaries.CoordNode.finiteBranchMap_fixed_before_n
