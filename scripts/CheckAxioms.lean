@@ -395,3 +395,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.initialSegment_auxMeetLevel
 #print axioms ThreeUniformDiaries.CanonicalMap.fixesRelativeCut_of_fixed_levels
 #print axioms ThreeUniformDiaries.CanonicalMap.relativeMapBranch_of_fixed_levels
+#print axioms ThreeUniformDiaries.CanonicalMap.mapBranch_branchNode
+#print axioms ThreeUniformDiaries.CanonicalMap.imageGraph_initialCut
+#print axioms ThreeUniformDiaries.CanonicalMap.relativeMapBranch_branchNode
