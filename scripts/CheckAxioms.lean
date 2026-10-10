@@ -410,3 +410,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_firstDisagreement_meet
 #print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_preserves_meet
 #print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_preserves_meet
+#print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_fixed_prefix
+#print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_fixed_prefix
+#print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_fixed_prefix
