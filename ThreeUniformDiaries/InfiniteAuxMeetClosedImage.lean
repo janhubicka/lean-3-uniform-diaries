@@ -57,7 +57,7 @@ theorem infiniteAuxImage_meetClosed
     simpa only [n, meet, CoordNode.truncate] using
       (hE hu hv)
   refine ⟨n, u.truncate n, hsource, ?_⟩
-  exact (infiniteAuxCanonicalMap_preserves_meet hS hf u v).symm
+  exact infiniteAuxCanonicalMap_preserves_meet hS hf u v
 
 end CoordNode
 end ThreeUniformDiaries
