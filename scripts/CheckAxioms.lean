@@ -407,3 +407,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CanonicalMap.imageGraph_initialCut
 #print axioms ThreeUniformDiaries.CanonicalMap.relativeMapBranch_branchNode
 #print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_preserves_meet
+#print axioms ThreeUniformDiaries.CoordNode.infiniteAuxImage_subset
+#print axioms ThreeUniformDiaries.CoordNode.infiniteAuxImage_meetClosed
