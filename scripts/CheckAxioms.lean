@@ -298,3 +298,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.exists_finiteAemb_coding_of_finite
 
 #print axioms ThreeUniformDiaries.EnumNode.exists_countableAemb_coding
+
+#print axioms ThreeUniformDiaries.EnumNode.truncate_succ_oneType_last
+#print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_branchMap_source
