@@ -380,3 +380,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteCanonicalMap_auxMeetLevel_preserved
 #print axioms ThreeUniformDiaries.CanonicalMap.id_mapBranch
 #print axioms ThreeUniformDiaries.CanonicalMap.comp_mapBranch
+#print axioms ThreeUniformDiaries.CanonicalMap.mapBranch_succ_formula
