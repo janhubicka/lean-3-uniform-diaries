@@ -23,7 +23,7 @@ namespace ThreeUniformDiaries
 namespace EnumNode
 /-- Boundary singleton parameter is unaffected by truncating
 the enumeration node just after the boundary index. -/
-theorem boundaryAux_truncate_next {N : Nat} (a : EnumNode N) (n : Nat) :
+theorem boundaryOne_truncate_next {N : Nat} (a : EnumNode N) (n : Nat) :
     (a.truncate (n + 1)).boundaryOne n = a.boundaryOne n := by
   apply OneNode.ext_pairs
   funext i j
