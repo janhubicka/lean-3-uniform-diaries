@@ -156,3 +156,4 @@ import ThreeUniformDiaries.InfiniteCanonicalConcreteMeets
 import ThreeUniformDiaries.CanonicalBranchComposition
 import ThreeUniformDiaries.CanonicalRelativeCarrier
 import ThreeUniformDiaries.CanonicalRelativeComposition
+import ThreeUniformDiaries.CanonicalInfiniteImage
