@@ -333,3 +333,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.finiteBranchMap_preserves_relative_carrier
 #print axioms ThreeUniformDiaries.CoordNode.finiteRelativeBranchMap
 #print axioms ThreeUniformDiaries.EnumNode.exists_exactMeetAemb_full_relative_map
+#print axioms ThreeUniformDiaries.CoordNode.finiteEnumCanonicalMap_preserves_prefix
