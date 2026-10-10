@@ -113,3 +113,5 @@ import ThreeUniformDiaries.TypedFiniteCoordinateCompletion
 import ThreeUniformDiaries.FiniteAembCodingExistence
 
 import ThreeUniformDiaries.CountableAembCanonicalCoding
+
+import ThreeUniformDiaries.FiniteCanonicalBranchMap
