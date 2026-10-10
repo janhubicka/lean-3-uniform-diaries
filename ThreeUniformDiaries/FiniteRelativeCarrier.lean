@@ -85,7 +85,37 @@ theorem finiteBranchMap_preserves_relative_carrier
         let pred := B.enumeration.truncate B.last
         have hpre :
             (finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂
-              B.last hB pred).val.truncate n = I
+              B.last hB pred).val.truncate n = I := by
+          calc
+            (finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂
+              B.last hB pred).val.truncate n = pred.truncate n :=
+                finiteEnumCanonicalMap_preserves_initial_cut
+                  h₀ h₁ h₂ hf hfix (by omega)
+                  (hfull₀ hnpos) (hfull₁ hnpos) (hfull₂ hnpos) B.last hnj hB pred
+            _ = B.enumeration.truncate n :=
+              EnumNode.truncate_truncate B.enumeration hnj
+            _ = I := hrel.2 (by omega)
+        change
+          ((finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂
+            B.last hB pred).val.succ
+          (finiteStrongPicture_oneCanonicalMap h₁ h₂
+            B.last hB (B.enumeration.oneType B.last B.last)).val).truncate n = I
+        calc
+          ((finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂
+            B.last hB pred).val.succ
+            (finiteStrongPicture_oneCanonicalMap h₁ h₂
+              B.last hB (B.enumeration.oneType B.last B.last)).val).truncate n =
+            (((finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂
+              B.last hB pred).val.succ
+              (finiteStrongPicture_oneCanonicalMap h₁ h₂
+                B.last hB (B.enumeration.oneType B.last B.last)).val).truncate (f B.last)).truncate n := by
+                    symm
+                    exact EnumNode.truncate_truncate _ hnf
+          _ = (finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂
+                B.last hB pred).val.truncate n := by
+                  rw [EnumNode.truncate_succ]
+          _ = I := hpre
+
 /-- The concrete canonical map as a well-defined map of relative K_I
 vertices, over the entire finite-height domain. -/
 noncomputable def finiteRelativeBranchMap
