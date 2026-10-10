@@ -415,3 +415,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.boundaryOne_truncate_next
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_firstDisagreement_meet
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_preserves_meet
+#print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_fixed_prefix
+#print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_fixed_prefix
+#print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_fixed_prefix
