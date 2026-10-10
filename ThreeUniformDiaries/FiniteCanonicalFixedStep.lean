@@ -40,7 +40,7 @@ theorem finiteAuxCanonicalMap_fixed_step
   have hval :
       (finiteStrongPicture_auxCanonicalMap hS i
         (Nat.le_of_lt hi) (a.truncate i)).val =
-      (hfi ▸ a.truncate i) := by
+      (hfi.symm ▸ a.truncate i) := by
     cases hfi
     simpa using (CoordNode.aux.inj hprev).2
   have hcone' :
@@ -85,13 +85,13 @@ theorem finiteOneCanonicalMap_fixed_step
   have hval :
       (finiteStrongPicture_oneCanonicalMap h₁ h₂ i
         (Nat.le_of_lt hi) (a.truncate i)).val =
-      (hfi ▸ a.truncate i) := by
+      (hfi.symm ▸ a.truncate i) := by
     cases hfi
     simpa using (CoordNode.one.inj hprev).2
   have hpar :
       (finiteStrongPicture_auxCanonicalMap h₂ i
         (Nat.le_of_lt hi) (a.boundaryAux i)).val =
-      (hfi ▸ a.boundaryAux i) := by
+      (hfi.symm ▸ a.boundaryAux i) := by
     cases hfi
     simpa using (CoordNode.aux.inj hparam).2
   have hcone' :
@@ -138,13 +138,13 @@ theorem finiteEnumCanonicalMap_fixed_step
   have hval :
       (finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂ i
         (Nat.le_of_lt hi) (a.truncate i)).val =
-      (hfi ▸ a.truncate i) := by
+      (hfi.symm ▸ a.truncate i) := by
     cases hfi
     simpa using (CoordNode.enum.inj hprev).2
   have hpar :
       (finiteStrongPicture_oneCanonicalMap h₁ h₂ i
         (Nat.le_of_lt hi) (a.boundaryOne i)).val =
-      (hfi ▸ a.boundaryOne i) := by
+      (hfi.symm ▸ a.boundaryOne i) := by
     cases hfi
     simpa using (CoordNode.one.inj hparam).2
   have hcone' :
