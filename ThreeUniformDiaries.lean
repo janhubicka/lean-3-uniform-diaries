@@ -169,3 +169,5 @@ import ThreeUniformDiaries.CanonicalInfiniteBranchFactorization
 import ThreeUniformDiaries.InfiniteOneFirstDisagreement
 import ThreeUniformDiaries.InfiniteAuxFullMeets
 import ThreeUniformDiaries.InfiniteOneFullMeets
+import ThreeUniformDiaries.InfiniteEnumFirstDisagreement
+import ThreeUniformDiaries.InfiniteEnumFullMeets
