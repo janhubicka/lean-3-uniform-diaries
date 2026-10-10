@@ -333,3 +333,8 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.finiteBranchMap_preserves_relative_carrier
 #print axioms ThreeUniformDiaries.CoordNode.finiteRelativeBranchMap
 #print axioms ThreeUniformDiaries.EnumNode.exists_exactMeetAemb_full_relative_map
+#print axioms ThreeUniformDiaries.CoordNode.InfiniteStrongPicture
+#print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPicture_aux_lift
+#print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPicture_auxStep_spec
+#print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap
+#print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_root
