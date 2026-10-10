@@ -24,7 +24,9 @@ private theorem level_ge (F : CanonicalMap) (n : Nat) :
   induction n with
   | zero => omega
   | succ k ih =>
-    have hs := F.strictMono (Nat.lt_succ_self k)
+    have hs : F.level k + 1 ≤ F.level (k + 1) :=
+      Nat.succ_le_of_lt (F.strictMono (Nat.lt_succ_self k))
+    change k + 1 ≤ F.level (k + 1)
     omega
 
 /-- A fixed initial segment I need not have F.level n = n. -/
@@ -55,21 +57,23 @@ theorem mapBranch_preserves_relative
       hrel.1 hsmall
     have hshort :
         F.mapEnum (B.last + 1) (I.truncate (B.last + 1)) =
-        I.truncate (B.last + 1) := by
+        I.truncate (F.level (B.last + 1)) := by
       calc
         F.mapEnum (B.last + 1) (I.truncate (B.last + 1)) =
           (F.mapEnum n I).truncate (F.level (B.last + 1)) :=
             F.truncate_compat I (by omega)
-        _ = (F.mapEnum n I).truncate (B.last + 1) := by
+        _ = I.truncate (F.level (B.last + 1)) := by
           rw [hFnext]
-        _ = ((F.mapEnum n I).truncate n).truncate (B.last + 1) :=
-          (EnumNode.truncate_truncate _ (by omega)).symm
-        _ = I.truncate (B.last + 1) := by rw [hroot]
+          calc
+            (F.mapEnum n I).truncate (B.last + 1) =
+                ((F.mapEnum n I).truncate n).truncate (B.last + 1) :=
+              (EnumNode.truncate_truncate _ (by omega)).symm
+            _ = I.truncate (B.last + 1) := by rw [hroot]
     change
       (F.mapEnum (B.last + 1) B.enumeration).truncate
           (F.level B.last + 1) =
       I.truncate (F.level B.last + 1)
-    rw [hFi, hB, hshort]
+    rw [hFi, hB, hshort, hFnext]
     exact EnumNode.truncate_self _
   · intro hlargeTarget
     have hlarge : n ≤ B.last + 1 := by
