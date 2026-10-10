@@ -63,6 +63,7 @@ theorem infiniteAuxCanonicalMap_distinct_child_meet
       CoordNode.aux (f n + 1) (q.succ c) at h
     have heq : q.succ b = q.succ c := by
       injection h with hn
+      exact hn
     have hbiteq : b = c := by
       have hv := congrArg
         (fun z : AuxNode (f n + 1) => z.bit (f n)) heq
