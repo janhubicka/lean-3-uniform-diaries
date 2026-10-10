@@ -376,3 +376,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.oneType_boundaryAux_eq_auxType_of_lt
 #print axioms ThreeUniformDiaries.CoordNode.infiniteCanonicalMap_auxType_compat
 #print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPictureCanonicalMap
+#print axioms ThreeUniformDiaries.CoordNode.infiniteCanonicalMap_oneMeetLevel_preserved
+#print axioms ThreeUniformDiaries.CoordNode.infiniteCanonicalMap_auxMeetLevel_preserved
