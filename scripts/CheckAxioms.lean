@@ -279,3 +279,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_oneCanonicalMap_root
 #print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_enumCanonicalMap_root
 #print axioms ThreeUniformDiaries.EnumNode.finiteAuxCanonicalMap_prescribed_pairTypes
+#print axioms ThreeUniformDiaries.EnumNode.finiteAuxCandidate_root_eq_pairType
+#print axioms ThreeUniformDiaries.EnumNode.finiteOneCandidate_root_eq_vertexType
+#print axioms ThreeUniformDiaries.EnumNode.finiteEnumCandidate_root_eq_initialSegment
