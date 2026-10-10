@@ -19,41 +19,54 @@ step of the manuscript's canonical composition lemma.
 -/
 
 namespace ThreeUniformDiaries
+
+namespace OneNode
+/-- Boundary auxiliary parameter is unaffected by truncating
+the singleton node just after the boundary index. -/
+theorem boundaryAux_truncate_next {N : Nat} (a : OneNode N) (n : Nat) :
+    (a.truncate (n + 1)).boundaryAux n = a.boundaryAux n := by
+  apply AuxNode.ext_bits
+  funext i
+  by_cases hi : i < n
+  · simp [OneNode.boundaryAux, OneNode.truncate, hi]
+  · simp [OneNode.boundaryAux, hi]
+end OneNode
+
 namespace CoordNode
 
 theorem infiniteOneCanonicalMap_firstDisagreement_meet
     {S₁ S₂ : Set CoordNode} {f : Nat → Nat}
     {r₁ : OneNode (f 0)} {r₂ : AuxNode (f 0)}
     (h₁ : InfiniteStrongPicture S₁ f (.one (f 0) r₁))
-    (h₂ : InfiniteStrongPicture S₂ f (.one (f 0) r₂))
+    (h₂ : InfiniteStrongPicture S₂ f (.aux (f 0) r₂))
     (hf : StrictMono f)
     {N M n : Nat} (u : OneNode N) (v : OneNode M)
     (hnN : n < N) (hnM : n < M)
     (hcut : u.truncate n = v.truncate n)
     (hdiff : u.boundaryAux n ≠ v.boundaryAux n) :
     meet
-      (.one (f N) (infiniteOneCanonicalMap hS N u).val)
-      (.one (f M) (infiniteOneCanonicalMap hS M v).val) =
+      (.one (f N) (infiniteOneCanonicalMap h₁ h₂ N u).val)
+      (.one (f M) (infiniteOneCanonicalMap h₁ h₂ M v).val) =
       .one (f n)
-        (infiniteOneCanonicalMap h₁ h₂ hf n (u.truncate n)).val := by
+        (infiniteOneCanonicalMap h₁ h₂ n (u.truncate n)).val := by
   let p : CoordNode :=
-    .one (f n) (infiniteOneCanonicalMap h₁ h₂ hf n (u.truncate n)).val
+    .one (f n) (infiniteOneCanonicalMap h₁ h₂ n (u.truncate n)).val
   let a : CoordNode :=
     .one (f (n + 1))
-      (infiniteOneCanonicalMap hS (n + 1) (u.truncate (n + 1))).val
+      (infiniteOneCanonicalMap h₁ h₂ (n + 1) (u.truncate (n + 1))).val
   let b : CoordNode :=
     .one (f (n + 1))
-      (infiniteOneCanonicalMap hS (n + 1) (v.truncate (n + 1))).val
+      (infiniteOneCanonicalMap h₁ h₂ (n + 1) (v.truncate (n + 1))).val
   let x : CoordNode :=
-    .one (f N) (infiniteOneCanonicalMap hS N u).val
+    .one (f N) (infiniteOneCanonicalMap h₁ h₂ N u).val
   let y : CoordNode :=
-    .one (f M) (infiniteOneCanonicalMap hS M v).val
+    .one (f M) (infiniteOneCanonicalMap h₁ h₂ M v).val
   have hsrcA :
       (u.truncate n).succ (u.boundaryAux n) = u.truncate (n + 1) := by
     have h := (u.truncate (n + 1)).succ_truncate_boundary
     rw [u.truncate_truncate (Nat.le_succ n)] at h
-    have hb : (u.truncate (n + 1)).bit n = u.boundaryAux n := by
-      simp [OneNode.boundaryAux, OneNode.truncate]
+    have hb : (u.truncate (n + 1)).boundaryAux n = u.boundaryAux n := by
+      exact OneNode.boundaryAux_truncate_next _ _
     rw [hb] at h
     exact h
   have hsrcB :
@@ -61,8 +74,8 @@ theorem infiniteOneCanonicalMap_firstDisagreement_meet
     rw [hcut]
     have h := (v.truncate (n + 1)).succ_truncate_boundary
     rw [v.truncate_truncate (Nat.le_succ n)] at h
-    have hb : (v.truncate (n + 1)).bit n = v.boundaryAux n := by
-      simp [OneNode.boundaryAux, OneNode.truncate]
+    have hb : (v.truncate (n + 1)).boundaryAux n = v.boundaryAux n := by
+      exact OneNode.boundaryAux_truncate_next _ _
     rw [hb] at h
     exact h
   have hlocal :=
@@ -75,7 +88,7 @@ theorem infiniteOneCanonicalMap_firstDisagreement_meet
     refine ⟨hf.monotone (by omega), ?_⟩
     change
       CoordNode.one (f n)
-        ((infiniteOneCanonicalMap hS (n + 1)
+        ((infiniteOneCanonicalMap h₁ h₂ (n + 1)
           (u.truncate (n + 1))).val.truncate (f n)) = p
     rw [htr, u.truncate_truncate (Nat.le_succ n)]
   have hpb : p ≤ b := by
@@ -84,22 +97,22 @@ theorem infiniteOneCanonicalMap_firstDisagreement_meet
     refine ⟨hf.monotone (by omega), ?_⟩
     change
       CoordNode.one (f n)
-        ((infiniteOneCanonicalMap hS (n + 1)
+        ((infiniteOneCanonicalMap h₁ h₂ (n + 1)
           (v.truncate (n + 1))).val.truncate (f n)) = p
     rw [htr, v.truncate_truncate (Nat.le_succ n), ← hcut]
   have hab : a ≠ b := by
     intro heq
     have hval :
-        (infiniteOneCanonicalMap hS (n + 1)
+        (infiniteOneCanonicalMap h₁ h₂ (n + 1)
           (u.truncate (n + 1))).val =
-        (infiniteOneCanonicalMap hS (n + 1)
+        (infiniteOneCanonicalMap h₁ h₂ (n + 1)
           (v.truncate (n + 1))).val := by
       injection heq
     have hsrc : u.truncate (n + 1) = v.truncate (n + 1) :=
       (infiniteOneCanonicalMap_injective h₁ h₂ hf (n + 1)) hval
     have hb := congrArg (fun z : OneNode (n + 1) => z.boundaryAux n) hsrc
     have hb' : u.boundaryAux n = v.boundaryAux n := by
-      simpa [OneNode.truncate, Nat.lt_succ_self] using hb
+      simpa only [OneNode.boundaryAux_truncate_next] using hb
     exact hdiff hb'
   have hax : a ≤ x := by
     have htr := infiniteOneCanonicalMap_truncate h₁ h₂ hf
@@ -107,7 +120,7 @@ theorem infiniteOneCanonicalMap_firstDisagreement_meet
     refine ⟨hf.monotone (by omega), ?_⟩
     change
       CoordNode.one (f (n + 1))
-        ((infiniteOneCanonicalMap hS N u).val.truncate (f (n + 1))) = a
+        ((infiniteOneCanonicalMap h₁ h₂ N u).val.truncate (f (n + 1))) = a
     rw [htr]
   have hby : b ≤ y := by
     have htr := infiniteOneCanonicalMap_truncate h₁ h₂ hf
@@ -115,7 +128,7 @@ theorem infiniteOneCanonicalMap_firstDisagreement_meet
     refine ⟨hf.monotone (by omega), ?_⟩
     change
       CoordNode.one (f (n + 1))
-        ((infiniteOneCanonicalMap hS M v).val.truncate (f (n + 1))) = b
+        ((infiniteOneCanonicalMap h₁ h₂ M v).val.truncate (f (n + 1))) = b
     rw [htr]
   have hdesc :=
     meet_descendants_distinct_parents a b x y rfl hab
