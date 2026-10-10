@@ -367,3 +367,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_immediate_prefix
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_immediate_prefix
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_lastOneType
+
+#print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_lastAuxType
