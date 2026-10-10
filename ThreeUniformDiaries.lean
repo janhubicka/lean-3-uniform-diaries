@@ -107,3 +107,6 @@ import ThreeUniformDiaries.FiniteOneCanonicalCandidateIdentity
 import ThreeUniformDiaries.FiniteEnumCanonicalCandidateIdentity
 import ThreeUniformDiaries.FiniteCanonicalBranchCode
 import ThreeUniformDiaries.FiniteAembCanonicalImages
+
+import ThreeUniformDiaries.FiniteStrongRootLevel
+import ThreeUniformDiaries.TypedFiniteCoordinateCompletion
