@@ -132,3 +132,7 @@ import ThreeUniformDiaries.FiniteCanonicalInitialCut
 import ThreeUniformDiaries.FiniteRelativeCarrier
 import ThreeUniformDiaries.ExactMeetAembFullRelativeMap
 import ThreeUniformDiaries.FiniteCanonicalEnumOrder
+
+import ThreeUniformDiaries.InfiniteCanonicalAux
+import ThreeUniformDiaries.InfiniteCanonicalCoupled
+import ThreeUniformDiaries.InfiniteCanonicalSuccessor
