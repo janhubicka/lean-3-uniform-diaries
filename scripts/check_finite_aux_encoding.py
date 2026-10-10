@@ -183,6 +183,38 @@ def verify_case(A, H, e, m, n):
             )
 
 
+    # Independent check of F_I^S on the WHOLE finite relative carrier,
+    # rather than only along the prescribed g_A source branch. Every
+    # compatible finite enumeration B of length j+1 is included.
+    I = frozenset(t for t in A if t[-1] < n)
+    for j in range(m):
+        possible = labels(0, j + 1)
+        for bmask in range(1 << len(possible)):
+            B = frozenset(
+                t for idx, t in enumerate(possible) if bmask >> idx & 1
+            )
+            if j + 1 < n:
+                if B != frozenset(t for t in I if t[-1] < j + 1):
+                    continue
+            elif frozenset(t for t in B if t[-1] < n) != I:
+                continue
+            mapped_enum = maps[0][enumeration(B, j)]
+            mapped_one = maps[1][one_type(B, j, j)]
+            mapped_branch = successor(
+                mapped_enum,
+                ((a, b, e[j]) for a, b in mapped_one[2])
+            )
+            if j < n:
+                assert mapped_branch == enumeration(B, j + 1), (
+                    "relative fixed prefix", A, H, e, m, n, j, B
+                )
+            else:
+                assert prefix(mapped_branch, n) == enumeration(A, n), (
+                    "relative carrier not preserved", A, H, e, m, n, j, B
+                )
+
+
+
 def main():
     total = 0
     counts = Counter()
