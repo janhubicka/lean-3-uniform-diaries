@@ -315,3 +315,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.auxCandidate_fullPrefix
 #print axioms ThreeUniformDiaries.EnumNode.threeCandidate_fullPrefix
 #print axioms ThreeUniformDiaries.EnumNode.exists_exactMeetAemb_fullPrefix_branchMap
+
+#print axioms ThreeUniformDiaries.CoordNode.finiteAuxCanonicalMap_fixed_root
+#print axioms ThreeUniformDiaries.CoordNode.finiteOneCanonicalMap_fixed_root
+#print axioms ThreeUniformDiaries.CoordNode.finiteEnumCanonicalMap_fixed_root
