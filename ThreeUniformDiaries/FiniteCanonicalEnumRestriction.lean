@@ -58,8 +58,8 @@ theorem finiteEnumCanonicalMap_parent
       ((finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂ (j + 1)
         (by omega) a).val.truncate (f j)) =
     CoordNode.enum (f j) p.val at heq
-  cases heq
-  rfl
+  injection heq with hb
+  exact hb
 
 theorem finiteEnumCanonicalMap_truncate
     {S₀ S₁ S₂ : Set CoordNode} {f : Nat → Nat} {k : Nat}
