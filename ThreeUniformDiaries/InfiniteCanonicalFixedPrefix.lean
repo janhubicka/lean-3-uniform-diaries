@@ -49,7 +49,7 @@ theorem infiniteAuxCanonicalMap_fixed_prefix
   have hle :
       CoordNode.aux (f N) (infiniteAuxCanonicalMap hS N a).val ≤
         CoordNode.aux N a := by
-    refine ⟨by simpa only [level, hFN], ?_⟩
+    refine ⟨by simp [level, hFN], ?_⟩
     change CoordNode.aux (f N) (a.truncate (f N)) =
       CoordNode.aux (f N) (infiniteAuxCanonicalMap hS N a).val
     exact congrArg (CoordNode.aux (f N)) htyped
@@ -88,7 +88,7 @@ theorem infiniteOneCanonicalMap_fixed_prefix
   have hle :
       CoordNode.one (f N) (infiniteOneCanonicalMap h₁ h₂ N a).val ≤
         CoordNode.one N a := by
-    refine ⟨by simpa only [level, hFN], ?_⟩
+    refine ⟨by simp [level, hFN], ?_⟩
     change CoordNode.one (f N) (a.truncate (f N)) =
       CoordNode.one (f N) (infiniteOneCanonicalMap h₁ h₂ N a).val
     exact congrArg (CoordNode.one (f N)) htyped
@@ -130,7 +130,7 @@ theorem infiniteEnumCanonicalMap_fixed_prefix
   have hle :
       CoordNode.enum (f N) (infiniteEnumCanonicalMap h₀ h₁ h₂ N a).val ≤
         CoordNode.enum N a := by
-    refine ⟨by simpa only [level, hFN], ?_⟩
+    refine ⟨by simp [level, hFN], ?_⟩
     change CoordNode.enum (f N) (a.truncate (f N)) =
       CoordNode.enum (f N) (infiniteEnumCanonicalMap h₀ h₁ h₂ N a).val
     exact congrArg (CoordNode.enum (f N)) htyped
