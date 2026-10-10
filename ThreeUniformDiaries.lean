@@ -128,3 +128,6 @@ import ThreeUniformDiaries.FiniteCanonicalFixedPrefix
 
 import ThreeUniformDiaries.FiniteCanonicalEnumRestriction
 import ThreeUniformDiaries.FiniteCanonicalInitialCut
+
+import ThreeUniformDiaries.FiniteRelativeFixedBranch
+import ThreeUniformDiaries.FiniteRelativeCarrier
