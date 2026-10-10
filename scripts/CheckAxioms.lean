@@ -308,3 +308,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.FiniteExactMeetEmbedding.toFiniteAuxEmbedding
 #print axioms ThreeUniformDiaries.Ordered3Graph.FiniteAuxEmbedding.toFiniteExactMeetEmbedding
 #print axioms ThreeUniformDiaries.Ordered3Graph.finiteAuxEmbedding_iff_exactMeetEmbedding
+#print axioms ThreeUniformDiaries.EnumNode.exists_exactMeetAemb_relativeBranchMap
