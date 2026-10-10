@@ -287,3 +287,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.finiteOneCanonicalMap_prescribed_vertexTypes
 #print axioms ThreeUniformDiaries.EnumNode.finiteEnumCanonicalMap_prescribed_prefixes
 #print axioms ThreeUniformDiaries.EnumNode.finiteCanonical_branch_code_of_coordinates
+#print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_root_level
+#print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_root_eq_of_first_level
