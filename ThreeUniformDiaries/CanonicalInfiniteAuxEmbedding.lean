@@ -31,7 +31,7 @@ noncomputable def imageGraph_embedding
   strictMono := F.strictMono
   edge_iff := by
     intro a b c hab hbc
-    exact F.imageGraph_selected_edges H hab hbc
+    exact (F.imageGraph_selected_edges H hab hbc).symm
 
 /-- The resulting embedding preserves and reflects all source
 singleton/auxiliary type equalities, including missing ambient
@@ -53,7 +53,8 @@ theorem imageGraph_auxTypeRespecting
         (F.level l) (F.level u) (F.level v) hcapF,
       F.imageGraph_oneMeetLevel_preserved H u v]
     constructor
-    · exact F.strictMono.monotone
+    · intro h
+      exact F.strictMono.monotone h
     · intro h
       by_contra hnot
       have hlt : H.oneMeetLevel u v < l :=
@@ -75,7 +76,8 @@ theorem imageGraph_auxTypeRespecting
         (F.level v₀) (F.level v₁) hcapF,
       F.imageGraph_auxMeetLevel_preserved H u₀ u₁ v₀ v₁ hu hv]
     constructor
-    · exact F.strictMono.monotone
+    · intro h
+      exact F.strictMono.monotone h
     · intro h
       by_contra hnot
       have hlt : H.auxMeetLevel u₀ u₁ v₀ v₁ < l :=
