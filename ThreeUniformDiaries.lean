@@ -115,3 +115,5 @@ import ThreeUniformDiaries.FiniteAembCodingExistence
 import ThreeUniformDiaries.CountableAembCanonicalCoding
 
 import ThreeUniformDiaries.CountableAembRelativeBranch
+import ThreeUniformDiaries.FiniteCanonicalBranchMap
+import ThreeUniformDiaries.FiniteExactMeetInterface
