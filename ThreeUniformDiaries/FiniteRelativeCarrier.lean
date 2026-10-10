@@ -90,8 +90,7 @@ theorem finiteBranchMap_preserves_relative_carrier
           (((finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂
             B.last hB pred).val.succ
             (finiteStrongPicture_oneCanonicalMap h₁ h₂
-              B.last hB (B.enumeration.oneType B.last B.last)).val)
-                .truncate (f B.last)).truncate n := by
+              B.last hB (B.enumeration.oneType B.last B.last)).val).truncate (f B.last)).truncate n := by
                   symm
                   exact EnumNode.truncate_truncate _ hnf
         _ = (finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂
