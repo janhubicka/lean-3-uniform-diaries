@@ -144,3 +144,4 @@ import ThreeUniformDiaries.InfiniteCanonicalSelectedTriples
 import ThreeUniformDiaries.MillikenAnchoredFiniteColour
 
 import ThreeUniformDiaries.InfiniteCanonicalInjectivity
+import ThreeUniformDiaries.MillikenThreeCoordinateHL
