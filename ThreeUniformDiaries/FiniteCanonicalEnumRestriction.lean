@@ -59,7 +59,6 @@ theorem finiteEnumCanonicalMap_parent
         (by omega) a).val.truncate (f j)) =
     CoordNode.enum (f j) p.val at heq
   injection heq with hb
-  exact hb
 
 theorem finiteEnumCanonicalMap_truncate
     {S₀ S₁ S₂ : Set CoordNode} {f : Nat → Nat} {k : Nat}
