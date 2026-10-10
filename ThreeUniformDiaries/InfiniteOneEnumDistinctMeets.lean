@@ -67,8 +67,7 @@ theorem infiniteOneCanonicalMap_distinct_child_meet
     change CoordNode.one (f n + 1) (q.succ bb) =
       CoordNode.one (f n + 1) (q.succ cc) at h
     have heq : q.succ bb = q.succ cc := by
-      injection h with hn
-      exact hn
+      injection h
     have hbiteq : bb = cc := by
       have hv := congrArg
         (fun z : OneNode (f n + 1) => z.boundaryAux (f n)) heq
@@ -129,8 +128,7 @@ theorem infiniteEnumCanonicalMap_distinct_child_meet
     change CoordNode.enum (f n + 1) (q.succ bb) =
       CoordNode.enum (f n + 1) (q.succ cc) at h
     have heq : q.succ bb = q.succ cc := by
-      injection h with hn
-      exact hn
+      injection h
     have hbiteq : bb = cc := by
       have hv := congrArg
         (fun z : EnumNode (f n + 1) => z.boundaryOne (f n)) heq
