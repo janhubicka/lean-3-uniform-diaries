@@ -43,7 +43,7 @@ theorem mapBranch_branchNode
     (fun A : EnumNode (F.level v + 1) =>
       (⟨F.level v, A⟩ : EnumerationBranchNode)) hprefix
 
-private theorem level_ge_index (F : CanonicalMap) (n : Nat) :
+private theorem branch_level_ge_index (F : CanonicalMap) (n : Nat) :
     n ≤ F.level n := by
   induction n with
   | zero => omega
@@ -60,7 +60,7 @@ theorem imageGraph_initialCut
     (hI : H.initialSegment n = I)
     (hfix : F.FixesRelativeCut I) :
     (F.imageGraph H).initialSegment n = I := by
-  have hn : n ≤ F.level n := F.level_ge_index n
+  have hn : n ≤ F.level n := F.branch_level_ge_index n
   have hprefix :=
     (F.imageGraph H).initialSegment_truncate hn
   rw [F.imageGraph_initialSegment_eq H n, hI] at hprefix
@@ -78,7 +78,7 @@ theorem relativeMapBranch_branchNode
         (H.relativeBranchNode I hI v)).val =
       (F.imageGraph H).relativeBranchNode I
         (F.imageGraph_initialCut H I hI hfix)
-        (F.level v) := by
+        (F.level v) |>.val := by
   change F.mapBranch (H.branchNode v) =
     (F.imageGraph H).branchNode (F.level v)
   exact F.mapBranch_branchNode H v
