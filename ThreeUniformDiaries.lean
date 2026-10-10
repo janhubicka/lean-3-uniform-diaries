@@ -161,3 +161,4 @@ import ThreeUniformDiaries.CanonicalInfiniteImage
 import ThreeUniformDiaries.PrefixMeetInvariance
 import ThreeUniformDiaries.CanonicalRelativeFixedLevels
 import ThreeUniformDiaries.CanonicalInfiniteExactMeets
+import ThreeUniformDiaries.CanonicalInfiniteAuxEmbedding

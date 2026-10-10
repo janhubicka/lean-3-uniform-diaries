@@ -397,3 +397,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CanonicalMap.relativeMapBranch_of_fixed_levels
 #print axioms ThreeUniformDiaries.CanonicalMap.imageGraph_oneMeetLevel_preserved
 #print axioms ThreeUniformDiaries.CanonicalMap.imageGraph_auxMeetLevel_preserved
+#print axioms ThreeUniformDiaries.CanonicalMap.imageGraph_embedding
+#print axioms ThreeUniformDiaries.CanonicalMap.imageGraph_auxTypeRespecting
