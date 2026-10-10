@@ -378,3 +378,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPictureCanonicalMap
 #print axioms ThreeUniformDiaries.CoordNode.infiniteCanonicalMap_oneMeetLevel_preserved
 #print axioms ThreeUniformDiaries.CoordNode.infiniteCanonicalMap_auxMeetLevel_preserved
+#print axioms ThreeUniformDiaries.CanonicalMap.mappedPrefix_truncate
+#print axioms ThreeUniformDiaries.CanonicalMap.mappedPrefix_triple_agree
+#print axioms ThreeUniformDiaries.CanonicalMap.imageGraph_initialSegment_eq
+#print axioms ThreeUniformDiaries.CanonicalMap.imageGraph_selected_edges
