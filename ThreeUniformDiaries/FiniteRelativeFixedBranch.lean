@@ -37,6 +37,21 @@ end EnumNode
 
 namespace CoordNode
 
+/-- Lift the typed enumeration successor to the common coordinate forest. -/
+private def relativeEnumSuccNode (x y : CoordNode) : CoordNode :=
+  match x, y with
+  | .enum i a, .one j b =>
+      if h : i = j then .enum (i + 1) (a.succ (h.symm ▸ b))
+      else zeroChild x
+  | _, _ => zeroChild x
+
+/-- Encode a non-root enumeration coordinate node as a universal
+branch vertex. This avoids dependent rewriting on its last index. -/
+private def relativeBranchOfEnum : CoordNode → Option EnumerationBranchNode
+  | .enum 0 _ => none
+  | .enum (j + 1) b => some ⟨j, b⟩
+  | _ => none
+
 theorem finiteBranchMap_fixed_of_coordinate_maps
     {S₀ S₁ S₂ : Set CoordNode} {f : Nat → Nat} {k : Nat}
     {r₀ : EnumNode (f 0)} {r₁ : OneNode (f 0)}
@@ -56,18 +71,23 @@ theorem finiteBranchMap_fixed_of_coordinate_maps
       CoordNode.one B.last (B.enumeration.oneType B.last B.last)) :
     finiteStrongPicture_branchMap h₀ h₁ h₂ B hB = B := by
   rcases B with ⟨j, A⟩
-  change f j = j at hfj
-  rw [hfj] at hEnum hOne
-  injection hEnum with he
-  injection hOne with ho
-  change (⟨f j,
-      (finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂
-        j hB (A.truncate j)).val.succ
-      (finiteStrongPicture_oneCanonicalMap h₁ h₂
-        j hB (A.oneType j j)).val⟩ : EnumerationBranchNode) =
-        ⟨j, A⟩
-  rw [hfj, he, ho, A.oneType_last_eq_boundaryOne]
-  simp only [EnumNode.succ_truncate_boundary]
+  have hc := congrArg₂ relativeEnumSuccNode hEnum hOne
+  have hcode :
+      CoordNode.enum (f j + 1)
+        ((finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂
+          j hB (A.truncate j)).val.succ
+        (finiteStrongPicture_oneCanonicalMap h₁ h₂
+          j hB (A.oneType j j)).val) =
+      CoordNode.enum (j + 1) A := by
+    simpa [relativeEnumSuccNode, A.oneType_last_eq_boundaryOne,
+      EnumNode.succ_truncate_boundary] using hc
+  have h := congrArg relativeBranchOfEnum hcode
+  have h' :
+      some (finiteStrongPicture_branchMap h₀ h₁ h₂
+        (⟨j, A⟩ : EnumerationBranchNode) hB) =
+      some (⟨j, A⟩ : EnumerationBranchNode) := by
+    simpa [relativeBranchOfEnum, finiteStrongPicture_branchMap] using h
+  exact Option.some.inj h'
 
 /-- Every relative K_I branch vertex of last index below the fixed
 prefix is fixed, not merely vertices of the selected source copy. -/
