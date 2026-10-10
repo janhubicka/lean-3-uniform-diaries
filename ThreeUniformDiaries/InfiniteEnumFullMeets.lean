@@ -11,7 +11,7 @@ geometric canonical map, even when the selected target levels skip
 arbitrarily many ambient indices.
 
 Comparable source nodes are handled by the checked restriction
-identity. Incomparable nodes have a first differing auxiliary bit;
+identity. Incomparable nodes have a first differing singleton-type boundary parameter;
 the previously checked geometric first-disagreement lemma gives
 their precise image meet. This supplies full meet preservation,
 hence meet closure of images, in the enumeration coordinate of the
