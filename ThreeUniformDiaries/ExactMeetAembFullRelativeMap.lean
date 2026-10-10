@@ -54,7 +54,8 @@ theorem exists_exactMeetAemb_full_relative_map
       ∀ (i : Nat) (him : i < m),
         CoordNode.finiteRelativeBranchMap
           h₀ h₁ h₂ hf.strictMono hfix
-          (by omega) (hfull₀ 0) (hfull₁ 0) (hfull₂ 0)
+          (by omega) (fun hp => hfull₀ 0 hp) (fun hp => hfull₁ 0 hp)
+          (fun hp => hfull₂ 0 hp)
           I (A.toOrdered3Graph.relativeBranchNode I hA i)
           (by change i ≤ m - 1; omega) =
             G.relativeBranchNode I hG (f i) := by
