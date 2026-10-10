@@ -15,7 +15,7 @@ This standalone combinatorial model is not a Lean proof.
 
 from collections import Counter
 from functools import lru_cache
-from itertools import combinations
+from itertools import combinations, combinations_with_replacement
 
 
 @lru_cache(None)
@@ -154,6 +154,18 @@ def canonical_map(layers, coord, e, m, lower=None):
     return mapping
 
 
+
+def meet_node(x, y):
+    """The actual longest common-prefix node in a single type tree."""
+    assert x[0] == y[0]
+    last = 0
+    for level in range(1, min(x[1], y[1]) + 1):
+        if prefix(x, level) != prefix(y, level):
+            break
+        last = level
+    return prefix(x, last)
+
+
 def verify_case(A, H, e, m, n):
     layers = {
         c: protected_completion(candidate_picture(A, H, e, m, n, c),
@@ -213,6 +225,21 @@ def verify_case(A, H, e, m, n):
                     "relative carrier not preserved", A, H, e, m, n, j, B
                 )
 
+
+
+    # Adversarial composition precondition: a concrete canonical map
+    # preserves ambient meets of arbitrary source type-tree nodes,
+    # not merely an order relation or nodes on a chosen source branch.
+    for coord in (0, 1, 2):
+        keys = tuple(maps[coord])
+        for x, y in combinations_with_replacement(keys, 2):
+            source_meet = meet_node(x, y)
+            assert source_meet in maps[coord]
+            target_meet = meet_node(maps[coord][x], maps[coord][y])
+            assert maps[coord][source_meet] == target_meet, (
+                "canonical map fails meet preservation",
+                coord, A, H, e, m, n, x, y
+            )
 
 
 def main():
