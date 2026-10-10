@@ -121,3 +121,5 @@ import ThreeUniformDiaries.ExactMeetAembRelativeBranchMap
 
 import ThreeUniformDiaries.FiniteAembCompletePrefix
 import ThreeUniformDiaries.ExactMeetAembFullPrefix
+
+import ThreeUniformDiaries.FiniteCanonicalFixedRoot
