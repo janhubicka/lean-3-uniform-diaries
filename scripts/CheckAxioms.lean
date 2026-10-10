@@ -319,3 +319,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.finiteAuxCanonicalMap_fixed_root
 #print axioms ThreeUniformDiaries.CoordNode.finiteOneCanonicalMap_fixed_root
 #print axioms ThreeUniformDiaries.CoordNode.finiteEnumCanonicalMap_fixed_root
+#print axioms ThreeUniformDiaries.CoordNode.finiteAuxCanonicalMap_fixed_step
+#print axioms ThreeUniformDiaries.CoordNode.finiteOneCanonicalMap_fixed_step
+#print axioms ThreeUniformDiaries.CoordNode.finiteEnumCanonicalMap_fixed_step
+#print axioms ThreeUniformDiaries.CoordNode.finiteCanonicalMaps_fixedPrefix
