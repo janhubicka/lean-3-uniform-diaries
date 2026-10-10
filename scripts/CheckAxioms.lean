@@ -296,3 +296,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.exists_typed_finiteAux_picture_of_finite
 #print axioms ThreeUniformDiaries.EnumNode.exists_typed_threeCoordinate_picture_of_finite
 #print axioms ThreeUniformDiaries.EnumNode.exists_finiteAemb_coding_of_finite
+
+#print axioms ThreeUniformDiaries.EnumNode.exists_countableAemb_coding
