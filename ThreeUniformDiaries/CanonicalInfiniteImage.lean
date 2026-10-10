@@ -66,6 +66,21 @@ def imageGraph (F : CanonicalMap) (H : Ordered3Graph Nat) :
     ∃ n : Nat, k < F.level n ∧
       (F.mapEnum n (H.initialSegment n)).triple i j k = true
 
+/-- Deciding a proposition agrees with a Boolean precisely when the
+proposition is equivalent to the Boolean's being true. -/
+private theorem decide_eq_bool_of_iff
+    (p : Prop) [Decidable p] (b : Bool)
+    (h : p ↔ b = true) : decide p = b := by
+  cases b with
+  | false =>
+      have hp : ¬p := by
+        intro hp
+        cases h.mp hp
+      simp [hp]
+  | true =>
+      have hp : p := h.mpr rfl
+      simp [hp]
+
 /-- Every selected target prefix is exactly its source's canonical image. -/
 theorem imageGraph_initialSegment_eq
     (F : CanonicalMap) (H : Ordered3Graph Nat) (n : Nat) :
@@ -75,35 +90,37 @@ theorem imageGraph_initialSegment_eq
   apply EnumNode.ext_triples
   funext i j k
   let A := F.mapEnum n (H.initialSegment n)
+  change decide (i < j ∧ j < k ∧ k < F.level n ∧
+      (F.imageGraph H).edge i j k) = A.triple i j k
   by_cases hvalid : i < j ∧ j < k ∧ k < F.level n
   · have hkn : k < F.level n := hvalid.2.2
-    have hedge : (F.imageGraph H).edge i j k ↔ A.triple i j k = true := by
+    have hedge : (F.imageGraph H).edge i j k ↔
+        A.triple i j k = true := by
       constructor
       · rintro ⟨m, hkm, hm⟩
         have hagree := F.mappedPrefix_triple_agree H
-          (i := i) (j := j) (k := k) hkn hkm
+          (n := n) (m := m) (i := i) (j := j) (k := k) hkn hkm
         exact hagree.trans hm
-      · intro hbit
-        exact ⟨n, hkn, hbit⟩
-    by_cases hbit : A.triple i j k = true
-    · have he : (F.imageGraph H).edge i j k := hedge.mpr hbit
-      simp [Ordered3Graph.initialSegment, hvalid.1,
-        hvalid.2.1, hvalid.2.2, he, A, hbit]
-    · have hnedge : ¬ (F.imageGraph H).edge i j k := by
-        intro he
-        exact hbit (hedge.mp he)
-      have hfalse : A.triple i j k = false := by
-        cases hval : A.triple i j k with
-        | false => rfl
-        | true => exact False.elim (hbit hval)
-      simp [Ordered3Graph.initialSegment, hvalid.1,
-        hvalid.2.1, hvalid.2.2, hnedge, A, hfalse]
-  · have hz : A.triple i j k = false := A.support i j k hvalid
-    have hfalse : ¬ (i < j ∧ j < k ∧
-        k < F.level n ∧ (F.imageGraph H).edge i j k) := by
+      · intro hb
+        exact ⟨n, hkn, hb⟩
+    have hequiv :
+        (i < j ∧ j < k ∧ k < F.level n ∧
+          (F.imageGraph H).edge i j k) ↔
+          A.triple i j k = true := by
+      constructor
+      · intro h
+        exact hedge.mp h.2.2.2
+      · intro hb
+        exact ⟨hvalid.1, hvalid.2.1, hvalid.2.2,
+          hedge.mpr hb⟩
+    exact decide_eq_bool_of_iff _ _ hequiv
+  · have hz : A.triple i j k = false :=
+      A.support i j k hvalid
+    have hp : ¬(i < j ∧ j < k ∧ k < F.level n ∧
+        (F.imageGraph H).edge i j k) := by
       intro h
       exact hvalid ⟨h.1, h.2.1, h.2.2.1⟩
-    simp [Ordered3Graph.initialSegment, hfalse, A, hz]
+    simp [hp, hz]
 
 /-- The selected level map preserves and reflects all increasing edges
 of an arbitrary infinite source, not just one finite prefix. -/
