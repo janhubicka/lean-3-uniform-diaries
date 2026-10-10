@@ -86,7 +86,7 @@ theorem exists_infinite_strong_completion
     obtain ⟨j, hpj⟩ := hp
     have hji : j = i := hmono.injective
       ((completionLayers_level E lambda hmono root
-        hrootLevel j p hpj).trans hplevel)
+        hrootLevel j p hpj).symm.trans hplevel)
     subst j
     obtain ⟨z, ⟨hzLayer, htz⟩, hunique⟩ :=
       completionLayers_unique_child E lambda hmono root
@@ -98,7 +98,7 @@ theorem exists_infinite_strong_completion
       obtain ⟨j, hwj⟩ := hw
       have hji : j = i + 1 := hmono.injective
         ((completionLayers_level E lambda hmono root
-          hrootLevel j w hwj).trans hwlevel)
+          hrootLevel j w hwj).symm.trans hwlevel)
       subst j
       exact hunique w ⟨hwj, htw⟩
 
