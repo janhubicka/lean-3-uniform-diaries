@@ -33,6 +33,7 @@ theorem infiniteAuxCanonicalMap_preserves_meet
       (.aux (f M) (infiniteAuxCanonicalMap hS M v).val) =
       .aux (f n)
         (infiniteAuxCanonicalMap hS n (u.truncate n)).val := by
+  classical
   dsimp only
   let X : CoordNode := .aux N u
   let Y : CoordNode := .aux M v
@@ -60,9 +61,13 @@ theorem infiniteAuxCanonicalMap_preserves_meet
       CoordNode.aux n (v.truncate n) at h
     injection h
   have hnN : n ≤ N := by
-    simpa [n, X] using meetLevel_le_left X Y
+    have h := meetLevel_le_left X Y
+    change n ≤ N at h
+    exact h
   have hnM : n ≤ M := by
-    simpa [n, Y] using meetLevel_le_right X Y
+    have h := meetLevel_le_right X Y
+    change n ≤ M at h
+    exact h
   by_cases hboth : n < N ∧ n < M
   · have hnltN : n < N := hboth.1
     have hnltM : n < M := hboth.2
