@@ -9,8 +9,8 @@ import ThreeUniformDiaries.InfiniteCanonicalInjectivity
 The genuine infinite auxiliary canonical map is known to send
 DIFFERENT IMMEDIATE SOURCE CHILDREN into separate ambient
 successor cones. We extend this fact from immediate children to
-any two nodes at an arbitrary common source level N that first
-disagree at index n < N.
+two nodes at possibly different source levels N and M that first
+disagree at an index n below both levels.
 
 The map of both full source nodes then meets exactly at the
 canonical image of their common prefix at level n. This is the
@@ -26,12 +26,13 @@ theorem infiniteAuxCanonicalMap_firstDisagreement_meet
     {r : AuxNode (f 0)}
     (hS : InfiniteStrongPicture S f (.aux (f 0) r))
     (hf : StrictMono f)
-    {N n : Nat} (u v : AuxNode N) (hnN : n < N)
+    {N M n : Nat} (u : AuxNode N) (v : AuxNode M)
+    (hnN : n < N) (hnM : n < M)
     (hcut : u.truncate n = v.truncate n)
     (hdiff : u.bit n ≠ v.bit n) :
     meet
       (.aux (f N) (infiniteAuxCanonicalMap hS N u).val)
-      (.aux (f N) (infiniteAuxCanonicalMap hS N v).val) =
+      (.aux (f M) (infiniteAuxCanonicalMap hS M v).val) =
       .aux (f n)
         (infiniteAuxCanonicalMap hS n (u.truncate n)).val := by
   let p : CoordNode :=
@@ -45,7 +46,7 @@ theorem infiniteAuxCanonicalMap_firstDisagreement_meet
   let x : CoordNode :=
     .aux (f N) (infiniteAuxCanonicalMap hS N u).val
   let y : CoordNode :=
-    .aux (f N) (infiniteAuxCanonicalMap hS N v).val
+    .aux (f M) (infiniteAuxCanonicalMap hS M v).val
   have hsrcA :
       (u.truncate n).succ (u.bit n) = u.truncate (n + 1) := by
     have h := (u.truncate (n + 1)).succ_truncate_new
@@ -109,11 +110,11 @@ theorem infiniteAuxCanonicalMap_firstDisagreement_meet
     rw [htr]
   have hby : b ≤ y := by
     have htr := infiniteAuxCanonicalMap_truncate hS hf
-      (n + 1) N (by omega) v
+      (n + 1) M (by omega) v
     refine ⟨hf.monotone (by omega), ?_⟩
     change
       CoordNode.aux (f (n + 1))
-        ((infiniteAuxCanonicalMap hS N v).val.truncate (f (n + 1))) = b
+        ((infiniteAuxCanonicalMap hS M v).val.truncate (f (n + 1))) = b
     rw [htr]
   have hdesc :=
     meet_descendants_distinct_parents a b x y rfl hab
