@@ -58,7 +58,7 @@ theorem finiteBranchMap_preserves_relative_carrier
     simpa only [hsame] using hrel
   · have hnj : n ≤ B.last := Nat.le_of_not_gt hj
     have hindex : B.last ≤ f B.last := strictMono_nat_id_le f hf B.last
-    have hnf : n ≤ f B.last := le_trans hnj hindex
+    have hnf : n ≤ f B.last := by omega
     constructor
     · intro hsmall
       change f B.last + 1 < n at hsmall
