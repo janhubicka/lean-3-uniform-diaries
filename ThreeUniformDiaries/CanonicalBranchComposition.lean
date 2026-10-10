@@ -1,4 +1,5 @@
 import ThreeUniformDiaries.CanonicalMap
+import ThreeUniformDiaries.VectorTree
 import ThreeUniformDiaries.BranchHypergraph
 
 /-!
