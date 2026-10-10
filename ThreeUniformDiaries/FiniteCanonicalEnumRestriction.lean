@@ -71,15 +71,13 @@ theorem finiteEnumCanonicalMap_truncate
     (hf : StrictMono f)
     (i j : Nat) (hij : i ≤ j) (hjk : j ≤ k)
     (a : EnumNode j) :
-    (finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂ j hjk a).val
-      .truncate (f i) =
+    (finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂ j hjk a).val.truncate (f i) =
     (finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂ i
       (by omega) (a.truncate i)).val := by
   have hmain :
       ∀ (j : Nat) (hjk : j ≤ k)
         (i : Nat) (hij : i ≤ j) (a : EnumNode j),
-      (finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂ j hjk a).val
-        .truncate (f i) =
+      (finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂ j hjk a).val.truncate (f i) =
       (finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂ i
         (by omega) (a.truncate i)).val := by
     intro j
