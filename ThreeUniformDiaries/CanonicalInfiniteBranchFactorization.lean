@@ -76,9 +76,9 @@ theorem relativeMapBranch_branchNode
     (hfix : F.FixesRelativeCut I) (v : Nat) :
     (F.relativeMapBranch I hfix
         (H.relativeBranchNode I hI v)).val =
-      (F.imageGraph H).relativeBranchNode I
+      ((F.imageGraph H).relativeBranchNode I
         (F.imageGraph_initialCut H I hI hfix)
-        (F.level v) |>.val := by
+        (F.level v)).val := by
   change F.mapBranch (H.branchNode v) =
     (F.imageGraph H).branchNode (F.level v)
   exact F.mapBranch_branchNode H v
