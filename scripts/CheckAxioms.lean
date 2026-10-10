@@ -409,3 +409,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.OneNode.boundaryAux_truncate_next
 #print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_firstDisagreement_meet
 #print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_preserves_meet
+#print axioms ThreeUniformDiaries.CoordNode.infiniteAuxImage_subset
+#print axioms ThreeUniformDiaries.CoordNode.infiniteAuxImage_meetClosed
