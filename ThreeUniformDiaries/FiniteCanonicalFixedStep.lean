@@ -18,6 +18,28 @@ checked child-cone laws, not the abstract CanonicalMap structure.
 namespace ThreeUniformDiaries
 namespace CoordNode
 
+
+/-- A coordinate-level successor allows transporting equalities without
+casting dependent auxiliary nodes between distinct level indices. -/
+private def auxSuccessorNode (bit : Bool) (x : CoordNode) : CoordNode :=
+  match x with
+  | .aux n a => .aux (n + 1) (a.succ bit)
+  | other => zeroChild other
+
+private def oneSuccessorNode (x y : CoordNode) : CoordNode :=
+  match x, y with
+  | .one n a, .aux m b =>
+      if h : n = m then .one (n + 1) (a.succ (h.symm ▸ b))
+      else zeroChild x
+  | _, _ => zeroChild x
+
+private def enumSuccessorNode (x y : CoordNode) : CoordNode :=
+  match x, y with
+  | .enum n a, .one m b =>
+      if h : n = m then .enum (n + 1) (a.succ (h.symm ▸ b))
+      else zeroChild x
+  | _, _ => zeroChild x
+
 theorem finiteAuxCanonicalMap_fixed_step
     {S : Set CoordNode} {f : Nat → Nat} {k : Nat}
     {r : AuxNode (f 0)}
@@ -37,25 +59,22 @@ theorem finiteAuxCanonicalMap_fixed_step
   have hcone := finiteStrongPicture_auxCanonicalMap_succ
     hS i hi (a.truncate i) (a.bit i)
   rw [AuxNode.succ_truncate_new] at hcone
-  have hval :
-      (finiteStrongPicture_auxCanonicalMap hS i
-        (Nat.le_of_lt hi) (a.truncate i)).val =
-      (hfi.symm ▸ a.truncate i) := by
-    cases hfi
-    simpa using (CoordNode.aux.inj hprev).2
-  have hcone' :
-      CoordNode.aux (i + 1) a ≤
-        CoordNode.aux (f (i + 1))
-          (finiteStrongPicture_auxCanonicalMap hS (i + 1)
-            (by omega) a).val := by
-    simpa [hfi, hval] using hcone
+  have hsucc :
+      CoordNode.aux (f i + 1)
+        ((finiteStrongPicture_auxCanonicalMap hS i
+          (Nat.le_of_lt hi) (a.truncate i)).val.succ (a.bit i)) =
+      CoordNode.aux (i + 1) a := by
+    have hc := congrArg (auxSuccessorNode (a.bit i)) hprev
+    simpa [auxSuccessorNode, AuxNode.succ_truncate_new] using hc
+  rw [hsucc] at hcone
   have hlev :
       level (CoordNode.aux (i + 1) a) =
         level (CoordNode.aux (f (i + 1))
           (finiteStrongPicture_auxCanonicalMap hS (i + 1)
             (by omega) a).val) := by
     simp [hfi1, level]
-  exact (eq_of_le_of_level_eq hcone' hlev).symm
+  exact (eq_of_le_of_level_eq hcone hlev).symm
+
 
 theorem finiteOneCanonicalMap_fixed_step
     {S₁ S₂ : Set CoordNode} {f : Nat → Nat} {k : Nat}
@@ -82,31 +101,24 @@ theorem finiteOneCanonicalMap_fixed_step
   have hcone := finiteStrongPicture_oneCanonicalMap_succ
     h₁ h₂ i hi (a.truncate i) (a.boundaryAux i)
   rw [OneNode.succ_truncate_boundary] at hcone
-  have hval :
-      (finiteStrongPicture_oneCanonicalMap h₁ h₂ i
-        (Nat.le_of_lt hi) (a.truncate i)).val =
-      (hfi.symm ▸ a.truncate i) := by
-    cases hfi
-    simpa using (CoordNode.one.inj hprev).2
-  have hpar :
-      (finiteStrongPicture_auxCanonicalMap h₂ i
-        (Nat.le_of_lt hi) (a.boundaryAux i)).val =
-      (hfi.symm ▸ a.boundaryAux i) := by
-    cases hfi
-    simpa using (CoordNode.aux.inj hparam).2
-  have hcone' :
-      CoordNode.one (i + 1) a ≤
-        CoordNode.one (f (i + 1))
-          (finiteStrongPicture_oneCanonicalMap h₁ h₂ (i + 1)
-            (by omega) a).val := by
-    simpa [hfi, hval, hpar] using hcone
+  have hsucc :
+      CoordNode.one (f i + 1)
+        ((finiteStrongPicture_oneCanonicalMap h₁ h₂ i
+          (Nat.le_of_lt hi) (a.truncate i)).val.succ
+        (finiteStrongPicture_auxCanonicalMap h₂ i
+          (Nat.le_of_lt hi) (a.boundaryAux i)).val) =
+      CoordNode.one (i + 1) a := by
+    have hc := congrArg₂ oneSuccessorNode hprev hparam
+    simpa [oneSuccessorNode, OneNode.succ_truncate_boundary] using hc
+  rw [hsucc] at hcone
   have hlev :
       level (CoordNode.one (i + 1) a) =
         level (CoordNode.one (f (i + 1))
           (finiteStrongPicture_oneCanonicalMap h₁ h₂ (i + 1)
             (by omega) a).val) := by
     simp [hfi1, level]
-  exact (eq_of_le_of_level_eq hcone' hlev).symm
+  exact (eq_of_le_of_level_eq hcone hlev).symm
+
 
 theorem finiteEnumCanonicalMap_fixed_step
     {S₀ S₁ S₂ : Set CoordNode} {f : Nat → Nat} {k : Nat}
@@ -135,31 +147,24 @@ theorem finiteEnumCanonicalMap_fixed_step
   have hcone := finiteStrongPicture_enumCanonicalMap_succ
     h₀ h₁ h₂ i hi (a.truncate i) (a.boundaryOne i)
   rw [EnumNode.succ_truncate_boundary] at hcone
-  have hval :
-      (finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂ i
-        (Nat.le_of_lt hi) (a.truncate i)).val =
-      (hfi.symm ▸ a.truncate i) := by
-    cases hfi
-    simpa using (CoordNode.enum.inj hprev).2
-  have hpar :
-      (finiteStrongPicture_oneCanonicalMap h₁ h₂ i
-        (Nat.le_of_lt hi) (a.boundaryOne i)).val =
-      (hfi.symm ▸ a.boundaryOne i) := by
-    cases hfi
-    simpa using (CoordNode.one.inj hparam).2
-  have hcone' :
-      CoordNode.enum (i + 1) a ≤
-        CoordNode.enum (f (i + 1))
-          (finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂ (i + 1)
-            (by omega) a).val := by
-    simpa [hfi, hval, hpar] using hcone
+  have hsucc :
+      CoordNode.enum (f i + 1)
+        ((finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂ i
+          (Nat.le_of_lt hi) (a.truncate i)).val.succ
+        (finiteStrongPicture_oneCanonicalMap h₁ h₂ i
+          (Nat.le_of_lt hi) (a.boundaryOne i)).val) =
+      CoordNode.enum (i + 1) a := by
+    have hc := congrArg₂ enumSuccessorNode hprev hparam
+    simpa [enumSuccessorNode, EnumNode.succ_truncate_boundary] using hc
+  rw [hsucc] at hcone
   have hlev :
       level (CoordNode.enum (i + 1) a) =
         level (CoordNode.enum (f (i + 1))
           (finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂ (i + 1)
             (by omega) a).val) := by
     simp [hfi1, level]
-  exact (eq_of_le_of_level_eq hcone' hlev).symm
+  exact (eq_of_le_of_level_eq hcone hlev).symm
+
 
 end CoordNode
 end ThreeUniformDiaries
