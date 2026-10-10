@@ -170,3 +170,5 @@ import ThreeUniformDiaries.InfiniteOneFirstDisagreement
 import ThreeUniformDiaries.InfiniteAuxFullMeets
 import ThreeUniformDiaries.InfiniteOneFullMeets
 import ThreeUniformDiaries.InfiniteAuxMeetClosedImage
+import ThreeUniformDiaries.InfiniteEnumFirstDisagreement
+import ThreeUniformDiaries.InfiniteEnumFullMeets
