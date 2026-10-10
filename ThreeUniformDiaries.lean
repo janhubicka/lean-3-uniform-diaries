@@ -125,3 +125,5 @@ import ThreeUniformDiaries.ExactMeetAembFullPrefix
 import ThreeUniformDiaries.FiniteCanonicalFixedRoot
 import ThreeUniformDiaries.FiniteCanonicalFixedStep
 import ThreeUniformDiaries.FiniteCanonicalFixedPrefix
+
+import ThreeUniformDiaries.FiniteCanonicalEnumRestriction
