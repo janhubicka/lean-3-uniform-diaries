@@ -162,3 +162,4 @@ import ThreeUniformDiaries.PrefixMeetInvariance
 import ThreeUniformDiaries.CanonicalRelativeFixedLevels
 import ThreeUniformDiaries.InfiniteAuxDistinctMeets
 import ThreeUniformDiaries.InfiniteOneEnumDistinctMeets
+import ThreeUniformDiaries.InfiniteAuxFirstDisagreement
