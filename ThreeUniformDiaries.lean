@@ -153,3 +153,4 @@ import ThreeUniformDiaries.InfiniteCanonicalOneTypeCompat
 import ThreeUniformDiaries.InfiniteCanonicalAuxTypeCompat
 import ThreeUniformDiaries.InfiniteCanonicalRecord
 import ThreeUniformDiaries.InfiniteCanonicalConcreteMeets
+import ThreeUniformDiaries.CanonicalInfiniteImage
