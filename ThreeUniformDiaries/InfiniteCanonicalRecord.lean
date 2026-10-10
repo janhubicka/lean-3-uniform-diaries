@@ -22,7 +22,7 @@ namespace ThreeUniformDiaries
 namespace CoordNode
 
 /-- A synchronized triple of genuine infinite geometric strong pictures
-induces the full canonical-map record, including all ambient 1-/aux-
+induces the full canonical-map record, including all ambient singleton and auxiliary
 type identities at skipped levels. -/
 noncomputable def infiniteStrongPictureCanonicalMap
     {S₀ S₁ S₂ : Set CoordNode} {f : Nat → Nat}
