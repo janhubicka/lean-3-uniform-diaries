@@ -1,4 +1,5 @@
 import ThreeUniformDiaries.InfiniteCanonicalLastOneType
+import ThreeUniformDiaries.InfiniteCanonicalAuxOneRestriction
 import ThreeUniformDiaries.TypeNodePrefix
 
 /-!
