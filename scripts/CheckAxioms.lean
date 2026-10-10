@@ -384,3 +384,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CanonicalMap.relativeMapBranch_val
 #print axioms ThreeUniformDiaries.CanonicalMap.comp_fixesRelativeCut
 #print axioms ThreeUniformDiaries.CanonicalMap.comp_relativeMapBranch
+#print axioms ThreeUniformDiaries.CanonicalMap.mappedPrefix_truncate
+#print axioms ThreeUniformDiaries.CanonicalMap.mappedPrefix_triple_agree
+#print axioms ThreeUniformDiaries.CanonicalMap.imageGraph_initialSegment_eq
+#print axioms ThreeUniformDiaries.CanonicalMap.imageGraph_selected_edges
