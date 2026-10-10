@@ -298,3 +298,9 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.exists_finiteAemb_coding_of_finite
 
 #print axioms ThreeUniformDiaries.EnumNode.exists_countableAemb_coding
+
+#print axioms ThreeUniformDiaries.Ordered3Graph.sameOneTypeBelow_iff_le_oneMeetLevel
+#print axioms ThreeUniformDiaries.Ordered3Graph.sameAuxTypeBelow_iff_le_auxMeetLevel
+#print axioms ThreeUniformDiaries.Ordered3Graph.FiniteExactMeetEmbedding.toFiniteAuxEmbedding
+#print axioms ThreeUniformDiaries.Ordered3Graph.FiniteAuxEmbedding.toFiniteExactMeetEmbedding
+#print axioms ThreeUniformDiaries.Ordered3Graph.finiteAuxEmbedding_iff_exactMeetEmbedding
