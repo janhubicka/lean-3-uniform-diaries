@@ -85,9 +85,10 @@ theorem finiteEnumCanonicalMap_preserves_initial_cut
           CoordNode.enum (i + 1) b at heq
         injection heq with hresult
       have hlevel : i + 1 ≤ f (i + 1) := by
-        have hmono := hf (Nat.lt_succ_self i)
-        rw [hfi] at hmono
-        omega
+        have hstep : f i + 1 ≤ f (i + 1) := by
+          simpa only [Nat.succ_eq_add_one] using
+            (Nat.succ_le_of_lt (hf (Nat.lt_succ_self i)))
+        simpa only [hfi] using hstep
       have htrunc :=
         finiteEnumCanonicalMap_truncate h₀ h₁ h₂ hf
           (i + 1) j hnj hjk a
