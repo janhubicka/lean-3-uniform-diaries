@@ -359,3 +359,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_newTriple
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_selectedTriple
 #print axioms ThreeUniformDiaries.anchoredHomogeneousMillikenFiniteColouring
+
+#print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_induced_edges
