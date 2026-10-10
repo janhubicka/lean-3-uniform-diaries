@@ -136,3 +136,4 @@ import ThreeUniformDiaries.FiniteCanonicalEnumOrder
 import ThreeUniformDiaries.InfiniteCanonicalAux
 import ThreeUniformDiaries.InfiniteCanonicalCoupled
 import ThreeUniformDiaries.InfiniteCanonicalSuccessor
+import ThreeUniformDiaries.InfiniteCanonicalEnumRestriction
