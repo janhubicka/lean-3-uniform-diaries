@@ -365,3 +365,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_injective
 #print axioms ThreeUniformDiaries.threeCoordinateStrongSubtreeHalpernLauchli
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_induced_edges
+#print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_immediate_prefix
+#print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_immediate_prefix
+#print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_immediate_prefix
