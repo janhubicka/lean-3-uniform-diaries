@@ -23,6 +23,7 @@ theorem sameOneTypeBelow_iff_le_oneMeetLevel
     (H : Ordered3Graph Nat) (w u v : Nat)
     (hw : w ≤ min u v) :
     H.SameOneTypeBelow w u v ↔ w ≤ H.oneMeetLevel u v := by
+  classical
   constructor
   · intro h
     exact Nat.le_findGreatest hw h
@@ -36,6 +37,7 @@ theorem sameAuxTypeBelow_iff_le_auxMeetLevel
     (hw : w ≤ min u₀ v₀) :
     H.SameAuxTypeBelow w u₀ u₁ v₀ v₁ ↔
       w ≤ H.auxMeetLevel u₀ u₁ v₀ v₁ := by
+  classical
   constructor
   · intro h
     exact Nat.le_findGreatest hw h
@@ -49,7 +51,8 @@ private theorem strictMonoNat_le_iff
     {f : Nat → Nat} (hf : StrictMono f) (a b : Nat) :
     a ≤ b ↔ f a ≤ f b := by
   constructor
-  · exact hf.monotone
+  · intro hab
+    exact hf.monotone hab
   · intro h
     by_contra hn
     have hba : b < a := Nat.lt_of_not_ge hn
