@@ -51,8 +51,7 @@ theorem finiteEnumCanonicalMap_preserves_initial_cut
       apply EnumNode.ext_triples
       funext x y z
       have hbad : ¬ (x < y ∧ y < z ∧ z < 0) := by omega
-      simp [EnumNode.truncate,
-        (a.truncate 0).support x y z hbad]
+      simp [EnumNode.truncate]
   | succ i =>
       have hin : i < i + 1 := Nat.lt_succ_self i
       have hik : i < k := by omega
@@ -87,15 +86,14 @@ theorem finiteEnumCanonicalMap_preserves_initial_cut
         injection heq with hresult
       have hlevel : i + 1 ≤ f (i + 1) := by
         have hmono := hf (Nat.lt_succ_self i)
+        rw [hfi] at hmono
         omega
       have htrunc :=
         finiteEnumCanonicalMap_truncate h₀ h₁ h₂ hf
           (i + 1) j hnj hjk a
       calc
-        (finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂ j hjk a).val
-            .truncate (i + 1) =
-          ((finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂ j hjk a).val
-            .truncate (f (i + 1))).truncate (i + 1) := by
+        (finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂ j hjk a).val.truncate (i + 1) =
+          ((finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂ j hjk a).val.truncate (f (i + 1))).truncate (i + 1) := by
               symm
               exact EnumNode.truncate_truncate _ hlevel
         _ = (finiteStrongPicture_enumCanonicalMap h₀ h₁ h₂
