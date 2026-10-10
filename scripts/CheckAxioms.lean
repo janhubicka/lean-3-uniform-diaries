@@ -385,3 +385,13 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CanonicalMap.comp_fixesRelativeCut
 #print axioms ThreeUniformDiaries.CanonicalMap.comp_relativeMapBranch
 #print axioms ThreeUniformDiaries.CanonicalMap.mapBranch_succ_formula
+#print axioms ThreeUniformDiaries.CanonicalMap.mappedPrefix_truncate
+#print axioms ThreeUniformDiaries.CanonicalMap.mappedPrefix_triple_agree
+#print axioms ThreeUniformDiaries.CanonicalMap.imageGraph_initialSegment_eq
+#print axioms ThreeUniformDiaries.CanonicalMap.imageGraph_selected_edges
+#print axioms ThreeUniformDiaries.Ordered3Graph.oneMeetLevel_eq_of_edge_iff_below
+#print axioms ThreeUniformDiaries.Ordered3Graph.auxMeetLevel_eq_of_edge_iff_below
+#print axioms ThreeUniformDiaries.Ordered3Graph.initialSegment_oneMeetLevel
+#print axioms ThreeUniformDiaries.Ordered3Graph.initialSegment_auxMeetLevel
+#print axioms ThreeUniformDiaries.CanonicalMap.fixesRelativeCut_of_fixed_levels
+#print axioms ThreeUniformDiaries.CanonicalMap.relativeMapBranch_of_fixed_levels
