@@ -382,3 +382,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CanonicalMap.comp_mapBranch
 #print axioms ThreeUniformDiaries.CanonicalMap.mapBranch_preserves_relative
 #print axioms ThreeUniformDiaries.CanonicalMap.relativeMapBranch_val
+#print axioms ThreeUniformDiaries.Ordered3Graph.oneMeetLevel_eq_of_edge_iff_below
+#print axioms ThreeUniformDiaries.Ordered3Graph.auxMeetLevel_eq_of_edge_iff_below
+#print axioms ThreeUniformDiaries.Ordered3Graph.initialSegment_oneMeetLevel
+#print axioms ThreeUniformDiaries.Ordered3Graph.initialSegment_auxMeetLevel
