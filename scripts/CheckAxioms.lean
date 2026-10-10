@@ -298,3 +298,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.exists_finiteAemb_coding_of_finite
 
 #print axioms ThreeUniformDiaries.EnumNode.exists_countableAemb_coding
+
+#print axioms ThreeUniformDiaries.EnumNode.finiteCanonical_code_eq_relativeBranchNode
+#print axioms ThreeUniformDiaries.EnumNode.exists_countableAemb_relativeBranch_coding
