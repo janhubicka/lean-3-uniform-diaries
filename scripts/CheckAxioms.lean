@@ -406,3 +406,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CanonicalMap.mapBranch_branchNode
 #print axioms ThreeUniformDiaries.CanonicalMap.imageGraph_initialCut
 #print axioms ThreeUniformDiaries.CanonicalMap.relativeMapBranch_branchNode
+#print axioms ThreeUniformDiaries.EnumNode.boundaryOne_truncate_next
+#print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_firstDisagreement_meet
