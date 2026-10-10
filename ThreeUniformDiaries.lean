@@ -151,3 +151,4 @@ import ThreeUniformDiaries.InfiniteCanonicalLastOneType
 import ThreeUniformDiaries.InfiniteCanonicalLastAuxType
 import ThreeUniformDiaries.InfiniteCanonicalOneTypeCompat
 import ThreeUniformDiaries.InfiniteCanonicalAuxTypeCompat
+import ThreeUniformDiaries.InfiniteCanonicalRecord
