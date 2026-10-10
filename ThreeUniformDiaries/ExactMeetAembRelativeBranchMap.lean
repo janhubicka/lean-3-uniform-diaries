@@ -46,7 +46,7 @@ theorem exists_exactMeetAemb_relativeBranchMap
       ∀ (i : Nat) (him : i < m),
         CoordNode.finiteStrongPicture_branchMap h₀ h₁ h₂
           (A.toOrdered3Graph.relativeBranchNode I hA i).val
-          (by omega) =
+          (by change i ≤ m - 1; omega) =
           (G.relativeBranchNode I hG (f i)).val := by
   obtain ⟨N, hN, r₀, r₁, r₂, S₀, S₁, S₂,
       h₀, h₁, h₂, hCodes⟩ :=
@@ -55,11 +55,13 @@ theorem exists_exactMeetAemb_relativeBranchMap
   refine ⟨r₀, r₁, r₂, S₀, S₁, S₂, h₀, h₁, h₂, ?_⟩
   intro i him
   change CoordNode.finiteStrongPicture_branchMap h₀ h₁ h₂
-      (A.toOrdered3Graph.branchNode i) (by omega) =
+      (A.toOrdered3Graph.branchNode i)
+      (by change i ≤ m - 1; omega) =
       (G.relativeBranchNode I hG (f i)).val
   calc
     CoordNode.finiteStrongPicture_branchMap h₀ h₁ h₂
-        (A.toOrdered3Graph.branchNode i) (by omega) =
+        (A.toOrdered3Graph.branchNode i)
+        (by change i ≤ m - 1; omega) =
       (⟨f i,
         (CoordNode.finiteStrongPicture_enumCanonicalMap
           h₀ h₁ h₂ i (by omega) (A.truncate i)).val.succ
