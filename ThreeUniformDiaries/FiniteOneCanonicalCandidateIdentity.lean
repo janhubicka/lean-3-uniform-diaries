@@ -1,5 +1,6 @@
 import ThreeUniformDiaries.FiniteCoupledCanonicalMapSucc
 import ThreeUniformDiaries.FiniteActualCandidateMeetClosure
+import ThreeUniformDiaries.FiniteSelectedSuccessorBridge
 
 /-!
 # Prescribed singleton types under the concrete finite canonical map
@@ -38,7 +39,7 @@ theorem finiteOneCanonicalMap_prescribed_vertexTypes
     (hinc : ∀ x, finiteOneCandidate A H f n x → x ∈ S₁)
     (hroot : ∀ v : Nat, v < m →
       r₁ = H.oneType (f 0) (f v))
-    (haux : ∀ j v : Nat, j < v → v < m →
+    (haux : ∀ (j v : Nat) (hjv : j < v) (hvm : v < m),
       (CoordNode.finiteStrongPicture_auxCanonicalMap h₂ j
         (by omega) (A.auxType j j v)).val =
           H.auxType (f j) (f j) (f v))
