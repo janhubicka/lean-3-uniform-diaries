@@ -33,7 +33,7 @@ theorem finiteEnumCanonicalMap_prescribed_prefixes
       (.aux (f 0) r₂))
     (hinc : ∀ x, finiteEnumCandidate H f n m x → x ∈ S₀)
     (hroot : r₀ = H.truncate (f 0))
-    (hone : ∀ j : Nat, j < m →
+    (hone : ∀ (j : Nat) (hjm : j < m),
       (CoordNode.finiteStrongPicture_oneCanonicalMap h₁ h₂ j
         (by omega) (A.oneType j j)).val =
         H.oneType (f j) (f j))
