@@ -172,3 +172,4 @@ import ThreeUniformDiaries.InfiniteOneFullMeets
 import ThreeUniformDiaries.InfiniteAuxMeetClosedImage
 import ThreeUniformDiaries.InfiniteEnumFirstDisagreement
 import ThreeUniformDiaries.InfiniteEnumFullMeets
+import ThreeUniformDiaries.InfiniteCanonicalFixedPrefix
