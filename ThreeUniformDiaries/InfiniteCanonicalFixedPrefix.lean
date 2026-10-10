@@ -30,7 +30,7 @@ theorem infiniteAuxCanonicalMap_fixed_prefix
     CoordNode.aux (f N) (infiniteAuxCanonicalMap hS N a).val =
       CoordNode.aux N a := by
   have hFN : f N = N := hfix N hN
-  rw [hFN]
+  simp only [hFN]
   apply congrArg (CoordNode.aux N)
   apply AuxNode.ext_bits
   funext i
@@ -52,7 +52,7 @@ theorem infiniteOneCanonicalMap_fixed_prefix
     CoordNode.one (f N) (infiniteOneCanonicalMap h₁ h₂ N a).val =
       CoordNode.one N a := by
   have hFN : f N = N := hfix N hN
-  rw [hFN]
+  simp only [hFN]
   apply congrArg (CoordNode.one N)
   apply OneNode.ext_pairs
   funext i j
@@ -78,7 +78,7 @@ theorem infiniteEnumCanonicalMap_fixed_prefix
     CoordNode.enum (f N) (infiniteEnumCanonicalMap h₀ h₁ h₂ N a).val =
       CoordNode.enum N a := by
   have hFN : f N = N := hfix N hN
-  rw [hFN]
+  simp only [hFN]
   apply congrArg (CoordNode.enum N)
   apply EnumNode.ext_triples
   funext i j k
