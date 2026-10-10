@@ -142,3 +142,5 @@ import ThreeUniformDiaries.InfiniteCanonicalSelectedAuxBits
 import ThreeUniformDiaries.InfiniteCanonicalSelectedPairs
 import ThreeUniformDiaries.InfiniteCanonicalSelectedTriples
 import ThreeUniformDiaries.MillikenAnchoredFiniteColour
+
+import ThreeUniformDiaries.InfiniteCanonicalInducedEdges
