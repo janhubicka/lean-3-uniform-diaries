@@ -408,3 +408,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CanonicalMap.relativeMapBranch_branchNode
 #print axioms ThreeUniformDiaries.OneNode.boundaryAux_truncate_next
 #print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_firstDisagreement_meet
+#print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_preserves_meet
