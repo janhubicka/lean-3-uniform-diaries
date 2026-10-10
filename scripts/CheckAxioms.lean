@@ -377,3 +377,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteCanonicalMap_auxType_compat
 #print axioms ThreeUniformDiaries.CanonicalMap.id_mapBranch
 #print axioms ThreeUniformDiaries.CanonicalMap.comp_mapBranch
+#print axioms ThreeUniformDiaries.CanonicalMap.mapBranch_succ_formula
