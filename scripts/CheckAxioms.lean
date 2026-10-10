@@ -352,3 +352,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_truncate
 #print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_parent
 #print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_truncate
+#print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_newBit
+#print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_selectedBit
