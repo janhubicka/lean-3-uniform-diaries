@@ -29,7 +29,12 @@ theorem boundaryOne_truncate_next {N : Nat} (a : EnumNode N) (n : Nat) :
   funext i j
   by_cases hi : i < j ∧ j < n
   · simp [EnumNode.boundaryOne, EnumNode.truncate, hi]
-  · simp [EnumNode.boundaryOne, hi]
+  · by_cases hij : i < j
+    · have hjn : ¬ j < n := by
+        intro h
+        exact hi ⟨hij, h⟩
+      simp [EnumNode.boundaryOne, hij, hjn]
+    · simp [EnumNode.boundaryOne, hij]
 end EnumNode
 
 namespace CoordNode
