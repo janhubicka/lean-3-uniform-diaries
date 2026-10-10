@@ -127,3 +127,4 @@ import ThreeUniformDiaries.FiniteCanonicalFixedStep
 import ThreeUniformDiaries.FiniteCanonicalFixedPrefix
 
 import ThreeUniformDiaries.FiniteCanonicalEnumRestriction
+import ThreeUniformDiaries.FiniteRelativeFixedBranch
