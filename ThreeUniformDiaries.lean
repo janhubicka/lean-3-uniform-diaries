@@ -131,3 +131,4 @@ import ThreeUniformDiaries.FiniteRelativeFixedBranch
 import ThreeUniformDiaries.FiniteCanonicalInitialCut
 import ThreeUniformDiaries.FiniteRelativeCarrier
 import ThreeUniformDiaries.ExactMeetAembFullRelativeMap
+import ThreeUniformDiaries.FiniteCanonicalEnumOrder
