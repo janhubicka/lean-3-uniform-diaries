@@ -146,3 +146,5 @@ import ThreeUniformDiaries.MillikenAnchoredFiniteColour
 import ThreeUniformDiaries.InfiniteCanonicalInjectivity
 import ThreeUniformDiaries.InfiniteCanonicalImmediatePrefixes
 import ThreeUniformDiaries.InfiniteCanonicalLastOneType
+
+import ThreeUniformDiaries.InfiniteCanonicalLastAuxType
