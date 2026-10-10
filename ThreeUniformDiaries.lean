@@ -161,3 +161,5 @@ import ThreeUniformDiaries.CanonicalInfiniteImage
 import ThreeUniformDiaries.PrefixMeetInvariance
 import ThreeUniformDiaries.CanonicalRelativeFixedLevels
 import ThreeUniformDiaries.CanonicalInfiniteExactMeets
+import ThreeUniformDiaries.InfiniteAuxDistinctMeets
+import ThreeUniformDiaries.InfiniteOneEnumDistinctMeets
