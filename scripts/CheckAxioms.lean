@@ -338,3 +338,9 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPicture_auxStep_spec
 #print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap
 #print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_root
+#print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPicture_one_lift
+#print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPicture_enum_lift
+#print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap
+#print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap
+#print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_root
+#print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_root
