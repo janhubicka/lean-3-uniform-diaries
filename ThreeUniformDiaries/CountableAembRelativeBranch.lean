@@ -21,7 +21,7 @@ namespace ThreeUniformDiaries
 namespace EnumNode
 
 theorem finiteCanonical_code_eq_relativeBranchNode
-    {m N : Nat} (A : EnumNode m) (G : Ordered3Graph Nat)
+    {m : Nat} (A : EnumNode m) (G : Ordered3Graph Nat)
     {n : Nat} (I : EnumNode n)
     (hI : G.initialSegment n = I)
     {S₀ S₁ S₂ : Set CoordNode} {f : Nat → Nat}
