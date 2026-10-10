@@ -358,3 +358,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_selectedPair
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_newTriple
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_selectedTriple
+#print axioms ThreeUniformDiaries.threeCoordinateStrongSubtreeHalpernLauchli
