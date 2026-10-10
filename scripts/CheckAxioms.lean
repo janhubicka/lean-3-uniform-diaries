@@ -346,3 +346,9 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_succ
 #print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_succ
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_succ
+#print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_parent
+#print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_truncate
+#print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_parent
+#print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_truncate
+#print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_parent
+#print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_truncate
