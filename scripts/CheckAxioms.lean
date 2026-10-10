@@ -382,3 +382,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CanonicalMap.comp_mapBranch
 #print axioms ThreeUniformDiaries.CanonicalMap.mapBranch_preserves_relative
 #print axioms ThreeUniformDiaries.CanonicalMap.relativeMapBranch_val
+#print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_distinct_child_meet
