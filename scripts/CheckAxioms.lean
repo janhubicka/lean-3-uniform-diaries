@@ -412,3 +412,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_preserves_meet
 #print axioms ThreeUniformDiaries.CoordNode.infiniteAuxImage_subset
 #print axioms ThreeUniformDiaries.CoordNode.infiniteAuxImage_meetClosed
+#print axioms ThreeUniformDiaries.CoordNode.exists_infinite_strong_completion
