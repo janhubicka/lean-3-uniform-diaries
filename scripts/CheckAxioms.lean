@@ -495,3 +495,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.exists_infiniteVector_geometric_composition
 #print axioms ThreeUniformDiaries.CoordNode.infiniteVectorGeometric_mapBranch_comp
 #print axioms ThreeUniformDiaries.CoordNode.infiniteVectorGeometric_relativeMapBranch_comp
+#print axioms ThreeUniformDiaries.CoordNode.finite_nodes_of_bounded_level
+#print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPicture_finitePrefix_strong
