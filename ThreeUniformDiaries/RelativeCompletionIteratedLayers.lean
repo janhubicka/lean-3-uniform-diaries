@@ -225,5 +225,39 @@ theorem relativeCompletionLayers_contains_prescribed
   rw [← hEq]
   exact hp
 
+/-- Each relative completed layer is nonempty. The surrounding U is
+pruned at all selected relative levels, and the next-layer
+construction fills each one of its relative child cones. -/
+theorem relativeCompletionLayers_nonempty
+    {U : Set CoordNode} {f : Nat → Nat} {root : CoordNode}
+    (hU : InfiniteStrongPicture U f root)
+    (hf : StrictMono f) (hrootLevel : level root = f 0)
+    (E : Set CoordNode) (hEU : E ⊆ U)
+    (g : Nat → Nat) (hg : StrictMono g)
+    (r : CoordNode) (hr : r ∈ U)
+    (hrLevel : level r = f (g 0))
+    (k : Nat) :
+    (relativeCompletionLayers hU E g hg r k).Nonempty := by
+  induction k with
+  | zero =>
+      exact ⟨r, by simp [relativeCompletionLayers]⟩
+  | succ k ih =>
+      obtain ⟨p, hp⟩ := ih
+      have hpU : p ∈ U :=
+        (relativeCompletionLayers_subset hU hf hrootLevel
+          E hEU g hg r hr k) hp
+      have hpLevel : level p = f (g k) :=
+        relativeCompletionLayers_level hU E g hg r hrLevel k p hp
+      obtain ⟨t, ht, htLevel, hpt⟩ :=
+        infiniteStrongPicture_next_relative_exists hU
+          (g k) p hpU hpLevel
+      obtain ⟨z, hz, _⟩ := relativeNextLayer_child_exists
+        hU hf E (relativeCompletionLayers hU E g hg r k)
+        (g k) (g (k + 1))
+        (Nat.succ_le_of_lt (hg (Nat.lt_succ_self k)))
+        p hp hpLevel t ht htLevel hpt
+      exact ⟨z, hz⟩
+
+
 end CoordNode
 end ThreeUniformDiaries
