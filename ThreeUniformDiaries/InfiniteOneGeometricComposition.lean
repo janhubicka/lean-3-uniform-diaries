@@ -36,6 +36,7 @@ theorem exists_infiniteOne_geometric_composition
         (hV₁ : InfiniteStrongPicture V₁ (fun i => f (sigma i))
         (.one (f (sigma 0))
           (infiniteOneCanonicalMap hU₁ hU₂ (sigma 0) rS₁).val)),
+        V₂ ⊆ U₂ ∧ V₁ ⊆ U₁ ∧
         (∀ n (c : AuxNode n),
           (infiniteAuxCanonicalMap hV₂ n c).val =
             (infiniteAuxCanonicalMap hU₂ (sigma n)
@@ -44,10 +45,10 @@ theorem exists_infiniteOne_geometric_composition
           (infiniteOneCanonicalMap hV₁ hV₂ n a).val =
             (infiniteOneCanonicalMap hU₁ hU₂ (sigma n)
               (infiniteOneCanonicalMap hS₁ hS₂ n a).val).val) := by
-  obtain ⟨V₂, hV₂, hAux⟩ :=
+  obtain ⟨V₂, hV₂, hVU₂, hAux⟩ :=
     exists_infiniteAux_geometric_composition
       hS₂ hU₂ hsigma hf
-  obtain ⟨V₁, hV₁, hEV⟩ :=
+  obtain ⟨V₁, hV₁, hVU₁, hEV⟩ :=
     exists_infiniteOne_image_completion
       hS₁ hS₂ hU₁ hU₂ hsigma hf
   let G₂ : (n : Nat) → AuxNode n → AuxNode (f (sigma n)) :=
@@ -84,7 +85,7 @@ theorem exists_infiniteOne_geometric_composition
       hS₁ hS₂ hU₁ hU₂ hsigma hf n a c
   have heq := infiniteOneCanonicalMap_unique_of_cones
     hV₁ hV₂ G₂ G₁ hG₂ hmem hroot hsucc
-  refine ⟨V₂, V₁, hV₂, hV₁, hAux, ?_⟩
+  refine ⟨V₂, V₁, hV₂, hV₁, hVU₂, hVU₁, hAux, ?_⟩
   intro n a
   exact (heq n a).symm
 
