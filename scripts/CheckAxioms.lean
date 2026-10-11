@@ -521,3 +521,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.unique_zero_node_of_same_sort
 #print axioms ThreeUniformDiaries.CoordNode.zero_node_le_of_same_sort
 #print axioms ThreeUniformDiaries.CoordNode.glued_root_child_below_iff_sort
+#print axioms ThreeUniformDiaries.CoordNode.typedStrongVectorCarrier_union
+#print axioms ThreeUniformDiaries.CoordNode.typedStrongVectorCarrier_glued_levels
