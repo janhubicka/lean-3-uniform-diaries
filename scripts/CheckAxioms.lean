@@ -541,3 +541,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.zero_le_of_sort
 #print axioms ThreeUniformDiaries.CoordNode.glued_root_cone_unique
 #print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrongCarrier_root_child
+#print axioms ThreeUniformDiaries.CoordNode.glued_coordinate_next_child
+#print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrongCarrier_next_child
+#print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrongCarrier_strong
