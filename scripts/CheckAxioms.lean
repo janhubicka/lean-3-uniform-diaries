@@ -453,3 +453,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.relativeNextLayer_unique_child
 #print axioms ThreeUniformDiaries.CoordNode.relativeNextLayer_has_parent
 #print axioms ThreeUniformDiaries.CoordNode.relativeNextLayer_contains_prescribed
+#print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPicture_relative_siblings_meet
+#print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPicture_relative_sibling_descendant_meet
