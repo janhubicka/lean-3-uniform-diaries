@@ -180,5 +180,72 @@ theorem relativeNextLayer_protects
   exact relativeProtectedChoice_below_prescribed hU hf E hE
     i L hL hgap t ht htLevel x hx htx hxL
 
+/-- Each retained relative child cone has EXACTLY one representative
+on the next selected level. This uses equality of relative-level
+children of the same later U-node, independently of the old parent. -/
+theorem relativeNextLayer_unique_child
+    {U : Set CoordNode} {f : Nat → Nat} {root : CoordNode}
+    (hU : InfiniteStrongPicture U f root)
+    (hf : StrictMono f)
+    (E P : Set CoordNode)
+    (i L : Nat) (hL : i + 1 ≤ L)
+    (p : CoordNode) (hp : p ∈ P) (hpLevel : level p = f i)
+    (t : CoordNode) (ht : t ∈ U)
+    (htLevel : level t = f (i + 1)) (hpt : p ≤ t) :
+    ∃! z : CoordNode, z ∈ relativeNextLayer hU E P i L hL ∧
+      t ≤ z := by
+  let g : RelativeGapChild U P f i :=
+    ⟨p, hp, hpLevel, t, ht, htLevel, hpt⟩
+  refine ⟨g.chosen hU E L hL, ?_, ?_⟩
+  · exact ⟨⟨g, rfl⟩, g.child_le_chosen hU hf E L hL⟩
+  · intro z hz
+    rcases hz with ⟨⟨g', hgz⟩, htz⟩
+    subst z
+    have hsame : g'.child = t := by
+      rcases lower_linear (g'.child_le_chosen hU hf E L hL) htz with h | h
+      · exact eq_of_le_of_level_eq h (g'.child_level.trans htLevel.symm)
+      · exact (eq_of_le_of_level_eq h (htLevel.trans g'.child_level.symm)).symm
+    change relativeProtectedChoice hU E i L hL
+      g'.child g'.child_mem g'.child_level =
+      relativeProtectedChoice hU E i L hL t ht htLevel
+    cases hsame
+    rfl
+
+/-- Every chosen representative has a parent at the preceding
+selected layer and stays above that parent. -/
+theorem relativeNextLayer_has_parent
+    {U : Set CoordNode} {f : Nat → Nat} {root : CoordNode}
+    (hU : InfiniteStrongPicture U f root)
+    (hf : StrictMono f) (E P : Set CoordNode)
+    (i L : Nat) (hL : i + 1 ≤ L)
+    (z : CoordNode) (hz : z ∈ relativeNextLayer hU E P i L hL) :
+    ∃ p : CoordNode, p ∈ P ∧ p ≤ z := by
+  rcases hz with ⟨g, rfl⟩
+  exact ⟨g.parent, g.parent_mem, g.parent_le_chosen hU hf E L hL⟩
+
+/-- A prescribed E-node on the new selected level remains literally
+in the next relative layer once its previous ancestor is retained. -/
+theorem relativeNextLayer_contains_prescribed
+    {U : Set CoordNode} {f : Nat → Nat} {root : CoordNode}
+    (hU : InfiniteStrongPicture U f root)
+    (hf : StrictMono f) (hrootLevel : level root = f 0)
+    (E P : Set CoordNode) (hE : MeetClosed E) (hEU : E ⊆ U)
+    (i L : Nat) (hL : i + 1 ≤ L)
+    (hgap : AvoidsOpenLevelGap E (f i) (f L))
+    (p : CoordNode) (hp : p ∈ P) (hpU : p ∈ U)
+    (hpLevel : level p = f i)
+    (x : CoordNode) (hx : x ∈ E)
+    (hpx : p ≤ x) (hxLevel : level x = f L) :
+    x ∈ relativeNextLayer hU E P i L hL := by
+  obtain ⟨z, hz, hzx⟩ :=
+    relativeNextLayer_protects hU hf hrootLevel E P hE hEU
+      i L hL hgap p hp hpU hpLevel x hx hpx (by omega)
+  have hzl := relativeNextLayer_level hU E P i L hL z hz
+  have hzxEq : z = x :=
+    eq_of_le_of_level_eq hzx (hzl.trans hxLevel.symm)
+  rw [← hzxEq]
+  exact hz
+
+
 end CoordNode
 end ThreeUniformDiaries
