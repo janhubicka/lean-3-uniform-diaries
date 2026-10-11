@@ -485,3 +485,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.EnumNode.boundaryOne_truncate_of_lt
 #print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_boundaryAux_compat
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_boundaryOne_compat
+#print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_composite_succ
