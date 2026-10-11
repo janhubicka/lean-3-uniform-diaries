@@ -1,3 +1,4 @@
+import ThreeUniformDiaries.InfiniteCanonicalAuxOneRestriction
 import ThreeUniformDiaries.InfiniteCanonicalLastAuxType
 import ThreeUniformDiaries.InfiniteCanonicalEnumRestriction
 
@@ -34,7 +35,12 @@ theorem boundaryOne_truncate_of_lt {N : Nat}
   funext x y
   by_cases hv : x < y ∧ y < j
   · simp [EnumNode.boundaryOne, EnumNode.truncate, hv, hjL]
-  · simp [EnumNode.boundaryOne, hv]
+  · by_cases hxy : x < y
+    · have hy : ¬ y < j := by
+        intro h
+        exact hv ⟨hxy, h⟩
+      simp [EnumNode.boundaryOne, hxy, hy]
+    · simp [EnumNode.boundaryOne, hxy]
 
 
 /-- A last-vertex singleton type agrees with its boundary record.
