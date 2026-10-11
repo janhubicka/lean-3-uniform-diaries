@@ -168,13 +168,12 @@ theorem relativeNextLayer_protects
     infiniteStrongPicture_next_selected_below hU hf i j hij
       p x hpU hpLevel hxU hxLevel hpx
   have hpt : p ≤ t := by
-    have hft : f i ≤ f (i + 1) := hf.monotone (Nat.le_succ i)
-    refine ⟨by rw [hpLevel, htLevel]; exact hft, ?_⟩
-    calc
-      truncate t (level p) = truncate x (level p) := by
-        rw [← htLevel]
-        exact truncate_truncate x (by rw [hpLevel, htLevel]; exact hft)
-      _ = p := hpx.2
+    rcases lower_linear hpx htx with hpt | htp
+    · exact hpt
+    · have hlevels := level_le_of_le htp
+      rw [hpLevel, htLevel] at hlevels
+      have hstrict := hf (Nat.lt_succ_self i)
+      omega
   let g : RelativeGapChild U P f i :=
     ⟨p, hp, hpLevel, t, ht, htLevel, hpt⟩
   refine ⟨g.chosen hU E L hL, ⟨g, rfl⟩, ?_⟩
