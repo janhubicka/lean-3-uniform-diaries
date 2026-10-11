@@ -203,3 +203,4 @@ import ThreeUniformDiaries.RootGluedTreeOrder
 import ThreeUniformDiaries.RootGluedZeroFibres
 import ThreeUniformDiaries.RootGluedScalarStrong
 import ThreeUniformDiaries.RootGluedTypedStrongVector
+import ThreeUniformDiaries.RootGluedStrongCarrier
