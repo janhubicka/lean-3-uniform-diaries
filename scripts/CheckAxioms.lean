@@ -495,3 +495,9 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.exists_infiniteVector_geometric_composition
 #print axioms ThreeUniformDiaries.CoordNode.infiniteVectorGeometric_mapBranch_comp
 #print axioms ThreeUniformDiaries.CoordNode.infiniteVectorGeometric_relativeMapBranch_comp
+#print axioms ThreeUniformDiaries.CoordNode.TypedVectorSubset.root_mem
+#print axioms ThreeUniformDiaries.CoordNode.TypedVectorSubset.some_mem_iff
+#print axioms ThreeUniformDiaries.CoordNode.TypedVectorSubset.mem_coordinate_iff_glued
+#print axioms ThreeUniformDiaries.CoordNode.TypedVectorSubset.not_mem_wrong_sort
+#print axioms ThreeUniformDiaries.CoordNode.TypedVectorSubset.glue_injective
+#print axioms ThreeUniformDiaries.CoordNode.glued_selected_levels
