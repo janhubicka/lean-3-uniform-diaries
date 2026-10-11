@@ -174,3 +174,4 @@ import ThreeUniformDiaries.InfiniteEnumFirstDisagreement
 import ThreeUniformDiaries.InfiniteEnumFullMeets
 import ThreeUniformDiaries.InfiniteStrongCompletion
 import ThreeUniformDiaries.InfiniteCanonicalFixedPrefix
+import ThreeUniformDiaries.InfiniteStrongSelectedAncestors
