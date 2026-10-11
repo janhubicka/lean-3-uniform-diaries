@@ -1,4 +1,5 @@
 import ThreeUniformDiaries.RootGluedZeroLevelRigidity
+import ThreeUniformDiaries.RootGluedSelectedStem
 import ThreeUniformDiaries.InfiniteCanonicalAux
 
 /-!
