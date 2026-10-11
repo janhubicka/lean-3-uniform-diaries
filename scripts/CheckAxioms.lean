@@ -495,3 +495,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.exists_infiniteVector_geometric_composition
 #print axioms ThreeUniformDiaries.CoordNode.infiniteVectorGeometric_mapBranch_comp
 #print axioms ThreeUniformDiaries.CoordNode.infiniteVectorGeometric_relativeMapBranch_comp
+#print axioms ThreeUniformDiaries.extendFiniteLevelMap_eq_of_le
+#print axioms ThreeUniformDiaries.extendFiniteLevelMap_strictMono
+#print axioms ThreeUniformDiaries.extendFiniteLevelMap_eq_of_gt
