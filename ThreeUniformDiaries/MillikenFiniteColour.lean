@@ -1,16 +1,14 @@
-import Milliken.MillikenTheorem
-import RamseySpace.Ellentuck
-import RamseySpace.Standard
+import Milliken.Applications
 
 /-!
-# Finite-colour consequence of the verified homogeneous Milliken theorem
+# Application of the standalone Milliken library
 
-The manuscript uses only the discrete finite-colour consequence of Milliken:
-a colouring of one fixed finite strong-subtree height is constant below an
-infinite strong subtree.
+The generic finite-approximation colouring lemma and the homogeneous
+finite-colour theorem now come from `lean-milliken`. Local aliases retain
+the earlier 3-uniform API and provide a genuine downstream compile test.
 
-This file derives exactly that interface from the verified topological
-Ramsey-space theorem in `lean-milliken`.
+This does not prove the manuscript's variable-branching synchronized
+three-coordinate *vector* Milliken theorem; that transport is separate.
 -/
 
 namespace RamseySpace
@@ -21,24 +19,16 @@ namespace ApproximationSystem
 
 variable {S : ApproximationSystem.{u, v}}
 
-/-- A colour class determined by one approximation level is Ellentuck-open. -/
+/-- Compatibility alias for the generic Ellentuck-open colour-fibre lemma. -/
 theorem isOpen_approxColourClass
     {κ : Type w} (m : Nat) (colour : S.Approx m → κ) (c : κ) :
     @IsOpen S.Point S.ellentuckTopology
-      {X | colour (S.approx m X) = c} := by
-  rw [S.isOpen_ellentuck_iff]
-  intro X hX
-  refine ⟨m, S.approx m X, X, ⟨S.le_refl X, rfl⟩, ?_⟩
-  intro Y hY
-  change colour (S.approx m Y) = c
-  change colour (S.approx m X) = c at hX
-  rw [hY.2]
-  exact hX
+      {X | colour (S.approx m X) = c} :=
+  isOpen_approxColourFibre_for_Milliken m colour c
 
 end ApproximationSystem
 
-/-- A finite colouring of one approximation level is homogeneous on a
-refined basic neighbourhood in every topological Ramsey space. -/
+/-- Compatibility alias for the generic finite-colouring theorem. -/
 theorem finiteApproximationColouring
     {S : ApproximationSystem.{u, v}}
     (hTR : IsTopologicalRamseySpaceOnBasicNeighborhoods (S := S))
@@ -49,79 +39,18 @@ theorem finiteApproximationColouring
     ∃ B, B ∈ S.neighborhood a A ∧
       ∀ X, X ∈ S.neighborhood a B →
         ∀ Y, Y ∈ S.neighborhood a B →
-          colour (S.approx m X) = colour (S.approx m Y) := by
-  classical
-  letI : TopologicalSpace S.Point := S.ellentuckTopology
-  let fibre : κ → Set S.Point :=
-    fun c => {X | colour (S.approx m X) = c}
-
-  have hdecide :
-      ∀ s : Finset κ, ∀ B : S.Point,
-        B ∈ S.neighborhood a A →
-        ∃ C, C ∈ S.neighborhood a B ∧
-          ((∃ c ∈ s, S.neighborhood a C ⊆ fibre c) ∨
-            ∀ c ∈ s, Disjoint (S.neighborhood a C) (fibre c)) := by
-    intro s
-    induction s using Finset.induction_on with
-    | empty =>
-        intro B hBA
-        refine ⟨B, ⟨S.le_refl B, hBA.2⟩, Or.inr ?_⟩
-        simp
-    | @insert c s hc ih =>
-        intro B hBA
-        obtain ⟨C, hCB, hC⟩ := ih B hBA
-        rcases hC with hhit | havoid
-        · exact ⟨C, hCB, Or.inl (by
-            rcases hhit with ⟨d, hd, hsub⟩
-            exact ⟨d, Finset.mem_insert_of_mem hd, hsub⟩)⟩
-        · have hneC : (S.neighborhood a C).Nonempty :=
-            ⟨C, S.le_refl C, hCB.2⟩
-          have hopen :
-              @BaireMeasurableSet S.Point S.ellentuckTopology (fibre c) :=
-            (S.isOpen_approxColourClass m colour c).baireMeasurableSet
-          obtain ⟨D, hDC, hhom⟩ :=
-            hTR.1 (fibre c) hopen a C hneC
-          have hDB : D ∈ S.neighborhood a B :=
-            S.neighborhood_mono hCB.1 hDC
-          refine ⟨D, hDB, ?_⟩
-          rcases hhom with hsub | hdis
-          · exact Or.inl ⟨c, Finset.mem_insert_self c s, hsub⟩
-          · apply Or.inr
-            intro d hd
-            rcases Finset.mem_insert.mp hd with hdc | hds
-            · subst d
-              exact hdis
-            · exact (havoid d hds).mono_left
-                (S.neighborhood_mono hDC.1)
-
-  obtain ⟨B0, hB0A⟩ := hne
-  obtain ⟨B, hBB0, hfinal⟩ :=
-    hdecide Finset.univ B0 hB0A
-  have hBA : B ∈ S.neighborhood a A :=
-    S.neighborhood_mono hB0A.1 hBB0
-  rcases hfinal with hhit | havoid
-  · rcases hhit with ⟨c, _, hsub⟩
-    refine ⟨B, hBA, ?_⟩
-    intro X hX Y hY
-    exact (hsub hX).trans (hsub hY).symm
-  · exfalso
-    let c : κ := colour (S.approx m B)
-    have hdis := havoid c (Finset.mem_univ c)
-    have hB : B ∈ S.neighborhood a B :=
-      ⟨S.le_refl B, hBB0.2⟩
-    have hBc : B ∈ fibre c := rfl
-    exact Set.disjoint_left.1 hdis hB hBc
+          colour (S.approx m X) = colour (S.approx m Y) :=
+  finiteApproximationColouring_for_Milliken hTR a A hne colour
 
 end RamseySpace
 
 namespace ThreeUniformDiaries
 
 open Milliken
+universe u v
 
-/-- The concrete finite-colour formulation of homogeneous-tree Milliken.
-
-Below the returned strong embedding `B`, every realized height-`m`
-approximation has the same colour. -/
+/-- The checked homogeneous finite-colour theorem, re-exported from the
+standalone `lean-milliken` application API. -/
 theorem homogeneousMillikenFiniteColouring
     {ι : Type u} [Finite ι] [Nonempty ι]
     {κ : Type v} [Fintype κ]
@@ -132,27 +61,7 @@ theorem homogeneousMillikenFiniteColouring
         StrongTreeSpace.le ι X B →
         StrongTreeSpace.le ι Y B →
         colour (StrongTreeSpace.approx ι m X) =
-          colour (StrongTreeSpace.approx ι m Y) := by
-  let S := StrongTreeSpace.approximationSystem ι
-  have hne :
-      (S.neighborhood (StrongTreeSpace.empty ι)
-        (StrongEmbedding.id : StrongEmbedding ι)).Nonempty := by
-    refine ⟨StrongEmbedding.id, ?_⟩
-    exact ⟨StrongTreeSpace.le_refl ι _, StrongTreeSpace.approx_zero _ _⟩
-  obtain ⟨B, hB, hhom⟩ :=
-    RamseySpace.finiteApproximationColouring
-      (Milliken.Chapter6.milliken_onBasicNeighborhoods (ι := ι))
-      (StrongTreeSpace.empty ι)
-      (StrongEmbedding.id : StrongEmbedding ι)
-      hne colour
-  refine ⟨B, ?_⟩
-  intro X Y hXB hYB
-  have hX :
-      X ∈ S.neighborhood (StrongTreeSpace.empty ι) B :=
-    ⟨hXB, StrongTreeSpace.approx_zero ι X⟩
-  have hY :
-      Y ∈ S.neighborhood (StrongTreeSpace.empty ι) B :=
-    ⟨hYB, StrongTreeSpace.approx_zero ι Y⟩
-  exact hhom X hX Y hY
+          colour (StrongTreeSpace.approx ι m Y) :=
+  Milliken.Applications.millikenFiniteColouring m colour
 
 end ThreeUniformDiaries
