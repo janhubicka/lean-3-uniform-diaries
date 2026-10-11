@@ -492,3 +492,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.exists_infiniteOne_image_completion
 #print axioms ThreeUniformDiaries.CoordNode.exists_infiniteEnum_image_completion
 #print axioms ThreeUniformDiaries.CoordNode.exists_infiniteOne_geometric_composition
+#print axioms ThreeUniformDiaries.CoordNode.exists_infiniteVector_geometric_composition
