@@ -512,3 +512,10 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.gluedLE_level_mono
 #print axioms ThreeUniformDiaries.CoordNode.gluedChild_root_level
 #print axioms ThreeUniformDiaries.CoordNode.gluedChild_level_succ
+#print axioms ThreeUniformDiaries.AuxNode.unique_zero
+#print axioms ThreeUniformDiaries.OneNode.unique_zero
+#print axioms ThreeUniformDiaries.EnumNode.unique_zero
+#print axioms ThreeUniformDiaries.CoordNode.aux_zero_le
+#print axioms ThreeUniformDiaries.CoordNode.one_zero_le
+#print axioms ThreeUniformDiaries.CoordNode.enum_zero_le
+#print axioms ThreeUniformDiaries.CoordNode.strong_root_unique_at_first_level
