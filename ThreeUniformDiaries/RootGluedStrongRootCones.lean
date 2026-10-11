@@ -72,7 +72,7 @@ theorem glued_root_cone_unique
         rw [hysort] at hy
         exact hy
       have hyLevel : level y = m := by
-        change level y + 1 = m + 1 at hz
+        have hlev : level y + 1 = m + 1 := hz.2.1
         omega
       have hry : r ≤ y := hrootLe y hyMem
       have hEq : y = r :=
