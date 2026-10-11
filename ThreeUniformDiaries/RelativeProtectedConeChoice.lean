@@ -156,5 +156,48 @@ theorem relativeProtectedChoice_below_prescribed
     (protectedGuide_below E hE (f i) (f L) hgap
       t x hlt hx htx hxL hex)
 
+
+/-- A protected relative choice is exactly the selected-level
+ancestor of each future prescribed E-node in its relative cone. -/
+theorem relativeProtectedChoice_eq_truncate
+    {U : Set CoordNode} {f : Nat → Nat} {root : CoordNode}
+    (hU : InfiniteStrongPicture U f root)
+    (hf : StrictMono f)
+    (E : Set CoordNode) (hE : MeetClosed E)
+    (i L : Nat) (hL : i + 1 ≤ L)
+    (hgap : AvoidsOpenLevelGap E (f i) (f L))
+    (t : CoordNode) (ht : t ∈ U)
+    (htLevel : level t = f (i + 1))
+    (x : CoordNode) (hx : x ∈ E)
+    (htx : t ≤ x) (hxL : f L ≤ level x) :
+    relativeProtectedChoice hU E i L hL t ht htLevel =
+      truncate x (f L) := by
+  have hbelow := relativeProtectedChoice_below_prescribed
+    hU hf E hE i L hL hgap t ht htLevel x hx htx hxL
+  have hprefix := hbelow.2
+  rw [relativeProtectedChoice_level hU E i L hL t ht htLevel] at hprefix
+  exact hprefix.symm
+
+/-- In particular, a prescribed E-node already on the next
+selected relative level is retained literally, not moved. -/
+theorem relativeProtectedChoice_eq_selected
+    {U : Set CoordNode} {f : Nat → Nat} {root : CoordNode}
+    (hU : InfiniteStrongPicture U f root)
+    (hf : StrictMono f)
+    (E : Set CoordNode) (hE : MeetClosed E)
+    (i L : Nat) (hL : i + 1 ≤ L)
+    (hgap : AvoidsOpenLevelGap E (f i) (f L))
+    (t : CoordNode) (ht : t ∈ U)
+    (htLevel : level t = f (i + 1))
+    (x : CoordNode) (hx : x ∈ E)
+    (htx : t ≤ x) (hxLevel : level x = f L) :
+    relativeProtectedChoice hU E i L hL t ht htLevel = x := by
+  have htr := relativeProtectedChoice_eq_truncate
+    hU hf E hE i L hL hgap t ht htLevel x hx htx (by omega)
+  have hself : truncate x (f L) = x := by
+    rw [← hxLevel]
+    exact truncate_self x
+  exact htr.trans hself
+
 end CoordNode
 end ThreeUniformDiaries
