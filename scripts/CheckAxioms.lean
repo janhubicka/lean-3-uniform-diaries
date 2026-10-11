@@ -475,3 +475,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.relativeCompletionPrefix_on_layer
 #print axioms ThreeUniformDiaries.CoordNode.relativeCompletionPrefix_meetClosed
 #print axioms ThreeUniformDiaries.CoordNode.exists_relative_finite_strong_completion
+#print axioms ThreeUniformDiaries.CoordNode.exists_relative_infinite_strong_completion
