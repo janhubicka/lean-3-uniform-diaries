@@ -77,8 +77,11 @@ theorem glue_truncateSelected_mem
           gluedLevel x = selectedGluedLevels f (j + 1) := by
   cases x with
   | none =>
-      simp only [root_mem, eq_self_iff_true, true_or, iff_true]
-      exact (V.truncateSelected f k).root_mem
+      constructor
+      · intro _
+        exact Or.inl rfl
+      · intro _
+        exact (V.truncateSelected f k).root_mem
   | some y =>
       rw [some_mem_iff]
       change
@@ -112,8 +115,9 @@ theorem glue_truncateSelected_levels
   | none =>
       exact ⟨0, Nat.zero_lt_succ k, rfl⟩
   | some x =>
-      obtain ⟨_, ⟨j, hj, hl⟩⟩ :=
-        (V.truncateSelected f k).some_mem_iff x |>.mp hx
+      have hmem : x ∈ (V.truncateSelected f k).union :=
+        ((V.truncateSelected f k).some_mem_iff x).mp hx
+      obtain ⟨_, j, hj, hl⟩ := hmem
       exact ⟨j + 1, Nat.succ_lt_succ hj,
         by simpa [selectedGluedLevels] using congrArg Nat.succ hl⟩
 
