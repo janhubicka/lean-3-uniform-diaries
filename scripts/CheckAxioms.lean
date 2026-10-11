@@ -519,3 +519,9 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.one_zero_le
 #print axioms ThreeUniformDiaries.CoordNode.enum_zero_le
 #print axioms ThreeUniformDiaries.CoordNode.strong_root_unique_at_first_level
+#print axioms ThreeUniformDiaries.CoordNode.gluedMeet_none_left
+#print axioms ThreeUniformDiaries.CoordNode.gluedMeet_none_right
+#print axioms ThreeUniformDiaries.CoordNode.gluedMeet_some_same
+#print axioms ThreeUniformDiaries.CoordNode.gluedMeet_some_different
+#print axioms ThreeUniformDiaries.CoordNode.gluedSelectedLevel_strictMono
+#print axioms ThreeUniformDiaries.CoordNode.rootedGluedInfiniteStrong_root
