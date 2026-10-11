@@ -34,7 +34,7 @@ theorem exists_infiniteOne_image_completion
       ∃ hV₁ : InfiniteStrongPicture V₁ (fun i => f (sigma i))
         (.one (f (sigma 0))
           (infiniteOneCanonicalMap hU₁ hU₂ (sigma 0) rS₁).val),
-        infiniteOneImage hU₁ hU₂ S₁ ⊆ V₁ := by
+        V₁ ⊆ U₁ ∧ infiniteOneImage hU₁ hU₂ S₁ ⊆ V₁ := by
   let E : Set CoordNode := infiniteOneImage hU₁ hU₂ S₁
   let r : CoordNode :=
     .one (f (sigma 0))
@@ -78,7 +78,7 @@ theorem exists_infiniteOne_image_completion
       r hrU hrLevel hrBelow
   have hV₁ : InfiniteStrongPicture V₁ (fun i => f (sigma i)) r :=
     relativeInfiniteStrongPicture_to_ambient hU₁ hf hsigma hRelative
-  exact ⟨V₁, hV₁, hEV⟩
+  exact ⟨V₁, hV₁, hRelative.subset_U, hEV⟩
 
 theorem exists_infiniteEnum_image_completion
     {S₀ S₁ S₂ U₀ U₁ U₂ : Set CoordNode} {sigma f : Nat → Nat}
@@ -97,7 +97,7 @@ theorem exists_infiniteEnum_image_completion
       ∃ hV₀ : InfiniteStrongPicture V₀ (fun i => f (sigma i))
         (.enum (f (sigma 0))
           (infiniteEnumCanonicalMap hU₀ hU₁ hU₂ (sigma 0) rS₀).val),
-        infiniteEnumImage hU₀ hU₁ hU₂ S₀ ⊆ V₀ := by
+        V₀ ⊆ U₀ ∧ infiniteEnumImage hU₀ hU₁ hU₂ S₀ ⊆ V₀ := by
   let E : Set CoordNode := infiniteEnumImage hU₀ hU₁ hU₂ S₀
   let r : CoordNode :=
     .enum (f (sigma 0))
@@ -141,7 +141,7 @@ theorem exists_infiniteEnum_image_completion
       r hrU hrLevel hrBelow
   have hV₀ : InfiniteStrongPicture V₀ (fun i => f (sigma i)) r :=
     relativeInfiniteStrongPicture_to_ambient hU₀ hf hsigma hRelative
-  exact ⟨V₀, hV₀, hEV⟩
+  exact ⟨V₀, hV₀, hRelative.subset_U, hEV⟩
 
 end CoordNode
 end ThreeUniformDiaries
