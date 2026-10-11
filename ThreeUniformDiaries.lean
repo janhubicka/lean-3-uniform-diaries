@@ -208,3 +208,5 @@ import ThreeUniformDiaries.RootGluedTreeOrder
 import ThreeUniformDiaries.RootGluedFinitePruned
 import ThreeUniformDiaries.RootGluedCarrierEquiv
 import ThreeUniformDiaries.RootGluedSelectedStem
+import ThreeUniformDiaries.ATRGeneralMilliken
+import ThreeUniformDiaries.ATRScalarMillikenTransfer
