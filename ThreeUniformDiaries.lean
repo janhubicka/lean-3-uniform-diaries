@@ -173,3 +173,4 @@ import ThreeUniformDiaries.InfiniteAuxMeetClosedImage
 import ThreeUniformDiaries.InfiniteEnumFirstDisagreement
 import ThreeUniformDiaries.InfiniteEnumFullMeets
 import ThreeUniformDiaries.InfiniteStrongCompletion
+import ThreeUniformDiaries.InfiniteGeometricImageMeetClosed

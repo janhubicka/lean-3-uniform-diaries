@@ -416,3 +416,9 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_firstDisagreement_meet
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_preserves_meet
 #print axioms ThreeUniformDiaries.CoordNode.exists_infinite_strong_completion
+#print axioms ThreeUniformDiaries.CoordNode.infiniteOneImage_subset
+#print axioms ThreeUniformDiaries.CoordNode.infiniteOneImage_meetClosed
+#print axioms ThreeUniformDiaries.CoordNode.infiniteOneImage_selectedLevels
+#print axioms ThreeUniformDiaries.CoordNode.infiniteEnumImage_subset
+#print axioms ThreeUniformDiaries.CoordNode.infiniteEnumImage_meetClosed
+#print axioms ThreeUniformDiaries.CoordNode.infiniteEnumImage_selectedLevels
