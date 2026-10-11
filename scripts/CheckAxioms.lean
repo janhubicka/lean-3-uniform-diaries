@@ -531,3 +531,10 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.typedVectorOfStrong_enum
 #print axioms ThreeUniformDiaries.CoordNode.typedVectorOfStrong_one
 #print axioms ThreeUniformDiaries.CoordNode.typedVectorOfStrong_aux
+#print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrongCarrier_root_mem
+#print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrongCarrier_enum_iff
+#print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrongCarrier_one_iff
+#print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrongCarrier_aux_iff
+#print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrongCarrier_selected_levels
+#print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrongCarrier_all_levels
+#print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrongCarrier_meet_closed
