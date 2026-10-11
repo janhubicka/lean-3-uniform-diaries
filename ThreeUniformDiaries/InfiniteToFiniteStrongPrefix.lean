@@ -33,6 +33,7 @@ theorem finite_nodes_of_bounded_level (m : Nat) :
   | succ m ih =>
       apply (ih.union (level_finite (m + 1))).subset
       intro x hx
+      change level x ≤ m + 1 at hx
       by_cases hxm : level x ≤ m
       · exact Or.inl hxm
       · right
