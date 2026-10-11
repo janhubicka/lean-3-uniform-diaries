@@ -477,3 +477,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.exists_relative_finite_strong_completion
 #print axioms ThreeUniformDiaries.CoordNode.exists_relative_infinite_strong_completion
 #print axioms ThreeUniformDiaries.CoordNode.relativeInfiniteStrongPicture_to_ambient
+#print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_composite_succ
