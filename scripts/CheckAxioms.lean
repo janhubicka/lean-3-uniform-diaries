@@ -493,3 +493,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.exists_infiniteEnum_image_completion
 #print axioms ThreeUniformDiaries.CoordNode.exists_infiniteOne_geometric_composition
 #print axioms ThreeUniformDiaries.CoordNode.exists_infiniteVector_geometric_composition
+#print axioms ThreeUniformDiaries.CoordNode.infiniteVectorGeometric_mapBranch_comp
+#print axioms ThreeUniformDiaries.CoordNode.infiniteVectorGeometric_relativeMapBranch_comp
