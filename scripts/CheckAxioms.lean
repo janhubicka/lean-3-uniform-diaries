@@ -460,3 +460,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.relativeCompletionLayers_has_parent
 #print axioms ThreeUniformDiaries.CoordNode.relativeCompletionLayers_protects
 #print axioms ThreeUniformDiaries.CoordNode.relativeCompletionLayers_contains_prescribed
+#print axioms ThreeUniformDiaries.CoordNode.relativeCompletionLayers_nonempty
