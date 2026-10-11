@@ -175,3 +175,4 @@ import ThreeUniformDiaries.InfiniteEnumFullMeets
 import ThreeUniformDiaries.InfiniteStrongCompletion
 import ThreeUniformDiaries.InfiniteCanonicalFixedPrefix
 import ThreeUniformDiaries.InfiniteGeometricImageMeetClosed
+import ThreeUniformDiaries.InfiniteStrongSelectedAncestors
