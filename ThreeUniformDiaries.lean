@@ -200,3 +200,4 @@ import ThreeUniformDiaries.InfiniteVectorGeometricComposition
 import ThreeUniformDiaries.InfiniteGeometricRelativeBranchComposition
 import ThreeUniformDiaries.RootGluedCoordinateCarrier
 import ThreeUniformDiaries.RootGluedTreeOrder
+import ThreeUniformDiaries.RootGluedZeroFibres
