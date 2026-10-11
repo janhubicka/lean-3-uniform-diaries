@@ -474,3 +474,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPicture_relative_sibling_descendant_meet
 #print axioms ThreeUniformDiaries.CoordNode.relativeCompletionPrefix_on_layer
 #print axioms ThreeUniformDiaries.CoordNode.relativeCompletionPrefix_meetClosed
+#print axioms ThreeUniformDiaries.CoordNode.exists_relative_finite_strong_completion
