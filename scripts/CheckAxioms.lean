@@ -478,3 +478,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.exists_relative_infinite_strong_completion
 #print axioms ThreeUniformDiaries.CoordNode.relativeInfiniteStrongPicture_to_ambient
 #print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_unique_of_cones
+#print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_unique_of_cones
