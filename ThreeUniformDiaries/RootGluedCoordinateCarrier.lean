@@ -47,14 +47,16 @@ theorem root_mem (V : TypedVectorSubset) : none ∈ V.glue :=
 
 theorem some_mem_iff (V : TypedVectorSubset) (x : CoordNode) :
     some x ∈ V.glue ↔ x ∈ V.union := by
-  simp only [glue, Option.some.injEq, Option.some_ne_none, false_or]
+  change (some x = none ∨
+      ∃ t : CoordNode, some x = some t ∧ t ∈ V.union) ↔
+    x ∈ V.union
   constructor
-  · rintro ⟨t, hxt, ht⟩
-    have h : x = t := Option.some.inj hxt
-    subst t
-    exact ht
+  · rintro (h | ⟨t, hxt, ht⟩)
+    · cases h
+    · have h : x = t := Option.some.inj hxt
+      simpa only [h] using ht
   · intro hx
-    exact ⟨x, rfl, hx⟩
+    exact Or.inr ⟨x, rfl, hx⟩
 
 /-- Typed coordinate nodes are recovered literally from the glued set. -/
 theorem mem_coordinate_iff_glued
@@ -78,10 +80,10 @@ theorem glue_injective : Function.Injective glue := by
     intro i
     ext x
     by_cases hsort : sort x = i
-    · exact (V.mem_coordinate_iff_glued i x hsort).trans
-        ((show some x ∈ V.glue ↔ some x ∈ W.glue from
-          (by rw [hVW]))).trans
-        (W.mem_coordinate_iff_glued i x hsort).symm
+    · have hiff : some x ∈ V.glue ↔ some x ∈ W.glue := by
+        rw [hVW]
+      exact (V.mem_coordinate_iff_glued i x hsort).trans
+        (hiff.trans (W.mem_coordinate_iff_glued i x hsort).symm)
     · have hVnone := V.not_mem_wrong_sort i x hsort
       have hWnone := W.not_mem_wrong_sort i x hsort
       simp [hVnone, hWnone]
