@@ -502,3 +502,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteOneStrongPicture_completePrefix
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumStrongPicture_completePrefix
 #print axioms ThreeUniformDiaries.CoordNode.infiniteVectorStrongPicture_completePrefix
+#print axioms ThreeUniformDiaries.CoordNode.finite_nodes_of_bounded_level
+#print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPicture_finitePrefix_strong
