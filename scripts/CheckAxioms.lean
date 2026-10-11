@@ -419,3 +419,9 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_fixed_prefix
 #print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_fixed_prefix
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_fixed_prefix
+#print axioms ThreeUniformDiaries.CoordNode.infiniteOneImage_subset
+#print axioms ThreeUniformDiaries.CoordNode.infiniteOneImage_meetClosed
+#print axioms ThreeUniformDiaries.CoordNode.infiniteOneImage_selectedLevels
+#print axioms ThreeUniformDiaries.CoordNode.infiniteEnumImage_subset
+#print axioms ThreeUniformDiaries.CoordNode.infiniteEnumImage_meetClosed
+#print axioms ThreeUniformDiaries.CoordNode.infiniteEnumImage_selectedLevels
