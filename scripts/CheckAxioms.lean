@@ -439,3 +439,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.relativeProtectedChoice_level
 #print axioms ThreeUniformDiaries.CoordNode.relativeProtectedChoice_extends
 #print axioms ThreeUniformDiaries.CoordNode.relativeProtectedChoice_below_prescribed
+#print axioms ThreeUniformDiaries.CoordNode.relativeProtectedChoice_eq_truncate
+#print axioms ThreeUniformDiaries.CoordNode.relativeProtectedChoice_eq_selected
