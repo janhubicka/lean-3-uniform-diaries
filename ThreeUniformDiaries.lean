@@ -204,3 +204,4 @@ import ThreeUniformDiaries.InfiniteVectorStrongCompleteFixedPrefix
 import ThreeUniformDiaries.InfiniteToFiniteStrongPrefix
 import ThreeUniformDiaries.FiniteStrongInfiniteExtension
 import ThreeUniformDiaries.ATRGeneralMilliken
+import ThreeUniformDiaries.ATRScalarMillikenTransfer
