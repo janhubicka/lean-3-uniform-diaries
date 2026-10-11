@@ -59,8 +59,9 @@ noncomputable def relativeProtectedChoice
     (E : Set CoordNode)
     (i L : Nat) (hL : i + 1 ≤ L)
     (t : CoordNode) (ht : t ∈ U)
-    (htLevel : level t = f (i + 1)) : CoordNode :=
-  if hex : ∃ x ∈ E, t ≤ x ∧ f L ≤ level x then
+    (htLevel : level t = f (i + 1)) : CoordNode := by
+  classical
+  exact if hex : ∃ x ∈ E, t ≤ x ∧ f L ≤ level x then
     protectedGuide E t (f L) hex
   else
     Classical.choose
