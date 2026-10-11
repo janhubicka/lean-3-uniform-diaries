@@ -49,10 +49,11 @@ theorem infiniteStrongPicture_next_selected_below
     refine ⟨by rw [hpLevel, htLevel]; omega, ?_⟩
     rw [hpLevel]
     change truncate (truncate x (f i + 1)) (f i) = p
-    rw [truncate_truncate x (Nat.le_succ i)]
+    rw [truncate_truncate x (Nat.le_succ (f i))]
     exact hsourceCut
   have hcover : p ⋖ t := by
     apply SuccessorTree.LevelTree.covBy_of_le_level_succ hpt
+    change level t = level p + 1
     rw [hpLevel, htLevel]
   obtain ⟨q, ⟨hq, hql, htq⟩, _⟩ :=
     hS.next_child i p hp hpLevel t hcover
