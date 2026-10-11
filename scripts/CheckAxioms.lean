@@ -502,3 +502,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteOneStrongPicture_completePrefix
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumStrongPicture_completePrefix
 #print axioms ThreeUniformDiaries.CoordNode.infiniteVectorStrongPicture_completePrefix
+#print axioms ThreeUniformDiaries.CoordNode.TypedVectorSubset.glue_injective
+#print axioms ThreeUniformDiaries.CoordNode.TypedVectorSubset.some_mem_iff
+#print axioms ThreeUniformDiaries.CoordNode.glued_selected_levels
