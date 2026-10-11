@@ -35,7 +35,9 @@ theorem finite_nodes_of_bounded_level (m : Nat) :
       intro x hx
       by_cases hxm : level x ≤ m
       · exact Or.inl hxm
-      · exact Or.inr (by omega)
+      · right
+        change level x = m + 1
+        omega
 
 /-- Every infinite strong coordinate picture has a genuine finite
 initial strong subtree of height k+1, with no additional assumptions. -/
@@ -87,7 +89,8 @@ theorem infiniteStrongPicture_finitePrefix_strong
       by_contra hnot
       have hki : k < i := Nat.lt_of_not_ge hnot
       have hlt : f k < f i := hf hki
-      rw [hlevel] at hx
+      have hxBound : level x ≤ f k := hx.2
+      rw [hlevel] at hxBound
       omega
     exact ⟨i, hik, hlevel⟩
   · intro i hik
