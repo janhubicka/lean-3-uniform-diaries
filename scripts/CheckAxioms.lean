@@ -487,3 +487,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_boundaryOne_compat
 #print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_composite_succ
 #print axioms ThreeUniformDiaries.EnumNode.oneType_self_eq_boundaryOne
+#print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_composite_succ
