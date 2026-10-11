@@ -498,3 +498,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.extendFiniteLevelMap_eq_of_le
 #print axioms ThreeUniformDiaries.extendFiniteLevelMap_strictMono
 #print axioms ThreeUniformDiaries.extendFiniteLevelMap_eq_of_gt
+#print axioms ThreeUniformDiaries.CoordNode.infiniteAuxStrongPicture_completePrefix
+#print axioms ThreeUniformDiaries.CoordNode.infiniteOneStrongPicture_completePrefix
+#print axioms ThreeUniformDiaries.CoordNode.infiniteEnumStrongPicture_completePrefix
+#print axioms ThreeUniformDiaries.CoordNode.infiniteVectorStrongPicture_completePrefix
