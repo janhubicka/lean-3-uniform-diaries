@@ -73,8 +73,10 @@ theorem finiteStrongPicture_eq_infinitePrefix_of_subset
           have hpS : p ∈ S := ih hjk p hpU hpLevel
           let t := truncate y (f j + 1)
           have htLevel : level t = f j + 1 := by simp [t]
+          have hstep : f j + 1 ≤ f (j + 1) :=
+            Nat.succ_le_of_lt (hf (Nat.lt_succ_self j))
           have hty : t ≤ y :=
-            truncate_le y (by rw [hyLevel]; omega)
+            truncate_le y (by rw [hyLevel]; exact hstep)
           have hpt : p ≤ t := by
             refine ⟨by rw [hpLevel, htLevel]; omega, ?_⟩
             change truncate t (level p) = p
