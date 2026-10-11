@@ -538,3 +538,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrongCarrier_selected_levels
 #print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrongCarrier_all_levels
 #print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrongCarrier_meet_closed
+#print axioms ThreeUniformDiaries.CoordNode.zero_le_of_sort
+#print axioms ThreeUniformDiaries.CoordNode.glued_root_cone_unique
+#print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrongCarrier_root_child
