@@ -425,3 +425,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumImage_subset
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumImage_meetClosed
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumImage_selectedLevels
+#print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPicture_next_selected_below
+#print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPicture_selected_truncate_mem
