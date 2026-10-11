@@ -481,3 +481,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_unique_of_cones
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_unique_of_cones
 #print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_composite_succ
+#print axioms ThreeUniformDiaries.CoordNode.exists_infiniteAux_geometric_composition
