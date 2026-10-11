@@ -450,3 +450,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.relativeNextLayer_finite
 #print axioms ThreeUniformDiaries.CoordNode.relativeNextLayer_child_exists
 #print axioms ThreeUniformDiaries.CoordNode.relativeNextLayer_protects
+#print axioms ThreeUniformDiaries.CoordNode.relativeNextLayer_unique_child
+#print axioms ThreeUniformDiaries.CoordNode.relativeNextLayer_has_parent
+#print axioms ThreeUniformDiaries.CoordNode.relativeNextLayer_contains_prescribed
