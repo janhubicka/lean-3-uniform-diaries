@@ -441,3 +441,15 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.relativeProtectedChoice_below_prescribed
 #print axioms ThreeUniformDiaries.CoordNode.relativeProtectedChoice_eq_truncate
 #print axioms ThreeUniformDiaries.CoordNode.relativeProtectedChoice_eq_selected
+#print axioms ThreeUniformDiaries.CoordNode.RelativeGapChild.chosen_level
+#print axioms ThreeUniformDiaries.CoordNode.RelativeGapChild.chosen_mem
+#print axioms ThreeUniformDiaries.CoordNode.RelativeGapChild.child_le_chosen
+#print axioms ThreeUniformDiaries.CoordNode.RelativeGapChild.parent_le_chosen
+#print axioms ThreeUniformDiaries.CoordNode.relativeNextLayer_level
+#print axioms ThreeUniformDiaries.CoordNode.relativeNextLayer_subset
+#print axioms ThreeUniformDiaries.CoordNode.relativeNextLayer_finite
+#print axioms ThreeUniformDiaries.CoordNode.relativeNextLayer_child_exists
+#print axioms ThreeUniformDiaries.CoordNode.relativeNextLayer_protects
+#print axioms ThreeUniformDiaries.CoordNode.relativeNextLayer_unique_child
+#print axioms ThreeUniformDiaries.CoordNode.relativeNextLayer_has_parent
+#print axioms ThreeUniformDiaries.CoordNode.relativeNextLayer_contains_prescribed
