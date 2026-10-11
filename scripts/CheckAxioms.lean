@@ -517,3 +517,9 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.TypedVectorSubset.truncateSelected_mem_iff
 #print axioms ThreeUniformDiaries.CoordNode.TypedVectorSubset.glue_truncateSelected_mem
 #print axioms ThreeUniformDiaries.CoordNode.TypedVectorSubset.glue_truncateSelected_levels
+#print axioms ThreeUniformDiaries.CoordNode.forestPred_le
+#print axioms ThreeUniformDiaries.CoordNode.forestPred_level_of_pos
+#print axioms ThreeUniformDiaries.CoordNode.forestPred_isMin_of_le
+#print axioms ThreeUniformDiaries.CoordNode.forest_le_pred_of_lt
+#print axioms ThreeUniformDiaries.CoordNode.forest_strictRank
+#print axioms ThreeUniformDiaries.CoordNode.forest_exists_pred_iterate_of_le
