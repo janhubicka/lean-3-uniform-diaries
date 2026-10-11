@@ -461,3 +461,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.relativeCompletionLayers_protects
 #print axioms ThreeUniformDiaries.CoordNode.relativeCompletionLayers_contains_prescribed
 #print axioms ThreeUniformDiaries.CoordNode.relativeCompletionLayers_nonempty
+#print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPicture_relative_siblings_meet
+#print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPicture_relative_sibling_descendant_meet
