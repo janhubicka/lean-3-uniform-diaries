@@ -112,10 +112,8 @@ theorem infiniteVectorGeometric_relativeMapBranch_comp
     (infiniteStrongPictureCanonicalMap hV₀ hV₁ hV₂
         (hf.comp hsigma)).relativeMapBranch_of_fixed_levels
         I hfixV B =
-      (infiniteStrongPictureCanonicalMap hU₀ hU₁ hU₂ hf)
-        .relativeMapBranch_of_fixed_levels I hfixU
-          ((infiniteStrongPictureCanonicalMap hS₀ hS₁ hS₂ hsigma)
-            .relativeMapBranch_of_fixed_levels I hfixS B) := by
+      (infiniteStrongPictureCanonicalMap hU₀ hU₁ hU₂ hf).relativeMapBranch_of_fixed_levels I hfixU
+          ((infiniteStrongPictureCanonicalMap hS₀ hS₁ hS₂ hsigma).relativeMapBranch_of_fixed_levels I hfixS B) := by
   apply Subtype.ext
   change
     (infiniteStrongPictureCanonicalMap hV₀ hV₁ hV₂
