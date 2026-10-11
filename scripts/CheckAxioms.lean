@@ -521,3 +521,9 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.unique_zero_node_of_same_sort
 #print axioms ThreeUniformDiaries.CoordNode.zero_node_le_of_same_sort
 #print axioms ThreeUniformDiaries.CoordNode.glued_root_child_below_iff_sort
+#print axioms ThreeUniformDiaries.CoordNode.commonAncestor_of_same_sort
+#print axioms ThreeUniformDiaries.CoordNode.rootGluedMeet_le_left
+#print axioms ThreeUniformDiaries.CoordNode.rootGluedMeet_le_right
+#print axioms ThreeUniformDiaries.CoordNode.rootGluedMeet_greatest
+#print axioms ThreeUniformDiaries.CoordNode.rootGluedMeet_different_sorts
+#print axioms ThreeUniformDiaries.CoordNode.rootGluedMeet_same_sort
