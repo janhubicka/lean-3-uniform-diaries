@@ -525,3 +525,9 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.gluedMeet_some_different
 #print axioms ThreeUniformDiaries.CoordNode.gluedSelectedLevel_strictMono
 #print axioms ThreeUniformDiaries.CoordNode.rootedGluedInfiniteStrong_root
+#print axioms ThreeUniformDiaries.CoordNode.sort_eq_of_le
+#print axioms ThreeUniformDiaries.CoordNode.sort_truncate
+#print axioms ThreeUniformDiaries.CoordNode.sort_meet
+#print axioms ThreeUniformDiaries.CoordNode.typedVectorOfStrong_enum
+#print axioms ThreeUniformDiaries.CoordNode.typedVectorOfStrong_one
+#print axioms ThreeUniformDiaries.CoordNode.typedVectorOfStrong_aux
