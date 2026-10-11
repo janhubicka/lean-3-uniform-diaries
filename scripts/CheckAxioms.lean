@@ -496,3 +496,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteAuxStrongPicture_completePrefix
 #print axioms ThreeUniformDiaries.CoordNode.infiniteOneStrongPicture_completePrefix
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumStrongPicture_completePrefix
+#print axioms ThreeUniformDiaries.CoordNode.infiniteVectorStrongPicture_completePrefix
