@@ -106,7 +106,7 @@ theorem exists_infiniteAux_geometric_composition
       hS hU hsigma hf n a bit
   have heq := infiniteAuxCanonicalMap_unique_of_cones
     hV G hmem hGroot hGsucc
-  exact ⟨V, hV, fun n a => heq n a |>.symm.symm⟩
+  exact ⟨V, hV, fun n a => (heq n a).symm⟩
 
 end CoordNode
 end ThreeUniformDiaries
