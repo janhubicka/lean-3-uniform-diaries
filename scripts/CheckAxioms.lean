@@ -434,3 +434,8 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.strongRelativeIndex_truncate
 #print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPicture_next_relative_exists
 #print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPicture_later_relative_exists
+#print axioms ThreeUniformDiaries.CoordNode.protectedGuide_mem_strong_picture
+#print axioms ThreeUniformDiaries.CoordNode.relativeProtectedChoice_mem
+#print axioms ThreeUniformDiaries.CoordNode.relativeProtectedChoice_level
+#print axioms ThreeUniformDiaries.CoordNode.relativeProtectedChoice_extends
+#print axioms ThreeUniformDiaries.CoordNode.relativeProtectedChoice_below_prescribed
