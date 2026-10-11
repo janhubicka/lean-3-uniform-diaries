@@ -20,7 +20,7 @@ is literally f_U ∘ f_S on every finite auxiliary type node.
 namespace ThreeUniformDiaries
 namespace CoordNode
 
-/-- Any two genuine infinite strong auxiliary pictures admit an actual
+/-- Any two genuine infinite strong auxiliary pictures have an actual
 strong composite picture whose recursive canonical auxiliary map
 coincides on ALL source nodes with the pointwise composite. -/
 theorem exists_infiniteAux_geometric_composition
