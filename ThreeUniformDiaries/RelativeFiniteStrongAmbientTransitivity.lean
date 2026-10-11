@@ -53,9 +53,9 @@ theorem relativeFiniteStrongPicture_to_ambient
     avoids_gaps_of_selected_levels V
       (fun j : Nat => f (sigma j)) hmono hlevels i
   have htLevel : f (sigma i) < level t := by
-    have hcov := covBy_level hcover
-    rw [hpLevel] at hcov
-    omega
+    have hlt : level p < level t := level_lt_of_lt hcover.lt
+    rw [hpLevel] at hlt
+    exact hlt
   exact (unique_above_selected_gap V hV.meet_closed
     (f (sigma i)) (f (sigma (i + 1))) hlt hgap
     z y t hz hy hzLevel hyLevel htz hty htLevel).symm
