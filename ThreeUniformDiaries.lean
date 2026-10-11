@@ -205,3 +205,4 @@ import ThreeUniformDiaries.RootGluedScalarStrong
 import ThreeUniformDiaries.RootGluedTypedStrongVector
 import ThreeUniformDiaries.RootGluedStrongCarrier
 import ThreeUniformDiaries.RootGluedStrongRootCones
+import ThreeUniformDiaries.RootGluedStrongSuccessorCones
