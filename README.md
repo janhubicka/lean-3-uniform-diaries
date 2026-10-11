@@ -36,9 +36,11 @@ theorems are checked in scripts/CheckAxioms.lean; no `sorry` or
 - Algebraic properties of abstract canonical maps, including
   composition and selected-cut type agreement (CanonicalMap,
   CanonicalAgreement).
-- A checked finite-colour Milliken consequence for homogeneous trees
-  and the conditional final Ramsey transfer through K_I
-  (MillikenFiniteColour, AuxRamseyTransfer).
+- A checked finite-colour and fixed-stem Milliken consequence for homogeneous
+  trees, now imported directly from the published `lean-milliken` application
+  API and re-exported by thin compatibility wrappers; and the conditional
+  final Ramsey transfer through K_I (MillikenFiniteColour,
+  MillikenAnchoredFiniteColour, AuxRamseyTransfer).
 
 ## Remaining Ramsey theorem obligations
 
