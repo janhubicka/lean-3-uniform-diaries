@@ -56,9 +56,9 @@ theorem relativeInfiniteStrongPicture_to_ambient
     have hcov := covBy_level hcover
     rw [hpLevel] at hcov
     omega
-  exact unique_above_selected_gap V hV.meet_closed
+  exact (unique_above_selected_gap V hV.meet_closed
     (f (sigma i)) (f (sigma (i + 1))) hlt hgap
-    z y t hz hy hzLevel hyLevel htz hty htLevel
+    z y t hz hy hzLevel hyLevel htz hty htLevel).symm
 
 end CoordNode
 end ThreeUniformDiaries
