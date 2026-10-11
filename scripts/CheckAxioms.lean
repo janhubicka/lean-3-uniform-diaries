@@ -481,3 +481,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_unique_of_cones
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_unique_of_cones
 #print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_composite_succ
+#print axioms ThreeUniformDiaries.OneNode.boundaryAux_truncate_of_lt
+#print axioms ThreeUniformDiaries.EnumNode.boundaryOne_truncate_of_lt
+#print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_boundaryAux_compat
+#print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_boundaryOne_compat
