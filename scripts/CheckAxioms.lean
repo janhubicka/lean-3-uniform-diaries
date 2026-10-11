@@ -501,3 +501,14 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.TypedVectorSubset.not_mem_wrong_sort
 #print axioms ThreeUniformDiaries.CoordNode.TypedVectorSubset.glue_injective
 #print axioms ThreeUniformDiaries.CoordNode.glued_selected_levels
+#print axioms ThreeUniformDiaries.CoordNode.gluedLE_refl
+#print axioms ThreeUniformDiaries.CoordNode.gluedLE_trans
+#print axioms ThreeUniformDiaries.CoordNode.gluedLE_antisymm
+#print axioms ThreeUniformDiaries.CoordNode.gluedLE_root
+#print axioms ThreeUniformDiaries.CoordNode.gluedLE_not_below_root
+#print axioms ThreeUniformDiaries.CoordNode.gluedLE_some_iff
+#print axioms ThreeUniformDiaries.CoordNode.gluedChild_root_iff
+#print axioms ThreeUniformDiaries.CoordNode.gluedChild_some_iff
+#print axioms ThreeUniformDiaries.CoordNode.gluedLE_level_mono
+#print axioms ThreeUniformDiaries.CoordNode.gluedChild_root_level
+#print axioms ThreeUniformDiaries.CoordNode.gluedChild_level_succ
