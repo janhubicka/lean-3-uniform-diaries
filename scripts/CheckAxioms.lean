@@ -505,3 +505,11 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.finite_nodes_of_bounded_level
 #print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPicture_finitePrefix_strong
 #print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_exists_infinite_extension
+#print axioms ThreeUniformDiaries.CoordNode.TypedVectorSubset.glue_injective
+#print axioms ThreeUniformDiaries.CoordNode.TypedVectorSubset.glue_ofGlued
+#print axioms ThreeUniformDiaries.CoordNode.TypedVectorSubset.ofGlued_glue
+#print axioms ThreeUniformDiaries.CoordNode.gluedLE_refl
+#print axioms ThreeUniformDiaries.CoordNode.gluedLE_trans
+#print axioms ThreeUniformDiaries.CoordNode.gluedLE_antisymm
+#print axioms ThreeUniformDiaries.CoordNode.gluedChild_level_succ
+#print axioms ThreeUniformDiaries.CoordNode.glued_ambient_milliken_hypotheses
