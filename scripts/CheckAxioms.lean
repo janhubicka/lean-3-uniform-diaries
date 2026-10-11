@@ -441,3 +441,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.relativeProtectedChoice_below_prescribed
 #print axioms ThreeUniformDiaries.CoordNode.relativeProtectedChoice_eq_truncate
 #print axioms ThreeUniformDiaries.CoordNode.relativeProtectedChoice_eq_selected
+#print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPicture_relative_siblings_meet
+#print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPicture_relative_sibling_descendant_meet
