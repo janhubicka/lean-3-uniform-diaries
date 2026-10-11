@@ -47,6 +47,7 @@ theorem exists_infiniteVector_geometric_composition
         (hV₀ : InfiniteStrongPicture V₀ (fun i => f (sigma i))
         (.enum (f (sigma 0))
           (infiniteEnumCanonicalMap hU₀ hU₁ hU₂ (sigma 0) rS₀).val)),
+        V₂ ⊆ U₂ ∧ V₁ ⊆ U₁ ∧ V₀ ⊆ U₀ ∧
         (∀ n (c : AuxNode n),
           (infiniteAuxCanonicalMap hV₂ n c).val =
             (infiniteAuxCanonicalMap hU₂ (sigma n)
@@ -59,10 +60,10 @@ theorem exists_infiniteVector_geometric_composition
           (infiniteEnumCanonicalMap hV₀ hV₁ hV₂ n a).val =
             (infiniteEnumCanonicalMap hU₀ hU₁ hU₂ (sigma n)
               (infiniteEnumCanonicalMap hS₀ hS₁ hS₂ n a).val).val) := by
-  obtain ⟨V₂, V₁, hV₂, hV₁, hAux, hOne⟩ :=
+  obtain ⟨V₂, V₁, hV₂, hV₁, hVU₂, hVU₁, hAux, hOne⟩ :=
     exists_infiniteOne_geometric_composition
       hS₁ hS₂ hU₁ hU₂ hsigma hf
-  obtain ⟨V₀, hV₀, hEV⟩ :=
+  obtain ⟨V₀, hV₀, hVU₀, hEV⟩ :=
     exists_infiniteEnum_image_completion
       hS₀ hS₁ hS₂ hU₀ hU₁ hU₂ hsigma hf
   let G₁ : (n : Nat) → OneNode n → OneNode (f (sigma n)) :=
@@ -101,7 +102,7 @@ theorem exists_infiniteVector_geometric_composition
       hS₀ hS₁ hS₂ hU₀ hU₁ hU₂ hsigma hf n a b
   have heq := infiniteEnumCanonicalMap_unique_of_cones
     hV₀ hV₁ hV₂ G₁ G₀ hG₁ hmem hroot hsucc
-  refine ⟨V₂, V₁, V₀, hV₂, hV₁, hV₀, hAux, hOne, ?_⟩
+  refine ⟨V₂, V₁, V₀, hV₂, hV₁, hV₀, hVU₂, hVU₁, hVU₀, hAux, hOne, ?_⟩
   intro n a
   exact (heq n a).symm
 
