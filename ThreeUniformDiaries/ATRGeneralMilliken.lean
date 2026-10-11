@@ -1,6 +1,7 @@
 import Milliken.GeneralTree.CanonicalPigeonhole
 import Milliken.GeneralTree.PigeonholeInterface
 import RamseySpace.AbstractEllentuck
+import ThreeUniformDiaries.MillikenFiniteColour
 import ThreeUniformDiaries.MillikenDependency
 
 /-!
