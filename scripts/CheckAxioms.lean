@@ -513,3 +513,11 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.gluedLE_antisymm
 #print axioms ThreeUniformDiaries.CoordNode.gluedChild_level_succ
 #print axioms ThreeUniformDiaries.CoordNode.glued_ambient_milliken_hypotheses
+#print axioms ThreeUniformDiaries.CoordNode.auxNode_zero_unique
+#print axioms ThreeUniformDiaries.CoordNode.oneNode_zero_unique
+#print axioms ThreeUniformDiaries.CoordNode.enumNode_zero_unique
+#print axioms ThreeUniformDiaries.CoordNode.sort_eq_of_le
+#print axioms ThreeUniformDiaries.CoordNode.sort_truncate
+#print axioms ThreeUniformDiaries.CoordNode.unique_zero_node_of_same_sort
+#print axioms ThreeUniformDiaries.CoordNode.zero_node_le_of_same_sort
+#print axioms ThreeUniformDiaries.CoordNode.glued_root_child_below_iff_sort
