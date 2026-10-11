@@ -174,7 +174,7 @@ theorem relativeNextLayer_protects
       rw [hpLevel, htLevel] at hlevels
       have hstrict : f i < f (i + 1) :=
         hf (Nat.lt_succ_self i)
-      exact (not_le_of_gt hstrict) hlevels
+      exact False.elim ((not_le_of_gt hstrict) hlevels)
   let g : RelativeGapChild U P f i :=
     ⟨p, hp, hpLevel, t, ht, htLevel, hpt⟩
   refine ⟨g.chosen hU E L hL, ⟨g, rfl⟩, ?_⟩
