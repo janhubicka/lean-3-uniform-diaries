@@ -47,7 +47,7 @@ theorem glue_ofGlued
       · intro _
         exact hroot
       · intro _
-        trivial
+        exact (ofGlued W).root_mem
   | some x =>
       rw [some_mem_iff]
       change (sort x = sort x ∧ some x ∈ W) ↔ some x ∈ W
