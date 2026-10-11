@@ -513,3 +513,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.gluedLE_antisymm
 #print axioms ThreeUniformDiaries.CoordNode.gluedChild_level_succ
 #print axioms ThreeUniformDiaries.CoordNode.glued_ambient_milliken_hypotheses
+#print axioms ThreeUniformDiaries.CoordNode.selectedGluedLevels_strictMono
+#print axioms ThreeUniformDiaries.CoordNode.TypedVectorSubset.truncateSelected_mem_iff
+#print axioms ThreeUniformDiaries.CoordNode.TypedVectorSubset.glue_truncateSelected_mem
+#print axioms ThreeUniformDiaries.CoordNode.TypedVectorSubset.glue_truncateSelected_levels
