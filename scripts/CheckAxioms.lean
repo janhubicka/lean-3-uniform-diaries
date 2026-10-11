@@ -512,3 +512,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.gluedLE_level_mono
 #print axioms ThreeUniformDiaries.CoordNode.gluedChild_root_level
 #print axioms ThreeUniformDiaries.CoordNode.gluedChild_level_succ
+#print axioms ThreeUniformDiaries.CoordNode.gluedChild_finite
+#print axioms ThreeUniformDiaries.CoordNode.gluedChild_exists
+#print axioms ThreeUniformDiaries.CoordNode.glued_ambient_milliken_hypotheses
