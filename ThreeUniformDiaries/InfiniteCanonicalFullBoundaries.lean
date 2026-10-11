@@ -36,6 +36,28 @@ theorem boundaryOne_truncate_of_lt {N : Nat}
   · simp [EnumNode.boundaryOne, EnumNode.truncate, hv, hjL]
   · simp [EnumNode.boundaryOne, hv]
 
+
+/-- A last-vertex singleton type agrees with its boundary record.
+The formal oneType definition tests only the second coordinate;
+support forces non-increasing pairs to zero. -/
+theorem oneType_self_eq_boundaryOne {N : Nat}
+    (a : EnumNode N) (j : Nat) :
+    a.oneType j j = a.boundaryOne j := by
+  apply OneNode.ext_pairs
+  funext x y
+  by_cases hv : x < y ∧ y < j
+  · simp [EnumNode.oneType, EnumNode.boundaryOne, hv, hv.2]
+  · by_cases hy : y < j
+    · have hxy : ¬ x < y := by
+        intro h
+        exact hv ⟨h, hy⟩
+      have hz : a.triple x y j = false := by
+        apply a.support
+        intro h
+        exact hxy h.1
+      simp [EnumNode.oneType, EnumNode.boundaryOne, hv, hy, hz]
+    · simp [EnumNode.oneType, EnumNode.boundaryOne, hv, hy]
+
 end EnumNode
 
 namespace CoordNode
@@ -100,6 +122,10 @@ theorem infiniteEnumCanonicalMap_boundaryOne_compat
           (f (j + 1))).boundaryOne (f j) := hboundTarget.symm
     _ = (infiniteEnumCanonicalMap h₀ h₁ h₂ (j + 1) W).val.boundaryOne
           (f j) := by rw [htr]
+    _ = (infiniteEnumCanonicalMap h₀ h₁ h₂ (j + 1) W).val.oneType
+          (f j) (f j) :=
+      (EnumNode.oneType_self_eq_boundaryOne
+        (infiniteEnumCanonicalMap h₀ h₁ h₂ (j + 1) W).val (f j)).symm
     _ = (infiniteOneCanonicalMap h₁ h₂ j (a.boundaryOne j)).val := hlast
 
 end CoordNode
