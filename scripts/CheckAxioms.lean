@@ -546,3 +546,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.gluedChild_iff_covBy
 #print axioms ThreeUniformDiaries.CoordNode.rootGluedRootedTree
 #print axioms ThreeUniformDiaries.CoordNode.rootGluedAmbientTree
+#print axioms ThreeUniformDiaries.ATRGeneralMilliken.anchoredFiniteColour_of_boundaryProductHL
+#print axioms ThreeUniformDiaries.ATRGeneralMilliken.ATRScalarRealization.finiteRamsey_of_boundaryProductHL
+#print axioms ThreeUniformDiaries.ATRGeneralMilliken.ATRScalarRealization.atrRamsey_of_boundaryProductHL
