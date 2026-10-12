@@ -596,3 +596,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.anchoredScalar_full_type_prefix
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.anchoredScalar_full_initial_levels
 #print axioms ThreeUniformDiaries.CoordNode.millikenStrong_exists_fixedlevel_finite_vector
+#print axioms ThreeUniformDiaries.CoordNode.relativeFiniteStrongPicture_to_ambient
