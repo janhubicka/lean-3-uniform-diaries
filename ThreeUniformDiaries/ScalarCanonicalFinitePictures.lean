@@ -23,6 +23,27 @@ open Milliken
 open Milliken.GeneralTree
 open ThreeUniformDiaries.CoordNode
 
+private theorem enum_root_cast {n m : Nat} (h : n = m)
+    (a : EnumNode n) :
+    CoordNode.enum n a =
+      CoordNode.enum m (Eq.mp (congrArg EnumNode h) a) := by
+  cases h
+  rfl
+
+private theorem one_root_cast {n m : Nat} (h : n = m)
+    (a : OneNode n) :
+    CoordNode.one n a =
+      CoordNode.one m (Eq.mp (congrArg OneNode h) a) := by
+  cases h
+  rfl
+
+private theorem aux_root_cast {n m : Nat} (h : n = m)
+    (a : AuxNode n) :
+    CoordNode.aux n a =
+      CoordNode.aux m (Eq.mp (congrArg AuxNode h) a) := by
+  cases h
+  rfl
+
 /-- Every scalar finite approximation containing the real glued root
 has genuine finite coordinate strong pictures parameterized by the
 ONE canonical level map of that approximation. -/
@@ -57,16 +78,13 @@ theorem finiteCode_has_canonical_pictures
     Eq.mp (congrArg AuxNode hg0) r₂
   have hr₀ : (CoordNode.enum (f 0) r₀) =
       CoordNode.enum (g 0) q₀ := by
-    cases hg0
-    rfl
+    exact enum_root_cast hg0 r₀
   have hr₁ : (CoordNode.one (f 0) r₁) =
       CoordNode.one (g 0) q₁ := by
-    cases hg0
-    rfl
+    exact one_root_cast hg0 r₁
   have hr₂ : (CoordNode.aux (f 0) r₂) =
       CoordNode.aux (g 0) q₂ := by
-    cases hg0
-    rfl
+    exact aux_root_cast hg0 r₂
   have hG₀ :=
     finiteStrongPicture_congr_finite_levels h₀ hfg
   have hG₁ :=
