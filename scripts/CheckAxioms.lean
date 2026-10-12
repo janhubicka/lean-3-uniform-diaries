@@ -564,3 +564,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.ATRGeneralMilliken.anchoredFiniteColour_of_boundaryProductHL
 #print axioms ThreeUniformDiaries.ATRGeneralMilliken.ATRScalarRealization.finiteRamsey_of_boundaryProductHL
 #print axioms ThreeUniformDiaries.ATRGeneralMilliken.ATRScalarRealization.atrRamsey_of_boundaryProductHL
+#print axioms ThreeUniformDiaries.CoordNode.meet_eq_meet_truncate_of_distinct
