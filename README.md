@@ -42,25 +42,45 @@ theorems are checked in scripts/CheckAxioms.lean; no `sorry` or
   final Ramsey transfer through K_I (MillikenFiniteColour,
   MillikenAnchoredFiniteColour, AuxRamseyTransfer).
 
+## The final Milliken application (12 October 2026)
+
+The CI-verified conditional application has now been merged as
+`ATRGeneralMilliken` and `ATRScalarMillikenTransfer`. The
+`ATRBoundaryMillikenApplication` module (on its integration branch)
+eliminates two artificial application hypotheses: arbitrary-tree A.4
+and Tychonoff closedness follow from the `lean-milliken` library
+under the one precise boundary-product HL condition.
+
+`ATRScalarRealization.atrRamsey_of_boundaryProductHL` consequently
+has exactly two mathematical proof inputs, both visible in its type:
+`HasBoundaryProductHL U` and `ATRScalarRealization C U`. It does
+**not** claim an unconditional proof of manuscript Theorem ramsey.
+The original finite-subtree/strong-refinement realization theorem in
+`lean-milliken` PR #92 is now checked and merged, removing that
+separate possible gap in the use of Milliken 1979.
+
 ## Remaining Ramsey theorem obligations
 
-1. Construct the **concrete canonical maps** from strong vector
-   subtrees of the three type trees, and check Lemmas canonical,
-   auxtypeemb and canonicalcomposition at that concrete interface.
-2. Verify the **finite strong-tree encoding** in manuscript Lemma
-   Aemb: the three meet-closed sets of enumeration/1-type/aux-type
-   nodes, their completion to synchronized strong subtrees, and the
-   precise finite encoding identity.
-3. Connect the actual finite, finitely branching **vector Milliken**
-   theorem to the existing homogeneous-tree Lean dependency. The
-   checked `homogeneousMillikenFiniteColouring` alone is not a
-   verification of the vector-tree statement in the manuscript.
-4. Instantiate the existing `AuxRamseyCoding` transfer with those
-   constructions and obtain the unconditional Ramsey theorem.
-
-The distinction between a checked conditional deduction and a checked
-unconditional theorem is intentional; do not mark manuscript
-Theorem ramsey fully verified until these obligations are discharged.
+1. Build a genuine `Milliken.AmbientTree` from the root-glued
+   E0/E1/E2 type forests, including the rooted meet/order and predecessor
+   data. Their direct carrier, level, finite-child, and pruning
+   properties are already checked. A bare meet-preserving encoding
+   is insufficient.
+2. Construct the **concrete** `ATRScalarRealization` and the
+   corresponding `AuxRamseyCoding` instance, including both directions
+   of the strong vector/scalar correspondence, fixed-stem decoding,
+   and realization of every refined finite code. Much of the finite
+   completion and genuine infinite canonical-map composition has
+   already been proved in separate modules.
+3. Supply an actual proof of heterogeneous boundary-product
+   Halpern--Läuchli (`HasBoundaryProductHL U`) for the constructed
+   ambient tree, or import a genuinely unconditional general-tree
+   theorem once available. The upstream theorem presently remains
+   conditional at precisely this interface; there is no global
+   uniform branching bound.
+4. Apply the checked final theorem to those concrete objects and
+   upgrade the manuscript validation marker only after the unclosed
+   inputs disappear from the type.
 
 ## Repaired C2 induction
 
