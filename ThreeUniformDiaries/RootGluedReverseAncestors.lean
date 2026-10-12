@@ -46,8 +46,9 @@ theorem millikenCoordinate_firstRoot_le
   | none =>
       have hlevel := hz.2
       rw [hlevels, selectedGluedLevels_succ] at hlevel
-      have hzero :=
-        rootGluedAmbient_level_eq_gluedLevel (none : WithBot CoordNode)
+      have hzero : rootGluedAmbientTree.level
+          (none : WithBot CoordNode) = 0 := by
+        exact rootGluedAmbientTree.level_root
       change rootGluedAmbientTree.level
         (none : WithBot CoordNode) = f 0 + 1 at hlevel
       omega
