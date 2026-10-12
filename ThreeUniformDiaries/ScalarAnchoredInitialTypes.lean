@@ -24,7 +24,7 @@ open Milliken
 open Milliken.GeneralTree
 open ThreeUniformDiaries.CoordNode
 
-private def scalarIdentity :
+private noncomputable def scalarIdentity :
     StrongSubtree CoordNode.rootGluedAmbientTree :=
   identityStrongSubtree CoordNode.rootGluedAmbientTree
 
@@ -61,7 +61,7 @@ theorem anchoredScalar_full_type_prefix
     (hstem : r (n + 1) S = r (n + 1) scalarIdentity)
     (j : Nat) (hj : j < n)
     (x : CoordNode) (hx : CoordNode.level x = j) :
-    x ∈ CoordNode.millikenCoordinateSlice S (CoordNode.sort x) := by
+    (some x : WithBot CoordNode) ∈ S.carrier := by
   have hcarrier :
       S.initialPart (n + 1) =
         scalarIdentity.initialPart (n + 1) :=
@@ -80,7 +80,7 @@ theorem anchoredScalar_full_type_prefix
       rw [hcarrier]
       exact hId
     exact hPart.1
-  exact ⟨rfl, hS⟩
+  exact hS
 
 /-- The complete protected source prefix, stated uniformly for all
 three genuine type-tree coordinates. -/
@@ -91,9 +91,8 @@ theorem anchoredScalar_full_initial_levels
     ∀ (i : Fin 3) (j : Nat), j < n →
       ∀ x : CoordNode, CoordNode.sort x = i →
         CoordNode.level x = j →
-        x ∈ CoordNode.millikenCoordinateSlice S i := by
+        (some x : WithBot CoordNode) ∈ S.carrier := by
   intro i j hj x hs hx
-  rw [← hs]
   exact anchoredScalar_full_type_prefix S n hstem j hj x hx
 
 end ATRFiniteDecoder
