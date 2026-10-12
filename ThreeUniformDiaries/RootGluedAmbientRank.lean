@@ -29,10 +29,9 @@ theorem rootGluedAmbient_level_coe (x : CoordNode) :
     | h n ih =>
       intro y hy
       by_cases hn : n = 0
-      · subst n
-        have hrootchild : gluedChild (⊥ : WithBot CoordNode) (y : WithBot CoordNode) := by
+      · have hrootchild : gluedChild (⊥ : WithBot CoordNode) (y : WithBot CoordNode) := by
           change level y = 0
-          exact hy
+          exact hy.trans hn
         have hcov :
             (⊥ : WithBot CoordNode) ⋖ (y : WithBot CoordNode) :=
           (gluedChild_iff_covBy _ _).mp hrootchild
@@ -40,7 +39,7 @@ theorem rootGluedAmbient_level_coe (x : CoordNode) :
         have hroot : U.level (⊥ : WithBot CoordNode) = 0 :=
           U.level_root
         rw [hroot] at hlevel
-        simpa only [Nat.zero_add] using hlevel
+        simpa [hn] using hlevel
       · have hnpos : 0 < n := by omega
         let p := truncate y (n - 1)
         have hpLevel : level p = n - 1 := by simp [p]
@@ -50,6 +49,7 @@ theorem rootGluedAmbient_level_coe (x : CoordNode) :
           omega
         have hpChild : p ⋖ y := by
           apply SuccessorTree.LevelTree.covBy_of_le_level_succ hpLe
+          change level y = level p + 1
           rw [hpLevel, hy]
           omega
         have hcov :
