@@ -610,3 +610,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.finiteCode_eq_of_approx_eq
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.finiteCode_has_genuine_pictures
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.decodeFiniteShape_of_root
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.anchoredScalar_finite_vector_full_prefix
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.anchoredScalar_exists_finiteRelativeBranchMap
