@@ -53,12 +53,10 @@ theorem millikenCoordinate_unique_first_root
         S.levels 0 := by
     rw [hlevels, selectedGluedLevels_zero]
     exact rootGluedAmbientTree.level_root
-  have hchild :
-      (none : WithBot CoordNode) ⋖ (some t : WithBot CoordNode) := by
-    have hglued : gluedChild (none : GluedNode) (some t : GluedNode) := by
-      change level t = 0
-      exact ht
-    exact (gluedChild_iff_covBy _ _).mp hglued
+  have hglued : gluedChild (none : GluedNode) (some t : GluedNode) := by
+    change level t = 0
+    exact ht
+  have hchild := (gluedChild_iff_covBy _ _).mp hglued
   obtain ⟨z, hz, hunique⟩ :=
     S.successor_unique 0 (none : WithBot CoordNode)
       hrootmem hrootlevel (some t : WithBot CoordNode) hchild
@@ -70,8 +68,10 @@ theorem millikenCoordinate_unique_first_root
       have hrlevel : level r = f 0 := by
         have hlev := hz.2.1
         rw [hlevels, selectedGluedLevels_succ] at hlev
-        have hrank := rootGluedAmbient_level_coe r
-        omega
+        change rootGluedAmbientTree.level
+          (r : WithBot CoordNode) = f 0 + 1 at hlev
+        exact Nat.succ.inj
+          ((rootGluedAmbient_level_coe r).symm.trans hlev)
       have hrsort : sort r = sort t :=
         (sort_eq_of_le (WithBot.coe_le_coe.mp hz.2.2)).symm
       refine ⟨r, ⟨⟨hrsort, hz.1⟩, hrlevel⟩, ?_⟩
@@ -83,8 +83,10 @@ theorem millikenCoordinate_unique_first_root
           rootGluedAmbientTree.level (some s : WithBot CoordNode) =
             S.levels 1 := by
         rw [hlevels, selectedGluedLevels_succ]
-        have hrank := rootGluedAmbient_level_coe s
-        omega
+        change rootGluedAmbientTree.level
+          (s : WithBot CoordNode) = f 0 + 1
+        exact (rootGluedAmbient_level_coe s).trans
+          (congrArg Nat.succ hs.2)
       have heq : (some s : WithBot CoordNode) = some r :=
         hunique (some s)
           ⟨hs.1.2, hslevel, WithBot.coe_le_coe.mpr hst⟩
@@ -113,12 +115,10 @@ theorem millikenCoordinate_next_child
     change rootGluedAmbientTree.level (p : WithBot CoordNode) = f j + 1
     exact (rootGluedAmbient_level_coe p).trans
       (congrArg Nat.succ hpLevel)
-  have hchild :
-      (some p : WithBot CoordNode) ⋖ (some t : WithBot CoordNode) := by
-    have hglued : gluedChild (some p : GluedNode) (some t : GluedNode) := by
-      change p ⋖ t
-      exact hpt
-    exact (gluedChild_iff_covBy _ _).mp hglued
+  have hglued : gluedChild (some p : GluedNode) (some t : GluedNode) := by
+    change p ⋖ t
+    exact hpt
+  have hchild := (gluedChild_iff_covBy _ _).mp hglued
   obtain ⟨z, hz, hunique⟩ :=
     S.successor_unique (j + 1) (some p : WithBot CoordNode)
       hpx hplevel (some t : WithBot CoordNode) hchild
@@ -130,8 +130,10 @@ theorem millikenCoordinate_next_child
       have hqlevel : level q = f (j + 1) := by
         have hlev := hz.2.1
         rw [hlevels, selectedGluedLevels_succ] at hlev
-        have hrank := rootGluedAmbient_level_coe q
-        omega
+        change rootGluedAmbientTree.level
+          (q : WithBot CoordNode) = f (j + 1) + 1 at hlev
+        exact Nat.succ.inj
+          ((rootGluedAmbient_level_coe q).symm.trans hlev)
       have hqi : sort q = i := by
         have htp : sort p = sort t := sort_eq_of_le hpt.le
         have htq : sort t = sort q :=
@@ -143,8 +145,10 @@ theorem millikenCoordinate_next_child
           rootGluedAmbientTree.level (some q' : WithBot CoordNode) =
             S.levels ((j + 1) + 1) := by
         rw [hlevels, selectedGluedLevels_succ]
-        have hrank := rootGluedAmbient_level_coe q'
-        omega
+        change rootGluedAmbientTree.level
+          (q' : WithBot CoordNode) = f (j + 1) + 1
+        exact (rootGluedAmbient_level_coe q').trans
+          (congrArg Nat.succ hq'.2.1)
       have heq : (some q' : WithBot CoordNode) = some q :=
         hunique (some q')
           ⟨hq'.1.2, hq'level, WithBot.coe_le_coe.mpr hq'.2.2⟩
