@@ -91,11 +91,11 @@ theorem finiteCode_has_genuine_pictures
       ∃ (r₀ : EnumNode (f 0))
         (r₁ : OneNode (f 0))
         (r₂ : AuxNode (f 0)),
-          FiniteStrongPicture (finiteTypedCarrier k a).carrier 0
+          FiniteStrongPicture ((finiteTypedCarrier k a).carrier 0)
             f k (.enum (f 0) r₀) ∧
-          FiniteStrongPicture (finiteTypedCarrier k a).carrier 1
+          FiniteStrongPicture ((finiteTypedCarrier k a).carrier 1)
             f k (.one (f 0) r₁) ∧
-          FiniteStrongPicture (finiteTypedCarrier k a).carrier 2
+          FiniteStrongPicture ((finiteTypedCarrier k a).carrier 2)
             f k (.aux (f 0) r₂) := by
   let S : StrongSubtree CoordNode.rootGluedAmbientTree :=
     Classical.choose a.realised
@@ -104,7 +104,7 @@ theorem finiteCode_has_genuine_pictures
   have hmem : (none : WithBot CoordNode) ∈ S.carrier :=
     (hS ▸ hroot).1
   have hSroot : S.root = (none : WithBot CoordNode) := by
-    apply le_antisymm
+    apply _root_.le_antisymm
     · exact S.root_below _ hmem
     · exact bot_le
   obtain ⟨F, r₀, r₁, r₂, hf, h₀, h₁, h₂, hF⟩ :=
