@@ -524,3 +524,17 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.ATRGeneralMilliken.ATRScalarRealization.finiteRamsey_of_generalMilliken
 #print axioms ThreeUniformDiaries.ATRGeneralMilliken.ATRScalarRealization.atrRamsey_of_generalMilliken
 #print axioms ThreeUniformDiaries.ATRGeneralMilliken.ATRScalarRealization.atrRamsey_of_generalA4_closed
+#print axioms ThreeUniformDiaries.CoordNode.auxNode_zero_unique
+#print axioms ThreeUniformDiaries.CoordNode.oneNode_zero_unique
+#print axioms ThreeUniformDiaries.CoordNode.enumNode_zero_unique
+#print axioms ThreeUniformDiaries.CoordNode.sort_eq_of_le
+#print axioms ThreeUniformDiaries.CoordNode.sort_truncate
+#print axioms ThreeUniformDiaries.CoordNode.unique_zero_node_of_same_sort
+#print axioms ThreeUniformDiaries.CoordNode.zero_node_le_of_same_sort
+#print axioms ThreeUniformDiaries.CoordNode.glued_root_child_below_iff_sort
+#print axioms ThreeUniformDiaries.CoordNode.forestPred_le
+#print axioms ThreeUniformDiaries.CoordNode.forestPred_level_of_pos
+#print axioms ThreeUniformDiaries.CoordNode.forestPred_isMin_of_le
+#print axioms ThreeUniformDiaries.CoordNode.forest_le_pred_of_lt
+#print axioms ThreeUniformDiaries.CoordNode.forest_strictRank
+#print axioms ThreeUniformDiaries.CoordNode.forest_exists_pred_iterate_of_le
