@@ -41,7 +41,7 @@ theorem finiteCoordinateHeights_strictMono
   have hlevels := S.levels_strictMono hlt
   have hpos : 0 < S.levels (i.val + 1) := by
     have h := S.levels_strictMono (Nat.zero_lt_succ i.val)
-    omega
+    exact lt_of_le_of_lt (Nat.zero_le _) h
   rw [hei, hej]
   change S.levels (i.val + 1) - 1 <
     S.levels (j.val + 1) - 1
