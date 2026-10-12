@@ -66,8 +66,10 @@ theorem millikenStrong_levels_zero_of_root
     S.levels 0 = 0 := by
   have h := S.root_level
   rw [hroot] at h
-  have h0 := rootGluedAmbientTree.level_root
-  omega
+  have h0 : rootGluedAmbientTree.level
+      (none : WithBot CoordNode) = 0 :=
+    rootGluedAmbientTree.level_root
+  exact h.symm.trans h0
 
 /-- Every scalar strong subtree with the added root admits the exact
 finite coordinate prefix presentation, even if its later selected
