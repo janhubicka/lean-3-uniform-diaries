@@ -219,3 +219,4 @@ import ThreeUniformDiaries.RootGluedActualFiniteApprox
 import ThreeUniformDiaries.ATRBoundaryMillikenApplication
 import ThreeUniformDiaries.RootGluedReverseCoordinate
 import ThreeUniformDiaries.RootGluedReverseAncestors
+import ThreeUniformDiaries.RootGluedReverseTruncation
