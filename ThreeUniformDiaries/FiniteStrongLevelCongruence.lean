@@ -1,4 +1,4 @@
-import ThreeUniformDiaries.FiniteStrongCompletion
+import ThreeUniformDiaries.FiniteStrongRootLevel
 
 /-!
 # A finite geometric strong picture depends only on its finite heights
