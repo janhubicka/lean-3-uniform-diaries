@@ -215,3 +215,5 @@ import ThreeUniformDiaries.TypeForestPredOrder
 import ThreeUniformDiaries.RootGluedAmbientTree
 import ThreeUniformDiaries.RootGluedAmbientRank
 import ThreeUniformDiaries.RootGluedGeneralStrong
+import ThreeUniformDiaries.RootGluedActualFiniteApprox
+import ThreeUniformDiaries.ATRBoundaryMillikenApplication
