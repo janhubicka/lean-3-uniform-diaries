@@ -30,11 +30,13 @@ theorem millikenStrong_root_eq_gluedRoot
   have hrank : rootGluedAmbientTree.level S.root = 0 :=
     S.root_level.trans hzero
   cases h : S.root with
-  | none => exact h
+  | none => rfl
   | some z =>
       have hl : rootGluedAmbientTree.level
           (z : WithBot CoordNode) = 0 := by
-        simpa only [h] using hrank
+        change rootGluedAmbientTree.level
+          (z : WithBot CoordNode) = 0 at hrank
+        exact hrank
       have hp := rootGluedAmbient_level_coe z
       omega
 
@@ -59,9 +61,14 @@ theorem millikenStrong_initialPart_eq_gluedTruncation
         exact (V.truncateSelected f k).root_mem
       · intro _
         have hmem : (⊥ : WithBot CoordNode) ∈ S.carrier := by
-          simpa only [hroot] using S.root_mem
-        exact ⟨hmem, 0, Nat.zero_lt_succ k,
-          by exact rootGluedAmbientTree.level_root⟩
+          have hmem' := S.root_mem
+          rw [hroot] at hmem'
+          exact hmem'
+        refine ⟨hmem, 0, Nat.zero_lt_succ k, ?_⟩
+        change rootGluedAmbientTree.level
+          (⊥ : WithBot CoordNode) = S.levels 0
+        rw [hlevels, selectedGluedLevels_zero]
+        exact rootGluedAmbientTree.level_root
   | some x =>
       constructor
       · rintro ⟨hx, j, hj, hlevel⟩
@@ -69,14 +76,19 @@ theorem millikenStrong_initialPart_eq_gluedTruncation
         | zero =>
             have hzero :
                 rootGluedAmbientTree.level (x : WithBot CoordNode) = 0 := by
-              simpa only [hlevels, selectedGluedLevels_zero] using hlevel
+              rw [hlevels, selectedGluedLevels_zero] at hlevel
+              change rootGluedAmbientTree.level
+                (x : WithBot CoordNode) = 0 at hlevel
+              exact hlevel
             have hp := rootGluedAmbient_level_coe x
             omega
         | succ j =>
             have hjk : j < k := by omega
             have hxlevel : level x = f j := by
-              rw [hlevels, selectedGluedLevels_succ,
-                rootGluedAmbient_level_coe] at hlevel
+              rw [hlevels, selectedGluedLevels_succ] at hlevel
+              change rootGluedAmbientTree.level
+                (x : WithBot CoordNode) = f j + 1 at hlevel
+              have hrank := rootGluedAmbient_level_coe x
               omega
             have hV : x ∈ V.carrier (sort x) := ⟨rfl, hx⟩
             exact ((V.truncateSelected f k).some_mem_iff x).mpr
@@ -86,8 +98,10 @@ theorem millikenStrong_initialPart_eq_gluedTruncation
           ((V.truncateSelected f k).some_mem_iff x).mp hx
         have hS : (x : WithBot CoordNode) ∈ S.carrier := hV.2
         refine ⟨hS, j + 1, Nat.succ_lt_succ hjk, ?_⟩
-        rw [hlevels, selectedGluedLevels_succ,
-          rootGluedAmbient_level_coe]
+        rw [hlevels, selectedGluedLevels_succ]
+        change rootGluedAmbientTree.level
+          (x : WithBot CoordNode) = f j + 1
+        have hrank := rootGluedAmbient_level_coe x
         omega
 
 end CoordNode
