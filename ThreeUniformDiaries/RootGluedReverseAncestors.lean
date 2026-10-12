@@ -38,6 +38,8 @@ theorem millikenCoordinate_firstRoot_le
     by_contra hnot
     have hmzero : m = 0 := by omega
     rw [hmzero, hlevels, selectedGluedLevels_zero] at hm
+    change rootGluedAmbientTree.level
+      (x : WithBot CoordNode) = 0 at hm
     have hrank := rootGluedAmbient_level_coe x
     omega
   obtain ⟨z, hz, hzx⟩ :=
@@ -60,8 +62,10 @@ theorem millikenCoordinate_firstRoot_le
       have hplevel : level p = f 0 := by
         have hlev := hz.2
         rw [hlevels, selectedGluedLevels_succ] at hlev
-        have hrank := rootGluedAmbient_level_coe p
-        omega
+        change rootGluedAmbientTree.level
+          (p : WithBot CoordNode) = f 0 + 1 at hlev
+        exact Nat.succ.inj
+          ((rootGluedAmbient_level_coe p).symm.trans hlev)
       have hpc : p = chosen :=
         hunique p ⟨⟨hpsort, hz.1⟩, hplevel⟩
       have hrp : r = p := hre.trans hpc.symm
@@ -83,13 +87,17 @@ theorem millikenCoordinate_selected_levels
   cases m with
   | zero =>
       rw [hlevels, selectedGluedLevels_zero] at hm
+      change rootGluedAmbientTree.level
+        (x : WithBot CoordNode) = 0 at hm
       have hrank := rootGluedAmbient_level_coe x
       omega
   | succ j =>
       refine ⟨j, ?_⟩
       rw [hlevels, selectedGluedLevels_succ] at hm
-      have hrank := rootGluedAmbient_level_coe x
-      omega
+      change rootGluedAmbientTree.level
+        (x : WithBot CoordNode) = f j + 1 at hm
+      exact Nat.succ.inj
+        ((rootGluedAmbient_level_coe x).symm.trans hm)
 
 /-- Every selected coordinate height is populated, including heights
 arbitrarily far above the root, by repeatedly following actual
