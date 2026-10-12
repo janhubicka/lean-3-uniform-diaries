@@ -548,3 +548,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.rootGluedAmbientTree
 #print axioms ThreeUniformDiaries.CoordNode.rootGluedAmbient_level_coe
 #print axioms ThreeUniformDiaries.CoordNode.rootGluedAmbient_level_eq_gluedLevel
+#print axioms ThreeUniformDiaries.CoordNode.millikenStrong_root_eq_gluedRoot
+#print axioms ThreeUniformDiaries.CoordNode.millikenStrong_initialPart_eq_gluedTruncation
