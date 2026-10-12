@@ -616,3 +616,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_congr_finite_levels
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.finiteCode_has_canonical_pictures
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.finiteCode_canonical_strictMono
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.protectedScalarApprox_exists_canonicalRelativeBranchMap
