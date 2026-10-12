@@ -1,5 +1,6 @@
 import ThreeUniformDiaries.InfiniteToFiniteStrongPrefix
 import ThreeUniformDiaries.RootGluedSelectedStem
+import ThreeUniformDiaries.RootGluedTypedStrongVector
 
 /-!
 # Exact agreement of finite strong prefixes with selected source levels
