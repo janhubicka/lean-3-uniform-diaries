@@ -129,7 +129,7 @@ theorem millikenCoordinate_next_child
         have htp : sort p = sort t := sort_eq_of_le hpt.le
         have htq : sort t = sort q :=
           sort_eq_of_le (WithBot.coe_le_coe.mp hz.2.2)
-        exact (htp.symm.trans hp.1).symm.trans htq.symm
+        exact htq.symm.trans (htp.symm.trans hp.1)
       refine ⟨q, ⟨⟨hqi, hz.1⟩, hqlevel, WithBot.coe_le_coe.mp hz.2.2⟩, ?_⟩
       intro q' hq'
       have hq'level :
@@ -140,7 +140,7 @@ theorem millikenCoordinate_next_child
         omega
       have heq : (some q' : WithBot CoordNode) = some q :=
         hunique (some q')
-          ⟨hq'.1.1.2, hq'level, WithBot.coe_le_coe.mpr hq'.2.2⟩
+          ⟨hq'.1.2, hq'level, WithBot.coe_le_coe.mpr hq'.2.2⟩
       exact Option.some.inj heq
 
 end CoordNode
