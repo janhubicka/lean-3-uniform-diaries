@@ -570,3 +570,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.millikenCoordinate_firstRoot_le
 #print axioms ThreeUniformDiaries.CoordNode.millikenCoordinate_selected_levels
 #print axioms ThreeUniformDiaries.CoordNode.millikenCoordinate_all_levels
+#print axioms ThreeUniformDiaries.CoordNode.millikenCoordinate_selected_truncate_mem
