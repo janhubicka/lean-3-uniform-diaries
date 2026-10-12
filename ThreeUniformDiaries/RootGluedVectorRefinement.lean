@@ -37,6 +37,7 @@ theorem typedVector_glue_subset_iff
     have hs : sort x = i := V.correctlyTyped i x hx
     have hV : some x ∈ V.glue := by
       apply (V.some_mem_iff x).mpr
+      change x ∈ V.carrier (sort x)
       simpa only [hs] using hx
     have hW : x ∈ W.carrier (sort x) :=
       (W.some_mem_iff x).mp (h hV)
@@ -86,9 +87,9 @@ theorem gluedVectorStrong_refines_iff
     · simpa only [V, W, typedVectorOfStrong_aux] using h 2
   · rintro ⟨h₀, h₁, h₂⟩ i
     fin_cases i
-    · simpa only [V, W, typedVectorOfStrong_enum] using h₀
-    · simpa only [V, W, typedVectorOfStrong_one] using h₁
-    · simpa only [V, W, typedVectorOfStrong_aux] using h₂
+    · simpa [V, W, typedVectorOfStrong] using h₀
+    · simpa [V, W, typedVectorOfStrong] using h₁
+    · simpa [V, W, typedVectorOfStrong] using h₂
 
 /-- A genuine synchronized vector strong picture has exactly the
 expected first k vector levels inside its scalar Milliken finite
