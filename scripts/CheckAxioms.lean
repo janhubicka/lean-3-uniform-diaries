@@ -538,3 +538,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.forest_le_pred_of_lt
 #print axioms ThreeUniformDiaries.CoordNode.forest_strictRank
 #print axioms ThreeUniformDiaries.CoordNode.forest_exists_pred_iterate_of_le
+#print axioms ThreeUniformDiaries.ATRGeneralMilliken.anchoredFiniteColour_of_boundaryProductHL
+#print axioms ThreeUniformDiaries.ATRGeneralMilliken.ATRScalarRealization.finiteRamsey_of_boundaryProductHL
+#print axioms ThreeUniformDiaries.ATRGeneralMilliken.ATRScalarRealization.atrRamsey_of_boundaryProductHL
