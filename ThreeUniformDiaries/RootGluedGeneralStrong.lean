@@ -141,8 +141,12 @@ noncomputable def gluedVectorStrong_to_milliken
         cases z with
         | none =>
             change rootGluedAmbientTree.level
-              (⊥ : WithBot CoordNode) = f (i + 1) + 1 at hzlevel
-            rw [rootGluedAmbientTree.level_root] at hzlevel
+              (none : WithBot CoordNode) = f (i + 1) + 1 at hzlevel
+            have hzero : gluedLevel (none : WithBot CoordNode) =
+                f (i + 1) + 1 :=
+              (rootGluedAmbient_level_eq_gluedLevel
+                (none : WithBot CoordNode)).symm.trans hzlevel
+            change (0 : Nat) = f (i + 1) + 1 at hzero
             omega
         | some z =>
             have hzlevel' : level z = f (i + 1) := by
@@ -190,8 +194,12 @@ noncomputable def gluedVectorStrong_to_milliken
         cases x with
         | none =>
             change rootGluedAmbientTree.level
-              (⊥ : WithBot CoordNode) = f i + 1 at hxlevel
-            rw [rootGluedAmbientTree.level_root] at hxlevel
+              (none : WithBot CoordNode) = f i + 1 at hxlevel
+            have hzero : gluedLevel (none : WithBot CoordNode) =
+                f i + 1 :=
+              (rootGluedAmbient_level_eq_gluedLevel
+                (none : WithBot CoordNode)).symm.trans hxlevel
+            change (0 : Nat) = f i + 1 at hzero
             omega
         | some x =>
             have hxlevel' :
