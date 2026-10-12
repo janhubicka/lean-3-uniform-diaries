@@ -585,3 +585,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.millikenCoordinate_meet_closed
 #print axioms ThreeUniformDiaries.CoordNode.millikenCoordinate_exists_infiniteStrong
 #print axioms ThreeUniformDiaries.CoordNode.millikenCoordinate_exists_infiniteStrong_of_root
+#print axioms ThreeUniformDiaries.CoordNode.millikenStrong_exists_actual_vector
+#print axioms ThreeUniformDiaries.CoordNode.millikenStrong_recovered_vector_carrier
