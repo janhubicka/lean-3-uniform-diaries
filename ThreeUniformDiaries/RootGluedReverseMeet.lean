@@ -145,7 +145,7 @@ theorem millikenCoordinate_meet_closed
     · have hxy : x ≤ y := by
         refine ⟨by rw [hxa, hyb]; exact hf.monotone hab, ?_⟩
         rw [hxa]
-        exact heq
+        exact heq.symm
       have hmeet : meet x y = x :=
         le_antisymm (meet_le_left hcommon)
           (le_meet (le_refl x) hxy)
@@ -176,7 +176,7 @@ theorem millikenCoordinate_meet_closed
     · have hyx : y ≤ x := by
         refine ⟨by rw [hyb, hxa]; exact hf.monotone hba, ?_⟩
         rw [hyb]
-        exact heq
+        exact heq.symm
       have hmeet : meet x y = y :=
         le_antisymm (meet_le_right hcommon)
           (le_meet hyx (le_refl y))
