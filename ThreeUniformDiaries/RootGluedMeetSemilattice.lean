@@ -3,21 +3,20 @@ import ThreeUniformDiaries.RootGluedZeroLevelRigidity
 /-!
 # The actual meet-semilattice of the root-glued type forest
 
-The added scalar root is the meet of nodes belonging to different
-coordinates. Within one coordinate, the meet is the actual prefix
-meet already verified for E0/E1/E2. There is no new representative:
-the meet remains the greatest common predecessor in the glued
-ancestry order, even with unbounded branching at later levels.
+The extra scalar root is the meet of nodes belonging to distinct
+coordinates. Within a coordinate, the meet is the verified greatest
+common prefix of its E0/E1/E2 type nodes. We work in `WithBot CoordNode`,
+the order-theoretic bottom-extension of the actual coordinate forest;
+this is canonically equivalent to the previously used Option carrier.
 
-These are the SemilatticeInf axioms required for Mathlib RootedTree
-and thus for the new Milliken.GeneralTree.AmbientTree instance.
+All meet laws are proved from genuine prefix meets. The further
+predecessor/RootedTree packaging is a separate obligation.
 -/
 
 namespace ThreeUniformDiaries
 namespace CoordNode
 
-/-- Two nodes of the same type-tree sort have their common
-level-zero predecessor, so the original forest meet is valid. -/
+/-- Same-coordinate nodes have a common level-zero ancestor. -/
 theorem commonAncestor_of_same_sort
     (x y : CoordNode) (hxy : sort x = sort y) :
     ∃ c : CoordNode, c ≤ x ∧ c ≤ y := by
@@ -34,51 +33,54 @@ theorem commonAncestor_of_same_sort
   rw [hcY]
   exact truncate_le y (Nat.zero_le _)
 
-/-- The scalar meet: the new root joins different coordinate
-types, whereas same-sort nodes use their exact old prefix meet. -/
+/-- The actual greatest common ancestor in the bottom-extended
+root-glued forest. -/
 noncomputable def rootGluedMeet :
-    WithBot CoordNode → WithBot CoordNode
-  | none, _ => none
-  | _, none => none
-  | some x, some y =>
-      if sort x = sort y then some (meet x y) else none
+    WithBot CoordNode → WithBot CoordNode → WithBot CoordNode
+  | .bot, _ => ⊥
+  | _, .bot => ⊥
+  | .coe x, .coe y =>
+      if sort x = sort y then (meet x y : WithBot CoordNode) else ⊥
 
 theorem rootGluedMeet_le_left (a b : WithBot CoordNode) :
     rootGluedMeet a b ≤ a := by
   cases a with
-  | none =>
-      exact bot_le
-  | some x =>
+  | bot => exact bot_le
+  | coe x =>
       cases b with
-      | none => exact bot_le
-      | some y =>
+      | bot => exact bot_le
+      | coe y =>
           by_cases hxy : sort x = sort y
           · change (if sort x = sort y then
-                (some (meet x y) : WithBot CoordNode) else none) ≤ some x
+                (meet x y : WithBot CoordNode) else ⊥) ≤
+                (x : WithBot CoordNode)
             rw [if_pos hxy]
-            change meet x y ≤ x
-            exact meet_le_left (commonAncestor_of_same_sort x y hxy)
+            exact WithBot.coe_le_coe.mpr
+              (meet_le_left (commonAncestor_of_same_sort x y hxy))
           · change (if sort x = sort y then
-                (some (meet x y) : WithBot CoordNode) else none) ≤ some x
+                (meet x y : WithBot CoordNode) else ⊥) ≤
+                (x : WithBot CoordNode)
             rw [if_neg hxy]
             exact bot_le
 
 theorem rootGluedMeet_le_right (a b : WithBot CoordNode) :
     rootGluedMeet a b ≤ b := by
   cases a with
-  | none => exact bot_le
-  | some x =>
+  | bot => exact bot_le
+  | coe x =>
       cases b with
-      | none => exact bot_le
-      | some y =>
+      | bot => exact bot_le
+      | coe y =>
           by_cases hxy : sort x = sort y
           · change (if sort x = sort y then
-                (some (meet x y) : WithBot CoordNode) else none) ≤ some y
+                (meet x y : WithBot CoordNode) else ⊥) ≤
+                (y : WithBot CoordNode)
             rw [if_pos hxy]
-            change meet x y ≤ y
-            exact meet_le_right (commonAncestor_of_same_sort x y hxy)
+            exact WithBot.coe_le_coe.mpr
+              (meet_le_right (commonAncestor_of_same_sort x y hxy))
           · change (if sort x = sort y then
-                (some (meet x y) : WithBot CoordNode) else none) ≤ some y
+                (meet x y : WithBot CoordNode) else ⊥) ≤
+                (y : WithBot CoordNode)
             rw [if_neg hxy]
             exact bot_le
 
@@ -87,51 +89,50 @@ theorem rootGluedMeet_greatest
     (hca : c ≤ a) (hcb : c ≤ b) :
     c ≤ rootGluedMeet a b := by
   cases c with
-  | none =>
+  | bot =>
       exact bot_le
-  | some z =>
+  | coe z =>
       cases a with
-      | none =>
+      | bot =>
           exact False.elim ((WithBot.not_coe_le_bot z) hca)
-      | some x =>
+      | coe x =>
           cases b with
-          | none =>
+          | bot =>
               exact False.elim ((WithBot.not_coe_le_bot z) hcb)
-          | some y =>
-              have hzx : z ≤ x := hca
-              have hzy : z ≤ y := hcb
+          | coe y =>
+              have hzx : z ≤ x := WithBot.coe_le_coe.mp hca
+              have hzy : z ≤ y := WithBot.coe_le_coe.mp hcb
               have hxy : sort x = sort y :=
                 (sort_eq_of_le hzx).symm.trans (sort_eq_of_le hzy)
-              change (some z : WithBot CoordNode) ≤
+              change (z : WithBot CoordNode) ≤
                 (if sort x = sort y then
-                  (some (meet x y) : WithBot CoordNode) else none)
+                  (meet x y : WithBot CoordNode) else ⊥)
               rw [if_pos hxy]
-              change z ≤ meet x y
-              exact le_meet hzx hzy
+              exact WithBot.coe_le_coe.mpr (le_meet hzx hzy)
 
-/-- The real global meet order of the glued type tree. -/
+/-- The actual global meet of the glued, nonuniformly branching tree. -/
 noncomputable instance : SemilatticeInf (WithBot CoordNode) where
   inf := rootGluedMeet
   inf_le_left := rootGluedMeet_le_left
   inf_le_right := rootGluedMeet_le_right
   le_inf := rootGluedMeet_greatest
 
-/-- Distinct coordinate sorts meet at the added scalar root. -/
+/-- Nodes from distinct coordinates meet precisely at the added root. -/
 theorem rootGluedMeet_different_sorts
     (x y : CoordNode) (h : sort x ≠ sort y) :
-    ((some x : WithBot CoordNode) ⊓ some y) = ⊥ := by
+    ((x : WithBot CoordNode) ⊓ (y : WithBot CoordNode)) = ⊥ := by
   change (if sort x = sort y then
-    (some (meet x y) : WithBot CoordNode) else none) = none
+    (meet x y : WithBot CoordNode) else ⊥) = ⊥
   simp [h]
 
-/-- Inside one coordinate the scalar meet agrees with its old
-ambient tree-of-types meet, not a chosen proxy. -/
+/-- Within a coordinate the scalar meet is exactly the prefix meet. -/
 theorem rootGluedMeet_same_sort
     (x y : CoordNode) (h : sort x = sort y) :
-    ((some x : WithBot CoordNode) ⊓ some y) = some (meet x y) := by
+    ((x : WithBot CoordNode) ⊓ (y : WithBot CoordNode)) =
+      (meet x y : WithBot CoordNode) := by
   change (if sort x = sort y then
-    (some (meet x y) : WithBot CoordNode) else none) =
-      some (meet x y)
+    (meet x y : WithBot CoordNode) else ⊥) =
+      (meet x y : WithBot CoordNode)
   simp [h]
 
 end CoordNode
