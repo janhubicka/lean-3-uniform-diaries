@@ -583,3 +583,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.millikenCoordinate_distinct_next_meet
 #print axioms ThreeUniformDiaries.CoordNode.millikenCoordinate_meet_same_level
 #print axioms ThreeUniformDiaries.CoordNode.millikenCoordinate_meet_closed
+#print axioms ThreeUniformDiaries.CoordNode.millikenCoordinate_exists_infiniteStrong
+#print axioms ThreeUniformDiaries.CoordNode.millikenCoordinate_exists_infiniteStrong_of_root
