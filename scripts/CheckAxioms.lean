@@ -567,3 +567,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.mem_millikenCoordinateSlice_iff
 #print axioms ThreeUniformDiaries.CoordNode.millikenCoordinate_unique_first_root
 #print axioms ThreeUniformDiaries.CoordNode.millikenCoordinate_next_child
+#print axioms ThreeUniformDiaries.CoordNode.millikenCoordinate_distinct_next_meet
