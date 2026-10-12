@@ -554,3 +554,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrongCarrier_root_child
 #print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrongCarrier_next_child
 #print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrongCarrier_strong
+#print axioms ThreeUniformDiaries.CoordNode.gluedLE_iff_le
+#print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrongCarrier_truncate_mem
+#print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrong_to_milliken
