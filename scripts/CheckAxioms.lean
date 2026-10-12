@@ -595,3 +595,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.anchoredScalar_root_and_levels
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.anchoredScalar_full_type_prefix
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.anchoredScalar_full_initial_levels
+#print axioms ThreeUniformDiaries.CoordNode.millikenStrong_exists_fixedlevel_finite_vector
