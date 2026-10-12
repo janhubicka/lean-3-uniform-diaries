@@ -225,3 +225,4 @@ import ThreeUniformDiaries.RootGluedReverseAncestors
 import ThreeUniformDiaries.RootGluedReverseTruncation
 import ThreeUniformDiaries.RootGluedReverseFork
 import ThreeUniformDiaries.RootGluedReverseMeet
+import ThreeUniformDiaries.RootGluedReverseStrong
