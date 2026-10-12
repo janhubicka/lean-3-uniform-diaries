@@ -221,3 +221,4 @@ import ThreeUniformDiaries.CoordinateMeetTruncation
 import ThreeUniformDiaries.RootGluedVectorRefinement
 import ThreeUniformDiaries.RootGluedReverseCoordinate
 import ThreeUniformDiaries.RootGluedLevelNormalization
+import ThreeUniformDiaries.FiniteSelectedSourcePrefix
