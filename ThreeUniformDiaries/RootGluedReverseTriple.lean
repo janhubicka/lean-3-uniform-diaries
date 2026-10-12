@@ -134,19 +134,19 @@ theorem millikenStrong_recovered_vector_carrier
             gluedVectorStrongCarrier h₀ h₁ h₂ ↔
             some (CoordNode.enum n a) ∈ S.carrier
           rw [gluedVectorStrongCarrier_enum_iff h₀ h₁ h₂ n a]
-          simp [millikenCoordinateSlice, TypedVectorSubset.ofGlued, sort]
+          rfl
       | one n a =>
           change some (CoordNode.one n a) ∈
             gluedVectorStrongCarrier h₀ h₁ h₂ ↔
             some (CoordNode.one n a) ∈ S.carrier
           rw [gluedVectorStrongCarrier_one_iff h₀ h₁ h₂ n a]
-          simp [millikenCoordinateSlice, TypedVectorSubset.ofGlued, sort]
+          rfl
       | aux n a =>
           change some (CoordNode.aux n a) ∈
             gluedVectorStrongCarrier h₀ h₁ h₂ ↔
             some (CoordNode.aux n a) ∈ S.carrier
           rw [gluedVectorStrongCarrier_aux_iff h₀ h₁ h₂ n a]
-          simp [millikenCoordinateSlice, TypedVectorSubset.ofGlued, sort]
+          rfl
 
 end CoordNode
 end ThreeUniformDiaries
