@@ -231,3 +231,4 @@ import ThreeUniformDiaries.RootGluedReverseTriple
 import ThreeUniformDiaries.RootGluedFiniteDecoder
 import ThreeUniformDiaries.ScalarApproxLevelRigidity
 import ThreeUniformDiaries.ScalarAnchoredInitialTypes
+import ThreeUniformDiaries.RootGluedFixedLevelDecoder
