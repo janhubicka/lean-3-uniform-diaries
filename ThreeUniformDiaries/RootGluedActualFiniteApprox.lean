@@ -34,6 +34,7 @@ theorem millikenStrong_root_eq_gluedRoot
   | some z =>
       have hl : rootGluedAmbientTree.level
           (z : WithBot CoordNode) = 0 := by
+        rw [h] at hrank
         change rootGluedAmbientTree.level
           (z : WithBot CoordNode) = 0 at hrank
         exact hrank
