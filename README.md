@@ -42,25 +42,41 @@ theorems are checked in scripts/CheckAxioms.lean; no `sorry` or
   final Ramsey transfer through K_I (MillikenFiniteColour,
   MillikenAnchoredFiniteColour, AuxRamseyTransfer).
 
+## ATR application status (12 October 2026)
+
+The proof of the **conditional final Ramsey transfer** is checked. The genuine
+three-coordinate E0/E1/E2 strong picture glues to the actual nonuniformly
+branching `Milliken.GeneralTree.StrongSubtree rootGluedAmbientTree`.
+Its predecessor/meet geometry, finite local branching, ambient rank, exact
+scalar source levels, and the equality of scalar finite approximations with
+the glued coordinate prefixes are checked without any global degree bound.
+
+`ATRGeneralMilliken.ATRScalarRealization.atrRamsey_of_boundaryProductHL`
+is checked assuming exactly two explicit inputs: the concrete decoding /
+realization data `ATRScalarRealization` and the upstream heterogeneous
+Halpern–Läuchli assumption `HasBoundaryProductHL`. The general A.1–A.3,
+Tychonoff closedness, abstract A.4 reduction, and final finite-colour
+deduction are checked; **the boundary HL input remains unproved in
+the pinned upstream repository**. No theorem should be marked green solely
+because this conditional implication compiled.
+
 ## Remaining Ramsey theorem obligations
 
-1. Construct the **concrete canonical maps** from strong vector
-   subtrees of the three type trees, and check Lemmas canonical,
-   auxtypeemb and canonicalcomposition at that concrete interface.
-2. Verify the **finite strong-tree encoding** in manuscript Lemma
-   Aemb: the three meet-closed sets of enumeration/1-type/aux-type
-   nodes, their completion to synchronized strong subtrees, and the
-   precise finite encoding identity.
-3. Connect the actual finite, finitely branching **vector Milliken**
-   theorem to the existing homogeneous-tree Lean dependency. The
-   checked `homogeneousMillikenFiniteColouring` alone is not a
-   verification of the vector-tree statement in the manuscript.
-4. Instantiate the existing `AuxRamseyCoding` transfer with those
-   constructions and obtain the unconditional Ramsey theorem.
-
-The distinction between a checked conditional deduction and a checked
-unconditional theorem is intentional; do not mark manuscript
-Theorem ramsey fully verified until these obligations are discharged.
+1. Prove the reverse scalar-to-vector strong-subtree correspondence for
+   actual E0/E1/E2 coordinate slices, with the protected initial segment.
+   The forward correspondence and exact finite-prefix equality are checked.
+2. Construct the actual finite-code decoder and the realization law for
+   refined strong pictures, using the already checked Aemb finite code,
+   strong completion, selected-level prefix, and infinite canonical
+   composition. Instantiate `AuxRamseyCoding` with the actual K_I branch
+   action and universal embedding, rather than merely a generic record.
+3. Import the unconditional heterogeneous boundary-product HL / Milliken
+   theorem from `lean-milliken` once that proof is completed, verify its
+   exact hypotheses on the actual glued ambient tree, and eliminate the
+   last explicit theorem assumption.
+4. Instantiate the final theorem with the geometric and coding data and
+   audit transitive axioms. Until then the manuscript ATR theorem remains
+   partially validated.
 
 ## Repaired C2 induction
 
