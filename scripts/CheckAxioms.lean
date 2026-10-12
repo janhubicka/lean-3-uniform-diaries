@@ -610,3 +610,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.finiteCode_eq_of_approx_eq
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.finiteCode_has_genuine_pictures
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.decodeFiniteShape_of_root
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.finiteCoordinateHeights_strictMono
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.canonicalFiniteLevelMap_strictMono
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.canonicalFiniteLevelMap_eq_realizer
