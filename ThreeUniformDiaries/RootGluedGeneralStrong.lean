@@ -140,14 +140,15 @@ noncomputable def gluedVectorStrong_to_milliken
     | succ i =>
         cases z with
         | none =>
-            have hb : 0 = f (i + 1) + 1 := by
-              simpa only [rootGluedAmbientTree.level_root,
-                gluedSelectedLevel_succ] using hzlevel
+            change rootGluedAmbientTree.level
+              (⊥ : WithBot CoordNode) = f (i + 1) + 1 at hzlevel
+            rw [rootGluedAmbientTree.level_root] at hzlevel
             omega
         | some z =>
             have hzlevel' : level z = f (i + 1) := by
-              rw [rootGluedAmbient_level_coe] at hzlevel
-              change level z + 1 = f (i + 1) + 1 at hzlevel
+              change rootGluedAmbientTree.level
+                (z : WithBot CoordNode) = f (i + 1) + 1 at hzlevel
+              have hrank := rootGluedAmbient_level_coe z
               omega
             let p : CoordNode := truncate z (f i)
             have hpMem : (p : WithBot CoordNode) ∈ W :=
@@ -162,7 +163,7 @@ noncomputable def gluedVectorStrong_to_milliken
             have hpLe : (p : WithBot CoordNode) ≤ (z : WithBot CoordNode) :=
               WithBot.coe_le_coe.mpr
                 (truncate_le z (by rw [hzlevel']; exact hf.monotone (Nat.le_succ i)))
-            exact ⟨p, hpMem, hpLevel, hpLe⟩
+            exact ⟨(p : WithBot CoordNode), hpMem, hpLevel, hpLe⟩
   · intro n x hx hxlevel y hxy
     have hchild : gluedChild x y :=
       (gluedChild_iff_covBy x y).mpr hxy
@@ -171,12 +172,15 @@ noncomputable def gluedVectorStrong_to_milliken
         cases x with
         | none =>
             obtain ⟨z, hz, huniq⟩ := hW.root_child y hchild
-            refine ⟨z, (hconvert 0 y z).mp
-              (by simpa only [gluedSelectedLevel_succ] using hz), ?_⟩
+            rcases hz with ⟨hzW, hzL, hzY⟩
+            have hnew : z ∈ W ∧
+                gluedLevel z = gluedSelectedLevel f (0 + 1) ∧
+                gluedLE y z :=
+              ⟨hzW, hzL, hzY⟩
+            refine ⟨z, (hconvert 0 y z).mp hnew, ?_⟩
             intro w hw
-            exact huniq w (by
-              simpa only [gluedSelectedLevel_succ] using
-                (hconvert 0 y w).mpr hw)
+            rcases (hconvert 0 y w).mpr hw with ⟨hwW, hwL, hwY⟩
+            exact huniq w ⟨hwW, hwL, hwY⟩
         | some x =>
             have hpos := rootGluedAmbient_level_coe x
             change rootGluedAmbientTree.level
@@ -185,23 +189,28 @@ noncomputable def gluedVectorStrong_to_milliken
     | succ i =>
         cases x with
         | none =>
-            have hb : 0 = f i + 1 := by
-              simpa only [rootGluedAmbientTree.level_root,
-                gluedSelectedLevel_succ] using hxlevel
+            change rootGluedAmbientTree.level
+              (⊥ : WithBot CoordNode) = f i + 1 at hxlevel
+            rw [rootGluedAmbientTree.level_root] at hxlevel
             omega
         | some x =>
             have hxlevel' :
                 gluedLevel (x : WithBot CoordNode) = f i + 1 := by
-              rw [← rootGluedAmbient_level_eq_gluedLevel]
-              simpa only [gluedSelectedLevel_succ] using hxlevel
+              change rootGluedAmbientTree.level
+                (x : WithBot CoordNode) = f i + 1 at hxlevel
+              exact (rootGluedAmbient_level_eq_gluedLevel
+                (x : WithBot CoordNode)).symm.trans hxlevel
             obtain ⟨z, hz, huniq⟩ :=
               hW.next_child i (x : WithBot CoordNode) hx hxlevel' y hchild
-            refine ⟨z, (hconvert (i + 1) y z).mp
-              (by simpa only [gluedSelectedLevel_succ] using hz), ?_⟩
+            rcases hz with ⟨hzW, hzL, hzY⟩
+            have hnew : z ∈ W ∧
+                gluedLevel z = gluedSelectedLevel f ((i + 1) + 1) ∧
+                gluedLE y z :=
+              ⟨hzW, hzL, hzY⟩
+            refine ⟨z, (hconvert (i + 1) y z).mp hnew, ?_⟩
             intro w hw
-            exact huniq w (by
-              simpa only [gluedSelectedLevel_succ] using
-                (hconvert (i + 1) y w).mpr hw)
+            rcases (hconvert (i + 1) y w).mpr hw with ⟨hwW, hwL, hwY⟩
+            exact huniq w ⟨hwW, hwL, hwY⟩
 
 end CoordNode
 end ThreeUniformDiaries
