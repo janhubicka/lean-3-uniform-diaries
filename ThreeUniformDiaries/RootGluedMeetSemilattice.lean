@@ -35,12 +35,12 @@ theorem commonAncestor_of_same_sort
 
 /-- The actual greatest common ancestor in the bottom-extended
 root-glued forest. -/
-noncomputable def rootGluedMeet :
-    WithBot CoordNode → WithBot CoordNode → WithBot CoordNode
-  | .bot, _ => ⊥
-  | _, .bot => ⊥
-  | .coe x, .coe y =>
-      if sort x = sort y then (meet x y : WithBot CoordNode) else ⊥
+noncomputable def rootGluedMeet
+    (a b : WithBot CoordNode) : WithBot CoordNode :=
+  WithBot.recBotCoe (⊥ : WithBot CoordNode)
+    (fun x => WithBot.recBotCoe (⊥ : WithBot CoordNode)
+      (fun y => if sort x = sort y then
+        (meet x y : WithBot CoordNode) else ⊥) b) a
 
 theorem rootGluedMeet_le_left (a b : WithBot CoordNode) :
     rootGluedMeet a b ≤ a := by
@@ -115,7 +115,9 @@ noncomputable instance : SemilatticeInf (WithBot CoordNode) where
   inf := rootGluedMeet
   inf_le_left := rootGluedMeet_le_left
   inf_le_right := rootGluedMeet_le_right
-  le_inf := rootGluedMeet_greatest
+  le_inf := by
+    intro a b c hab hac
+    exact rootGluedMeet_greatest b c a hab hac
 
 /-- Nodes from distinct coordinates meet precisely at the added root. -/
 theorem rootGluedMeet_different_sorts
