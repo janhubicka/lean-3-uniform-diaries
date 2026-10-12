@@ -232,3 +232,4 @@ import ThreeUniformDiaries.RootGluedFiniteDecoder
 import ThreeUniformDiaries.ScalarApproxLevelRigidity
 import ThreeUniformDiaries.ScalarAnchoredInitialTypes
 import ThreeUniformDiaries.RootGluedFixedLevelDecoder
+import ThreeUniformDiaries.RelativeFiniteStrongAmbientTransitivity
