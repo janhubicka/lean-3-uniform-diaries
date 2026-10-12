@@ -590,3 +590,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.millikenStrong_exists_actual_vector
 #print axioms ThreeUniformDiaries.CoordNode.millikenStrong_recovered_vector_carrier
 #print axioms ThreeUniformDiaries.CoordNode.millikenStrong_exists_genuine_finite_vector
+#print axioms ThreeUniformDiaries.CoordNode.millikenStrong_exists_fixedlevel_finite_vector
