@@ -538,3 +538,11 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.forest_le_pred_of_lt
 #print axioms ThreeUniformDiaries.CoordNode.forest_strictRank
 #print axioms ThreeUniformDiaries.CoordNode.forest_exists_pred_iterate_of_le
+#print axioms ThreeUniformDiaries.CoordNode.commonAncestor_of_same_sort
+#print axioms ThreeUniformDiaries.CoordNode.rootGluedMeet_greatest
+#print axioms ThreeUniformDiaries.CoordNode.rootGluedMeet_same_sort
+#print axioms ThreeUniformDiaries.CoordNode.rootGluedMeet_different_sorts
+#print axioms ThreeUniformDiaries.CoordNode.isMin_iff_level_zero
+#print axioms ThreeUniformDiaries.CoordNode.gluedChild_iff_covBy
+#print axioms ThreeUniformDiaries.CoordNode.rootGluedRootedTree
+#print axioms ThreeUniformDiaries.CoordNode.rootGluedAmbientTree
