@@ -581,3 +581,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.millikenCoordinate_all_levels
 #print axioms ThreeUniformDiaries.CoordNode.millikenCoordinate_selected_truncate_mem
 #print axioms ThreeUniformDiaries.CoordNode.millikenCoordinate_distinct_next_meet
+#print axioms ThreeUniformDiaries.CoordNode.millikenCoordinate_meet_same_level
+#print axioms ThreeUniformDiaries.CoordNode.millikenCoordinate_meet_closed
