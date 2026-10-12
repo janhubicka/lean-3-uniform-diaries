@@ -214,3 +214,4 @@ import ThreeUniformDiaries.RootGluedZeroLevelRigidity
 import ThreeUniformDiaries.TypeForestPredOrder
 import ThreeUniformDiaries.RootGluedAmbientTree
 import ThreeUniformDiaries.RootGluedStrongSuccessorCones
+import ThreeUniformDiaries.RootGluedGeneralStrong
