@@ -212,3 +212,4 @@ import ThreeUniformDiaries.ATRGeneralMilliken
 import ThreeUniformDiaries.ATRScalarMillikenTransfer
 import ThreeUniformDiaries.RootGluedZeroLevelRigidity
 import ThreeUniformDiaries.TypeForestPredOrder
+import ThreeUniformDiaries.RootGluedAmbientTree
