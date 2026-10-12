@@ -576,3 +576,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.millikenLevels_eq_selectedGluedLevels
 #print axioms ThreeUniformDiaries.CoordNode.millikenStrong_levels_zero_of_root
 #print axioms ThreeUniformDiaries.CoordNode.millikenStrong_normalized_finitePrefix
+#print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPicture_finitePrefix_eq_selected
+#print axioms ThreeUniformDiaries.CoordNode.typedVectorStrong_finiteSlice_eq
