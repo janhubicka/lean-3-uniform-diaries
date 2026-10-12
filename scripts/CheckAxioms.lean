@@ -546,3 +546,11 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.gluedChild_iff_covBy
 #print axioms ThreeUniformDiaries.CoordNode.rootGluedRootedTree
 #print axioms ThreeUniformDiaries.CoordNode.rootGluedAmbientTree
+#print axioms ThreeUniformDiaries.CoordNode.gluedMeet_some_different
+#print axioms ThreeUniformDiaries.CoordNode.gluedSelectedLevel_strictMono
+#print axioms ThreeUniformDiaries.CoordNode.typedVectorOfStrong
+#print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrongCarrier_selected_levels
+#print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrongCarrier_meet_closed
+#print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrongCarrier_root_child
+#print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrongCarrier_next_child
+#print axioms ThreeUniformDiaries.CoordNode.gluedVectorStrongCarrier_strong
