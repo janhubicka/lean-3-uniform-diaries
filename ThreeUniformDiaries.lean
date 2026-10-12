@@ -227,3 +227,4 @@ import ThreeUniformDiaries.RootGluedReverseFork
 import ThreeUniformDiaries.RootGluedReverseMeet
 import ThreeUniformDiaries.RootGluedReverseStrong
 import ThreeUniformDiaries.ScalarApproxLevelRigidity
+import ThreeUniformDiaries.ScalarAnchoredInitialTypes
