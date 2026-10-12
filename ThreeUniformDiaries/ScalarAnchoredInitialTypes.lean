@@ -24,7 +24,7 @@ open Milliken
 open Milliken.GeneralTree
 open ThreeUniformDiaries.CoordNode
 
-private noncomputable def scalarIdentity :
+noncomputable def scalarIdentity :
     StrongSubtree CoordNode.rootGluedAmbientTree :=
   identityStrongSubtree CoordNode.rootGluedAmbientTree
 
