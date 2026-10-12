@@ -585,3 +585,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.millikenCoordinate_meet_closed
 #print axioms ThreeUniformDiaries.CoordNode.millikenCoordinate_exists_infiniteStrong
 #print axioms ThreeUniformDiaries.CoordNode.millikenCoordinate_exists_infiniteStrong_of_root
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.sourceLevels_eq_of_initialPart_eq
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.sourceLevels_eq_of_approx_eq
