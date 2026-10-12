@@ -546,3 +546,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.gluedChild_iff_covBy
 #print axioms ThreeUniformDiaries.CoordNode.rootGluedRootedTree
 #print axioms ThreeUniformDiaries.CoordNode.rootGluedAmbientTree
+#print axioms ThreeUniformDiaries.CoordNode.rootGluedAmbient_level_coe
+#print axioms ThreeUniformDiaries.CoordNode.rootGluedAmbient_level_eq_gluedLevel
