@@ -26,7 +26,7 @@ theorem isMin_iff_level_zero (x : CoordNode) :
   constructor
   · intro hmin
     have hle : x ≤ truncate x 0 :=
-      hmin (truncate x 0) (truncate_le x (Nat.zero_le _))
+      hmin (truncate_le x (Nat.zero_le _))
     have hh := level_le_of_le hle
     simp only [level_truncate] at hh
     omega
