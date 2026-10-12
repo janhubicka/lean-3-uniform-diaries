@@ -129,8 +129,9 @@ noncomputable def gluedVectorStrong_to_milliken
     · subst x
       exact ⟨0, rootGluedAmbientTree.level_root⟩
     · refine ⟨i + 1, ?_⟩
-      rw [rootGluedAmbient_level_eq_gluedLevel]
-      simpa only [gluedSelectedLevel_succ] using hi
+      have hlev := rootGluedAmbient_level_eq_gluedLevel (x : WithBot CoordNode)
+      exact hlev.trans (by
+        simpa only [gluedSelectedLevel_succ] using hi)
   · intro n z hz hzlevel
     cases n with
     | zero =>
@@ -138,12 +139,12 @@ noncomputable def gluedVectorStrong_to_milliken
           bot_le⟩
     | succ i =>
         cases z with
-        | bot =>
+        | none =>
             have hb : 0 = f (i + 1) + 1 := by
               simpa only [rootGluedAmbientTree.level_root,
                 gluedSelectedLevel_succ] using hzlevel
             omega
-        | coe z =>
+        | some z =>
             have hzlevel' : level z = f (i + 1) := by
               rw [rootGluedAmbient_level_coe] at hzlevel
               change level z + 1 = f (i + 1) + 1 at hzlevel
@@ -168,7 +169,7 @@ noncomputable def gluedVectorStrong_to_milliken
     cases n with
     | zero =>
         cases x with
-        | bot =>
+        | none =>
             obtain ⟨z, hz, huniq⟩ := hW.root_child y hchild
             refine ⟨z, (hconvert 0 y z).mp
               (by simpa only [gluedSelectedLevel_succ] using hz), ?_⟩
@@ -176,19 +177,19 @@ noncomputable def gluedVectorStrong_to_milliken
             exact huniq w (by
               simpa only [gluedSelectedLevel_succ] using
                 (hconvert 0 y w).mpr hw)
-        | coe x =>
+        | some x =>
             have hpos := rootGluedAmbient_level_coe x
             change rootGluedAmbientTree.level
               (x : WithBot CoordNode) = 0 at hxlevel
             omega
     | succ i =>
         cases x with
-        | bot =>
+        | none =>
             have hb : 0 = f i + 1 := by
               simpa only [rootGluedAmbientTree.level_root,
                 gluedSelectedLevel_succ] using hxlevel
             omega
-        | coe x =>
+        | some x =>
             have hxlevel' :
                 gluedLevel (x : WithBot CoordNode) = f i + 1 := by
               rw [← rootGluedAmbient_level_eq_gluedLevel]
