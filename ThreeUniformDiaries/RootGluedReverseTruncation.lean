@@ -31,8 +31,10 @@ theorem millikenCoordinate_selected_truncate_mem
       rootGluedAmbientTree.level (some x : WithBot CoordNode) =
         S.levels (b + 1) := by
     rw [hlevels, selectedGluedLevels_succ]
-    have hrank := rootGluedAmbient_level_coe x
-    omega
+    change rootGluedAmbientTree.level
+      (x : WithBot CoordNode) = f b + 1
+    exact (rootGluedAmbient_level_coe x).trans
+      (congrArg Nat.succ hxlevel)
   obtain ⟨z, hz, hzx⟩ :=
     S.exists_sourceLevel_ancestor (Nat.succ_le_succ hab)
       ⟨hx.2, hslevel⟩
@@ -40,7 +42,9 @@ theorem millikenCoordinate_selected_truncate_mem
   | none =>
       have hzlevel := hz.2
       rw [hlevels, selectedGluedLevels_succ] at hzlevel
-      have hroot := rootGluedAmbientTree.level_root
+      have hroot : rootGluedAmbientTree.level
+          (none : WithBot CoordNode) = 0 :=
+        rootGluedAmbientTree.level_root
       change rootGluedAmbientTree.level
         (none : WithBot CoordNode) = f a + 1 at hzlevel
       omega
@@ -48,8 +52,10 @@ theorem millikenCoordinate_selected_truncate_mem
       have hplevel : level p = f a := by
         have hzlevel := hz.2
         rw [hlevels, selectedGluedLevels_succ] at hzlevel
-        have hrank := rootGluedAmbient_level_coe p
-        omega
+        change rootGluedAmbientTree.level
+          (p : WithBot CoordNode) = f a + 1 at hzlevel
+        exact Nat.succ.inj
+          ((rootGluedAmbient_level_coe p).symm.trans hzlevel)
       have hpx : p ≤ x := WithBot.coe_le_coe.mp hzx
       have htr : truncate x (f a) = p := by
         have hh := hpx.2
