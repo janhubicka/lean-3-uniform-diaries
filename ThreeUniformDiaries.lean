@@ -227,3 +227,5 @@ import ThreeUniformDiaries.RootGluedReverseFork
 import ThreeUniformDiaries.RootGluedReverseMeet
 import ThreeUniformDiaries.RootGluedReverseStrong
 import ThreeUniformDiaries.FiniteSelectedSourcePrefix
+import ThreeUniformDiaries.RootGluedReverseTriple
+import ThreeUniformDiaries.RootGluedFiniteDecoder
