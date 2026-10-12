@@ -243,3 +243,4 @@ import ThreeUniformDiaries.ScalarFiniteCodeIntrinsic
 import ThreeUniformDiaries.ScalarCanonicalFiniteLevels
 import ThreeUniformDiaries.FiniteStrongLevelCongruence
 import ThreeUniformDiaries.ScalarCanonicalFinitePictures
+import ThreeUniformDiaries.ScalarFiniteCanonicalBranchDecoder
