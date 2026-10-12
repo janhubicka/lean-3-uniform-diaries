@@ -606,3 +606,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumImage_completePrefix
 #print axioms ThreeUniformDiaries.CoordNode.finitePrefix_branchMap_enumeration_eq_infinite
 #print axioms ThreeUniformDiaries.CoordNode.finitePrefix_branchMap_last_eq_infinite
+#print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_congr_finite_levels
+#print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_root_level_congr
