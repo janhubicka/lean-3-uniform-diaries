@@ -37,7 +37,10 @@ theorem rootGluedAmbient_level_coe (x : CoordNode) :
             (⊥ : WithBot CoordNode) ⋖ (y : WithBot CoordNode) :=
           (gluedChild_iff_covBy _ _).mp hrootchild
         have hlevel := U.level_covBy hcov
-        simpa [U, rootGluedAmbientTree, Milliken.AmbientTree.level_root] using hlevel
+        have hroot : U.level (⊥ : WithBot CoordNode) = 0 :=
+          U.level_root
+        rw [hroot] at hlevel
+        simpa only [Nat.zero_add] using hlevel
       · have hnpos : 0 < n := by omega
         let p := truncate y (n - 1)
         have hpLevel : level p = n - 1 := by simp [p]
