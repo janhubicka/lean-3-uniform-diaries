@@ -103,8 +103,6 @@ theorem existsUnique_scalarFiniteImage
             (Nat.le_of_lt_succ i.isLt), hBc⟩ :
           RelativeBranchNode I)) := by
         congr 1
-        apply congrArg E.code.symm
-        exact Subtype.ext rfl
     _ = code.image i := hvalC.symm
 
 /-- The total Option-valued FINITE colouring code. Invalid scalar
