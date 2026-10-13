@@ -176,5 +176,149 @@ theorem exists_protected_scalar_refinement_postcompose_formula
     _ = phi (E.code.symm (⟨d, hBd⟩ : RelativeBranchNode I)) :=
       congrArg (fun z : RelativeBranchNode I => phi (E.code.symm z)) hsub
 
+/-- Uniformity correction for the final Ramsey proof: the outer
+aux-type-respecting self-embedding is fixed *before* choosing any
+finite source embedding. For every inner finite strong code and
+its Aemb branch identity the SAME fixed outer embedding is realized
+by a protected scalar refinement. This quantifier order is essential;
+choosing a new ambient self-embedding for each source colour does not
+prove the Ramsey theorem. -/
+theorem exists_protected_scalar_refinement_postcompose_with_fixed_embedding
+    (G : GenericEnumerated3Graph)
+    {n k : Nat} (I : EnumNode n)
+    (hI : G.graph.initialSegment n = I)
+    (E : SizeFirstBranchPresentation I)
+    (phi : Nat → Nat)
+    (hphi : UniversalAuxBranchProperty G I E phi)
+    (A : EnumNode (k + 1))
+    {S₀ S₁ S₂ U₀ U₁ U₂ : Set CoordNode}
+    {sigma f : Nat → Nat}
+    {rS₀ : EnumNode (sigma 0)}
+    {rS₁ : OneNode (sigma 0)}
+    {rS₂ : AuxNode (sigma 0)}
+    {rU₀ : EnumNode (f 0)}
+    {rU₁ : OneNode (f 0)}
+    {rU₂ : AuxNode (f 0)}
+    (hS₀ : FiniteStrongPicture S₀ sigma k
+      (.enum (sigma 0) rS₀))
+    (hS₁ : FiniteStrongPicture S₁ sigma k
+      (.one (sigma 0) rS₁))
+    (hS₂ : FiniteStrongPicture S₂ sigma k
+      (.aux (sigma 0) rS₂))
+    (hU₀ : InfiniteStrongPicture U₀ f (.enum (f 0) rU₀))
+    (hU₁ : InfiniteStrongPicture U₁ f (.one (f 0) rU₁))
+    (hU₂ : InfiniteStrongPicture U₂ f (.aux (f 0) rU₂))
+    (hsigma : StrictMono sigma) (hf : StrictMono f)
+    (hfixS : ∀ j < n, sigma j = j)
+    (hfixU : ∀ j < n, f j = j)
+    (u : Ordered3Graph.Embedding G.graph G.graph)
+    (hvalue : ∀ j : Nat,
+      ∃ hB : InRelativeBranchGraph I
+        ((infiniteStrongPictureCanonicalMap hU₀ hU₁ hU₂ hf).mapBranch
+          (G.graph.branchNode j)),
+        u j = phi (E.code.symm
+          (⟨(infiniteStrongPictureCanonicalMap hU₀ hU₁ hU₂ hf).mapBranch
+              (G.graph.branchNode j), hB⟩ : RelativeBranchNode I)))
+    (e : Ordered3Graph.FiniteAuxEmbeddingImage
+      A.toOrdered3Graph G.graph (k + 1))
+    (hCode : ∀ i : Fin (k + 1),
+      finiteStrongPicture_branchMap hS₀ hS₁ hS₂
+        (A.toOrdered3Graph.branchNode i.val)
+        (Nat.le_of_lt_succ i.isLt) =
+        G.graph.branchNode (e.image i)) :
+    ∃ (V₂ V₁ V₀ : Set CoordNode),
+      ∃ (hV₂ : InfiniteStrongPicture V₂ (fun i => f (sigma i))
+        (.aux (f (sigma 0))
+          (infiniteAuxCanonicalMap hU₂ (sigma 0) rS₂).val))
+        (hV₁ : InfiniteStrongPicture V₁ (fun i => f (sigma i))
+        (.one (f (sigma 0))
+          (infiniteOneCanonicalMap hU₁ hU₂ (sigma 0) rS₁).val))
+        (hV₀ : InfiniteStrongPicture V₀ (fun i => f (sigma i))
+        (.enum (f (sigma 0))
+          (infiniteEnumCanonicalMap hU₀ hU₁ hU₂ (sigma 0) rS₀).val)),
+        (gluedVectorStrong_to_milliken hV₀ hV₁ hV₂
+          (hf.comp hsigma)).Refines
+          (gluedVectorStrong_to_milliken hU₀ hU₁ hU₂ hf) ∧
+        r (n + 1)
+          (gluedVectorStrong_to_milliken hV₀ hV₁ hV₂
+            (hf.comp hsigma)) =
+        r (n + 1)
+          (gluedVectorStrong_to_milliken hU₀ hU₁ hU₂ hf) ∧
+        ∀ i : Fin (k + 1),
+          ∃ hB : InRelativeBranchGraph I
+            (finiteStrongPicture_branchMap
+              (infiniteStrongPicture_finitePrefix_strong
+                hV₀ (hf.comp hsigma) rfl k)
+              (infiniteStrongPicture_finitePrefix_strong
+                hV₁ (hf.comp hsigma) rfl k)
+              (infiniteStrongPicture_finitePrefix_strong
+                hV₂ (hf.comp hsigma) rfl k)
+              (A.toOrdered3Graph.branchNode i.val)
+              (Nat.le_of_lt_succ i.isLt)),
+            u (e.image i) = phi (E.code.symm
+              (⟨finiteStrongPicture_branchMap
+                  (infiniteStrongPicture_finitePrefix_strong
+                    hV₀ (hf.comp hsigma) rfl k)
+                  (infiniteStrongPicture_finitePrefix_strong
+                    hV₁ (hf.comp hsigma) rfl k)
+                  (infiniteStrongPicture_finitePrefix_strong
+                    hV₂ (hf.comp hsigma) rfl k)
+                  (A.toOrdered3Graph.branchNode i.val)
+                  (Nat.le_of_lt_succ i.isLt), hB⟩ :
+                RelativeBranchNode I)) := by
+  obtain ⟨V₂, V₁, V₀, hV₂, hV₁, hV₀,
+      hRef, hStem, hComp⟩ :=
+    exists_protected_scalar_refinement_realizing_finite_branch
+      hS₀ hS₁ hS₂ hU₀ hU₁ hU₂
+      hsigma hf n hfixS hfixU
+  refine ⟨V₂, V₁, V₀, hV₂, hV₁, hV₀, hRef, hStem, ?_⟩
+  intro i
+  let b : EnumerationBranchNode :=
+    A.toOrdered3Graph.branchNode i.val
+  have hb : b.last ≤ k := Nat.le_of_lt_succ i.isLt
+  let d : EnumerationBranchNode :=
+    finiteStrongPicture_branchMap
+      (infiniteStrongPicture_finitePrefix_strong
+        hV₀ (hf.comp hsigma) rfl k)
+      (infiniteStrongPicture_finitePrefix_strong
+        hV₁ (hf.comp hsigma) rfl k)
+      (infiniteStrongPicture_finitePrefix_strong
+        hV₂ (hf.comp hsigma) rfl k) b hb
+  have hd :
+      d =
+        (infiniteStrongPictureCanonicalMap hU₀ hU₁ hU₂ hf).mapBranch
+          (G.graph.branchNode (e.image i)) := by
+    calc
+      d = (infiniteStrongPictureCanonicalMap
+            hU₀ hU₁ hU₂ hf).mapBranch
+              (finiteStrongPicture_branchMap hS₀ hS₁ hS₂ b hb) :=
+        hComp b hb
+      _ = (infiniteStrongPictureCanonicalMap
+            hU₀ hU₁ hU₂ hf).mapBranch
+              (G.graph.branchNode (e.image i)) := by
+        rw [hCode i]
+  obtain ⟨hBI, hu⟩ := hvalue (e.image i)
+  have hBd : InRelativeBranchGraph I d := by
+    rw [hd]
+    exact hBI
+  refine ⟨hBd, ?_⟩
+  have hsub :
+      (⟨(infiniteStrongPictureCanonicalMap hU₀ hU₁ hU₂ hf).mapBranch
+        (G.graph.branchNode (e.image i)), hBI⟩ : RelativeBranchNode I) =
+      (⟨d, hBd⟩ : RelativeBranchNode I) := by
+    apply Subtype.ext
+    exact hd.symm
+  change u (e.image i) = phi (E.code.symm
+    (⟨d, hBd⟩ : RelativeBranchNode I))
+  calc
+    u (e.image i) =
+        phi (E.code.symm
+          (⟨(infiniteStrongPictureCanonicalMap hU₀ hU₁ hU₂ hf).mapBranch
+              (G.graph.branchNode (e.image i)), hBI⟩ :
+            RelativeBranchNode I)) := hu
+    _ = phi (E.code.symm (⟨d, hBd⟩ : RelativeBranchNode I)) :=
+      congrArg (fun z : RelativeBranchNode I => phi (E.code.symm z)) hsub
+
+
 end ATRFiniteDecoder
 end ThreeUniformDiaries
