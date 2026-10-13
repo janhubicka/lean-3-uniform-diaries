@@ -631,3 +631,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.protectedScalar_decodeFiniteRelativeBranch_some
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.initialPart_eq_of_larger_initialPart_eq
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.exists_refinement_realising_with_stem
+#print axioms ThreeUniformDiaries.CoordNode.exists_scalarApprox_of_finiteStrongVector
