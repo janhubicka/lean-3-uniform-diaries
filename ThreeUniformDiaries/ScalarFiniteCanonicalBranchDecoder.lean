@@ -47,8 +47,7 @@ theorem finiteStrongPicture_enum_root_unique
     (hb : FiniteStrongPicture S f k (.enum (f 0) b)) :
     a = b := by
   have h := finiteStrongPicture_root_unique ha hb
-  injection h with hab
-  exact hab
+  injection h
 
 theorem finiteStrongPicture_one_root_unique
     {S : Set CoordNode} {f : Nat → Nat} {k : Nat}
@@ -57,8 +56,7 @@ theorem finiteStrongPicture_one_root_unique
     (hb : FiniteStrongPicture S f k (.one (f 0) b)) :
     a = b := by
   have h := finiteStrongPicture_root_unique ha hb
-  injection h with hab
-  exact hab
+  injection h
 
 theorem finiteStrongPicture_aux_root_unique
     {S : Set CoordNode} {f : Nat → Nat} {k : Nat}
@@ -67,8 +65,7 @@ theorem finiteStrongPicture_aux_root_unique
     (hb : FiniteStrongPicture S f k (.aux (f 0) b)) :
     a = b := by
   have h := finiteStrongPicture_root_unique ha hb
-  injection h with hab
-  exact hab
+  injection h
 
 /-- The actual finite F_I branch value is independent of which
 proofs and coordinate root witnesses were used to realize the
