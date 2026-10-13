@@ -639,3 +639,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.exists_infinite_extension_with_branchMap_fields
 #print axioms ThreeUniformDiaries.CoordNode.finiteStrong_extension_branchMap_eq_infinite
 #print axioms ThreeUniformDiaries.CoordNode.exists_infinite_extension_with_branchMap_eq
+#print axioms ThreeUniformDiaries.CoordNode.exists_finiteStrong_branch_auxTypeFactorization
