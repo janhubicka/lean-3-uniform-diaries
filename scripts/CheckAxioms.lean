@@ -10,6 +10,9 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiaryMeets.leaf_aux_transfer
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.auxMeetLevel_le_of_edge_disagreement
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.split_leaf_triple_aux_bounds
+#print axioms ThreeUniformDiaries.Ordered3Graph.pullback_sameAuxTypeBelow_iff
+#print axioms ThreeUniformDiaries.Ordered3Graph.pullback_auxMeetLevel_of_lt_prefix
+#print axioms ThreeUniformDiaries.Ordered3Graph.pullback_auxMeetLevel_of_target_cap
 
 #print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.AuxTypeRespecting.typeRespecting
 #print axioms ThreeUniformDiaries.AuxRamseyCoding.auxRamsey_of_finiteRamsey
