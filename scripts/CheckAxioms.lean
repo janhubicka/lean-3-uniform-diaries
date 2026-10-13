@@ -642,3 +642,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.exists_finiteStrong_branch_auxTypeFactorization
 #print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.AuxTypeRespecting.comp
 #print axioms ThreeUniformDiaries.CoordNode.exists_finiteStrong_actualAuxEmbedding_to_generic
+#print axioms ThreeUniformDiaries.CoordNode.exists_finiteStrong_phi_FI_gA_auxEmbedding
