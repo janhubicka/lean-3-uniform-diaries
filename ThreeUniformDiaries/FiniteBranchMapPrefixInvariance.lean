@@ -96,5 +96,33 @@ theorem finiteStrongPicture_branchMap_eq_of_prefix_heights
           rfl
   exact Option.some.inj hsome
 
+/-- The same result with carrier equalities rather than literally
+identical set expressions. This is the form needed to compare the
+intrinsic finite scalar decoder with the geometric coordinate
+prefixes of an infinite strong picture. -/
+theorem finiteStrongPicture_branchMap_eq_of_equal_carriers_and_heights
+    {S₀ S₁ S₂ T₀ T₁ T₂ : Set CoordNode}
+    {f g : Nat → Nat} {k : Nat}
+    {rf₀ : EnumNode (f 0)} {rf₁ : OneNode (f 0)}
+    {rf₂ : AuxNode (f 0)}
+    {rg₀ : EnumNode (g 0)} {rg₁ : OneNode (g 0)}
+    {rg₂ : AuxNode (g 0)}
+    (hF₀ : FiniteStrongPicture S₀ f k (.enum (f 0) rf₀))
+    (hF₁ : FiniteStrongPicture S₁ f k (.one (f 0) rf₁))
+    (hF₂ : FiniteStrongPicture S₂ f k (.aux (f 0) rf₂))
+    (hG₀ : FiniteStrongPicture T₀ g k (.enum (g 0) rg₀))
+    (hG₁ : FiniteStrongPicture T₁ g k (.one (g 0) rg₁))
+    (hG₂ : FiniteStrongPicture T₂ g k (.aux (g 0) rg₂))
+    (hS₀ : S₀ = T₀) (hS₁ : S₁ = T₁) (hS₂ : S₂ = T₂)
+    (heights : ∀ i : Nat, i ≤ k → f i = g i)
+    (B : EnumerationBranchNode) (hB : B.last ≤ k) :
+    finiteStrongPicture_branchMap hF₀ hF₁ hF₂ B hB =
+      finiteStrongPicture_branchMap hG₀ hG₁ hG₂ B hB := by
+  subst T₀
+  subst T₁
+  subst T₂
+  exact finiteStrongPicture_branchMap_eq_of_prefix_heights
+    hF₀ hF₁ hF₂ hG₀ hG₁ hG₂ heights B hB
+
 end CoordNode
 end ThreeUniformDiaries
