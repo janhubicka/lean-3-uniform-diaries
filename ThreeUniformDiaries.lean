@@ -267,3 +267,4 @@ import ThreeUniformDiaries.FiniteAuxLocalEmbedding
 import ThreeUniformDiaries.FiniteAuxEmbeddingPostcomposition
 import ThreeUniformDiaries.FiniteImageAembCoding
 import ThreeUniformDiaries.ScalarUniformGenericSelfEmbedding
+import ThreeUniformDiaries.FiniteImageExactBranchMap
