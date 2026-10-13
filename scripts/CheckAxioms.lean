@@ -13,6 +13,10 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.pullback_sameAuxTypeBelow_iff
 #print axioms ThreeUniformDiaries.Ordered3Graph.pullback_auxMeetLevel_of_lt_prefix
 #print axioms ThreeUniformDiaries.Ordered3Graph.pullback_auxMeetLevel_of_target_cap
+#print axioms ThreeUniformDiaries.Ordered3Graph.pullback_sameOneTypeBelow_iff
+#print axioms ThreeUniformDiaries.Ordered3Graph.pullback_oneMeetLevel_of_lt_prefix
+#print axioms ThreeUniformDiaries.Ordered3Graph.pullback_oneMeetLevel_of_target_cap
+#print axioms ThreeUniformDiaries.Ordered3Graph.pullback_oneMeetLevel_at_first_tail
 
 #print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.AuxTypeRespecting.typeRespecting
 #print axioms ThreeUniformDiaries.AuxRamseyCoding.auxRamsey_of_finiteRamsey
