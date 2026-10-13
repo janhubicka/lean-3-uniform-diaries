@@ -652,3 +652,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.existsUnique_scalarFiniteImage
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.scalarFiniteColourCode_some
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.actualScalarFiniteColour_monochromatic
+#print axioms ThreeUniformDiaries.EnumNode.exists_finiteImage_relativeBranch_coding
