@@ -73,7 +73,6 @@ theorem protectedScalar_decodeFiniteBranch_relative
   rw [decodeFiniteBranch_root k a B.val hB hroot]
   rw [rootedScalarFiniteBranchMap_eq_of_pictures
     k a hroot h₀ h₁ h₂ B.val hB]
-  rfl
 
 /-- A total relative K_I action on arbitrary scalar finite
 approximations: invalid approximations are mapped to none; valid
@@ -111,7 +110,6 @@ theorem protectedScalar_decodeFiniteRelativeBranch_some
   refine ⟨C, ?_⟩
   unfold decodeFiniteRelativeBranch
   rw [hC]
-  simp only [Option.some_bind]
   simp [C.property]
 
 end ATRFiniteDecoder
