@@ -159,7 +159,7 @@ theorem pullback_oneMeetLevel_at_first_tail
       exact (S.oneMeetLevel_agree (n+1) (n+2))
         hxy (lt_of_lt_of_le hy hnext)
     exact hfail hnxtType
-  omega
+  exact Nat.le_antisymm hhigh hlow
 
 end Ordered3Graph
 end ThreeUniformDiaries
