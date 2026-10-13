@@ -12,7 +12,7 @@ that agree at every vertex of A, and is therefore NOT the manuscript
 colouring domain.
 
 We make the finite domain explicit. A code consists of exactly the
-m images, indexed by `Fin m`, together with the PROP that they admit
+m images, indexed by `Fin m`, together with the PROP that there exists
 a strictly increasing global extension satisfying the genuine
 FINITE source-edge and aux-type constraints. The extension is not
 data, and the extensionality theorem shows that the tail never
