@@ -57,7 +57,7 @@ theorem finiteAuxCanonicalMap_eq_of_prefix_heights
       intro hi a
       change (CoordNode.aux (f 0) rf) =
         (CoordNode.aux (g 0) rg)
-      exact finiteStrongPicture_root_unique hF hG
+      exact ATRFiniteDecoder.finiteStrongPicture_root_unique hF hG
   | succ i ih =>
       intro hi a
       have hik : i < k := by omega
