@@ -67,7 +67,7 @@ theorem finiteOneCanonicalMap_eq_of_prefix_heights
       intro hi a
       change CoordNode.one (f 0) rf₁ =
         CoordNode.one (g 0) rg₁
-      exact ATRFiniteDecoder.finiteStrongPicture_root_unique hF₁ hG₁
+      exact finiteStrongPicture_root_unique_of_carrier hF₁ hG₁
   | succ i ih =>
       intro hi a
       have hik : i < k := by omega
@@ -162,7 +162,7 @@ theorem finiteEnumCanonicalMap_eq_of_prefix_heights
       intro hi a
       change CoordNode.enum (f 0) rf₀ =
         CoordNode.enum (g 0) rg₀
-      exact ATRFiniteDecoder.finiteStrongPicture_root_unique hF₀ hG₀
+      exact finiteStrongPicture_root_unique_of_carrier hF₀ hG₀
   | succ i ih =>
       intro hi a
       have hik : i < k := by omega
