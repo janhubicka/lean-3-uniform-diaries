@@ -618,3 +618,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.canonicalFiniteLevelMap_strictMono
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.canonicalFiniteLevelMap_eq_realizer
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.finiteCode_has_canonical_pictures
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.scalar_identityStem_of_complete_levels
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.gluedVectorStrong_identityStem
