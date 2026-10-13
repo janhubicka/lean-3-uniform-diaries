@@ -1,4 +1,5 @@
 import ThreeUniformDiaries.RootGluedVectorRefinement
+import ThreeUniformDiaries.FiniteSelectedSourcePrefix
 import ThreeUniformDiaries.FiniteStrongPrefixRigidity
 import ThreeUniformDiaries.FiniteStrongInfiniteExtension
 
