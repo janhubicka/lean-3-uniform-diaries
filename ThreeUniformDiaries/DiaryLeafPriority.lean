@@ -1,3 +1,4 @@
+import ThreeUniformDiaries.TwoTypeMeetLevel
 import Mathlib
 
 /-!
@@ -126,5 +127,84 @@ theorem aux_transfer
     omega
 
 end PairPattern
+
+/-- The exact leaf-pair priority conclusion for the *actual edge-derived*
+singleton, auxiliary, and full 2-type meet levels. Its hypotheses are
+precisely the numerical role consequences (S1) and (S2) for a diary.
+The structural verification of those hypotheses from a complete
+diary definition will be a separate Lean theorem. -/
+theorem auxMeetLevel_eq_twoMeetLevel_of_diary_cases
+    (H : Ordered3Graph Nat) (a b c d : Nat)
+    (hab : a < b) (hcd : c < d)
+    (isTwoSplit : Nat → Prop)
+    (hcases : H.twoMeetLevel a b c d = min a c ∨
+      H.twoMeetLevel a b c d = 1 ∨ isTwoSplit (H.twoMeetLevel a b c d))
+    (hfirst : 1 < H.oneMeetLevel a c)
+    (hsecond : 1 < H.oneMeetLevel b d)
+    (hfirstNotTwo : ¬ isTwoSplit (H.oneMeetLevel a c))
+    (hsecondNotTwo : ¬ isTwoSplit (H.oneMeetLevel b d)) :
+    H.auxMeetLevel a b c d = H.twoMeetLevel a b c d := by
+  let p : PairPattern := {
+    full := H.twoMeetLevel a b c d
+    aux := H.auxMeetLevel a b c d
+    first := H.oneMeetLevel a c
+    second := H.oneMeetLevel b d
+    cap := min a c
+    isTwoSplit := isTwoSplit
+    meet_decomposition := H.twoMeetLevel_eq_min a b c d hab hcd
+    aux_le_cap := H.auxMeetLevel_le_min a b c d
+    diary_cases := hcases
+    first_after_marker := hfirst
+    second_after_marker := hsecond
+    first_not_twoSplit := hfirstNotTwo
+    second_not_twoSplit := hsecondNotTwo
+  }
+  exact p.aux_eq_full
+
+/-- Auxiliary leaf-pair meet transfer across a type-respecting
+map, expressed with the actual source/target meet functions.
+The map need not have convex image. -/
+theorem auxMeetLevel_preserved_of_diary_cases
+    (H K : Ordered3Graph Nat) (a b c d : Nat)
+    (hab : a < b) (hcd : c < d)
+    (isTwoSplit : Nat → Prop)
+    (hcases : H.twoMeetLevel a b c d = min a c ∨
+      H.twoMeetLevel a b c d = 1 ∨ isTwoSplit (H.twoMeetLevel a b c d))
+    (hfirst : 1 < H.oneMeetLevel a c)
+    (hsecond : 1 < H.oneMeetLevel b d)
+    (hfirstNotTwo : ¬ isTwoSplit (H.oneMeetLevel a c))
+    (hsecondNotTwo : ¬ isTwoSplit (H.oneMeetLevel b d))
+    (f : Nat → Nat) (hf : StrictMono f)
+    (hfull : K.twoMeetLevel (f a) (f b) (f c) (f d) =
+      f (H.twoMeetLevel a b c d))
+    (hfst : K.oneMeetLevel (f a) (f c) =
+      f (H.oneMeetLevel a c))
+    (hsnd : K.oneMeetLevel (f b) (f d) =
+      f (H.oneMeetLevel b d)) :
+    K.auxMeetLevel (f a) (f b) (f c) (f d) =
+      f (H.auxMeetLevel a b c d) := by
+  let p : PairPattern := {
+    full := H.twoMeetLevel a b c d
+    aux := H.auxMeetLevel a b c d
+    first := H.oneMeetLevel a c
+    second := H.oneMeetLevel b d
+    cap := min a c
+    isTwoSplit := isTwoSplit
+    meet_decomposition := H.twoMeetLevel_eq_min a b c d hab hcd
+    aux_le_cap := H.auxMeetLevel_le_min a b c d
+    diary_cases := hcases
+    first_after_marker := hfirst
+    second_after_marker := hsecond
+    first_not_twoSplit := hfirstNotTwo
+    second_not_twoSplit := hsecondNotTwo
+  }
+  have hmin : min (f a) (f c) = f (min a c) := by
+    rcases le_total a c with hac | hca
+    · simp [min_eq_left hac, min_eq_left (hf.monotone hac)]
+    · simp [min_eq_right hca, min_eq_right (hf.monotone hca)]
+  exact p.aux_transfer f hf hfull hfst hsnd hmin
+    (K.twoMeetLevel_eq_min (f a) (f b) (f c) (f d) (hf hab) (hf hcd))
+    (K.auxMeetLevel_le_min (f a) (f b) (f c) (f d))
+
 end DiaryLeafPriority
 end ThreeUniformDiaries
