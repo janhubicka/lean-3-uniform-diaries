@@ -5,6 +5,8 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.twoMeetLevel_eq_min
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.auxMeetLevel_eq_twoMeetLevel_of_diary_cases
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.auxMeetLevel_preserved_of_diary_cases
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiaryMeets.coordinate_meet_is_later
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiaryMeets.leaf_aux_eq_full
 
 #print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.AuxTypeRespecting.typeRespecting
 #print axioms ThreeUniformDiaries.AuxRamseyCoding.auxRamsey_of_finiteRamsey
