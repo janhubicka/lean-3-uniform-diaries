@@ -76,14 +76,14 @@ theorem actualScalarFiniteColour_monochromatic
       ∃ color : κ,
         ∀ (X : StrongSubtree CoordNode.rootGluedAmbientTree),
           X.Refines B →
-          r (n + 1) X = r (n + 1) scalarIdentity →
+          ∀ hstemX : r (n + 1) X = r (n + 1) scalarIdentity,
           ∀ code : Ordered3Graph.FiniteAuxEmbeddingImage
               A.toOrdered3Graph G.graph (k + 1),
             ScalarFiniteImageEquation G A I E phi
               (r (k + 2) X)
               (protectedScalarApprox_root_mem k n
                 (r (k + 2) X)
-                ⟨X, rfl, by assumption⟩) code →
+                ⟨X, rfl, hstemX⟩) code →
             χ code = color := by
   let col := actualScalarFiniteColour G hnk A I hI E phi hphi χ
   obtain ⟨B, hBA, hstemB, hhom⟩ :=
