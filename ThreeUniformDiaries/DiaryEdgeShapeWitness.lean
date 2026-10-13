@@ -40,15 +40,21 @@ theorem oneMeetLevel_has_first_witness
   have hfail : ¬ H.SameOneTypeBelow (m + 1) a b := by
     intro h
     have hbound : m + 1 ≤ min a b := by omega
-    have hbad := Nat.le_findGreatest hbound h
-    change m + 1 ≤ H.oneMeetLevel a b at hbad
+    have hbad : m + 1 ≤ H.oneMeetLevel a b := by
+      exact Nat.le_findGreatest
+        (P := fun k => H.SameOneTypeBelow k a b) hbound h
     omega
-  have hwitness : ¬ ∀ z, z < m →
-      (H.edge z m a ↔ H.edge z m b) := by
-    intro hall
+  classical
+  have hwitness : ∃ z, z < m ∧
+      ¬ (H.edge z m a ↔ H.edge z m b) := by
+    by_contra hn
+    have hall : ∀ z, z < m →
+        (H.edge z m a ↔ H.edge z m b) := by
+      intro z hz
+      by_contra hdiff
+      exact hn ⟨z, hz, hdiff⟩
     exact hfail ((H.sameOneTypeBelow_succ_iff m a b).mpr
       ⟨hagree, hall⟩)
-  push_neg at hwitness
   exact hwitness
 
 /-- A 1-split witness between two leaves must be detected by
