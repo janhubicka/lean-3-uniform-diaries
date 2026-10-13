@@ -34,6 +34,7 @@ theorem oneMeetLevel_has_first_witness
     (hm : H.oneMeetLevel a b = m)
     (hma : m < a) (hmb : m < b) :
     ∃ z, z < m ∧ ¬ (H.edge z m a ↔ H.edge z m b) := by
+  classical
   have hagree : H.SameOneTypeBelow m a b := by
     rw [← hm]
     exact H.oneMeetLevel_agree a b
