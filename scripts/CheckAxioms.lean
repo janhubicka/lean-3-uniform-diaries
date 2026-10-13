@@ -640,3 +640,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.finiteStrong_extension_branchMap_eq_infinite
 #print axioms ThreeUniformDiaries.CoordNode.exists_infinite_extension_with_branchMap_eq
 #print axioms ThreeUniformDiaries.CoordNode.exists_finiteStrong_branch_auxTypeFactorization
+#print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.AuxTypeRespecting.comp
+#print axioms ThreeUniformDiaries.CoordNode.exists_finiteStrong_actualAuxEmbedding_to_generic
