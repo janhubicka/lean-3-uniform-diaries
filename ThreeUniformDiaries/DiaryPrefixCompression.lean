@@ -86,11 +86,6 @@ theorem pullback_auxMeetLevel_of_lt_prefix
   · omega
   · have hplus : w + 1 ≤ cap := by omega
     have hplusN : w + 1 ≤ n := by omega
-    have hsourceNext : (H.pullback f).SameAuxTypeBelow
-        (w + 1) a b c d := by
-      intro z hz
-      exact ((H.pullback f).auxMeetLevel_agree a b c d)
-        (lt_of_lt_of_le hz (by omega))
     by_contra hn
     have hsourceMeetGt : w < (H.pullback f).auxMeetLevel a b c d := by
       omega
