@@ -244,3 +244,4 @@ import ThreeUniformDiaries.ScalarAnchoredRelativeBranch
 import ThreeUniformDiaries.FiniteStrongLevelCongruence
 import ThreeUniformDiaries.ScalarCanonicalFiniteLevels
 import ThreeUniformDiaries.ScalarCanonicalFinitePictures
+import ThreeUniformDiaries.ScalarProtectedApproxRealization
