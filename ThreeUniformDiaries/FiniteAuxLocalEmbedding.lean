@@ -147,7 +147,11 @@ not as part of the code's equality or colouring. -/
 noncomputable def toLocal (e : FiniteAuxEmbeddingImage H K m) :
     FiniteAuxLocalEmbedding H K m := by
   classical
-  obtain ⟨f, hf, he⟩ := e.admissible
+  let f : Nat → Nat := Classical.choose e.admissible
+  have hf : FiniteAuxEmbedding H K f m :=
+    (Classical.choose_spec e.admissible).1
+  have he : ∀ i : Fin m, e.image i = f i.val :=
+    (Classical.choose_spec e.admissible).2
   refine {
     image := e.image
     strictMono := ?_
@@ -178,7 +182,8 @@ literally the same point of the finite colouring domain. -/
 theorem toLocal_toFiniteImage (e : FiniteAuxEmbeddingImage H K m) :
     e.toLocal.toFiniteImage = e := by
   ext i
-  rfl
+  change e.toLocal.image i = e.image i
+  simp [toLocal]
 
 end FiniteAuxEmbeddingImage
 end Ordered3Graph
