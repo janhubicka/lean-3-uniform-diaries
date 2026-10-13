@@ -24,7 +24,7 @@ theorems supply exactly the missing geometric identity.
 namespace ThreeUniformDiaries
 namespace CoordNode
 
-theorem exists_infiniteVector_geometric_composition
+theorem exists_infiniteVector_geometric_composition_with_subset
     {S₀ S₁ S₂ U₀ U₁ U₂ : Set CoordNode} {sigma f : Nat → Nat}
     {rS₀ : EnumNode (sigma 0)} {rS₁ : OneNode (sigma 0)}
     {rS₂ : AuxNode (sigma 0)}
@@ -47,6 +47,7 @@ theorem exists_infiniteVector_geometric_composition
         (hV₀ : InfiniteStrongPicture V₀ (fun i => f (sigma i))
         (.enum (f (sigma 0))
           (infiniteEnumCanonicalMap hU₀ hU₁ hU₂ (sigma 0) rS₀).val)),
+        V₂ ⊆ U₂ ∧ V₁ ⊆ U₁ ∧ V₀ ⊆ U₀ ∧
         (∀ n (c : AuxNode n),
           (infiniteAuxCanonicalMap hV₂ n c).val =
             (infiniteAuxCanonicalMap hU₂ (sigma n)
@@ -59,11 +60,11 @@ theorem exists_infiniteVector_geometric_composition
           (infiniteEnumCanonicalMap hV₀ hV₁ hV₂ n a).val =
             (infiniteEnumCanonicalMap hU₀ hU₁ hU₂ (sigma n)
               (infiniteEnumCanonicalMap hS₀ hS₁ hS₂ n a).val).val) := by
-  obtain ⟨V₂, V₁, hV₂, hV₁, hAux, hOne⟩ :=
-    exists_infiniteOne_geometric_composition
+  obtain ⟨V₂, V₁, hV₂, hV₁, hVU₂, hVU₁, hAux, hOne⟩ :=
+    exists_infiniteOne_geometric_composition_with_subset
       hS₁ hS₂ hU₁ hU₂ hsigma hf
-  obtain ⟨V₀, hV₀, hEV⟩ :=
-    exists_infiniteEnum_image_completion
+  obtain ⟨V₀, hV₀, hVU₀, hEV⟩ :=
+    exists_infiniteEnum_image_completion_with_subset
       hS₀ hS₁ hS₂ hU₀ hU₁ hU₂ hsigma hf
   let G₁ : (n : Nat) → OneNode n → OneNode (f (sigma n)) :=
     fun n b =>
@@ -101,9 +102,50 @@ theorem exists_infiniteVector_geometric_composition
       hS₀ hS₁ hS₂ hU₀ hU₁ hU₂ hsigma hf n a b
   have heq := infiniteEnumCanonicalMap_unique_of_cones
     hV₀ hV₁ hV₂ G₁ G₀ hG₁ hmem hroot hsucc
-  refine ⟨V₂, V₁, V₀, hV₂, hV₁, hV₀, hAux, hOne, ?_⟩
+  refine ⟨V₂, V₁, V₀, hV₂, hV₁, hV₀, hVU₂, hVU₁, hVU₀, hAux, hOne, ?_⟩
   intro n a
   exact (heq n a).symm
+
+
+theorem exists_infiniteVector_geometric_composition
+    {S₀ S₁ S₂ U₀ U₁ U₂ : Set CoordNode} {sigma f : Nat → Nat}
+    {rS₀ : EnumNode (sigma 0)} {rS₁ : OneNode (sigma 0)}
+    {rS₂ : AuxNode (sigma 0)}
+    {rU₀ : EnumNode (f 0)} {rU₁ : OneNode (f 0)}
+    {rU₂ : AuxNode (f 0)}
+    (hS₀ : InfiniteStrongPicture S₀ sigma (.enum (sigma 0) rS₀))
+    (hS₁ : InfiniteStrongPicture S₁ sigma (.one (sigma 0) rS₁))
+    (hS₂ : InfiniteStrongPicture S₂ sigma (.aux (sigma 0) rS₂))
+    (hU₀ : InfiniteStrongPicture U₀ f (.enum (f 0) rU₀))
+    (hU₁ : InfiniteStrongPicture U₁ f (.one (f 0) rU₁))
+    (hU₂ : InfiniteStrongPicture U₂ f (.aux (f 0) rU₂))
+    (hsigma : StrictMono sigma) (hf : StrictMono f) :
+    ∃ (V₂ V₁ V₀ : Set CoordNode),
+      ∃ (hV₂ : InfiniteStrongPicture V₂ (fun i => f (sigma i))
+        (.aux (f (sigma 0))
+          (infiniteAuxCanonicalMap hU₂ (sigma 0) rS₂).val))
+        (hV₁ : InfiniteStrongPicture V₁ (fun i => f (sigma i))
+        (.one (f (sigma 0))
+          (infiniteOneCanonicalMap hU₁ hU₂ (sigma 0) rS₁).val))
+        (hV₀ : InfiniteStrongPicture V₀ (fun i => f (sigma i))
+        (.enum (f (sigma 0))
+          (infiniteEnumCanonicalMap hU₀ hU₁ hU₂ (sigma 0) rS₀).val)),
+        (∀ n (c : AuxNode n),
+          (infiniteAuxCanonicalMap hV₂ n c).val =
+            (infiniteAuxCanonicalMap hU₂ (sigma n)
+              (infiniteAuxCanonicalMap hS₂ n c).val).val) ∧
+        (∀ n (b : OneNode n),
+          (infiniteOneCanonicalMap hV₁ hV₂ n b).val =
+            (infiniteOneCanonicalMap hU₁ hU₂ (sigma n)
+              (infiniteOneCanonicalMap hS₁ hS₂ n b).val).val) ∧
+        (∀ n (a : EnumNode n),
+          (infiniteEnumCanonicalMap hV₀ hV₁ hV₂ n a).val =
+            (infiniteEnumCanonicalMap hU₀ hU₁ hU₂ (sigma n)
+              (infiniteEnumCanonicalMap hS₀ hS₁ hS₂ n a).val).val) := by
+  obtain ⟨V₂, V₁, V₀, hV₂, hV₁, hV₀, _, _, _, hAux, hOne, hEnum⟩ :=
+    exists_infiniteVector_geometric_composition_with_subset
+      hS₀ hS₁ hS₂ hU₀ hU₁ hU₂ hsigma hf
+  exact ⟨V₂, V₁, V₀, hV₂, hV₁, hV₀, hAux, hOne, hEnum⟩
 
 end CoordNode
 end ThreeUniformDiaries
