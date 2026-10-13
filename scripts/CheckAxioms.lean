@@ -646,3 +646,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.AuxTypeRespecting.comp
 #print axioms ThreeUniformDiaries.CoordNode.exists_finiteStrong_actualAuxEmbedding_to_generic
 #print axioms ThreeUniformDiaries.CoordNode.exists_finiteStrong_phi_FI_gA_auxEmbedding
+#print axioms ThreeUniformDiaries.Ordered3Graph.FiniteAuxEmbeddingImage.ext
+#print axioms ThreeUniformDiaries.Ordered3Graph.FiniteAuxEmbeddingImage.ofAuxTypeRespectingEmbedding_apply
+#print axioms ThreeUniformDiaries.Ordered3Graph.FiniteAuxEmbeddingImage.ofAuxTypeRespectingEmbedding_eq
