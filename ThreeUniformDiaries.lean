@@ -275,3 +275,4 @@ import ThreeUniformDiaries.FiniteAuxMapPrefixInvariance
 import ThreeUniformDiaries.FiniteCoupledMapPrefixInvariance
 import ThreeUniformDiaries.FiniteBranchMapPrefixInvariance
 import ThreeUniformDiaries.ScalarFiniteInfiniteFIEquality
+import ThreeUniformDiaries.ActualFiniteAuxRamsey
