@@ -666,3 +666,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.finiteAuxCanonicalMap_eq_of_prefix_heights
 #print axioms ThreeUniformDiaries.CoordNode.finiteOneCanonicalMap_eq_of_prefix_heights
 #print axioms ThreeUniformDiaries.CoordNode.finiteEnumCanonicalMap_eq_of_prefix_heights
+#print axioms ThreeUniformDiaries.CoordNode.finiteStrongPicture_branchMap_eq_of_prefix_heights
