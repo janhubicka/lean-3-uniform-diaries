@@ -77,8 +77,9 @@ theorem protectedScalarApprox_exists_canonicalRelativeBranchMap
   have hfix : ∀ i < n, g i = i := by
     intro i hi
     have hik : i ≤ k := by omega
-    rw [canonicalFiniteLevelMap_eq_realizer k a S hS i hik]
-    exact hfixS i hi
+    change canonicalFiniteLevelMap k a i = i
+    exact (canonicalFiniteLevelMap_eq_realizer k a S hS i hik).trans
+      (hfixS i hi)
   have hfull : ∀ j : Nat, j < n →
       ∀ x : CoordNode, CoordNode.level x = j →
         x ∈ (finiteTypedCarrier k a).carrier (CoordNode.sort x) := by
