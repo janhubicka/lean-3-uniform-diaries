@@ -10,6 +10,8 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiaryMeets.leaf_aux_transfer
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.auxMeetLevel_le_of_edge_disagreement
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.split_leaf_triple_aux_bounds
+#print axioms ThreeUniformDiaries.Ordered3Graph.auxMeetLevel_comm
+#print axioms ThreeUniformDiaries.Ordered3Graph.three_tail_distinct_aux_meet_lt_prefix
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.oneMeetLevel_has_first_witness
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.oneSplit_branch_zero
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.oneSplit_pointed_aux_bounds
