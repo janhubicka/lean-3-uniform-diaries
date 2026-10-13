@@ -35,7 +35,7 @@ theorem finiteStrongPicture_root_unique_of_carrier
     r = s := by
   have hr : r ∈ S := hF.2.2.1
   have hs : s ∈ S := hG.2.2.1
-  exact _root_.le_antisymm (hF.2.2.2 s hs) (hG.2.2.2 r hr)
+  exact _root_.le_antisymm (hF.2.2.2.1 s hs) (hG.2.2.2.1 r hr)
 
 /-- Equality of ambient auxiliary nodes is preserved by appending
 the same Boolean boundary bit, even across dependent node indices. -/
