@@ -638,3 +638,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.finiteScalarRelativeImages_all_some
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.exists_finiteScalarRelativeImage_tuple
 #print axioms ThreeUniformDiaries.CoordNode.exists_scalarApprox_of_finiteStrongVector
+#print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.comp
+#print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.AuxTypeRespecting.comp
+#print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.comp_fixed_prefix
