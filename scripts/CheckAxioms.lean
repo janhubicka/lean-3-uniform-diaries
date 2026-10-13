@@ -661,3 +661,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.exists_uniform_canonical_selfEmbedding_of_vector
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.exists_uniform_canonical_selfEmbedding_of_scalar
 #print axioms ThreeUniformDiaries.EnumNode.exists_finiteImage_exact_branchMap
+#print axioms ThreeUniformDiaries.CoordNode.finiteAuxCanonicalMap_eq_of_prefix_heights
