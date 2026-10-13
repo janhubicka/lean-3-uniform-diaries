@@ -34,8 +34,9 @@ private theorem mono_nat_ge (f : Nat → Nat) (hf : StrictMono f) :
   induction x with
   | zero => omega
   | succ x ih =>
-    have h := hf (Nat.lt_succ_self x)
-    omega
+    have h : f x + 1 ≤ f (Nat.succ x) :=
+      Nat.succ_le_of_lt (hf (Nat.lt_succ_self x))
+    exact le_trans (Nat.succ_le_succ ih) h
 
 /-- Below a prefix fixed pointwise by the selected enumeration,
 auxiliary type equality is unchanged in the induced hypergraph. -/
@@ -98,7 +99,10 @@ theorem pullback_auxMeetLevel_of_lt_prefix
     have htargetCap : w + 1 ≤ min (f a) (f c) := by
       rw [hmin]
       exact hplus.trans (mono_nat_ge f hf cap)
-    have hw := Nat.le_findGreatest htargetCap htargetNext
+    have hw : w + 1 ≤ H.auxMeetLevel (f a) (f b) (f c) (f d) := by
+      exact Nat.le_findGreatest
+        (P := fun k => H.SameAuxTypeBelow k (f a) (f b) (f c) (f d))
+        htargetCap htargetNext
     omega
 
 /-- If the target auxiliary meet is capped at the image of the
