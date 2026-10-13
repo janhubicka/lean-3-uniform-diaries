@@ -23,7 +23,7 @@ namespace CoordNode
 /-- Any two genuine infinite strong auxiliary pictures have an actual
 strong composite picture whose recursive canonical auxiliary map
 coincides on ALL source nodes with the pointwise composite. -/
-theorem exists_infiniteAux_geometric_composition
+theorem exists_infiniteAux_geometric_composition_with_subset
     {S U : Set CoordNode} {sigma f : Nat → Nat}
     {rS : AuxNode (sigma 0)} {rU : AuxNode (f 0)}
     (hS : InfiniteStrongPicture S sigma (.aux (sigma 0) rS))
@@ -33,6 +33,7 @@ theorem exists_infiniteAux_geometric_composition
       ∃ hV : InfiniteStrongPicture V (fun i => f (sigma i))
         (.aux (f (sigma 0))
           (infiniteAuxCanonicalMap hU (sigma 0) rS).val),
+        V ⊆ U ∧
         ∀ n (a : AuxNode n),
           (infiniteAuxCanonicalMap hV n a).val =
             (infiniteAuxCanonicalMap hU (sigma n)
@@ -106,7 +107,26 @@ theorem exists_infiniteAux_geometric_composition
       hS hU hsigma hf n a bit
   have heq := infiniteAuxCanonicalMap_unique_of_cones
     hV G hmem hGroot hGsucc
-  exact ⟨V, hV, fun n a => (heq n a).symm⟩
+  exact ⟨V, hV, hRelative.subset_U, fun n a => (heq n a).symm⟩
+
+
+theorem exists_infiniteAux_geometric_composition
+    {S U : Set CoordNode} {sigma f : Nat → Nat}
+    {rS : AuxNode (sigma 0)} {rU : AuxNode (f 0)}
+    (hS : InfiniteStrongPicture S sigma (.aux (sigma 0) rS))
+    (hU : InfiniteStrongPicture U f (.aux (f 0) rU))
+    (hsigma : StrictMono sigma) (hf : StrictMono f) :
+    ∃ (V : Set CoordNode),
+      ∃ hV : InfiniteStrongPicture V (fun i => f (sigma i))
+        (.aux (f (sigma 0))
+          (infiniteAuxCanonicalMap hU (sigma 0) rS).val),
+        ∀ n (a : AuxNode n),
+          (infiniteAuxCanonicalMap hV n a).val =
+            (infiniteAuxCanonicalMap hU (sigma n)
+              (infiniteAuxCanonicalMap hS n a).val).val := by
+  obtain ⟨V, hV, _, hCode⟩ :=
+    exists_infiniteAux_geometric_composition_with_subset hS hU hsigma hf
+  exact ⟨V, hV, hCode⟩
 
 end CoordNode
 end ThreeUniformDiaries
