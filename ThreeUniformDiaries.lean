@@ -3,6 +3,7 @@ import ThreeUniformDiaries.TwoTypeMeetLevel
 import ThreeUniformDiaries.DiaryLeafPriority
 import ThreeUniformDiaries.DiaryRoleAxioms
 import ThreeUniformDiaries.DiaryAuxTransferWitness
+import ThreeUniformDiaries.DiaryEdgeShapeWitness
 import ThreeUniformDiaries.AuxRamseyTransfer
 import ThreeUniformDiaries.TypeTrees
 import ThreeUniformDiaries.TypeRepresentation
