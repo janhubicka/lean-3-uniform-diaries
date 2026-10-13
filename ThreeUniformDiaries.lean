@@ -263,3 +263,4 @@ import ThreeUniformDiaries.ScalarFiniteGenericColour
 import ThreeUniformDiaries.FiniteAuxEmbeddingImage
 import ThreeUniformDiaries.ScalarFiniteColourCode
 import ThreeUniformDiaries.ScalarActualFiniteMillikenColour
+import ThreeUniformDiaries.FiniteAuxEmbeddingPostcomposition
