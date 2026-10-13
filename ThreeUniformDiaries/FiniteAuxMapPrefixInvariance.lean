@@ -25,6 +25,18 @@ finite F_I branch-code invariance under changes to unused tails.
 namespace ThreeUniformDiaries
 namespace CoordNode
 
+/-- A genuine finite strong picture has a unique actual root determined
+by its carrier, even when two descriptions use different level maps. -/
+theorem finiteStrongPicture_root_unique_of_carrier
+    {S : Set CoordNode} {f g : Nat → Nat} {k : Nat}
+    {r s : CoordNode}
+    (hF : FiniteStrongPicture S f k r)
+    (hG : FiniteStrongPicture S g k s) :
+    r = s := by
+  have hr : r ∈ S := hF.2.2.1
+  have hs : s ∈ S := hG.2.2.1
+  exact _root_.le_antisymm (hF.2.2.2 s hs) (hG.2.2.2 r hr)
+
 /-- Equality of ambient auxiliary nodes is preserved by appending
 the same Boolean boundary bit, even across dependent node indices. -/
 private def auxAppendBit (bit : Bool) : CoordNode → CoordNode
@@ -57,7 +69,7 @@ theorem finiteAuxCanonicalMap_eq_of_prefix_heights
       intro hi a
       change (CoordNode.aux (f 0) rf) =
         (CoordNode.aux (g 0) rg)
-      exact ATRFiniteDecoder.finiteStrongPicture_root_unique hF hG
+      exact finiteStrongPicture_root_unique_of_carrier hF hG
   | succ i ih =>
       intro hi a
       have hik : i < k := by omega
