@@ -4,6 +4,7 @@ import ThreeUniformDiaries.DiaryLeafPriority
 import ThreeUniformDiaries.DiaryRoleAxioms
 import ThreeUniformDiaries.DiaryAuxTransferWitness
 import ThreeUniformDiaries.DiaryPrefixCompression
+import ThreeUniformDiaries.DiarySingletonCompression
 import ThreeUniformDiaries.AuxRamseyTransfer
 import ThreeUniformDiaries.TypeTrees
 import ThreeUniformDiaries.TypeRepresentation
