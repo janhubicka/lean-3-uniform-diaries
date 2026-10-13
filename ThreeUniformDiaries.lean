@@ -5,6 +5,7 @@ import ThreeUniformDiaries.DiaryRoleAxioms
 import ThreeUniformDiaries.DiaryAuxTransferWitness
 import ThreeUniformDiaries.DiaryEdgeShapeWitness
 import ThreeUniformDiaries.DiaryPrefixCompression
+import ThreeUniformDiaries.DiaryAuxEnvelopeTransfer
 import ThreeUniformDiaries.DiarySingletonCompression
 import ThreeUniformDiaries.AuxRamseyTransfer
 import ThreeUniformDiaries.TypeTrees
