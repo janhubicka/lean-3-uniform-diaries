@@ -649,3 +649,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.FiniteAuxEmbeddingImage.ext
 #print axioms ThreeUniformDiaries.Ordered3Graph.FiniteAuxEmbeddingImage.ofAuxTypeRespectingEmbedding_apply
 #print axioms ThreeUniformDiaries.Ordered3Graph.FiniteAuxEmbeddingImage.ofAuxTypeRespectingEmbedding_eq
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.existsUnique_scalarFiniteImage
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.scalarFiniteColourCode_some
