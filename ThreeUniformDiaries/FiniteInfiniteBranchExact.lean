@@ -60,9 +60,11 @@ theorem finitePrefix_branchMap_eq_infinite
   have henum :=
     finitePrefix_branchMap_enumeration_eq_infinite
       h₀ h₁ h₂ hf k B hB
-  apply enumerationBranchNode_ext _ _ hlast
-  cases henum
-  rfl
+  cases B with
+  | mk i A =>
+      exact congrArg
+        (fun E : EnumNode (f i + 1) =>
+          (⟨f i, E⟩ : EnumerationBranchNode)) henum
 
 end CoordNode
 end ThreeUniformDiaries
