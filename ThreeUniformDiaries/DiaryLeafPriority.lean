@@ -56,7 +56,9 @@ theorem full_before_coordinates_of_not_cap
     d.full < d.first ∧ d.full < d.second := by
   rcases d.diary_cases with hcap | hone | htwo
   · exact (hn hcap).elim
-  · constructor <;> omega
+  · have hmarker₀ := d.first_after_marker
+    have hmarker₁ := d.second_after_marker
+    constructor <;> omega
   · have hle₀ : d.full ≤ d.first := by
       calc
         d.full = min d.aux (min d.first d.second) := d.meet_decomposition
@@ -86,6 +88,7 @@ theorem aux_eq_full (d : PairPattern) : d.aux = d.full := by
   · have hfull_le_aux : d.full ≤ d.aux := by
       rw [d.meet_decomposition]
       exact min_le_left _ _
+    have hcapBound := d.aux_le_cap
     omega
   · obtain ⟨hf, hs⟩ := d.full_before_coordinates_of_not_cap hc
     exact (full_eq_aux_of_before_coordinates d.meet_decomposition hf hs).symm
