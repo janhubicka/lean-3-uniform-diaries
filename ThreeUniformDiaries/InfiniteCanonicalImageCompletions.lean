@@ -21,7 +21,7 @@ that will follow from the separate E1/E0 cone and uniqueness theorems.
 namespace ThreeUniformDiaries
 namespace CoordNode
 
-theorem exists_infiniteOne_image_completion
+theorem exists_infiniteOne_image_completion_with_subset
     {S₁ S₂ U₁ U₂ : Set CoordNode} {sigma f : Nat → Nat}
     {rS₁ : OneNode (sigma 0)} {rS₂ : AuxNode (sigma 0)}
     {rU₁ : OneNode (f 0)} {rU₂ : AuxNode (f 0)}
@@ -34,7 +34,7 @@ theorem exists_infiniteOne_image_completion
       ∃ hV₁ : InfiniteStrongPicture V₁ (fun i => f (sigma i))
         (.one (f (sigma 0))
           (infiniteOneCanonicalMap hU₁ hU₂ (sigma 0) rS₁).val),
-        infiniteOneImage hU₁ hU₂ S₁ ⊆ V₁ := by
+        V₁ ⊆ U₁ ∧ infiniteOneImage hU₁ hU₂ S₁ ⊆ V₁ := by
   let E : Set CoordNode := infiniteOneImage hU₁ hU₂ S₁
   let r : CoordNode :=
     .one (f (sigma 0))
@@ -78,9 +78,9 @@ theorem exists_infiniteOne_image_completion
       r hrU hrLevel hrBelow
   have hV₁ : InfiniteStrongPicture V₁ (fun i => f (sigma i)) r :=
     relativeInfiniteStrongPicture_to_ambient hU₁ hf hsigma hRelative
-  exact ⟨V₁, hV₁, hEV⟩
+  exact ⟨V₁, hV₁, hRelative.subset_U, hEV⟩
 
-theorem exists_infiniteEnum_image_completion
+theorem exists_infiniteEnum_image_completion_with_subset
     {S₀ S₁ S₂ U₀ U₁ U₂ : Set CoordNode} {sigma f : Nat → Nat}
     {rS₀ : EnumNode (sigma 0)} {rS₁ : OneNode (sigma 0)}
     {rS₂ : AuxNode (sigma 0)}
@@ -97,7 +97,7 @@ theorem exists_infiniteEnum_image_completion
       ∃ hV₀ : InfiniteStrongPicture V₀ (fun i => f (sigma i))
         (.enum (f (sigma 0))
           (infiniteEnumCanonicalMap hU₀ hU₁ hU₂ (sigma 0) rS₀).val),
-        infiniteEnumImage hU₀ hU₁ hU₂ S₀ ⊆ V₀ := by
+        V₀ ⊆ U₀ ∧ infiniteEnumImage hU₀ hU₁ hU₂ S₀ ⊆ V₀ := by
   let E : Set CoordNode := infiniteEnumImage hU₀ hU₁ hU₂ S₀
   let r : CoordNode :=
     .enum (f (sigma 0))
@@ -141,7 +141,50 @@ theorem exists_infiniteEnum_image_completion
       r hrU hrLevel hrBelow
   have hV₀ : InfiniteStrongPicture V₀ (fun i => f (sigma i)) r :=
     relativeInfiniteStrongPicture_to_ambient hU₀ hf hsigma hRelative
-  exact ⟨V₀, hV₀, hEV⟩
+  exact ⟨V₀, hV₀, hRelative.subset_U, hEV⟩
+
+
+theorem exists_infiniteOne_image_completion
+    {S₁ S₂ U₁ U₂ : Set CoordNode} {sigma f : Nat → Nat}
+    {rS₁ : OneNode (sigma 0)} {rS₂ : AuxNode (sigma 0)}
+    {rU₁ : OneNode (f 0)} {rU₂ : AuxNode (f 0)}
+    (hS₁ : InfiniteStrongPicture S₁ sigma (.one (sigma 0) rS₁))
+    (hS₂ : InfiniteStrongPicture S₂ sigma (.aux (sigma 0) rS₂))
+    (hU₁ : InfiniteStrongPicture U₁ f (.one (f 0) rU₁))
+    (hU₂ : InfiniteStrongPicture U₂ f (.aux (f 0) rU₂))
+    (hsigma : StrictMono sigma) (hf : StrictMono f) :
+    ∃ (V₁ : Set CoordNode),
+      ∃ hV₁ : InfiniteStrongPicture V₁ (fun i => f (sigma i))
+        (.one (f (sigma 0))
+          (infiniteOneCanonicalMap hU₁ hU₂ (sigma 0) rS₁).val),
+        infiniteOneImage hU₁ hU₂ S₁ ⊆ V₁ := by
+  obtain ⟨V, hV, _, hE⟩ :=
+    exists_infiniteOne_image_completion_with_subset
+      hS₁ hS₂ hU₁ hU₂ hsigma hf
+  exact ⟨V, hV, hE⟩
+
+theorem exists_infiniteEnum_image_completion
+    {S₀ S₁ S₂ U₀ U₁ U₂ : Set CoordNode} {sigma f : Nat → Nat}
+    {rS₀ : EnumNode (sigma 0)} {rS₁ : OneNode (sigma 0)}
+    {rS₂ : AuxNode (sigma 0)}
+    {rU₀ : EnumNode (f 0)} {rU₁ : OneNode (f 0)}
+    {rU₂ : AuxNode (f 0)}
+    (hS₀ : InfiniteStrongPicture S₀ sigma (.enum (sigma 0) rS₀))
+    (hS₁ : InfiniteStrongPicture S₁ sigma (.one (sigma 0) rS₁))
+    (hS₂ : InfiniteStrongPicture S₂ sigma (.aux (sigma 0) rS₂))
+    (hU₀ : InfiniteStrongPicture U₀ f (.enum (f 0) rU₀))
+    (hU₁ : InfiniteStrongPicture U₁ f (.one (f 0) rU₁))
+    (hU₂ : InfiniteStrongPicture U₂ f (.aux (f 0) rU₂))
+    (hsigma : StrictMono sigma) (hf : StrictMono f) :
+    ∃ (V₀ : Set CoordNode),
+      ∃ hV₀ : InfiniteStrongPicture V₀ (fun i => f (sigma i))
+        (.enum (f (sigma 0))
+          (infiniteEnumCanonicalMap hU₀ hU₁ hU₂ (sigma 0) rS₀).val),
+        infiniteEnumImage hU₀ hU₁ hU₂ S₀ ⊆ V₀ := by
+  obtain ⟨V, hV, _, hE⟩ :=
+    exists_infiniteEnum_image_completion_with_subset
+      hS₀ hS₁ hS₂ hU₀ hU₁ hU₂ hsigma hf
+  exact ⟨V, hV, hE⟩
 
 end CoordNode
 end ThreeUniformDiaries
