@@ -64,7 +64,8 @@ theorem AuxTypeRespecting.comp
 /-- If both embeddings fix the first n vertices, then their
 genuine induced aux-type-respecting composite fixes them too. -/
 theorem comp_fixed_prefix
-    (g : Embedding K L) (f : Embedding H K)
+    {H' K' L' : Ordered3Graph Nat}
+    (g : Embedding K' L') (f : Embedding H' K')
     (n : Nat) (hfixF : ∀ i : Nat, i < n → f i = i)
     (hfixG : ∀ i : Nat, i < n → g i = i) :
     ∀ i : Nat, i < n → (g.comp f) i = i := by
