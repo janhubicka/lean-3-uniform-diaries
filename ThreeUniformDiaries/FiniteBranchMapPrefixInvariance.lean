@@ -88,12 +88,12 @@ theorem finiteStrongPicture_branchMap_eq_of_prefix_heights
           branchFromTypeNodes
             (CoordNode.enum (f B.last) enumF.val)
             (CoordNode.one (f B.last) oneF.val) := by
-          rfl
+          simp [branchFromTypeNodes, finiteStrongPicture_branchMap, enumF, oneF, enumG, oneG]
       _ = branchFromTypeNodes
             (CoordNode.enum (g B.last) enumG.val)
             (CoordNode.one (g B.last) oneG.val) := hfun
       _ = some (finiteStrongPicture_branchMap hG₀ hG₁ hG₂ B hB) := by
-          rfl
+          simp [branchFromTypeNodes, finiteStrongPicture_branchMap, enumF, oneF, enumG, oneG]
   exact Option.some.inj hsome
 
 /-- The same result with carrier equalities rather than literally
