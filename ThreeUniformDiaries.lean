@@ -1,4 +1,5 @@
 import ThreeUniformDiaries.AuxTypes
+import ThreeUniformDiaries.DiaryLeafPriority
 import ThreeUniformDiaries.AuxRamseyTransfer
 import ThreeUniformDiaries.TypeTrees
 import ThreeUniformDiaries.TypeRepresentation
