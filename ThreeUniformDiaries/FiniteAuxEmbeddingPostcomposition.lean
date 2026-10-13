@@ -63,7 +63,11 @@ noncomputable def postcompose
     (g : Embedding K L) (hg : g.AuxTypeRespecting) :
     FiniteAuxEmbeddingImage H L m := by
   classical
-  obtain ⟨f, hf, hc⟩ := c.admissible
+  let f : Nat → Nat := Classical.choose c.admissible
+  have hf : FiniteAuxEmbedding H K f m :=
+    (Classical.choose_spec c.admissible).1
+  have hc : ∀ i : Fin m, c.image i = f i.val :=
+    (Classical.choose_spec c.admissible).2
   refine {
     image := fun i => g (c.image i)
     admissible := ⟨(fun j => g (f j)),
@@ -76,7 +80,8 @@ noncomputable def postcompose
     (c : FiniteAuxEmbeddingImage H K m)
     (g : Embedding K L) (hg : g.AuxTypeRespecting)
     (i : Fin m) :
-    (c.postcompose g hg).image i = g (c.image i) := rfl
+    (c.postcompose g hg).image i = g (c.image i) := by
+  simp [postcompose]
 
 /-- Postcomposition respects composition of ambient aux embeddings
 EXACTLY on the finite source images, independently of any global
@@ -88,7 +93,7 @@ theorem postcompose_comp
     (c.postcompose g hg).postcompose h hh =
       c.postcompose (h.comp g) (hh.comp hg) := by
   ext i
-  rfl
+  simp only [postcompose_apply, Embedding.comp_apply]
 
 end FiniteAuxEmbeddingImage
 end Ordered3Graph
