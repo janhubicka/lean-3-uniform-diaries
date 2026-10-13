@@ -97,5 +97,67 @@ theorem exists_infinite_extension_with_branchMap_fields
     hS₀ hS₁ hS₂ hU₀ hU₁ hU₂ hf
     hSU₀ hSU₁ hSU₂ B hB
 
+/-- The two branch fields above determine the entire dependent
+EnumerationBranchNode value, so finite F_I agrees literally with the
+infinite canonical action, not just coordinatewise on data. -/
+theorem finiteStrong_extension_branchMap_eq_infinite
+    {S₀ S₁ S₂ U₀ U₁ U₂ : Set CoordNode}
+    {f : Nat → Nat} {k : Nat}
+    {r₀ : EnumNode (f 0)}
+    {r₁ : OneNode (f 0)}
+    {r₂ : AuxNode (f 0)}
+    (hS₀ : FiniteStrongPicture S₀ f k (.enum (f 0) r₀))
+    (hS₁ : FiniteStrongPicture S₁ f k (.one (f 0) r₁))
+    (hS₂ : FiniteStrongPicture S₂ f k (.aux (f 0) r₂))
+    (hU₀ : InfiniteStrongPicture U₀ f (.enum (f 0) r₀))
+    (hU₁ : InfiniteStrongPicture U₁ f (.one (f 0) r₁))
+    (hU₂ : InfiniteStrongPicture U₂ f (.aux (f 0) r₂))
+    (hf : StrictMono f)
+    (hSU₀ : S₀ ⊆ U₀) (hSU₁ : S₁ ⊆ U₁) (hSU₂ : S₂ ⊆ U₂)
+    (B : EnumerationBranchNode) (hB : B.last ≤ k) :
+    finiteStrongPicture_branchMap hS₀ hS₁ hS₂ B hB =
+      (infiniteStrongPictureCanonicalMap hU₀ hU₁ hU₂ hf).mapBranch B := by
+  have hFields :=
+    finiteStrong_extension_branchMap_fields
+      hS₀ hS₁ hS₂ hU₀ hU₁ hU₂ hf
+      hSU₀ hSU₁ hSU₂ B hB
+  cases B with
+  | mk i A =>
+      exact congrArg
+        (fun E : EnumNode (f i + 1) =>
+          (⟨f i, E⟩ : EnumerationBranchNode)) hFields.1
+
+/-- Every synchronized finite strong vector admits genuine infinite
+extensions whose entire last-vertex F_I action is literally the
+restriction of the associated infinite canonical branch map. -/
+theorem exists_infinite_extension_with_branchMap_eq
+    {S₀ S₁ S₂ : Set CoordNode}
+    {f : Nat → Nat} {k : Nat}
+    {r₀ : EnumNode (f 0)}
+    {r₁ : OneNode (f 0)}
+    {r₂ : AuxNode (f 0)}
+    (hS₀ : FiniteStrongPicture S₀ f k (.enum (f 0) r₀))
+    (hS₁ : FiniteStrongPicture S₁ f k (.one (f 0) r₁))
+    (hS₂ : FiniteStrongPicture S₂ f k (.aux (f 0) r₂))
+    (hf : StrictMono f) :
+    ∃ (U₀ U₁ U₂ : Set CoordNode),
+      ∃ (hU₀ : InfiniteStrongPicture U₀ f (.enum (f 0) r₀))
+        (hU₁ : InfiniteStrongPicture U₁ f (.one (f 0) r₁))
+        (hU₂ : InfiniteStrongPicture U₂ f (.aux (f 0) r₂)),
+        S₀ ⊆ U₀ ∧ S₁ ⊆ U₁ ∧ S₂ ⊆ U₂ ∧
+        ∀ B : EnumerationBranchNode, ∀ hB : B.last ≤ k,
+          finiteStrongPicture_branchMap hS₀ hS₁ hS₂ B hB =
+            (infiniteStrongPictureCanonicalMap hU₀ hU₁ hU₂ hf).mapBranch B := by
+  obtain ⟨U₀, U₁, U₂, hU₀, hU₁, hU₂,
+    hSU₀, hSU₁, hSU₂, _⟩ :=
+    exists_infinite_extension_with_branchMap_fields
+      hS₀ hS₁ hS₂ hf
+  refine ⟨U₀, U₁, U₂, hU₀, hU₁, hU₂,
+    hSU₀, hSU₁, hSU₂, ?_⟩
+  intro B hB
+  exact finiteStrong_extension_branchMap_eq_infinite
+    hS₀ hS₁ hS₂ hU₀ hU₁ hU₂ hf
+    hSU₀ hSU₁ hSU₂ B hB
+
 end CoordNode
 end ThreeUniformDiaries
