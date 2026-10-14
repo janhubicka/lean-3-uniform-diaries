@@ -50,7 +50,7 @@ private theorem oneType_mono (l l' u v : Nat) (hll : l ≤ l')
 /-- Positive first singleton witnesses for the SAME genuine
 one-split m have matching successor-cut types on both sides
 of their splitting comparisons. -/
-theorem oneSplit_positive_first_witness_classes
+theorem oneSplit_positive_first_witness_classes (D : RoleDiary H)
     (m u v u' v' : Nat)
     (hm : IsOneSplit H m)
     (hu : IsLeaf H u) (hv : IsLeaf H v)
@@ -98,7 +98,7 @@ theorem oneSplit_positive_first_witness_classes
 representatives even when both FIRST leaves are on the
 negative side; swap both comparisons and use singleton meet
 symmetry. -/
-theorem oneSplit_aligned_witness_classes
+theorem oneSplit_aligned_witness_classes (D : RoleDiary H)
     (m u v u' v' : Nat)
     (hm : IsOneSplit H m)
     (hu : IsLeaf H u) (hv : IsLeaf H v)
