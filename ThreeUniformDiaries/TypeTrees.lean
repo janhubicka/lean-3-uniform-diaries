@@ -62,7 +62,7 @@ def succ {n : Nat} (a : AuxNode n) (e : Bool) : AuxNode (n + 1) where
   support := by
     intro i hi
     have hne : i ≠ n := by omega
-    rw [if_neg hne]
+    rw [ite_eq_right hne]
     exact a.support i (by omega)
 
 @[simp] theorem succ_new {n : Nat} (a : AuxNode n) (e : Bool) :
@@ -87,9 +87,9 @@ def succ {n : Nat} (b : OneNode n) (c : AuxNode n) : OneNode (n + 1) where
     intro i j hbad
     by_cases hjn : j = n
     · subst j
-      rw [if_pos rfl]
+      rw [ite_eq_left rfl]
       exact c.support i (by omega)
-    · rw [if_neg hjn]
+    · rw [ite_eq_right hjn]
       apply b.support i j
       intro hvalid
       exact hbad ⟨hvalid.1, by omega⟩
@@ -117,11 +117,11 @@ def succ {n : Nat} (a : EnumNode n) (b : OneNode n) : EnumNode (n + 1) where
     intro i j k hbad
     by_cases hkn : k = n
     · subst k
-      rw [if_pos rfl]
+      rw [ite_eq_left rfl]
       apply b.support i j
       intro hvalid
       exact hbad ⟨hvalid.1, hvalid.2, by omega⟩
-    · rw [if_neg hkn]
+    · rw [ite_eq_right hkn]
       apply a.support i j k
       intro hvalid
       exact hbad ⟨hvalid.1, hvalid.2.1, by omega⟩
@@ -143,11 +143,11 @@ def truncate {N : Nat} (H : EnumNode N) (l : Nat) : EnumNode l where
   support := by
     intro i j k hbad
     by_cases hkl : k < l
-    · rw [if_pos hkl]
+    · rw [ite_eq_left hkl]
       apply H.support i j k
       intro hvalid
       exact hbad ⟨hvalid.1, hvalid.2.1, hkl⟩
-    · rw [if_neg hkl]
+    · rw [ite_eq_right hkl]
 
 /-- The 1-type of `v` over the cut `l`. -/
 def oneType {N : Nat} (H : EnumNode N) (l v : Nat) : OneNode l where
@@ -155,18 +155,18 @@ def oneType {N : Nat} (H : EnumNode N) (l v : Nat) : OneNode l where
   support := by
     intro i j hbad
     by_cases hjl : j < l
-    · rw [if_pos hjl]
+    · rw [ite_eq_left hjl]
       apply H.support i j v
       intro hvalid
       exact hbad ⟨hvalid.1, hjl⟩
-    · rw [if_neg hjl]
+    · rw [ite_eq_right hjl]
 
 /-- The auxiliary type of the ordered pair `u,v` over the cut `l`. -/
 def auxType {N : Nat} (H : EnumNode N) (l u v : Nat) : AuxNode l where
   bit i := if i < l then H.triple i u v else false
   support := by
     intro i hi
-    rw [if_neg (Nat.not_lt.mpr hi)]
+    rw [ite_eq_right (Nat.not_lt.mpr hi)]
 
 theorem auxType_succ_bit {N l u v i : Nat} (H : EnumNode N) :
     (H.auxType (l + 1) u v).bit i =
@@ -176,11 +176,11 @@ theorem auxType_succ_bit {N l u v i : Nat} (H : EnumNode N) :
       (if i = l then H.triple l u v
        else if i < l then H.triple i u v else false)
   by_cases hil : i < l
-  · rw [if_pos (by omega), if_neg (by omega), if_pos hil]
+  · rw [ite_eq_left (by omega), ite_eq_right (by omega), ite_eq_left hil]
   · by_cases hieq : i = l
     · subst i
       simp
-    · rw [if_neg (by omega), if_neg hieq, if_neg hil]
+    · rw [ite_eq_right (by omega), ite_eq_right hieq, ite_eq_right hil]
 
 theorem oneType_succ_pair {N l v i j : Nat} (H : EnumNode N) :
     (H.oneType (l + 1) v).pair i j =
@@ -191,19 +191,19 @@ theorem oneType_succ_pair {N l v i j : Nat} (H : EnumNode N) :
        then (if i < l then H.triple i l v else false)
        else if j < l then H.triple i j v else false)
   by_cases hjl : j < l
-  · rw [if_pos (by omega), if_neg (by omega), if_pos hjl]
+  · rw [ite_eq_left (by omega), ite_eq_right (by omega), ite_eq_left hjl]
   · by_cases hjeq : j = l
     · subst j
-      rw [if_pos (by omega), if_pos rfl]
+      rw [ite_eq_left (by omega), ite_eq_left rfl]
       by_cases hil : i < l
-      · rw [if_pos hil]
-      · rw [if_neg hil]
+      · rw [ite_eq_left hil]
+      · rw [ite_eq_right hil]
         have hzero : H.triple i l v = false := by
           apply H.support i l v
           intro hvalid
           exact hil hvalid.1
         exact hzero
-    · rw [if_neg (by omega), if_neg hjeq, if_neg hjl]
+    · rw [ite_eq_right (by omega), ite_eq_right hjeq, ite_eq_right hjl]
 
 theorem truncate_succ_triple {N l i j k : Nat} (H : EnumNode N) :
     (H.truncate (l + 1)).triple i j k =
@@ -214,19 +214,19 @@ theorem truncate_succ_triple {N l i j k : Nat} (H : EnumNode N) :
        then (if j < l then H.triple i j l else false)
        else if k < l then H.triple i j k else false)
   by_cases hkl : k < l
-  · rw [if_pos (by omega), if_neg (by omega), if_pos hkl]
+  · rw [ite_eq_left (by omega), ite_eq_right (by omega), ite_eq_left hkl]
   · by_cases hkeq : k = l
     · subst k
-      rw [if_pos (by omega), if_pos rfl]
+      rw [ite_eq_left (by omega), ite_eq_left rfl]
       by_cases hjl : j < l
-      · rw [if_pos hjl]
-      · rw [if_neg hjl]
+      · rw [ite_eq_left hjl]
+      · rw [ite_eq_right hjl]
         have hzero : H.triple i j l = false := by
           apply H.support i j l
           intro hvalid
           exact hjl hvalid.2.1
         exact hzero
-    · rw [if_neg (by omega), if_neg hkeq, if_neg hkl]
+    · rw [ite_eq_right (by omega), ite_eq_right hkeq, ite_eq_right hkl]
 
 end EnumNode
 
