@@ -1,5 +1,5 @@
 import ThreeUniformDiaries.ActualFiniteAuxRamsey
-import ThreeUniformDiaries.ATRUnconditionalScalarColour
+import ThreeUniformDiaries.UniversalAuxBranchEmbedding
 import Milliken.GeneralTree.UnconditionalHLAPI
 
 /-!
@@ -23,9 +23,6 @@ segment form; the vacuous incompatible-prefix case is separate.
 namespace ThreeUniformDiaries
 namespace ATRFiniteDecoder
 
-open Milliken
-open Milliken.GeneralTree
-open ThreeUniformDiaries.CoordNode
 
 /-- The actual nonempty finite Ramsey conclusion for aux-type-
 respecting embeddings of A into the enumerated generic 3-hypergraph,
@@ -55,6 +52,32 @@ theorem actualFiniteAuxRamsey_unconditional
     G hnk A I hGI hAI E phi hphi
     (Milliken.GeneralTree.boundaryProductHL_unconditional
       CoordNode.rootGluedAmbientTree) χ
+
+/-- Presentation-free ATR Ramsey conclusion for finite A whose first n
+vertices coincide with G. The universal K_I embedding is constructed
+rather than assumed; no Milliken or synthetic realisation hypothesis
+remains. The incompatible-prefix case is a separate obligation. -/
+theorem actualFiniteAuxRamsey_matchingPrefix
+    (G : GenericEnumerated3Graph)
+    {n k : Nat} (hnk : n ≤ k + 1)
+    (A : EnumNode (k + 1))
+    (I : EnumNode n)
+    (hGI : G.graph.initialSegment n = I)
+    (hAI : A.truncate n = I)
+    {κ : Type} [Fintype κ] [Nonempty κ]
+    (χ : Ordered3Graph.FiniteAuxEmbeddingImage
+      A.toOrdered3Graph G.graph (k + 1) → κ) :
+    ∃ (u : Ordered3Graph.Embedding G.graph G.graph)
+      (hu : u.AuxTypeRespecting),
+        (∀ j < n, u j = j) ∧
+        ∃ color : κ,
+          ∀ e : Ordered3Graph.FiniteAuxEmbeddingImage
+              A.toOrdered3Graph G.graph (k + 1),
+            (∀ i : Fin (k + 1), i.val < n → e.image i = i.val) →
+            χ (e.postcompose u hu) = color := by
+  obtain ⟨E, phi, hphi⟩ := exists_universal_auxEmbedding G I hGI
+  exact actualFiniteAuxRamsey_unconditional
+    G hnk A I hGI hAI E phi hphi χ
 
 end ATRFiniteDecoder
 end ThreeUniformDiaries
