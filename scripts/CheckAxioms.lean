@@ -896,3 +896,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.sameOneTypeBelow_succ_iff_of_oneSplit
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oneSplit_incident_oneTypes_succ
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oneSplit_witness_opposite_marker
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oneSplit_positive_first_witness_classes
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oneSplit_aligned_witness_classes
