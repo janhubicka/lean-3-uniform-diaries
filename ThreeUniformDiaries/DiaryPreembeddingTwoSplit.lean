@@ -1,5 +1,4 @@
 import ThreeUniformDiaries.TwoTypeMeetLevel
-import ThreeUniformDiaries.DiaryGappySourceI2Transfer
 
 /-!
 # Full 2-type witness independence for diary pre-embeddings
