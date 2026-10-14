@@ -43,7 +43,7 @@ structure FinitePointedEnvelope
           (enumerate x) (enumerate y) =
         enumerate ((K.pullback enumerate).auxMeetLevel u v x y)
   minimal :
-    K.IsMinimalMeetEnvelope j a b (K.selectedCarrier enumerate size)
+    K.IsMinimalMeetEnvelope j a b (selectedCarrier enumerate size)
 
 namespace FinitePointedEnvelope
 
@@ -57,6 +57,8 @@ def induced (E : FinitePointedEnvelope K j a b) : Ordered3Graph Nat :=
 outside its protected full prefix. -/
 theorem size_cases (E : FinitePointedEnvelope K j a b) :
     E.size = j + 2 ∨ E.size = j + 3 := by
+  have hlow := E.size_lower
+  have hhigh := E.size_upper
   omega
 
 /-- A pointed envelope lies in every competing type-respecting image
@@ -68,9 +70,9 @@ theorem subset_typeRespecting_image
     (hprefix : ∀ t < j, t ∈ Set.range φ.toFun)
     (ha : a ∈ Set.range φ.toFun)
     (hb : b ∈ Set.range φ.toFun) :
-    K.selectedCarrier E.enumerate E.size ⊆ Set.range φ.toFun :=
+    selectedCarrier E.enumerate E.size ⊆ Set.range φ.toFun :=
   K.minimalMeetEnvelope_subset_typeRespecting_range
-    j a b (K.selectedCarrier E.enumerate E.size)
+    j a b (selectedCarrier E.enumerate E.size)
     E.minimal φ hφ hprefix ha hb
 
 /-- A source pair separating before the cut gives a genuine finite
@@ -93,11 +95,11 @@ def ofTwoTail
   have hsecond : f (n + 1) = ψ v :=
     twoTailInsertion_second n (ψ u) (ψ v)
   obtain ⟨hone, haux⟩ :=
-    K.two_tail_ATR_after_type_embedding ψ hψ i u v
+    two_tail_ATR_after_type_embedding ψ hψ i u v
       hearly f hf hfix hfirst hsecond
   have hmin : K.IsMinimalMeetEnvelope (ψ i) (ψ u) (ψ v)
-      (K.selectedCarrier f (n + 2)) :=
-    K.two_tail_minimalMeetEnvelope_after_type_embedding
+      (selectedCarrier f (n + 2)) :=
+    two_tail_minimalMeetEnvelope_after_type_embedding
       ψ hψ i u v hearly f hf hfix hfirst hsecond
   refine {
     size := n + 2
@@ -122,7 +124,7 @@ def ofTwoTail
 /-- A diary leaf pair whose singleton meet is at/after the cut
 gives a genuine finite three-tail pointed envelope. Its split
 and marker edges are obtained from the full V/E/S diary axioms. -/
-def ofRoleThreeTail
+noncomputable def ofRoleThreeTail
     {H : Ordered3Graph Nat}
     (D : DiaryLeafPriority.RoleDiary H)
     (ψ : Embedding H K) (hψ : ψ.TypeRespecting)
@@ -156,8 +158,8 @@ def ofRoleThreeTail
       D.splitEdgeShape ψ hψ i m u v hi hcase hm hu hv
       huv hmu rfl f hf hfix hsplit hfirst hsecond
   have hmin : K.IsMinimalMeetEnvelope (ψ i) (ψ u) (ψ v)
-      (K.selectedCarrier f (n + 3)) :=
-    K.role_three_tail_minimalMeetEnvelope_after_type_embedding
+      (selectedCarrier f (n + 3)) :=
+    role_three_tail_minimalMeetEnvelope_after_type_embedding
       D.splitEdgeShape ψ hψ i m u v
       hi hcase hm hu hv huv hmu rfl
       f hf hfix hsplit hfirst hsecond
