@@ -55,7 +55,7 @@ theorem forest_le_pred_of_lt
   have hpos : 0 < level b := by omega
   have hle : level a ≤ level b - 1 := by omega
   unfold forestPred
-  rw [if_pos hpos]
+  rw [ite_eq_left hpos]
   refine ⟨by simpa using hle, ?_⟩
   change truncate (truncate b (level b - 1)) (level a) = a
   rw [truncate_truncate b hle]
