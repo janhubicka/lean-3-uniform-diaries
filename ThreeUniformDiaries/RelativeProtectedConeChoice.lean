@@ -80,14 +80,14 @@ theorem relativeProtectedChoice_mem
     relativeProtectedChoice hU E i L hL t ht htLevel ∈ U := by
   classical
   by_cases hex : ∃ x ∈ E, t ≤ x ∧ f L ≤ level x
-  · simpa only [relativeProtectedChoice, dif_pos hex] using
+  · simpa only [relativeProtectedChoice, dite_eq_left hex] using
       protectedGuide_mem_strong_picture
         hU hf hrootLevel E hEU t L hex
   · have hz :=
       (Classical.choose_spec
         (infiniteStrongPicture_later_relative_exists
           hU (i + 1) L hL t ht htLevel)).1
-    simpa only [relativeProtectedChoice, dif_neg hex] using hz
+    simpa only [relativeProtectedChoice, dite_eq_right hex] using hz
 
 /-- Every relative choice occupies the prescribed selected U-level. -/
 theorem relativeProtectedChoice_level
@@ -101,13 +101,13 @@ theorem relativeProtectedChoice_level
       f L := by
   classical
   by_cases hex : ∃ x ∈ E, t ≤ x ∧ f L ≤ level x
-  · simpa only [relativeProtectedChoice, dif_pos hex] using
+  · simpa only [relativeProtectedChoice, dite_eq_left hex] using
       protectedGuide_level E t (f L) hex
   · have hz :=
       (Classical.choose_spec
         (infiniteStrongPicture_later_relative_exists
           hU (i + 1) L hL t ht htLevel)).2.1
-    simpa only [relativeProtectedChoice, dif_neg hex] using hz
+    simpa only [relativeProtectedChoice, dite_eq_right hex] using hz
 
 /-- The relative choice stays in the requested retained child cone. -/
 theorem relativeProtectedChoice_extends
@@ -124,13 +124,13 @@ theorem relativeProtectedChoice_extends
     rw [htLevel]
     exact hf.monotone hL
   by_cases hex : ∃ x ∈ E, t ≤ x ∧ f L ≤ level x
-  · simpa only [relativeProtectedChoice, dif_pos hex] using
+  · simpa only [relativeProtectedChoice, dite_eq_left hex] using
       protectedGuide_extends E t (f L) htL hex
   · have hz :=
       (Classical.choose_spec
         (infiniteStrongPicture_later_relative_exists
           hU (i + 1) L hL t ht htLevel)).2.2
-    simpa only [relativeProtectedChoice, dif_neg hex] using hz
+    simpa only [relativeProtectedChoice, dite_eq_right hex] using hz
 
 /-- A future prescribed E-node remains above the protected relative
 choice. Meet closure and the empty intervening E-level interval
@@ -152,7 +152,7 @@ theorem relativeProtectedChoice_below_prescribed
     exact hf (Nat.lt_succ_self i)
   have hex : ∃ y ∈ E, t ≤ y ∧ f L ≤ level y :=
     ⟨x, hx, htx, hxL⟩
-  simpa only [relativeProtectedChoice, dif_pos hex] using
+  simpa only [relativeProtectedChoice, dite_eq_left hex] using
     (protectedGuide_below E hE (f i) (f L) hgap
       t x hlt hx htx hxL hex)
 
