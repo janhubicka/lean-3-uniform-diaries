@@ -53,6 +53,7 @@ import ThreeUniformDiaries.MillikenFiniteColour
 import ThreeUniformDiaries.GenericExtensionStep
 import ThreeUniformDiaries.DiaryUnboundedSingletonTypes
 import ThreeUniformDiaries.DiaryLateSingletonATRCodes
+import ThreeUniformDiaries.DiaryFiniteSingletonTypeCover
 import ThreeUniformDiaries.GenericSourceStep
 import ThreeUniformDiaries.SuccessorUniqueness
 import ThreeUniformDiaries.AgreementSuccessors
