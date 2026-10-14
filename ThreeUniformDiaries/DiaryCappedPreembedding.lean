@@ -93,7 +93,7 @@ theorem capped_second_leaves_target_meet_later
     have hInt := D.oneSplitTargetImage_interval
       G K F ψ hψ m hm
     have hPre : a ≤ m-1 := by
-      dsimp [m] at *
+      dsimp [m]
       omega
     have hMon : φ a ≤ φ (m-1) :=
       φ.strictMono.monotone hPre
