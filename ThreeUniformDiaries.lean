@@ -1,5 +1,6 @@
 import ThreeUniformDiaries.AuxTypes
 import ThreeUniformDiaries.TwoTypeMeetLevel
+import ThreeUniformDiaries.DiaryPreembeddingTwoSplit
 import ThreeUniformDiaries.DiaryLeafPriority
 import ThreeUniformDiaries.DiaryRoleAxioms
 import ThreeUniformDiaries.DiaryPointedProfileFromRoles
