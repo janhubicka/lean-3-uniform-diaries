@@ -31,7 +31,7 @@ variable {H : Ordered3Graph Nat} (D : RoleDiary H)
 by opposing incidence bits at i when i has the two-split role.
 Otherwise the successor-cut equivalence would contradict
 maximality of the capped meet. -/
-theorem twoSplit_witness_opposite_incidence
+theorem twoSplit_witness_opposite_incidence (D : RoleDiary H)
     (i a b c d : Nat)
     (hm : IsTwoSplit H i)
     (hia : i < a) (hic : i < c)
@@ -53,7 +53,7 @@ theorem twoSplit_witness_opposite_incidence
 comparison is incident with the split. The second pairs are
 necessarily nonincident and already share their preceding types
 by transitivity. -/
-theorem twoSplit_positive_first_witness_classes
+theorem twoSplit_positive_first_witness_classes (D : RoleDiary H)
     (i a b c d a' b' c' d' : Nat)
     (hm : IsTwoSplit H i)
     (hia : i < a) (hic : i < c)
@@ -105,7 +105,7 @@ theorem twoSplit_positive_first_witness_classes
 equal next-cut types in each corresponding pair class whenever
 their first pairs have the same incidence bit. This includes the
 case where both first pairs are nonincident. -/
-theorem twoSplit_aligned_witness_classes
+theorem twoSplit_aligned_witness_classes (D : RoleDiary H)
     (i a b c d a' b' c' d' : Nat)
     (hm : IsTwoSplit H i)
     (hia : i < a) (hic : i < c)
