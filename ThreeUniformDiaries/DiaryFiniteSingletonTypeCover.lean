@@ -64,11 +64,11 @@ theorem singletonRepresentative_sameOneType
       G.singletonMask n a ⟨x, hxn⟩ ⟨y, hyn⟩ = true at hbit
   constructor
   · intro h
-    have hp := hbit.mp h
-    simpa [singletonMask] using hp
-  · intro h
     apply hbit.mpr
     simpa [singletonMask] using h
+  · intro h
+    have hp := hbit.mp h
+    simpa [singletonMask] using hp
 
 /-- Enumerate representatives of ALL masks, hence of all singleton
 types over n. The finite function type has its standard Fintype. -/
