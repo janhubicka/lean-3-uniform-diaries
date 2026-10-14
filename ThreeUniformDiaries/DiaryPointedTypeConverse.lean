@@ -93,7 +93,7 @@ theorem two_tail_picture_equal_iff_source_pair_type
       simpa only [hfA, hfB, hgC, hgD] using hImage
     exact (hψ.two i a b c d hia hab hic hcd).mpr hImage'
   · intro hpair x y z hxy hyz hz
-    exact K.pointed_two_tail_shapes_after_type_embedding
+    exact Ordered3Graph.pointed_two_tail_shapes_after_type_embedding
       ψ hψ i a b c d hia hic hab hcd hpair
       f g hfixf hfixg hfA hfB hgC hgD x y z hxy hyz hz
 
