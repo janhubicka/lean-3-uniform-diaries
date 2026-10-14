@@ -60,7 +60,10 @@ theorem stabilisedOrdered_oneType_of_source
       Φ.strictMono.monotone hψpred
     omega
   intro x y hxy hy
-  exact hI2 (a := x) (b := y) hxy (by omega)
+  change y < Φ (ψ (i-1)) + 1 at hy
+  have hyLarge : y < Φ (ψ i-1) + 1 :=
+    lt_of_lt_of_le hy hcut
+  exact hI2 (a := x) (b := y) hxy hyLarge
 
 /-- In particular equal singleton types through a successor
 diary cut i+1 remain equal below the precise image cut Φ(ψi)+1,
