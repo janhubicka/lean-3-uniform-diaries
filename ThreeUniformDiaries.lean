@@ -50,6 +50,7 @@ import ThreeUniformDiaries.MillikenDependency
 import ThreeUniformDiaries.MillikenFiniteColour
 
 import ThreeUniformDiaries.GenericExtensionStep
+import ThreeUniformDiaries.DiaryUnboundedSingletonTypes
 import ThreeUniformDiaries.GenericSourceStep
 import ThreeUniformDiaries.SuccessorUniqueness
 import ThreeUniformDiaries.AgreementSuccessors
