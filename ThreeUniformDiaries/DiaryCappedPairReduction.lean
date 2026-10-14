@@ -61,6 +61,35 @@ theorem capped_leaf_pairs_first_eq
       simpa only [heq] using hone
     exact hc.2.1 hsplit.2.1
 
+/-- For distinct second leaves, a capped source full pair meet
+forces their singleton meet to be a 1-split STRICTLY after the
+common first leaf. It cannot coincide with that leaf because
+a leaf cannot also have the one-split marker role. -/
+theorem capped_leaf_pairs_second_meet_later
+    (D : RoleDiary H) (a b c d : Nat)
+    (hab : a < b) (hcd : c < d)
+    (ha : IsLeaf H a) (hb : IsLeaf H b)
+    (hc : IsLeaf H c) (hd : IsLeaf H d)
+    (hbd : b ≠ d)
+    (hcap : H.twoMeetLevel a b c d = min a c) :
+    a < H.oneMeetLevel b d := by
+  have hac : a = c :=
+    D.capped_leaf_pairs_first_eq a b c d hab hcd ha hc hcap
+  subst c
+  have hfullEq : H.twoMeetLevel a b a d = a := by
+    simpa only [min_self] using hcap
+  have hle : H.twoMeetLevel a b a d ≤ H.oneMeetLevel b d := by
+    rw [H.twoMeetLevel_eq_min a b a d hab hcd]
+    exact (min_le_right _ _).trans (min_le_right _ _)
+  have hsplit : IsOneSplit H (H.oneMeetLevel b d) :=
+    D.singleton_meets b d hb hd hbd
+  have hneq : H.oneMeetLevel b d ≠ a := by
+    intro heq
+    have hs : IsOneSplit H a := by
+      simpa only [heq] using hsplit
+    exact ha.2.1 hs.2.1
+  omega
+
 end RoleDiary
 end DiaryLeafPriority
 
