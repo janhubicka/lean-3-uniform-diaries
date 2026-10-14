@@ -240,8 +240,8 @@ theorem pointedEnvelopeAxioms (D : RoleDiary H) : RolePointedEnvelopeAxioms H :=
         exact (H.oneMeetLevel_le_min a b).trans (min_le_left _ _)
       have hne : m ≠ a := by
         intro h
-        subst m
-        exact (oneSplit_not_leaf hm) ha
+        have hs : IsOneSplit H a := by simpa only [h] using hm
+        exact (oneSplit_not_leaf hs) ha
       omega
     exact (D.oneSplit_left_right_marker m a b hm ha hb hab hma hmeet).1
   · intro m a b hm ha hb hab hmeet
@@ -251,8 +251,8 @@ theorem pointedEnvelopeAxioms (D : RoleDiary H) : RolePointedEnvelopeAxioms H :=
         exact (H.oneMeetLevel_le_min a b).trans (min_le_left _ _)
       have hne : m ≠ a := by
         intro h
-        subst m
-        exact (oneSplit_not_leaf hm) ha
+        have hs : IsOneSplit H a := by simpa only [h] using hm
+        exact (oneSplit_not_leaf hs) ha
       omega
     exact (D.oneSplit_left_right_marker m a b hm ha hb hab hma hmeet).2
   · intro m a b hm ha hb hab hma
