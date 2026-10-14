@@ -16,6 +16,7 @@ import ThreeUniformDiaries.DiaryFinitePairColour
 import ThreeUniformDiaries.DiaryFusion
 import ThreeUniformDiaries.DiaryFiniteSingletonEnvelope
 import ThreeUniformDiaries.DiaryFiniteSingletonATR
+import ThreeUniformDiaries.DiaryFiniteSingletonColour
 import ThreeUniformDiaries.DiaryAuxTransferWitness
 import ThreeUniformDiaries.DiaryThreeTailMarkerTable
 import ThreeUniformDiaries.DiaryEdgeShapeWitness
