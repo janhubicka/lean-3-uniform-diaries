@@ -139,4 +139,31 @@ theorem capped_twoMeetLevel_eq_first_of_late_singleton
     exact hSameOne (a := x) (b := a) hx (by omega)
 
 end Ordered3Graph
+
+namespace DiaryLeafPriority
+namespace RoleDiary
+
+/-- A source capped leaf-pair meet is preserved by ANY strictly
+increasing target embedding as soon as the target singleton
+meet of the two second leaves lies after the common first leaf.
+The source S1 rule first proves the common leaf identity, and
+the target singleton-type lemma supplies all auxiliary bits. -/
+theorem capped_leaf_pair_target_of_late_singleton
+    {H K : Ordered3Graph Nat}
+    (D : RoleDiary H) (φ : Ordered3Graph.Embedding H K)
+    (a b c d : Nat)
+    (hab : a < b) (hcd : c < d)
+    (ha : IsLeaf H a) (hc : IsLeaf H c)
+    (hcap : H.twoMeetLevel a b c d = min a c)
+    (hlate : φ a < K.oneMeetLevel (φ b) (φ d)) :
+    K.twoMeetLevel (φ a) (φ b) (φ c) (φ d) = φ a := by
+  have hac : a = c :=
+    D.capped_leaf_pairs_first_eq a b c d hab hcd ha hc hcap
+  subst c
+  exact K.capped_twoMeetLevel_eq_first_of_late_singleton
+    (φ a) (φ b) (φ d)
+    (φ.strictMono hab) (φ.strictMono hcd) hlate
+
+end RoleDiary
+end DiaryLeafPriority
 end ThreeUniformDiaries
