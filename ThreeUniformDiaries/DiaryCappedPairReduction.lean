@@ -86,5 +86,28 @@ theorem capped_twoMeetLevel_eq_first_iff
       simpa only [min_self] using h
     exact Nat.le_antisymm htop hlow
 
+/-- A late singleton meet of the SECOND coordinates is enough
+to force the full capped pair meet of (a,b) and (a,d) to be a.
+This is the key repair for the capped case: the auxiliary
+incidences edge(x,a,b) and edge(x,a,d) are already bits of the
+singleton types of b and d, evaluated at the earlier pair (x,a).
+No independent auxiliary-gap preservation is necessary. -/
+theorem capped_twoMeetLevel_eq_first_of_late_singleton
+    (K : Ordered3Graph Nat) (a b d : Nat)
+    (hab : a < b) (had : a < d)
+    (hlate : a < K.oneMeetLevel b d) :
+    K.twoMeetLevel a b a d = a := by
+  have hSameOne : K.SameOneTypeBelow (a+1) b d :=
+    (K.oneMeetLevel_ge_iff_sameOneTypeBelow
+      (a+1) b d (by omega) (by omega)).mp (by omega)
+  apply (K.capped_twoMeetLevel_eq_first_iff a b d).2
+  refine ⟨?_, ?_, ?_⟩
+  · intro x y hxy hy
+    rfl
+  · intro x y hxy hy
+    exact hSameOne hxy (by omega)
+  · intro x hx
+    exact hSameOne (a := x) (b := a) hx (by omega)
+
 end Ordered3Graph
 end ThreeUniformDiaries
