@@ -41,7 +41,7 @@ theorem infiniteEnumCanonicalMap_lastOneType
         (infiniteEnumCanonicalMap h₀ h₁ h₂ (i + 1) H).val.triple
           x y (f i) else false) =
       (infiniteOneCanonicalMap h₁ h₂ i (H.boundaryOne i)).val.pair x y
-    rw [if_pos hy]
+    rw [ite_eq_left hy]
     have hb := congrArg
       (fun B : EnumNode (f i + 1) => B.triple x y (f i)) hprefix
     simpa [EnumNode.truncate, EnumNode.succ,
