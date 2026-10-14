@@ -893,3 +893,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.twoMeetLevel_pairWitness_independent
 #print axioms ThreeUniformDiaries.Ordered3Graph.twoMeetLevel_le_of_source_type_failure
 #print axioms ThreeUniformDiaries.Ordered3Graph.twoSplit_target_placement
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.sameOneTypeBelow_succ_iff_of_oneSplit
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oneSplit_incident_oneTypes_succ
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oneSplit_witness_opposite_marker
