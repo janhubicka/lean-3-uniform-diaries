@@ -899,3 +899,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.twoSplit_witness_opposite_incidence
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.twoSplit_positive_first_witness_classes
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.twoSplit_aligned_witness_classes
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.twoSplit_target_witness_independent_of_I3
