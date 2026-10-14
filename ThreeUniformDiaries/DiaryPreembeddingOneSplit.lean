@@ -35,18 +35,23 @@ follows directly from symmetry of SameOneTypeBelow and min. -/
 theorem oneMeetLevel_comm (H : Ordered3Graph Nat) (u v : Nat) :
     H.oneMeetLevel u v = H.oneMeetLevel v u := by
   classical
-  have htype : (fun l => H.SameOneTypeBelow l u v) =
-      (fun l => H.SameOneTypeBelow l v u) := by
-    funext l
-    apply propext
-    constructor
-    · intro h a b hab hbl
-      exact (h (a := a) (b := b) hab hbl).symm
-    · intro h a b hab hbl
-      exact (h (a := a) (b := b) hab hbl).symm
-  change Nat.findGreatest (fun l => H.SameOneTypeBelow l u v) (min u v) =
-    Nat.findGreatest (fun l => H.SameOneTypeBelow l v u) (min v u)
-  rw [htype, min_comm u v]
+  have hUV : H.SameOneTypeBelow (H.oneMeetLevel u v) v u := by
+    have h := H.oneMeetLevel_agree u v
+    intro a b hab hb
+    exact (h hab hb).symm
+  have hVU : H.SameOneTypeBelow (H.oneMeetLevel v u) u v := by
+    have h := H.oneMeetLevel_agree v u
+    intro a b hab hb
+    exact (h hab hb).symm
+  apply Nat.le_antisymm
+  · have hbound := H.oneMeetLevel_le_min u v
+    exact (H.oneMeetLevel_ge_iff_sameOneTypeBelow
+      (H.oneMeetLevel u v) v u
+      (by omega) (by omega)).mpr hUV
+  · have hbound := H.oneMeetLevel_le_min v u
+    exact (H.oneMeetLevel_ge_iff_sameOneTypeBelow
+      (H.oneMeetLevel v u) u v
+      (by omega) (by omega)).mpr hVU
 
 /-- Placement of the target singleton type split in its predecessor
 interval. The source singleton meet is exactly the split vertex i;
