@@ -150,7 +150,7 @@ theorem decodeFiniteShape_of_root
     decodeFiniteShape k a =
       some (finiteTypedCarrier k a, finiteCoordinateHeights k a) := by
   classical
-  simp only [decodeFiniteShape, if_pos hroot]
+  simp only [decodeFiniteShape, ite_eq_left hroot]
 
 end ATRFiniteDecoder
 end ThreeUniformDiaries
