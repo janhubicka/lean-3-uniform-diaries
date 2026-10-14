@@ -54,13 +54,13 @@ theorem rootGluedMeet_le_left (a b : WithBot CoordNode) :
           · change (if sort x = sort y then
                 (meet x y : WithBot CoordNode) else ⊥) ≤
                 (x : WithBot CoordNode)
-            rw [if_pos hxy]
+            rw [ite_eq_left hxy]
             exact WithBot.coe_le_coe.mpr
               (meet_le_left (commonAncestor_of_same_sort x y hxy))
           · change (if sort x = sort y then
                 (meet x y : WithBot CoordNode) else ⊥) ≤
                 (x : WithBot CoordNode)
-            rw [if_neg hxy]
+            rw [ite_eq_right hxy]
             exact bot_le
 
 theorem rootGluedMeet_le_right (a b : WithBot CoordNode) :
@@ -75,13 +75,13 @@ theorem rootGluedMeet_le_right (a b : WithBot CoordNode) :
           · change (if sort x = sort y then
                 (meet x y : WithBot CoordNode) else ⊥) ≤
                 (y : WithBot CoordNode)
-            rw [if_pos hxy]
+            rw [ite_eq_left hxy]
             exact WithBot.coe_le_coe.mpr
               (meet_le_right (commonAncestor_of_same_sort x y hxy))
           · change (if sort x = sort y then
                 (meet x y : WithBot CoordNode) else ⊥) ≤
                 (y : WithBot CoordNode)
-            rw [if_neg hxy]
+            rw [ite_eq_right hxy]
             exact bot_le
 
 theorem rootGluedMeet_greatest
@@ -107,7 +107,7 @@ theorem rootGluedMeet_greatest
               change (z : WithBot CoordNode) ≤
                 (if sort x = sort y then
                   (meet x y : WithBot CoordNode) else ⊥)
-              rw [if_pos hxy]
+              rw [ite_eq_left hxy]
               exact WithBot.coe_le_coe.mpr (le_meet hzx hzy)
 
 /-- The actual global meet of the glued, nonuniformly branching tree. -/

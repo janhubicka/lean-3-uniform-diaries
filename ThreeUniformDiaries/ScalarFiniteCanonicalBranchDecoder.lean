@@ -184,7 +184,7 @@ theorem decodeFiniteBranch_root
     decodeFiniteBranch k a B hB =
       some (rootedScalarFiniteBranchMap k a hroot B hB) := by
   classical
-  simp only [decodeFiniteBranch, dif_pos hroot]
+  simp only [decodeFiniteBranch, dite_eq_left hroot]
 
 end ATRFiniteDecoder
 end ThreeUniformDiaries

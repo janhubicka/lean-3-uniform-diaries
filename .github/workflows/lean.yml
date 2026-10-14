@@ -13,7 +13,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Cache Lean toolchain
         uses: actions/cache@v5
@@ -43,39 +43,14 @@ jobs:
       - name: Build
         run: lake build
 
-      - name: Audit exported theorem axioms
+      - name: Audit all local Lean sources for admissions and axioms
+        run: python3 scripts/audit_source_integrity.py
+
+      - name: Audit complete exported theorem axiom reports
         run: |
           mkdir -p proof-audit
           lake env lean scripts/CheckAxioms.lean > proof-audit/axioms.log 2>&1
-          cat proof-audit/axioms.log
-          if grep -q 'sorryAx' proof-audit/axioms.log; then
-            echo "Unexpected sorryAx dependency"
-            exit 1
-          fi
-          python3 - <<'PY'
-          import re
-          from pathlib import Path
-
-          output = Path("proof-audit/axioms.log").read_text()
-          allowed = {"propext", "Classical.choice", "Quot.sound"}
-          reported = re.findall(r"depends on axioms:\s*\[([^\]]*)\]", output, re.S)
-          if not reported and "does not depend on any axioms" not in output:
-              raise SystemExit("No axiom audit results were produced")
-          actual = {name.strip() for group in reported
-                    for name in group.split(",") if name.strip()}
-          unexpected = actual - allowed
-          if unexpected:
-              raise SystemExit("Unexpected Lean axioms: " +
-                               ", ".join(sorted(unexpected)))
-          print(f"Axiom audit passed: only {sorted(actual)}")
-          PY
-
-      - name: Reject placeholders
-        run: |
-          if grep -R -n -E '\bsorry\b|\badmit\b' ThreeUniformDiaries ThreeUniformDiaries.lean scripts; then
-            echo "Found unfinished proof placeholder"
-            exit 1
-          fi
+          python3 scripts/check_axiom_log.py proof-audit/axioms.log scripts/CheckAxioms.lean
 
       - name: Exhaustive finite auxiliary encoding regression
         run: python3 scripts/check_finite_aux_encoding.py

@@ -37,7 +37,7 @@ theorem fixesRelativeCut_of_fixed_levels
     change
       (if c < n then (F.mapEnum n I).triple a b c else false) =
         I.triple a b c
-    rw [if_pos hc]
+    rw [ite_eq_left hc]
     exact hbit
   · have hleft :
         ((F.mapEnum n I).truncate n).triple a b c = false :=

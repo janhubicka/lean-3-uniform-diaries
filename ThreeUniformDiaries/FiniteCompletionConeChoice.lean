@@ -68,7 +68,7 @@ theorem completionChoice_below_prescribed
   change (if h : ∃ y ∈ E, t ≤ y ∧ L ≤ level y then
         protectedGuide E t L h
       else zeroExtendTo t L htL) ≤ x
-  rw [dif_pos hex]
+  rw [dite_eq_left hex]
   exact protectedGuide_below E hE l L hgap
     t x hlt hx htx hLx hex
 

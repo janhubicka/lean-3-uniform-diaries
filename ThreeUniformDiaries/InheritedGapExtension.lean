@@ -94,7 +94,7 @@ theorem exists_extension_inheriting_gaps
     have hbool :
         gapInheritedPattern G K old parent (old i) (old j) = true ↔
           K.edge i.val j.val n := by
-      simp only [gapInheritedPattern, if_pos hsel, decide_eq_true_eq]
+      simp only [gapInheritedPattern, ite_eq_left hsel, decide_eq_true_eq]
       exact hsource
     exact hbool.symm.trans
       ((hpat (old i) (old j) (hmono hij)).symm)

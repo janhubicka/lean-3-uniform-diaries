@@ -45,7 +45,7 @@ theorem oneType_eq_iff_sameOneTypeBelow {N l u v : Nat} (H : EnumNode N) :
     change (if j < l then H.triple i j u else false) =
       (if j < l then H.triple i j v else false)
     by_cases hjl : j < l
-    · simp only [if_pos hjl]
+    · simp only [ite_eq_left hjl]
       by_cases hij : i < j
       · exact bool_eq_of_true_iff (hh hij hjl)
       · have hu : H.triple i j u = false := by
@@ -78,7 +78,7 @@ theorem auxType_eq_iff_sameAuxTypeBelow
     change (if i < l then H.triple i u₀ u₁ else false) =
       (if i < l then H.triple i v₀ v₁ else false)
     by_cases hil : i < l
-    · simp only [if_pos hil]
+    · simp only [ite_eq_left hil]
       exact bool_eq_of_true_iff (hh hil)
     · simp [hil]
 

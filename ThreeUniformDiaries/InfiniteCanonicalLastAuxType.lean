@@ -37,7 +37,7 @@ theorem infiniteOneCanonicalMap_lastAuxType
         (infiniteOneCanonicalMap h₁ h₂ (i + 1) a).val.pair
           x (f i) else false) =
       (infiniteAuxCanonicalMap h₂ i (a.boundaryAux i)).val.bit x
-    rw [if_pos hx]
+    rw [ite_eq_left hx]
     have hb := congrArg
       (fun B : OneNode (f i + 1) => B.pair x (f i)) hprefix
     simpa [OneNode.truncate, OneNode.succ,

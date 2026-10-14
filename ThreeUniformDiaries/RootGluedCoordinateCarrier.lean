@@ -63,7 +63,7 @@ theorem mem_coordinate_iff_glued
     (V : TypedVectorSubset) (i : Fin 3) (x : CoordNode)
     (hxSort : sort x = i) :
     x ∈ V.carrier i ↔ some x ∈ V.glue := by
-  rw [some_mem_iff, union, Set.mem_setOf_eq, hxSort]
+  rw [some_mem_iff, union, Set.mem_ofPred_eq, hxSort]
 
 /-- Members of the wrong coordinate never occur in that coordinate set. -/
 theorem not_mem_wrong_sort
