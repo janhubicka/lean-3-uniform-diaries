@@ -42,7 +42,7 @@ theorem exists_typeRespecting_fiveVertex_gadget
       ψ.TypeRespecting := by
   let I : EnumNode 0 := G.graph.initialSegment 0
   obtain ⟨E, phi, hproperty⟩ :=
-    G.exists_universal_zeroAuxEmbedding I
+    exists_universal_zeroAuxEmbedding G I
   have hI : fiveVertexOrientationGadget.initialSegment 0 = I := by
     apply EnumNode.ext_triples
     funext a b c
