@@ -19,7 +19,7 @@ variable {H : Ordered3Graph Nat} (D : RoleDiary H)
 
 /-- Moving the singleton type cut through a diary one-split adds
 ONLY the marker bit edge(0,m,v). -/
-theorem sameOneTypeBelow_succ_iff_of_oneSplit
+theorem sameOneTypeBelow_succ_iff_of_oneSplit (D : RoleDiary H)
     (m u v : Nat)
     (hm : IsOneSplit H m)
     (hu : IsLeaf H u) (hv : IsLeaf H v) :
@@ -48,7 +48,7 @@ theorem sameOneTypeBelow_succ_iff_of_oneSplit
 
 /-- Two leaves on the positive side of a diary one-split share
 their complete singleton type through the successor cut. -/
-theorem oneSplit_incident_oneTypes_succ
+theorem oneSplit_incident_oneTypes_succ (D : RoleDiary H)
     (m u v : Nat)
     (hm : IsOneSplit H m)
     (hu : IsLeaf H u) (hv : IsLeaf H v)
@@ -60,7 +60,7 @@ theorem oneSplit_incident_oneTypes_succ
 
 /-- A genuine singleton meet at one-split m is witnessed by
 OPPOSITE zero-marker edge bits. -/
-theorem oneSplit_witness_opposite_marker
+theorem oneSplit_witness_opposite_marker (D : RoleDiary H)
     (m u v : Nat)
     (hm : IsOneSplit H m)
     (hu : IsLeaf H u) (hv : IsLeaf H v)
