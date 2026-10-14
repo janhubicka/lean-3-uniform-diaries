@@ -136,9 +136,10 @@ theorem fiveVertex_gadget_close_types_after_fusion
   have hpred : ψ 1 ≤ ψ 2 - 1 := by omega
   have hcut : F (g (ψ 1)) ≤ F (g (ψ 2 - 1)) :=
     hOrder.monotone hpred
+  change K.SameOneTypeBelow
+    (F (g (ψ 1)) + 1) (F (g (ψ 2))) (F (g (ψ 4)))
   intro a b hab hb
-  apply hI2 hab
-  omega
+  exact hI2 hab (by omega)
 
 /-- Conditional target orientation conclusion for the actual
 fused generic image of the five-vertex gadget. I1 supplies the
