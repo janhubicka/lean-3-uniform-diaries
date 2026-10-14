@@ -2,6 +2,7 @@ import ThreeUniformDiaries.AuxTypes
 import ThreeUniformDiaries.TwoTypeMeetLevel
 import ThreeUniformDiaries.DiaryLeafPriority
 import ThreeUniformDiaries.DiaryRoleAxioms
+import ThreeUniformDiaries.DiaryPointedProfileFromRoles
 import ThreeUniformDiaries.DiaryAuxTransferWitness
 import ThreeUniformDiaries.DiaryThreeTailMarkerTable
 import ThreeUniformDiaries.DiaryEdgeShapeWitness
@@ -11,7 +12,11 @@ import ThreeUniformDiaries.DiaryThreeTailAuxTransfer
 import ThreeUniformDiaries.DiaryPointedATRFinite
 import ThreeUniformDiaries.DiarySingletonCompression
 import ThreeUniformDiaries.DiarySingletonEnvelopeTransfer
+import ThreeUniformDiaries.DiaryTwoTailATR
 import ThreeUniformDiaries.DiaryPointedEnvelopeShape
+import ThreeUniformDiaries.DiaryPointedShapeTransport
+import ThreeUniformDiaries.DiaryTwoTailShape
+import ThreeUniformDiaries.DiaryPointedMeetCut
 import ThreeUniformDiaries.AuxRamseyTransfer
 import ThreeUniformDiaries.TypeTrees
 import ThreeUniformDiaries.TypeRepresentation
