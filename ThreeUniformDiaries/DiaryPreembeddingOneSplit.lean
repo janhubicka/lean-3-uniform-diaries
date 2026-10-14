@@ -34,15 +34,16 @@ namespace Ordered3Graph
 follows directly from symmetry of SameOneTypeBelow and min. -/
 theorem oneMeetLevel_comm (H : Ordered3Graph Nat) (u v : Nat) :
     H.oneMeetLevel u v = H.oneMeetLevel v u := by
+  classical
   have htype : (fun l => H.SameOneTypeBelow l u v) =
       (fun l => H.SameOneTypeBelow l v u) := by
     funext l
     apply propext
     constructor
     · intro h a b hab hbl
-      exact (h a b hab hbl).symm
+      exact (h (a := a) (b := b) hab hbl).symm
     · intro h a b hab hbl
-      exact (h a b hab hbl).symm
+      exact (h (a := a) (b := b) hab hbl).symm
   change Nat.findGreatest (fun l => H.SameOneTypeBelow l u v) (min u v) =
     Nat.findGreatest (fun l => H.SameOneTypeBelow l v u) (min v u)
   rw [htype, min_comm u v]
@@ -144,7 +145,7 @@ theorem oneSplit_target_witness_independent
       (φ i+1) (φ v) (φ v')) :
     K.oneMeetLevel (φ u') (φ v') =
       K.oneMeetLevel (φ u) (φ v) := by
-  have hPlacement := φ.oneSplit_target_placement
+  have hPlacement := oneSplit_target_placement φ
     i u v hi hiu hiv hmeet hSamePred
   have hMx : φ i < φ u := φ.strictMono hiu
   have hMy : φ i < φ v := φ.strictMono hiv
