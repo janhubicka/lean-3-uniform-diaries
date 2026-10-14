@@ -27,6 +27,9 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.oneMeetLevel_self_full
 #print axioms ThreeUniformDiaries.Ordered3Graph.oneMeetLevel_comm
 #print axioms ThreeUniformDiaries.Ordered3Graph.three_tail_oneMeet_preserved
+#print axioms ThreeUniformDiaries.Ordered3Graph.two_tail_auxMeet_preserved
+#print axioms ThreeUniformDiaries.Ordered3Graph.two_tail_oneMeet_preserved
+#print axioms ThreeUniformDiaries.Ordered3Graph.pointed_two_tail_ATR_finite
 
 #print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.AuxTypeRespecting.typeRespecting
 #print axioms ThreeUniformDiaries.AuxRamseyCoding.auxRamsey_of_finiteRamsey
