@@ -23,7 +23,7 @@ variable {H : Ordered3Graph Nat} (D : RoleDiary H)
 
 /-- A two-split is never the middle vertex of an edge. Every
 allowed edge has middle vertex marker 1/2, a one-split, or a leaf. -/
-theorem twoSplit_no_middle
+theorem twoSplit_no_middle (D : RoleDiary H)
     (i x v : Nat) (hm : IsTwoSplit H i) :
     ¬ H.edge x i v := by
   have hnotLeaf : ¬ IsLeaf H i := by
@@ -45,13 +45,14 @@ theorem twoSplit_no_middle
 equivalent to equality below i and equality of its single
 new auxiliary incidence bit at i. Neither singleton type
 gains a new bit, by the permitted-edge shapes. -/
-theorem sameTwoTypeBelow_succ_iff_of_twoSplit
+theorem sameTwoTypeBelow_succ_iff_of_twoSplit (D : RoleDiary H)
     (i a b c d : Nat) (hm : IsTwoSplit H i) :
     H.SameTwoTypeBelow (i+1) a b c d ↔
       H.SameTwoTypeBelow i a b c d ∧
       (H.edge i a b ↔ H.edge i c d) := by
   constructor
   · intro hnext
+    have hAux : H.SameAuxTypeBelow (i+1) a b c d := hnext.2.2
     constructor
     · refine ⟨?_, ?_, ?_⟩
       · intro x y hxy hy
@@ -59,8 +60,8 @@ theorem sameTwoTypeBelow_succ_iff_of_twoSplit
       · intro x y hxy hy
         exact hnext.2.1 hxy (by omega)
       · intro x hx
-        exact hnext.2.2 (a := x) (by omega)
-    · exact hnext.2.2 (a := i) (by omega)
+        exact hAux (a := x) (by omega)
+    · exact hAux (a := i) (by omega)
   · rintro ⟨hold, hbit⟩
     refine ⟨?_, ?_, ?_⟩
     · intro x y hxy hy
@@ -94,7 +95,7 @@ theorem sameTwoTypeBelow_succ_iff_of_twoSplit
 the SAME full pair type through the successor cut. The V2
 coherence axiom gives agreement below i; the incidence
 edges both being present give the new bit. -/
-theorem twoSplit_incident_pairTypes_succ
+theorem twoSplit_incident_pairTypes_succ (D : RoleDiary H)
     (i a b c d : Nat) (hm : IsTwoSplit H i)
     (hab : a < b) (hcd : c < d)
     (ha : IsLeaf H a) (hb : IsLeaf H b)
