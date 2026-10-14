@@ -1,8 +1,9 @@
 # lean-3-uniform-diaries
 
-Lean formalisation accompanying the 3-uniform diaries manuscript. The
-auxiliary type-respecting Ramsey theorem itself is **not yet fully
-formalised**. Its difficult generic K_I embedding lemma now is.
+Lean formalisation accompanying the 3-uniform diaries manuscript. The finite auxiliary type-respecting Ramsey statement has a verified
+unconditional formalisation, together with its `K_I` embedding and
+concrete scalar coding arguments. Other manuscript statements require
+separate source-level audits.
 
 ## Verified components
 
@@ -36,47 +37,60 @@ theorems are checked in scripts/CheckAxioms.lean; no `sorry` or
 - Algebraic properties of abstract canonical maps, including
   composition and selected-cut type agreement (CanonicalMap,
   CanonicalAgreement).
-- A checked finite-colour and fixed-stem Milliken consequence for homogeneous
-  trees, now imported directly from the published `lean-milliken` application
-  API and re-exported by thin compatibility wrappers; and the conditional
-  final Ramsey transfer through K_I (MillikenFiniteColour,
-  MillikenAnchoredFiniteColour, AuxRamseyTransfer).
+- The concrete nonuniformly branching scalar strong-tree model and
+  its finite image code, with a direct application of the reusable
+  `Milliken.GeneralTree.millikenFixedStemFiniteColouring_of_boundaryProductHL`
+  theorem. The general-tree Halpern–Läuchli input is discharged by
+  `boundaryProductHL_unconditional`.
+- The unconditional finite auxiliary type-respecting Ramsey property,
+  including the incompatible-prefix case, is exported as
+  `ThreeUniformDiaries.ATRFiniteDecoder.actualFiniteAuxRamsey_allFinite`.
+  This proof does not assume a synthetic scalar-realisation record,
+  a fixed branching alphabet or an unproved Halpern–Läuchli property.
 
-## ATR application status (12 October 2026)
+## Unconditional finite Ramsey theorem and upstream library
 
-The proof of the **conditional final Ramsey transfer** is checked. The genuine
-three-coordinate E0/E1/E2 strong picture glues to the actual nonuniformly
-branching `Milliken.GeneralTree.StrongSubtree rootGluedAmbientTree`.
-Its predecessor/meet geometry, finite local branching, ambient rank, exact
-scalar source levels, and the equality of scalar finite approximations with
-the glued coordinate prefixes are checked without any global degree bound.
+The root-glued E0/E1/E2 scalar tree is a genuinely pruned, locally
+finitely branching `Milliken.AmbientTree` whose degree need not
+be globally bounded. Its selected ranks, strong subtrees, finite
+approximation decoders and the fixed outer self-embedding are
+formalised in the concrete diary modules.
 
-`ATRGeneralMilliken.ATRScalarRealization.atrRamsey_of_boundaryProductHL`
-is checked assuming exactly two explicit inputs: the concrete decoding /
-realization data `ATRScalarRealization` and the upstream heterogeneous
-Halpern–Läuchli assumption `HasBoundaryProductHL`. The general A.1–A.3,
-Tychonoff closedness, abstract A.4 reduction, and final finite-colour
-deduction are checked; **the boundary HL input remains unproved in
-the pinned upstream repository**. No theorem should be marked green solely
-because this conditional implication compiled.
+The source of the combinatorial Ramsey input is
+[lean-milliken](https://github.com/janhubicka/lean-milliken), whose
+theorems concern arbitrary ambient rooted trees independently of
+this application. The diary project imports these mathematical
+interfaces directly; it does not re-export the library's generic
+finite-colouring lemmas or maintain conditional compatibility adapters.
 
-## Remaining Ramsey theorem obligations
+For the finite induced auxiliary embeddings considered here, the
+main application proceeds via the following checked stages:
 
-1. Prove the reverse scalar-to-vector strong-subtree correspondence for
-   actual E0/E1/E2 coordinate slices, with the protected initial segment.
-   The forward correspondence and exact finite-prefix equality are checked.
-2. Construct the actual finite-code decoder and the realization law for
-   refined strong pictures, using the already checked Aemb finite code,
-   strong completion, selected-level prefix, and infinite canonical
-   composition. Instantiate `AuxRamseyCoding` with the actual K_I branch
-   action and universal embedding, rather than merely a generic record.
-3. Import the unconditional heterogeneous boundary-product HL / Milliken
-   theorem from `lean-milliken` once that proof is completed, verify its
-   exact hypotheses on the actual glued ambient tree, and eliminate the
-   last explicit theorem assumption.
-4. Instantiate the final theorem with the geometric and coding data and
-   audit transitive axioms. Until then the manuscript ATR theorem remains
-   partially validated.
+1. A genuine finite-image scalar colour on `r_(k+2)(X)` is constructed
+   from the selected canonical branch decoder.
+2. The general fixed-stem Milliken implication from boundary product
+   Halpern–Läuchli homogenizes that colour on a protected strong
+   refinement of the root-glued ambient tree.
+3. A single uniform type-respecting self-embedding of the generic
+   3-hypergraph is constructed before quantifying over finite images.
+   The genuine finite-image branch comparison identifies its colours.
+4. The unconditional boundary product HL theorem discharges the
+   combinatorial input, and the incompatible fixed-prefix case is
+   handled separately.
+
+The proof-integrity audit is in `scripts/CheckAxioms.lean`.
+The project remains under mathematical audit in parts not covered by
+this finite theorem; a successful Lean build must not be interpreted
+as validating a stronger unexported manuscript statement.
+
+## Removed historical adapters
+
+The preceding proof once passed through several conditional
+`ATRGeneralMilliken` and `ATRScalarRealization` bridge modules and
+a local wrapper around a generic Ramsey-space colouring lemma.
+Those modules have been retired in favour of the verified direct
+general-tree theorem API. The concrete coding and finite-image
+realisation arguments are retained.
 
 ## Repaired C2 induction
 
