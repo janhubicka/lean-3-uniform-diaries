@@ -30,11 +30,11 @@ structure RolePointedEnvelopeAxioms (H : Ordered3Graph Nat) : Prop where
   branchLeft :
     ∀ m a b, IsOneSplit H m → IsLeaf H a → IsLeaf H b →
       a < b → H.oneMeetLevel a b = m →
-      (H.edge 0 m a ↔ H.edge 1 a b)
+      (H.edge 0 m a ↔ H.edge 2 a b)
   branchRight :
     ∀ m a b, IsOneSplit H m → IsLeaf H a → IsLeaf H b →
       a < b → H.oneMeetLevel a b = m →
-      (H.edge 0 m b ↔ H.edge 2 a b)
+      (H.edge 0 m b ↔ H.edge 1 a b)
   noTerminalTriple :
     ∀ m a b, IsOneSplit H m → IsLeaf H a → IsLeaf H b →
       a < b → m < a → ¬ H.edge m a b
@@ -73,8 +73,8 @@ theorem pointed_profiles_of_leaf_pair_type
     intro z hz
     by_cases hz0 : z = 0
     · subst z
-      have hmark : H.edge 1 a b ↔ H.edge 1 c d :=
-        hleafAux (a := 1) (by omega)
+      have hmark : H.edge 2 a b ↔ H.edge 2 c d :=
+        hleafAux (a := 2) (by omega)
       exact (D.branchLeft m a b hm ha hb hab hmeetAB).trans
         (hmark.trans (D.branchLeft n c d hn hc hd hcd hmeetCD).symm)
     · have hzm : z < m := lt_of_lt_of_le hz him
@@ -86,8 +86,8 @@ theorem pointed_profiles_of_leaf_pair_type
     intro z hz
     by_cases hz0 : z = 0
     · subst z
-      have hmark : H.edge 2 a b ↔ H.edge 2 c d :=
-        hleafAux (a := 2) (by omega)
+      have hmark : H.edge 1 a b ↔ H.edge 1 c d :=
+        hleafAux (a := 1) (by omega)
       exact (D.branchRight m a b hm ha hb hab hmeetAB).trans
         (hmark.trans (D.branchRight n c d hn hc hd hcd hmeetCD).symm)
     · have hzm : z < m := lt_of_lt_of_le hz him

@@ -3,6 +3,7 @@ import ThreeUniformDiaries.TwoTypeMeetLevel
 import ThreeUniformDiaries.DiaryLeafPriority
 import ThreeUniformDiaries.DiaryRoleAxioms
 import ThreeUniformDiaries.DiaryPointedProfileFromRoles
+import ThreeUniformDiaries.DiaryFullRoleDefinition
 import ThreeUniformDiaries.DiaryAuxTransferWitness
 import ThreeUniformDiaries.DiaryThreeTailMarkerTable
 import ThreeUniformDiaries.DiaryEdgeShapeWitness
