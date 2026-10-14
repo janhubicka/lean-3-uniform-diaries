@@ -65,7 +65,7 @@ theorem canonicalFiniteLevelMap_inside
     (i : Nat) (hi : i ≤ k) :
     canonicalFiniteLevelMap k a i =
       finiteCoordinateHeights k a ⟨i, Nat.lt_succ_of_le hi⟩ := by
-  simp only [canonicalFiniteLevelMap, dif_pos hi]
+  simp only [canonicalFiniteLevelMap, dite_eq_left hi]
 
 theorem canonicalFiniteLevelMap_outside
     (k : Nat)
@@ -73,7 +73,7 @@ theorem canonicalFiniteLevelMap_outside
     (i : Nat) (hi : k < i) :
     canonicalFiniteLevelMap k a i =
       finiteCoordinateHeights k a ⟨k, Nat.lt_succ_self k⟩ + (i - k) := by
-  simp only [canonicalFiniteLevelMap, dif_neg (Nat.not_le.mpr hi)]
+  simp only [canonicalFiniteLevelMap, dite_eq_right (Nat.not_le.mpr hi)]
 
 /-- The intrinsically determined infinite extension is strictly
 increasing, even when the original finite gaps were unbounded. -/
