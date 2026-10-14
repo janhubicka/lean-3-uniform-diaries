@@ -10,7 +10,7 @@ rev = "5bd58ac291422a21f412ae354c91e7d172255a2c"
 [[require]]
 name = "milliken"
 git = "https://github.com/janhubicka/lean-milliken"
-rev = "4d23ea85aaae75401cfba9864e44f7909c83223a"
+rev = "d2df3a15511c92f2bb4640a966c05aaae46147ab"
 
 [[require]]
 name = "successor-tree-lean"

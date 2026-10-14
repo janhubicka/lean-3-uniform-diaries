@@ -126,13 +126,13 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.AuxTypeRespecting.typeRespecting
 #print axioms ThreeUniformDiaries.AuxRamseyCoding.auxRamsey_of_finiteRamsey
 #print axioms ThreeUniformDiaries.AuxRamseyCoding.auxRamsey_pairwise
-#print axioms ThreeUniformDiaries.homogeneousMillikenAvailable
+#print axioms Milliken.GeneralTree.generalMilliken_unconditional
 
 #print axioms ThreeUniformDiaries.EnumNode.auxType_succ_bit
 #print axioms ThreeUniformDiaries.EnumNode.oneType_succ_pair
 #print axioms ThreeUniformDiaries.EnumNode.truncate_succ_triple
 
-#print axioms ThreeUniformDiaries.homogeneousMillikenFiniteColouring
+#print axioms Milliken.GeneralTree.milliken1979_general_unconditional
 
 #print axioms ThreeUniformDiaries.CanonicalMap.comp
 #print axioms ThreeUniformDiaries.CanonicalMap.comp_assoc
@@ -485,12 +485,12 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_selectedPair
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_newTriple
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_selectedTriple
-#print axioms ThreeUniformDiaries.anchoredHomogeneousMillikenFiniteColouring
+#print axioms Milliken.GeneralTree.millikenFixedStemFiniteColouring_general
 
 #print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_injective
 #print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_injective
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_injective
-#print axioms ThreeUniformDiaries.threeCoordinateStrongSubtreeHalpernLauchli
+#print axioms Milliken.GeneralTree.generalProductHL_unconditional
 #print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_induced_edges
 #print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_immediate_prefix
 #print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_immediate_prefix

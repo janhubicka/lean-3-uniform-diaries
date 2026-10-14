@@ -2,24 +2,26 @@ import Milliken.GeneralTree.CanonicalPigeonhole
 import Milliken.GeneralTree.PigeonholeInterface
 import RamseySpace.AbstractEllentuck
 import ThreeUniformDiaries.MillikenFiniteColour
-import ThreeUniformDiaries.MillikenDependency
 
 /-!
 # The non-uniformly branching Milliken theorem: ATR-facing interface
 
-The updated lean-milliken development has checked arbitrary rooted
-locally finitely branching strong-tree geometry, approximation axioms
-A.1–A.3, and the *conditional* construction of the general
-Ramsey-space instance from A.4.
+The lean-milliken library proves unconditional heterogeneous
+Halpern–Läuchli and Milliken for arbitrary pruned, locally finitely
+branching rooted trees. The conditional A.4 and closedness interfaces
+below are retained to isolate which ingredients are used by the
+ATR realization argument; they no longer represent open external
+Ramsey-theoretic inputs.
 
 This module connects those exact checked interfaces to the fixed-stem
 finite-colouring theorem required in the three-uniform ATR proof.
-It records the two remaining logical inputs explicitly:
+Its modular conditional variants accept these two ingredients explicitly:
 
 * arbitrary-tree A.4 (or its proved implication from canonical A.4);
 * Tychonoff closedness of the general-tree approximation system.
 
-Neither is silently assumed as a global instance or axiom.
+Both are discharged by the upstream unconditional theorem; neither
+is introduced here as an axiom.
 The further root-gluing carrier/strong-tree transport from the
 three concrete ATR coordinate trees is handled separately.
 -/
