@@ -900,3 +900,5 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.capped_leaf_pairs_first_eq
 #print axioms ThreeUniformDiaries.Ordered3Graph.capped_twoMeetLevel_eq_first_iff
+
+#print axioms ThreeUniformDiaries.Ordered3Graph.capped_twoMeetLevel_eq_first_of_late_singleton
