@@ -14,6 +14,7 @@ import ThreeUniformDiaries.DiaryFinitePointedRamsey
 import ThreeUniformDiaries.DiaryFiniteATRFamily
 import ThreeUniformDiaries.DiaryFinitePairColour
 import ThreeUniformDiaries.DiaryFusion
+import ThreeUniformDiaries.DiaryFusionStabilisation
 import ThreeUniformDiaries.DiaryFiniteSingletonEnvelope
 import ThreeUniformDiaries.DiaryFiniteSingletonATR
 import ThreeUniformDiaries.DiaryInjectiveAvoidance
