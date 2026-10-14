@@ -902,3 +902,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.capped_twoMeetLevel_eq_first_iff
 
 #print axioms ThreeUniformDiaries.Ordered3Graph.capped_twoMeetLevel_eq_first_of_late_singleton
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.capped_leaf_pairs_second_meet_later
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.capped_leaf_pair_target_of_late_singleton
