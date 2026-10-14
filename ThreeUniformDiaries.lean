@@ -26,6 +26,7 @@ import ThreeUniformDiaries.DiaryFusedTwoTailPairs
 import ThreeUniformDiaries.DiaryFusedThreeTailPairs
 import ThreeUniformDiaries.DiaryFusedLeafPairs
 import ThreeUniformDiaries.DiaryMeetUnderCloseTypes
+import ThreeUniformDiaries.DiaryOrientationReplacement
 import ThreeUniformDiaries.DiaryStageAvoidanceComposition
 import ThreeUniformDiaries.DiaryFinitePairColour
 import ThreeUniformDiaries.DiaryFusion
