@@ -45,7 +45,7 @@ theorem oneMeetLevel_stable_under_close_one_types
     have hycut : y < M+1 := by omega
     calc
       H.edge x y c ↔ H.edge x y a :=
-        (hSame x y hxy hycut).symm
+        (hSame (a := x) (b := y) hxy hycut).symm
       _ ↔ H.edge x y b :=
         H.oneMeetLevel_agree a b hxy hym
   have hLower : m ≤ H.oneMeetLevel c b :=
@@ -55,7 +55,7 @@ theorem oneMeetLevel_stable_under_close_one_types
     DiaryLeafPriority.oneMeetLevel_has_first_witness
       H a b m rfl hma' hmb'
   have hzAC : H.edge z m a ↔ H.edge z m c :=
-    hSame z m hz (by omega)
+    hSame (a := z) (b := m) hz (by omega)
   have hDiffCB : ¬ (H.edge z m c ↔ H.edge z m b) := by
     intro hCB
     exact hDiff (hzAC.trans hCB)
