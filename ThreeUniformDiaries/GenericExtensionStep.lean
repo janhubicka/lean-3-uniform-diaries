@@ -58,7 +58,7 @@ theorem exists_extension_zero_outside
     have h := hpat i j hij
     change G.graph.edge i.val j.val v ↔
       (if i.val ∈ R ∧ j.val ∈ R then inside i j else false) = true at h
-    simpa only [if_pos hpair] using h
+    simpa only [ite_eq_left hpair] using h
   · intro i j hij hout hEdge
     have hnot : ¬ (i.val ∈ R ∧ j.val ∈ R) := by
       intro hp
@@ -66,7 +66,7 @@ theorem exists_extension_zero_outside
       · exact hi hp.1
       · exact hj hp.2
     have hp : extendPattern m R inside i j = false := by
-      simp only [extendPattern, if_neg hnot]
+      simp only [extendPattern, ite_eq_right hnot]
     have h : extendPattern m R inside i j = true :=
       (hpat i j hij).mp hEdge
     rw [hp] at h
