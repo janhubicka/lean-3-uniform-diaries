@@ -39,6 +39,8 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.pointed_two_tail_ATR_finite
 #print axioms ThreeUniformDiaries.Ordered3Graph.pointed_three_tail_edge_agreement
 #print axioms ThreeUniformDiaries.Ordered3Graph.pointed_three_tail_edge_agreement_of_pair_type
+#print axioms ThreeUniformDiaries.Ordered3Graph.pointed_two_tail_edge_agreement_of_pair_type
+#print axioms ThreeUniformDiaries.Ordered3Graph.pointed_two_tail_shapes_after_type_embedding
 
 #print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.AuxTypeRespecting.typeRespecting
 #print axioms ThreeUniformDiaries.AuxRamseyCoding.auxRamsey_of_finiteRamsey
