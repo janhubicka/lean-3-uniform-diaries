@@ -135,7 +135,6 @@ theorem role_three_tail_minimalMeetEnvelope_after_type_embedding
       f hf (ψ i+3) hone haux, ?_, ?_, ?_, ?_⟩
   · intro t ht
     exact ⟨t, by omega, hfix t ht⟩
-  · exact ⟨ψ i, by omega, hfM.symm.trans hfA⟩
   · exact ⟨ψ i+1, by omega, hfA⟩
   · exact ⟨ψ i+2, by omega, hfB⟩
   · intro T hclosed hprefix ha hb
