@@ -52,8 +52,16 @@ jobs:
       - name: Audit complete exported theorem axiom reports
         run: |
           mkdir -p proof-audit
-          lake env lean scripts/CheckAxioms.lean > proof-audit/axioms.log 2>&1
-          python3 scripts/check_axiom_log.py proof-audit/axioms.log scripts/CheckAxioms.lean
+          lake env lean scripts/CheckAxioms.lean > proof-audit/axioms.log 2>&1 || {
+            echo "::error::Lean theorem axiom report failed (last 120 lines follow)"
+            tail -n 120 proof-audit/axioms.log
+            exit 1
+          }
+          python3 scripts/check_axiom_log.py proof-audit/axioms.log scripts/CheckAxioms.lean || {
+            echo "::error::Axiom report audit failed (last 120 lines follow)"
+            tail -n 120 proof-audit/axioms.log
+            exit 1
+          }
 
       - name: Exhaustive finite auxiliary encoding regression
         run: python3 scripts/check_finite_aux_encoding.py
