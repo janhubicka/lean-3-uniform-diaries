@@ -8,6 +8,7 @@ import ThreeUniformDiaries.DiaryEdgeShapeWitness
 import ThreeUniformDiaries.DiaryPrefixCompression
 import ThreeUniformDiaries.DiaryAuxEnvelopeTransfer
 import ThreeUniformDiaries.DiarySingletonCompression
+import ThreeUniformDiaries.DiarySingletonEnvelopeTransfer
 import ThreeUniformDiaries.AuxRamseyTransfer
 import ThreeUniformDiaries.TypeTrees
 import ThreeUniformDiaries.TypeRepresentation
