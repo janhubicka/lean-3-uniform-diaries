@@ -68,12 +68,13 @@ theorem pointed_profiles_of_leaf_pair_type
     have hyn : y < n := lt_of_lt_of_le hyi hin
     exact (D.incoming m x y hm hxy hym).trans
       (D.incoming n x y hn hxy hyn).symm
+  have hleafAux : H.SameAuxTypeBelow i a b c d := hpair.2.2
   have hauxLeft : H.SameAuxTypeBelow i m a n c := by
     intro z hz
     by_cases hz0 : z = 0
     · subst z
       have hmark : H.edge 1 a b ↔ H.edge 1 c d :=
-        hpair.2.2 (a := 1) (by omega)
+        hleafAux (a := 1) (by omega)
       exact (D.branchLeft m a b hm ha hb hab hmeetAB).trans
         (hmark.trans (D.branchLeft n c d hn hc hd hcd hmeetCD).symm)
     · have hzm : z < m := lt_of_lt_of_le hz him
@@ -86,7 +87,7 @@ theorem pointed_profiles_of_leaf_pair_type
     by_cases hz0 : z = 0
     · subst z
       have hmark : H.edge 2 a b ↔ H.edge 2 c d :=
-        hpair.2.2 (a := 2) (by omega)
+        hleafAux (a := 2) (by omega)
       exact (D.branchRight m a b hm ha hb hab hmeetAB).trans
         (hmark.trans (D.branchRight n c d hn hc hd hcd hmeetCD).symm)
     · have hzm : z < m := lt_of_lt_of_le hz him
