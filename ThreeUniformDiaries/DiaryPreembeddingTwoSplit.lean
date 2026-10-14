@@ -51,8 +51,10 @@ theorem sameTwoTypeBelow_trans
   · intro x y hxy hy
     exact (h₀.2.1 hxy hy).trans (h₁.2.1 hxy hy)
   · intro x hx
-    exact (h₀.2.2 (a := x) hx).trans
-      (h₁.2.2 (a := x) hx)
+    have hAux₀ : H.SameAuxTypeBelow l a b c d := h₀.2.2
+    have hAux₁ : H.SameAuxTypeBelow l c d e f := h₁.2.2
+    exact (hAux₀ (a := x) hx).trans
+      (hAux₁ (a := x) hx)
 
 /-- Full 2-type agreement at a cut also holds at every smaller cut. -/
 theorem sameTwoTypeBelow_mono
@@ -66,7 +68,8 @@ theorem sameTwoTypeBelow_mono
   · intro x y hxy hy
     exact h.2.1 hxy (lt_of_lt_of_le hy hlm)
   · intro x hx
-    exact h.2.2 (a := x) (lt_of_lt_of_le hx hlm)
+    have hAux : H.SameAuxTypeBelow m a b c d := h.2.2
+    exact hAux (a := x) (lt_of_lt_of_le hx hlm)
 
 /-- The full capped pair meet is at least the cut l precisely when
 the two full pair types agree below l, provided l lies before both
