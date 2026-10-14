@@ -20,7 +20,7 @@ def truncate {N : Nat} (a : AuxNode N) (l : Nat) : AuxNode l where
   bit i := if i < l then a.bit i else false
   support := by
     intro i hi
-    rw [if_neg (Nat.not_lt.mpr hi)]
+    rw [ite_eq_right (Nat.not_lt.mpr hi)]
 
 @[simp] theorem truncate_self {n : Nat} (a : AuxNode n) :
     a.truncate n = a := by
@@ -77,11 +77,11 @@ def truncate {N : Nat} (a : OneNode N) (l : Nat) : OneNode l where
   support := by
     intro i j hbad
     by_cases hj : j < l
-    · rw [if_pos hj]
+    · rw [ite_eq_left hj]
       apply a.support i j
       intro hvalid
       exact hbad ⟨hvalid.1, hj⟩
-    · rw [if_neg hj]
+    · rw [ite_eq_right hj]
 
 @[simp] theorem truncate_self {n : Nat} (a : OneNode n) :
     a.truncate n = a := by
@@ -108,7 +108,7 @@ def boundaryAux {N : Nat} (a : OneNode N) (k : Nat) : AuxNode k where
   bit i := if i < k then a.pair i k else false
   support := by
     intro i hi
-    rw [if_neg (Nat.not_lt.mpr hi)]
+    rw [ite_eq_right (Nat.not_lt.mpr hi)]
 
 @[simp] theorem truncate_succ {n : Nat} (a : OneNode n) (c : AuxNode n) :
     (a.succ c).truncate n = a := by
@@ -184,7 +184,7 @@ def boundaryOne {N : Nat} (H : EnumNode N) (k : Nat) : OneNode k where
   pair i j := if i < j ∧ j < k then H.triple i j k else false
   support := by
     intro i j hbad
-    rw [if_neg hbad]
+    rw [ite_eq_right hbad]
 
 @[simp] theorem truncate_succ {n : Nat} (H : EnumNode n) (b : OneNode n) :
     (H.succ b).truncate n = H := by
