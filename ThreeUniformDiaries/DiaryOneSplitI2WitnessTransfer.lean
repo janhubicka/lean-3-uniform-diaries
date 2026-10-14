@@ -26,7 +26,7 @@ variable {H K : Ordered3Graph Nat} (D : RoleDiary H)
 given exactly the target I2 statement and the already checked
 placement upper bound. The source witness-class hypotheses of
 the earlier local lemma have been discharged by V/E/S. -/
-theorem oneSplit_target_witness_independent_of_I2
+theorem oneSplit_target_witness_independent_of_I2 (D : RoleDiary H)
     (φ : Embedding H K)
     (m u v u' v' : Nat)
     (hm : IsOneSplit H m)
