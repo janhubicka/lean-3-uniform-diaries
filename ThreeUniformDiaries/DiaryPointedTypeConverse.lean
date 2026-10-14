@@ -27,7 +27,7 @@ theorem sameTwoTypeBelow_of_pointed_edge_agreement
     (hfixf : ∀ t, t < j → f t = t)
     (hfixg : ∀ t, t < j → g t = t)
     (hedge : ∀ x y z, x < y → y < z → z < q+1 →
-      (K.pullback f).edge x y z ↔ (K.pullback g).edge x y z) :
+      ((K.pullback f).edge x y z ↔ (K.pullback g).edge x y z)) :
     K.SameTwoTypeBelow j (f p) (f q) (g p) (g q) := by
   refine ⟨?_, ?_, ?_⟩
   · intro x y hxy hyj
@@ -64,8 +64,8 @@ theorem two_tail_picture_equal_iff_source_pair_type
     (hia : i ≤ a) (hic : i ≤ c)
     (hab : a < b) (hcd : c < d) :
     ( (∀ x y z, x < y → y < z → z < ψ i + 2 →
-        (K.pullback (twoTailInsertion (ψ i) (ψ a) (ψ b))).edge x y z ↔
-        (K.pullback (twoTailInsertion (ψ i) (ψ c) (ψ d))).edge x y z)
+        ((K.pullback (twoTailInsertion (ψ i) (ψ a) (ψ b))).edge x y z ↔
+        (K.pullback (twoTailInsertion (ψ i) (ψ c) (ψ d))).edge x y z))
       ↔ H.SameTwoTypeBelow i a b c d ) := by
   let f := twoTailInsertion (ψ i) (ψ a) (ψ b)
   let g := twoTailInsertion (ψ i) (ψ c) (ψ d)
@@ -107,8 +107,8 @@ theorem three_tail_picture_equal_implies_source_pair_type
     (hia : i ≤ a) (hic : i ≤ c)
     (hab : a < b) (hcd : c < d)
     (hedge : ∀ x y z, x < y → y < z → z < ψ i + 3 →
-      (K.pullback (threeTailInsertion (ψ i) (ψ m) (ψ a) (ψ b))).edge x y z ↔
-      (K.pullback (threeTailInsertion (ψ i) (ψ n) (ψ c) (ψ d))).edge x y z) :
+      ((K.pullback (threeTailInsertion (ψ i) (ψ m) (ψ a) (ψ b))).edge x y z ↔
+      (K.pullback (threeTailInsertion (ψ i) (ψ n) (ψ c) (ψ d))).edge x y z)) :
     H.SameTwoTypeBelow i a b c d := by
   let f := threeTailInsertion (ψ i) (ψ m) (ψ a) (ψ b)
   let g := threeTailInsertion (ψ i) (ψ n) (ψ c) (ψ d)
@@ -121,9 +121,17 @@ theorem three_tail_picture_equal_implies_source_pair_type
   have hImage := K.sameTwoTypeBelow_of_pointed_edge_agreement
     f g (ψ i) (ψ i+1) (ψ i+2)
     (by omega) (by omega) hfixf hfixg hedge
+  have hfA : f (ψ i+1) = ψ a :=
+    threeTailInsertion_first (ψ i) (ψ m) (ψ a) (ψ b)
+  have hfB : f (ψ i+2) = ψ b :=
+    threeTailInsertion_second (ψ i) (ψ m) (ψ a) (ψ b)
+  have hgC : g (ψ i+1) = ψ c :=
+    threeTailInsertion_first (ψ i) (ψ n) (ψ c) (ψ d)
+  have hgD : g (ψ i+2) = ψ d :=
+    threeTailInsertion_second (ψ i) (ψ n) (ψ c) (ψ d)
   have hImage' : K.SameTwoTypeBelow (ψ i)
       (ψ a) (ψ b) (ψ c) (ψ d) := by
-    simpa only [threeTailInsertion_first, threeTailInsertion_second] using hImage
+    simpa only [hfA, hfB, hgC, hgD] using hImage
   exact (hψ.two i a b c d hia hab hic hcd).mpr hImage'
 
 end Ordered3Graph
@@ -148,10 +156,10 @@ theorem three_tail_picture_equal_iff_source_leaf_pair_type
     (hc : IsLeaf H c) (hd : IsLeaf H d)
     (hcase : i ≤ H.oneMeetLevel a b) :
     ( (∀ x y z, x < y → y < z → z < ψ i + 3 →
-        (K.pullback (threeTailInsertion
+        ((K.pullback (threeTailInsertion
           (ψ i) (ψ (H.oneMeetLevel a b)) (ψ a) (ψ b))).edge x y z ↔
         (K.pullback (threeTailInsertion
-          (ψ i) (ψ (H.oneMeetLevel c d)) (ψ c) (ψ d))).edge x y z)
+          (ψ i) (ψ (H.oneMeetLevel c d)) (ψ c) (ψ d))).edge x y z))
       ↔ H.SameTwoTypeBelow i a b c d ) := by
   constructor
   · intro hshape
