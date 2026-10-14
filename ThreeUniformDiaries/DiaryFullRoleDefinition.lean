@@ -92,7 +92,7 @@ namespace RoleDiary
 
 variable {H : Ordered3Graph Nat} (D : RoleDiary H)
 
-theorem roleMeets : RoleDiaryMeets H :=
+theorem roleMeets (D : RoleDiary H) : RoleDiaryMeets H :=
   ⟨D.singleton_meets, D.pair_meets⟩
 
 private theorem oneSplit_not_leaf
@@ -107,15 +107,15 @@ private theorem oneSplit_not_twoSplit
 
 /-- The edge-shape lemma used by ATR follows from the manuscript's
 five permitted edge forms and the Devlin marker equivalences. -/
-theorem splitEdgeShape : SplitEdgeShape H := by
+theorem splitEdgeShape (D : RoleDiary H) : SplitEdgeShape H := by
   constructor
   · intro m a z hm ha hzm hz0 he
     rcases D.permitted_edge z m a he with hrole | hsplit | htwo | hdevlin | hnormal
     · exact hz0 hrole.1
     · exact hz0 hsplit.1
-    · exact (D.oneSplit_not_leaf hm) htwo.2.1
-    · exact (D.oneSplit_not_leaf hm) hdevlin.2.1
-    · exact (D.oneSplit_not_leaf hm) hnormal.2.1
+    · exact (oneSplit_not_leaf hm) htwo.2.1
+    · exact (oneSplit_not_leaf hm) hdevlin.2.1
+    · exact (oneSplit_not_leaf hm) hnormal.2.1
   · intro a b hab ha hb
     classical
     by_cases hlex : LexEarlier H a b
@@ -123,7 +123,7 @@ theorem splitEdgeShape : SplitEdgeShape H := by
     · exact Or.inr ((D.leaf_marker_two a b hab ha hb).mpr hlex)
 
 /-- Every 1-split has precisely the incoming marker-one profile. -/
-theorem oneSplit_incoming
+theorem oneSplit_incoming (D : RoleDiary H)
     (m x y : Nat) (hm : IsOneSplit H m)
     (hxy : x < y) (hym : y < m) :
     (H.edge x y m ↔ (x = 0 ∧ y = 1)) := by
@@ -137,16 +137,16 @@ theorem oneSplit_incoming
       · have hforbidden : H.edge 0 2 m := by
           simpa only [hx, hy] using he
         exact (hm.2.2 hforbidden).elim
-    · exact False.elim ((D.oneSplit_not_leaf hm) hsplit.2.2)
-    · exact False.elim ((D.oneSplit_not_leaf hm) htwo.2.2)
-    · exact False.elim ((D.oneSplit_not_leaf hm) hdevlin.2.2)
-    · exact False.elim ((D.oneSplit_not_leaf hm) hnormal.2.2)
+    · exact False.elim ((oneSplit_not_leaf hm) hsplit.2.2)
+    · exact False.elim ((oneSplit_not_leaf hm) htwo.2.2)
+    · exact False.elim ((oneSplit_not_leaf hm) hdevlin.2.2)
+    · exact False.elim ((oneSplit_not_leaf hm) hnormal.2.2)
   · rintro ⟨rfl, rfl⟩
     exact hm.2.1
 
 /-- No permitted diary edge has a 1-split as its first vertex and
 two leaves as its second and third vertices. -/
-theorem oneSplit_no_terminal
+theorem oneSplit_no_terminal (D : RoleDiary H)
     (m a b : Nat) (hm : IsOneSplit H m)
     (ha : IsLeaf H a) (hb : IsLeaf H b)
     (hab : a < b) (hma : m < a) :
@@ -157,15 +157,15 @@ theorem oneSplit_no_terminal
     omega
   · have hbound := hm.1
     omega
-  · exact (D.oneSplit_not_twoSplit hm) htwo.1
+  · exact (oneSplit_not_twoSplit hm) htwo.1
   · have hbound := hm.1
     rcases hdevlin.1 with h | h <;> omega
-  · exact (D.oneSplit_not_leaf hm) hnormal.1
+  · exact (oneSplit_not_leaf hm) hnormal.1
 
 /-- The full pair meet of (m,a) and (m,b) is zero, provided m
 is exactly the leaf singleton meet; this is the lexicographic
 orientation witness and not a special axiom. -/
-theorem oneSplit_mixed_pair_meet_zero
+theorem oneSplit_mixed_pair_meet_zero (D : RoleDiary H)
     (m a b : Nat) (hm : IsOneSplit H m)
     (ha : IsLeaf H a) (hb : IsLeaf H b)
     (hab : a < b) (hma : m < a)
@@ -179,7 +179,7 @@ theorem oneSplit_mixed_pair_meet_zero
 
 /-- For a<b, the manuscript's lexicographic comparison is
 equivalent to the *right* split/leaf edge (0,m,b). -/
-theorem lexEarlier_iff_right_split_marker
+theorem lexEarlier_iff_right_split_marker (D : RoleDiary H)
     (m a b : Nat) (hm : IsOneSplit H m)
     (ha : IsLeaf H a) (hb : IsLeaf H b)
     (hab : a < b) (hma : m < a)
@@ -202,7 +202,7 @@ theorem lexEarlier_iff_right_split_marker
 
 /-- The actual (E/V) marker pair identities, correctly oriented:
 edge(0,m,a) iff marker 2 and edge(0,m,b) iff marker 1. -/
-theorem oneSplit_left_right_marker
+theorem oneSplit_left_right_marker (D : RoleDiary H)
     (m a b : Nat) (hm : IsOneSplit H m)
     (ha : IsLeaf H a) (hb : IsLeaf H b)
     (hab : a < b) (hma : m < a)
@@ -228,7 +228,7 @@ theorem oneSplit_left_right_marker
 /-- All pointed role-profile assumptions are consequences of the
 single complete diary definition. No independent branch-marker
 axiom is used. -/
-theorem pointedEnvelopeAxioms : RolePointedEnvelopeAxioms H := by
+theorem pointedEnvelopeAxioms (D : RoleDiary H) : RolePointedEnvelopeAxioms H := by
   refine ⟨?_, ?_, ?_, ?_, ?_⟩
   · intro m x y hm hxy hym
     exact D.oneSplit_incoming m x y hm hxy hym
@@ -241,7 +241,7 @@ theorem pointedEnvelopeAxioms : RolePointedEnvelopeAxioms H := by
       have hne : m ≠ a := by
         intro h
         subst m
-        exact (D.oneSplit_not_leaf hm) ha
+        exact (oneSplit_not_leaf hm) ha
       omega
     exact (D.oneSplit_left_right_marker m a b hm ha hb hab hma hmeet).1
   · intro m a b hm ha hb hab hmeet
@@ -252,7 +252,7 @@ theorem pointedEnvelopeAxioms : RolePointedEnvelopeAxioms H := by
       have hne : m ≠ a := by
         intro h
         subst m
-        exact (D.oneSplit_not_leaf hm) ha
+        exact (oneSplit_not_leaf hm) ha
       omega
     exact (D.oneSplit_left_right_marker m a b hm ha hb hab hma hmeet).2
   · intro m a b hm ha hb hab hma
