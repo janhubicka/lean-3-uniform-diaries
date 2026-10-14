@@ -145,6 +145,8 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.CanonicalMap.preserves_selected_one_agreement
 #print axioms ThreeUniformDiaries.CanonicalMap.preserves_selected_aux_agreement
 #print axioms ThreeUniformDiaries.GenericEnumerated3Graph.exists_extension_zero_outside
+#print axioms ThreeUniformDiaries.GenericEnumerated3Graph.exists_late_same_one_type
+#print axioms ThreeUniformDiaries.GenericEnumerated3Graph.exists_late_same_one_type_with_cut
 #print axioms ThreeUniformDiaries.GenericEnumerated3Graph.exists_extension_for_source
 #print axioms ThreeUniformDiaries.AuxNode.succ_eq_iff
 #print axioms ThreeUniformDiaries.OneNode.succ_eq_iff
