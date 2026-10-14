@@ -15,6 +15,7 @@ import ThreeUniformDiaries.DiarySingletonEnvelopeTransfer
 import ThreeUniformDiaries.DiaryTwoTailATR
 import ThreeUniformDiaries.DiaryPointedEnvelopeShape
 import ThreeUniformDiaries.DiaryPointedShapeTransport
+import ThreeUniformDiaries.DiaryTwoTailShape
 import ThreeUniformDiaries.AuxRamseyTransfer
 import ThreeUniformDiaries.TypeTrees
 import ThreeUniformDiaries.TypeRepresentation
