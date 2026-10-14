@@ -134,8 +134,9 @@ theorem oneSplit_incoming
       refine ⟨hx, ?_⟩
       rcases hy with hy | hy
       · exact hy
-      · subst y
-        exact (False.elim (hm.2.2 he))
+      · have hforbidden : H.edge 0 2 m := by
+          simpa only [hx, hy] using he
+        exact (hm.2.2 hforbidden).elim
     · exact False.elim ((D.oneSplit_not_leaf hm) hsplit.2.2)
     · exact False.elim ((D.oneSplit_not_leaf hm) htwo.2.2)
     · exact False.elim ((D.oneSplit_not_leaf hm) hdevlin.2.2)
@@ -171,7 +172,7 @@ theorem oneSplit_mixed_pair_meet_zero
     (hmeet : H.oneMeetLevel a b = m) :
     H.twoMeetLevel m a m b = 0 := by
   have hmb : m < b := lt_trans hma hab
-  have haux := (D.splitEdgeShape).oneSplit_pointed_aux_bounds
+  have haux := oneSplit_pointed_aux_bounds H D.splitEdgeShape
     m a b hab ha hb hm hmeet hma hmb
   rw [H.twoMeetLevel_eq_min m a m b hma hmb, haux.1]
   simp
