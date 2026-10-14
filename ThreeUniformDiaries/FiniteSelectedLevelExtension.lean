@@ -38,17 +38,17 @@ theorem extendFiniteLevelMap_strictMono
   by_cases hik : i < k
   · have hi : i ≤ k := by omega
     have his : i + 1 ≤ k := by omega
-    simpa only [extendFiniteLevelMap, if_pos hi, if_pos his] using
+    simpa only [extendFiniteLevelMap, ite_eq_left hi, ite_eq_left his] using
       hsteps i hik
   · by_cases heq : i = k
     · subst i
       have hnot : ¬ k + 1 ≤ k := by omega
-      simp only [extendFiniteLevelMap, if_pos (le_refl k), if_neg hnot]
+      simp only [extendFiniteLevelMap, ite_eq_left (le_refl k), ite_eq_right hnot]
       omega
     · have hki : k < i := by omega
       have hnoti : ¬ i ≤ k := by omega
       have hnots : ¬ i + 1 ≤ k := by omega
-      simp only [extendFiniteLevelMap, if_neg hnoti, if_neg hnots]
+      simp only [extendFiniteLevelMap, ite_eq_right hnoti, ite_eq_right hnots]
       omega
 
 /-- The extension equals its last finite selected level plus the
