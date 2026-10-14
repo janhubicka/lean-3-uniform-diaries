@@ -33,29 +33,43 @@ namespace ATRFiniteDecoder
 
 open Ordered3Graph
 
-/-- Every generic enumerated 3-hypergraph contains a type-respecting
-induced copy of the concrete five-vertex orientation gadget, by the
-root-based universal auxiliary branch construction. -/
+/-- The generic graph contains a type-respecting induced copy
+of the concrete five-vertex gadget FIXING BOTH initial marker
+vertices 0 and 1, as required in the manuscript. Any two-vertex
+enumerated prefix is edgeless, so the source and target prefixes
+are automatically identical. Apply the universal fixed-prefix
+auxiliary branch embedding at n=2. -/
+theorem exists_typeRespecting_fiveVertex_gadget_fix_two
+    (G : GenericEnumerated3Graph) :
+    ∃ ψ : Embedding fiveVertexOrientationGadget G.graph,
+      ψ.TypeRespecting ∧ ψ 0 = 0 ∧ ψ 1 = 1 := by
+  let I : EnumNode 2 := G.graph.initialSegment 2
+  obtain ⟨E, phi, hproperty⟩ :=
+    exists_universal_fixedAuxEmbedding G I (by omega) rfl
+  have hI : fiveVertexOrientationGadget.initialSegment 2 = I := by
+    apply EnumNode.ext_triples
+    funext a b c
+    have hbad : ¬ (a < b ∧ b < c ∧ c < 2) := by omega
+    calc
+      (fiveVertexOrientationGadget.initialSegment 2).triple a b c =
+          false :=
+        (fiveVertexOrientationGadget.initialSegment 2).support a b c hbad
+      _ = I.triple a b c :=
+        ((G.graph.initialSegment 2).support a b c hbad).symm
+  obtain ⟨ψ, _, hfix, haux⟩ :=
+    hproperty.2.2.2 fiveVertexOrientationGadget hI
+  exact ⟨ψ, haux.typeRespecting,
+    hfix 0 (by omega), hfix 1 (by omega)⟩
+
+/-- Forgetting the fixed markers yields the simpler type-respecting
+copy interface used by the unconditional orientation calculation. -/
 theorem exists_typeRespecting_fiveVertex_gadget
     (G : GenericEnumerated3Graph) :
     ∃ ψ : Embedding fiveVertexOrientationGadget G.graph,
       ψ.TypeRespecting := by
-  let I : EnumNode 0 := G.graph.initialSegment 0
-  obtain ⟨E, phi, hproperty⟩ :=
-    exists_universal_zeroAuxEmbedding G I
-  have hI : fiveVertexOrientationGadget.initialSegment 0 = I := by
-    apply EnumNode.ext_triples
-    funext a b c
-    have hbad : ¬ (a < b ∧ b < c ∧ c < 0) := by omega
-    calc
-      (fiveVertexOrientationGadget.initialSegment 0).triple a b c =
-          false :=
-        (fiveVertexOrientationGadget.initialSegment 0).support a b c hbad
-      _ = I.triple a b c :=
-        ((G.graph.initialSegment 0).support a b c hbad).symm
-  obtain ⟨ψ, _, _, haux⟩ :=
-    hproperty.2.2.2 fiveVertexOrientationGadget hI
-  exact ⟨ψ, haux.typeRespecting⟩
+  obtain ⟨ψ, hψ, _, _⟩ :=
+    exists_typeRespecting_fiveVertex_gadget_fix_two G
+  exact ⟨ψ, hψ⟩
 
 /-- The target orientation identity of the five-vertex gadget
 follows unconditionally for a genuine unordered outer
