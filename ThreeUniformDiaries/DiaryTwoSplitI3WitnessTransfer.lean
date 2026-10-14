@@ -31,7 +31,7 @@ same target full type meet, provided full leaf-pair I3 holds at
 the successor target cut and the first witness's target meet
 occurs by the image of the split. There is NO additional source
 witness-class assumption. -/
-theorem twoSplit_target_witness_independent_of_I3
+theorem twoSplit_target_witness_independent_of_I3 (D : RoleDiary H)
     (φ : Embedding H K)
     (i a b c d a' b' c' d' : Nat)
     (hm : IsTwoSplit H i)
