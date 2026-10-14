@@ -54,6 +54,9 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.fusionFunction_eq_stage
 #print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.fusionEmbedding
 #print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.fusionEmbedding_auxTypeRespecting
+#print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.fusion_order_preserved
+#print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.fusion_one_type_stabilised
+#print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.fusion_two_type_and_orientation_stabilised
 #print axioms ThreeUniformDiaries.Ordered3Graph.one_tail_oneMeet_preserved
 #print axioms ThreeUniformDiaries.Ordered3Graph.one_tail_auxMeet_preserved
 #print axioms ThreeUniformDiaries.Ordered3Graph.one_tail_ATR_finite
