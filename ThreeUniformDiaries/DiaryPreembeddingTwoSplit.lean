@@ -91,18 +91,25 @@ theorem twoMeetLevel_comm
     (H : Ordered3Graph Nat) (a b c d : Nat) :
     H.twoMeetLevel a b c d = H.twoMeetLevel c d a b := by
   classical
-  have hfun :
-      (fun l => H.SameTwoTypeBelow l a b c d) =
-      (fun l => H.SameTwoTypeBelow l c d a b) := by
-    funext l
-    apply propext
-    constructor
-    · exact H.sameTwoTypeBelow_symm l a b c d
-    · exact H.sameTwoTypeBelow_symm l c d a b
-  change
-    Nat.findGreatest (fun l => H.SameTwoTypeBelow l a b c d) (min a c) =
-    Nat.findGreatest (fun l => H.SameTwoTypeBelow l c d a b) (min c a)
-  rw [hfun, min_comm a c]
+  have hAB : H.SameTwoTypeBelow (H.twoMeetLevel a b c d)
+      c d a b :=
+    H.sameTwoTypeBelow_symm
+      (H.twoMeetLevel a b c d) a b c d
+      (H.twoMeetLevel_agree a b c d)
+  have hBA : H.SameTwoTypeBelow (H.twoMeetLevel c d a b)
+      a b c d :=
+    H.sameTwoTypeBelow_symm
+      (H.twoMeetLevel c d a b) c d a b
+      (H.twoMeetLevel_agree c d a b)
+  apply Nat.le_antisymm
+  · have hbound := H.twoMeetLevel_le_min a b c d
+    exact (H.twoMeetLevel_ge_iff_sameTwoTypeBelow
+      (H.twoMeetLevel a b c d) c d a b
+      (by omega) (by omega)).mpr hAB
+  · have hbound := H.twoMeetLevel_le_min c d a b
+    exact (H.twoMeetLevel_ge_iff_sameTwoTypeBelow
+      (H.twoMeetLevel c d a b) a b c d
+      (by omega) (by omega)).mpr hBA
 
 /-- Replacing one pair A by a pair A' of the same full 2-type
 through M+1 does not change an earlier pair meet with B. -/
