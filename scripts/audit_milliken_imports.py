@@ -47,3 +47,28 @@ for module, owners in imports.items():
             f"ATR still imports obsolete homogeneous API {module}: {owners}"
         )
 print("PASS: no direct imports of homogeneous compatibility proof")
+
+# Temporary migration diagnostics: identify every importing module and
+# declaration occurrence before retiring historical adapter layers.
+candidates = (
+    "ThreeUniformDiaries.MillikenFiniteColour",
+    "ThreeUniformDiaries.ATRGeneralMilliken",
+    "ThreeUniformDiaries.ATRScalarMillikenTransfer",
+    "ThreeUniformDiaries.ATRBoundaryMillikenApplication",
+    "ThreeUniformDiaries.ScalarProtectedApproxRealization",
+    "isOpen_approxColourClass",
+    "finiteApproximationColouring",
+    "exists_refinement_realising_with_stem",
+    "anchoredFiniteColour_of_A4_closed",
+    "anchoredFiniteColour_of_generalMilliken",
+    "generalRamseySpace",
+    "atrRamsey_of_generalA4_closed",
+)
+for token in candidates:
+    sites = []
+    for path in paths:
+        relative = path.relative_to(root).as_posix()
+        for line, content in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+            if token in content and not content.lstrip().startswith(("--", "/-", "*")):
+                sites.append(f"{relative}:{line}")
+    print(f"Adapter usage {token}: {', '.join(sites) if sites else '(none)'}")
