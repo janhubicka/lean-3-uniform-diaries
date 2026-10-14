@@ -52,7 +52,10 @@ theorem twoMeetLevel_le_of_source_type_failure
     · intro x y hxy hy
       exact h.2.1 hxy (lt_of_lt_of_le hy hhigh)
     · intro x hx
-      exact h.2.2 (a := x) (lt_of_lt_of_le hx hhigh)
+      have hAux : K.SameAuxTypeBelow
+          (K.twoMeetLevel (φ a) (φ b) (φ c) (φ d))
+          (φ a) (φ b) (φ c) (φ d) := h.2.2
+      exact hAux (a := x) (lt_of_lt_of_le hx hhigh)
   have hsource : H.SameTwoTypeBelow (w+1) a b c d := by
     refine ⟨?_, ?_, ?_⟩
     · intro x y hxy hy
@@ -93,8 +96,10 @@ theorem twoMeetLevel_le_of_source_type_failure
       calc
         H.edge z a b ↔ K.edge (φ z) (φ a) (φ b) :=
           φ.edge_iff hza hab
-        _ ↔ K.edge (φ z) (φ c) (φ d) :=
-          htarget.2.2 (a := φ z) hzcut
+        _ ↔ K.edge (φ z) (φ c) (φ d) := by
+          have hAux : K.SameAuxTypeBelow (φ w+1)
+              (φ a) (φ b) (φ c) (φ d) := htarget.2.2
+          exact hAux (a := φ z) hzcut
         _ ↔ H.edge z c d :=
           (φ.edge_iff hzc hcd).symm
   exact hfail hsource
@@ -116,6 +121,7 @@ theorem twoSplit_target_placement
       (φ (i-1)+1) (φ a) (φ b) (φ c) (φ d)) :
     φ (i-1) < K.twoMeetLevel (φ a) (φ b) (φ c) (φ d) ∧
       K.twoMeetLevel (φ a) (φ b) (φ c) (φ d) ≤ φ i := by
+  classical
   have hpred : i-1 < i := by omega
   have hpA : φ (i-1) < φ a :=
     φ.strictMono (lt_trans hpred hia)
