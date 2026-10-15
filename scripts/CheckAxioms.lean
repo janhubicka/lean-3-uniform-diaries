@@ -982,3 +982,10 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.exists_typeRespecting_embedding_fix_two
 
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.sameFinitePointedSource_of_diary_same_lex_at_three
+
+#print axioms ThreeUniformDiaries.Ordered3Graph.threeTailShift_strictMono
+#print axioms ThreeUniformDiaries.Ordered3Graph.threeTailShift_prefix
+#print axioms ThreeUniformDiaries.Ordered3Graph.threeTailShift_firstLeaf
+#print axioms ThreeUniformDiaries.Ordered3Graph.threeTailShift_secondLeaf
+#print axioms ThreeUniformDiaries.Ordered3Graph.threeTailFreeAmalgam_left
+#print axioms ThreeUniformDiaries.Ordered3Graph.threeTailFreeAmalgam_right
