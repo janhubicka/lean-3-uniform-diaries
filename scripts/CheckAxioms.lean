@@ -1007,3 +1007,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.threeTailFreeAmalgam_calibrationTriple
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oppositeLex_native_fourTail_has_calibrationTriple
+
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.exists_auxTypeRespecting_embedding_fix_prefix
