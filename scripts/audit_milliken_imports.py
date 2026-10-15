@@ -1,49 +1,69 @@
 #!/usr/bin/env python3
-"""Inventory the *actual* lean-milliken modules used by the ATR project.
+"""Audit the diary formalisation's direct use of lean-milliken.
 
-Run before the Lean build so obsolete compatibility modules can be removed
-from the upstream library without speculating about downstream imports.
-Only source imports count as dependencies; comments are merely context.
+This integration test ensures the project uses the published
+general-tree theorem modules instead of duplicating their proofs or
+maintaining transitional conditional adapter layers.
+
+Run before Lake compilation. The pinned dependency and full Lean
+CI subsequently check the actual declaration types and proof terms.
 """
 from collections import defaultdict
 from pathlib import Path
 import re
 
 root = Path(__file__).resolve().parents[1]
-paths = [root / "ThreeUniformDiaries.lean", *sorted((root / "ThreeUniformDiaries").rglob("*.lean"))]
+sources = [
+    root / "ThreeUniformDiaries.lean",
+    *sorted((root / "ThreeUniformDiaries").rglob("*.lean")),
+]
 imports: dict[str, list[str]] = defaultdict(list)
-legacy: dict[str, list[str]] = defaultdict(list)
-for path in paths:
-    s = path.read_text(encoding="utf-8")
-    relative = path.relative_to(root).as_posix()
-    for m in re.finditer(r"^\s*import\s+(Milliken(?:\.[A-Za-z0-9_]+)*)\s*$", s, re.M):
-        imports[m.group(1)].append(relative)
-    for m in re.finditer(
-        r"\bMilliken\.(?:Chapter6|HalpernLauchli|StrongEmbedding|StrongTreeSpace|Applications|MillikenTheorem)\b",
-        s,
-    ):
-        line = s.count("\n", 0, m.start()) + 1
-        legacy[relative].append(f"{m.group()}:{line}")
+for path in sources:
+    rel = path.relative_to(root).as_posix()
+    source = path.read_text(encoding="utf-8")
+    for match in re.finditer(r"^\s*import\s+(Milliken(?:\.[A-Za-z0-9_]+)*)\s*$",
+                             source, re.MULTILINE):
+        imports[match.group(1)].append(rel)
 
-print(f"ATR source files: {len(paths)}")
-print(f"Distinct directly imported lean-milliken modules: {len(imports)}")
-for module, owners in sorted(imports.items()):
-    print(f"  {module}: {', '.join(owners)}")
-print(f"Legacy namespace mentions (include comments): {sum(map(len, legacy.values()))}")
-for path, hits in sorted(legacy.items()):
-    print(f"  {path}: {', '.join(hits)}")
+print(f"Checked {len(sources)} diary Lean modules")
+print(f"Distinct imported Milliken modules: {len(imports)}")
+for module, sites in sorted(imports.items()):
+    print(f"  {module}: {', '.join(sites)}")
 
-# No upstream homogeneous theorem import should be needed by the
-# ATR-facing proof; this is the precise condition for deleting those APIs.
-for module, owners in imports.items():
-    if module == "Milliken" or module in (
-        "Milliken.MillikenTheorem",
-        "Milliken.Chapter6",
-        "Milliken.Applications",
-        "Milliken.Applications.PublishedInterfaces",
-        "Milliken.Applications.FiniteColour",
-    ) or module.startswith("Milliken.HalpernLauchli."):
-        raise SystemExit(
-            f"ATR still imports obsolete homogeneous API {module}: {owners}"
-        )
-print("PASS: no direct imports of homogeneous compatibility proof")
+legacy_upstream = (
+    "Milliken.MillikenTheorem",
+    "Milliken.Chapter6",
+    "Milliken.Applications",
+)
+for module, sites in imports.items():
+    if (module == "Milliken"
+        or module in legacy_upstream
+        or module.startswith("Milliken.HalpernLauchli.")):
+        raise SystemExit(f"FAIL: obsolete fixed-alphabet Milliken import {module}: {sites}")
+
+retired_local_modules = (
+    "MillikenFiniteColour",
+    "ATRGeneralMilliken",
+    "ATRScalarMillikenTransfer",
+    "ATRBoundaryMillikenApplication",
+    "ScalarProtectedApproxRealization",
+)
+for module in retired_local_modules:
+    if (root / "ThreeUniformDiaries" / f"{module}.lean").exists():
+        raise SystemExit(f"FAIL: retained unused Milliken adapter {module}.lean")
+    target = f"ThreeUniformDiaries.{module}"
+    for path in sources:
+        source = path.read_text(encoding="utf-8")
+        if re.search(r"^\s*import\s+" + re.escape(target) + r"\s*$",
+                     source, re.MULTILINE):
+            raise SystemExit(f"FAIL: obsolete adapter imported in {path}: {target}")
+
+required = (
+    "Milliken.GeneralTree.FixedStemBoundaryHL",
+    "Milliken.GeneralTree.UnconditionalHLAPI",
+)
+for module in required:
+    if module not in imports:
+        raise SystemExit(f"FAIL: public general-tree import {module} has no direct client")
+
+print("PASS: diary proofs import only the reusable general-tree Milliken API")

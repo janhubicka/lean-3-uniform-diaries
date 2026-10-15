@@ -1,5 +1,5 @@
 import ThreeUniformDiaries.ScalarFiniteColourCode
-import ThreeUniformDiaries.ATRBoundaryMillikenApplication
+import Milliken.GeneralTree.FixedStemBoundaryHL
 
 /-!
 # The actual finite ATR colouring consequence of heterogeneous Milliken
@@ -10,13 +10,13 @@ of K_I vertices. The concrete finite scalar decoder now produces a
 unique `FiniteAuxEmbeddingImage` with precisely these finite images,
 using the same fixed universal K_I embedding for every scalar code.
 
-Here we apply the conditional heterogeneous boundary-product
-Halpern--Läuchli / scalar Milliken consequence to that literal finite
-colour. Every finite approximation on the protected root-glued
+Here we apply the library's general fixed-stem colouring theorem from
+the boundary-product Halpern–Läuchli hypothesis to that literal
+finite colour. Every finite approximation on the protected root-glued
 identity stem has a valid decoder value, and its image code is unique.
 
-This closes the finite-colouring portion of the ATR Ramsey argument
-WITHOUT an abstract `ATRScalarRealization` assumption. The strong
+This closes the finite-colouring portion of the Ramsey argument
+without a synthetic scalar-realisation hypothesis. The strong
 refinement of an arbitrary finite source code and the final ambient
 self-embedding are the next distinct steps.
 -/
@@ -27,7 +27,6 @@ namespace ATRFiniteDecoder
 open Milliken
 open Milliken.GeneralTree
 open ThreeUniformDiaries.CoordNode
-open ThreeUniformDiaries.ATRGeneralMilliken
 
 /-- The literal finite scalar colouring on ALL published finite
 Milliken approximations, with a harmless default outside the
@@ -87,7 +86,7 @@ theorem actualScalarFiniteColour_monochromatic
             χ code = color := by
   let col := actualScalarFiniteColour G hnk A I hI E phi hphi χ
   obtain ⟨B, hBA, hstemB, hhom⟩ :=
-    anchoredFiniteColour_of_boundaryProductHL
+    millikenFixedStemFiniteColouring_of_boundaryProductHL
       CoordNode.rootGluedAmbientTree hHL
       (n + 1) (k + 2) scalarIdentity col
   refine ⟨B, hBA, hstemB, col (r (k + 2) B), ?_⟩
