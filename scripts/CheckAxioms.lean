@@ -1020,3 +1020,4 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.sameFinitePointedSource_of_threeTail_finiteAuxEmbeddings
 #print axioms ThreeUniformDiaries.Ordered3Graph.UnorderedEmbedding.oppositeLex_of_fourTail_finiteATR_calibration
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oppositeLex_native_target_opposite_after_fusion
