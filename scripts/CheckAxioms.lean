@@ -1049,3 +1049,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.twoSplit_edge_has_ordered_leaf_pair
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.OneSplitRemovedBit_iff_paper
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.TwoSplitRemovedBit_iff_paper
+#print axioms ThreeUniformDiaries.FlipGuidedBranch.guidedBit_step
+#print axioms ThreeUniformDiaries.FlipGuidedBranch.guided_branch_unique
+#print axioms ThreeUniformDiaries.FlipGuidedBranch.existsUnique_guided_branch
