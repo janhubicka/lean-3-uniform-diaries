@@ -1,4 +1,4 @@
-import ThreeUniformDiaries.DiaryOppositeBranchCompatibility
+import ThreeUniformDiaries.AuxTypes
 
 /-!
 # Finite ordered amalgamation of two three-tail source pictures
