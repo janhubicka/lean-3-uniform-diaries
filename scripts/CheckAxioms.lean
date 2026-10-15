@@ -980,3 +980,8 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.initialSegment_two_eq
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.exists_typeRespecting_embedding_fix_two
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oneSplit_sameOneTypeBelow_three
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oneSplit_leafAux_eqBelow_three_of_zero_bit
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oppositeLex_same_branch_profiles_below_three
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oppositeLex_same_branch_profiles_in_generic
