@@ -1019,3 +1019,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.threeTailFreeAmalgam_right_finiteAuxEmbedding_of_meet
 
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.sameFinitePointedSource_of_threeTail_finiteAuxEmbeddings
+#print axioms ThreeUniformDiaries.Ordered3Graph.UnorderedEmbedding.oppositeLex_of_fourTail_finiteATR_calibration
