@@ -131,6 +131,8 @@ theorem oppositeLex_native_threeTail_overlap
     intro x hx
     change G.graph.edge (fPlus x) (fPlus j) (fPlus (j+2)) ↔
       G.graph.edge (fMinus x) (fMinus j) (fMinus (j+1))
+    have hAux : G.graph.SameAuxTypeBelow j
+        (ψ m) (ψ b) (ψ n) (ψ c) := hType.2.2
     simpa only [fPlus, fMinus,
       threeTailInsertion_fix_prefix j (ψ m) (ψ a) (ψ b) x hx,
       threeTailInsertion_fix_prefix j (ψ n) (ψ c) (ψ d) x hx,
@@ -138,7 +140,7 @@ theorem oppositeLex_native_threeTail_overlap
       threeTailInsertion_split j (ψ n) (ψ c) (ψ d),
       threeTailInsertion_second j (ψ m) (ψ a) (ψ b),
       threeTailInsertion_first j (ψ n) (ψ c) (ψ d)] using
-        (hType.2.2 (a := x) hx)
+        (hAux (a := x) hx)
   exact threeTailOverlapCompatible_of_profiles
     (G.graph.pullback fPlus) (G.graph.pullback fMinus) j
     hPrefix hSplit hCenter hMixed
