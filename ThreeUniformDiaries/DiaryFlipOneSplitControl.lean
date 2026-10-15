@@ -160,7 +160,7 @@ theorem oneSplit_edges_agree_of_same_removed_bit
     DA.one_split_witness m hm
   have hOpp := DA.oneSplit_witness_opposite_marker
     m a b hm ha hb hma hmb hMeet
-  rcases hOpp with ⟨hPos, _⟩ | ⟨_, hPos⟩
+  by_cases hPos : A.edge 0 m a
   · have hB :=
       DA.oneSplitRemovedBit_iff_chosen_positive
         hAB m a hm ha hma hPos
@@ -174,15 +174,18 @@ theorem oneSplit_edges_agree_of_same_removed_bit
     exact oneSplit_edges_agree_of_witness
       DB DC hAB hAC m a b hm ha hb
       hma hmb hMeet hAnchor
-  · have hMeetRev : A.oneMeetLevel b a = m := by
+  · have hPosB : A.edge 0 m b := by
+      by_contra hn
+      exact hOpp (iff_of_false hPos hn)
+    have hMeetRev : A.oneMeetLevel b a = m := by
       rw [A.oneMeetLevel_comm b a]
       exact hMeet
     have hB :=
       DA.oneSplitRemovedBit_iff_chosen_positive
-        hAB m b hm hb hmb hPos
+        hAB m b hm hb hmb hPosB
     have hC :=
       DA.oneSplitRemovedBit_iff_chosen_positive
-        hAC m b hm hb hmb hPos
+        hAC m b hm hb hmb hPosB
     have hAnchor : B.edge 0 m b ↔ C.edge 0 m b := by
       have hNot : ¬ B.edge 0 m b ↔ ¬ C.edge 0 m b :=
         hB.symm.trans (hbit.trans hC)
