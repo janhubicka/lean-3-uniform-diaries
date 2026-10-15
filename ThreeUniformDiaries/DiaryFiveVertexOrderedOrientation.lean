@@ -81,8 +81,13 @@ theorem fiveVertex_increasing_pairs_opposite_after_unordered_fusion
       (Φ (ψ 2)) (Φ (ψ 3)) ↔
       DiaryLeafPriority.LexEarlier K
         (Φ (ψ 4)) (Φ (ψ 3)) := by
-    simpa only [stabilisedOrdered_apply] using
-      fiveVertex_orientation_after_unordered_fusion G K F ψ hψ
+    change DiaryLeafPriority.LexEarlier K
+      (F (orderedDiaryFusion G K F.toFun F.injective (ψ 2)))
+      (F (orderedDiaryFusion G K F.toFun F.injective (ψ 3))) ↔
+      DiaryLeafPriority.LexEarlier K
+        (F (orderedDiaryFusion G K F.toFun F.injective (ψ 4)))
+        (F (orderedDiaryFusion G K F.toFun F.injective (ψ 3)))
+    exact fiveVertex_orientation_after_unordered_fusion G K F ψ hψ
   have hlt : Φ (ψ 3) < Φ (ψ 4) :=
     Φ.strictMono (ψ.strictMono (by omega))
   have hcomplement :
