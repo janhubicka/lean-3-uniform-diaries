@@ -67,6 +67,7 @@ theorem capped_second_leaves_target_meet_later
           (φ b) (φ b) (φ b)
           (by omega) (by omega)).mpr hSame
       exact Nat.le_antisymm hupper hlower
+    change φ a < K.oneMeetLevel (φ b) (φ b)
     rw [hself]
     exact φ.strictMono hab
   · have hSourceLater : a < H.oneMeetLevel b d :=
