@@ -42,11 +42,11 @@ namespace RoleDiary
 
 open Ordered3Graph
 
-variable {H : Ordered3Graph Nat} (D : RoleDiary H)
+variable {H : Ordered3Graph Nat}
 
 /-- Every two one-split vertices have identical singleton
 types below the initial marker cut 3. -/
-theorem oneSplit_sameOneTypeBelow_three
+theorem oneSplit_sameOneTypeBelow_three (D : RoleDiary H)
     (m n : Nat) (hm : IsOneSplit H m) (hn : IsOneSplit H n) :
     H.SameOneTypeBelow 3 m n := by
   intro x y hxy hy
@@ -62,7 +62,7 @@ theorem oneSplit_sameOneTypeBelow_three
 /-- Matching edge incidences at the first marker 0 suffice
 for equality of mixed split/leaf auxiliary types at cut 3:
 V/E forbids every nonzero predecessor-to-one-split/leaf edge. -/
-theorem oneSplit_leafAux_eqBelow_three_of_zero_bit
+theorem oneSplit_leafAux_eqBelow_three_of_zero_bit (D : RoleDiary H)
     (m n u v : Nat)
     (hm : IsOneSplit H m) (hn : IsOneSplit H n)
     (hu : IsLeaf H u) (hv : IsLeaf H v)
@@ -91,7 +91,7 @@ theorem oneSplit_leafAux_eqBelow_three_of_zero_bit
 positive and negative mixed split/leaf branch profiles at
 marker cut 3. Both full 2-types here are actual edge-derived
 types, not additional coherence axioms. -/
-theorem oppositeLex_same_branch_profiles_below_three
+theorem oppositeLex_same_branch_profiles_below_three (D : RoleDiary H)
     (a b c d : Nat)
     (hab : a < b) (hcd : c < d)
     (ha : IsLeaf H a) (hb : IsLeaf H b)
@@ -151,7 +151,7 @@ theorem oppositeLex_same_branch_profiles_below_three
 prefix ending at the image of marker cut 3. The source embedding
 may skip arbitrary levels; type-respecting reflection handles
 all intervening target vertices exactly. -/
-theorem oppositeLex_same_branch_profiles_in_generic
+theorem oppositeLex_same_branch_profiles_in_generic (D : RoleDiary H)
     (G : GenericEnumerated3Graph)
     (ψ : Embedding H G.graph) (hψ : ψ.TypeRespecting)
     (a b c d : Nat)
