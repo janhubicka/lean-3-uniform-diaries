@@ -1101,3 +1101,12 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.cross_marker_one_iff
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.cross_marker_two_iff
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.cross_marker_exactly_one
+#print axioms ThreeUniformDiaries.PrediaryCode.prefixEq_refl
+#print axioms ThreeUniformDiaries.PrediaryCode.prefixEq_symm
+#print axioms ThreeUniformDiaries.PrediaryCode.prefixEq_trans
+#print axioms ThreeUniformDiaries.PrediaryCode.selectedClassBit_factors
+#print axioms ThreeUniformDiaries.PrediaryCode.selectedClassBit_self
+#print axioms ThreeUniformDiaries.PrediaryCode.selectedClassBit_other
+#print axioms ThreeUniformDiaries.PrediaryCode.selectedClassBit_fixedCut_iff
+#print axioms ThreeUniformDiaries.PrediaryCode.insertBit_preserves_prefix_below
+#print axioms ThreeUniformDiaries.PrediaryCode.selectedClassBit_repairs_witness_at_cut
