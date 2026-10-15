@@ -30,7 +30,7 @@ variable {H : Ordered3Graph Nat} (D : RoleDiary H)
 /-- The permitted diary edge shapes exclude a triple of the form
 (0,a,b) when a and b are leaves. The only allowed edges with
 first marker zero have middle position marker 1/2 or a 1-split. -/
-theorem zero_leaf_pair_nonedge
+theorem zero_leaf_pair_nonedge (D : RoleDiary H)
     (a b : Nat) (ha : IsLeaf H a) :
     ¬ H.edge 0 a b := by
   intro he
@@ -46,7 +46,7 @@ theorem zero_leaf_pair_nonedge
 /-- Opposite lexicographic orientation is equivalent to full
 leaf-pair type meet at marker 1. This uses only the actual
 full 2-type meet and the role-based edge conditions. -/
-theorem leaf_pair_twoMeet_eq_one_iff_oppositeLex
+theorem leaf_pair_twoMeet_eq_one_iff_oppositeLex (D : RoleDiary H)
     (a b c d : Nat)
     (hab : a < b) (hcd : c < d)
     (ha : IsLeaf H a) (hb : IsLeaf H b)
@@ -111,7 +111,7 @@ theorem leaf_pair_twoMeet_eq_one_iff_oppositeLex
 step: preserving the equality/difference pattern of two
 lexicographic comparisons (rather than their individual signs)
 is enough to preserve their marker-1 full pair meet. -/
-theorem markerOne_pairMeet_transfer_of_relative_orientation
+theorem markerOne_pairMeet_transfer_of_relative_orientation (D : RoleDiary H)
     {K : Ordered3Graph Nat} (E : RoleDiary K)
     (φ : Ordered3Graph.Embedding H K)
     (a b c d : Nat)
