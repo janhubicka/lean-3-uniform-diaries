@@ -987,3 +987,10 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oneSplit_leafAux_eqBelow_three_of_zero_bit
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oppositeLex_same_branch_profiles_below_three
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oppositeLex_same_branch_profiles_in_generic
+
+#print axioms ThreeUniformDiaries.Ordered3Graph.threeTailShift_strictMono
+#print axioms ThreeUniformDiaries.Ordered3Graph.threeTailShift_prefix
+#print axioms ThreeUniformDiaries.Ordered3Graph.threeTailShift_firstLeaf
+#print axioms ThreeUniformDiaries.Ordered3Graph.threeTailShift_secondLeaf
+#print axioms ThreeUniformDiaries.Ordered3Graph.threeTailFreeAmalgam_left
+#print axioms ThreeUniformDiaries.Ordered3Graph.threeTailFreeAmalgam_right
