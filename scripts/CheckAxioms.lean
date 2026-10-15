@@ -1003,3 +1003,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.threeTailFreeAmalgam_negative_sameOneType
 #print axioms ThreeUniformDiaries.Ordered3Graph.threeTailFreeAmalgam_first_meet
 #print axioms ThreeUniformDiaries.Ordered3Graph.threeTailFreeAmalgam_calibrationTriple
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oppositeLex_native_fourTail_has_calibrationTriple
