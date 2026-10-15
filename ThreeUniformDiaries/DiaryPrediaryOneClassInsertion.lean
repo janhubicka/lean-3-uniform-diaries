@@ -121,32 +121,26 @@ theorem insertOneClass_edge_iff
     · simp
     · exact ⟨rfl, Or.inr ⟨rfl, u, hu, hs, rfl⟩⟩
 
-/-- For a defective singleton meet strictly before BOTH leaves,
-the chosen old-class insertion really repairs its numerical meet:
-the fresh role-one vertex becomes their exact first disagreement.
-
-The capped case ell = min(anchor,other) is separate: there one
-must use the pre-diary's Devlin marker axiom to prove that the
-two leaves already have different old (ell+1)-types. -/
-theorem insertOneClass_repairs_uncapped_oneMeet
+/-- The local core of the insertion proof. Provided two old
+leaves agree up to the defective cut ell but have DIFFERENT
+old types at ell+1, inserting the class of anchor gives an
+actual role-one meet at precisely ell, without changing
+the earlier prefix. This works EVEN when the old meet was
+capped at one of the original leaves. -/
+theorem insertOneClass_repairs_meet_of_cut_disagreement
     (H : Ordered3Graph Nat) (ell anchor other : Nat)
     (hell : 3 ≤ ell)
     (ha : DiaryLeafPriority.IsLeaf H anchor)
     (hb : DiaryLeafPriority.IsLeaf H other)
-    (hlla : ell < anchor) (hllb : ell < other)
-    (hMeet : H.oneMeetLevel anchor other = ell) :
+    (hlla : ell ≤ anchor) (hllb : ell ≤ other)
+    (hsame : H.SameOneTypeBelow ell anchor other)
+    (hdiff : ¬ H.SameOneTypeBelow (ell + 1) anchor other) :
     (H.insertOneClass ell anchor).oneMeetLevel
       (insertShift ell anchor) (insertShift ell other) = ell := by
   classical
   let G := H.insertOneClass ell anchor
   let fa := insertShift ell anchor
   let fb := insertShift ell other
-  have hNotOld : ¬ H.SameOneTypeBelow (ell + 1) anchor other := by
-    intro h
-    have hbound : ell + 1 ≤ min anchor other := by omega
-    have hbad : ell + 1 ≤ H.oneMeetLevel anchor other :=
-      Nat.le_findGreatest hbound h
-    omega
   have hRefl : H.SameOneTypeBelow (ell + 1) anchor anchor := by
     intro a b hab hcut
     rfl
@@ -154,13 +148,11 @@ theorem insertOneClass_repairs_uncapped_oneMeet
     (H.insertOneClass_edge_iff ell anchor anchor hell ha).mpr hRefl
   have hNegative : ¬ G.edge 0 ell fb := by
     intro h
-    exact hNotOld
+    exact hdiff
       ((H.insertOneClass_edge_iff ell anchor other hell hb).mp h)
-  have hSourcePrefix : H.SameOneTypeBelow ell anchor other := by
-    simpa only [hMeet] using H.oneMeetLevel_agree anchor other
   have hTargetPrefix : G.SameOneTypeBelow ell fa fb :=
     (H.insertWithNewEdges_oneTypeBelow_iff ell
-      (H.oneClassExtra ell anchor) anchor other).mp hSourcePrefix
+      (H.oneClassExtra ell anchor) anchor other).mp hsame
   have hfa : fa = anchor + 1 := by
     simp [fa, insertShift, show ¬ anchor < ell by omega]
   have hfb : fb = other + 1 := by
@@ -182,6 +174,68 @@ theorem insertOneClass_repairs_uncapped_oneMeet
         (lt_of_lt_of_le hbcut hplus)
     exact hTargetFail hSame
   exact Nat.le_antisymm hUpper hLower
+
+/-- A defective singleton meet strictly before BOTH leaves
+automatically satisfies the old next-level disagreement
+hypothesis. Hence it is repaired at the inserted 1-split. -/
+theorem insertOneClass_repairs_uncapped_oneMeet
+    (H : Ordered3Graph Nat) (ell anchor other : Nat)
+    (hell : 3 ≤ ell)
+    (ha : DiaryLeafPriority.IsLeaf H anchor)
+    (hb : DiaryLeafPriority.IsLeaf H other)
+    (hlla : ell < anchor) (hllb : ell < other)
+    (hMeet : H.oneMeetLevel anchor other = ell) :
+    (H.insertOneClass ell anchor).oneMeetLevel
+      (insertShift ell anchor) (insertShift ell other) = ell := by
+  apply H.insertOneClass_repairs_meet_of_cut_disagreement
+    ell anchor other hell ha hb hlla.le hllb.le
+  · simpa only [hMeet] using H.oneMeetLevel_agree anchor other
+  · intro h
+    have hbound : ell + 1 ≤ min anchor other := by omega
+    have hbad : ell + 1 ≤ H.oneMeetLevel anchor other :=
+      Nat.le_findGreatest hbound h
+    omega
+
+/-- A Devlin marker witnesses the next-level disagreement when
+one leaf sits at the CAPPED meet. This is the needed extra
+input from V3 and the non-repeated-edge convention of the
+manuscript. The pure ordered-predicate interface intentionally
+keeps the diagonal-nonedge assumption explicit. -/
+theorem marker_forces_next_oneType_disagreement
+    (H : Ordered3Graph Nat) (ell other : Nat)
+    (hell : 3 ≤ ell)
+    (hMarker :
+      (H.edge 1 ell other ∧ ¬ H.edge 1 ell ell) ∨
+      (H.edge 2 ell other ∧ ¬ H.edge 2 ell ell)) :
+    ¬ H.SameOneTypeBelow (ell + 1) ell other := by
+  intro h
+  rcases hMarker with ⟨hEdge, hDiagonal⟩ | ⟨hEdge, hDiagonal⟩
+  · have hEq : H.edge 1 ell ell ↔ H.edge 1 ell other :=
+      h (a := 1) (b := ell) (by omega) (by omega)
+    exact hDiagonal (hEq.mpr hEdge)
+  · have hEq : H.edge 2 ell ell ↔ H.edge 2 ell other :=
+      h (a := 2) (b := ell) (by omega) (by omega)
+    exact hDiagonal (hEq.mpr hEdge)
+
+/-- Repair of a capped singleton meet: if the earlier leaf IS
+the meet, V3's distinguishing marker supplies the witness
+which findGreatest cannot supply past the old cap. -/
+theorem insertOneClass_repairs_capped_oneMeet
+    (H : Ordered3Graph Nat) (ell other : Nat)
+    (hell : 3 ≤ ell)
+    (ha : DiaryLeafPriority.IsLeaf H ell)
+    (hb : DiaryLeafPriority.IsLeaf H other)
+    (hllb : ell < other)
+    (hMeet : H.oneMeetLevel ell other = ell)
+    (hMarker :
+      (H.edge 1 ell other ∧ ¬ H.edge 1 ell ell) ∨
+      (H.edge 2 ell other ∧ ¬ H.edge 2 ell ell)) :
+    (H.insertOneClass ell ell).oneMeetLevel
+      (insertShift ell ell) (insertShift ell other) = ell := by
+  apply H.insertOneClass_repairs_meet_of_cut_disagreement
+    ell ell other hell ha hb (le_refl ell) hllb.le
+  · simpa only [hMeet] using H.oneMeetLevel_agree ell other
+  · exact H.marker_forces_next_oneType_disagreement ell other hell hMarker
 
 end Ordered3Graph
 end ThreeUniformDiaries
