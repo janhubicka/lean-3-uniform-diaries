@@ -129,6 +129,7 @@ theorem leaf_pair_disagrees_at_first_next_cut
     (ha : IsLeaf H a) (hb : IsLeaf H b) :
     ¬ H.SameOneTypeBelow (a + 1) a b := by
   intro hs
+  have ha3 : 3 ≤ a := ha.1
   rcases P.leaf_pair_has_marker a b hab ha hb with hOne | hTwo
   · have hEq : H.edge 1 a a ↔ H.edge 1 a b :=
       hs (a := 1) (b := a) (by omega) (by omega)
