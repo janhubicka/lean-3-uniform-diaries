@@ -52,7 +52,7 @@ theorem positive_oneSplit_edge_iff_later_meet
     omega
   · intro hlevel
     have h0m : 0 < m := by have hm3 := hm.1; omega
-    exact (H.oneMeetLevel_agree a w) h0m hlevel |>.mp hpositive
+    exact ((H.oneMeetLevel_agree a w) h0m hlevel).mp hpositive
 
 /-- An incident ordered leaf pair at a 2-split determines
 the positive auxiliary branch by the strict auxiliary meet.
@@ -80,7 +80,7 @@ theorem positive_twoSplit_edge_iff_later_aux_meet
       Nat.le_findGreatest hbound hsucc
     omega
   · intro hlevel
-    exact (H.auxMeetLevel_agree a b c d) hlevel |>.mp hpositive
+    exact ((H.auxMeetLevel_agree a b c d) hlevel).mp hpositive
 
 /-- If the identity map is a diary pre-embedding between two
 genuine diaries, the marker-1 edge on a pair of leaves agrees
@@ -106,7 +106,7 @@ theorem flip_marker_one_agrees_iff_split_bit_agrees
   have haK : IsLeaf K a := hflip.leaf_role a ha
   have hbK : IsLeaf K b := hflip.leaf_role b hb
   have hmeetK : K.oneMeetLevel a b = m := by
-    simpa only [m] using hflip.leaf_one_meet a b ha hb
+    simpa only [id_eq] using (hflip.leaf_one_meet a b ha hb)
   have hH : H.edge 1 a b ↔ H.edge 0 m b :=
     (D.leaf_marker_one a b hab ha hb).trans
       (D.lexEarlier_iff_right_split_marker
@@ -150,7 +150,9 @@ theorem flip_marker_two_agrees_iff_split_bit_agrees
     apply hbase.mp
     have hneg : ¬ H.edge 1 a b ↔ ¬ K.edge 1 a b :=
       hH.symm.trans (h.trans hK)
-    exact not_congr hneg
+    have hpos : H.edge 1 a b ↔ K.edge 1 a b := by
+      tauto
+    exact hbase.mp hpos
   · intro h
     have hpos := hbase.mpr h
     exact hH.trans ((not_congr hpos).trans hK.symm)
