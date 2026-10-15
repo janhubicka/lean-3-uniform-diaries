@@ -82,18 +82,46 @@ theorem stabilisedSource_global_relative_orientation
       p.first_lt_second q.first_lt_second
       p.first_is_leaf p.second_is_leaf
       q.first_is_leaf q.second_is_leaf hp hq
+  have not_iff_of_opposite {P Q : Prop}
+      (h : P ↔ ¬ Q) : ¬ (P ↔ Q) := by
+    intro heq
+    by_cases hP : P
+    · exact (h.mp hP) (heq.mp hP)
+    · have hQ : Q := by
+        by_contra hNotQ
+        exact hP (h.mpr hNotQ)
+      exact hP (heq.mpr hQ)
   intro p q
   by_cases hp : LexEarlier H p.first p.second
   · by_cases hq : LexEarlier H q.first q.second
-    · have heq := hSame p q (by tauto)
-      tauto
+    · have heq := hSame p q (iff_of_true hp hq)
+      exact iff_of_true (iff_of_true hp hq) heq
     · have hopp := hOpp p q hp hq
-      tauto
+      have hSource :
+          ¬ (LexEarlier H p.first p.second ↔
+             LexEarlier H q.first q.second) := by
+        intro h
+        exact hq (h.mp hp)
+      exact iff_of_false hSource (not_iff_of_opposite hopp)
   · by_cases hq : LexEarlier H q.first q.second
     · have hopp := hOpp q p hq hp
-      tauto
-    · have heq := hSame p q (by tauto)
-      tauto
+      have hSource :
+          ¬ (LexEarlier H p.first p.second ↔
+             LexEarlier H q.first q.second) := by
+        intro h
+        exact hp (h.mpr hq)
+      have hTarget :
+          ¬ (LexEarlier K
+                (stabilisedSource G K F ψ p.first)
+                (stabilisedSource G K F ψ p.second) ↔
+             LexEarlier K
+                (stabilisedSource G K F ψ q.first)
+                (stabilisedSource G K F ψ q.second)) := by
+        intro h
+        exact not_iff_of_opposite hopp h.symm
+      exact iff_of_false hSource hTarget
+    · have heq := hSame p q (iff_of_false hp hq)
+      exact iff_of_true (iff_of_false hp hq) heq
 
 /-- No non-emptiness assumption on diary orientation classes is
 needed: relative agreement yields a single global preserve/flip
