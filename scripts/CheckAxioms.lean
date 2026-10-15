@@ -1062,3 +1062,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.node_mem_levelCandidates
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.node_mem_boundedCandidates
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.finite_actual_level
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.withCrossBranchEdges_induced
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.withCrossBranchEdges_eq_on_branch
