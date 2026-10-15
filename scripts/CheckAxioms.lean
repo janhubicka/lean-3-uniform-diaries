@@ -932,3 +932,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.chosenPreembedding_oneSplit
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.chosenPreembedding_twoSplit
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.chosenPreembedding_strictMono
+
+#print axioms ThreeUniformDiaries.Ordered3Graph.oneMeetLevel_self_eq
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.chosenPreembedding_preserves_leaf_oneMeet
