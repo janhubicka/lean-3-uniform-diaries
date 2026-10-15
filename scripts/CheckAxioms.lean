@@ -1095,3 +1095,11 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.PrediaryCode.prefixEq_old_of_insert
 #print axioms ThreeUniformDiaries.PrediaryCode.prefixEq_insert_iff_of_factor
 #print axioms ThreeUniformDiaries.PrediaryCode.arbitrary_new_bit_counterexample
+#print axioms ThreeUniformDiaries.Ordered3Graph.oneTypeBelow_symm
+#print axioms ThreeUniformDiaries.Ordered3Graph.oneTypeBelow_trans
+#print axioms ThreeUniformDiaries.Ordered3Graph.auxTypeBelow_symm
+#print axioms ThreeUniformDiaries.Ordered3Graph.auxTypeBelow_trans
+#print axioms ThreeUniformDiaries.Ordered3Graph.twoTypeBelow_symm
+#print axioms ThreeUniformDiaries.Ordered3Graph.twoTypeBelow_trans
+#print axioms ThreeUniformDiaries.Ordered3Graph.oneClassBit_factors
+#print axioms ThreeUniformDiaries.Ordered3Graph.twoClassBit_factors
