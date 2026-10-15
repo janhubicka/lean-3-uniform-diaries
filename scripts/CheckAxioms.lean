@@ -999,3 +999,5 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oppositeLex_native_threeTail_overlap
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oppositeLex_native_fourTail_edge_amalgam
+
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.exists_typeRespecting_embedding_fix_prefix
