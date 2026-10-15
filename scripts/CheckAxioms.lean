@@ -1088,3 +1088,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.insertWithNewEdges_oneTypeBelow_iff
 #print axioms ThreeUniformDiaries.Ordered3Graph.insertWithNewEdges_auxTypeBelow_iff
 #print axioms ThreeUniformDiaries.Ordered3Graph.insertWithNewEdges_twoTypeBelow_iff
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.branchAmalgam_ordered
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.withCrossBranchEdges_ordered
