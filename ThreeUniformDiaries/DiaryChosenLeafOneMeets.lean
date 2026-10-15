@@ -61,6 +61,8 @@ theorem chosenPreembedding_preserves_leaf_oneMeet
     K.oneMeetLevel (φ u) (φ v) =
       D.chosenPreembedding G K F ψ (H.oneMeetLevel u v) := by
   let φ := stabilisedSource G K F ψ
+  change K.oneMeetLevel (φ u) (φ v) =
+    D.chosenPreembedding G K F ψ (H.oneMeetLevel u v)
   by_cases hEq : u = v
   · subst v
     rw [H.oneMeetLevel_self_eq, K.oneMeetLevel_self_eq,
