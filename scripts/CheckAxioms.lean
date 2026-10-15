@@ -1095,3 +1095,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.PrediaryCode.prefixEq_old_of_insert
 #print axioms ThreeUniformDiaries.PrediaryCode.prefixEq_insert_iff_of_factor
 #print axioms ThreeUniformDiaries.PrediaryCode.arbitrary_new_bit_counterexample
+#print axioms ThreeUniformDiaries.Ordered3Graph.insertOneClass_isOneSplit
+#print axioms ThreeUniformDiaries.Ordered3Graph.insertOneClass_induced
+#print axioms ThreeUniformDiaries.Ordered3Graph.insertOneClass_oldLeaf_iff
+#print axioms ThreeUniformDiaries.Ordered3Graph.insertOneClass_edge_iff
