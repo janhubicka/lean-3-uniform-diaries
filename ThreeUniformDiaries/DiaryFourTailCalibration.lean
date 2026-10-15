@@ -68,11 +68,14 @@ and central leaves of the free amalgam. This is established by
 the complete prefix type agreement and a real disagreement at
 the split, not by assuming global preservation of type meets. -/
 theorem threeTailFreeAmalgam_first_meet
-    (A B : Ordered3Graph Nat) (n : Nat) (hn : 0 < n)
+    (A B : Ordered3Graph Nat) (n : Nat)
     (hSame : A.SameOneTypeBelow n (n+1) (n+2))
-    (hSplit : ¬ (A.edge 0 n (n+1) ↔ A.edge 0 n (n+2))) :
+    (hSplit : ∃ z, z < n ∧
+      ¬ (A.edge z n (n+1) ↔ A.edge z n (n+2))) :
     (threeTailFreeAmalgam A B n).oneMeetLevel
       (n+1) (n+2) = n := by
+  classical
+  obtain ⟨z, hzn, hSplit⟩ := hSplit
   let C := threeTailFreeAmalgam A B n
   have hSameC : C.SameOneTypeBelow n (n+1) (n+2) := by
     intro x y hxy hy
@@ -83,28 +86,28 @@ theorem threeTailFreeAmalgam_first_meet
     exact hL.trans ((hSame hxy hy).trans hR.symm)
   have hLower : n ≤ C.oneMeetLevel (n+1) (n+2) :=
     Nat.le_findGreatest (by omega) hSameC
-  have hDiff : ¬ (C.edge 0 n (n+1) ↔
-      C.edge 0 n (n+2)) := by
+  have hDiff : ¬ (C.edge z n (n+1) ↔
+      C.edge z n (n+2)) := by
     intro heq
-    have hL : C.edge 0 n (n+1) ↔ A.edge 0 n (n+1) :=
-      threeTailFreeAmalgam_left A B n 0 n (n+1) (by omega)
-    have hR : C.edge 0 n (n+2) ↔ A.edge 0 n (n+2) :=
-      threeTailFreeAmalgam_left A B n 0 n (n+2) (by omega)
+    have hL : C.edge z n (n+1) ↔ A.edge z n (n+1) :=
+      threeTailFreeAmalgam_left A B n z n (n+1) (by omega)
+    have hR : C.edge z n (n+2) ↔ A.edge z n (n+2) :=
+      threeTailFreeAmalgam_left A B n z n (n+2) (by omega)
     exact hSplit (hL.symm.trans (heq.trans hR))
   have hUpper : C.oneMeetLevel (n+1) (n+2) ≤ n :=
     C.oneMeetLevel_le_of_edge_disagreement
-      (n+1) (n+2) 0 n hn hDiff
+      (n+1) (n+2) z n hzn hDiff
   exact Nat.le_antisymm hUpper hLower
 
 /-- The actual four-tail amalgam has the calibration triple
 n < n+1 < n+2 < n+3. All proper one-type requirements are
 consequences of the four explicit finite edge profiles. -/
 def threeTailFreeAmalgam_calibrationTriple
-    (A B : Ordered3Graph Nat) (n : Nat) (hn : 0 < n)
+    (A B : Ordered3Graph Nat) (n : Nat)
     (hOverlap : ThreeTailOverlapCompatible A B n)
     (hSame : A.SameOneTypeBelow n (n+1) (n+2))
-    (hSplit : ¬ (A.edge 0 n (n+1) ↔
-      A.edge 0 n (n+2)))
+    (hSplit : ∃ z, z < n ∧
+      ¬ (A.edge z n (n+1) ↔ A.edge z n (n+2)))
     (hNegativePrefix :
       ∀ x y, x < y → y < n →
         (A.edge x y (n+1) ↔ B.edge x y (n+2)))
@@ -123,7 +126,7 @@ def threeTailFreeAmalgam_calibrationTriple
     meet_ab := ?_
     same_ac := ?_
   }
-  · exact threeTailFreeAmalgam_first_meet A B n hn hSame hSplit
+  · exact threeTailFreeAmalgam_first_meet A B n hSame hSplit
   · exact threeTailFreeAmalgam_negative_sameOneType
       A B n hOverlap hNegativePrefix hNegativeSplit
 
