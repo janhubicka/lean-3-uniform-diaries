@@ -983,6 +983,11 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.sameFinitePointedSource_of_diary_same_lex_at_three
 
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oneSplit_sameOneTypeBelow_three
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oneSplit_leafAux_eqBelow_three_of_zero_bit
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oppositeLex_same_branch_profiles_below_three
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oppositeLex_same_branch_profiles_in_generic
+
 #print axioms ThreeUniformDiaries.Ordered3Graph.threeTailShift_strictMono
 #print axioms ThreeUniformDiaries.Ordered3Graph.threeTailShift_prefix
 #print axioms ThreeUniformDiaries.Ordered3Graph.threeTailShift_firstLeaf
