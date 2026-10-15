@@ -1058,3 +1058,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.branchAmalgam_edge_iff
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.node_prefix_eq_of_terminal_eq
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.branchAmalgam_no_cross_edge
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.node_eq_nodeFromFiniteBits
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.node_mem_levelCandidates
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.node_mem_boundedCandidates
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.finite_actual_level
