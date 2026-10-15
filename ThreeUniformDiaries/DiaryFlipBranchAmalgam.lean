@@ -172,6 +172,59 @@ theorem branchAmalgam_edge_iff
     exact ⟨i, x, y, z, hxy, hyz,
       rfl, rfl, rfl, hedge⟩
 
+/-- Shared terminal prefix forces every shorter prefix node to
+be shared. This is the tree property of the finite control codes;
+it is independent of any hypergraph type preservation. -/
+theorem node_prefix_eq_of_terminal_eq
+    (T : FlipFamily A ι) (i j : ι)
+    (n m : Nat) (hnm : n ≤ m)
+    (hterminal : T.node i m = T.node j m) :
+    T.node i n = T.node j n := by
+  apply Prod.ext
+  · rfl
+  · apply Prod.ext
+    · funext k
+      change (if k < n then T.oneBit i k else false) =
+        (if k < n then T.oneBit j k else false)
+      by_cases hk : k < n
+      · have hkm : k < m := lt_of_lt_of_le hk hnm
+        simpa only [if_pos hk] using
+          (T.oneBit_eq_of_node_eq i j m k hterminal hkm)
+      · simp only [if_neg hk]
+    · funext k
+      change (if k < n then T.twoBit i k else false) =
+        (if k < n then T.twoBit j k else false)
+      by_cases hk : k < n
+      · have hkm : k < m := lt_of_lt_of_le hk hnm
+        simpa only [if_pos hk] using
+          (T.twoBit_eq_of_node_eq i j m k hterminal hkm)
+      · simp only [if_neg hk]
+
+/-- An actual obstruction to identifying the free branch union
+with a pre-diary: two incomparable branch vertices cannot
+participate in ANY cross-branch edge with an earlier first
+vertex. This applies in particular to both possible Devlin
+marker vertices. Their required cross-branch edges must
+therefore be ADDED by a later compatibility construction. -/
+theorem branchAmalgam_no_cross_edge
+    (T : FlipFamily A ι) (i j : ι)
+    (u v : Nat) (huv : u < v)
+    (hdifferent : T.node i u ≠ T.node j u)
+    (X : FlipNode) :
+    ¬ (T.branchAmalgam).edge X (T.node i u) (T.node j v) := by
+  rintro ⟨k, x, y, z, hxy, hyz, hx, hy, hz, hedge⟩
+  have hyeq : y = u := by
+    have hh := congrArg Prod.fst hy
+    simpa only [node] using hh
+  have hzeq : z = v := by
+    have hh := congrArg Prod.fst hz
+    simpa only [node] using hh
+  subst y
+  subst z
+  have hprefix : T.node k u = T.node j u :=
+    T.node_prefix_eq_of_terminal_eq k j u v huv hz
+  exact hdifferent (hy.symm.trans hprefix)
+
 end FlipFamily
 end RoleDiary
 end DiaryLeafPriority
