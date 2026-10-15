@@ -69,8 +69,8 @@ theorem existsUnique_guided_branch
       ∀ n, p n = step n (fun i : Fin n => p i.val) := by
   refine ⟨guidedBit step, guidedBit_step step, ?_⟩
   intro q hq
-  exact (guided_branch_unique step q (guidedBit step)
-    hq (guidedBit_step step)).symm
+  exact guided_branch_unique step q (guidedBit step)
+    hq (guidedBit_step step)
 
 end FlipGuidedBranch
 end ThreeUniformDiaries
