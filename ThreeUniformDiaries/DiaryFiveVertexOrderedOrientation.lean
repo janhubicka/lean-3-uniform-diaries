@@ -1,5 +1,6 @@
 import ThreeUniformDiaries.DiaryLexEarlierComplement
 import ThreeUniformDiaries.DiaryFiveVertexUnorderedApplication
+import ThreeUniformDiaries.DiaryUnorderedNativeStabilisation
 
 /-!
 # The five-vertex gadget gives opposite signs on increasing pairs
