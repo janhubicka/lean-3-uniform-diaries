@@ -83,6 +83,57 @@ The project remains under mathematical audit in parts not covered by
 this finite theorem; a successful Lean build must not be interpreted
 as validating a stronger unexported manuscript statement.
 
+## Lower-bound diary and flip interfaces
+
+The **countable, role-based V/E/S diary** lower-bound route has
+additional verified results on `main`. Their scope is important:
+
+- `DiaryCompleteNativeStabilisation` exports the actual finite-source
+  I1/I2/I3 stabilisation statement after the unordered outer map is
+  made increasing. Every ATR colouring acts on genuine finite images,
+  not on an arbitrary infinite zero-extension.
+- `DiaryFourTailGenericRealization`,
+  `DiaryFiniteThreeTailShiftATR`,
+  `DiaryFourTailCommonFiniteCodes`,
+  `DiaryFourTailOppositeI3`, and
+  `DiaryNativeOppositeTargetOrientation` construct a common four-tail
+  source for opposite diary leaf-pair classes, show both three-tail
+  inclusions are **finite auxiliary-type-respecting**, and transfer
+  opposite target orientations through native I3. Inserted target
+  levels are not assumed convex.
+- `DiaryGlobalOrientationFromFourTail` proves the relative
+  orientation pattern and the single global preserve/reverse sign for
+  ordered diary leaf pairs.
+- `DiaryUnconditionalPreembedding` exports
+  `RoleDiary.exists_preembedding_into_leaf_range`. Given an unordered
+  generic-to-target hypergraph embedding whose images are target
+  leaves, it constructs an increasing diary pre-embedding satisfying
+  the full role/leaf-meet specification, with its leaf images inside
+  the original outer embedding's range.
+- `DiaryFlipLocalIncidence`, `DiaryFlipOneSplitControl`,
+  `DiaryFlipTwoSplitControl`, `DiaryFlipRoleReflection`,
+  `DiaryFlipPrefixReconstruction`, and
+  `DiaryFlipOriginalBitEquivalence` verify the local flip bit
+  reconstruction. The controls really are the manuscript's
+  source-positive deleted-edge bits; agreement before a cut gives
+  literal agreement of the two flips' initial finite pictures.
+- `DiaryFlipBranchAmalgam` builds the **induced relational
+  prefix-tree** of flip branches and proves a conditional
+  cross-branch nonedge obstruction. `DiaryFlipFiniteLevels` shows
+  every depth and every bounded initial collection of candidate
+  nodes is finite, independently of the number of flip branches.
+
+**Not yet proved:** the relational branch amalgam is *not* automatically
+a pre-diary. Incomparable leaves lack cross-branch Devlin marker edges,
+so a completion rule must be supplied and audited for V1/V2 and
+preservation of protected leaf meets. The finite-diary version of
+the flip-tree argument, pre-diary completion/termination, flip
+absorption (including its converse formulation), the original
+generic cut-zero orientation lemma as worded, and final diary
+unavoidability remain pending. No successful build of one of the
+conditional components should be cited as verification of those
+stronger statements.
+
 ## Removed historical adapters
 
 The preceding proof once passed through several conditional
