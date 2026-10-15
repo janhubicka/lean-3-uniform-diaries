@@ -30,6 +30,29 @@ def twoClassExtra
     H.SameTwoTypeBelow (ell + 1) anchor₀ anchor₁ u v ∧
     y = insertShift ell u ∧ z = insertShift ell v)
 
+/-- Both the role-two marker and every selected old leaf-pair
+incidence are genuine increasing triples in the new enumeration. -/
+theorem twoClassExtra_ordered
+    (H : Ordered3Graph Nat)
+    (ell anchor₀ anchor₁ x y z : Nat)
+    (hell : 3 ≤ ell)
+    (he : H.twoClassExtra ell anchor₀ anchor₁ x y z) :
+    x < y ∧ y < z := by
+  rcases he with ⟨hx, hy, hz⟩ |
+      ⟨hx, u, v, hellu, huv, huLeaf, hvLeaf, hClass, hy, hz⟩
+  · subst x
+    subst y
+    subst z
+    omega
+  · subst x
+    subst y
+    subst z
+    have hShift : ell < insertShift ell u := by
+      unfold insertShift
+      split_ifs <;> omega
+    have hStrict := (insertShift_strictMono ell) huv
+    omega
+
 /-- The manuscript's selected 2-split class insertion. -/
 def insertTwoClass
     (H : Ordered3Graph Nat)
