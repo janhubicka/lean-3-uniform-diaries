@@ -6,7 +6,7 @@ import ThreeUniformDiaries.AuxTypes
 The manuscript inserts a new vertex at a defective meet level ell,
 shifting each old vertex t >= ell to t+1 and adding fresh edges
 incident with the new vertex. Two properties must be verified
-BEFORE examining the specific 1-/2-split edge construction:
+BEFORE examining the specific one-split and two-split edge insertions:
 
 * the shifted old hypergraph remains a genuinely induced copy,
   including reflection of old nonedges;
