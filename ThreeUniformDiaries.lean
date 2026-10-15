@@ -398,3 +398,4 @@ import ThreeUniformDiaries.ActualFiniteAuxRamseyUnconditional
 import ThreeUniformDiaries.ActualFiniteAuxRamseyAll
 import ThreeUniformDiaries.DiaryPrediaryInsertionInvariant
 import ThreeUniformDiaries.DiaryPrediaryTypeCode
+import ThreeUniformDiaries.DiaryPrediaryOneClassInsertion
