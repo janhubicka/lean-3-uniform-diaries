@@ -131,7 +131,7 @@ theorem insertOneClass_edge_iff
     · exact False.elim (by simpa [insertOneClass, insertWithNewEdges,
         isolatedInsert] using hOld)
     · rcases hExtra with ⟨hx, hRole | hClass⟩
-      · exact False.elim (h1 hRole.1.symm)
+      · exact False.elim (h1 hRole.1)
       · rcases hClass with ⟨_, w, hwBound, hwLeaf, hwSame, hwShift⟩
         have heq : u = w := hinj hwShift
         simpa [heq] using hwSame
@@ -210,6 +210,7 @@ theorem insertOneClass_repairs_uncapped_oneMeet
     (hMeet : H.oneMeetLevel anchor other = ell) :
     (H.insertOneClass ell anchor).oneMeetLevel
       (insertShift ell anchor) (insertShift ell other) = ell := by
+  classical
   apply H.insertOneClass_repairs_meet_of_cut_disagreement
     ell anchor other hell ha hb hlla.le hllb.le
   · simpa only [hMeet] using H.oneMeetLevel_agree anchor other
