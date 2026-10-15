@@ -1077,3 +1077,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.paperNodes_agree_through_markers
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.paperNode_eq_finiteBits
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.paperNode_mem_candidates
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.oneBit_false_of_not_oneSplit
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.twoBit_false_of_not_twoSplit
