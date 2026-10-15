@@ -1079,3 +1079,8 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.paperNode_mem_candidates
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.oneBit_false_of_not_oneSplit
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.twoBit_false_of_not_twoSplit
+#print axioms ThreeUniformDiaries.PrediaryCode.insertBit_old
+#print axioms ThreeUniformDiaries.PrediaryCode.prefixEq_insert_of_factor
+#print axioms ThreeUniformDiaries.PrediaryCode.prefixEq_old_of_insert
+#print axioms ThreeUniformDiaries.PrediaryCode.prefixEq_insert_iff_of_factor
+#print axioms ThreeUniformDiaries.PrediaryCode.arbitrary_new_bit_counterexample
