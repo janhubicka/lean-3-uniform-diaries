@@ -397,3 +397,4 @@ import ThreeUniformDiaries.ATRUnconditionalScalarColour
 import ThreeUniformDiaries.ActualFiniteAuxRamseyUnconditional
 import ThreeUniformDiaries.ActualFiniteAuxRamseyAll
 import ThreeUniformDiaries.DiaryPrediaryInsertionInvariant
+import ThreeUniformDiaries.DiaryPrediaryTypeCode
