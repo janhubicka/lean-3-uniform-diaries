@@ -42,7 +42,6 @@ theorem sameFinitePointedSource_of_threeTail_finiteAuxEmbeddings
   let S : ProtectedSource i := threeVertexSource i A
   have hp : S.penultimateIndex.val = i+1 := by
     dsimp [S, threeVertexSource, ProtectedSource.penultimateIndex]
-    split_ifs <;> omega
   have hl : S.lastIndex.val = i+2 := by
     rfl
   have hf' :
