@@ -98,6 +98,7 @@ theorem cross_marker_one_iff
   have hOutside := T.no_shared_pair_no_span Y Z (T.node base 1) hNo
   have hMark : (T.node base 1).1 < Y.1 := by
     rw [T.node_level]
+    have hLevel : 3 ≤ Y.1 := hY.1
     omega
   have hNe : T.node base 1 ≠ T.node base 2 := by
     intro h
@@ -120,6 +121,7 @@ theorem cross_marker_two_iff
   have hOutside := T.no_shared_pair_no_span Y Z (T.node base 2) hNo
   have hMark : (T.node base 2).1 < Y.1 := by
     rw [T.node_level]
+    have hLevel : 3 ≤ Y.1 := hY.1
     omega
   have hNe : T.node base 2 ≠ T.node base 1 := by
     intro h
@@ -148,7 +150,7 @@ theorem cross_marker_exactly_one
   have hOne := T.cross_marker_one_iff base orient Y Z hpair
   have hTwo := T.cross_marker_two_iff base orient Y Z hpair
   by_cases h : orient Y Z
-  · exact Or.inl ⟨hOne.mpr h, fun hmark => h (hTwo.mp hmark)⟩
+  · exact Or.inl ⟨hOne.mpr h, fun hmark => (hTwo.mp hmark) h⟩
   · exact Or.inr ⟨hTwo.mpr h, fun hmark => h (hOne.mp hmark)⟩
 
 end FlipFamily
