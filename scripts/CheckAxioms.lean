@@ -1103,3 +1103,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.twoTypeBelow_trans
 #print axioms ThreeUniformDiaries.Ordered3Graph.oneClassBit_factors
 #print axioms ThreeUniformDiaries.Ordered3Graph.twoClassBit_factors
+#print axioms ThreeUniformDiaries.Ordered3Graph.sameTwoTypeBelow_of_sameOneTypeAbove
+#print axioms ThreeUniformDiaries.Ordered3Graph.twoClassBit_factors_through_later_oneType
