@@ -1101,3 +1101,8 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.cross_marker_one_iff
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.cross_marker_two_iff
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.cross_marker_exactly_one
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.toPrediary
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RolePrediary.withMeets
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RolePrediary.repeated_vertex_nonedge
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RolePrediary.leaf_pair_has_marker
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RolePrediary.leaf_pair_disagrees_at_first_next_cut
