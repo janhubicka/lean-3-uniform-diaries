@@ -1001,3 +1001,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oppositeLex_native_fourTail_edge_amalgam
 
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.exists_typeRespecting_embedding_fix_prefix
+
+#print axioms ThreeUniformDiaries.Ordered3Graph.threeTailFreeAmalgam_negative_sameOneType
+#print axioms ThreeUniformDiaries.Ordered3Graph.threeTailFreeAmalgam_first_meet
+#print axioms ThreeUniformDiaries.Ordered3Graph.threeTailFreeAmalgam_calibrationTriple
