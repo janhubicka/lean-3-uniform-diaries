@@ -120,15 +120,10 @@ theorem oneSplit_edges_agree_of_witness
       _ ↔ C.edge 0 m w :=
         (DC.positive_oneSplit_edge_iff_later_meet
           m a w hmC haC hwC hma hmw hCpos).symm
-  · have hCneg : ¬ C.edge 0 m a := by
-      intro hCa
-      exact hBpos (hAnchor.mpr hCa)
-    have hBposB : B.edge 0 m b := by
+  · have hBposB : B.edge 0 m b := by
       by_contra hn
       exact hOppB (iff_of_false hBpos hn)
-    have hCposB : C.edge 0 m b := by
-      by_contra hn
-      exact hOppC (iff_of_false hCneg hn)
+    have hCposB : C.edge 0 m b := hOtherAnchor.mp hBposB
     have hOneB : B.oneMeetLevel b w =
         A.oneMeetLevel b w := by
       simpa only [id_eq] using hAB.leaf_one_meet b w hb hw
