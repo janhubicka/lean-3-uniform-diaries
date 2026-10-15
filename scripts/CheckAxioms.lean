@@ -1052,3 +1052,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.two_control_of_node_eq
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.edge_agree_of_shared_terminal_node
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.branchAmalgam_edge_iff
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.node_prefix_eq_of_terminal_eq
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.branchAmalgam_no_cross_edge
