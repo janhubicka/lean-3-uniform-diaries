@@ -1011,3 +1011,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.initialSegment_eq_of_prefix_edge_agreement
 #print axioms ThreeUniformDiaries.Ordered3Graph.threeTailGenericFreeAmalgam_prefix
 #print axioms ThreeUniformDiaries.Ordered3Graph.exists_typeRespecting_fourTail_generic_copy
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.exists_auxTypeRespecting_embedding_fix_prefix
