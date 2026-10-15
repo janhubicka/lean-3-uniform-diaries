@@ -110,8 +110,6 @@ theorem twoBit_eq_of_node_eq
   have heqM := congrFun heq m
   simpa only [node, if_pos hm] using heqM
 
-/-- Equality of coded one-split bits is exactly the Prop
-agreement used in the genuine reconstruction theorem. -/
 /-- Only an ACTUAL 1-split control can be read from a node.
 Inactive raw deleted-edge tests are intentionally forgotten. -/
 theorem one_control_of_node_eq
