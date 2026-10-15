@@ -82,8 +82,9 @@ theorem twoTypeBelow_trans
 /-- The Boolean indicator of a selected old singleton-type
 class at level ell+1. -/
 noncomputable def oneClassBit
-    (H : Ordered3Graph Nat) (ell a u : Nat) : Bool :=
-  decide (H.SameOneTypeBelow (ell+1) a u)
+    (H : Ordered3Graph Nat) (ell a u : Nat) : Bool := by
+  classical
+  exact decide (H.SameOneTypeBelow (ell+1) a u)
 
 /-- The fresh 1-split bit really depends only on an OLD
 singleton-type class, exactly as demanded by factorisation. -/
@@ -101,14 +102,21 @@ theorem oneClassBit_factors
     · intro h
       exact H.oneTypeBelow_trans (ell+1) a v u h
         (H.oneTypeBelow_symm (ell+1) u v huv)
-  exact congrArg decide (propext hiff)
+  by_cases hp : H.SameOneTypeBelow (ell+1) a u
+  · have hq := hiff.mp hp
+    simp [oneClassBit, hp, hq]
+  · have hq : ¬ H.SameOneTypeBelow (ell+1) a v := by
+      intro hv
+      exact hp (hiff.mpr hv)
+    simp [oneClassBit, hp, hq]
 
 /-- The Boolean indicator of a selected old ordered-pair
 type class at level ell+1. -/
 noncomputable def twoClassBit
     (H : Ordered3Graph Nat)
-    (ell a b u v : Nat) : Bool :=
-  decide (H.SameTwoTypeBelow (ell+1) a b u v)
+    (ell a b u v : Nat) : Bool := by
+  classical
+  exact decide (H.SameTwoTypeBelow (ell+1) a b u v)
 
 /-- The fresh 2-split bit factors through the OLD full
 pair type at ell+1. -/
@@ -128,7 +136,13 @@ theorem twoClassBit_factors
     · intro h
       exact H.twoTypeBelow_trans (ell+1) a b w x u v h
         (H.twoTypeBelow_symm (ell+1) u v w x huv)
-  exact congrArg decide (propext hiff)
+  by_cases hp : H.SameTwoTypeBelow (ell+1) a b u v
+  · have hq := hiff.mp hp
+    simp [twoClassBit, hp, hq]
+  · have hq : ¬ H.SameTwoTypeBelow (ell+1) a b w x := by
+      intro hv
+      exact hp (hiff.mpr hv)
+    simp [twoClassBit, hp, hq]
 
 end Ordered3Graph
 end ThreeUniformDiaries
