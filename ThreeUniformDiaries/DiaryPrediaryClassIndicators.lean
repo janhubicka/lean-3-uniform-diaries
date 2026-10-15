@@ -144,5 +144,40 @@ theorem twoClassBit_factors
       exact hp (hiff.mpr hv)
     simp [twoClassBit, hp, hq]
 
+/-- If the earlier member u of an ordered leaf pair lies between
+ell and k, the full two-type of (u,v) at ell+1 is determined
+by the singleton type of its later member v through k.
+
+This is the crucial connection for analysing 2-split insertions
+at a FIXED old cut: an auxiliary edge (ell,u,v) with u<k cannot
+distinguish v and w when their original singleton k-types agree. -/
+theorem sameTwoTypeBelow_of_sameOneTypeAbove
+    (H : Ordered3Graph Nat)
+    (ell u v w k : Nat)
+    (hellu : ell + 1 ≤ u) (huk : u < k)
+    (hvw : H.SameOneTypeBelow k v w) :
+    H.SameTwoTypeBelow (ell + 1) u v u w := by
+  refine ⟨?_, ?_, ?_⟩
+  · intro a b hab hb
+    rfl
+  · intro a b hab hb
+    exact hvw hab (by omega)
+  · intro a ha
+    exact hvw (by omega) huk
+
+/-- Class-indicator form of the same fact: at fixed earlier
+leaf u, every newly inserted 2-split edge is constant on
+old singleton k-type classes of the later leaf. -/
+theorem twoClassBit_factors_through_later_oneType
+    (H : Ordered3Graph Nat)
+    (ell k anchor₀ anchor₁ u v w : Nat)
+    (hellu : ell + 1 ≤ u) (huk : u < k)
+    (hvw : H.SameOneTypeBelow k v w) :
+    H.twoClassBit ell anchor₀ anchor₁ u v =
+      H.twoClassBit ell anchor₀ anchor₁ u w := by
+  exact H.twoClassBit_factors ell anchor₀ anchor₁ u v u w
+    (H.sameTwoTypeBelow_of_sameOneTypeAbove
+      ell u v w k hellu huk hvw)
+
 end Ordered3Graph
 end ThreeUniformDiaries
