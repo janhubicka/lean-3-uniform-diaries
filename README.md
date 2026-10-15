@@ -122,11 +122,39 @@ additional verified results on `main`. Their scope is important:
   cross-branch nonedge obstruction. `DiaryFlipFiniteLevels` shows
   every depth and every bounded initial collection of candidate
   nodes is finite, independently of the number of flip branches.
+- `DiaryFlipSingleBitPrefix` proves that the corrected
+  role-restricted one-/two-split controls pack into precisely
+  **one Boolean flip bit per source level**. The manuscript's
+  one-bit prefix and the former two-control node have identical
+  equality relations, and every branch shares the three marker
+  levels. Importantly, deleted Devlin edges at markers are *not*
+  independent flip controls.
+- `DiaryFlipCrossBranchExtension` permits extra edges only on
+  increasing-level triples not wholly spanned by any branch,
+  preserving all branch edges **and nonedges**. It supplies no
+  cross-branch coherence rule on its own.
+- `DiaryPrediaryInsertionInvariant` verifies that insertion of
+  a new level, with arbitrary new edges only involving that
+  level, keeps the old hypergraph as an induced, order-preserving
+  copy, and preserves the exact singleton, auxiliary and full
+  pair-type equalities **below the insertion cut**.
+- `DiaryPrediaryTypeCode` proves a complementary Boolean-code
+  lemma at **fixed old later cuts**: if the newly inserted bit
+  factors through the old next-level type, prefix-type equality
+  is unchanged after shifting the cut. The accompanying
+  two-point counterexample shows why factorisation cannot be
+  omitted. The actual V/E insertion must still be connected
+  to this abstract code and a strictly progressing finite
+  original-prefix measure.
 
 **Not yet proved:** the relational branch amalgam is *not* automatically
 a pre-diary. Incomparable leaves lack cross-branch Devlin marker edges,
-so a completion rule must be supplied and audited for V1/V2 and
-preservation of protected leaf meets. The finite-diary version of
+so a completion rule must be supplied and audited for V1/V2,
+the recovered lexicographic order, and preservation of protected
+leaf meets. The **pairwise** missing-marker rule is being checked
+separately (PR #535), and old 1-/2-type class-indicator factorisation
+is being checked separately (PR #534); neither implies the full
+pre-diary axioms. The finite-diary version of
 the flip-tree argument, pre-diary completion/termination, flip
 absorption (including its converse formulation), the original
 generic cut-zero orientation lemma as worded, and final diary
