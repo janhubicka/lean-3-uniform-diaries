@@ -147,7 +147,6 @@ theorem flip_marker_two_agrees_iff_split_bit_agrees
       E hflip a b hab ha hb
   constructor
   · intro h
-    apply hbase.mp
     have hneg : ¬ H.edge 1 a b ↔ ¬ K.edge 1 a b :=
       hH.symm.trans (h.trans hK)
     have hpos : H.edge 1 a b ↔ K.edge 1 a b := by
