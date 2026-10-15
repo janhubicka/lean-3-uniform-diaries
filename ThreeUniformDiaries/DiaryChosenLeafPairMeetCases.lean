@@ -61,7 +61,8 @@ theorem chosenPreembedding_preserves_all_leaf_twoMeets_of_markerOne
   let φ := stabilisedSource G K F ψ
   rcases D.pair_meets a b c d hab hcd ha hb hc hd with
     hcap | hone | htwo
-  · exact D.chosenPreembedding_preserves_capped_pair_meet
+  · rw [hcap]
+    exact D.chosenPreembedding_preserves_capped_pair_meet
       G K F ψ hψ a b c d hab hcd ha hb hc hd hcap
   · have htarget : K.twoMeetLevel (φ a) (φ b) (φ c) (φ d) = 1 :=
       hmarker a b c d hab hcd ha hb hc hd hone
@@ -70,13 +71,13 @@ theorem chosenPreembedding_preserves_all_leaf_twoMeets_of_markerOne
     have hCap : m ≤ min a c := H.twoMeetLevel_le_min a b c d
     have hNotA : m ≠ a := by
       intro he
-      have hs : IsTwoSplit H a := by
-        simpa only [he] using htwo
+      have hs : IsTwoSplit H a :=
+        he ▸ (htwo : IsTwoSplit H m)
       exact ha.2.2 hs.2.2
     have hNotC : m ≠ c := by
       intro he
-      have hs : IsTwoSplit H c := by
-        simpa only [he] using htwo
+      have hs : IsTwoSplit H c :=
+        he ▸ (htwo : IsTwoSplit H m)
       exact hc.2.2 hs.2.2
     have hma : m < a := by omega
     have hmc : m < c := by omega
