@@ -1002,4 +1002,8 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.exists_typeRespecting_embedding_fix_prefix
 
+#print axioms ThreeUniformDiaries.Ordered3Graph.threeTailFreeAmalgam_negative_sameOneType
+#print axioms ThreeUniformDiaries.Ordered3Graph.threeTailFreeAmalgam_first_meet
+#print axioms ThreeUniformDiaries.Ordered3Graph.threeTailFreeAmalgam_calibrationTriple
+
 #print axioms ThreeUniformDiaries.Ordered3Graph.FiniteAuxEmbedding.of_exact_meets
