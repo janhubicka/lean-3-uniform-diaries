@@ -996,3 +996,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.threeTailFreeAmalgam_right
 
 #print axioms ThreeUniformDiaries.Ordered3Graph.threeTailOverlapCompatible_of_profiles
+
+#print axioms ThreeUniformDiaries.Ordered3Graph.threeTailFreeAmalgam_negative_sameOneType
+#print axioms ThreeUniformDiaries.Ordered3Graph.threeTailFreeAmalgam_first_meet
+#print axioms ThreeUniformDiaries.Ordered3Graph.threeTailFreeAmalgam_calibrationTriple
