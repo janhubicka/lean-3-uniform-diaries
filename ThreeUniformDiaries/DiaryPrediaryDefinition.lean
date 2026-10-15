@@ -76,10 +76,11 @@ end RoleDiary
 
 namespace RolePrediary
 
-variable {H : Ordered3Graph Nat} (P : RolePrediary H)
+variable {H : Ordered3Graph Nat}
 
 /-- Restoring S1/S2 yields exactly the original full RoleDiary. -/
 theorem withMeets
+    (P : RolePrediary H)
     (hOne : ∀ a b, IsLeaf H a → IsLeaf H b → a ≠ b →
       IsOneSplit H (H.oneMeetLevel a b))
     (hTwo : ∀ a b c d, a < b → c < d →
@@ -102,7 +103,7 @@ theorem withMeets
 
 /-- Ordered 3-hypergraphs have no repeated-vertex edges. -/
 theorem repeated_vertex_nonedge
-    (x y : Nat) : ¬ H.edge x y y := by
+    (P : RolePrediary H) (x y : Nat) : ¬ H.edge x y y := by
   intro he
   have horder := P.edge_ordered x y y he
   omega
@@ -110,7 +111,7 @@ theorem repeated_vertex_nonedge
 /-- V3 already guarantees a Devlin marker on EVERY ordered
 pair of leaves, without any S1/S2 assumptions. -/
 theorem leaf_pair_has_marker
-    (a b : Nat) (hab : a < b)
+    (P : RolePrediary H) (a b : Nat) (hab : a < b)
     (ha : IsLeaf H a) (hb : IsLeaf H b) :
     H.edge 1 a b ∨ H.edge 2 a b := by
   classical
@@ -124,7 +125,7 @@ The disagreement is witnessed by one of the V3 markers
 at ordered pair (1,a) or (2,a), while (1,a,a) and (2,a,a)
 are nonedges because of the repeated terminal vertex. -/
 theorem leaf_pair_disagrees_at_first_next_cut
-    (a b : Nat) (hab : a < b)
+    (P : RolePrediary H) (a b : Nat) (hab : a < b)
     (ha : IsLeaf H a) (hb : IsLeaf H b) :
     ¬ H.SameOneTypeBelow (a + 1) a b := by
   intro hs
