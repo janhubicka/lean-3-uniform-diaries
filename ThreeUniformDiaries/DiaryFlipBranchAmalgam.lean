@@ -222,7 +222,7 @@ theorem branchAmalgam_no_cross_edge
   subst y
   subst z
   have hprefix : T.node k u = T.node j u :=
-    T.node_prefix_eq_of_terminal_eq k j u v huv hz
+    T.node_prefix_eq_of_terminal_eq k j u v huv.le hz
   exact hdifferent (hy.symm.trans hprefix)
 
 end FlipFamily
