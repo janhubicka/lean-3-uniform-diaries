@@ -38,17 +38,46 @@ def BranchSpansTriple
     x < y ∧ y < z ∧
     T.node i x = X ∧ T.node i y = Y ∧ T.node i z = Z
 
-/-- An arbitrary extension predicate is used ONLY on triples
-outside every individual flip branch. It cannot modify any
-branch edge or nonedge, but may introduce cross-branch
-Devlin markers and other completion edges. -/
+/-- Every edge of the raw branch amalgam lies on three
+strictly increasing old source levels. -/
+theorem branchAmalgam_ordered
+    (T : FlipFamily A ι) (X Y Z : FlipNode)
+    (h : (T.branchAmalgam).edge X Y Z) :
+    X.1 < Y.1 ∧ Y.1 < Z.1 := by
+  rcases h with ⟨i, x, y, z, hxy, hyz, hx, hy, hz, _⟩
+  have hX : X.1 = x := by
+    simpa only [node] using (congrArg Prod.fst hx).symm
+  have hY : Y.1 = y := by
+    simpa only [node] using (congrArg Prod.fst hy).symm
+  have hZ : Z.1 = z := by
+    simpa only [node] using (congrArg Prod.fst hz).symm
+  simpa only [hX, hY, hZ] using And.intro hxy hyz
+
+/-- An arbitrary extension predicate may add edges ONLY on
+strictly increasing triples of levels that are not jointly
+spanned by any original flip branch. Hence it cannot change
+old branch edges or nonedges and it never creates a reversed
+or diagonal edge. This does NOT ensure the V/E/S diary axioms. -/
 def withCrossBranchEdges
     (T : FlipFamily A ι)
     (extra : FlipNode → FlipNode → FlipNode → Prop) :
     Ordered3Graph FlipNode where
   edge X Y Z :=
     (T.branchAmalgam).edge X Y Z ∨
-      (¬ T.BranchSpansTriple X Y Z ∧ extra X Y Z)
+      ((X.1 < Y.1 ∧ Y.1 < Z.1) ∧
+       ¬ T.BranchSpansTriple X Y Z ∧ extra X Y Z)
+
+/-- Ordered support is preserved by ANY off-branch completion
+passing through this interface. -/
+theorem withCrossBranchEdges_ordered
+    (T : FlipFamily A ι)
+    (extra : FlipNode → FlipNode → FlipNode → Prop)
+    (X Y Z : FlipNode)
+    (h : (T.withCrossBranchEdges extra).edge X Y Z) :
+    X.1 < Y.1 ∧ Y.1 < Z.1 := by
+  rcases h with hOld | ⟨hOrder, _, _⟩
+  · exact T.branchAmalgam_ordered X Y Z hOld
+  · exact hOrder
 
 /-- Exact, unconditional preservation/reflection of all
 increasing triples in every original flip branch. -/
@@ -60,7 +89,7 @@ theorem withCrossBranchEdges_induced
       (T.node i x) (T.node i y) (T.node i z) ↔
     (T.graph i).edge x y z := by
   constructor
-  · rintro (hOld | ⟨hOutside, hExtra⟩)
+  · rintro (hOld | ⟨hOrdered, hOutside, hExtra⟩)
     · exact (T.branchAmalgam_edge_iff i x y z hxy hyz).mp hOld
     · exact False.elim
         (hOutside ⟨i, x, y, z, hxy, hyz, rfl, rfl, rfl⟩)
