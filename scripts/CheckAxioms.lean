@@ -1139,3 +1139,9 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.insertTwoClass_induced
 #print axioms ThreeUniformDiaries.Ordered3Graph.insertTwoClass_oldLeaf_iff
 #print axioms ThreeUniformDiaries.Ordered3Graph.insertTwoClass_edge_iff
+#print axioms ThreeUniformDiaries.Ordered3Graph.insertShift_eraseInserted_of_ne
+#print axioms ThreeUniformDiaries.Ordered3Graph.eraseInserted_lt_of_not_new
+#print axioms ThreeUniformDiaries.Ordered3Graph.eraseInserted_lt_of_lt_shift
+#print axioms ThreeUniformDiaries.Ordered3Graph.oneTypeBelow_shift_of_fresh_agreement
+#print axioms ThreeUniformDiaries.Ordered3Graph.auxTypeBelow_shift_of_fresh_agreement
+#print axioms ThreeUniformDiaries.Ordered3Graph.twoTypeBelow_shift_of_fresh_agreement
