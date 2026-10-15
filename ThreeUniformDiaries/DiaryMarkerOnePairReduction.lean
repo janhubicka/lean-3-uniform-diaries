@@ -34,6 +34,7 @@ theorem zero_leaf_pair_nonedge (D : RoleDiary H)
     (a b : Nat) (ha : IsLeaf H a) :
     ¬ H.edge 0 a b := by
   intro he
+  have ha3 : 3 ≤ a := ha.1
   rcases D.permitted_edge 0 a b he with hrole | hone | htwo | hdevlin | hnormal
   · rcases hrole.2.1 with h | h <;> omega
   · exact ha.2.1 hone.2.1.2.1
@@ -86,15 +87,26 @@ theorem leaf_pair_twoMeet_eq_one_iff_oppositeLex (D : RoleDiary H)
           (D.zero_leaf_pair_nonedge c d hc)
       · subst x
         exact hbits
-    tauto
+    have hDiffLex : ¬ (LexEarlier H a b ↔ LexEarlier H c d) := by
+      intro heq
+      exact hmarkDiff (hMarkAB.trans (heq.trans hMarkCD.symm))
+    by_cases p : LexEarlier H a b <;>
+      by_cases q : LexEarlier H c d <;> simp_all
   · intro hOpposite
     have hmarkDiff : ¬ (H.edge 1 a b ↔ H.edge 1 c d) := by
-      tauto
+      intro heq
+      have hSameLex : LexEarlier H a b ↔ LexEarlier H c d :=
+        hMarkAB.symm.trans (heq.trans hMarkCD)
+      by_cases p : LexEarlier H a b <;>
+        by_cases q : LexEarlier H c d <;> simp_all
     have hupper : H.twoMeetLevel a b c d ≤ 1 := by
       by_contra hn
       have hge : 1 < H.twoMeetLevel a b c d := by omega
+      have hAux : H.SameAuxTypeBelow
+          (H.twoMeetLevel a b c d) a b c d :=
+        (H.twoMeetLevel_agree a b c d).2.2
       have heq : H.edge 1 a b ↔ H.edge 1 c d :=
-        (H.twoMeetLevel_agree a b c d).2.2 (a := 1) hge
+        hAux (a := 1) hge
       exact hmarkDiff heq
     rcases D.pair_meets a b c d hab hcd ha hb hc hd with
       hcap | hone | htwo
@@ -129,10 +141,21 @@ theorem markerOne_pairMeet_transfer_of_relative_orientation (D : RoleDiary H)
   have hsourceOpp :=
     (D.leaf_pair_twoMeet_eq_one_iff_oppositeLex
       a b c d hab hcd ha hb hc hd).mp hsource
+  classical
+  have hSourceDifferent :
+      ¬ (LexEarlier H a b ↔ LexEarlier H c d) := by
+    by_cases p : LexEarlier H a b <;>
+      by_cases q : LexEarlier H c d <;> simp_all
+  have hTargetDifferent :
+      ¬ (LexEarlier K (φ a) (φ b) ↔
+         LexEarlier K (φ c) (φ d)) := by
+    intro heq
+    exact hSourceDifferent (hrelative.mpr heq)
   have htargetOpp :
       LexEarlier K (φ a) (φ b) ↔
         ¬ LexEarlier K (φ c) (φ d) := by
-    tauto
+    by_cases p : LexEarlier K (φ a) (φ b) <;>
+      by_cases q : LexEarlier K (φ c) (φ d) <;> simp_all
   exact (E.leaf_pair_twoMeet_eq_one_iff_oppositeLex
     (φ a) (φ b) (φ c) (φ d)
     (φ.strictMono hab) (φ.strictMono hcd)
