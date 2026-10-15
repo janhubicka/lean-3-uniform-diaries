@@ -74,9 +74,9 @@ theorem chosenPreembedding_preserves_oneSplit_role
     intro h
     exact hneq (φ.strictMono.injective h)
   have huT : IsLeaf K (φ w.u) :=
-    D.stabilisedSource_isLeaf_of_outer_leaves G K F hFleaf ψ w.u
+    stabilisedSource_isLeaf_of_outer_leaves G K F hFleaf ψ w.u
   have hvT : IsLeaf K (φ w.v) :=
-    D.stabilisedSource_isLeaf_of_outer_leaves G K F hFleaf ψ w.v
+    stabilisedSource_isLeaf_of_outer_leaves G K F hFleaf ψ w.v
   rw [D.chosenPreembedding_oneSplit G K F ψ i hi]
   change IsOneSplit K (K.oneMeetLevel (φ w.u) (φ w.v))
   exact E.singleton_meets (φ w.u) (φ w.v) huT hvT hneqT
@@ -98,13 +98,13 @@ theorem chosenPreembedding_preserves_twoSplit_role
   have hAB : φ w.a < φ w.b := φ.strictMono w.hab
   have hCD : φ w.c < φ w.d := φ.strictMono w.hcd
   have hA : IsLeaf K (φ w.a) :=
-    D.stabilisedSource_isLeaf_of_outer_leaves G K F hFleaf ψ w.a
+    stabilisedSource_isLeaf_of_outer_leaves G K F hFleaf ψ w.a
   have hB : IsLeaf K (φ w.b) :=
-    D.stabilisedSource_isLeaf_of_outer_leaves G K F hFleaf ψ w.b
+    stabilisedSource_isLeaf_of_outer_leaves G K F hFleaf ψ w.b
   have hC : IsLeaf K (φ w.c) :=
-    D.stabilisedSource_isLeaf_of_outer_leaves G K F hFleaf ψ w.c
+    stabilisedSource_isLeaf_of_outer_leaves G K F hFleaf ψ w.c
   have hD : IsLeaf K (φ w.d) :=
-    D.stabilisedSource_isLeaf_of_outer_leaves G K F hFleaf ψ w.d
+    stabilisedSource_isLeaf_of_outer_leaves G K F hFleaf ψ w.d
   have hPlacement := D.twoSplitTargetImage_interval G K F ψ hψ i hi
   change φ (i-1) <
       K.twoMeetLevel (φ w.a) (φ w.b) (φ w.c) (φ w.d) ∧
@@ -137,7 +137,7 @@ theorem chosenPreembedding_preserves_leaf_role
     (i : Nat) (hi : IsLeaf H i) :
     IsLeaf K (D.chosenPreembedding G K F ψ i) := by
   rw [D.chosenPreembedding_leaf G K F ψ i hi]
-  exact D.stabilisedSource_isLeaf_of_outer_leaves G K F hFleaf ψ i
+  exact stabilisedSource_isLeaf_of_outer_leaves G K F hFleaf ψ i
 
 /-- The chosen total map preserves AND reflects the induced edge
 relation on strictly increasing triples of source leaves, because
