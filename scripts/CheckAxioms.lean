@@ -996,3 +996,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.threeTailFreeAmalgam_right
 
 #print axioms ThreeUniformDiaries.Ordered3Graph.threeTailOverlapCompatible_of_profiles
+
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.exists_typeRespecting_embedding_fix_prefix
