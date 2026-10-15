@@ -932,3 +932,8 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.relative_orientation_iff_uniform_sign
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.global_lex_sign_of_relative
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.relative_lex_of_global_sign
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.ordered_leaf_pair_of_oneSplit
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.ordered_leaf_pair_of_twoSplit
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.exists_ordered_leaf_pair
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.global_lex_sign_of_diary_relative
