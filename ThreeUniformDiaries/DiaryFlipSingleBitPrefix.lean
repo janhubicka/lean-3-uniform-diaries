@@ -31,29 +31,43 @@ noncomputable def paperBit (T : FlipFamily A ι)
     (i : ι) (m : Nat) : Bool :=
   T.oneBit i m || T.twoBit i m
 
+/-- The paper bit equals the active 1-split control. -/
 theorem oneBit_from_paperBit
-    (T : FlipFamily A ι) (i : ι) (m : Nat) :
-    T.oneBit i m =
-      (if IsOneSplit A m then T.paperBit i m else false) := by
+    (T : FlipFamily A ι) (i : ι) (m : Nat)
+    (hOne : IsOneSplit A m) :
+    T.oneBit i m = T.paperBit i m := by
   classical
-  by_cases hOne : IsOneSplit A m
-  · have hNotTwo : ¬ IsTwoSplit A m := by
-      intro ht
-      exact ht.2.1 hOne.2.1
-    simp [oneBit, twoBit, paperBit, hOne, hNotTwo]
-  · simp [oneBit, paperBit, hOne]
+  have hNotTwo : ¬ IsTwoSplit A m := by
+    intro ht
+    exact ht.2.1 hOne.2.1
+  simp [oneBit, twoBit, paperBit, hOne, hNotTwo]
 
-theorem twoBit_from_paperBit
-    (T : FlipFamily A ι) (i : ι) (m : Nat) :
-    T.twoBit i m =
-      (if IsTwoSplit A m then T.paperBit i m else false) := by
+/-- Inactive 1-split controls are not part of the paper word. -/
+theorem oneBit_false_of_not_oneSplit
+    (T : FlipFamily A ι) (i : ι) (m : Nat)
+    (hOne : ¬ IsOneSplit A m) :
+    T.oneBit i m = false := by
   classical
-  by_cases hTwo : IsTwoSplit A m
-  · have hNotOne : ¬ IsOneSplit A m := by
-      intro ho
-      exact hTwo.2.1 ho.2.1
-    simp [oneBit, twoBit, paperBit, hTwo, hNotOne]
-  · simp [twoBit, paperBit, hTwo]
+  simp [oneBit, hOne]
+
+/-- The paper bit equals the active 2-split control. -/
+theorem twoBit_from_paperBit
+    (T : FlipFamily A ι) (i : ι) (m : Nat)
+    (hTwo : IsTwoSplit A m) :
+    T.twoBit i m = T.paperBit i m := by
+  classical
+  have hNotOne : ¬ IsOneSplit A m := by
+    intro ho
+    exact hTwo.2.1 ho.2.1
+  simp [oneBit, twoBit, paperBit, hTwo, hNotOne]
+
+/-- Inactive 2-split controls are not part of the paper word. -/
+theorem twoBit_false_of_not_twoSplit
+    (T : FlipFamily A ι) (i : ι) (m : Nat)
+    (hTwo : ¬ IsTwoSplit A m) :
+    T.twoBit i m = false := by
+  classical
+  simp [twoBit, hTwo]
 
 theorem paperBit_false_before_three
     (T : FlipFamily A ι) (i : ι)
@@ -92,16 +106,22 @@ theorem paperNode_eq_iff_node_eq
         · change (if m < n then T.oneBit i m else false) =
             (if m < n then T.oneBit j m else false)
           simp only [if_pos hm]
-          rw [T.oneBit_from_paperBit i m,
-              T.oneBit_from_paperBit j m, hbits m hm]
+          by_cases hrole : IsOneSplit A m
+          · rw [T.oneBit_from_paperBit i m hrole,
+                T.oneBit_from_paperBit j m hrole, hbits m hm]
+          · rw [T.oneBit_false_of_not_oneSplit i m hrole,
+                T.oneBit_false_of_not_oneSplit j m hrole]
         · simp [node, hm]
       · funext m
         by_cases hm : m < n
         · change (if m < n then T.twoBit i m else false) =
             (if m < n then T.twoBit j m else false)
           simp only [if_pos hm]
-          rw [T.twoBit_from_paperBit i m,
-              T.twoBit_from_paperBit j m, hbits m hm]
+          by_cases hrole : IsTwoSplit A m
+          · rw [T.twoBit_from_paperBit i m hrole,
+                T.twoBit_from_paperBit j m hrole, hbits m hm]
+          · rw [T.twoBit_false_of_not_twoSplit i m hrole,
+                T.twoBit_false_of_not_twoSplit j m hrole]
         · simp [node, hm]
   · intro h
     apply Prod.ext
