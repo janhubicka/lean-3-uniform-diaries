@@ -34,6 +34,16 @@ open Ordered3Graph
 
 variable {A B C : Ordered3Graph Nat}
 
+/-- Cancel the same source comparison twice without unfolding
+the entire diary/meet development inside a propositional tactic. -/
+private theorem anchor_comparison_cancel
+    {P Q R X Y Z : Prop}
+    (hPQ : (P ↔ Q) ↔ (X ↔ Y))
+    (hPR : (P ↔ R) ↔ (X ↔ Z))
+    (hYZ : Y ↔ Z) :
+    Q ↔ R := by
+  tauto
+
 /-- At a leaf pair whose singleton meet lies before the cut,
 agreement of its true 1-split flip bit forces BOTH Devlin
 marker edge values (1,a,b) and (2,a,b) to agree. -/
@@ -74,12 +84,12 @@ theorem two_flips_devlin_markers_agree_of_oneSplit_bit
         (A.edge 0 m b ↔ B.edge 0 m b) at hMarker1B
     change (A.edge 1 a b ↔ C.edge 1 a b) ↔
         (A.edge 0 m b ↔ C.edge 0 m b) at hMarker1C
-    tauto
+    exact anchor_comparison_cancel hMarker1B hMarker1C hRight
   · change (A.edge 2 a b ↔ B.edge 2 a b) ↔
         (A.edge 0 m b ↔ B.edge 0 m b) at hMarker2B
     change (A.edge 2 a b ↔ C.edge 2 a b) ↔
         (A.edge 0 m b ↔ C.edge 0 m b) at hMarker2C
-    tauto
+    exact anchor_comparison_cancel hMarker2B hMarker2C hRight
 
 /-- This is the corrected content of the manuscript's
 flip prefix-reconstruction lemma: all triples with second
