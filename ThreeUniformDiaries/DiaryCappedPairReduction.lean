@@ -126,9 +126,9 @@ theorem capped_twoMeetLevel_eq_first_of_late_singleton
     (hab : a < b) (had : a < d)
     (hlate : a < K.oneMeetLevel b d) :
     K.twoMeetLevel a b a d = a := by
-  have hSameOne : K.SameOneTypeBelow (a+1) b d :=
-    (K.oneMeetLevel_ge_iff_sameOneTypeBelow
-      (a+1) b d (by omega) (by omega)).mp (by omega)
+  have hSameOne : K.SameOneTypeBelow (a+1) b d := by
+    intro x y hxy hy
+    exact K.oneMeetLevel_agree b d hxy (by omega)
   apply (K.capped_twoMeetLevel_eq_first_iff a b d).2
   refine ⟨?_, ?_, ?_⟩
   · intro x y hxy hy
