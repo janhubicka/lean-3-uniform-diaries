@@ -96,7 +96,8 @@ theorem leaf_sameTwoTypeBelow_three_iff_lex
     D.leaf_marker_two c d hcd hc hd
   constructor
   · intro h
-    exact hmarkAB.symm.trans ((h.2.2 (a := 1) (by omega)).trans hmarkCD)
+    have hAux : H.SameAuxTypeBelow 3 a b c d := h.2.2
+    exact hmarkAB.symm.trans ((hAux (a := 1) (by omega)).trans hmarkCD)
   · intro h
     refine ⟨D.leaf_sameOneTypeBelow_three a c ha hc,
       D.leaf_sameOneTypeBelow_three b d hb hd, ?_⟩
