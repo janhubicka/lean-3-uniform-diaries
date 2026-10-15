@@ -932,3 +932,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.chosenPreembedding_oneSplit
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.chosenPreembedding_twoSplit
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.chosenPreembedding_strictMono
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.zero_leaf_pair_nonedge
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.leaf_pair_twoMeet_eq_one_iff_oppositeLex
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.markerOne_pairMeet_transfer_of_relative_orientation
