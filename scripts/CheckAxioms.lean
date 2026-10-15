@@ -928,3 +928,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.capped_leaf_pair_target_of_late_singleton
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.capped_second_leaves_target_meet_later
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.chosenPreembedding_preserves_capped_pair_meet
+
+#print axioms ThreeUniformDiaries.Ordered3Graph.UnorderedEmbedding.stabilisedSource_lexEarlier_pivot
