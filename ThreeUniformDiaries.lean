@@ -403,3 +403,4 @@ import ThreeUniformDiaries.DiaryPrediaryClassIndicators
 import ThreeUniformDiaries.DiaryPrediaryClassWitnessProgress
 import ThreeUniformDiaries.DiaryPrediaryDefinition
 import ThreeUniformDiaries.DiaryPrediaryOneClassInsertion
+import ThreeUniformDiaries.DiaryPrediaryTwoClassInsertion

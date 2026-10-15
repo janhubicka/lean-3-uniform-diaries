@@ -1134,3 +1134,8 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.insertOneClass_repairs_uncapped_oneMeet
 #print axioms ThreeUniformDiaries.Ordered3Graph.marker_forces_next_oneType_disagreement
 #print axioms ThreeUniformDiaries.Ordered3Graph.insertOneClass_repairs_capped_oneMeet
+#print axioms ThreeUniformDiaries.Ordered3Graph.twoClassExtra_ordered
+#print axioms ThreeUniformDiaries.Ordered3Graph.insertTwoClass_isTwoSplit
+#print axioms ThreeUniformDiaries.Ordered3Graph.insertTwoClass_induced
+#print axioms ThreeUniformDiaries.Ordered3Graph.insertTwoClass_oldLeaf_iff
+#print axioms ThreeUniformDiaries.Ordered3Graph.insertTwoClass_edge_iff
