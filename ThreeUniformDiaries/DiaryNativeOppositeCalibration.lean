@@ -50,7 +50,7 @@ variable {H : Ordered3Graph Nat}
 amalgam contains a fully specified orientation calibration
 triple. No calibration data or mixed-type gap preservation
 is supplied by the caller. -/
-theorem oppositeLex_native_fourTail_has_calibrationTriple
+noncomputable def oppositeLex_native_fourTail_has_calibrationTriple
     (D : RoleDiary H)
     (G : GenericEnumerated3Graph)
     (ψ : Embedding H G.graph) (hψ : ψ.TypeRespecting)
