@@ -1101,3 +1101,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.cross_marker_one_iff
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.cross_marker_two_iff
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.cross_marker_exactly_one
+#print axioms ThreeUniformDiaries.Ordered3Graph.insertTwoClass_isTwoSplit
+#print axioms ThreeUniformDiaries.Ordered3Graph.insertTwoClass_induced
+#print axioms ThreeUniformDiaries.Ordered3Graph.insertTwoClass_oldLeaf_iff
+#print axioms ThreeUniformDiaries.Ordered3Graph.insertTwoClass_edge_iff
