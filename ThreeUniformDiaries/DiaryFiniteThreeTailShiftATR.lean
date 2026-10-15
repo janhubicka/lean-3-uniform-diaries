@@ -187,21 +187,21 @@ theorem threeTailFreeAmalgam_left_finiteAuxEmbedding
   · intro w u v hwu hwv hu hv
     constructor
     · intro hs x y hxy hy
-      exact (threeTailFreeAmalgam_left A B n x y u hu).symm.trans
-        ((hs hxy hy).trans (threeTailFreeAmalgam_left A B n x y v hv))
-    · intro ht x y hxy hy
       exact (threeTailFreeAmalgam_left A B n x y u hu).trans
+        ((hs hxy hy).trans (threeTailFreeAmalgam_left A B n x y v hv).symm)
+    · intro ht x y hxy hy
+      exact (threeTailFreeAmalgam_left A B n x y u hu).symm.trans
         ((ht hxy hy).trans
-          (threeTailFreeAmalgam_left A B n x y v hv).symm)
+          (threeTailFreeAmalgam_left A B n x y v hv))
   · intro w u₀ u₁ v₀ v₁ hwu hu hvw hv hu₁ hv₁
     constructor
     · intro hs x hx
-      exact (threeTailFreeAmalgam_left A B n x u₀ u₁ hu₁).symm.trans
-        ((hs hx).trans (threeTailFreeAmalgam_left A B n x v₀ v₁ hv₁))
-    · intro ht x hx
       exact (threeTailFreeAmalgam_left A B n x u₀ u₁ hu₁).trans
+        ((hs hx).trans (threeTailFreeAmalgam_left A B n x v₀ v₁ hv₁).symm)
+    · intro ht x hx
+      exact (threeTailFreeAmalgam_left A B n x u₀ u₁ hu₁).symm.trans
         ((ht hx).trans
-          (threeTailFreeAmalgam_left A B n x v₀ v₁ hv₁).symm)
+          (threeTailFreeAmalgam_left A B n x v₀ v₁ hv₁))
 
 /-- The *right* three-tail finite source remains a genuine
 finite ATR embedding of the four-tail free amalgam under the
@@ -215,8 +215,8 @@ theorem threeTailFreeAmalgam_right_finiteAuxEmbedding
   apply finiteAuxEmbedding_threeTailShift_of_split_distinction
     B (threeTailFreeAmalgam A B n) n
   · intro x y z hxy hyz hz
-    exact threeTailFreeAmalgam_right A B n hOverlap
-      x y z hxy hyz hz
+    exact (threeTailFreeAmalgam_right A B n hOverlap
+      x y z hxy hyz hz).symm
   · exact hSep
 
 /-- Exact leaf-pair singleton meet at the split supplies the
@@ -227,6 +227,7 @@ theorem threeTailFreeAmalgam_right_finiteAuxEmbedding_of_meet
     (hMeet : B.oneMeetLevel (n+1) (n+2) = n) :
     FiniteAuxEmbedding B (threeTailFreeAmalgam A B n)
       (threeTailShift n) (n+3) := by
+  classical
   apply threeTailFreeAmalgam_right_finiteAuxEmbedding A B n hOverlap
   intro h
   have hb : n+1 ≤ B.oneMeetLevel (n+1) (n+2) :=
