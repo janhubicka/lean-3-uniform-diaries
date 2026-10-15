@@ -994,3 +994,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.threeTailShift_secondLeaf
 #print axioms ThreeUniformDiaries.Ordered3Graph.threeTailFreeAmalgam_left
 #print axioms ThreeUniformDiaries.Ordered3Graph.threeTailFreeAmalgam_right
+
+#print axioms ThreeUniformDiaries.Ordered3Graph.threeTailOverlapCompatible_of_profiles
