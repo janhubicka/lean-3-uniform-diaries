@@ -1103,3 +1103,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.insertOneClass_induced
 #print axioms ThreeUniformDiaries.Ordered3Graph.insertOneClass_oldLeaf_iff
 #print axioms ThreeUniformDiaries.Ordered3Graph.insertOneClass_edge_iff
+#print axioms ThreeUniformDiaries.Ordered3Graph.insertOneClass_repairs_uncapped_oneMeet
