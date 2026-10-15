@@ -1120,3 +1120,8 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.PrediaryCode.selectedClassBit_fixedCut_iff
 #print axioms ThreeUniformDiaries.PrediaryCode.insertBit_preserves_prefix_below
 #print axioms ThreeUniformDiaries.PrediaryCode.selectedClassBit_repairs_witness_at_cut
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.toPrediary
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RolePrediary.withMeets
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RolePrediary.repeated_vertex_nonedge
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RolePrediary.leaf_pair_has_marker
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RolePrediary.leaf_pair_disagrees_at_first_next_cut
