@@ -980,3 +980,5 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.initialSegment_two_eq
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.exists_typeRespecting_embedding_fix_two
+
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.sameFinitePointedSource_of_diary_same_lex_at_three
