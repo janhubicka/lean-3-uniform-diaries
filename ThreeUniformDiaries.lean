@@ -402,3 +402,4 @@ import ThreeUniformDiaries.DiaryFlipCrossBranchMarkers
 import ThreeUniformDiaries.DiaryPrediaryClassIndicators
 import ThreeUniformDiaries.DiaryPrediaryClassWitnessProgress
 import ThreeUniformDiaries.DiaryPrediaryDefinition
+import ThreeUniformDiaries.DiaryPrediaryOneClassInsertion
