@@ -47,6 +47,24 @@ theorem initialSegment_two_eq
     _ = (K.initialSegment 2).triple a b c :=
       ((K.initialSegment 2).support a b c hbad).symm
 
+/-- The universal fixed-prefix K_I construction yields the
+FULL auxiliary-type-respecting induced embedding, not merely its
+weaker full-two-type projection. This stronger API is needed to
+postcompose genuine finite ATR source codes after a finite
+four-tail amalgamation. -/
+theorem exists_auxTypeRespecting_embedding_fix_prefix
+    (G : GenericEnumerated3Graph) (H : Ordered3Graph Nat)
+    (n : Nat) (hn : 0 < n)
+    (hInitial : H.initialSegment n = G.graph.initialSegment n) :
+    ∃ ψ : Embedding H G.graph,
+      ψ.AuxTypeRespecting ∧ ∀ k, k < n → ψ k = k := by
+  let I : EnumNode n := G.graph.initialSegment n
+  obtain ⟨E, phi, hproperty⟩ :=
+    exists_universal_fixedAuxEmbedding G I hn rfl
+  obtain ⟨ψ, _, hfix, haux⟩ :=
+    hproperty.2.2.2 H hInitial
+  exact ⟨ψ, haux, hfix⟩
+
 /-- Any ordered source matching the generic graph on a nonempty
 finite initial segment has a genuine induced type-respecting generic
 embedding fixing that ENTIRE prefix. The source may have arbitrary
@@ -57,11 +75,8 @@ theorem exists_typeRespecting_embedding_fix_prefix
     (hInitial : H.initialSegment n = G.graph.initialSegment n) :
     ∃ ψ : Embedding H G.graph,
       ψ.TypeRespecting ∧ ∀ k, k < n → ψ k = k := by
-  let I : EnumNode n := G.graph.initialSegment n
-  obtain ⟨E, phi, hproperty⟩ :=
-    exists_universal_fixedAuxEmbedding G I hn rfl
-  obtain ⟨ψ, _, hfix, haux⟩ :=
-    hproperty.2.2.2 H hInitial
+  obtain ⟨ψ, haux, hfix⟩ :=
+    exists_auxTypeRespecting_embedding_fix_prefix G H n hn hInitial
   exact ⟨ψ, haux.typeRespecting, hfix⟩
 
 /-- The universal fixed-prefix generic embedding theorem
