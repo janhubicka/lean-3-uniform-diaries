@@ -1095,6 +1095,12 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.PrediaryCode.prefixEq_old_of_insert
 #print axioms ThreeUniformDiaries.PrediaryCode.prefixEq_insert_iff_of_factor
 #print axioms ThreeUniformDiaries.PrediaryCode.arbitrary_new_bit_counterexample
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.no_shared_pair_no_span
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.no_shared_pair_no_raw_edge
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.withCrossMarkerEdges_induced
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.cross_marker_one_iff
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.cross_marker_two_iff
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.cross_marker_exactly_one
 #print axioms ThreeUniformDiaries.Ordered3Graph.oneTypeBelow_symm
 #print axioms ThreeUniformDiaries.Ordered3Graph.oneTypeBelow_trans
 #print axioms ThreeUniformDiaries.Ordered3Graph.auxTypeBelow_symm
