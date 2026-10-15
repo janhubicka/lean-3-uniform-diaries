@@ -1109,3 +1109,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.insertOneClass_repairs_meet_of_cut_disagreement
 #print axioms ThreeUniformDiaries.Ordered3Graph.marker_forces_next_oneType_disagreement
 #print axioms ThreeUniformDiaries.Ordered3Graph.insertOneClass_repairs_capped_oneMeet
+#print axioms ThreeUniformDiaries.Ordered3Graph.oneClassExtra_ordered
