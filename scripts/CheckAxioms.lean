@@ -1070,3 +1070,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.oneBit_false_before_three
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.twoBit_false_before_three
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.nodes_agree_through_markers
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.branchAmalgam_ordered
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.withCrossBranchEdges_ordered
