@@ -400,3 +400,4 @@ import ThreeUniformDiaries.DiaryPrediaryInsertionInvariant
 import ThreeUniformDiaries.DiaryPrediaryTypeCode
 import ThreeUniformDiaries.DiaryFlipCrossBranchMarkers
 import ThreeUniformDiaries.DiaryPrediaryClassIndicators
+import ThreeUniformDiaries.DiaryPrediaryClassWitnessProgress

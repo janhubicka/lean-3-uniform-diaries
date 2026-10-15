@@ -1111,3 +1111,12 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.twoClassBit_factors
 #print axioms ThreeUniformDiaries.Ordered3Graph.sameTwoTypeBelow_of_sameOneTypeAbove
 #print axioms ThreeUniformDiaries.Ordered3Graph.twoClassBit_factors_through_later_oneType
+#print axioms ThreeUniformDiaries.PrediaryCode.prefixEq_refl
+#print axioms ThreeUniformDiaries.PrediaryCode.prefixEq_symm
+#print axioms ThreeUniformDiaries.PrediaryCode.prefixEq_trans
+#print axioms ThreeUniformDiaries.PrediaryCode.selectedClassBit_factors
+#print axioms ThreeUniformDiaries.PrediaryCode.selectedClassBit_self
+#print axioms ThreeUniformDiaries.PrediaryCode.selectedClassBit_other
+#print axioms ThreeUniformDiaries.PrediaryCode.selectedClassBit_fixedCut_iff
+#print axioms ThreeUniformDiaries.PrediaryCode.insertBit_preserves_prefix_below
+#print axioms ThreeUniformDiaries.PrediaryCode.selectedClassBit_repairs_witness_at_cut
