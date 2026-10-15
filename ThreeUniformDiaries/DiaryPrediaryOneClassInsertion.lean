@@ -121,5 +121,67 @@ theorem insertOneClass_edge_iff
     · simp
     · exact ⟨rfl, Or.inr ⟨rfl, u, hu, hs, rfl⟩⟩
 
+/-- For a defective singleton meet strictly before BOTH leaves,
+the chosen old-class insertion really repairs its numerical meet:
+the fresh role-one vertex becomes their exact first disagreement.
+
+The capped case ell = min(anchor,other) is separate: there one
+must use the pre-diary's Devlin marker axiom to prove that the
+two leaves already have different old (ell+1)-types. -/
+theorem insertOneClass_repairs_uncapped_oneMeet
+    (H : Ordered3Graph Nat) (ell anchor other : Nat)
+    (hell : 3 ≤ ell)
+    (ha : DiaryLeafPriority.IsLeaf H anchor)
+    (hb : DiaryLeafPriority.IsLeaf H other)
+    (hlla : ell < anchor) (hllb : ell < other)
+    (hMeet : H.oneMeetLevel anchor other = ell) :
+    (H.insertOneClass ell anchor).oneMeetLevel
+      (insertShift ell anchor) (insertShift ell other) = ell := by
+  classical
+  let G := H.insertOneClass ell anchor
+  let fa := insertShift ell anchor
+  let fb := insertShift ell other
+  have hNotOld : ¬ H.SameOneTypeBelow (ell + 1) anchor other := by
+    intro h
+    have hbound : ell + 1 ≤ min anchor other := by omega
+    have hbad : ell + 1 ≤ H.oneMeetLevel anchor other :=
+      Nat.le_findGreatest hbound h
+    omega
+  have hRefl : H.SameOneTypeBelow (ell + 1) anchor anchor := by
+    intro a b hab hcut
+    rfl
+  have hPositive : G.edge 0 ell fa :=
+    (H.insertOneClass_edge_iff ell anchor anchor hell ha).mpr hRefl
+  have hNegative : ¬ G.edge 0 ell fb := by
+    intro h
+    exact hNotOld
+      ((H.insertOneClass_edge_iff ell anchor other hell hb).mp h)
+  have hSourcePrefix : H.SameOneTypeBelow ell anchor other := by
+    simpa only [hMeet] using H.oneMeetLevel_agree anchor other
+  have hTargetPrefix : G.SameOneTypeBelow ell fa fb :=
+    (H.insertWithNewEdges_oneTypeBelow_iff ell
+      (H.oneClassExtra ell anchor) anchor other).mp hSourcePrefix
+  have hfa : fa = anchor + 1 := by
+    simp [fa, insertShift, show ¬ anchor < ell by omega]
+  have hfb : fb = other + 1 := by
+    simp [fb, insertShift, show ¬ other < ell by omega]
+  have hbound : ell ≤ min fa fb := by omega
+  have hLower : ell ≤ G.oneMeetLevel fa fb :=
+    Nat.le_findGreatest hbound hTargetPrefix
+  have hTargetFail : ¬ G.SameOneTypeBelow (ell + 1) fa fb := by
+    intro h
+    have hEq : G.edge 0 ell fa ↔ G.edge 0 ell fb :=
+      h (a := 0) (b := ell) (by omega) (by omega)
+    exact hNegative (hEq.mp hPositive)
+  have hUpper : G.oneMeetLevel fa fb ≤ ell := by
+    by_contra hn
+    have hplus : ell + 1 ≤ G.oneMeetLevel fa fb := by omega
+    have hSame : G.SameOneTypeBelow (ell + 1) fa fb := by
+      intro a b hab hbcut
+      exact (G.oneMeetLevel_agree fa fb) hab
+        (lt_of_lt_of_le hbcut hplus)
+    exact hTargetFail hSame
+  exact Nat.le_antisymm hUpper hLower
+
 end Ordered3Graph
 end ThreeUniformDiaries
