@@ -996,3 +996,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.threeTailFreeAmalgam_right
 
 #print axioms ThreeUniformDiaries.Ordered3Graph.threeTailOverlapCompatible_of_profiles
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oppositeLex_native_threeTail_overlap
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.oppositeLex_native_fourTail_edge_amalgam
