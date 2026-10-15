@@ -32,6 +32,29 @@ def oneClassExtra
        H.SameOneTypeBelow (ell + 1) anchor u ∧
        z = insertShift ell u))
 
+/-- Every NEW 1-split hyperedge is on three strictly increasing
+vertices; leaf witnesses at or before the old cut are properly
+handled by shifting the old tail up one level. -/
+theorem oneClassExtra_ordered
+    (H : Ordered3Graph Nat) (ell anchor x y z : Nat)
+    (hell : 3 ≤ ell)
+    (he : H.oneClassExtra ell anchor x y z) :
+    x < y ∧ y < z := by
+  rcases he with ⟨hx, hRole | hSplit⟩
+  · rcases hRole with ⟨hy, hz⟩
+    subst x
+    subst y
+    subst z
+    omega
+  · rcases hSplit with ⟨hy, u, hu, hLeaf, hClass, hz⟩
+    subst x
+    subst y
+    subst z
+    have hShift : ell < insertShift ell u := by
+      unfold insertShift
+      split_ifs <;> omega
+    omega
+
 /-- The concrete first case of the manuscript's split insertion. -/
 def insertOneClass
     (H : Ordered3Graph Nat) (ell anchor : Nat) :
