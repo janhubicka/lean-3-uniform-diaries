@@ -1101,6 +1101,16 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.cross_marker_one_iff
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.cross_marker_two_iff
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.cross_marker_exactly_one
+#print axioms ThreeUniformDiaries.Ordered3Graph.oneTypeBelow_symm
+#print axioms ThreeUniformDiaries.Ordered3Graph.oneTypeBelow_trans
+#print axioms ThreeUniformDiaries.Ordered3Graph.auxTypeBelow_symm
+#print axioms ThreeUniformDiaries.Ordered3Graph.auxTypeBelow_trans
+#print axioms ThreeUniformDiaries.Ordered3Graph.twoTypeBelow_symm
+#print axioms ThreeUniformDiaries.Ordered3Graph.twoTypeBelow_trans
+#print axioms ThreeUniformDiaries.Ordered3Graph.oneClassBit_factors
+#print axioms ThreeUniformDiaries.Ordered3Graph.twoClassBit_factors
+#print axioms ThreeUniformDiaries.Ordered3Graph.sameTwoTypeBelow_of_sameOneTypeAbove
+#print axioms ThreeUniformDiaries.Ordered3Graph.twoClassBit_factors_through_later_oneType
 #print axioms ThreeUniformDiaries.PrediaryCode.prefixEq_refl
 #print axioms ThreeUniformDiaries.PrediaryCode.prefixEq_symm
 #print axioms ThreeUniformDiaries.PrediaryCode.prefixEq_trans
