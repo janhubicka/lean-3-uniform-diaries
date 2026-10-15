@@ -1067,3 +1067,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.FlipGuidedBranch.existsUnique_guided_branch
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.withCrossBranchEdges_induced
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.withCrossBranchEdges_eq_on_branch
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.oneBit_false_before_three
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.twoBit_false_before_three
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.nodes_agree_through_markers

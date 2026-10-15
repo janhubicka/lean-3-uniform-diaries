@@ -39,15 +39,43 @@ namespace FlipFamily
 
 variable {A : Ordered3Graph Nat} {ι : Type*}
 
-/-- The actual asymmetric deleted-positive 1-split bit. -/
+/-- The role-restricted 1-split flip bit from the manuscript.
+It is false at markers, leaves and 2-splits. -/
 noncomputable def oneBit (T : FlipFamily A ι) (i : ι) (m : Nat) : Bool := by
   classical
-  exact decide (OneSplitRemovedBit A (T.graph i) m)
+  exact if IsOneSplit A m then
+    decide (OneSplitRemovedBit A (T.graph i) m) else false
 
-/-- The corresponding 2-split bit. -/
+/-- The role-restricted 2-split flip bit from the manuscript.
+In particular, deleted Devlin marker edges at levels 1 and 2
+must NOT enter this prefix code: they are controlled by later
+1-split bits, and would reveal future branch decisions. -/
 noncomputable def twoBit (T : FlipFamily A ι) (i : ι) (m : Nat) : Bool := by
   classical
-  exact decide (TwoSplitRemovedBit A (T.graph i) m)
+  exact if IsTwoSplit A m then
+    decide (TwoSplitRemovedBit A (T.graph i) m) else false
+
+/-- Marker levels cannot carry any role-restricted 1-split bit. -/
+theorem oneBit_false_before_three
+    (T : FlipFamily A ι) (i : ι) (m : Nat) (hm : m < 3) :
+    T.oneBit i m = false := by
+  have hrole : ¬ IsOneSplit A m := by
+    intro h
+    have := h.1
+    omega
+  simp [oneBit, hrole]
+
+/-- Marker levels cannot carry any role-restricted 2-split bit.
+This is not true of the UNRESTRICTED deleted-edge predicate at
+marker 1, since it can witness a changed Devlin orientation. -/
+theorem twoBit_false_before_three
+    (T : FlipFamily A ι) (i : ι) (m : Nat) (hm : m < 3) :
+    T.twoBit i m = false := by
+  have hrole : ¬ IsTwoSplit A m := by
+    intro h
+    have := h.1
+    omega
+  simp [twoBit, hrole]
 
 /-- Finite prefix codes, represented as masked infinite Boolean
 functions. The mask is false above the level, so a node is
@@ -82,31 +110,58 @@ theorem twoBit_eq_of_node_eq
   have heqM := congrFun heq m
   simpa only [node, if_pos hm] using heqM
 
-/-- Equality of coded one-split bits is exactly the Prop
-agreement used in the genuine reconstruction theorem. -/
+/-- Only an ACTUAL 1-split control can be read from a node.
+Inactive raw deleted-edge tests are intentionally forgotten. -/
 theorem one_control_of_node_eq
     (T : FlipFamily A ι) (i j : ι) (n m : Nat)
-    (hnode : T.node i n = T.node j n) (hm : m < n) :
+    (hnode : T.node i n = T.node j n)
+    (hm : m < n) (hrole : IsOneSplit A m) :
     OneSplitRemovedBit A (T.graph i) m ↔
       OneSplitRemovedBit A (T.graph j) m := by
   classical
   have h := T.oneBit_eq_of_node_eq i j n m hnode hm
-  unfold oneBit at h
+  simp only [oneBit, if_pos hrole] at h
   by_cases ha : OneSplitRemovedBit A (T.graph i) m <;>
     by_cases hb : OneSplitRemovedBit A (T.graph j) m <;>
     simp_all
 
+/-- Only an ACTUAL 2-split control can be read from a node.
+In particular raw deleted Devlin edges at markers are ignored. -/
 theorem two_control_of_node_eq
     (T : FlipFamily A ι) (i j : ι) (n m : Nat)
-    (hnode : T.node i n = T.node j n) (hm : m < n) :
+    (hnode : T.node i n = T.node j n)
+    (hm : m < n) (hrole : IsTwoSplit A m) :
     TwoSplitRemovedBit A (T.graph i) m ↔
       TwoSplitRemovedBit A (T.graph j) m := by
   classical
   have h := T.twoBit_eq_of_node_eq i j n m hnode hm
-  unfold twoBit at h
+  simp only [twoBit, if_pos hrole] at h
   by_cases ha : TwoSplitRemovedBit A (T.graph i) m <;>
     by_cases hb : TwoSplitRemovedBit A (T.graph j) m <;>
     simp_all
+
+/-- Every flip has exactly the same prefix nodes through the
+three distinguished diary markers. No information about future
+Devlin orientations can contaminate that common prefix. -/
+theorem nodes_agree_through_markers
+    (T : FlipFamily A ι) (i j : ι) (n : Nat)
+    (hn : n ≤ 3) :
+    T.node i n = T.node j n := by
+  apply Prod.ext
+  · rfl
+  · apply Prod.ext
+    · funext k
+      by_cases hk : k < n
+      · have hk3 : k < 3 := lt_of_lt_of_le hk hn
+        simp [node, hk, T.oneBit_false_before_three i k hk3,
+          T.oneBit_false_before_three j k hk3]
+      · simp [node, hk]
+    · funext k
+      by_cases hk : k < n
+      · have hk3 : k < 3 := lt_of_lt_of_le hk hn
+        simp [node, hk, T.twoBit_false_before_three i k hk3,
+          T.twoBit_false_before_three j k hk3]
+      · simp [node, hk]
 
 /-- The exact branch-amalgamation compatibility statement:
 two flips agreeing at their z-prefix have identical edges on
@@ -119,13 +174,13 @@ theorem edge_agree_of_shared_terminal_node
   have hOne : ∀ m, m < z → IsOneSplit A m →
         (OneSplitRemovedBit A (T.graph i) m ↔
          OneSplitRemovedBit A (T.graph j) m) := by
-    intro m hm _
-    exact T.one_control_of_node_eq i j z m hnode hm
+    intro m hm hrole
+    exact T.one_control_of_node_eq i j z m hnode hm hrole
   have hTwo : ∀ m, m < z → IsTwoSplit A m →
         (TwoSplitRemovedBit A (T.graph i) m ↔
          TwoSplitRemovedBit A (T.graph j) m) := by
-    intro m hm _
-    exact T.two_control_of_node_eq i j z m hnode hm
+    intro m hm hrole
+    exact T.two_control_of_node_eq i j z m hnode hm hrole
   exact T.sourceDiary.two_flips_edge_iff_of_control_prefix
     (T.targetDiary i) (T.targetDiary j)
     (T.isFlip i) (T.isFlip j) z hOne hTwo
