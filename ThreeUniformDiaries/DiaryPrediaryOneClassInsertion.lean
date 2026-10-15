@@ -28,7 +28,7 @@ def oneClassExtra
   x = 0 ∧
     ((y = 1 ∧ z = ell) ∨
      (y = ell ∧ ∃ u : Nat,
-       DiaryLeafPriority.IsLeaf H u ∧
+       ell ≤ u ∧ DiaryLeafPriority.IsLeaf H u ∧
        H.SameOneTypeBelow (ell + 1) anchor u ∧
        z = insertShift ell u))
 
@@ -94,7 +94,7 @@ theorem insertOneClass_oldLeaf_iff
 when it has the selected OLD 1-type at ell+1. -/
 theorem insertOneClass_edge_iff
     (H : Ordered3Graph Nat) (ell anchor u : Nat)
-    (hell : 3 ≤ ell)
+    (hell : 3 ≤ ell) (hEllU : ell ≤ u)
     (hu : DiaryLeafPriority.IsLeaf H u) :
     (H.insertOneClass ell anchor).edge
       0 ell (insertShift ell u) ↔
@@ -109,7 +109,7 @@ theorem insertOneClass_edge_iff
         isolatedInsert] using hOld)
     · rcases hExtra with ⟨hx, hRole | hClass⟩
       · exact False.elim (h1 hRole.1.symm)
-      · rcases hClass with ⟨_, w, hwLeaf, hwSame, hwShift⟩
+      · rcases hClass with ⟨_, w, hwBound, hwLeaf, hwSame, hwShift⟩
         have heq : u = w := hinj hwShift
         simpa [heq] using hwSame
   · intro hs
@@ -119,7 +119,7 @@ theorem insertOneClass_edge_iff
     apply Or.inr
     constructor
     · simp
-    · exact ⟨rfl, Or.inr ⟨rfl, u, hu, hs, rfl⟩⟩
+    · exact ⟨rfl, Or.inr ⟨rfl, u, hEllU, hu, hs, rfl⟩⟩
 
 /-- The local core of the insertion proof. Provided two old
 leaves agree up to the defective cut ell but have DIFFERENT
@@ -145,11 +145,11 @@ theorem insertOneClass_repairs_meet_of_cut_disagreement
     intro a b hab hcut
     rfl
   have hPositive : G.edge 0 ell fa :=
-    (H.insertOneClass_edge_iff ell anchor anchor hell ha).mpr hRefl
+    (H.insertOneClass_edge_iff ell anchor anchor hell hlla ha).mpr hRefl
   have hNegative : ¬ G.edge 0 ell fb := by
     intro h
     exact hdiff
-      ((H.insertOneClass_edge_iff ell anchor other hell hb).mp h)
+      ((H.insertOneClass_edge_iff ell anchor other hell hllb hb).mp h)
   have hTargetPrefix : G.SameOneTypeBelow ell fa fb :=
     (H.insertWithNewEdges_oneTypeBelow_iff ell
       (H.oneClassExtra ell anchor) anchor other).mp hsame
