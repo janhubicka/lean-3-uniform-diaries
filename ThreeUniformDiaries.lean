@@ -411,3 +411,4 @@ import ThreeUniformDiaries.DiaryFlipRootTypeObstruction
 import ThreeUniformDiaries.DiaryOnePassFinitePeeling
 import ThreeUniformDiaries.DiaryFlipTerminalSupport
 import ThreeUniformDiaries.DiaryFlipPositiveTypeCodes
+import ThreeUniformDiaries.DiaryOnePassCodeEquivalence
