@@ -39,7 +39,7 @@ theorem onePassEventPosition_interval
     onePassBefore H m ≤ onePassEventPosition H m i ∧
       onePassEventPosition H m i < onePassOldImage H m := by
   have hi := i.isLt
-  dsimp [onePassEventPosition, onePassOldImage]
+  dsimp [onePassEventPosition, onePassOldImage, onePassBlockSize]
   omega
 
 /-- Every old vertex k before original m occurs strictly
