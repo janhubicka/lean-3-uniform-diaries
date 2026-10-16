@@ -1285,3 +1285,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePassTaggedIndex_surjective
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePassTaggedIndex_bijective
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePassVertexEquiv
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.onePassOldImage_fixed_below_three
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_oneTypeBelow_three_iff
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_auxTypeBelow_three_iff
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_twoTypeBelow_three_iff
