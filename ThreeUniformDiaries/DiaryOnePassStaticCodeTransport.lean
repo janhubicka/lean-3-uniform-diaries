@@ -58,7 +58,7 @@ theorem selectedFixedFirstPairCode_agrees
     (h : oneCode H (q + 1) u = oneCode H (q + 1) v) :
     (twoCode H m q u = twoCode H m a b) ↔
       (twoCode H m q v = twoCode H m a b) := by
-  rw [H.fixedFirstTwoCode_eq_of_nextOneCode m q u v hmq h]
+  rw [fixedFirstTwoCode_eq_of_nextOneCode H m q u v hmq h]
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
