@@ -191,10 +191,33 @@ and strict axiom reports, now include:
   manuscript S2 alternative under S1 and the absence of
   unnecessary events when the input is already a diary.
 
-These proofs do **not** yet produce the actual finite-block target
-relation or the required global two-way cut transport. Target
-V/E/S coherence, protected mixed meets, finite-diary transfer and
-flip absorption all remain separate proof obligations.
+The **concrete carrier stage** is also now checked (merged #558–#561):
+
+- `DiaryOnePassFiniteSchedule`: realised original singleton/pair
+  parent-child fibres, selected finite event blocks, terminal-child
+  defaults, strictly increasing original-vertex indices, and fixed
+  initial markers 0,1,2.
+- `DiaryOnePassConcreteCarrier`: a concrete inserted-edge predicate
+  supported only at fresh event positions and an induced embedding
+  reflecting every original edge AND nonedge.
+- `DiaryOnePassRawEdgeShapes`: strictly increasing support for every
+  target edge under original V/E, declared new split incidences,
+  and exact preservation/reflection of old role marker edges.
+- `DiaryOnePassLexRanking`: singleton children sorted by decreasing
+  binary source-type rank, with the least normal child (or terminal
+  child if present) serving as default. This is the required event
+  ordering rule; the correspondence to final target V3 still needs
+  the global finite-cut transport proof.
+
+**Pending and not yet CI-verified:** `DiaryOnePassRealisedClassSeparation`
+(PR #562), which connects the selected original event-class bits
+to equality of realised same-parent singleton/full-pair germs.
+
+The target is currently a **raw candidate**, not a verified diary.
+Precise reflection of target event-class bits, global two-way
+finite-cut type transport, output V1/V2/V3 and S1/S2, remaining
+role-specific E clauses, protected mixed meets, finite-diary
+transfer and flip absorption are still separate obligations.
 
 The manuscript note also gives a protected ordered-sum amalgam
 for finite families of diaries, conditional on the relative
