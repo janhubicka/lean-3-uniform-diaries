@@ -1172,3 +1172,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.twoCode_eq_iff_sameTwoType
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_realised_oneCodes
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_realised_twoCodes
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RolePrediary.positive_oneSplit_early_leaf_lex_agrees
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RolePrediary.positive_twoSplit_early_leaf_lex_agrees
