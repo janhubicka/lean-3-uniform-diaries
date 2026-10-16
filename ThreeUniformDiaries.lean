@@ -432,3 +432,4 @@ import ThreeUniformDiaries.DiaryOnePassExactFreshRoles
 import ThreeUniformDiaries.DiaryOnePassPermittedEdges
 import ThreeUniformDiaries.DiaryOnePassIndexCoverage
 import ThreeUniformDiaries.DiaryOnePassRoleCoverage
+import ThreeUniformDiaries.DiaryOnePassUniformBound
