@@ -1277,3 +1277,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePassRawTarget_permitted_edge
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_target_index_covered
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_event_label_at_own_cut
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.onePassRawTarget_role_valid
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.onePassRawTarget_role_and_E
