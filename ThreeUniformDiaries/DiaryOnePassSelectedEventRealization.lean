@@ -59,7 +59,9 @@ theorem selected_oneGerm_occurs_as_event
     ∃ i : Fin (onePassBlock H m).length,
       onePassEventAt H m i = BlockEvent.singleton m g := by
   classical
-  have hm3 : ¬ m < 3 := by omega
+  have hm3 : ¬ m < 3 := by
+    have hrole := hm.1
+    omega
   have hlist : g ∈ (selectedOneGerms H m).toList :=
     Finset.mem_toList.mpr hg
   have hsorted : g ∈ sortOneGermsDescending m
