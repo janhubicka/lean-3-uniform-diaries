@@ -420,3 +420,4 @@ import ThreeUniformDiaries.DiaryOnePassStaticCodeTransport
 import ThreeUniformDiaries.DiaryOnePassOriginalSplitWitness
 import ThreeUniformDiaries.DiaryOnePassGermSignatures
 import ThreeUniformDiaries.DiaryOnePassFiniteSchedule
+import ThreeUniformDiaries.DiaryOnePassConcreteCarrier
