@@ -430,3 +430,4 @@ import ThreeUniformDiaries.DiaryOnePassDelayedPairGermFactor
 import ThreeUniformDiaries.DiaryOnePassTargetEventPartition
 import ThreeUniformDiaries.DiaryOnePassExactFreshRoles
 import ThreeUniformDiaries.DiaryOnePassPermittedEdges
+import ThreeUniformDiaries.DiaryOnePassIndexCoverage
