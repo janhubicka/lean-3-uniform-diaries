@@ -16,7 +16,7 @@ old types under comparison, all old type-agreement
 through m transfers to the shifted cut shift(m).
 
 These are conditional but fully general transport lemmas:
-concrete 1-/2-class insertions will discharge the listed
+concrete one- and two-class insertions will discharge the listed
 fresh-test hypotheses. No pre-diary or meet hypothesis is
 assumed here.
 -/
@@ -89,15 +89,15 @@ theorem oneTypeBelow_shift_of_fresh_agreement
   calc
     (H.insertWithNewEdges ell extra).edge x y (insertShift ell u) ↔
       H.edge (eraseInserted ell x) (eraseInserted ell y) u := by
-        rw [← ex, ← ey]
-        exact (H.insertWithNewEdges_edge_iff_image ell extra
-          (eraseInserted ell x) (eraseInserted ell y) u)
+        simpa only [ex, ey] using
+          (H.insertWithNewEdges_edge_iff_image ell extra
+            (eraseInserted ell x) (eraseInserted ell y) u)
     _ ↔ H.edge (eraseInserted ell x) (eraseInserted ell y) v := hCmp
     _ ↔ (H.insertWithNewEdges ell extra).edge x y
           (insertShift ell v) := by
-        rw [← ex, ← ey]
-        exact (H.insertWithNewEdges_edge_iff_image ell extra
-          (eraseInserted ell x) (eraseInserted ell y) v).symm
+        simpa only [ex, ey] using
+          (H.insertWithNewEdges_edge_iff_image ell extra
+            (eraseInserted ell x) (eraseInserted ell y) v).symm
 
 /-- Auxiliary pair agreement is transported through a shift
 if the ONE new auxiliary-coordinate test at ell agrees. -/
@@ -128,15 +128,15 @@ theorem auxTypeBelow_shift_of_fresh_agreement
     (H.insertWithNewEdges ell extra).edge x
        (insertShift ell u₀) (insertShift ell u₁) ↔
       H.edge (eraseInserted ell x) u₀ u₁ := by
-        rw [← ex]
-        exact (H.insertWithNewEdges_edge_iff_image ell extra
-          (eraseInserted ell x) u₀ u₁)
+        simpa only [ex] using
+          (H.insertWithNewEdges_edge_iff_image ell extra
+            (eraseInserted ell x) u₀ u₁)
     _ ↔ H.edge (eraseInserted ell x) v₀ v₁ := hCmp
     _ ↔ (H.insertWithNewEdges ell extra).edge x
           (insertShift ell v₀) (insertShift ell v₁) := by
-        rw [← ex]
-        exact (H.insertWithNewEdges_edge_iff_image ell extra
-          (eraseInserted ell x) v₀ v₁).symm
+        simpa only [ex] using
+          (H.insertWithNewEdges_edge_iff_image ell extra
+            (eraseInserted ell x) v₀ v₁).symm
 
 /-- The full ordered-pair type is transported by two
 fresh singleton tests and one fresh auxiliary test. -/
