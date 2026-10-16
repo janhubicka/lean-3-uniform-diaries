@@ -27,6 +27,7 @@ variable {H : Ordered3Graph Nat} (P : RolePrediary H)
 same Devlin orientation towards any two positive incident leaves.
 This follows from V1 singleton-type coherence and V3. -/
 theorem positive_oneSplit_early_leaf_lex_agrees
+    (P : RolePrediary H)
     (m u a b : Nat)
     (hm : IsOneSplit H m)
     (hu : IsLeaf H u) (ha : IsLeaf H a) (hb : IsLeaf H b)
@@ -49,6 +50,7 @@ any earlier leaf sees the same lex ordering toward each
 corresponding coordinate. Reversing one of the cross-marker
 bits would violate V2 even when all branch edges are induced. -/
 theorem positive_twoSplit_early_leaf_lex_agrees
+    (P : RolePrediary H)
     (m u a b c d : Nat)
     (hm : IsTwoSplit H m)
     (hu : IsLeaf H u)
