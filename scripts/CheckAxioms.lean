@@ -1329,3 +1329,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePassBlock_oneType_unchanged_of_not_leaf
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_oneType_originalCut_succ
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_global_oneType_transport
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_leafBlock_twoType_refinement_iff
