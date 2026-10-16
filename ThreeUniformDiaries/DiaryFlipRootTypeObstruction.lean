@@ -76,14 +76,24 @@ theorem no_common_twoSplit_of_opposite_positive_markers
   have hPosInG : H.edge (f m) (g a) (g b) := by
     rw [hSameSplit]
     exact (g.edge_iff hma hab).mp hPosG
+  have hOneA : 1 < a := by
+    have hmOne : 1 < m := by
+      by_contra hmNot
+      have hmSmall : m ≤ 1 := Nat.le_of_not_gt hmNot
+      have hImageLe : f m ≤ f 1 :=
+        f.strictMono.monotone hmSmall
+      have hImageLarge : 3 ≤ f m := hSplit.1
+      rw [hOneF] at hImageLe
+      omega
+    exact lt_trans hmOne hma
   have hMarkerInF : H.edge 1 (f a) (f b) := by
-    have h := (f.edge_iff (by omega : 1 < a) hab).mp hMarkerF
+    have h := (f.edge_iff hOneA hab).mp hMarkerF
     simpa only [hOneF] using h
   have hMarkerNotG : ¬ H.edge 1 (g a) (g b) := by
     intro h
     have h' : H.edge (g 1) (g a) (g b) := by
       simpa only [hOneG] using h
-    exact hMarkerG ((g.edge_iff (by omega : 1 < a) hab).mpr h')
+    exact hMarkerG ((g.edge_iff hOneA hab).mpr h')
   have hSameMarker :=
     P.positive_pair_marker_one_agrees
       (f m) (f a) (f b) (g a) (g b)
