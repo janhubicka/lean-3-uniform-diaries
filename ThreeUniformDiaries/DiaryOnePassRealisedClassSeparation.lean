@@ -40,7 +40,7 @@ theorem realised_children_detected_by_selected_bits
   by_cases hgselected :
       g ∈ members.filter (fun c => some c ≠ default (parent c))
   · have h := (hbits g hgselected).mp rfl
-    exact hneq h
+    exact hneq h.symm
   · have hgdefault : some g = default (parent g) := by
       by_contra hd
       exact hgselected (Finset.mem_filter.mpr ⟨hg, hd⟩)
