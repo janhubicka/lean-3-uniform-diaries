@@ -45,6 +45,7 @@ variable {H : Ordered3Graph Nat} (D : RoleDiary H)
 /-- If the full pair meet is capped at the lesser minimum, S1
 forces BOTH first components to be the same leaf. -/
 theorem capped_pair_first_components_equal
+    (D : RoleDiary H)
     (a b c d : Nat) (hab : a < b) (hcd : c < d)
     (ha : IsLeaf H a) (hb : IsLeaf H b)
     (hc : IsLeaf H c) (hd : IsLeaf H d)
@@ -69,6 +70,7 @@ theorem capped_pair_first_components_equal
 /-- This is the manuscript's EXACT S2 statement, recovered
 without changing the library's existing compact API. -/
 theorem pair_meets_exact_manuscript
+    (D : RoleDiary H)
     (a b c d : Nat) (hab : a < b) (hcd : c < d)
     (ha : IsLeaf H a) (hb : IsLeaf H b)
     (hc : IsLeaf H c) (hd : IsLeaf H d) :
@@ -87,6 +89,7 @@ theorem pair_meets_exact_manuscript
 /-- The three S2 alternatives are mutually exclusive, as
 required by the manuscript's phrase 'precisely one'. -/
 theorem pair_meets_cases_disjoint
+    (D : RoleDiary H)
     (a b c d : Nat) (ha : IsLeaf H a) :
     ¬ (H.twoMeetLevel a b c d = 1 ∧
        (H.twoMeetLevel a b c d = a ∧ a = c)) ∧
