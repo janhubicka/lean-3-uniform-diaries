@@ -1,3 +1,4 @@
+import ThreeUniformDiaries.DiaryOnePassTransportBase
 import ThreeUniformDiaries.DiaryOnePassNonLeafSingletonBlocks
 import ThreeUniformDiaries.DiaryOnePassOldLeafColumnStability
 import ThreeUniformDiaries.DiaryOnePassLeafBlockTransport
