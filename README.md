@@ -209,15 +209,38 @@ The **concrete carrier stage** is also now checked (merged #558–#561):
   ordering rule; the correspondence to final target V3 still needs
   the global finite-cut transport proof.
 
-**Pending and not yet CI-verified:** `DiaryOnePassRealisedClassSeparation`
-(PR #562), which connects the selected original event-class bits
-to equality of realised same-parent singleton/full-pair germs.
+The **local two-way target transport ingredients** are now also
+CI-verified (merged #562, #564–#567):
 
-The target is currently a **raw candidate**, not a verified diary.
-Precise reflection of target event-class bits, global two-way
-finite-cut type transport, output V1/V2/V3 and S1/S2, remaining
-role-specific E clauses, protected mixed meets, finite-diary
-transfer and flip absorption are still separate obligations.
+- `DiaryOnePassRealisedClassSeparation` (#562): a family of selected
+  original germ class tests distinguishes precisely the realised
+  normal/terminal singleton/full-pair children within each parent.
+- `DiaryOnePassEventReflection` (#564): event positions are globally
+  unambiguous; an actual new singleton/pair event edge exists **iff**
+  the original leaf or ordered leaf pair belongs to its selected
+  full source germ class. No off-block or wrong-arity edge interferes.
+- `DiaryOnePassSelectedEventRealization` (#565): every selected source
+  singleton/pair germ is represented by a real vertex in the ordered
+  finite block. Sorting singleton children loses no events.
+- `DiaryOnePassDelayedPairGermFactor` (#566): when an earlier pair
+  event is later tested as a singleton coordinate at original leaf
+  q, its actual edge incidence is constant on every original
+  singleton type class through q+1, including terminal caps.
+- `DiaryOnePassTargetEventPartition` (#567): for source leaves or
+  ordered leaf pairs with the same original parent type, agreement
+  of their **actual target event edges** is equivalent to equality
+  of their normal/terminal source refinement germs.
+
+**Pending CI:** `DiaryOnePassExactFreshRoles` (PR #568) checks that
+every fresh singleton/2-type event has exactly its prescribed target
+marker role, excluding the opposite marker. It is not counted as
+verified here.
+
+The target is still a **raw candidate**, not a verified diary.
+The global two-way finite-cut induction across successive ORIGINAL
+blocks has not been assembled. Target V1/V2/V3 and S1/S2, remaining
+E-role conditions, protected mixed meets, finite-diary transfer and
+flip absorption are still substantial, separate obligations.
 
 The manuscript note also gives a protected ordered-sum amalgam
 for finite families of diaries, conditional on the relative
