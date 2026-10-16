@@ -31,6 +31,7 @@ theorem oneSplit_separates_old_parent_children
       m < a ∧ m < b ∧
       H.SameOneTypeBelow m a b ∧
       ¬ (H.edge 0 m a ↔ H.edge 0 m b) := by
+  classical
   obtain ⟨a, b, ha, hb, hma, hmb, hmeet⟩ :=
     P.one_split_witness m hm
   have hparent : H.SameOneTypeBelow m a b := by
@@ -60,6 +61,7 @@ theorem twoSplit_separates_old_parent_children
       m < a ∧ m < c ∧
       H.SameTwoTypeBelow m a b c d ∧
       ¬ (H.edge m a b ↔ H.edge m c d) := by
+  classical
   obtain ⟨a, b, c, d, hab, hcd,
     ha, hb, hc, hd, hma, hmc, hmeet⟩ :=
     P.two_split_witness m hm
