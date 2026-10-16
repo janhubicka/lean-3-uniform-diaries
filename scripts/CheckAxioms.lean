@@ -1322,3 +1322,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.terminalTwoGerm_eq_iff_nextTwoType
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.twoGerm_eq_iff_nextTwoType_of_source_leaf
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.twoGerm_eq_iff_nextTwoCode_of_source_leaf
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_leafBlock_oneType_transfer
