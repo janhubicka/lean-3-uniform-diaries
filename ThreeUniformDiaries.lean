@@ -435,3 +435,4 @@ import ThreeUniformDiaries.DiaryOnePassRoleCoverage
 import ThreeUniformDiaries.DiaryOnePassUniformBound
 import ThreeUniformDiaries.DiaryOnePassVertexEnumeration
 import ThreeUniformDiaries.DiaryOnePassTransportBase
+import ThreeUniformDiaries.DiaryOnePassFreshSuccessorCuts
