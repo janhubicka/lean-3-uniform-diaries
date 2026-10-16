@@ -409,3 +409,4 @@ import ThreeUniformDiaries.DiaryPrediaryShiftedTypeTransfer
 import ThreeUniformDiaries.DiaryOnePassTerminalGerms
 import ThreeUniformDiaries.DiaryFlipRootTypeObstruction
 import ThreeUniformDiaries.DiaryOnePassFinitePeeling
+import ThreeUniformDiaries.DiaryFlipTerminalSupport
