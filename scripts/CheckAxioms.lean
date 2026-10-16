@@ -1190,3 +1190,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RolePrediary.twoSplit_no_middle
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RolePrediary.twoSplit_sameTwoType_succ_iff
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RolePrediary.twoSplit_positive_next_type
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.fixedFirstTwoCode_eq_of_nextOneCode
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.terminalTwoCode_eq_iff_nextOneCode
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.selectedFixedFirstPairCode_agrees
