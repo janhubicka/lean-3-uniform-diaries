@@ -169,6 +169,33 @@ identification conflict. A separate English one-pass finite-block
 pre-diary completion proof is recorded in the manuscript repository;
 the printed pre-diary lemma's universal old-type agreement clause
 is false, and the corrected theorem is not yet Lean-verified.
+
+The **verified local one-pass ingredients**, with complete Lean CI
+and strict axiom reports, now include:
+
+- `DiaryOnePassTerminalGerms`, `DiaryOnePassStaticCodeTransport`:
+  fixed-first-member full pair tests factor through the later
+  member's original next-cut singleton code; at the terminal cut
+  the correspondence is an equivalence.
+- `DiaryOnePassFinitePeeling`, `DiaryOnePassCodeEquivalence`,
+  `DiaryOnePassGermSignatures`: one-hot finite child separation,
+  exact correspondence of finite singleton/full-pair codes to
+  source types, finite realised normal/terminal germs (including
+  the unique terminal pair child per parent).
+- `DiaryPrediaryRoleNextCut`, `DiaryOnePassOriginalSplitWitness`:
+  source V/E-only old 1-/2-split successor-cut identities,
+  witness-based strict child separation, and their finite-code
+  statements. These theorems do not assume S1/S2 of an already
+  completed diary.
+- `DiaryExactS2Cap`, `DiaryOnePassNoRedundantEvents`: the exact
+  manuscript S2 alternative under S1 and the absence of
+  unnecessary events when the input is already a diary.
+
+These proofs do **not** yet produce the actual finite-block target
+relation or the required global two-way cut transport. Target
+V/E/S coherence, protected mixed meets, finite-diary transfer and
+flip absorption all remain separate proof obligations.
+
 The manuscript note also gives a protected ordered-sum amalgam
 for finite families of diaries, conditional on the relative
 completion proof, which addresses only the FIRST finite flip
