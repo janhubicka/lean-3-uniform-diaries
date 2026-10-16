@@ -1279,3 +1279,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_event_label_at_own_cut
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePassRawTarget_role_valid
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePassRawTarget_role_and_E
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.onePassBlockSize_le_finiteGermAlphabet
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.onePassOldImage_le_uniformPrefixBound
