@@ -1,4 +1,4 @@
-import ThreeUniformDiaries.DiaryOnePassGermSignatures
+import ThreeUniformDiaries.DiaryOnePassLexRanking
 import ThreeUniformDiaries.DiaryPrediaryDefinition
 
 /-!
@@ -11,9 +11,11 @@ and select every child except one default from each parent.
 
 A singleton terminal germ (when m is a leaf) is ALWAYS the default in
 its parent: it must have negative bits at every inserted 1-split.
-The other default choices are fixed but arbitrary at this stage.
-Thus this module is a concrete finite schedule, NOT the final
-lexicographically sorted schedule needed for V3.
+Without a terminal child, choose the lexicographically least normal
+child as default by its finite binary word rank. All other normal
+children are scheduled in DECREASING original child-rank order.
+The separate theorem connecting this order to the final Devlin V3
+comparison remains a global transport obligation.
 
 At a source 2-split no new pair events are added; at a source leaf
 new singleton events precede that original leaf. All new 2-split
@@ -65,16 +67,15 @@ noncomputable def twoGermFibre
   exact (realisedTwoGerms H m).filter (fun g => g.1 = parent)
 
 /-- The terminal singleton germ, if present in this parent, is
-the default negative child. Otherwise fix an arbitrary realised
-child as the default. The latter choice must eventually be refined
-to the lexicographically least normal child to prove V3. -/
+the default negative child. Otherwise choose the least normal
+child by the explicit binary rank of its next-cut source code. -/
 noncomputable def oneDefaultGerm
     (H : Ordered3Graph Nat) (m : Nat) (parent : OneCodeSpace m) :
     Option (OneGermSpace m) := by
   classical
   exact if oneGermCode H m m ∈ oneGermFibre H m parent
     then some (oneGermCode H m m)
-    else (oneGermFibre H m parent).toList.head?
+    else leastOneGermByRank m (oneGermFibre H m parent).toList
 
 /-- Pair children have an arbitrary fixed default. The pair-child
 order does not affect the old leaf lexicographic order. -/
@@ -116,7 +117,8 @@ noncomputable def onePassBlock
     (if IsTwoSplit H m then [] else
       (selectedTwoGerms H m).toList.map (BlockEvent.pair m)) ++
     (if IsLeaf H m then
-      (selectedOneGerms H m).toList.map (BlockEvent.singleton m)
+      (sortOneGermsDescending m
+        (selectedOneGerms H m).toList).map (BlockEvent.singleton m)
       else [])
 
 /-- Number of new event vertices before ORIGINAL m. -/
@@ -210,13 +212,6 @@ theorem onePassOldImage_strictMono
     (H : Ordered3Graph Nat) : onePassOldImage H 2 = 2 := by
   simp [onePassOldImage, onePassBefore, onePassBlockSize,
     Finset.sum_range_succ]
-
-/-- Every individual event block is finite by construction.
-This remains true for arbitrarily long countable inputs. -/
-theorem onePassBlock_locally_finite
-    (H : Ordered3Graph Nat) (m : Nat) :
-    ∃ k : Nat, (onePassBlock H m).length = k :=
-  ⟨onePassBlockSize H m, rfl⟩
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
