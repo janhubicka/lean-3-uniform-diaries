@@ -21,7 +21,7 @@ namespace ThreeUniformDiaries
 namespace DiaryLeafPriority
 namespace RolePrediary
 
-variable {H : Ordered3Graph Nat} (P : RolePrediary H)
+variable {H : Ordered3Graph Nat}
 
 /-- Every original leaf u preceding a positive 1-split sees the
 same Devlin orientation towards any two positive incident leaves.
