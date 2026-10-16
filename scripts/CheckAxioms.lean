@@ -1167,3 +1167,8 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.twoCode_eq_of_sameType
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.positive_oneSplit_code_unique
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.positive_twoSplit_code_unique
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.oneCode_eq_iff_sameOneType
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.auxCode_eq_iff_sameAuxType
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.twoCode_eq_iff_sameTwoType
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_realised_oneCodes
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_realised_twoCodes
