@@ -1157,6 +1157,9 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.OnePass.other_child_negative
 #print axioms ThreeUniformDiaries.OnePass.event_code_injective
 #print axioms ThreeUniformDiaries.OnePass.event_code_eq_iff
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.branchAmalgam_edge_last_iff_on_branch
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.branchAmalgam_edge_last_prefix_nodes
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.FlipFamily.branchAmalgam_no_offpath_edge_at_terminal
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_oneCodeSpace
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_twoCodeSpace
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.oneCode_eq_of_sameType
