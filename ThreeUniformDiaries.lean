@@ -433,3 +433,4 @@ import ThreeUniformDiaries.DiaryOnePassPermittedEdges
 import ThreeUniformDiaries.DiaryOnePassIndexCoverage
 import ThreeUniformDiaries.DiaryOnePassRoleCoverage
 import ThreeUniformDiaries.DiaryOnePassUniformBound
+import ThreeUniformDiaries.DiaryOnePassVertexEnumeration
