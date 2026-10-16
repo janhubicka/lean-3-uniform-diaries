@@ -32,6 +32,7 @@ variable {H : Ordered3Graph Nat} (D : RoleDiary H)
 /-- The terminal leaf m and any strictly later leaf cannot
 have the same original singleton type over cut m. -/
 theorem terminal_leaf_not_normal_singleton_parent
+    (D : RoleDiary H)
     (m u : Nat) (hm : IsLeaf H m) (hu : IsLeaf H u)
     (hmu : m < u) :
     ¬ H.SameOneTypeBelow m m u := by
@@ -52,6 +53,7 @@ theorem terminal_leaf_not_normal_singleton_parent
 /-- Two normal children in one old singleton parent cannot
 be distinguished at a level whose source role is leaf. -/
 theorem leaf_no_normal_singleton_refinement
+    (D : RoleDiary H)
     (m u v : Nat) (hm : IsLeaf H m)
     (hu : IsLeaf H u) (hv : IsLeaf H v)
     (hmu : m < u) (hmv : m < v)
@@ -82,6 +84,7 @@ theorem leaf_no_normal_singleton_refinement
 old full pair parent as a normal pair (a,b), a>m:
 their first singleton components are already different. -/
 theorem terminal_pair_not_normal_pair_parent
+    (D : RoleDiary H)
     (m u a b : Nat)
     (hm : IsLeaf H m) (ha : IsLeaf H a)
     (hma : m < a) :
@@ -95,6 +98,7 @@ cannot branch at any original level m>=3 that is NOT
 a 2-split. Otherwise their exact full meet would be m,
 violating S2 (neither marker 1, common leaf cap, nor a 2-split). -/
 theorem no_normal_pair_refinement_without_twoSplit
+    (D : RoleDiary H)
     (m a b c d : Nat) (hm3 : 3 ≤ m)
     (hNotTwo : ¬ IsTwoSplit H m)
     (hab : a < b) (hcd : c < d)
@@ -132,6 +136,7 @@ theorem no_normal_pair_refinement_without_twoSplit
 /-- Application to an old leaf level (both new event
 families would have been redundant in a complete diary). -/
 theorem leaf_no_normal_pair_refinement
+    (D : RoleDiary H)
     (m a b c d : Nat) (hm : IsLeaf H m)
     (hab : a < b) (hcd : c < d)
     (hma : m < a) (hmc : m < c)
@@ -147,6 +152,7 @@ theorem leaf_no_normal_pair_refinement
 /-- Application to an old 1-split: there cannot be a
 new 2-split event in its block when the source is a diary. -/
 theorem oneSplit_no_normal_pair_refinement
+    (D : RoleDiary H)
     (m a b c d : Nat) (hm : IsOneSplit H m)
     (hab : a < b) (hcd : c < d)
     (hma : m < a) (hmc : m < c)
