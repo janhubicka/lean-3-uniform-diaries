@@ -147,20 +147,40 @@ additional verified results on `main`. Their scope is important:
   to this abstract code and a strictly progressing finite
   original-prefix measure.
 
-**Not yet proved:** the relational branch amalgam is *not* automatically
-a pre-diary. Incomparable leaves lack cross-branch Devlin marker edges,
-so a completion rule must be supplied and audited for V1/V2,
-the recovered lexicographic order, and preservation of protected
-leaf meets. The **pairwise** missing-marker rule is being checked
-separately (PR #535), and old 1-/2-type class-indicator factorisation
-is being checked separately (PR #534); neither implies the full
-pre-diary axioms. The finite-diary version of
-the flip-tree argument, pre-diary completion/termination, flip
-absorption (including its converse formulation), the original
-generic cut-zero orientation lemma as worded, and final diary
-unavoidability remain pending. No successful build of one of the
-conditional components should be cited as verification of those
-stronger statements.
+**An additional obstruction to the raw flip tree:** the issue is
+not only missing Devlin edges between incomparable leaves.
+`DiaryFlipRootTypeObstruction` proves the V2 fact that positively
+incident leaf pairs at a shared 2-split must agree on their
+marker-1 auxiliary bit. The manuscript note
+[`flip_root_obstruction_and_ordered_sum.tex`](https://github.com/janhubicka/3-uniform-diaries/blob/main/notes/flip_root_obstruction_and_ordered_sum.tex)
+exhibits two explicit genuine nine-vertex flips with a shared
+chronological prefix through source level 3 but OPPOSITE marker-1
+bits on pairs positive at that source 2-split. Consequently no
+addition of off-branch edges can make their induced
+chronological prefix union a pre-diary without changing its
+split-node identifications. The root must already encode some
+future positive-type information.
+
+The verified cross-branch marker-complement interface
+(`DiaryFlipCrossBranchMarkers`, merged #535) and old-type
+class-indicator interface (`DiaryPrediaryClassIndicators`,
+merged #534) remain useful, but they cannot repair this V2
+identification conflict. A separate English one-pass finite-block
+pre-diary completion proof is recorded in the manuscript repository;
+the printed pre-diary lemma's universal old-type agreement clause
+is false, and the corrected theorem is not yet Lean-verified.
+The manuscript note also gives a protected ordered-sum amalgam
+for finite families of diaries, conditional on the relative
+completion proof, which addresses only the FIRST finite flip
+joint-embedding direction.
+
+**Still pending:** a redesigned flip-absorbing construction satisfying
+the EVERY-flip-of-the-target direction, compatible protected
+cross-branch structure, a formal finite-diary interface,
+the corrected one-pass completion theorem, the original generic
+cut-zero orientation lemma as worded, and final diary
+unavoidability. No component should be cited as validation
+of these stronger claims.
 
 ## Removed historical adapters
 
