@@ -27,7 +27,7 @@ namespace ThreeUniformDiaries
 namespace DiaryLeafPriority
 namespace RoleDiary
 
-variable {H : Ordered3Graph Nat} (D : RoleDiary H)
+variable {H : Ordered3Graph Nat}
 
 /-- The terminal leaf m and any strictly later leaf cannot
 have the same original singleton type over cut m. -/
