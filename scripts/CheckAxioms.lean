@@ -1172,3 +1172,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.twoCode_eq_iff_sameTwoType
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_realised_oneCodes
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_realised_twoCodes
+#print axioms ThreeUniformDiaries.Ordered3Graph.twoMeetLevel_le_first_oneMeetLevel
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.capped_pair_first_components_equal
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.pair_meets_exact_manuscript
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.pair_meets_cases_disjoint
