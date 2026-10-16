@@ -27,7 +27,7 @@ class in each parent: the default is detected by its all-zero
 selected-class vector. This is a reusable statement independent
 of any hypergraph or ordering of event positions. -/
 theorem realised_children_detected_by_selected_bits
-    {α β : Type*}
+    {α β : Type*} [DecidableEq α]
     (members : Finset α) (parent : α → β)
     (default : β → Option α)
     (g h : α) (hg : g ∈ members) (hh : h ∈ members)
