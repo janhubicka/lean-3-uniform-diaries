@@ -60,7 +60,8 @@ theorem onePassRawTarget_twoSplit_no_middle
   intro he
   rcases onePassRawTarget_permitted_edge P z m u he with
       hRole | hSplit | hTwo | hDevlin | hNormal
-  · rcases hRole.2.1 with h | h <;> omega
+  · have h3 := hm.1
+    rcases hRole.2.1 with h | h <;> omega
   · exact hNotOne hSplit.2.1
   · exact hNotLeaf hTwo.2.1
   · exact hNotLeaf hDevlin.2.1
@@ -78,7 +79,7 @@ theorem onePassRawTarget_oneSplit_sameOneType_succ_iff
   rw [(onePassRawTarget H).sameOneTypeBelow_succ_iff m u v]
   constructor
   · rintro ⟨hBefore,hColumn⟩
-    have h0 : 0 < m := by omega
+    have h0 : 0 < m := by have h3 := hm.1; omega
     exact ⟨hBefore,hColumn 0 h0⟩
   · rintro ⟨hBefore,hBit⟩
     constructor
