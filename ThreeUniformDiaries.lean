@@ -421,3 +421,4 @@ import ThreeUniformDiaries.DiaryOnePassOriginalSplitWitness
 import ThreeUniformDiaries.DiaryOnePassGermSignatures
 import ThreeUniformDiaries.DiaryOnePassFiniteSchedule
 import ThreeUniformDiaries.DiaryOnePassConcreteCarrier
+import ThreeUniformDiaries.DiaryOnePassRawEdgeShapes
