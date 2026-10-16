@@ -1157,3 +1157,10 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.OnePass.other_child_negative
 #print axioms ThreeUniformDiaries.OnePass.event_code_injective
 #print axioms ThreeUniformDiaries.OnePass.event_code_eq_iff
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_oneCodeSpace
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_twoCodeSpace
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.oneCode_eq_of_sameType
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.auxCode_eq_of_sameType
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.twoCode_eq_of_sameType
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.positive_oneSplit_code_unique
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.positive_twoSplit_code_unique
