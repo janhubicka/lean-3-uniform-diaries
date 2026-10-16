@@ -1150,6 +1150,8 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.fixed_first_pair_type_of_one_type_succ
 #print axioms ThreeUniformDiaries.Ordered3Graph.terminal_pair_type_implies_next_singleton
 #print axioms ThreeUniformDiaries.Ordered3Graph.terminal_pair_type_iff_next_singleton
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RolePrediary.positive_pair_marker_one_agrees
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RolePrediary.no_common_twoSplit_of_opposite_positive_markers
 #print axioms ThreeUniformDiaries.OnePass.default_all_zero
 #print axioms ThreeUniformDiaries.OnePass.named_child_positive
 #print axioms ThreeUniformDiaries.OnePass.other_child_negative
