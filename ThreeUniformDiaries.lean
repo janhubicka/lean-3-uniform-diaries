@@ -412,4 +412,5 @@ import ThreeUniformDiaries.DiaryOnePassFinitePeeling
 import ThreeUniformDiaries.DiaryFlipTerminalSupport
 import ThreeUniformDiaries.DiaryFlipPositiveTypeCodes
 import ThreeUniformDiaries.DiaryOnePassCodeEquivalence
+import ThreeUniformDiaries.DiaryFlipEarlyLeafOrientation
 import ThreeUniformDiaries.DiaryExactS2Cap
