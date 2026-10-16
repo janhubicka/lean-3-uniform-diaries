@@ -418,3 +418,4 @@ import ThreeUniformDiaries.DiaryOnePassNoRedundantEvents
 import ThreeUniformDiaries.DiaryPrediaryRoleNextCut
 import ThreeUniformDiaries.DiaryOnePassStaticCodeTransport
 import ThreeUniformDiaries.DiaryOnePassOriginalSplitWitness
+import ThreeUniformDiaries.DiaryOnePassGermSignatures
