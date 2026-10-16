@@ -1139,3 +1139,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.insertTwoClass_induced
 #print axioms ThreeUniformDiaries.Ordered3Graph.insertTwoClass_oldLeaf_iff
 #print axioms ThreeUniformDiaries.Ordered3Graph.insertTwoClass_edge_iff
+#print axioms ThreeUniformDiaries.Ordered3Graph.insertOneClass_new_oneSplit_coherent
+#print axioms ThreeUniformDiaries.Ordered3Graph.insertTwoClass_new_twoSplit_coherent
