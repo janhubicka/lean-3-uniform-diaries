@@ -99,8 +99,7 @@ theorem onePassRawTarget_singleton_incidence_iff
           have hgg : g' = g := by
             have heq : BlockEvent.singleton m g' =
                 BlockEvent.singleton m g := hget'.symm.trans hget
-            injection heq with he
-            exact he
+            injection heq
           have huu : u = u' :=
             (onePassOldImage_strictMono H).injective hz
           subst u'
@@ -157,8 +156,7 @@ theorem onePassRawTarget_pair_incidence_iff
           have hgg : g' = g := by
             have heq : BlockEvent.pair m g' =
                 BlockEvent.pair m g := hget'.symm.trans hget
-            injection heq with he
-            exact he
+            injection heq
           have huu : u = u' :=
             (onePassOldImage_strictMono H).injective hy
           have hvv : v = v' :=
