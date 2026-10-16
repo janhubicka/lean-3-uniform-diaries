@@ -431,3 +431,4 @@ import ThreeUniformDiaries.DiaryOnePassTargetEventPartition
 import ThreeUniformDiaries.DiaryOnePassExactFreshRoles
 import ThreeUniformDiaries.DiaryOnePassPermittedEdges
 import ThreeUniformDiaries.DiaryOnePassIndexCoverage
+import ThreeUniformDiaries.DiaryOnePassRoleCoverage
