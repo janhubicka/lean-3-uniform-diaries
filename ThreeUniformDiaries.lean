@@ -415,4 +415,5 @@ import ThreeUniformDiaries.DiaryOnePassCodeEquivalence
 import ThreeUniformDiaries.DiaryFlipEarlyLeafOrientation
 import ThreeUniformDiaries.DiaryExactS2Cap
 import ThreeUniformDiaries.DiaryOnePassNoRedundantEvents
+import ThreeUniformDiaries.DiaryPrediaryRoleNextCut
 import ThreeUniformDiaries.DiaryOnePassStaticCodeTransport
