@@ -49,7 +49,7 @@ noncomputable def auxCode
 
 noncomputable def twoCode
     (H : Ordered3Graph Nat) (m u v : Nat) : TwoCodeSpace m :=
-  (H.oneCode m u, (H.oneCode m v, H.auxCode m u v))
+  (oneCode H m u, (oneCode H m v, auxCode H m u v))
 
 /-- The two finite code spaces really are finite at every source
 level, even for a countably infinite family of flip branches. -/
@@ -64,7 +64,7 @@ theorem finite_twoCodeSpace (m : Nat) :
 theorem oneCode_eq_of_sameType
     (H : Ordered3Graph Nat) (m u v : Nat)
     (h : H.SameOneTypeBelow m u v) :
-    H.oneCode m u = H.oneCode m v := by
+    oneCode H m u = oneCode H m v := by
   classical
   funext a b
   by_cases hab : a.val < b.val
@@ -75,7 +75,7 @@ theorem oneCode_eq_of_sameType
 theorem auxCode_eq_of_sameType
     (H : Ordered3Graph Nat) (m u₀ u₁ v₀ v₁ : Nat)
     (h : H.SameAuxTypeBelow m u₀ u₁ v₀ v₁) :
-    H.auxCode m u₀ u₁ = H.auxCode m v₀ v₁ := by
+    auxCode H m u₀ u₁ = auxCode H m v₀ v₁ := by
   classical
   funext a
   have htest := h a.isLt
@@ -90,14 +90,14 @@ theorem auxCode_eq_of_sameType
 theorem twoCode_eq_of_sameType
     (H : Ordered3Graph Nat) (m u₀ u₁ v₀ v₁ : Nat)
     (h : H.SameTwoTypeBelow m u₀ u₁ v₀ v₁) :
-    H.twoCode m u₀ u₁ = H.twoCode m v₀ v₁ := by
+    twoCode H m u₀ u₁ = twoCode H m v₀ v₁ := by
   rcases h with ⟨hFirst, hSecond, hAux⟩
   dsimp only [twoCode]
   exact congrArg₂ (fun a b => (a,b))
-    (H.oneCode_eq_of_sameType m u₀ v₀ hFirst)
+    (oneCode_eq_of_sameType H m u₀ v₀ hFirst)
     (congrArg₂ (fun a b => (a,b))
-      (H.oneCode_eq_of_sameType m u₁ v₁ hSecond)
-      (H.auxCode_eq_of_sameType m u₀ u₁ v₀ v₁ hAux))
+      (oneCode_eq_of_sameType H m u₁ v₁ hSecond)
+      (auxCode_eq_of_sameType H m u₀ u₁ v₀ v₁ hAux))
 
 /-- V1 makes the code of positive singleton witnesses independent
 of which positively incident leaf was used to read it. -/
@@ -107,8 +107,8 @@ theorem positive_oneSplit_code_unique
     (hm : IsOneSplit H m)
     (ha : IsLeaf H a) (hb : IsLeaf H b)
     (hPosA : H.edge 0 m a) (hPosB : H.edge 0 m b) :
-    H.oneCode m a = H.oneCode m b := by
-  exact H.oneCode_eq_of_sameType m a b
+    oneCode H m a = oneCode H m b := by
+  exact oneCode_eq_of_sameType H m a b
     (P.one_split_coherent m a b hm ha hb hPosA hPosB)
 
 /-- V2 makes the entire full pair-code profile of positive
@@ -122,8 +122,8 @@ theorem positive_twoSplit_code_unique
     (ha : IsLeaf H a) (hb : IsLeaf H b)
     (hc : IsLeaf H c) (hd : IsLeaf H d)
     (hPosAB : H.edge m a b) (hPosCD : H.edge m c d) :
-    H.twoCode m a b = H.twoCode m c d := by
-  exact H.twoCode_eq_of_sameType m a b c d
+    twoCode H m a b = twoCode H m c d := by
+  exact twoCode_eq_of_sameType H m a b c d
     (P.two_split_coherent m a b c d hm hab hcd
       ha hb hc hd hPosAB hPosCD)
 
