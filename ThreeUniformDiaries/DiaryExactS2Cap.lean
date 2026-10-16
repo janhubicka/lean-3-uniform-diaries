@@ -40,7 +40,7 @@ end Ordered3Graph
 namespace DiaryLeafPriority
 namespace RoleDiary
 
-variable {H : Ordered3Graph Nat} (D : RoleDiary H)
+variable {H : Ordered3Graph Nat}
 
 /-- If the full pair meet is capped at the lesser minimum, S1
 forces BOTH first components to be the same leaf. -/
