@@ -471,3 +471,4 @@ import ThreeUniformDiaries.DiaryOnePassLexRankSort
 import ThreeUniformDiaries.DiaryOnePassTwoSelectedLex
 import ThreeUniformDiaries.DiarySourceLexAuxReduction
 import ThreeUniformDiaries.DiarySourceLexFirstAuxBit
+import ThreeUniformDiaries.DiaryOnePassBinaryRankFacts
