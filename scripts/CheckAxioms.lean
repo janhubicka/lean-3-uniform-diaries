@@ -1444,3 +1444,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_firstOneMeet_trueGerms_distinct
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_preserves_sourceLex
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePassRawTarget_complete_V3
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_leafBlock_sibling_meet_oneSplit
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.onePassRawTarget_singleton_meets
