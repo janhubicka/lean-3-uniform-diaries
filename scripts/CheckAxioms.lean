@@ -1445,3 +1445,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_preserves_sourceLex
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePassRawTarget_complete_V3
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePassRawTarget_isPrediary
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.twoMeet_eq_event_of_first_aux_disagreement
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_twoSelected_pair_meet_exact
