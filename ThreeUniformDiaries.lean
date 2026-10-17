@@ -460,3 +460,4 @@ import ThreeUniformDiaries.DiaryOnePassFullBlockNodup
 import ThreeUniformDiaries.DiaryOnePassFreshWitnessCones
 import ThreeUniformDiaries.DiaryOnePassDefaultPreEventAgreement
 import ThreeUniformDiaries.DiaryOnePassFreshOneMeet
+import ThreeUniformDiaries.DiaryOnePassTargetV1Witness
