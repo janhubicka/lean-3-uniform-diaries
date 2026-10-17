@@ -1399,3 +1399,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_oneMeetLevel_self
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_twoMeet_mixed_eq_aux
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_lexEarlier_iff_mixedAux_right
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_source_mixedAux_first_difference
