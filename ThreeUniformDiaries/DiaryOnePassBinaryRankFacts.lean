@@ -49,6 +49,7 @@ theorem onePass_binaryRank_append (xs ys : List Bool) :
       2 ^ ys.length * binaryWordRank xs + binaryWordRank ys := by
   simp only [binaryWordRank, List.foldl_append]
   rw [binaryWordRank_acc]
+  rfl
 
 /-- Any binary word numeral fits strictly below 2 to its length. -/
 theorem onePass_binaryRank_lt_pow (xs : List Bool) :
@@ -76,9 +77,9 @@ theorem onePass_binaryRank_zero_lt_one (xs ys : List Bool)
 /-- A common prefix never alters the direction of the first
 different bit in equal-length Boolean words. -/
 theorem onePass_binaryRank_prefix_zero_lt_one
-    (prefix xs ys : List Bool) (hlen : xs.length = ys.length) :
-    binaryWordRank (prefix ++ false :: xs) <
-      binaryWordRank (prefix ++ true :: ys) := by
+    (pref xs ys : List Bool) (hlen : xs.length = ys.length) :
+    binaryWordRank (pref ++ false :: xs) <
+      binaryWordRank (pref ++ true :: ys) := by
   rw [onePass_binaryRank_append, onePass_binaryRank_append]
   have hsame : (false :: xs).length = (true :: ys).length := by
     simpa using hlen
