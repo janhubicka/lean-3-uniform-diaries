@@ -78,7 +78,7 @@ theorem onePass_leafBlock_siblings_preserve_sourceLex
         subst j
         have hEqLabel : BlockEvent.singleton m g =
             BlockEvent.singleton m h := hi.symm.trans hj
-        injection hEqLabel with hEqG
+        injection hEqLabel with hEqM hEqG
         exact hNe hEqG
       by_cases hij : i.val < j.val
       · exact (onePass_twoSelected_preserves_sourceLex
