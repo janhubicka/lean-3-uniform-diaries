@@ -165,10 +165,11 @@ The verified cross-branch marker-complement interface
 (`DiaryFlipCrossBranchMarkers`, merged #535) and old-type
 class-indicator interface (`DiaryPrediaryClassIndicators`,
 merged #534) remain useful, but they cannot repair this V2
-identification conflict. A separate English one-pass finite-block
-pre-diary completion proof is recorded in the manuscript repository;
-the printed pre-diary lemma's universal old-type agreement clause
-is false, and the corrected theorem is not yet Lean-verified.
+identification conflict. The static one-pass finite-block construction is now Lean-verified to
+produce a full target `RoleDiary` from source V/E alone (merged #642).
+The printed pre-diary lemma's universal old-cut preservation clause
+remains false; the verified theorem does not establish its protected
+embedding conditions or every-flip absorption.
 
 The **verified local one-pass ingredients**, with complete Lean CI
 and strict axiom reports, now include:
@@ -286,16 +287,30 @@ The **V-axiom validation** has also advanced:
   target orientation for two actual selected sibling children.
   These are all merged with green Lean builds and strict axiom audits.
 
-The target remains a **raw candidate**, not a verified diary.
-The **global** source-to-target `LexEarlier` preservation theorem,
-the complete target V3 field, S1/S2, protected mixed meets,
-the finite-diary interface and the EVERY-FLIP-OF-TARGET absorption
-construction remain OPEN. In particular, numerical rank
-faithfulness/strictness on REALISED same-parent normal singleton
-  children (the rank ignores invalid coordinates of raw codes),
-least-default minimality, and the translation from ranks to
-actual first differing source and target events still require
-proof. See `docs/audits/one-pass-v3-source-lex-obligations-2026-10-17.md`.
+The **actual one-pass target is now a verified diary**, with green Lean
+CI and strict axiom audits (17 October 2026):
+
+- `DiaryOnePassGlobalV3` (#633) gives unconditional source leaf
+  `LexEarlier` preservation and both target V3 Devlin marker clauses.
+- `DiaryOnePassTargetPrediary` (#634) packages the complete target
+  V/E pre-diary axioms.
+- `DiaryOnePassTargetS1` (#638) and `DiaryOnePassCompleteS2` (#642)
+  establish target S1, target S2 and
+  `onePassRawTarget_isDiary : RolePrediary H → RoleDiary (onePassRawTarget H)`,
+  without source S1/S2.
+- `DiaryProtectedMixedEdgeShapes` (#643) eliminates positive
+  auxiliary incidences for pairs containing splits and late singleton
+  tests ending at splits. `DiaryProtectedMixedTypeTransport` (#644)
+  transports full two-type agreement at corresponding original block
+  cuts when mixed pairs have aligned coordinate roles.
+
+**Still open:** unconditional preservation of every protected mixed
+numerical meet, the finite-diary embedding interface and the
+EVERY-FLIP-OF-TARGET absorption construction. The role-aligned
+mixed-type theorem is not itself numerical meet preservation. The
+known V2 obstruction prevents repairing the chronological flip tree
+by adding cross-branch edges alone.
+
 The false printed universal old-cut preservation clause is
 NOT reinstated or validated.
 
