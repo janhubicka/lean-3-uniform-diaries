@@ -465,3 +465,4 @@ import ThreeUniformDiaries.DiaryOnePassPairEventOrder
 import ThreeUniformDiaries.DiaryOnePassDefaultPrePairEventAgreement
 import ThreeUniformDiaries.DiaryOnePassFreshTwoMeet
 import ThreeUniformDiaries.DiaryOnePassTargetV2Witness
+import ThreeUniformDiaries.DiaryOnePassV3Reduction
