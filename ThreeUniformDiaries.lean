@@ -490,3 +490,4 @@ import ThreeUniformDiaries.DiaryOnePassOldOneSplitLex
 import ThreeUniformDiaries.DiaryOnePassGlobalV3
 import ThreeUniformDiaries.DiaryOnePassTargetPrediary
 import ThreeUniformDiaries.DiaryOnePassTargetS2MarkerBase
+import ThreeUniformDiaries.DiaryOnePassTargetS2MarkerDichotomy
