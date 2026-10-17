@@ -1406,3 +1406,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_binaryRank_zero_lt_one
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_binaryRank_prefix_zero_lt_one
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.oneCodeBinaryRank_eq_word
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_binaryRank_lt_of_first_bit
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_binaryRank_gt_of_first_bit

@@ -472,3 +472,4 @@ import ThreeUniformDiaries.DiaryOnePassTwoSelectedLex
 import ThreeUniformDiaries.DiarySourceLexAuxReduction
 import ThreeUniformDiaries.DiarySourceLexFirstAuxBit
 import ThreeUniformDiaries.DiaryOnePassBinaryRankFacts
+import ThreeUniformDiaries.DiaryOnePassFirstBitRank
