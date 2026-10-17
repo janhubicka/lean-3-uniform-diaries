@@ -469,3 +469,4 @@ import ThreeUniformDiaries.DiaryOnePassV3Reduction
 import ThreeUniformDiaries.DiaryOnePassFreshLexOrientation
 import ThreeUniformDiaries.DiaryOnePassLexRankSort
 import ThreeUniformDiaries.DiaryOnePassTwoSelectedLex
+import ThreeUniformDiaries.DiarySourceLexAuxReduction
