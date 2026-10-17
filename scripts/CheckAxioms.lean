@@ -1462,3 +1462,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_source_leaf_cap_twoMeet_preserved
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePassRawTarget_pair_meets
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePassRawTarget_isDiary
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.IsDiarySplit.not_leaf
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RolePrediary.mixed_pair_no_positive_aux_edge
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RolePrediary.split_no_late_singleton_test
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RolePrediary.mixed_pairs_positive_aux_agree
