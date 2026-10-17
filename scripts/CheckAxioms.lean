@@ -1376,3 +1376,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.selectedTwoGerm_source_pair
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.realisedTwoGerm_source_pair
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.selectedTwoGerm_actual_positive_negative
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.onePassEventAt_singleton_selected
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_freshOne_default_agree_before
