@@ -96,8 +96,12 @@ theorem onePass_fresh_selected_default_preserves_sourceLex
   have hDefSource :
       oneDefaultGerm H m (oneCode H m u) =
         some (oneGermCode H m v) := by
-    rw [congrArg Prod.fst hug, hvh]
-    exact hdef
+    calc
+      oneDefaultGerm H m (oneCode H m u) =
+          oneDefaultGerm H m g.1 :=
+        congrArg (oneDefaultGerm H m) (congrArg Prod.fst hug)
+      _ = some h := hdef
+      _ = some (oneGermCode H m v) := congrArg Option.some hvh.symm
   have hNeSource :
       oneGermCode H m u ≠ oneGermCode H m v := by
     rw [hug,hvh]
