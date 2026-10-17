@@ -1424,3 +1424,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_foldlSmaller_le_member
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.leastOneGermByRank_le_of_mem
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.oneDefaultGerm_minimal_on_realised_fibre
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_twoSelected_preserves_sourceLex_of_rank
