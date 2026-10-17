@@ -81,12 +81,20 @@ Let `m` be the source first singleton divergence of `u,v`.
 
 ## Independent adversarial checks
 
-* **Rank collision:** do not infer that the rank map is injective
-  over *all* germs (parent types can differ, and terminal/rank
-  conventions matter). Prove strict rank distinction only for
-  different **same-parent** successors; binary words have equal
-  length there. An event list that merely has `Pairwise ≥` does
-  not settle ties.
+* **Rank collision (genuine counterexample to a tempting lemma):**
+  `OneCodeSpace m` is the FULL function space
+  `Fin m → Fin m → Bool`; `oneCodeBitWord` reads ONLY coordinates
+  `a<b`. Two raw codes differing just at an invalid coordinate
+  `a≥b` have different functions but the SAME binary rank.
+  Thus rank is **not injective on arbitrary OneCodeSpace**, even
+  for two synthetic normal germs with the same parent. Actual
+  `oneCode H k u` functions set all invalid coordinates to
+  `false`. Prove strict rank distinction only for different
+  **REALISED same-parent** successors (or for explicitly
+  normalised codes); their valid-bit words have equal length.
+  Parent types can differ and terminal ranks have a separate
+  convention. An event list that merely has `Pairwise ≥`
+  does not settle ties.
 * **Wrong cut:** the global transport theorems compare source cut
   `m` with the start `onePassBefore H m`, not the cut after
   `onePassOldImage H m`. The latter is false without extra
