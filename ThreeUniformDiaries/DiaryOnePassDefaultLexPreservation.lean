@@ -60,7 +60,7 @@ theorem onePass_selected_default_rank_strict
       H m v u hmv hmu hParent.symm (Ne.symm hneq)
   have hNotLexUV : ¬ LexEarlier H u v := by
     intro hlex
-    have hbad := hRankReverse.mp hlex
+    have hbad := hRankReverse.mpr hlex
     omega
   have hLexVU : LexEarlier H v u :=
     (lexEarlier_swap_complement H v u (Ne.symm hUVneq)).mpr hNotLexUV
