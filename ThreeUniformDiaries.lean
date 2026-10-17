@@ -497,3 +497,4 @@ import ThreeUniformDiaries.DiaryOnePassPairSiblingTwoSplit
 import ThreeUniformDiaries.DiaryOnePassTargetS2Cap
 import ThreeUniformDiaries.DiaryOnePassCompleteS2
 import ThreeUniformDiaries.DiaryProtectedMixedEdgeShapes
+import ThreeUniformDiaries.DiaryProtectedMixedTypeTransport
