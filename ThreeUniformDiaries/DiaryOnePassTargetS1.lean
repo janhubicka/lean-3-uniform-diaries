@@ -181,7 +181,14 @@ theorem onePassRawTarget_singleton_meets
           simpa only [he] using hOne
         exact hu.2.1 hSplitU.2.1
       omega
-    have hmv' : m < v := by omega
+    have hmv' : m < v := by
+      have hNotEq : m ≠ v := by
+        intro heq
+        have hSplitV : IsOneSplit H v := by
+          have he : H.oneMeetLevel u v = v := heq
+          simpa only [he] using hOne
+        exact hv.2.1 hSplitV.2.1
+      omega
     have hMeetTarget := onePass_oldOneSplit_meet_exact
       P m u v hOne hu hv hmu' hmv' rfl
     rw [hMeetTarget]
