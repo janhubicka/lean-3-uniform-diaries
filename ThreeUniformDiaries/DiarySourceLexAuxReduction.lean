@@ -27,6 +27,7 @@ its own vertex, so the capped singleton meet is that vertex. -/
 theorem onePass_oneMeetLevel_self
     (G : Ordered3Graph Nat) (m : Nat) :
     G.oneMeetLevel m m = m := by
+  classical
   apply Nat.le_antisymm
   · simpa using G.oneMeetLevel_le_min m m
   · apply Nat.le_findGreatest (by simp)
