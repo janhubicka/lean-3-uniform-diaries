@@ -78,7 +78,8 @@ theorem onePass_leafBlock_siblings_preserve_sourceLex
         subst j
         have hEqLabel : BlockEvent.singleton m g =
             BlockEvent.singleton m h := hi.symm.trans hj
-        exact hNe (by cases hEqLabel; rfl)
+        injection hEqLabel with hEqG
+        exact hNe hEqG
       by_cases hij : i.val < j.val
       · exact (onePass_twoSelected_preserves_sourceLex
           P m i j g h hi hj hij hParentG u v
@@ -94,8 +95,11 @@ theorem onePass_leafBlock_siblings_preserve_sourceLex
     · have hDefault : oneDefaultGerm H m h.1 = some h :=
         onePass_realOneGerm_not_selected_is_default
           H m h hhReal hhSelected
+      have hDefaultAtG : oneDefaultGerm H m g.1 = some h := by
+        rw [hParentG]
+        exact hDefault
       exact (onePass_fresh_selected_default_preserves_sourceLex
-        P m i g h hi hDefault hParentG.symm
+        P m i g h hi hDefaultAtG hParentG.symm
         u v hu hv hmu hmv rfl rfl hNe.symm).1
   · have hDefault : oneDefaultGerm H m g.1 = some g :=
       onePass_realOneGerm_not_selected_is_default
@@ -112,8 +116,11 @@ theorem onePass_leafBlock_siblings_preserve_sourceLex
       exact hNe (Option.some.inj hEq).symm
     obtain ⟨j,hj⟩ :=
       selected_oneGerm_occurs_as_event H m hm h hhSelected
+    have hDefaultAtH : oneDefaultGerm H m h.1 = some g := by
+      rw [← hParentG]
+      exact hDefault
     exact (onePass_fresh_selected_default_preserves_sourceLex
-      P m j h g hj hDefault hParentG
+      P m j h g hj hDefaultAtH hParentG
       v u hv hu hmv hmu rfl rfl hNe).2
 
 end DiaryLeafPriority
