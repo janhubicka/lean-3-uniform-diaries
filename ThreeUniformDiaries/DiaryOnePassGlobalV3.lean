@@ -92,7 +92,8 @@ theorem onePass_preserves_sourceLex
       have hNotEq : m ≠ a := by
         intro heq
         have hSplitA : IsOneSplit H a := by
-          simpa only [heq] using hmOne
+          have hMeetEq : H.oneMeetLevel a b = a := heq
+          simpa only [hMeetEq] using hmOne
         exact ha.2.1 hSplitA.2.1
       omega
     have hmb' : m < b := by omega
