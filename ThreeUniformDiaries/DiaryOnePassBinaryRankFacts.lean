@@ -16,10 +16,10 @@ oneCodeBitWord deliberately omits invalid coordinates a >= b.
 namespace ThreeUniformDiaries
 namespace DiaryLeafPriority
 
-private def rankStep (n : Nat) (b : Bool) : Nat :=
+def rankStep (n : Nat) (b : Bool) : Nat :=
   2 * n + if b then 1 else 0
 
-private def binaryWordRank (xs : List Bool) : Nat :=
+def binaryWordRank (xs : List Bool) : Nat :=
   xs.foldl rankStep 0
 
 private theorem binaryWordRank_acc (xs : List Bool) (n : Nat) :
@@ -35,7 +35,7 @@ private theorem binaryWordRank_acc (xs : List Bool) (n : Nat) :
       rw [ha, hb]
       cases b <;> simp [rankStep, pow_succ] <;> ring
 
-private theorem binaryWordRank_cons (b : Bool) (xs : List Bool) :
+theorem binaryWordRank_cons (b : Bool) (xs : List Bool) :
     binaryWordRank (b :: xs) =
       (if b then 1 else 0) * 2 ^ xs.length + binaryWordRank xs := by
   change xs.foldl rankStep (rankStep 0 b) = _
