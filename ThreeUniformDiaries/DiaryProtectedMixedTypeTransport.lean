@@ -10,7 +10,7 @@ so applying it to a pair containing a split is invalid.
 
 The E1--E5 edge shapes make the mixed case more elementary:
 * auxiliary tests at every positive coordinate vanish as soon as one
-  endpoint is a genuine one-/two-split;
+  endpoint is a genuine one-split or two-split;
 * singleton tests ending at a genuine split have no middle coordinate
   at or above 3.
 
@@ -79,8 +79,8 @@ theorem onePassOldImage_isDiarySplit
       IsDiarySplit (onePassRawTarget H) (onePassOldImage H z) := by
   unfold IsDiarySplit
   exact or_congr
-    (onePassRawTarget_old_oneSplit_iff H z)
-    (onePassRawTarget_old_twoSplit_iff H z)
+    (onePassRawTarget_old_oneSplit_iff H z).symm
+    (onePassRawTarget_old_twoSplit_iff H z).symm
 
 /-- Every original event-block start remains at or above cut three
 once its original cut does. -/
