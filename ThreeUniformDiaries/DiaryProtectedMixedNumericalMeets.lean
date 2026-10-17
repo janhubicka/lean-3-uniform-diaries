@@ -29,31 +29,36 @@ variable {H : Ordered3Graph Nat}
 /-- The numerical auxiliary meet of two mixed pairs is entirely
 determined by their zero-marker incidence and the capping level.
 No ordering or leaf-meet axioms are needed for this identity. -/
-theorem RolePrediary.mixed_auxMeet_eq_marker_cap
+theorem RolePrediary.mixed_auxMeet_eq_cap_of_marker_agree
     (P : RolePrediary H) (a b c d : Nat)
     (hAB : IsDiarySplit H a ∨ IsDiarySplit H b)
-    (hCD : IsDiarySplit H c ∨ IsDiarySplit H d) :
-    H.auxMeetLevel a b c d =
-      if (H.edge 0 a b ↔ H.edge 0 c d) then min a c else 0 := by
-  classical
-  by_cases hZero : (H.edge 0 a b ↔ H.edge 0 c d)
-  · simp only [if_pos hZero]
-    apply le_antisymm (H.auxMeetLevel_le_min a b c d)
-    have hAgree : H.SameAuxTypeBelow (min a c) a b c d := by
-      intro x hx
-      by_cases hxZero : x = 0
-      · subst x
-        exact hZero
-      · have hxPos : 0 < x := by omega
-        exact P.mixed_pairs_positive_aux_agree
-          a b c d (min a c) hAB hCD x hxPos hx
-    exact Nat.le_findGreatest (le_refl _) hAgree
-  · simp only [if_neg hZero]
-    have hMeetZero : H.auxMeetLevel a b c d ≤ 0 := by
-      by_contra hNot
-      have hPositive : 0 < H.auxMeetLevel a b c d := by omega
-      exact hZero ((H.auxMeetLevel_agree a b c d) hPositive)
-    omega
+    (hCD : IsDiarySplit H c ∨ IsDiarySplit H d)
+    (hZero : H.edge 0 a b ↔ H.edge 0 c d) :
+    H.auxMeetLevel a b c d = min a c := by
+  apply le_antisymm (H.auxMeetLevel_le_min a b c d)
+  have hAgree : H.SameAuxTypeBelow (min a c) a b c d := by
+    intro x hx
+    by_cases hxZero : x = 0
+    · subst x
+      exact hZero
+    · have hxPos : 0 < x := by omega
+      exact P.mixed_pairs_positive_aux_agree
+        a b c d (min a c) hAB hCD x hxPos hx
+  exact Nat.le_findGreatest (le_refl _) hAgree
+
+/-- A disagreement at marker zero forces the mixed auxiliary
+meet to be zero, independently of the cap. -/
+theorem RolePrediary.mixed_auxMeet_eq_zero_of_marker_disagree
+    (P : RolePrediary H) (a b c d : Nat)
+    (hAB : IsDiarySplit H a ∨ IsDiarySplit H b)
+    (hCD : IsDiarySplit H c ∨ IsDiarySplit H d)
+    (hZero : ¬ (H.edge 0 a b ↔ H.edge 0 c d)) :
+    H.auxMeetLevel a b c d = 0 := by
+  have hMeetZero : H.auxMeetLevel a b c d ≤ 0 := by
+    by_contra hNot
+    have hPositive : 0 < H.auxMeetLevel a b c d := by omega
+    exact hZero ((H.auxMeetLevel_agree a b c d) hPositive)
+  omega
 
 /-- The strictly increasing old-vertex enumeration commutes with
 binary minimum, even though its image need not be convex. -/
@@ -109,26 +114,28 @@ theorem onePass_mixed_auxMeet_preserved
       exact hABZero.symm.trans (h.trans hCDZero)
     · intro h
       exact hABZero.trans (h.trans hCDZero.symm)
-  have hSource := P.mixed_auxMeet_eq_marker_cap a b c d hAB hCD
-  have hTarget :=
-    (onePassRawTarget_isPrediary P).mixed_auxMeet_eq_marker_cap
-      (onePassOldImage H a) (onePassOldImage H b)
-      (onePassOldImage H c) (onePassOldImage H d)
-      hABTarget hCDTarget
   by_cases hZero : (H.edge 0 a b ↔ H.edge 0 c d)
   · have hZeroTarget :
         G.edge 0 (onePassOldImage H a) (onePassOldImage H b) ↔
         G.edge 0 (onePassOldImage H c) (onePassOldImage H d) :=
       hZeroTransport.mpr hZero
-    rw [hTarget, hSource]
-    simp only [if_pos hZero, if_pos hZeroTarget]
+    rw [
+      (onePassRawTarget_isPrediary P).mixed_auxMeet_eq_cap_of_marker_agree
+        (onePassOldImage H a) (onePassOldImage H b)
+        (onePassOldImage H c) (onePassOldImage H d)
+        hABTarget hCDTarget hZeroTarget,
+      P.mixed_auxMeet_eq_cap_of_marker_agree a b c d hAB hCD hZero]
     exact (onePassOldImage_min H a c).symm
   · have hZeroTarget :
         ¬ (G.edge 0 (onePassOldImage H a) (onePassOldImage H b) ↔
           G.edge 0 (onePassOldImage H c) (onePassOldImage H d)) :=
       fun h => hZero (hZeroTransport.mp h)
-    rw [hTarget, hSource]
-    simp only [if_neg hZero, if_neg hZeroTarget]
+    rw [
+      (onePassRawTarget_isPrediary P).mixed_auxMeet_eq_zero_of_marker_disagree
+        (onePassOldImage H a) (onePassOldImage H b)
+        (onePassOldImage H c) (onePassOldImage H d)
+        hABTarget hCDTarget hZeroTarget,
+      P.mixed_auxMeet_eq_zero_of_marker_disagree a b c d hAB hCD hZero]
     exact (onePassOldImage_zero H).symm
 
 /-- For split-containing ordered pairs, preservation of the two
