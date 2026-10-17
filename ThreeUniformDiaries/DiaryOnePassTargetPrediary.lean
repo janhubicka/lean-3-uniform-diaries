@@ -11,7 +11,7 @@ import ThreeUniformDiaries.DiaryOnePassRoleCoverage
 This packages the earlier independently checked target components:
 * valid roles on every actual target vertex and all E-permitted edges;
 * full positive-cone coherence and exact numerical witnesses for both
-  original and fresh 1-/2-split vertices;
+  original and fresh 1-split and 2-split vertices;
 * BOTH real target V3 leaf marker equivalences, now derived from the
   source LexEarlier preservation theorem rather than postulated.
 
