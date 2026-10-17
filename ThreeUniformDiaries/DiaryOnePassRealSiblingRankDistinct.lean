@@ -36,7 +36,7 @@ theorem onePass_realSiblingGerm_ranks_ne
         H m u v hmu hmv hParent hNe).mpr hLex
     omega
   · have hReverse : LexEarlier H v u :=
-      (lexEarlier_swap_complement H u v huv).mpr hLex
+      (lexEarlier_swap_complement H v u huv.symm).mpr hLex
     have hRank :=
       (onePass_source_siblingGermRank_lt_iff_lex
         H m v u hmv hmu hParent.symm hNe.symm).mpr hReverse
