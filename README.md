@@ -231,16 +231,53 @@ CI-verified (merged #562, #564–#567):
   of their **actual target event edges** is equivalent to equality
   of their normal/terminal source refinement germs.
 
-**Pending CI:** `DiaryOnePassExactFreshRoles` (PR #568) checks that
-every fresh singleton/2-type event has exactly its prescribed target
-marker role, excluding the opposite marker. It is not counted as
-verified here.
+### Current concrete one-pass validation (17 October 2026)
 
-The target is still a **raw candidate**, not a verified diary.
-The global two-way finite-cut induction across successive ORIGINAL
-blocks has not been assembled. Target V1/V2/V3 and S1/S2, remaining
-E-role conditions, protected mixed meets, finite-diary transfer and
-flip absorption are still substantial, separate obligations.
+The actual target carrier now has complete verified **E1–E5** permitted
+edge shapes and literal role coverage (merged #568–#572). Finite
+event-block bounds and the old/event target vertex equivalence are
+checked (#573–#574). The exact marker-cut base, original split
+successor identities and actual full-block event-test decompositions
+are checked (#575–#581).
+
+The major **two-way global transport** results are verified:
+
+- `DiaryOnePassGlobalOneTypeTransport` (#586) preserves AND reflects
+  source singleton-type agreement at the **start** of each original
+  event block, on source leaves at or above that original cut.
+- `DiaryOnePassGlobalTwoTypeTransport` (#590) proves the analogous
+  statement for full ordered-pair types, including both singleton
+  coordinates and auxiliary pair-edge tests.
+- The delayed original leaf-column, selected-germ partition,
+  normal/terminal capped pair, and copied old split cases are
+  checked, without source S1/S2 (#582 was superseded by #584).
+
+The **V-axiom validation** has also advanced:
+
+- `DiaryOnePassTargetLeafCones` (#591) proves every target leaf is
+  an image of an original leaf, with exact positive event cones.
+- `DiaryOnePassTargetV1Coherence` (#592) and
+  `DiaryOnePassTargetV2Coherence` (#595) verify the positive-leaf
+  and positive-pair coherence fields for ALL actual target splits.
+- `DiaryOnePassOldSplitWitnessTransport` (#594) preserves exact
+  witness meets at original splits. Real selected/default germ
+  children and block label uniqueness are checked (#596–#599).
+- `DiaryOnePassFreshOneMeet` (#601) and
+  `DiaryOnePassTargetV1Witness` (#602) now prove the exact witness
+  meet at every fresh singleton event and the complete target
+  **V1 witness** axiom.
+
+**Currently under strict CI, not yet verified:** pair-event prefix
+ordering (#603), full pair-type agreement of selected/default
+witnesses before their new event (#604), and exact fresh 2-split
+meet/V2 witness existence (#605).
+
+The target remains a **raw candidate**, not a verified diary.
+V2 fresh witness completion, original-to-target V3 Devlin
+lexicographic marker equivalence, S1/S2, protected mixed meets,
+the finite-diary interface and the EVERY-FLIP-OF-TARGET absorption
+construction remain open. The false printed universal old-cut
+preservation clause is NOT reinstated or validated.
 
 The manuscript note also gives a protected ordered-sum amalgam
 for finite families of diaries, conditional on the relative
