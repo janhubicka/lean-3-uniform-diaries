@@ -475,3 +475,4 @@ import ThreeUniformDiaries.DiaryOnePassBinaryRankFacts
 import ThreeUniformDiaries.DiaryOnePassFirstBitRank
 import ThreeUniformDiaries.DiaryOnePassRealCodeColumn
 import ThreeUniformDiaries.DiaryOnePassSourceColumnTests
+import ThreeUniformDiaries.DiarySourceLexBinaryRank
