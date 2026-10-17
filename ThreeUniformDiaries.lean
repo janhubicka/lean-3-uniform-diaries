@@ -461,3 +461,4 @@ import ThreeUniformDiaries.DiaryOnePassFreshWitnessCones
 import ThreeUniformDiaries.DiaryOnePassDefaultPreEventAgreement
 import ThreeUniformDiaries.DiaryOnePassFreshOneMeet
 import ThreeUniformDiaries.DiaryOnePassTargetV1Witness
+import ThreeUniformDiaries.DiaryOnePassPairEventOrder
