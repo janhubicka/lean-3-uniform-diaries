@@ -1452,3 +1452,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RolePrediary.sameMarkerOne_twoTypeBelow_three
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RolePrediary.twoMeet_eq_one_or_ge_three
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.onePassRawTarget_twoMeet_eq_one_or_ge_three
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.onePass_source_leaf_cap_twoMeet_preserved
