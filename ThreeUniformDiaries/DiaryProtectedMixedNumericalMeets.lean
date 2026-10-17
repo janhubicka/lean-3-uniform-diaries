@@ -35,6 +35,7 @@ theorem RolePrediary.mixed_auxMeet_eq_cap_of_marker_agree
     (hCD : IsDiarySplit H c ∨ IsDiarySplit H d)
     (hZero : H.edge 0 a b ↔ H.edge 0 c d) :
     H.auxMeetLevel a b c d = min a c := by
+  classical
   apply le_antisymm (H.auxMeetLevel_le_min a b c d)
   have hAgree : H.SameAuxTypeBelow (min a c) a b c d := by
     intro x hx
