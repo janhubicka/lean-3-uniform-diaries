@@ -85,7 +85,13 @@ theorem onePassBlock_extended_rank_pairwise
       · simpa [ss, hl] using onePass_selectedOneGerms_pairwise_rank H m
       · simp [ss, hl]
     have h := onePass_eventRank_pair_prefix m ps ss hs
-    simpa [onePassBlock, hm3, ps, ss] using h
+    by_cases ht : IsTwoSplit H m
+    · by_cases hl : IsLeaf H m
+      · simpa [onePassBlock, hm3, ps, ss, ht, hl] using h
+      · simpa [onePassBlock, hm3, ps, ss, ht, hl] using h
+    · by_cases hl : IsLeaf H m
+      · simpa [onePassBlock, hm3, ps, ss, ht, hl] using h
+      · simpa [onePassBlock, hm3, ps, ss, ht, hl] using h
 
 /-- TRUE positions of selected singleton events in the same
 one-pass source block respect decreasing genuine binary rank. -/
