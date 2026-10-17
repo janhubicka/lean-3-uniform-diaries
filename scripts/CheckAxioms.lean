@@ -1361,3 +1361,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.selectedTwoGerm_mem_iff
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.selectedOneGerm_has_distinct_default
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.selectedTwoGerm_has_distinct_default
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.insertOneGermDescending_nodup
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.sortOneGermsDescending_nodup
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.selectedOneGerms_sorted_nodup
