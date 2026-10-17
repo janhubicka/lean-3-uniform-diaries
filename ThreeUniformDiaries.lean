@@ -491,3 +491,4 @@ import ThreeUniformDiaries.DiaryOnePassGlobalV3
 import ThreeUniformDiaries.DiaryOnePassTargetPrediary
 import ThreeUniformDiaries.DiaryOnePassTargetS2MarkerBase
 import ThreeUniformDiaries.DiaryOnePassTargetS2MarkerDichotomy
+import ThreeUniformDiaries.DiaryOnePassTargetS2Cap
