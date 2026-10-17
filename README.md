@@ -291,7 +291,8 @@ The **global** source-to-target `LexEarlier` preservation theorem,
 the complete target V3 field, S1/S2, protected mixed meets,
 the finite-diary interface and the EVERY-FLIP-OF-TARGET absorption
 construction remain OPEN. In particular, numerical rank
-faithfulness/strictness on same-parent normal singleton children,
+faithfulness/strictness on REALISED same-parent normal singleton
+  children (the rank ignores invalid coordinates of raw codes),
 least-default minimality, and the translation from ranks to
 actual first differing source and target events still require
 proof. See `docs/audits/one-pass-v3-source-lex-obligations-2026-10-17.md`.
