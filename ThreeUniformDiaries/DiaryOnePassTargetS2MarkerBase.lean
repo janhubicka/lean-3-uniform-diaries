@@ -32,7 +32,8 @@ theorem RolePrediary.no_zero_leaf_pair_edge
   intro he
   rcases P.permitted_edge 0 a b he with
     hMarker | hOne | hTwo | hDevlin | hNormal
-  · rcases hMarker.2.1 with h | h <;> omega
+  · have ha3 := ha.1
+    rcases hMarker.2.1 with h | h <;> omega
   · exact ha.2.1 hOne.2.1.2.1
   · have hbad := hTwo.1.1
     omega
