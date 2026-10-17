@@ -267,17 +267,36 @@ The **V-axiom validation** has also advanced:
   meet at every fresh singleton event and the complete target
   **V1 witness** axiom.
 
-**Currently under strict CI, not yet verified:** pair-event prefix
-ordering (#603), full pair-type agreement of selected/default
-witnesses before their new event (#604), and exact fresh 2-split
-meet/V2 witness existence (#605).
+- `DiaryOnePassPairEventOrder` (#603),
+  `DiaryOnePassDefaultPrePairEventAgreement` (#604),
+  `DiaryOnePassFreshTwoMeet`, and
+  `DiaryOnePassTargetV2Witness` (#605) prove the genuine
+  pair-event-before-singleton schedule, before-event selected/default
+  agreement, exact fresh numerical pair meet and the complete target
+  **V2 witness** axiom. All are merged and CI/axiom-audit green.
+- `DiaryOnePassV3Reduction` (#608) proves **both** target Devlin
+  marker clauses if and only if source `LexEarlier` is preserved on
+  original leaves. This is a two-way reduction, NOT preservation.
+- `DiaryOnePassFreshLexOrientation` (#609) proves exact
+  selected/default fresh-singleton orientation from the original
+  full two-type meet definition.
+  `DiaryOnePassLexRankSort` (#610) verifies weak descending
+  numerical germ ranks in the actual finite singleton list.
+  `DiaryOnePassTwoSelectedLex` (#611) proves exact first meet and
+  target orientation for two actual selected sibling children.
+  These are all merged with green Lean builds and strict axiom audits.
 
 The target remains a **raw candidate**, not a verified diary.
-V2 fresh witness completion, original-to-target V3 Devlin
-lexicographic marker equivalence, S1/S2, protected mixed meets,
+The **global** source-to-target `LexEarlier` preservation theorem,
+the complete target V3 field, S1/S2, protected mixed meets,
 the finite-diary interface and the EVERY-FLIP-OF-TARGET absorption
-construction remain open. The false printed universal old-cut
-preservation clause is NOT reinstated or validated.
+construction remain OPEN. In particular, numerical rank
+faithfulness/strictness on same-parent normal singleton children,
+least-default minimality, and the translation from ranks to
+actual first differing source and target events still require
+proof. See `docs/audits/one-pass-v3-source-lex-obligations-2026-10-17.md`.
+The false printed universal old-cut preservation clause is
+NOT reinstated or validated.
 
 The manuscript note also gives a protected ordered-sum amalgam
 for finite families of diaries, conditional on the relative
