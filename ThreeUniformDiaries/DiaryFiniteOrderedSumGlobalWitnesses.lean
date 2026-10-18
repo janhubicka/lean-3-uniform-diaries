@@ -131,13 +131,13 @@ theorem finiteTwoBlockCarrier_twoSplit_bounded_witness
     refine ⟨rightBlockImage n a,rightBlockImage n b,
       rightBlockImage n c,rightBlockImage n d,
       hMon hab,hMon hcd,
-      rightBlockImage_lt_finiteTwoBlockLength n m
+      rightBlockImage_lt_finiteTwoBlockLength n m a
         PH.frame.length_ge_three PK.frame.length_ge_three ha.1 ham,
-      rightBlockImage_lt_finiteTwoBlockLength n m
+      rightBlockImage_lt_finiteTwoBlockLength n m b
         PH.frame.length_ge_three PK.frame.length_ge_three hb.1 hbm,
-      rightBlockImage_lt_finiteTwoBlockLength n m
+      rightBlockImage_lt_finiteTwoBlockLength n m c
         PH.frame.length_ge_three PK.frame.length_ge_three hc.1 hcm,
-      rightBlockImage_lt_finiteTwoBlockLength n m
+      rightBlockImage_lt_finiteTwoBlockLength n m d
         PH.frame.length_ge_three PK.frame.length_ge_three hd.1 hdm,
       (finiteTwoBlockCarrier_right_leaf_iff
         PH.frame PK.frame bits a ha.1 ham).mpr ha,
