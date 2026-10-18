@@ -96,6 +96,7 @@ theorem finiteTwoBlockCarrier_right_leaf_iff
   have hge : 3 ≤ rightBlockImage n v := by
     have hBound := rightBlockImage_nonmarker_ge n v
       FH.length_ge_three hv3
+    have hn3 := FH.length_ge_three
     omega
   constructor
   · intro h
@@ -118,6 +119,7 @@ theorem finiteTwoBlockCarrier_right_oneSplit_iff
   have hge : 3 ≤ rightBlockImage n v := by
     have hBound := rightBlockImage_nonmarker_ge n v
       FH.length_ge_three hv3
+    have hn3 := FH.length_ge_three
     omega
   constructor
   · intro h
@@ -140,6 +142,7 @@ theorem finiteTwoBlockCarrier_right_twoSplit_iff
   have hge : 3 ≤ rightBlockImage n v := by
     have hBound := rightBlockImage_nonmarker_ge n v
       FH.length_ge_three hv3
+    have hn3 := FH.length_ge_three
     omega
   constructor
   · intro h
