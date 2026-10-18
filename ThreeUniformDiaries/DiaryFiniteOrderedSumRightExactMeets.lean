@@ -111,6 +111,8 @@ theorem finiteTwoBlockCarrier_right_oneMeet_exact
       intro x y hxy hy
       exact hAgree hxy (by omega)
     exact hTargetNextFail hNext
+  change G.oneMeetLevel (rightBlockImage n a)
+    (rightBlockImage n b) = rightBlockImage n s
   omega
 
 /-- Exact strict full ordered-pair meet transport for two genuine
@@ -208,6 +210,9 @@ theorem finiteTwoBlockCarrier_right_twoMeet_exact
       · intro x hx
         exact hAgree.2.2 (by omega)
     exact hTargetNextFail hNext
+  change G.twoMeetLevel (rightBlockImage n a)
+    (rightBlockImage n b) (rightBlockImage n c)
+    (rightBlockImage n d) = rightBlockImage n s
   omega
 
 end DiaryLeafPriority
