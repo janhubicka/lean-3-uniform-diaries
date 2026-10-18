@@ -25,13 +25,16 @@ theorem E_oneSplit_no_positive_aux
     (hE : ∀ x y z : Nat, H.edge x y z → PermittedDiaryEdge H x y z)
     (s x z : Nat) (hs : IsOneSplit H s) (hx : 0 < x) :
     ¬ H.edge x s z := by
+  have hNotLeaf : ¬ IsLeaf H s := by
+    intro hl
+    exact hl.2.1 hs.2.1
   intro he
   rcases hE x s z he with hMarker | hOne | hTwo | hDevlin | hNormal
   · omega
   · omega
-  · exact (oneSplit_not_leaf hs) hTwo.2.1
-  · exact (oneSplit_not_leaf hs) hDevlin.2.1
-  · exact (oneSplit_not_leaf hs) hNormal.2.1
+  · exact hNotLeaf hTwo.2.1
+  · exact hNotLeaf hDevlin.2.1
+  · exact hNotLeaf hNormal.2.1
 
 /-- At a genuine strict one-split, two leaves have opposite
 zero-marker bit (0,s,_). -/
@@ -41,6 +44,7 @@ theorem E_oneSplit_distinguishing_zero_bit
     (hab : a < b) (hsa : s < a)
     (hMeet : H.oneMeetLevel a b = s) :
     ¬ (H.edge 0 s a ↔ H.edge 0 s b) := by
+  classical
   have hAgree : H.SameOneTypeBelow s a b := by
     rw [← hMeet]
     exact H.oneMeetLevel_agree a b
