@@ -2,6 +2,7 @@ import ThreeUniformDiaries.DiaryProtectedLeafTwoMeets
 import ThreeUniformDiaries.DiaryProtectedCrossRolePairMeets
 import ThreeUniformDiaries.DiaryProtectedMixedFullMeets
 import ThreeUniformDiaries.DiaryOnePassCompleteS2
+import ThreeUniformDiaries.DiaryExactS2Cap
 
 /-!
 # Finite protected meet pictures and the one-pass diary completion
@@ -121,6 +122,25 @@ theorem pair_contains_split
     · exact False.elim (hNotBoth ⟨hLeafU, hLeafV⟩)
     · exact Or.inr hSplitV
   · exact Or.inl hSplitU
+
+/-- Every finite set of NONMARKER vertices of an already
+completed diary satisfies the protected meet-picture axioms.
+The exact common-first-leaf alternative is not an extra
+assumption: it follows from S1/S2 by the verified cap theorem. -/
+theorem of_diary
+    (D : RoleDiary H) (F : Finset Nat)
+    (hAbove : ∀ u, u ∈ F → 3 ≤ u) :
+    FiniteProtectedMeetPicture H F := by
+  refine ⟨hAbove, ?_, ?_⟩
+  · intro u v hu hv hlu hlv hne
+    exact D.singleton_meets u v hlu hlv hne
+  · intro a b c d ha hb hc hd hab hcd hla hlb hlc hld
+    rcases D.pair_meets_exact_manuscript
+        a b c d hab hcd hla hlb hlc hld with
+        hOne | ⟨hCap, hEq⟩ | hTwo
+    · exact Or.inl hOne
+    · exact Or.inr (Or.inr ⟨hEq, hCap⟩)
+    · exact Or.inr (Or.inl hTwo)
 
 end FiniteProtectedMeetPicture
 
