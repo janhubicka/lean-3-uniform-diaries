@@ -205,18 +205,21 @@ theorem exists_finiteDummyTailOrientation_cross_V3_both
   intro u z hu3 hun huLeaf hzn
   have hUniform := finiteDummyTailCarrier_lex_uniform_tail
     FH bits u n z hun (le_refl n) hzn
+  have hBitLex :
+      (bits u = true) ↔
+        LexEarlier (finiteDummyTailCarrier H n bits) u z :=
+    (hFix u hun).trans hUniform
   have hOne :
       (finiteDummyTailCarrier H n bits).edge 1 u z ↔
         LexEarlier (finiteDummyTailCarrier H n bits) u z :=
     (finiteDummyTailCarrier_cross_one_iff
-      FH bits u z hu3 hun huLeaf hzn).trans
-      ((hFix u hun).trans hUniform)
+      FH bits u z hu3 hun huLeaf hzn).trans hBitLex
   have hTwoBits :=
     finiteDummyTailCarrier_cross_two_iff
       FH bits u z hu3 hun huLeaf hzn
   have hBool : (bits u = false) ↔ ¬ (bits u = true) := by
     cases h : bits u <;> simp [h]
-  exact ⟨hOne,hTwoBits.trans (hBool.trans (not_congr hOne.symm))⟩
+  exact ⟨hOne,hTwoBits.trans (hBool.trans (not_congr hBitLex))⟩
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
