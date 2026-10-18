@@ -25,7 +25,8 @@ def finiteTwoBlockLength (n m : Nat) : Nat := n + (m - 3)
 finite combined carrier. -/
 theorem rightBlockImage_lt_finiteTwoBlockLength
     (n m v : Nat)
-    (hm : 3 ≤ m) (hv3 : 3 ≤ v) (hvm : v < m) :
+    (hn : 3 ≤ n) (hm : 3 ≤ m)
+    (hv3 : 3 ≤ v) (hvm : v < m) :
     rightBlockImage n v < finiteTwoBlockLength n m := by
   have hnot : ¬ v < 3 := by omega
   simp only [rightBlockImage, if_neg hnot, finiteTwoBlockLength]
@@ -53,6 +54,7 @@ theorem finiteTwoBlockCarrier_finiteFrame
       (finiteTwoBlockLength n m) := by
   refine ⟨by
     unfold finiteTwoBlockLength
+    have hn3 := FH.length_ge_three
     omega, ?_⟩
   intro a b c he
   have hOrdered :=
@@ -69,7 +71,7 @@ theorem finiteTwoBlockCarrier_finiteFrame
     subst c
     have hBound :=
       rightBlockImage_lt_finiteTwoBlockLength n m c'
-        FK.length_ge_three hc3 hcm
+        FH.length_ge_three FK.length_ge_three hc3 hcm
     have hImage3 : 3 ≤ rightBlockImage n c' := by
       have hge := rightBlockImage_nonmarker_ge n c'
         FH.length_ge_three hc3
@@ -79,13 +81,13 @@ theorem finiteTwoBlockCarrier_finiteFrame
   · obtain ⟨u,v,_hu3,_hun,_huLeaf,hv3,hvm,_hvLeaf,_hy,hz,_hbit⟩ := hCross
     have hBound :=
       rightBlockImage_lt_finiteTwoBlockLength n m v
-        FK.length_ge_three hv3 hvm
+        FH.length_ge_three FK.length_ge_three hv3 hvm
     have hImage3 : 3 ≤ rightBlockImage n v := by
       have hge := rightBlockImage_nonmarker_ge n v
         FH.length_ge_three hv3
       have hn3 := FH.length_ge_three
       omega
-    rw [hz]
+    subst c
     exact ⟨hOrdered.1,hOrdered.2,hImage3,hBound⟩
 
 /-- Exact induced right-copy relation without any cut restriction
