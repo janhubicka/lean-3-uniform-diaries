@@ -80,7 +80,12 @@ theorem finiteTwoBlockCarrier_right_twoMeet_exact_all
       hfAB hfCD,
     K.twoMeetLevel_eq_min a b c d hab hcd]
   rw [hFirst, hSecond, hAux]
-  simp only [rightBlockImage_min n FH.length_ge_three]
+  have hMapMin : ∀ x y : Nat,
+      rightBlockImage n (min x y) =
+        min (rightBlockImage n x) (rightBlockImage n y) := by
+    intro x y
+    exact rightBlockImage_min n x y FH.length_ge_three
+  simp only [hMapMin]
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
