@@ -43,6 +43,7 @@ theorem exists_finite_causal_bool_fixedPoint
     intro k
     induction k with
     | zero =>
+      intro _hk
       refine ⟨fun _ => false, ?_⟩
       intro i hi
       omega
