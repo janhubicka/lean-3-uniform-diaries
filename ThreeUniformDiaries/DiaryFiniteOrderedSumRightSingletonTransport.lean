@@ -81,7 +81,7 @@ theorem finiteTwoBlockCarrier_right_leaf_oneType_iff
     have hBL : rightBlockImage n b < rightBlockImage n l :=
       hMon hb
     have ht := hTarget
-      (rightBlockImage n a) (rightBlockImage n b) hAB hBL
+      (a := rightBlockImage n a) (b := rightBlockImage n b) hAB hBL
     have hv := finiteTwoBlockCarrier_right_edge_iff_all
       FH FK bits a b v
     have hw := finiteTwoBlockCarrier_right_edge_iff_all
@@ -123,7 +123,8 @@ theorem finiteTwoBlockCarrier_right_leaf_oneType_iff
         · have hZero : rightBlockImage n a = a :=
             rightBlockImage_marker n a haSmall
           have hab0 : a < b - (n - 3) := by omega
-          have hs := hSource a (b - (n - 3)) hab0 hb0lt
+          have hs := hSource (a := a) (b := b - (n - 3))
+            hab0 hb0lt
           have hv := finiteTwoBlockCarrier_right_edge_iff_all
             FH FK bits a (b - (n - 3)) v
           have hw := finiteTwoBlockCarrier_right_edge_iff_all
@@ -143,7 +144,7 @@ theorem finiteTwoBlockCarrier_right_leaf_oneType_iff
           have hab0 :
               a - (n - 3) < b - (n - 3) := by omega
           have hs := hSource
-            (a - (n - 3)) (b - (n - 3)) hab0 hb0lt
+            (a := a - (n - 3)) (b := b - (n - 3)) hab0 hb0lt
           have hv := finiteTwoBlockCarrier_right_edge_iff_all
             FH FK bits (a - (n - 3)) (b - (n - 3)) v
           have hw := finiteTwoBlockCarrier_right_edge_iff_all
