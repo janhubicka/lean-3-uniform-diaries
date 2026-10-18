@@ -42,7 +42,7 @@ theorem finiteTwoBlockCarrier_right_pair_auxType_iff
   · intro hTarget x hx
     have hXL : rightBlockImage n x < rightBlockImage n l :=
       hMon hx
-    have ht := hTarget (x := rightBlockImage n x) hXL
+    have ht := hTarget (a := rightBlockImage n x) hXL
     have hab := finiteTwoBlockCarrier_right_edge_iff_all
       FH FK bits x a b
     have hcd := finiteTwoBlockCarrier_right_edge_iff_all
@@ -54,7 +54,7 @@ theorem finiteTwoBlockCarrier_right_pair_auxType_iff
       · have hImage : rightBlockImage n x = x :=
           rightBlockImage_marker n x hxSmall
         have hXL : x < l := by omega
-        have hs := hSource (x := x) hXL
+        have hs := hSource (a := x) hXL
         have hab := finiteTwoBlockCarrier_right_edge_iff_all
           FH FK bits x a b
         have hcd := finiteTwoBlockCarrier_right_edge_iff_all
@@ -85,7 +85,7 @@ theorem finiteTwoBlockCarrier_right_pair_auxType_iff
         have hnot : ¬ x - (n - 3) < 3 := by omega
         simp only [rightBlockImage, if_neg hnot]
         omega
-      have hs := hSource (x := x - (n - 3)) hx0lt
+      have hs := hSource (a := x - (n - 3)) hx0lt
       have hab := finiteTwoBlockCarrier_right_edge_iff_all
         FH FK bits (x - (n - 3)) a b
       have hcd := finiteTwoBlockCarrier_right_edge_iff_all
