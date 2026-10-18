@@ -304,28 +304,50 @@ CI and strict axiom audits (17 October 2026):
   transports full two-type agreement at corresponding original block
   cuts when mixed pairs have aligned coordinate roles.
 
-**Still open:** unconditional preservation of every protected mixed
-numerical meet, the finite-diary embedding interface and the
-EVERY-FLIP-OF-TARGET absorption construction. The role-aligned
-mixed-type theorem is not itself numerical meet preservation. The
-known V2 obstruction prevents repairing the chronological flip tree
-by adding cross-branch edges alone.
+### Verified relative finite protected completion (18 October 2026)
 
-The false printed universal old-cut preservation clause is
-NOT reinstated or validated.
+The following additional modules are green in Lean CI with strict axiom
+reports. They **do not** assume source S1/S2 beyond explicitly stated
+protected comparisons:
 
-The manuscript note also gives a protected ordered-sum amalgam
-for finite families of diaries, conditional on the relative
-completion proof, which addresses only the FIRST finite flip
-joint-embedding direction.
+- `DiaryProtectedMixedNumericalMeets` (#645) preserves exact auxiliary
+  numerical meets of split-containing pairs; `DiaryProtectedSplitSingletonMeets`
+  (#647) preserves singleton numerical meets involving split endpoints.
+- `DiaryProtectedMixedFullMeets` (#648) combines those results with
+  original 1-split leaf meets to preserve full two-meets when both
+  ordered pairs contain splits and their coordinate meets are protected.
+- `DiaryProtectedLeafTwoMeets` (#649) handles all-leaf pairs, including
+  genuine common-first-leaf caps, and
+  `DiaryProtectedCrossRolePairMeets` (#651) handles a split-containing
+  pair versus an all-leaf pair using the early Devlin markers.
+- `DiaryFiniteProtectedMeetPicture` (#652) packages the finite
+  nonmarker S1/S2 meet conditions into an actual induced old-copy
+  embedding preserving **every singleton and ordered-pair numerical
+  meet within that finite set**. Any finite set of nonmarker vertices
+  in a full RoleDiary satisfies its hypotheses.
+- `DiaryFiniteProtectedWithMarkers` (#653) extends this verified
+  relative meet preservation to the marked finite picture including
+  the distinguished vertices 0,1,2.
 
-**Still pending:** a redesigned flip-absorbing construction satisfying
-the EVERY-flip-of-the-target direction, compatible protected
-cross-branch structure, a formal finite-diary interface,
-the corrected one-pass completion theorem, the original generic
-cut-zero orientation lemma as worded, and final diary
-unavoidability. No component should be cited as validation
-of these stronger claims.
+**Scope:** the source is an ambient V/E `RolePrediary` on Nat and the
+finite subset is *already protected* there in the exact restricted
+S1/S2 numerical-meet sense. The output is a completed countable
+`RoleDiary`, with a finite induced protected image; this does not
+by itself produce an independently finite diary satisfying finite
+split-witness clauses.
+
+The printed universal old-cut type-agreement preservation clause is
+**false** and has not been reinstated. The manuscript's independent
+ordered-sum note proposes joint embedding of finitely many flips,
+conditional on constructing and protecting the appropriate ambient
+pre-diary. It does not solve absorption into EVERY flip of the target.
+
+**Still open:** the native finite-language diary interface and finite
+output construction, constructing a compatible ambient pre-diary for
+all prescribed flips while respecting the V2 root-type obstruction,
+the stronger EVERY-FLIP-OF-TARGET absorption direction, and final diary
+unavoidability. The original generic cut-zero orientation lemma as
+worded is not certified merely by the alternative four-tail proof.
 
 ## Removed historical adapters
 
