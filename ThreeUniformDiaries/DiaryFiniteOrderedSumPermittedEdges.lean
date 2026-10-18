@@ -91,6 +91,7 @@ theorem finiteTwoBlockCarrier_right_permitted
   · obtain ⟨ha0, hbMark, hc3⟩ := hRole
     subst a
     have hcTarget : 3 ≤ f c := by
+      change 3 ≤ rightBlockImage n c
       have hge := rightBlockImage_nonmarker_ge n c
         FH.length_ge_three hc3
       have hn3 := FH.length_ge_three
