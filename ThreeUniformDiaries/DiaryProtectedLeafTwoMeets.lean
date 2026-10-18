@@ -40,8 +40,7 @@ theorem RolePrediary.protected_common_first_nextTwoType
     H.SameTwoTypeBelow (a + 1) a b a d := by
   classical
   have hAtA : H.SameTwoTypeBelow a a b a d := by
-    rw [← hMeet]
-    exact H.twoMeetLevel_agree a b a d
+    simpa only [hMeet] using (H.twoMeetLevel_agree a b a d)
   have hSecond : H.SameOneTypeBelow (a + 1) b d := by
     rcases hBD with hEq | hOne
     · subst d
@@ -103,8 +102,12 @@ theorem onePass_protected_leaf_twoMeet_preserved
       intro hSame
       have hAgree := P.sameMarkerOne_twoTypeBelow_three
         a b c d hab hcd ha hb hc hd hSame
+      have hCapBound : 3 ≤ min a c := by
+        have ha3 := ha.1
+        have hc3 := hc.1
+        omega
       have hGe : 3 ≤ H.twoMeetLevel a b c d :=
-        Nat.le_findGreatest (by omega : 3 ≤ min a c) hAgree
+        Nat.le_findGreatest hCapBound hAgree
       rw [hOne] at hGe
       omega
     have hAB :
@@ -128,21 +131,26 @@ theorem onePass_protected_leaf_twoMeet_preserved
     calc
       G.twoMeetLevel (f a) (f b) (f c) (f d) = 1 := hTargetOne
       _ = f (H.twoMeetLevel a b c d) := by
-        rw [hOne, onePassOldImage_one]
+        rw [hOne]
+        exact (onePassOldImage_one H).symm
   · let m := H.twoMeetLevel a b c d
     have hBound := H.twoMeetLevel_le_min a b c d
     have hma : m < a := by
       have hle : m ≤ a := hBound.trans (min_le_left _ _)
       have hne : m ≠ a := by
         intro hEq
-        have ht : IsTwoSplit H a := by simpa only [hEq] using hTwo
+        have ht : IsTwoSplit H a := by
+          change IsTwoSplit H m at hTwo
+          simpa only [hEq] using hTwo
         exact ha.2.2 ht.2.2
       omega
     have hmc : m < c := by
       have hle : m ≤ c := hBound.trans (min_le_right _ _)
       have hne : m ≠ c := by
         intro hEq
-        have ht : IsTwoSplit H c := by simpa only [hEq] using hTwo
+        have ht : IsTwoSplit H c := by
+          change IsTwoSplit H m at hTwo
+          simpa only [hEq] using hTwo
         exact hc.2.2 ht.2.2
       omega
     exact onePass_oldTwoSplit_meet_exact P m a b c d
