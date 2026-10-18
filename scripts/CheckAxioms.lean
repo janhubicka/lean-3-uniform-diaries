@@ -1623,3 +1623,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteTwoBlockCarrier_right_oneMeet_exact_all
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.rightBlockImage_min
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteTwoBlockCarrier_right_twoMeet_exact_all
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_finiteTwoBlock_sum_protected
