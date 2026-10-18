@@ -84,7 +84,8 @@ theorem finiteTwoBlockCarrier_edge_ordered
     (he : (finiteTwoBlockCarrier H K n m orientation).edge x y z) :
     x < y ∧ y < z := by
   rcases he with hLeft | hRight | hCross
-  · exact (FH.edge_support x y z hLeft.1).1
+  · exact ⟨(FH.edge_support x y z hLeft.1).1,
+      (FH.edge_support x y z hLeft.1).2.1⟩
   · obtain ⟨a,b,c,hK,_hc,hx,hy,hz⟩ := hRight
     obtain ⟨hab,hbc,_⟩ := FK.edge_support a b c hK
     subst x
