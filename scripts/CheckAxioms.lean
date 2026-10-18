@@ -1585,3 +1585,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.E_oneSplit_mixed_aux_meet_zero
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.E_oneSplit_mixed_full_meet_zero
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.E_oneSplit_lexEarlier_iff_right
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteTwoBlockCarrier_right_lexEarlier_iff
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteTwoBlockCarrier_right_V3_both
