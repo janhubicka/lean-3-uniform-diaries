@@ -42,13 +42,13 @@ theorem onePass_auxTypeBelow_markerCut_iff
     have hab := onePassRawTarget_edge_image_iff H x a b
     have hcd := onePassRawTarget_edge_image_iff H x c d
     rw [onePassOldImage_fixed_below_three H x hx3] at hab hcd
-    exact hab.symm.trans ((hs hx).trans hcd)
+    exact hab.trans ((hs hx).trans hcd.symm)
   · intro ht x hx
     have hx3 : x < 3 := by omega
     have hab := onePassRawTarget_edge_image_iff H x a b
     have hcd := onePassRawTarget_edge_image_iff H x c d
     rw [onePassOldImage_fixed_below_three H x hx3] at hab hcd
-    exact hab.trans ((ht hx).trans hcd.symm)
+    exact hab.symm.trans ((ht hx).trans hcd)
 
 /-- Complete full two-type equivalence at EVERY initial marker
 cut, even when the four original vertices have different roles.
