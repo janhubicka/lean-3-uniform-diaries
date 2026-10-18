@@ -48,6 +48,7 @@ theorem finiteDummyTailCarrier_edge_ordered
     (x y z : Nat)
     (he : (finiteDummyTailCarrier H n bits).edge x y z) :
     x < y ∧ y < z := by
+  have hn3 := FH.length_ge_three
   rcases he with hOld | hCross | hTail
   · have h := FH.edge_support x y z hOld.1
     exact ⟨h.1,h.2.1⟩
