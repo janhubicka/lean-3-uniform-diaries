@@ -85,6 +85,7 @@ theorem finiteDummyTailCarrier_tail_pair_oneMeet_capped
     omega
   have hLower : u ≤ G.oneMeetLevel u z :=
     Nat.le_findGreatest (by omega) hSame
+  change G.oneMeetLevel u z = u
   omega
 
 /-- The actual manuscript LexEarlier is TRUE on every increasing
