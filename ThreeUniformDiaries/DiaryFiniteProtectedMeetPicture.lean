@@ -231,5 +231,30 @@ theorem onePass_completes_finiteProtected_meet_picture
     onePass_finiteProtected_oneMeet_preserved P Q,
     onePass_finiteProtected_twoMeet_preserved P Q⟩
 
+/-- A genuine order-preserving INDUCED old-copy embedding into
+the completed diary, with every singleton and full ordered-pair
+numerical meet preserved on the finite protected carrier.
+The embedding itself is global; the meet assertions are scoped
+precisely to F. This is the reusable relative finite interface. -/
+theorem onePass_finiteProtected_inducedEmbedding
+    (P : RolePrediary H) (Q : FiniteProtectedMeetPicture H F) :
+    ∃ f : Ordered3Graph.Embedding H (onePassRawTarget H),
+      RoleDiary (onePassRawTarget H) ∧
+      (∀ u v : Nat, u ∈ F → v ∈ F →
+        (onePassRawTarget H).oneMeetLevel (f u) (f v) =
+          f (H.oneMeetLevel u v)) ∧
+      (∀ a b c d : Nat,
+        a ∈ F → b ∈ F → c ∈ F → d ∈ F →
+        a < b → c < d →
+        (onePassRawTarget H).twoMeetLevel
+            (f a) (f b) (f c) (f d) =
+          f (H.twoMeetLevel a b c d)) := by
+  refine ⟨onePassRawEmbedding H, onePassRawTarget_isDiary P, ?_, ?_⟩
+  · intro u v hu hv
+    exact onePass_finiteProtected_oneMeet_preserved P Q u v hu hv
+  · intro a b c d ha hb hc hd hab hcd
+    exact onePass_finiteProtected_twoMeet_preserved P Q
+      a b c d ha hb hc hd hab hcd
+
 end DiaryLeafPriority
 end ThreeUniformDiaries
