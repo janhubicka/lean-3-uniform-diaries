@@ -1591,3 +1591,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteTwoBlock_leaf_cases
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteTwoBlock_oneSplit_cases
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteTwoBlock_twoSplit_cases
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_finiteTwoBlockOrientation_all_V3
