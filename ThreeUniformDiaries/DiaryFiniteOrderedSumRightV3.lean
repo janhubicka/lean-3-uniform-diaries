@@ -54,7 +54,7 @@ theorem finiteTwoBlockCarrier_right_lexEarlier_iff
     intro he
     have hSplitA : IsOneSplit K a := by
       simpa only [he] using hs
-    exact (oneSplit_not_leaf hSplitA) ha
+    exact ha.2.1 hSplitA.2.1
   have hBound : s ≤ a := by
     have hle := K.oneMeetLevel_le_min a b
     dsimp [s]
