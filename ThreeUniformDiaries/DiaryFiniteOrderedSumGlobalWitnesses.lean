@@ -63,10 +63,10 @@ theorem finiteTwoBlockCarrier_oneSplit_bounded_witness
     have hMon := rightBlockImage_strictMono
       n PH.frame.length_ge_three
     refine ⟨rightBlockImage n a,rightBlockImage n b,
-      rightBlockImage_lt_finiteTwoBlockLength n m
+      rightBlockImage_lt_finiteTwoBlockLength n m a
         PH.frame.length_ge_three PK.frame.length_ge_three
         ha.1 ham,
-      rightBlockImage_lt_finiteTwoBlockLength n m
+      rightBlockImage_lt_finiteTwoBlockLength n m b
         PH.frame.length_ge_three PK.frame.length_ge_three
         hb.1 hbm,
       (finiteTwoBlockCarrier_right_leaf_iff
