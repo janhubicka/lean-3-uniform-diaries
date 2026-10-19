@@ -1681,3 +1681,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteSumProtectedCopies.right_meetEmbedding
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_finiteTwoBlock_both_meetEmbeddings
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_finiteTwoBlock_right_protectedPicture
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteMeetEmbedding.comp
