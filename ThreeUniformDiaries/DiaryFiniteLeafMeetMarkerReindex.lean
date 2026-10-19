@@ -27,7 +27,7 @@ cannot map its index i to a value smaller than i. -/
 theorem finiteSupportIndex_ge_index
     (S : Finset Nat) (i : Nat) (hi : i < S.card) :
     i ≤ finiteSupportIndex S i := by
-  induction i generalizing hi with
+  induction i with
   | zero =>
       omega
   | succ i ih =>
