@@ -549,3 +549,4 @@ import ThreeUniformDiaries.DiaryFiniteDummyTailRoleCoherence
 import ThreeUniformDiaries.DiaryFiniteDummyTailWitnesses
 import ThreeUniformDiaries.DiaryFiniteDummyTailPrediary
 import ThreeUniformDiaries.DiaryFiniteBlockProtectedS2
+import ThreeUniformDiaries.DiaryFiniteMeetEmbedding
