@@ -95,8 +95,8 @@ theorem FiniteMeetEmbedding.protected_picture
       intro hac
       subst c
       exact hne rfl
-    have hS1 := finiteRoleDiary_s1_unordered
-      D a c han hcn hHa hHc hneSource
+    have hS1 := hSource.singleton_split
+      a c ha hc hHa hHc hneSource
     have hMeetBound : H.oneMeetLevel a c < n := by
       have hLe := H.oneMeetLevel_le_min a c
       omega
@@ -132,8 +132,8 @@ theorem FiniteMeetEmbedding.protected_picture
     have hHb : IsLeaf H b0 := (E.leaf_iff b0 hb3 hbn).mp hLeafB
     have hHc : IsLeaf H c0 := (E.leaf_iff c0 hc3 hcn).mp hLeafC
     have hHd : IsLeaf H d0 := (E.leaf_iff d0 hd3 hdn).mp hLeafD
-    have hS2 := finiteRoleDiary_pair_meets_exact
-      D a0 b0 c0 d0 hab0 hcd0 hbn hdn hHa hHb hHc hHd
+    have hS2 := hSource.leaf_pair_meets
+      a0 b0 c0 d0 ha0 hb0 hc0 hd0 hab0 hcd0 hHa hHb hHc hHd
     have hPairMeet := E.twoMeet a0 b0 c0 d0
       hab0 hcd0 ha3 han hb3 hbn hc3 hcn hd3 hdn
     rcases hS2 with hMarker | hSplit | ⟨hSame,hCap⟩
