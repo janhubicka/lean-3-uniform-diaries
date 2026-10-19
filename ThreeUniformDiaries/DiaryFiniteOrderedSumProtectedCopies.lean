@@ -7,7 +7,8 @@ import ThreeUniformDiaries.DiaryFiniteOrderedSumRightAllTwoMeets
 
 The verified finite ordered-sum theorem produces a bounded V/E
 pre-diary containing two induced copies of finite input diaries,
-with only the distinguished markers 0,1,2 identified. For a diary
+with only the distinguished markers 0,1,2 identified.
+The left input may itself be a previously constructed pre-diary. For a diary
 embedding we also need preservation of the NUMERICAL singleton
 and full pair-type meets of all nonmarker vertices of each copy.
 
@@ -63,13 +64,13 @@ structure FiniteSumProtectedCopies
 
 /-- The complete protected TWO-COPY finite ordered-sum theorem:
 one causal Boolean orientation yields a bounded V/E pre-diary
-with BOTH finite source diary copies induced and all their
-numerical one- and full two-meets preserved. -/
+with an induced finite pre-diary LEFT copy and finite diary RIGHT
+copy, preserving all their numerical one- and full two-meets. -/
 theorem exists_finiteTwoBlock_sum_protected
-    (DH : FiniteRoleDiaryBlock H n)
+    (PH : FiniteRolePrediaryBlock H n)
     (DK : FiniteRoleDiaryBlock K m) :
     ∃ bits : Nat → Bool, FiniteSumProtectedCopies H K n m bits := by
-  obtain ⟨bits, P⟩ := exists_finiteTwoBlock_sum_prediary DH DK
+  obtain ⟨bits, P⟩ := exists_finiteTwoBlock_sum_prediary PH DK
   refine ⟨bits, {
     target_prediary := P
     left_oneMeet := ?_
@@ -79,21 +80,21 @@ theorem exists_finiteTwoBlock_sum_protected
   }⟩
   · intro u v hun hvn
     exact finiteTwoBlockCarrier_left_oneMeet_exact
-      DH.prediary.frame DK.prediary.frame bits u v hun hvn
+      PH.frame DK.prediary.frame bits u v hun hvn
   · intro a b c d han hbn hcn hdn
     exact finiteTwoBlockCarrier_left_twoMeet_exact
-      DH.prediary.frame DK.prediary.frame bits
+      PH.frame DK.prediary.frame bits
       a b c d han hbn hcn hdn
   · intro u v hu3 hum hv3 hvm
     exact finiteTwoBlockCarrier_right_oneMeet_exact_all
-      DH.prediary.frame DK.prediary
-      DH.prediary.permitted_edge bits
+      PH.frame DK.prediary
+      PH.permitted_edge bits
       u v hu3 hum hv3 hvm
   · intro a b c d hab hcd
       ha3 ham hb3 hbm hc3 hcm hd3 hdm
     exact finiteTwoBlockCarrier_right_twoMeet_exact_all
-      DH.prediary.frame DK.prediary
-      DH.prediary.permitted_edge bits
+      PH.frame DK.prediary
+      PH.permitted_edge bits
       a b c d hab hcd ha3 ham hb3 hbm hc3 hcm hd3 hdm
 
 end DiaryLeafPriority
