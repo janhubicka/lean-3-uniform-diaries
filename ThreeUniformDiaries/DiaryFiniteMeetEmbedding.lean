@@ -4,7 +4,7 @@ import ThreeUniformDiaries.DiaryFiniteBlockProtectedS2
 # Transport protected finite diary pictures through meet-preserving maps
 
 A finite diary embedding in this programme means more than an
-induced relational copy: its marker roles and ALL capped numerical
+induced relational copy: its marker roles, induced edges AND nonedges, and ALL capped numerical
 singleton/full pair meets must be preserved. This is essential
 for the relative one-pass completion step.
 
@@ -34,8 +34,12 @@ only on its genuine nonmarker vertices. -/
 structure FiniteMeetEmbedding
     (H T : Ordered3Graph Nat) (n : Nat) (f : Nat → Nat) : Prop where
   strictMono : StrictMono f
+  marker_zero : f 0 = 0
   marker_one : f 1 = 1
   marker_two : f 2 = 2
+  edge_iff :
+    ∀ a b c, a < b → b < c → c < n →
+      (T.edge (f a) (f b) (f c) ↔ H.edge a b c)
   leaf_iff :
     ∀ u, 3 ≤ u → u < n → (IsLeaf T (f u) ↔ IsLeaf H u)
   oneSplit_iff :
