@@ -123,6 +123,7 @@ theorem finiteLeafMeetSupport_oneSplit_generator
   rcases Finset.mem_union.mp hm with hFront | hMeets
   · rcases Finset.mem_union.mp hFront with hMarker | hLeaf
     · have hmSmall := Finset.mem_range.mp hMarker
+      have hmLarge : 3 ≤ m := hOne.1
       omega
     · have hLeafRole := hLeaves m hLeaf
       exact False.elim (hLeafRole.2.1 hOne.2.1)
@@ -130,7 +131,8 @@ theorem finiteLeafMeetSupport_oneSplit_generator
     · exact hSelf
     · rcases finiteTwoMeetSupport_role D hLeaves hTwo with
         hMarker | hLeaf | hSplit
-      · omega
+      · have hmLarge : 3 ≤ m := hOne.1
+        omega
       · exact False.elim (hLeaf.2.1 hOne.2.1)
       · exact False.elim (hOne.2.2 hSplit.2.2)
 
@@ -148,6 +150,7 @@ theorem finiteLeafMeetSupport_twoSplit_generator
   rcases Finset.mem_union.mp hm with hFront | hMeets
   · rcases Finset.mem_union.mp hFront with hMarker | hLeaf
     · have hmSmall := Finset.mem_range.mp hMarker
+      have hmLarge : 3 ≤ m := hTwo.1
       omega
     · have hLeafRole := hLeaves m hLeaf
       exact False.elim (hLeafRole.2.2 hTwo.2.2)
