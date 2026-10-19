@@ -144,9 +144,11 @@ theorem FiniteMeetEmbedding.range_subset_leafMeetSupport
       have hm : G.oneMeetLevel (f a) (f b) = f u := by
         rw [hSource,hMeet]
       rw [← hm]
+      have hImageNe : f a ≠ f b := by
+        intro hEq
+        exact hne (E.strictMono.injective hEq)
       exact mem_finiteLeafMeetSupport_oneMeet G L
-        (f a) (f b) hFa hFb
-        (E.strictMono.injective.ne hne)
+        (f a) (f b) hFa hFb hImageNe
     · obtain ⟨a,b,c,d,hab,hcd,han,hbn,hcn,hdn,
         ha,hb,hc,hd,hua,huc,hMeet⟩ :=
         DA.prediary.two_split_witness u hTwo hun
