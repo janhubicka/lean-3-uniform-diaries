@@ -148,11 +148,11 @@ theorem exists_countableDiary_completes_finiteProtected
         onePassOldImage (finiteDummyTailCarrier H n bits)
           (H.twoMeetLevel a b c d)) ∧
       (∀ a b c : Nat, c < n →
-        (onePassRawTarget (finiteDummyTailCarrier H n bits)).edge
+        ((onePassRawTarget (finiteDummyTailCarrier H n bits)).edge
           (onePassOldImage (finiteDummyTailCarrier H n bits) a)
           (onePassOldImage (finiteDummyTailCarrier H n bits) b)
           (onePassOldImage (finiteDummyTailCarrier H n bits) c) ↔
-        H.edge a b c) := by
+        H.edge a b c)) := by
   obtain ⟨bits,PG⟩ := exists_finiteDummyTailCarrier_prediary P
   let G := finiteDummyTailCarrier H n bits
   have QG : FiniteProtectedMeetPicture G F :=
@@ -179,7 +179,7 @@ theorem exists_countableDiary_completes_finiteProtected
         (finiteDummyTail_marked_source_bound P hF c hc)
         (finiteDummyTail_marked_source_bound P hF d hd)
     exact hTail.trans (congrArg (onePassOldImage G) hSourceMeet)
-  · intro hc
+  · intro a b c hc
     have hCompletion :=
       onePassRawTarget_edge_image_iff G a b c
     have hTail := finiteDummyTailCarrier_finite_edge_iff
