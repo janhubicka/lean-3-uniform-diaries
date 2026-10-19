@@ -1673,3 +1673,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteRoleDiary_capped_first_eq
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteRoleDiary_pair_meets_exact
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteRoleDiary_protected_picture
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteMeetEmbedding.protected_picture
