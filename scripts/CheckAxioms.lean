@@ -1713,3 +1713,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportGraph_leaf_iff
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportGraph_oneSplit_iff
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportGraph_twoSplit_iff
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportGraph_oneType_of_original
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportGraph_twoType_of_original
