@@ -6,7 +6,7 @@ import ThreeUniformDiaries.DiaryFiniteRoleBlockInterface
 /-!
 # Complete FINITE ordered-sum V/E pre-diary construction
 
-Given two genuine finite diary blocks H and K with all V/E/S
+Given a finite V/E pre-diary H and a finite diary K with all
 clauses interpreted on their bounded finite supports, choose one
 causal cross-marker orientation. The resulting concrete raw carrier
 is a finite V/E pre-diary in the SAME bounded-language sense.
@@ -36,15 +36,16 @@ variable {H K : Ordered3Graph Nat} {n m : Nat}
 /-- TRUE finite ordered-sum pre-diary theorem. The chosen cross
 orientation is a single finite causal Boolean fixed point, and
 all target V1/V2 witness leaves are inside the combined bound.
+Only the RIGHT input uses S1 (for right-right V3), so the finite
+construction can be ITERATED over arbitrarily many diary inputs.
 The output is not claimed to satisfy S1/S2. -/
 theorem exists_finiteTwoBlock_sum_prediary
-    (DH : FiniteRoleDiaryBlock H n)
+    (PH : FiniteRolePrediaryBlock H n)
     (DK : FiniteRoleDiaryBlock K m) :
     ∃ bits : Nat → Bool,
       FiniteRolePrediaryBlock
         (finiteTwoBlockCarrier H K n m bits)
         (finiteTwoBlockLength n m) := by
-  let PH := DH.prediary
   let PK := DK.prediary
   obtain ⟨bits,hV3⟩ :=
     exists_finiteTwoBlockOrientation_all_V3
