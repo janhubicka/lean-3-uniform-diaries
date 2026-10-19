@@ -92,7 +92,7 @@ theorem finiteDummyTail_preserves_protected_picture
       have hSplitG : IsTwoSplit G (H.twoMeetLevel a b c d) :=
         (finiteDummyTailCarrier_old_twoSplit_iff
           P.frame bits (H.twoMeetLevel a b c d) hMeetN).mpr hSplit
-      exact Or.inr (Or.inl (by simpa only [hMeet] using hSplitG))
+      exact Or.inr (Or.inl (by rw [hMeet]; exact hSplitG))
     · exact Or.inr (Or.inr ⟨hAC, hMeet.trans hCap⟩)
 
 /-- The three original markers and all protected source vertices
@@ -179,7 +179,7 @@ theorem exists_countableDiary_completes_finiteProtected
         (finiteDummyTail_marked_source_bound P hF c hc)
         (finiteDummyTail_marked_source_bound P hF d hd)
     exact hTail.trans (congrArg (onePassOldImage G) hSourceMeet)
-  · intro a b c hc
+  · intro hc
     have hCompletion :=
       onePassRawTarget_edge_image_iff G a b c
     have hTail := finiteDummyTailCarrier_finite_edge_iff
