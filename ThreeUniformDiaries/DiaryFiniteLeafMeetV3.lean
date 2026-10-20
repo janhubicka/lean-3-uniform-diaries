@@ -47,7 +47,7 @@ theorem finiteLeafMeetSupport_reindexed_V3
   let A := finiteSupportIndex S i
   let B := finiteSupportIndex S j
   let m := G.oneMeetLevel A B
-  have hi : i < S.card := by omega
+  have hi : i < S.card := lt_trans hij hj
   have h0 : 0 ∈ S := mem_finiteLeafMeetSupport_marker G L 0 (by omega)
   have h1 : 1 ∈ S := mem_finiteLeafMeetSupport_marker G L 1 (by omega)
   have h2 : 2 ∈ S := mem_finiteLeafMeetSupport_marker G L 2 (by omega)
