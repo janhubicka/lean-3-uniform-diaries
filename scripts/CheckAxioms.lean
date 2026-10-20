@@ -1738,3 +1738,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportIndex_min_below
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteLeafMeetSupport_reindexed_S2
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteLeafMeetSupport_reindexed_role_valid
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteLeafMeetSupport_reindexed_twoSplit_witness
