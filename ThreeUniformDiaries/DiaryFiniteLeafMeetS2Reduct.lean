@@ -151,7 +151,7 @@ theorem finiteLeafMeetSupport_reindexed_S2
           G.twoMeetLevel A B C E = m from rfl))
     right
     rw [hExact]
-    exact hIndexedSplit
+    exact Or.inr hIndexedSplit
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
