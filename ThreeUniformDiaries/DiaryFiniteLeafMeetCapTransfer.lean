@@ -61,7 +61,7 @@ theorem finiteSupportGraph_capped_twoMeet_exact
       (G := G) (S := S) k a b c d
       hk ha hb hc hd hab hcd hka hkc hSourceAt
   have hLower : k ≤ H.twoMeetLevel a b c d :=
-    Nat.le_findGreatest (by simpa only [k]) hTargetAt
+    Nat.le_findGreatest (by dsimp [k]; exact le_rfl) hTargetAt
   have hUpper : H.twoMeetLevel a b c d ≤ k := by
     simpa only [k] using H.twoMeetLevel_le_min a b c d
   change H.twoMeetLevel a b c d = k
