@@ -1777,3 +1777,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteDiaryFlip.refl
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteDiaryFlip.symm
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_finiteDiary_for_all_source_flips
+#print axioms ThreeUniformDiaries.FlipGuidedBranch.exists_fixedPoint_of_strictlyPrefixCausal
+#print axioms ThreeUniformDiaries.FlipGuidedBranch.complement_oneBit_has_no_fixedPoint

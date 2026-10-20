@@ -584,3 +584,4 @@ import ThreeUniformDiaries.DiaryFiniteFamilyFiniteTarget
 import ThreeUniformDiaries.DiaryFiniteUniversalEdgeCode
 import ThreeUniformDiaries.DiaryFiniteUniversalBound
 import ThreeUniformDiaries.DiaryFiniteFlipFirstDirection
+import ThreeUniformDiaries.DiaryFlipCausalFixedPoint
