@@ -44,8 +44,8 @@ theorem finiteSupportGraph_oneSplit_coherent
   have hOrderedA := finiteSupportGraph_edge_ordered G S 0 k i hA
   have hOrderedB := finiteSupportGraph_edge_ordered G S 0 k j hB
   have hk : k < S.card := by omega
-  have hi : i < S.card := hOrderedA.2.2.2
-  have hj : j < S.card := hOrderedB.2.2.2
+  have hi : i < S.card := hOrderedA.2.2
+  have hj : j < S.card := hOrderedB.2.2
   have hki : k < i := hOrderedA.2.1
   have hkj : k < j := hOrderedB.2.1
   have hSourceSplit : IsOneSplit G (finiteSupportIndex S k) :=
@@ -103,9 +103,9 @@ theorem finiteSupportGraph_twoSplit_coherent
   have hOrderedCD := finiteSupportGraph_edge_ordered G S k p q hCD
   have hk : k < S.card := by omega
   have hi : i < S.card := by omega
-  have hj : j < S.card := hOrderedAB.2.2.2
+  have hj : j < S.card := hOrderedAB.2.2
   have hp : p < S.card := by omega
-  have hq : q < S.card := hOrderedCD.2.2.2
+  have hq : q < S.card := hOrderedCD.2.2
   have hki : k < i := hOrderedAB.1
   have hkp : k < p := hOrderedCD.1
   have hSourceSplit : IsTwoSplit G (finiteSupportIndex S k) :=
