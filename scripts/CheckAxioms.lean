@@ -1762,3 +1762,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportLift_twoSplit_iff
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportLift_oneMeet_exact
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportLift_twoMeet_exact
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteMeetEmbedding.through_finiteSupport
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteMeetEmbedding.factor_through_leafMeetSupport
