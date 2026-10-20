@@ -1760,3 +1760,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportLift_leaf_iff
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportLift_oneSplit_iff
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportLift_twoSplit_iff
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportLift_oneMeet_exact
