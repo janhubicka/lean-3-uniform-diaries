@@ -1743,3 +1743,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportIndex_fixed_of_image_lt_three
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportGraph_permitted_edge
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportGraph_finiteEdgeFrame
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteLeafMeetSupport_reindexed_V3
