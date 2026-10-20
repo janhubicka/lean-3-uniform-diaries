@@ -1727,3 +1727,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.leaf_no_middle_one_edge
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.leaf_pair_twoMeet_one_marker_disagreement
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportGraph_twoMeet_exact_at_marker_one
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteLeafMeetSupport_reindexed_role_valid
