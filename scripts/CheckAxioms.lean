@@ -1811,3 +1811,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.fixed_three_markers
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.marker_oneType_iff_of_induced
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.marker_auxType_iff_of_induced
+#print axioms ThreeUniformDiaries.FlipGuidedBranch.xorFeedback_injective
+#print axioms ThreeUniformDiaries.FlipGuidedBranch.exists_preimage_in_invariant_finset
+#print axioms ThreeUniformDiaries.FlipGuidedBranch.exists_causal_correction_in_invariant_family
