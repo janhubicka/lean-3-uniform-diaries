@@ -1805,3 +1805,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteDiaryFlip.trans
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.absorbsEveryTargetFlip_target_flip_iff
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.absorbsEveryTargetFlip_self_copy
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.oneMeet_preserved_of_marker_dichotomy
