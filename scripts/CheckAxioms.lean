@@ -1800,3 +1800,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteLeafPreembedding_leaf_oneMeet_exact
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteLeafPreembedding_leaf_twoMeet_exact
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteLeafPreembedding_support_is_flip
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteDiaryFlip.trans
