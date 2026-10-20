@@ -127,8 +127,10 @@ theorem absorbsEveryTargetFlipInside_of_observed_codes
       finiteDiaryEdgeCode A n ∈ finitePullbackCodesOnCopies T n X) :
     AbsorbsEveryTargetFlipInside A B n k := by
   intro T FT
-  exact (finitePullbackCodesOnCopies_baseline_mem_iff
-    DA X hCopies FT).mp (hHits T FT)
+  obtain ⟨g, _hg, hEmbedding⟩ :=
+    (finitePullbackCodesOnCopies_baseline_mem_iff
+      DA X hCopies FT).mp (hHits T FT)
+  exact ⟨g,hEmbedding⟩
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
