@@ -1774,3 +1774,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteDiaryInputOfCode_mem
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteDiaryCodeInputs_covers
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_finiteDiary_universal_bound
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteDiaryFlip.refl
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteDiaryFlip.symm
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_finiteDiary_for_all_source_flips
