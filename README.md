@@ -342,12 +342,32 @@ ordered-sum note proposes joint embedding of finitely many flips,
 conditional on constructing and protecting the appropriate ambient
 pre-diary. It does not solve absorption into EVERY flip of the target.
 
-**Still open:** the native finite-language diary interface and finite
-output construction, constructing a compatible ambient pre-diary for
-all prescribed flips while respecting the V2 root-type obstruction,
-the stronger EVERY-FLIP-OF-TARGET absorption direction, and final diary
-unavoidability. The original generic cut-zero orientation lemma as
-worded is not certified merely by the alternative four-tail proof.
+### Verified finite leaf-meet diary extraction (20 October 2026)
+
+The genuine **finite diary output**, not merely a countable completion,
+has now been checked on main. For any countable `RoleDiary G` and any
+finite set `L` of its genuine leaves, the generated support consists
+of markers 0,1,2, `L`, distinct-leaf singleton meets, and all full
+ordered-pair meets of leaf pairs from `L`. Increasing induced
+reindexing gives a **`FiniteRoleDiaryBlock`**, exported as
+`DiaryLeafPriority.finiteLeafMeetSupport_is_finiteDiary` in
+`DiaryFiniteLeafMeetCompleteReduct.lean` (merged PR #747).
+
+The theorem uses checked support provenance and S1/S2 (#727–#736),
+bounded role coverage (#739), positive-class V1/V2 coherence and
+all E1–E5 forms (#742), both retained V3 Devlin marker laws (#744),
+and exact bounded V1/V2 split witnesses (#747). Complete Lean CI,
+strict transitive axiom reports, and finite regressions passed on
+the final integrated PR head.
+
+**Still open:** showing that each supplied finite protected *mixed-meet*
+embedding factors through the extracted finite diary with all of its
+numerical meets preserved; constructing a compatible ambient pre-diary
+for prescribed flips while respecting the V2 root-type obstruction;
+the stronger EVERY-FLIP-OF-TARGET absorption direction; and final
+diary unavoidability. The original generic cut-zero orientation lemma
+as worded is not certified merely by the alternative four-tail proof.
+
 
 ## Removed historical adapters
 
