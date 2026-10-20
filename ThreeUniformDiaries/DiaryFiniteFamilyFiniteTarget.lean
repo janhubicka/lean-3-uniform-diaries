@@ -49,7 +49,7 @@ theorem exists_finiteFamily_leaf_support
       intro _hMaps
       refine ⟨∅, ?_, ?_⟩
       · intro x hx
-        exact False.elim (Finset.not_mem_empty x hx)
+        simp at hx
       · intro D hD
         cases hD
   | cons D rest ih =>
