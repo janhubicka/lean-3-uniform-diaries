@@ -192,14 +192,17 @@ theorem finiteLeafPreembedding_leaf_twoMeet_exact
     change H.twoMeetLevel a b c d = m
     exact hT.trans hCap.symm
   · have hGMarker : G.twoMeetLevel (f a) (f b) (f c) (f d) = 1 := by
-      rw [hOldMeet,hMarker,P.marker_one]
+      calc
+        G.twoMeetLevel (f a) (f b) (f c) (f d) = f m := hOldMeet
+        _ = f 1 := congrArg f (show m = 1 from hMarker)
+        _ = 1 := P.marker_one
     have hT := finiteSupportGraph_twoMeet_exact_at_marker_one
       DG h0 h1 h2 a b c d
       haS hbS hcS hdS hab hcd haLeaf.1 hcLeaf.1
-      (hGLeaf a haLeaf.1 han haLeaf)
-      (hGLeaf b hbLeaf.1 hbn hbLeaf)
-      (hGLeaf c hcLeaf.1 hcn hcLeaf)
-      (hGLeaf d hdLeaf.1 hdn hdLeaf)
+      (by simpa only [hIa] using (hGLeaf a haLeaf.1 han haLeaf))
+      (by simpa only [hJb] using (hGLeaf b hbLeaf.1 hbn hbLeaf))
+      (by simpa only [hKc] using (hGLeaf c hcLeaf.1 hcn hcLeaf))
+      (by simpa only [hLd] using (hGLeaf d hdLeaf.1 hdn hdLeaf))
       (by simpa only [hIa,hJb,hKc,hLd] using hGMarker)
     change H.twoMeetLevel a b c d = m
     exact hT.trans hMarker.symm
@@ -215,7 +218,8 @@ theorem finiteLeafPreembedding_leaf_twoMeet_exact
       have hne : m ≠ a := by
         intro h
         have hs : IsTwoSplit A a := by
-          simpa only [h] using hSplit
+          have ht : IsTwoSplit A m := hSplit
+          simpa only [h] using ht
         exact haLeaf.2.2 hs.2.2
       omega
     have hmC : m < c := by
@@ -224,7 +228,8 @@ theorem finiteLeafPreembedding_leaf_twoMeet_exact
       have hne : m ≠ c := by
         intro h
         have hs : IsTwoSplit A c := by
-          simpa only [h] using hSplit
+          have ht : IsTwoSplit A m := hSplit
+          simpa only [h] using ht
         exact hcLeaf.2.2 hs.2.2
       omega
     have hGSplit : IsTwoSplit G (f m) :=
@@ -291,11 +296,11 @@ theorem finiteLeafPreembedding_support_is_flip
     have hOld := P.leaf_edge_iff a b c hab hbc hcn ha hb hc
     exact (hTarget.trans hOld).symm
   · intro a b han hbn ha hb
-    exact finiteLeafPreembedding_leaf_oneMeet_exact
-      DA DG P a b han hbn ha hb
+    exact (finiteLeafPreembedding_leaf_oneMeet_exact
+      DA DG P a b han hbn ha hb).symm
   · intro a b c d hab hcd hbn hdn ha hb hc hd
-    exact finiteLeafPreembedding_leaf_twoMeet_exact
-      DA DG P a b c d hab hcd hbn hdn ha hb hc hd
+    exact (finiteLeafPreembedding_leaf_twoMeet_exact
+      DA DG P a b c d hab hcd hbn hdn ha hb hc hd).symm
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
