@@ -168,7 +168,8 @@ theorem finite_induced_all_twoMeet_preserved
   by_cases hAllLeaves :
       (IsLeaf A a ∧ IsLeaf A b) ∧
       (IsLeaf A c ∧ IsLeaf A d)
-  · exact Q.leaf_twoMeet a b c d hab hcd hbn hdn
+  · exact Q.leaf_twoMeet a b c d hab hcd
+      ha3 han hb3 hbn hc3 hcn hd3 hdn
       hAllLeaves.1.1 hAllLeaves.1.2
       hAllLeaves.2.1 hAllLeaves.2.2
   · have hSomeMixed :
