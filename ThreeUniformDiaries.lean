@@ -575,3 +575,4 @@ import ThreeUniformDiaries.DiaryFiniteLeafMeetV3
 import ThreeUniformDiaries.DiaryFiniteLeafMeetV1Witness
 import ThreeUniformDiaries.DiaryFiniteLeafMeetV2Witness
 import ThreeUniformDiaries.DiaryFiniteLeafMeetCompleteReduct
+import ThreeUniformDiaries.DiaryFiniteSupportInverseRank
