@@ -1,5 +1,6 @@
 import ThreeUniformDiaries.DiaryFiniteFlipFirstDirection
 import ThreeUniformDiaries.DiaryFiniteFamilyFiniteTarget
+import ThreeUniformDiaries.DiaryFiniteFlipTargetTransport
 import ThreeUniformDiaries.DiaryFiniteSupportInverseRank
 
 /-!
@@ -32,6 +33,16 @@ structure FiniteBoundedMeetEmbedding
     (A T : Ordered3Graph Nat) (n k : Nat) (f : Nat → Nat) : Prop where
   toMeetEmbedding : FiniteMeetEmbedding A T n f
   image_bound : ∀ u : Nat, u < n → f u < k
+
+/-- The bounded embedding API directly supplies the image condition
+required to transport a prescribed source copy through any target
+flip. No extra or unproved range assumption is requested. -/
+theorem FiniteBoundedMeetEmbedding.leafPreembedding_after_target_flip
+    {A B B' : Ordered3Graph Nat} {n k : Nat} {f : Nat → Nat}
+    (E : FiniteBoundedMeetEmbedding A B n k f)
+    (F : FiniteDiaryFlip B B' k) :
+    FiniteLeafPreembedding A B' n k f :=
+  E.toMeetEmbedding.leafPreembedding_after_target_flip E.image_bound F
 
 /-- A finite-family joint-embedding theorem with explicitly
 bounded copies, not merely maps into the ambient Nat carrier. -/
