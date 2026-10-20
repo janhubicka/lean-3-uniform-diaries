@@ -99,11 +99,15 @@ theorem finiteLeafPreembedding_support_edge_iff
   have hMain :=
     finiteSupportGraph_edge_iff G S a b c hab hbc
       (by simpa only [hCard] using hc)
-  simpa only [
-    finiteLeafPreembedding_support_index_eq DA P a ha,
-    finiteLeafPreembedding_support_index_eq DA P b hb,
-    finiteLeafPreembedding_support_index_eq DA P c hc
-  ] using hMain
+  change (finiteSupportGraph G S).edge a b c ↔
+    G.edge (f a) (f b) (f c)
+  calc
+    _ ↔ G.edge (finiteSupportIndex S a)
+        (finiteSupportIndex S b) (finiteSupportIndex S c) := hMain
+    _ ↔ G.edge (f a) (f b) (f c) := by
+      rw [finiteLeafPreembedding_support_index_eq DA P a ha,
+        finiteLeafPreembedding_support_index_eq DA P b hb,
+        finiteLeafPreembedding_support_index_eq DA P c hc]
 
 /-- The induced target-flip pullback on the exact finite image
 is again a genuine finite diary, provided the ambient target is
@@ -124,7 +128,10 @@ theorem finiteLeafPreembedding_support_is_finiteDiary
     exact ((P.role_iff u hu3 hun).1).mpr huLeaf
   have hFull := finiteLeafMeetSupport_is_finiteDiary DG hLeaves
   have hCard := finiteLeafPreembedding_support_card DA P
-  simpa only [hCard] using hFull
+  change FiniteRoleDiaryBlock
+    (finiteSupportGraph G (finiteLeafMeetSupport G L)) n
+  rw [← hCard]
+  exact hFull
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
