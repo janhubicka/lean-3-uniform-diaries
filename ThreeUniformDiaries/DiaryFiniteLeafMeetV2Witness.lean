@@ -79,7 +79,7 @@ theorem finiteLeafMeetSupport_reindexed_twoSplit_witness
   have hLeafI := hTargetLeaf a i ha hi hIa
   have hLeafJ := hTargetLeaf b j hb hj hJb
   have hLeafP := hTargetLeaf c p hc hp hPc
-  have hLeafQ := hTargetLeaf d q hd hQd
+  have hLeafQ := hTargetLeaf d q hd hq hQd
   have hij : i < j := finiteSupportIndex_lt_of_image_lt
     S i j hi hj (by simpa only [hIa,hJb] using hab)
   have hpq : p < q := finiteSupportIndex_lt_of_image_lt
