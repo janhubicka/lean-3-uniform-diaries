@@ -2,6 +2,7 @@ import ThreeUniformDiaries.DiaryFiniteLeafMeetV3
 import ThreeUniformDiaries.DiaryFiniteLeafMeetV1Witness
 import ThreeUniformDiaries.DiaryFiniteLeafMeetV2Witness
 import ThreeUniformDiaries.DiaryFiniteRoleBlockInterface
+import ThreeUniformDiaries.DiaryFiniteSupportCoherence
 
 /-!
 # Finite leaf-meet extraction produces a complete finite diary
@@ -88,7 +89,7 @@ theorem finiteLeafMeetSupport_is_finiteDiary
     exact finiteLeafMeetSupport_reindexed_S1
       D hLeaves a b ha hb hab haLeaf hbLeaf
   · intro a b c d hab hcd hb hd haLeaf hbLeaf hcLeaf hdLeaf
-    have ha : a < S.card := by omega
+    have ha : a < S.card := lt_trans hab hb
     have hc : c < S.card := lt_trans hcd hd
     exact finiteLeafMeetSupport_reindexed_S2
       D hLeaves a b c d ha hb hc hd hab hcd
