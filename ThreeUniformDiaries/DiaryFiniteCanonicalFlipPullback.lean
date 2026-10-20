@@ -59,8 +59,9 @@ theorem finiteDiaryPullbackGraph_frame
   intro a b c he
   change a < b ∧ b < c ∧ c < n ∧
     T.edge (f a) (f b) (f c) at he
+  obtain ⟨hab,hbc,hcn,_he⟩ := he
   have hc3 : 3 ≤ c := by omega
-  exact ⟨he.1,he.2.1,hc3,he.2.2.1⟩
+  exact ⟨hab,hbc,hc3,hcn⟩
 
 /-- A bounded finite ordered graph agreeing with the target
 on all increasing source triples is precisely the canonical
