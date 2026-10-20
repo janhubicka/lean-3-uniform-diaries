@@ -62,7 +62,13 @@ theorem finiteSupportLift_oneMeet_exact
     finiteSupportGraph_oneType_of_original
       (G := G) (S := S) (g m) (g u) (g v)
       sm.1 su.1 sv.1 hgmU hgmV
-      (by simpa only [sm.2,su.2,sv.2] using hOldAt)
+      (by
+        change G.SameOneTypeBelow
+          (finiteSupportIndex S (finiteSupportLift S n f m))
+          (finiteSupportIndex S (finiteSupportLift S n f u))
+          (finiteSupportIndex S (finiteSupportLift S n f v))
+        rw [sm.2,su.2,sv.2]
+        exact hOldAt)
   have hLower : g m ≤ H.oneMeetLevel (g u) (g v) :=
     Nat.le_findGreatest (le_min hgmU hgmV) hNewAt
   have hUpper : H.oneMeetLevel (g u) (g v) ≤ g m := by
@@ -94,8 +100,8 @@ theorem finiteSupportLift_oneMeet_exact
         exact hFail
           ((A.sameOneTypeBelow_succ_iff m u v).mpr
             ⟨hAAt,hAll⟩)
-      push_neg at hNotAll
-      obtain ⟨x,hxm,hDifferent⟩ := hNotAll
+      obtain ⟨x,hNotAtX⟩ := not_forall.mp hNotAll
+      obtain ⟨hxm,hDifferent⟩ := not_imp.mp hNotAtX
       have hXu : H.edge (g x) (g m) (g u) ↔
           A.edge x m u :=
         finiteSupportLift_edge_iff
