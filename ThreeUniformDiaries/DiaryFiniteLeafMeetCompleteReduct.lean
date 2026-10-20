@@ -84,12 +84,12 @@ theorem finiteLeafMeetSupport_is_finiteDiary
   · intro x y z he
     exact finiteSupportGraph_permitted_edge D h0 h1 h2 x y z he
   · intro a b hab hb haLeaf hbLeaf
-    have ha : a < S.card := by omega
+    have ha : a < S.card := lt_trans hab hb
     exact finiteLeafMeetSupport_reindexed_S1
       D hLeaves a b ha hb hab haLeaf hbLeaf
   · intro a b c d hab hcd hb hd haLeaf hbLeaf hcLeaf hdLeaf
     have ha : a < S.card := by omega
-    have hc : c < S.card := by omega
+    have hc : c < S.card := lt_trans hcd hd
     exact finiteLeafMeetSupport_reindexed_S2
       D hLeaves a b c d ha hb hc hd hab hcd
       haLeaf hbLeaf hcLeaf hdLeaf
