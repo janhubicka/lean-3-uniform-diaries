@@ -360,12 +360,30 @@ and exact bounded V1/V2 split witnesses (#747). Complete Lean CI,
 strict transitive axiom reports, and finite regressions passed on
 the final integrated PR head.
 
-**Still open:** showing that each supplied finite protected *mixed-meet*
-embedding factors through the extracted finite diary with all of its
-numerical meets preserved; constructing a compatible ambient pre-diary
-for prescribed flips while respecting the V2 root-type obstruction;
-the stronger EVERY-FLIP-OF-TARGET absorption direction; and final
-diary unavoidability. The original generic cut-zero orientation lemma
+### Verified finite protected factorisation and finite-family joint embedding (20 October 2026)
+
+The missing finite protected-copy factorisation is now Lean verified
+(merged PR #755, green integrated Lean CI and strict axiom audit).
+
+- `FiniteMeetEmbedding.through_finiteSupport` sends a genuine finite
+  meet embedding through any finite increasing induced support
+  containing its full source image. It preserves ALL numerical
+  singleton and full ordered-pair meets, including mixed split/leaf
+  tuples. Exact first-difference witnesses are retained in the image;
+  no false backwards transport of arbitrary ambient type tests is used.
+- `FiniteMeetEmbedding.factor_through_leafMeetSupport` combines this
+  with the extracted `FiniteRoleDiaryBlock`. It produces a
+  **genuinely finite** target diary with a fully protected input copy.
+- `exists_finiteDiary_for_finiteFamily` gives one finite diary
+  jointly containing any finite family of finite diary inputs, all
+  by induced, marker- and mixed-meet-preserving embeddings.
+
+**Still open:** the MUCH STRONGER assertion that **every flip of the
+finite target** contains the prescribed source diary; and the final
+diary unavoidability conclusion. Ordinary finite joint embedding
+of all flips of the source DOES NOT imply this absorption property.
+The V2 shared-root obstruction rules out the raw chronological
+flip-prefix amalgam. The original generic cut-zero orientation lemma
 as worded is not certified merely by the alternative four-tail proof.
 
 
