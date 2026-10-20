@@ -585,3 +585,4 @@ import ThreeUniformDiaries.DiaryFiniteUniversalEdgeCode
 import ThreeUniformDiaries.DiaryFiniteUniversalBound
 import ThreeUniformDiaries.DiaryFiniteFlipFirstDirection
 import ThreeUniformDiaries.DiaryFlipCausalFixedPoint
+import ThreeUniformDiaries.DiaryFiniteFlipPullbackCriterion
