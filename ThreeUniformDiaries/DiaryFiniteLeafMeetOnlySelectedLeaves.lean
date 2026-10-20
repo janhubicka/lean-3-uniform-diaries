@@ -15,6 +15,7 @@ are EXACTLY L, even before reindexing. Reindexed finite leaves
 likewise correspond exactly to L under the increasing support
 enumeration.
 
+In particular, no cap-valued leaf from a pair meet can lie outside L.
 This is the input for applying the selected-leaf S1/S2 meet
 preservation theorems to ALL finite target leaf pairs, not just
 an arbitrary subset of them.
