@@ -50,17 +50,30 @@ theorem finiteDiaryPullbackGraph_edge_iff
   simp only [finiteDiaryPullbackGraph, hab, hbc, hcn,
     true_and]
 
-/-- Literal bounded support of all canonical source edges. -/
+/-- Literal bounded support of the canonical source edges
+when the finite target itself has the required edge frame and
+the embedding fixes marker 2. No unconditional 3-uniform
+claim is made for an arbitrary target edge relation. -/
 theorem finiteDiaryPullbackGraph_frame
-    (T : Ordered3Graph Nat) (n : Nat)
-    (f : Nat → Nat) (hn : 3 ≤ n) :
+    (T : Ordered3Graph Nat) (n k : Nat)
+    (f : Nat → Nat)
+    (hn : 3 ≤ n)
+    (FT : FiniteDiaryEdgeFrame T k)
+    (hf2 : f 2 = 2) :
     FiniteDiaryEdgeFrame (finiteDiaryPullbackGraph T n f) n := by
   refine ⟨hn, ?_⟩
   intro a b c he
   change a < b ∧ b < c ∧ c < n ∧
     T.edge (f a) (f b) (f c) at he
-  obtain ⟨hab,hbc,hcn,_he⟩ := he
-  have hc3 : 3 ≤ c := by omega
+  obtain ⟨hab,hbc,hcn,hT⟩ := he
+  have hTarget3 : 3 ≤ f c :=
+    (FT.edge_support (f a) (f b) (f c) hT).2.2.1
+  have hc3 : 3 ≤ c := by
+    by_contra hsmall
+    have hc2 : c = 2 := by omega
+    subst c
+    rw [hf2] at hTarget3
+    omega
   exact ⟨hab,hbc,hc3,hcn⟩
 
 /-- A bounded finite ordered graph agreeing with the target
