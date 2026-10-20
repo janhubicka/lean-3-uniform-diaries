@@ -4,7 +4,7 @@ import ThreeUniformDiaries.DiaryFiniteLeafMeetMarkerReindex
 # Genuine leaves in generated finite leaf-meet supports
 
 Every nonmarker vertex of the finite leaf-meet support is either
-a selected leaf or a genuine old 1-/2-split. A full pair-meet
+a selected leaf or a genuine old one-split or two-split. A full pair-meet
 generator may be a LEAF only in the capped S2 case, when it
 equals the first member of a selected leaf pair. Hence it is
 again one of the selected leaves.
