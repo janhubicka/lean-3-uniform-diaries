@@ -1755,3 +1755,8 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportLift_strictMono
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportRank_marker
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportLift_markers
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportLift_edge_iff
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportLift_ge_three
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportLift_leaf_iff
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportLift_oneSplit_iff
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportLift_twoSplit_iff
