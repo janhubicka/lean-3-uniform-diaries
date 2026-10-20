@@ -1777,3 +1777,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteDiaryFlip.refl
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteDiaryFlip.symm
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_finiteDiary_for_all_source_flips
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteMeetEmbedding.nonmarker_image_ge_three
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteMeetEmbedding.leafPreembedding_after_target_flip
