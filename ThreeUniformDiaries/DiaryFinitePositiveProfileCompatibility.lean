@@ -67,7 +67,9 @@ theorem FiniteRolePrediaryBlock.twoSplit_positive_marker_one_agrees
     H.edge 1 a b ↔ H.edge 1 c d := by
   have hSame := P.two_split_coherent
     m a b c d hm hab hcd ha hb hc hd hPosAB hPosCD
-  have h1m : 1 < m := by omega
+  have h1m : 1 < m := by
+    have hm3 : 3 ≤ m := hm.1
+    omega
   exact hSame.2.2 h1m
 
 end DiaryLeafPriority
