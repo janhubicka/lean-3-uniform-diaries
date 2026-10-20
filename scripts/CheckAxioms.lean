@@ -1802,3 +1802,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteLeafPreembedding_support_is_flip
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_countableDiary_for_finiteDiary
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_inducedSourceFlip_of_targetFlip
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteDiaryFlip.trans
