@@ -583,3 +583,4 @@ import ThreeUniformDiaries.DiaryFiniteProtectedFactorization
 import ThreeUniformDiaries.DiaryFiniteFamilyFiniteTarget
 import ThreeUniformDiaries.DiaryFiniteUniversalEdgeCode
 import ThreeUniformDiaries.DiaryFiniteUniversalBound
+import ThreeUniformDiaries.DiaryFiniteFlipFirstDirection
