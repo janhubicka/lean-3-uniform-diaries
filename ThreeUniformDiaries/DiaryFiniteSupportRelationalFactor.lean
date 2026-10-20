@@ -51,8 +51,13 @@ theorem finiteSupportLift_edge_iff
           finiteSupportGraph_edge_iff G S (g a) (g b) (g c)
             hga hgb gc.1
     _ ↔ A.edge a b c := by
-      simpa only [ga.2,gb.2,gc.2] using
-        E.edge_iff a b c hab hbc hc
+      change G.edge
+        (finiteSupportIndex S (finiteSupportLift S n f a))
+        (finiteSupportIndex S (finiteSupportLift S n f b))
+        (finiteSupportIndex S (finiteSupportLift S n f c)) ↔
+        A.edge a b c
+      rw [ga.2,gb.2,gc.2]
+      exact E.edge_iff a b c hab hbc hc
 
 /-- A genuine source nonmarker remains a genuine target nonmarker
 under finite compression. -/
