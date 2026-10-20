@@ -163,8 +163,10 @@ theorem absorbsEveryTargetFlipInside_of_feedback_injective
       finiteDiaryEdgeCode (finiteDiaryPullbackGraph B' n f) n =
         finiteDiaryEdgeCode A n := by
     have hVal := congrArg Subtype.val hc
-    simpa only [realizedSourceFlipFeedback_val,
-      baseline, e, f] using hVal
+    change (realizedSourceFlipFeedback A B B' n k hCopies F c).val =
+      finiteDiaryEdgeCode A n at hVal
+    exact (realizedSourceFlipFeedback_val
+      A B B' n k hCopies F c).symm.trans hVal
   have hReconPull : finiteDiaryCodeGraph n
       (finiteDiaryEdgeCode (finiteDiaryPullbackGraph B' n f) n) =
         finiteDiaryPullbackGraph B' n f :=
