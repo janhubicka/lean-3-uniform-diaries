@@ -117,8 +117,17 @@ theorem realizedSourceFlipFeedback_refl_eq_of_graph
     realizedSourceFlipFeedback A B B n k hCopies
       (FiniteDiaryFlip.refl DB) d := by
   apply Subtype.ext
-  rw [realizedSourceFlipFeedback_refl_val,
-      realizedSourceFlipFeedback_refl_val, hGraph]
+  calc
+    (realizedSourceFlipFeedback A B B n k hCopies
+      (FiniteDiaryFlip.refl DB) c).val =
+        finiteDiaryEdgeCode (finiteDiaryCodeGraph n c.val) n :=
+      realizedSourceFlipFeedback_refl_val A B n k DB hCopies c
+    _ = finiteDiaryEdgeCode (finiteDiaryCodeGraph n d.val) n := by
+      rw [hGraph]
+    _ = (realizedSourceFlipFeedback A B B n k hCopies
+        (FiniteDiaryFlip.refl DB) d).val :=
+      (realizedSourceFlipFeedback_refl_val
+        A B n k DB hCopies d).symm
 
 /-- The raw-code feedback is NONINJECTIVE for B'=B, independent
 of how the family of protected embeddings was selected. -/
