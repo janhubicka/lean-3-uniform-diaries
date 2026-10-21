@@ -387,6 +387,40 @@ flip-prefix amalgam. The original generic cut-zero orientation lemma
 as worded is not certified merely by the alternative four-tail proof.
 
 
+
+### Raw flip-code collision and canonical feedback repair (21 October 2026)
+
+The feedback reduction must distinguish actual diary flips from redundant
+Boolean encodings of the same finite edge relation. The original
+`FiniteDiaryEdgeCode n` contains **every** Boolean triple, including
+non-increasing triples discarded by `finiteDiaryCodeGraph`.
+`DiaryFiniteRawCodeCollision` proves that toggling the (0,0,0) bit
+produces a different raw member of `finiteSourceFlipCodes` for
+the **same** diary. For every finite source and any chosen protected
+copies, the old `realizedSourceFlipFeedback` is therefore **not
+injective even at the identity target flip**. Its previous
+all-target-flips injectivity hypothesis is impossible as encoded;
+the conditional implication from that false hypothesis is not a
+verification of absorption.
+
+The repaired modules `DiaryFiniteCanonicalSourceFlipOrbit`,
+`DiaryFiniteCanonicalRealizedFeedback`, and
+`DiaryFiniteCanonicalFeedbackReduction` work on canonical codes
+satisfying encode(decode(code)) = code. Decoding is injective on
+this true finite code orbit, each real flip is represented, and
+the **actual geometric feedback is the identity at the unflipped
+target** independently of the chosen protected maps. A corrected
+conditional reduction proves that injectivity of this feedback
+for *all* genuine target flips would imply bounded, full
+mixed-meet-preserving absorption.
+
+**Remaining nontrivial mathematical obligation:** establish a
+geometrically coherent choice of protected copies whose corrected
+canonical feedback is injective for *every nontrivial target flip*.
+The root-profile conflict and coupled source control bits remain
+relevant. No arbitrary independent-bit or unproved causality
+assumption is used. The circulation manuscript remains frozen.
+
 ## Removed historical adapters
 
 The preceding proof once passed through several conditional
