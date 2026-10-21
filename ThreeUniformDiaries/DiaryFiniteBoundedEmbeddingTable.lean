@@ -144,7 +144,6 @@ theorem FiniteBoundedMeetEmbedding.exists_finite_table
       extendFiniteBoundedMap n k g u = f u := by
     intro u hu
     rw [extendFiniteBoundedMap_apply_lt n k g u hu]
-    rfl
   exact ⟨g,hg,
     E.of_same_finite_prefix hn
       (extendFiniteBoundedMap_strictMono n k g hg) hAgree,
