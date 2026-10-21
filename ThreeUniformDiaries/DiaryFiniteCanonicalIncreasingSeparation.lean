@@ -47,12 +47,12 @@ theorem canonical_source_codes_eq_iff_increasing_bits
         refine ⟨ha,hb,hz,hab,hbz,?_⟩
         have hPoint := h ⟨a,ha⟩ ⟨b,hb⟩ ⟨z,hz⟩
           (by exact hab) (by exact hbz)
-        exact hPoint.symm ▸ hbit
+        exact hPoint ▸ hbit
       · rintro ⟨ha,hb,hz,hab,hbz,hbit⟩
         refine ⟨ha,hb,hz,hab,hbz,?_⟩
         have hPoint := h ⟨a,ha⟩ ⟨b,hb⟩ ⟨z,hz⟩
           (by exact hab) (by exact hbz)
-        exact hPoint ▸ hbit
+        exact hPoint.symm ▸ hbit
     exact finiteCanonicalSourceFlipCodes_decode_injective
       A n c d hc hd hGraph
 
