@@ -14,7 +14,7 @@ genuine finite diary flip graphs. We define the corrected finite
 source-flip orbit by filtering for this normalization condition.
 
 All proofs are by faithful finite graph reconstruction; no
-independence of one-/two-split controls is assumed.
+independence of one-split and two-split controls is assumed.
 -/
 
 namespace ThreeUniformDiaries
