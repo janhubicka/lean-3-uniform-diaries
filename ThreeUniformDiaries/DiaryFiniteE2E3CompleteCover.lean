@@ -123,7 +123,8 @@ theorem finiteDiaryPullbackGraph_eq_baseline_iff_E2E3
       T n f i.val j.val z.val hij hjz z.isLt
     change Q.edge i.val j.val z.val ↔
       T.edge (f i.val) (f j.val) (f z.val) at hBit
-    rw [hEq] at hBit
+    have hQA : Q = A := hEq
+    rw [hQA] at hBit
     exact hBit.symm
   · intro hAgree
     apply FAQ.eq_of_E2E3_agreement
