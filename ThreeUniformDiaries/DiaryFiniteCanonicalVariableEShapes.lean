@@ -21,6 +21,11 @@ the verified two-one-split coupling is not contradicted.
 namespace ThreeUniformDiaries
 namespace DiaryLeafPriority
 
+/-- A Boolean is determined by its truth value. -/
+private theorem finite_bool_eq_of_true_iff (x y : Bool)
+    (h : (x = true) ↔ (y = true)) : x = y := by
+  cases x <;> cases y <;> simp_all
+
 /-- Fliphood preserves the two actual marker-role edge bits on
 every finite nonmarker vertex. No independent role flags. -/
 theorem FiniteDiaryFlip.markerEdges_iff
@@ -192,10 +197,8 @@ theorem canonical_source_flips_ne_variable_edge_shape
     intro hEquiv
     have hTruth : (c i j z = true) ↔ (d i j z = true) :=
       heP.symm.trans (hEquiv.trans heQ)
-    have hEq : c i j z = d i j z := by
-      cases hC : c i j z <;>
-        cases hD : d i j z <;>
-        simp_all
+    have hEq : c i j z = d i j z :=
+      finite_bool_eq_of_true_iff (c i j z) (d i j z) hTruth
     exact hDifferent hEq
   refine ⟨i,j,z,hij,hjz,?_,hDifferent⟩
   exact FC.variable_shape_of_difference FD
