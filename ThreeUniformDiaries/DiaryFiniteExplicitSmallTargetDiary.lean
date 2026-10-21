@@ -1,5 +1,6 @@
 import ThreeUniformDiaries.DiaryFiniteExplicitSmallTarget
 import ThreeUniformDiaries.DiaryFiniteFirstDisagreementCertificates
+import ThreeUniformDiaries.DiaryFlipTwoSplitControl
 
 /-!
 # Complete bounded diary certificate for the explicit 9-vertex target
@@ -67,7 +68,7 @@ theorem smallFlipTarget_permitted :
     ⟨rfl,rfl,rfl⟩ | ⟨rfl,rfl,rfl⟩ |
     ⟨rfl,rfl,rfl⟩ | ⟨rfl,rfl,rfl⟩ |
     ⟨rfl,rfl,rfl⟩ | ⟨rfl,rfl,rfl⟩
-  · exact Or.inl ⟨rfl,Or.inr (Or.inl rfl),by omega⟩
+  · exact Or.inl ⟨rfl,Or.inr rfl,by omega⟩
   · exact Or.inl ⟨rfl,Or.inl rfl,by omega⟩
   · exact Or.inl ⟨rfl,Or.inl rfl,by omega⟩
   · exact Or.inr (Or.inl
