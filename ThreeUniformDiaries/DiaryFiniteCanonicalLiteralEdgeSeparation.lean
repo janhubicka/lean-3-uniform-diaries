@@ -22,6 +22,21 @@ universally separating protected-copy family.
 namespace ThreeUniformDiaries
 namespace DiaryLeafPriority
 
+/-- Literal truth value of a target hyperedge, encoded as Bool.
+Keeping classical decidability inside this definition avoids
+requiring a Decidable edge predicate in mathematical statements. -/
+noncomputable def finiteTargetEdgeBit
+    (T : Ordered3Graph Nat) (x y z : Nat) : Bool := by
+  classical
+  exact decide (T.edge x y z)
+
+/-- The Boolean target-edge bit is true exactly at a genuine edge. -/
+theorem finiteTargetEdgeBit_true_iff
+    (T : Ordered3Graph Nat) (x y z : Nat) :
+    finiteTargetEdgeBit T x y z = true ↔ T.edge x y z := by
+  classical
+  simp [finiteTargetEdgeBit]
+
 /-- On a strictly increasing source triple, the canonical finite
 pullback bit is literally the target's hyperedge incidence at
 the three image vertices. -/
@@ -29,7 +44,8 @@ theorem finiteDiaryPullback_edgeCode_increasing
     (T : Ordered3Graph Nat) (n : Nat) (f : Nat → Nat)
     (i j z : Fin n) (hij : i < j) (hjz : j < z) :
     finiteDiaryEdgeCode (finiteDiaryPullbackGraph T n f) n i j z =
-      decide (T.edge (f i.val) (f j.val) (f z.val)) := by
+      finiteTargetEdgeBit T (f i.val) (f j.val) (f z.val) := by
+  classical
   change
     decide ((finiteDiaryPullbackGraph T n f).edge
       i.val j.val z.val) =
@@ -37,12 +53,17 @@ theorem finiteDiaryPullback_edgeCode_increasing
   rw [finiteDiaryPullbackGraph_edge_iff
     T n f i.val j.val z.val hij hjz z.isLt]
 
-/-- Difference of Boolean decisions is precisely logical
-disagreement of the underlying target incidence propositions. -/
-theorem decide_ne_iff_not_iff
-    (p q : Prop) [Decidable p] [Decidable q] :
-    decide p ≠ decide q ↔ ¬ (p ↔ q) := by
-  by_cases hp : p <;> by_cases hq : q <;> simp [hp,hq]
+/-- Difference of literal target Boolean incidence bits is
+precisely disagreement of the corresponding edge propositions. -/
+theorem finiteTargetEdgeBit_ne_iff_edge_disagreement
+    (T : Ordered3Graph Nat)
+    (x y z a b c : Nat) :
+    finiteTargetEdgeBit T x y z ≠ finiteTargetEdgeBit T a b c ↔
+      ¬ (T.edge x y z ↔ T.edge a b c) := by
+  classical
+  by_cases hLeft : T.edge x y z <;>
+    by_cases hRight : T.edge a b c <;>
+    simp [finiteTargetEdgeBit, hLeft, hRight]
 
 /-- Canonical geometric feedback is injective iff every pair of
 different genuine source flips is witnessed by a strictly
@@ -90,7 +111,13 @@ theorem canonical_feedback_injective_iff_literal_target_edge_separation
       T n (chosenCanonicalSourceFlipMap A B n k hCopies d)
       i j z hij hjz
     rw [hc,hd] at hbit
-    exact (decide_ne_iff_not_iff _ _).mp hbit
+    exact (finiteTargetEdgeBit_ne_iff_edge_disagreement T
+      ((chosenCanonicalSourceFlipMap A B n k hCopies c) i.val)
+      ((chosenCanonicalSourceFlipMap A B n k hCopies c) j.val)
+      ((chosenCanonicalSourceFlipMap A B n k hCopies c) z.val)
+      ((chosenCanonicalSourceFlipMap A B n k hCopies d) i.val)
+      ((chosenCanonicalSourceFlipMap A B n k hCopies d) j.val)
+      ((chosenCanonicalSourceFlipMap A B n k hCopies d) z.val)).mp hbit
   · intro h c d hne
     obtain ⟨i,j,z,hij,hjz,hdiff⟩ := h c d hne
     refine ⟨i,j,z,hij,hjz,?_⟩
@@ -101,7 +128,13 @@ theorem canonical_feedback_injective_iff_literal_target_edge_separation
       T n (chosenCanonicalSourceFlipMap A B n k hCopies d)
       i j z hij hjz
     rw [hc,hd]
-    exact (decide_ne_iff_not_iff _ _).mpr hdiff
+    exact (finiteTargetEdgeBit_ne_iff_edge_disagreement T
+      ((chosenCanonicalSourceFlipMap A B n k hCopies c) i.val)
+      ((chosenCanonicalSourceFlipMap A B n k hCopies c) j.val)
+      ((chosenCanonicalSourceFlipMap A B n k hCopies c) z.val)
+      ((chosenCanonicalSourceFlipMap A B n k hCopies d) i.val)
+      ((chosenCanonicalSourceFlipMap A B n k hCopies d) j.val)
+      ((chosenCanonicalSourceFlipMap A B n k hCopies d) z.val)).mpr hdiff
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
