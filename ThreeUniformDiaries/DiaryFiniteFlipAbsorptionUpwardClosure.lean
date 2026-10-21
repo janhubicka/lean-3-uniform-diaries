@@ -1,6 +1,7 @@
 import ThreeUniformDiaries.DiaryFinitePullbackProtectedEmbedding
 import ThreeUniformDiaries.DiaryFiniteMeetEmbeddingComposition
 import ThreeUniformDiaries.DiaryFiniteBoundedUniversality
+import ThreeUniformDiaries.DiaryFiniteFlipTransitivity
 
 /-!
 # Strong finite flip absorption persists under protected target extensions
