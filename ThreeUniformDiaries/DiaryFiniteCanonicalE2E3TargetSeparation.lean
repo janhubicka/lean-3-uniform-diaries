@@ -1,11 +1,12 @@
 import ThreeUniformDiaries.DiaryFiniteCanonicalE2E3Separation
 import ThreeUniformDiaries.DiaryFiniteCanonicalLiteralEdgeSeparation
+import ThreeUniformDiaries.DiaryFiniteCanonicalGeometricChange
 
 /-!
 # Exact E2/E3 edge tests for canonical geometric feedback
 
 Two canonical finite source flips can differ only on the genuinely
-variable E2/E3 one-/two-split incidences, after the dependent E4
+variable E2/E3 one-split and two-split incidences, after the dependent E4
 Devlin-marker coordinates are eliminated.
 
 The same is true of the OUTPUTS of canonical feedback: its values
