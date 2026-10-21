@@ -213,7 +213,13 @@ theorem smallFlipSource_is_finiteDiary :
     have hb5 : b = 5 := by omega
     subst a
     subst b
-    simp [smallFlipSource,smallFlipSource_lex45]
+    change smallFlipSource.edge 1 4 5 ↔
+      LexEarlier smallFlipSource 4 5
+    constructor
+    · intro _
+      exact smallFlipSource_lex45
+    · intro _
+      simp [smallFlipSource]
   · intro a b hab hb ha hbLeaf
     have haCases := (smallFlipSource_leaf_iff
       a ha.1 (by omega)).mp ha
@@ -223,7 +229,13 @@ theorem smallFlipSource_is_finiteDiary :
     have hb5 : b = 5 := by omega
     subst a
     subst b
-    simp [smallFlipSource,smallFlipSource_lex45]
+    change smallFlipSource.edge 2 4 5 ↔
+      ¬ LexEarlier smallFlipSource 4 5
+    constructor
+    · intro he
+      simp [smallFlipSource] at he
+    · intro hn
+      exact False.elim (hn smallFlipSource_lex45)
   · intro a b hab hb ha hbLeaf
     have haCases := (smallFlipSource_leaf_iff
       a ha.1 (by omega)).mp ha
