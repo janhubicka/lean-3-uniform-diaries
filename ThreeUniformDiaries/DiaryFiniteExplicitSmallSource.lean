@@ -121,6 +121,7 @@ its first leaf, for ANY ordered three-graph. -/
 theorem Ordered3Graph.twoMeetLevel_self_eq
     (H : Ordered3Graph Nat) (a b : Nat) (hab : a < b) :
     H.twoMeetLevel a b a b = a := by
+  classical
   have hu : H.twoMeetLevel a b a b ≤ a := by
     have h := H.twoMeetLevel_le_min a b a b
     simpa using h
