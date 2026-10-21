@@ -387,6 +387,44 @@ flip-prefix amalgam. The original generic cut-zero orientation lemma
 as worded is not certified merely by the alternative four-tail proof.
 
 
+
+### Canonical flip-feedback repair and finite separation test (21 October 2026)
+
+The previous feedback reduction was **incorrect as a route to
+injectivity** because raw `FiniteDiaryEdgeCode n` tables include
+non-increasing triples discarded by `finiteDiaryCodeGraph`.
+`DiaryFiniteRawCodeCollision` proves in Lean that toggling just
+the (0,0,0) bit creates a distinct valid raw flip code for the
+same diary. For EVERY choice of protected copies, the old
+`realizedSourceFlipFeedback` is therefore **noninjective even
+when the target flip is the identity**. Its universal-injectivity
+hypothesis cannot hold. This is a counterexample to the raw-code
+representation, not to the mathematical flip-property statement.
+
+The repaired `DiaryFiniteCanonicalSourceFlipOrbit` retains only
+normalized codes satisfying encode(decode(code)) = code.
+Every genuine source flip has its unique canonical code.
+`DiaryFiniteCanonicalRealizedFeedback` constructs the actual
+geometric feedback on this finite orbit and verifies it is
+**exactly the identity** under the identity target flip,
+independently of the chosen protected embeddings.
+
+`DiaryFiniteCanonicalFeedbackReduction` proves the corrected
+conditional bounded absorption statement. The finite collision
+test in `DiaryFiniteCanonicalFeedbackCollisionCheck` reduces its
+remaining geometric injectivity hypothesis to a check of
+pairwise distinct pulled-back edge tables for all canonical
+source flip codes and the finite set of realisable target flip
+codes. This is a correct finite certificate, NOT evidence that a
+suitable coherent copy family exists for every diary.
+
+**Outstanding:** construct a finite diary target and a
+geometrically coherent protected-copy family whose canonical
+pullback tables stay pairwise distinct in EVERY nontrivial
+target flip. The known V2 common-root obstruction and coupled
+one-split bits rule out naive independent Boolean choices.
+The manuscript circulation text remains frozen.
+
 ## Removed historical adapters
 
 The preceding proof once passed through several conditional
