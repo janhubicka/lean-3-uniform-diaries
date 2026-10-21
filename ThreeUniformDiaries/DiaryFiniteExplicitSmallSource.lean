@@ -137,5 +137,123 @@ theorem Ordered3Graph.twoMeetLevel_self_eq
     exact hAgree
   omega
 
+
+
+/-- The only leaves in the bounded six-vertex frame are 4 and 5. -/
+theorem smallFlipSource_leaf_iff
+    (z : Nat) (hz3 : 3 ≤ z) (hz6 : z < 6) :
+    IsLeaf smallFlipSource z ↔ (z = 4 ∨ z = 5) := by
+  constructor
+  · intro hz
+    have hn3 : z ≠ 3 := by
+      intro heq
+      subst z
+      exact hz.2.1 smallFlipSource_oneSplit3.2.1
+    omega
+  · rintro (rfl | rfl)
+    · exact smallFlipSource_leaf4
+    · exact smallFlipSource_leaf5
+
+/-- This source has the full actual bounded finite V/E/S diary
+axioms. The only 1-split witness is (4,5), the E3 witness
+conditions are vacuous, V3 is the positive right branch
+comparison, and S2 is the first-leaf self-cap. -/
+theorem smallFlipSource_is_finiteDiary :
+    FiniteRoleDiaryBlock smallFlipSource 6 := by
+  refine {
+    prediary := {
+      frame := smallFlipSource_frame
+      role_valid := ?_
+      one_split_coherent := ?_
+      one_split_witness := ?_
+      two_split_coherent := ?_
+      two_split_witness := ?_
+      leaf_marker_one := ?_
+      leaf_marker_two := ?_
+      permitted_edge := smallFlipSource_permitted
+    }
+    singleton_meets := ?_
+    pair_meets := ?_
+  }
+  · intro z hz3 hz6
+    have hz : z = 3 ∨ z = 4 ∨ z = 5 := by omega
+    rcases hz with rfl | rfl | rfl
+    · exact Or.inr (Or.inl smallFlipSource_oneSplit3)
+    · exact Or.inl smallFlipSource_leaf4
+    · exact Or.inl smallFlipSource_leaf5
+  · intro s a b hs _ha _hb hsa hsb
+    have h3 : s = 3 := smallFlipSource_oneSplit_eq_three hs
+    subst s
+    have ha5 : a = 5 := by
+      simpa [smallFlipSource] using hsa
+    have hb5 : b = 5 := by
+      simpa [smallFlipSource] using hsb
+    subst a
+    subst b
+    intro x y _ _
+    exact Iff.rfl
+  · intro s hs _hsk
+    have h3 : s = 3 := smallFlipSource_oneSplit_eq_three hs
+    subst s
+    refine ⟨4,5,by omega,by omega,
+      smallFlipSource_leaf4,smallFlipSource_leaf5,
+      by omega,by omega,?_⟩
+    exact smallFlipSource_leaf_meet
+  · intro s a b c d hs _hab _hcd _ha _hb _hc _hd _habPos _hcdPos
+    exact (smallFlipSource_no_twoSplit s hs).elim
+  · intro s hs _hsk
+    exact (smallFlipSource_no_twoSplit s hs).elim
+  · intro a b hab hb ha hbLeaf
+    have haCases := (smallFlipSource_leaf_iff
+      a ha.1 (by omega)).mp ha
+    have hbCases := (smallFlipSource_leaf_iff
+      b hbLeaf.1 hb).mp hbLeaf
+    have ha4 : a = 4 := by omega
+    have hb5 : b = 5 := by omega
+    subst a
+    subst b
+    simp [smallFlipSource,smallFlipSource_lex45]
+  · intro a b hab hb ha hbLeaf
+    have haCases := (smallFlipSource_leaf_iff
+      a ha.1 (by omega)).mp ha
+    have hbCases := (smallFlipSource_leaf_iff
+      b hbLeaf.1 hb).mp hbLeaf
+    have ha4 : a = 4 := by omega
+    have hb5 : b = 5 := by omega
+    subst a
+    subst b
+    simp [smallFlipSource,smallFlipSource_lex45]
+  · intro a b hab hb ha hbLeaf
+    have haCases := (smallFlipSource_leaf_iff
+      a ha.1 (by omega)).mp ha
+    have hbCases := (smallFlipSource_leaf_iff
+      b hbLeaf.1 hb).mp hbLeaf
+    have ha4 : a = 4 := by omega
+    have hb5 : b = 5 := by omega
+    subst a
+    subst b
+    rw [smallFlipSource_leaf_meet]
+    exact smallFlipSource_oneSplit3
+  · intro a b c d hab hcd hb hd ha hbLeaf hc hdLeaf
+    have haCases := (smallFlipSource_leaf_iff
+      a ha.1 (by omega)).mp ha
+    have hbCases := (smallFlipSource_leaf_iff
+      b hbLeaf.1 hb).mp hbLeaf
+    have hcCases := (smallFlipSource_leaf_iff
+      c hc.1 (by omega)).mp hc
+    have hdCases := (smallFlipSource_leaf_iff
+      d hdLeaf.1 hd).mp hdLeaf
+    have ha4 : a = 4 := by omega
+    have hb5 : b = 5 := by omega
+    have hc4 : c = 4 := by omega
+    have hd5 : d = 5 := by omega
+    subst a
+    subst b
+    subst c
+    subst d
+    left
+    exact Ordered3Graph.twoMeetLevel_self_eq
+      smallFlipSource 4 5 (by omega)
+
 end DiaryLeafPriority
 end ThreeUniformDiaries
