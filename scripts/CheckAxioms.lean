@@ -1950,3 +1950,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.smallFlipTarget_meet_7_8
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.smallFlipTarget_meet_6_8
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.smallFlipTarget_twoMeet_68_78
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.smallFlipTarget_twoMeet_67_68
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.smallFlipTarget_twoMeet_67_78
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.smallFlipTarget_is_finiteDiary
