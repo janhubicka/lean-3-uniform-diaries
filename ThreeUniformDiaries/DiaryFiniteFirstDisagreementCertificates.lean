@@ -35,6 +35,7 @@ theorem Ordered3Graph.oneMeetLevel_eq_of_first_disagreement
     (hWitness : ∃ x : Nat, x < m ∧
       ¬ (H.edge x m u ↔ H.edge x m v)) :
     H.oneMeetLevel u v = m := by
+  classical
   have hLower : m ≤ H.oneMeetLevel u v :=
     Nat.le_findGreatest hm.le hAgree
   have hNotNext : ¬ H.SameOneTypeBelow (m + 1) u v := by
