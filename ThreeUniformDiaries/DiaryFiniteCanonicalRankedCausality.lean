@@ -27,6 +27,12 @@ with no suggested choice of rank hidden in a theorem statement.
 namespace ThreeUniformDiaries
 namespace DiaryLeafPriority
 
+/-- XOR by a fixed Boolean is cancellative. Kept separate so the
+ranked-induction proof does not simplify its large dependent context. -/
+private theorem xor_cancel_fixed_left (p q r : Bool)
+    (h : Bool.xor p q = Bool.xor p r) : q = r := by
+  cases p <;> cases q <;> cases r <;> simp_all [Bool.xor]
+
 /-- A triangular XOR correction is injective even if its domain
 is only a restricted finite family of realisable edge codes, and
 even when several triple indices have the same rank. The proof
@@ -64,10 +70,9 @@ theorem finiteCode_feedback_injective_of_ranked_correction
         exact congrFun (congrFun
           (congrFun (congrArg Subtype.val hEqual) x) y) t
       rw [← hOut] at hCorrection
-      cases hc : c.val x y t <;>
-        cases hd : d.val x y t <;>
-        cases ho : (F c).val x y t <;>
-        simp_all [Bool.xor]
+      exact xor_cancel_fixed_left
+        ((F c).val x y t) (c.val x y t) (d.val x y t)
+        hCorrection
   exact hAll (rank i j z) i j z rfl
 
 /-- If the ACTUAL canonical feedback under a chosen target flip
