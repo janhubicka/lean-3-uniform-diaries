@@ -62,6 +62,7 @@ theorem Ordered3Graph.twoMeetLevel_eq_of_aux_first_disagreement
     (hAgree : H.SameTwoTypeBelow m a b c d)
     (hDifferent : ¬ (H.edge m a b ↔ H.edge m c d)) :
     H.twoMeetLevel a b c d = m := by
+  classical
   have hLower : m ≤ H.twoMeetLevel a b c d :=
     Nat.le_findGreatest hm.le hAgree
   have hNotNext : ¬ H.SameTwoTypeBelow (m + 1) a b c d := by
