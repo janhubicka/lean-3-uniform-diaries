@@ -73,6 +73,8 @@ theorem finite_same_marker_noncap_pairs_force_twoSplit
         (finite_leaf_middle_no_zero_edge D.prediary a b ha)
         (finite_leaf_middle_no_zero_edge D.prediary c d hc)
     · exact hMarker
+  have ha3 : 3 ≤ a := ha.1
+  have hc3 : 3 ≤ c := hc.1
   have hTwoLower : 2 ≤ H.twoMeetLevel a b c d := by
     apply Nat.le_findGreatest
       (show 2 ≤ min a c by omega)
@@ -104,6 +106,7 @@ theorem finite_three_leaf_alternation_forces_twoSplit
     ∃ t : Nat, IsTwoSplit H t := by
   classical
   have hac : a < c := lt_trans hab hbc
+  have hs3 : 3 ≤ s := hs.1
   have hABMark : H.edge 1 a b ↔ H.edge 0 s b :=
     (D.prediary.leaf_marker_one a b hab (by omega) ha hb).trans
       (E_oneSplit_lexEarlier_iff_right
