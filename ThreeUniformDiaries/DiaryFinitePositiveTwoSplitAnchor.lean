@@ -153,7 +153,8 @@ theorem finite_leafPreembedding_twoSplit_E3_of_positive_anchor
       s < A.twoMeetLevel a b u v ↔
         f s < f (A.twoMeetLevel a b u v) := by
     constructor
-    · exact Q.strictMono
+    · intro h
+      exact Q.strictMono h
     · intro h
       by_contra hNot
       have hLe : A.twoMeetLevel a b u v ≤ s := Nat.le_of_not_gt hNot
