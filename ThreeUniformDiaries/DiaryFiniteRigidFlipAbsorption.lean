@@ -72,5 +72,26 @@ theorem exists_finite_absorbing_target_of_flip_rigid
   exact ⟨f,boundedEmbedding_survives_every_target_flip_of_rigid
     DA E hRigid B' F⟩
 
+/-- For an actual flip-rigid source diary A, merely having a
+single bounded protected copy in B is EQUIVALENT to containing
+such a copy in EVERY genuine target flip of B. The reverse
+implication takes the identity target flip; the forward
+implication uses canonical induced source pullback rigidity. -/
+theorem absorbsEveryTargetFlipInside_iff_has_copy_of_rigid
+    {A B : Ordered3Graph Nat} {n k : Nat}
+    (DA : FiniteRoleDiaryBlock A n)
+    (DB : FiniteRoleDiaryBlock B k)
+    (hRigid : FiniteDiaryFlipRigid A n) :
+    AbsorbsEveryTargetFlipInside A B n k ↔
+      ∃ f : Nat → Nat,
+        FiniteBoundedMeetEmbedding A B n k f := by
+  constructor
+  · intro hAbs
+    exact hAbs B (FiniteDiaryFlip.refl DB)
+  · rintro ⟨f,E⟩
+    intro B' F
+    exact ⟨f,boundedEmbedding_survives_every_target_flip_of_rigid
+      DA E hRigid B' F⟩
+
 end DiaryLeafPriority
 end ThreeUniformDiaries
