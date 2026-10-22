@@ -117,6 +117,9 @@ theorem smallFlipSource_embeds_of_positive_oneSplit
   have hNoTwoQ : ¬ IsTwoSplit T q := by
     intro h
     exact hq.2.2 h.2.2
+  have hs3 : 3 ≤ s := hs.1
+  have hp3 : 3 ≤ p := hp.1
+  have hq3 : 3 ≤ q := hq.1
   have hNo012 : ¬ T.edge 0 1 2 := by
     intro he
     have hh := D.prediary.frame.edge_support 0 1 2 he
@@ -129,7 +132,7 @@ theorem smallFlipSource_embeds_of_positive_oneSplit
     · omega
     · have hh : 3 ≤ (1:Nat) := h3.1.1
       omega
-    · have hh := h4.2.1
+    · have hh : 3 ≤ (2:Nat) := h4.2.1.1
       omega
     · have hh : 3 ≤ (1:Nat) := h5.1.1
       omega
@@ -195,9 +198,8 @@ theorem smallFlipSource_embeds_of_positive_oneSplit
     have hbCases := (smallFlipSource_leaf_iff b hb3 hb6).mp hbLeaf
     rcases haCases with rfl | rfl <;> rcases hbCases with rfl | rfl
     · simp [f,smallPointedPairMap,Ordered3Graph.oneMeetLevel_self_eq]
-    · simpa only [smallPointedPairMap_leaf0,smallPointedPairMap_leaf1,
-        smallPointedPairMap_split,smallFlipSource_leaf_meet]
-        using hMeet
+    · change T.oneMeetLevel p q = s
+      exact hMeet
     · have hTargetReverse := finiteLeafMeet_oneMeet_comm T q p
       have hSourceReverse := finiteLeafMeet_oneMeet_comm
         smallFlipSource 5 4
@@ -229,9 +231,12 @@ theorem smallFlipSource_embeds_of_positive_oneSplit
     have hcc : c=4 := by omega
     have hdd : d=5 := by omega
     subst a; subst b; subst c; subst d
+    change T.twoMeetLevel p q p q =
+      smallPointedPairMap s p q
+        (smallFlipSource.twoMeetLevel 4 5 4 5)
     rw [Ordered3Graph.twoMeetLevel_self_eq T p q hpq,
       Ordered3Graph.twoMeetLevel_self_eq smallFlipSource 4 5 (by omega)]
-    simp [f,smallPointedPairMap]
+    simp [smallPointedPairMap]
   have Q : FiniteLeafPreembedding smallFlipSource T 6 k f := {
     strictMono := hMono
     marker_zero := smallPointedPairMap_marker_zero s p q
