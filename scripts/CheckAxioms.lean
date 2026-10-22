@@ -1957,3 +1957,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.smallFlipTarget_twoMeet_67_68
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.smallFlipTarget_twoMeet_67_78
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.smallFlipTarget_is_finiteDiary
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_three_leaf_outer_oneMeet_gt
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_three_pair_outer_twoMeet_gt
