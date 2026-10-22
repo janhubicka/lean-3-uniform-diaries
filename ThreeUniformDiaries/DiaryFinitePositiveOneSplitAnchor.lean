@@ -72,6 +72,7 @@ theorem finite_positive_oneSplit_edge_iff_later_oneMeet
       Nat.le_findGreatest hBound hNext
     omega
   · intro hLater
+    have hs3 : 3 ≤ s := hs.1
     have hSame : H.edge 0 s a ↔ H.edge 0 s u :=
       H.oneMeetLevel_agree a u (by omega) hLater
     exact hSame.mp hPositive
