@@ -82,6 +82,7 @@ theorem smallFlipSourceOpposite_leaf_oneType_at_three :
     omega
   have h5 : ¬ smallFlipSourceOpposite.edge x y 5 := by
     simp [smallFlipSourceOpposite]
+    omega
   exact iff_of_false h4 h5
 
 theorem smallFlipSourceOpposite_leaf_meet :
@@ -218,6 +219,20 @@ theorem smallFlipSourceOpposite_is_finiteDiary :
 
 /-- The two six-vertex diaries have exactly the same roles,
 no all-leaf triple, and the same genuine leaf meets. -/
+private theorem oneMeetLevel_self_for_small_flip
+    (H : Ordered3Graph Nat) (a : Nat) :
+    H.oneMeetLevel a a = a := by
+  classical
+  have hUpper : H.oneMeetLevel a a ≤ a := by
+    have h := H.oneMeetLevel_le_min a a
+    simpa using h
+  have hAgree : H.SameOneTypeBelow a a a := by
+    intro x y hxy hy
+    exact Iff.rfl
+  have hLower : a ≤ H.oneMeetLevel a a :=
+    Nat.le_findGreatest (by simp) hAgree
+  omega
+
 theorem smallFlipSourceOpposite_is_sourceFlip :
     FiniteDiaryFlip smallFlipSource smallFlipSourceOpposite 6 := by
   refine {
@@ -245,7 +260,7 @@ theorem smallFlipSourceOpposite_is_sourceFlip :
     have hbC := (smallFlipSource_leaf_iff
       b hb.1 hb6).mp hb
     rcases haC with rfl | rfl <;> rcases hbC with rfl | rfl
-    · simp [Ordered3Graph.oneMeetLevel_self_eq]
+    · simp [oneMeetLevel_self_for_small_flip]
     · exact smallFlipSource_leaf_meet.trans
         smallFlipSourceOpposite_leaf_meet.symm
     · calc
@@ -257,7 +272,7 @@ theorem smallFlipSourceOpposite_is_sourceFlip :
           smallFlipSourceOpposite_leaf_meet.symm
         _ = smallFlipSourceOpposite.oneMeetLevel 5 4 :=
           (finiteLeafMeet_oneMeet_comm smallFlipSourceOpposite 5 4).symm
-    · simp [Ordered3Graph.oneMeetLevel_self_eq]
+    · simp [oneMeetLevel_self_for_small_flip]
   · intro a b c d hab hcd hb6 hd6 ha hb hc hd
     have haC := (smallFlipSource_leaf_iff
       a ha.1 (by omega)).mp ha
