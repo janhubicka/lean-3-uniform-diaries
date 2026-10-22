@@ -118,7 +118,10 @@ theorem absorbsEveryTargetFlipInside_iff_finite_anchor_table_cover
       finiteDiaryPullbackGraph_boundedEmbedding_into_targetFlip
         FP.target_diary E FT
     have EA : FiniteBoundedMeetEmbedding A T n k f := by
-      simpa only [hPull] using ETarget
+      -- The table-cover equality is written using concrete code graphs.
+      -- Unfold the local names before transporting the proof.
+      change finiteDiaryPullbackGraph T n f = A at hPull
+      exact hPull ▸ ETarget
     have hAnchors :=
       (finite_leafPreembedding_boundedEmbedding_iff_positive_anchors
         DA FT.target_diary Q).mp EA
