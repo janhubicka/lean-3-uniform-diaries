@@ -116,7 +116,9 @@ theorem finite_leafPreembedding_boundedEmbedding_iff_positive_anchors
     · intro s hs
       obtain ⟨a,ha,hsa,han,hPosA⟩ :=
         finite_oneSplit_exists_positive_anchor DA s hs
-      have h0s : 0 < s := by omega
+      have h0s : 0 < s := by
+        have hs3 : 3 ≤ s := hs.1
+        omega
       have hPosB : B.edge 0 (f s) (f a) := by
         have h := (E.toMeetEmbedding.edge_iff
           0 s a h0s hsa han).mpr hPosA
