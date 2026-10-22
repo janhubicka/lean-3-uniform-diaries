@@ -198,8 +198,8 @@ theorem smallFlipSource_embeds_of_positive_oneSplit
     have hbCases := (smallFlipSource_leaf_iff b hb3 hb6).mp hbLeaf
     rcases haCases with rfl | rfl <;> rcases hbCases with rfl | rfl
     · simp [f,smallPointedPairMap,Ordered3Graph.oneMeetLevel_self_eq]
-    · change T.oneMeetLevel p q = s
-      exact hMeet
+    · rw [smallFlipSource_leaf_meet]
+      simpa [f,smallPointedPairMap] using hMeet
     · have hTargetReverse := finiteLeafMeet_oneMeet_comm T q p
       have hSourceReverse := finiteLeafMeet_oneMeet_comm
         smallFlipSource 5 4
