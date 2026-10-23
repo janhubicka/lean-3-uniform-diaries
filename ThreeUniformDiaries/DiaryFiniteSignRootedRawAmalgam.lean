@@ -86,7 +86,15 @@ theorem sign_eq_of_node_eq
     (fun v : FiniteSignRootedNode A n => v.2) h
   have hNot : ¬ z < 3 := by omega
   simp only [node, if_neg hNot] at hOpt
-  exact congrArg Prod.fst (Option.some.inj hOpt)
+  have hPair :
+      ((F.signature i).1,
+        (fun s : FiniteTwoSplitIndex A n =>
+          if s.val.val < z then (F.signature i).2 s else false)) =
+      ((F.signature j).1,
+        (fun s : FiniteTwoSplitIndex A n =>
+          if s.val.val < z then (F.signature j).2 s else false)) :=
+    Option.some.inj hOpt
+  exact congrArg Prod.fst hPair
 
 /-- Same node at level z remembers each source S2 bit whose
 genuine split level is STRICTLY before z. -/
@@ -102,7 +110,15 @@ theorem s2_bit_eq_of_node_eq
     (fun v : FiniteSignRootedNode A n => v.2) h
   have hNot : ¬ z < 3 := by omega
   simp only [node, if_neg hNot] at hOpt
-  have hFun := congrArg Prod.snd (Option.some.inj hOpt)
+  have hPair :
+      ((F.signature i).1,
+        (fun q : FiniteTwoSplitIndex A n =>
+          if q.val.val < z then (F.signature i).2 q else false)) =
+      ((F.signature j).1,
+        (fun q : FiniteTwoSplitIndex A n =>
+          if q.val.val < z then (F.signature j).2 q else false)) :=
+    Option.some.inj hOpt
+  have hFun := congrArg Prod.snd hPair
   have hS := congrFun hFun s
   simpa only [if_pos hsz] using hS
 
@@ -148,7 +164,10 @@ theorem edge_agree_of_shared_terminal_node
   classical
   by_cases hz3 : 3 ≤ z
   · by_cases hPair : FiniteSourceHasLeafPair A n
-    · obtain ⟨⟨r,t⟩,hrt,htn,hr,ht⟩ := hPair
+    · let r := (finiteSourceLeafReference A n).1
+      let t := (finiteSourceLeafReference A n).2
+      obtain ⟨hrt,htn,hr,ht⟩ :=
+        finiteSourceLeafReference_spec A n hPair
       have hMarkerDec : decide ((F.graph i).edge 1 r t) =
           decide ((F.graph j).edge 1 r t) := by
         have hSign := F.sign_eq_of_node_eq i j z hz3 hnode
