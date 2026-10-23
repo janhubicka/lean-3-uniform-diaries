@@ -2023,3 +2023,8 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteDiaryFlip.identity_leafPreembedding
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_two_flips_eq_of_global_marker_and_S2_bits
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSelectedS2Witness
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteFixedFlipSignature_injective_on_flips
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteCanonicalFlipSignature_injOn
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteCanonicalFlipSignature_card_bound
