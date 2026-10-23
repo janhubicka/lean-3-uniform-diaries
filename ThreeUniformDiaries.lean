@@ -677,4 +677,6 @@ import ThreeUniformDiaries.DiaryFiniteUnconditionalFlipOrbitBound
 
 import ThreeUniformDiaries.DiaryFiniteCanonicalTargetAnchorCover
 
+import ThreeUniformDiaries.DiaryFiniteFourLeafForcesTwoSplit
+
 import ThreeUniformDiaries.DiaryFiniteNoTwoSplitAbsorption
