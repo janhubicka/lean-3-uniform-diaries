@@ -95,7 +95,6 @@ theorem sign_eq_of_node_eq
           if s.val.val < z then (F.signature j).2 s else false)) :=
     Option.some.inj hOpt
   injection hPair with hSign hMasked
-  exact hSign
 
 /-- Same node at level z remembers each source S2 bit whose
 genuine split level is STRICTLY before z. -/
