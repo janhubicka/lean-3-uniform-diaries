@@ -666,3 +666,5 @@ import ThreeUniformDiaries.DiaryFiniteAnchorTableCover
 import ThreeUniformDiaries.DiaryFiniteGlobalDevlinOrientation
 
 import ThreeUniformDiaries.DiaryFiniteGlobalE2ColumnRigidity
+
+import ThreeUniformDiaries.DiaryFiniteE3SplitWitnessRigidity
