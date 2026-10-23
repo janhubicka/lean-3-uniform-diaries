@@ -32,10 +32,20 @@ inside the bounded frame. -/
 abbrev FiniteTwoSplitIndex (A : Ordered3Graph Nat) (n : Nat) :=
   {s : Fin n // IsTwoSplit A s.val}
 
+/-- The finite number of actual two-splits, with decidability
+chosen locally rather than required in theorem statements. -/
+noncomputable def finiteTwoSplitCount
+    (A : Ordered3Graph Nat) (n : Nat) : Nat := by
+  classical
+  exact Fintype.card (FiniteTwoSplitIndex A n)
+
 /-- A genuine full-pair-meet witness for a given source two-split. -/
 structure FiniteSelectedS2Witness
     (A : Ordered3Graph Nat) (n s : Nat) where
-  a b c d : Nat
+  a : Nat
+  b : Nat
+  c : Nat
+  d : Nat
   hab : a < b
   hcd : c < d
   hbn : b < n
@@ -177,7 +187,7 @@ theorem finiteCanonicalFlipSignature_card_bound
     Fintype.card
       {x : FiniteDiaryEdgeCode n //
         x ∈ finiteCanonicalSourceFlipCodes A n} ≤
-      2 ^ (Fintype.card (FiniteTwoSplitIndex A n) + 1) := by
+      2 ^ (finiteTwoSplitCount A n + 1) := by
   classical
   let Orbit :=
     {x : FiniteDiaryEdgeCode n //
@@ -195,10 +205,9 @@ theorem finiteCanonicalFlipSignature_card_bound
     Fintype.card_le_of_injective code hInjective
   have hSize :
       Fintype.card Signature =
-        2 ^ (Fintype.card (FiniteTwoSplitIndex A n) + 1) := by
-    dsimp [Signature]
-    simp [Fintype.card_fun, Fintype.card_prod, pow_succ,
-      mul_comm]
+        2 ^ (finiteTwoSplitCount A n + 1) := by
+    dsimp [Signature, finiteTwoSplitCount]
+    simp [Fintype.card_prod, pow_succ, mul_comm]
   simpa only [hSize] using hBound
 
 end DiaryLeafPriority
