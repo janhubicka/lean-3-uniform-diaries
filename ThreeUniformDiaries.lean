@@ -683,4 +683,6 @@ import ThreeUniformDiaries.DiaryFiniteNoTwoSplitAbsorption
 
 import ThreeUniformDiaries.DiaryFiniteSignRootedPrefixIncidence
 
+import ThreeUniformDiaries.DiaryFiniteSignRootedPrefixCodes
+
 import ThreeUniformDiaries.DiaryFiniteTwoSplitParentProfile
