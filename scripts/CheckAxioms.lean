@@ -2020,3 +2020,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_two_flips_E2_columns_equal_of_reference_marker
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_two_flips_E3_column_of_witness_bit
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteDiaryFlip.identity_leafPreembedding
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_two_flips_eq_of_global_marker_and_S2_bits
