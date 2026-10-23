@@ -690,3 +690,5 @@ import ThreeUniformDiaries.DiaryFiniteTwoSplitParentProfile
 import ThreeUniformDiaries.DiaryFiniteSignRootedRawAmalgam
 
 import ThreeUniformDiaries.DiaryFiniteSignRootedRawTerminalSupport
+
+import ThreeUniformDiaries.DiaryFiniteSignRootedRawTypePreservation
