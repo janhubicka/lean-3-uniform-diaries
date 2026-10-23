@@ -682,3 +682,5 @@ import ThreeUniformDiaries.DiaryFiniteFourLeafForcesTwoSplit
 import ThreeUniformDiaries.DiaryFiniteNoTwoSplitAbsorption
 
 import ThreeUniformDiaries.DiaryFiniteSignRootedPrefixIncidence
+
+import ThreeUniformDiaries.DiaryFiniteSignRootedPrefixCodes
