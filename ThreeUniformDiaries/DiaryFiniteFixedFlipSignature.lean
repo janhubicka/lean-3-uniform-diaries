@@ -65,12 +65,16 @@ noncomputable def finiteSelectedS2Witness
     (DA : FiniteRoleDiaryBlock A n)
     (s : FiniteTwoSplitIndex A n) :
     FiniteSelectedS2Witness A n s.val.val := by
-  obtain ⟨a,b,c,d,hab,hcd,_han,hbn,_hcn,hdn,
-    ha,hb,hc,hd,hsa,hsc,hMeet⟩ :=
-    DA.prediary.two_split_witness s.val.val
-      s.property s.val.isLt
-  exact ⟨a,b,c,d,hab,hcd,hbn,hdn,
-    ha,hb,hc,hd,hsa,hsc,hMeet⟩
+  classical
+  have hNonempty :
+      Nonempty (FiniteSelectedS2Witness A n s.val.val) := by
+    obtain ⟨a,b,c,d,hab,hcd,_han,hbn,_hcn,hdn,
+      ha,hb,hc,hd,hsa,hsc,hMeet⟩ :=
+      DA.prediary.two_split_witness s.val.val
+        s.property s.val.isLt
+    exact ⟨⟨a,b,c,d,hab,hcd,hbn,hdn,
+      ha,hb,hc,hd,hsa,hsc,hMeet⟩⟩
+  exact Classical.choice hNonempty
 
 /-- Fixed signature of any graph on the source frame, using
 one selected marker-one reference pair and the source's
