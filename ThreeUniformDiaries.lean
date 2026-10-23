@@ -688,3 +688,5 @@ import ThreeUniformDiaries.DiaryFiniteSignRootedPrefixCodes
 import ThreeUniformDiaries.DiaryFiniteTwoSplitParentProfile
 
 import ThreeUniformDiaries.DiaryFiniteSignRootedRawAmalgam
+
+import ThreeUniformDiaries.DiaryFiniteSignRootedRawTerminalSupport
