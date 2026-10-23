@@ -418,12 +418,79 @@ source flip codes and the finite set of realisable target flip
 codes. This is a correct finite certificate, NOT evidence that a
 suitable coherent copy family exists for every diary.
 
-**Outstanding:** construct a finite diary target and a
-geometrically coherent protected-copy family whose canonical
-pullback tables stay pairwise distinct in EVERY nontrivial
-target flip. The known V2 common-root obstruction and coupled
-one-split bits rule out naive independent Boolean choices.
-The manuscript circulation text remains frozen.
+**Outstanding:** construct, for every finite source diary A,
+a finite diary B such that EVERY genuine target flip T of B
+contains a fully protected copy of the unflipped A. The old
+one-fixed-copy-per-source-flip injective-feedback hypothesis
+is stronger than needed. The verified multivalued covering
+criterion allows DIFFERENT canonical source-flip copies and
+embedding tables for different target flips. Both V2
+positive-pair coherence and the coupled split orientations
+rule out naive independent Boolean choices. The manuscript
+circulation text remains frozen.
+
+
+### Verified positive-anchor flip covering and constrained finite signatures (23 October 2026)
+
+These results are merged on Lean `main` with full builds, strict
+transitive axiom audits and finite regressions. Their exact scope
+is important: NONE constructs a general absorber.
+
+- `DiaryFinitePositiveAnchorCompletion` and
+  `DiaryFinitePositiveAnchorEquivalence` (PRs #857--#858):
+  for an existing bounded genuine leaf preembedding, ONE
+  preserved positive E2 witness at each source 1-split and
+  ONE preserved positive E3 ordered leaf pair at each source
+  2-split are necessary and sufficient for a completely
+  induced, all-numerical-meet preserving diary embedding.
+  `DiaryFiniteAnchoredFlipCoverCriterion` (#859) quantifies
+  this equivalence over every actual target flip.
+- `DiaryFiniteAnchorTableCover` (#860) proves an exact
+  multivalued FINITE positive-anchor table-cover criterion.
+  Candidate source-flip codes are canonical; the original
+  target quantifier included redundant RAW Boolean codes.
+  `DiaryFiniteCanonicalTargetAnchorCover` (#868) removes
+  those duplicates: it suffices to check every genuine
+  CANONICAL target flip exactly once.
+- `DiaryFinitePairMeetCoupledOneSplit` (#861) verifies V3
+  coupling of right-hand E2 incidences across distinct
+  one-splits. `DiaryFiniteGlobalDevlinOrientation` (#862)
+  proves every finite flip preserves or globally reverses
+  ALL marker-one leaf-pair orientation bits with ONE sign.
+  `DiaryFiniteGlobalE2ColumnRigidity` (#863) upgrades
+  preservation of that sign to the COMPLETE E2 one-split
+  columns. A reversed sign is NOT pointwise complementation
+  outside a split's predecessor-type cone.
+- `DiaryFiniteE3SplitWitnessRigidity` (#864) proves one
+  bit of a genuine source S2 witness pair determines an
+  ENTIRE E3 two-split column between two flips.
+  `DiaryFiniteFaithfulFlipSignature` (#865) combines these:
+  one global Devlin marker-one reference bit and one S2
+  witness bit per source 2-split uniquely determine the
+  complete finite genuine flip, including all E1--E5
+  edges and nonedges.
+- `DiaryFiniteFixedFlipSignature` (#866) selects the S2
+  witnesses ONCE from the source, independently of every
+  target flip, and injects the genuine CANONICAL source
+  flip orbit into its fixed Boolean signature space.
+  `DiaryFiniteUnconditionalFlipOrbitBound` (#867) handles
+  zero/one-leaf sources separately (the flip is unique)
+  and proves the uniform cardinal bound
+  `#Flip(A) <= 2^(1 + number of genuine 2-splits of A)`.
+  Applied to B, PR #868 therefore limits the number of
+  distinct canonical target cases in the exact anchor
+  covering test to `2^(1+t_B)`. Only REALISABLE signatures
+  count; no Boolean independence or efficient algorithm
+  for listing them is asserted.
+
+**Actual remaining gate:** find a uniform geometric construction
+which, for each finite A, supplies a B passing this exact
+canonical-target multivalued positive-anchor covering test.
+Finite-family joint embedding, a conditional feedback
+permutation, the small six-to-nine-vertex absorber, and the
+finite cardinality bound do NOT supply that construction.
+Final diary unavoidability and the lower-bound theorem remain
+unverified.
 
 ## Removed historical adapters
 
