@@ -74,11 +74,11 @@ theorem finiteCanonicalSignRootedFamily_all_flips_induced
     ∃ c : FiniteCanonicalFlipIndex A n,
       (finiteCanonicalSignRootedFamily DA).graph c = P ∧
       (∀ x y z : Nat, x < y → y < z → z < n →
-        ((finiteCanonicalSignRootedFamily DA).rawAmalgam).edge
+        (((finiteCanonicalSignRootedFamily DA).rawAmalgam).edge
           ((finiteCanonicalSignRootedFamily DA).node c x)
           ((finiteCanonicalSignRootedFamily DA).node c y)
           ((finiteCanonicalSignRootedFamily DA).node c z) ↔
-          P.edge x y z) := by
+          P.edge x y z)) := by
   obtain ⟨c,hGraph⟩ :=
     finiteCanonicalSignRootedFamily_complete DA FP
   refine ⟨c,hGraph,?_⟩
