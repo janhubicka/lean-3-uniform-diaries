@@ -37,6 +37,10 @@ sources with genuine 2-type splits.
 namespace ThreeUniformDiaries
 namespace DiaryLeafPriority
 
+-- The full two-copy proof combines two protected pullbacks and the
+-- transitive finite flip signature. Keep elaboration resources local.
+set_option maxHeartbeats 1000000
+
 /-- For a bounded fully induced diary copy P -> B, the
 source Devlin marker-one bit equals its image bit in B. -/
 theorem finite_bounded_copy_marker_one_iff
@@ -127,8 +131,8 @@ theorem exists_finite_absorbing_target_of_no_twoSplits
     · have hTarget : B.edge 1 (f r) (f t) ↔
           T.edge 1 (f r) (f t) :=
         hPres (f r) (f t) hFrt hFtn hFr hFt
-      have hMark : A.edge 1 r t ↔ P.edge 1 r t := by
-        tauto
+      have hMark : A.edge 1 r t ↔ P.edge 1 r t :=
+        hMarkA.trans (hTarget.trans hMarkP.symm)
       have hEq : A = P :=
         finite_no_twoSplit_flips_eq_of_reference_marker
           hNoTwo (FiniteDiaryFlip.refl DA) FP
@@ -138,8 +142,8 @@ theorem exists_finite_absorbing_target_of_no_twoSplits
     · have hTarget : B.edge 1 (f r) (f t) ↔
           ¬ T.edge 1 (f r) (f t) :=
         hRev (f r) (f t) hFrt hFtn hFr hFt
-      have hAP : A.edge 1 r t ↔ ¬ P.edge 1 r t := by
-        tauto
+      have hAP : A.edge 1 r t ↔ ¬ P.edge 1 r t :=
+        hMarkA.trans (hTarget.trans (not_congr hMarkP.symm))
       obtain ⟨g,EG⟩ := hAllCopies P FP
       let Q := finiteDiaryPullbackGraph T n g
       have FQ : FiniteDiaryFlip P Q n :=
@@ -166,10 +170,10 @@ theorem exists_finite_absorbing_target_of_no_twoSplits
       have hTargetG : B.edge 1 (g r) (g t) ↔
           ¬ T.edge 1 (g r) (g t) :=
         hRev (g r) (g t) hGrt hGtn hGr hGt
-      have hPQ : P.edge 1 r t ↔ ¬ Q.edge 1 r t := by
-        tauto
+      have hPQ : P.edge 1 r t ↔ ¬ Q.edge 1 r t :=
+        hMarkG.trans (hTargetG.trans (not_congr hMarkQ.symm))
       have hAQ : A.edge 1 r t ↔ Q.edge 1 r t := by
-        tauto
+        simpa only [not_not] using hAP.trans (not_congr hPQ)
       have hEq : A = Q :=
         finite_no_twoSplit_flips_eq_of_reference_marker
           hNoTwo (FiniteDiaryFlip.refl DA) FAQ
