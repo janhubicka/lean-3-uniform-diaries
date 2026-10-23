@@ -2048,3 +2048,6 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_two_flips_all_Devlin_markers_of_reference
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_two_flips_edges_agree_before_cut
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_positive_twoSplit_parent_code_eq_witness
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_twoSplit_positive_parent_profile_unique
