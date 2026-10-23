@@ -668,3 +668,5 @@ import ThreeUniformDiaries.DiaryFiniteGlobalDevlinOrientation
 import ThreeUniformDiaries.DiaryFiniteGlobalE2ColumnRigidity
 
 import ThreeUniformDiaries.DiaryFiniteE3SplitWitnessRigidity
+
+import ThreeUniformDiaries.DiaryFiniteFaithfulFlipSignature
