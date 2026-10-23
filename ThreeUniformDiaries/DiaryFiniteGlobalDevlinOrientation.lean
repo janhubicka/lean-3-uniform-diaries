@@ -52,6 +52,9 @@ theorem finite_leaf_pair_meet_gt_one_iff_marker_one_agree
     (hc : IsLeaf H c) (hd : IsLeaf H d) :
     (1 < H.twoMeetLevel a b c d) ↔
       (H.edge 1 a b ↔ H.edge 1 c d) := by
+  classical
+  have ha3 : 3 ≤ a := ha.1
+  have hc3 : 3 ≤ c := hc.1
   constructor
   · intro hMeet
     exact (H.twoMeetLevel_agree a b c d).2.2 hMeet
