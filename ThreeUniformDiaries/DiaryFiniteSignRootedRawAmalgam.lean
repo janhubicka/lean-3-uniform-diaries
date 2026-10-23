@@ -94,7 +94,8 @@ theorem sign_eq_of_node_eq
         (fun s : FiniteTwoSplitIndex A n =>
           if s.val.val < z then (F.signature j).2 s else false)) :=
     Option.some.inj hOpt
-  exact congrArg Prod.fst hPair
+  exact congrArg
+    (fun p : Bool × (FiniteTwoSplitIndex A n → Bool) => p.1) hPair
 
 /-- Same node at level z remembers each source S2 bit whose
 genuine split level is STRICTLY before z. -/
