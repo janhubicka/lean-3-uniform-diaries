@@ -105,7 +105,7 @@ theorem finite_signRooted_positive_twoSplit_parent_codes_agree
   have hWitnessCode : twoCode P s a b = twoCode Q s a b :=
     finite_signRooted_twoCode_eq_before_cut
       FP FQ r t s hrt htn hr ht
-      hReference hEarlierS2 a b hsa hab hbn
+      hReference hEarlierS2 a b hsa.le hab hbn
   exact hProfileP.trans (hWitnessCode.trans hProfileQ.symm)
 
 end DiaryLeafPriority
