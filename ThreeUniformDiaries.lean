@@ -690,3 +690,5 @@ import ThreeUniformDiaries.DiaryFiniteTwoSplitParentProfile
 import ThreeUniformDiaries.DiaryFiniteSignRootedVTwoParentCompatibility
 
 import ThreeUniformDiaries.DiaryFiniteSignRootedRawAmalgam
+
+import ThreeUniformDiaries.DiaryFiniteCanonicalSignRootedCarrier
