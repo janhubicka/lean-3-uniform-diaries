@@ -148,5 +148,73 @@ theorem finite_flip_marker_one_global_sign
     intro a b hab hbn ha hb
     exact False.elim (hex ⟨a,b,hab,hbn,ha,hb⟩)
 
+
+/-- For a genuine ordered leaf pair, the marker-one Devlin bit is
+exactly the positive E2 incidence of its RIGHT leaf at the pair's
+actual singleton-meet 1-split. This handles the strict inequality
+between the meet and both leaves rather than assuming it. -/
+theorem finite_leaf_right_oneSplit_bit_iff_marker_one
+    {H : Ordered3Graph Nat} {n : Nat}
+    (D : FiniteRoleDiaryBlock H n)
+    (a b : Nat)
+    (hab : a < b) (hbn : b < n)
+    (ha : IsLeaf H a) (hb : IsLeaf H b) :
+    (H.edge 1 a b ↔ H.edge 0 (H.oneMeetLevel a b) b) := by
+  have hs : IsOneSplit H (H.oneMeetLevel a b) :=
+    D.singleton_meets a b hab hbn ha hb
+  have hUpper : H.oneMeetLevel a b ≤ a :=
+    (H.oneMeetLevel_le_min a b).trans (min_le_left _ _)
+  have hNe : H.oneMeetLevel a b ≠ a := by
+    intro hEq
+    have hOneA : IsOneSplit H a := by
+      simpa only [hEq] using hs
+    exact ha.2.1 hOneA.2.1
+  have hsa : H.oneMeetLevel a b < a := by omega
+  exact (D.prediary.leaf_marker_one a b hab hbn ha hb).trans
+    (E_oneSplit_lexEarlier_iff_right
+      D.prediary.permitted_edge
+      (H.oneMeetLevel a b) a b hs hab hsa rfl)
+
+/-- The GLOBAL SIGN also controls EVERY right-hand E2 incidence at
+the singleton meet of an ordered LEAF pair. These are the canonical
+split-orientation observations; arbitrary other incidences in an
+E2 column are deliberately not claimed to complement pointwise. -/
+theorem finite_flip_right_oneSplit_global_sign
+    {A B : Ordered3Graph Nat} {n : Nat}
+    (F : FiniteDiaryFlip A B n) :
+    (∀ a b : Nat, a < b → b < n →
+      IsLeaf A a → IsLeaf A b →
+        (A.edge 0 (A.oneMeetLevel a b) b ↔
+          B.edge 0 (B.oneMeetLevel a b) b)) ∨
+    (∀ a b : Nat, a < b → b < n →
+      IsLeaf A a → IsLeaf A b →
+        (A.edge 0 (A.oneMeetLevel a b) b ↔
+          ¬ B.edge 0 (B.oneMeetLevel a b) b)) := by
+  rcases finite_flip_marker_one_global_sign F with hPres | hRev
+  · left
+    intro a b hab hbn ha hb
+    have haB : IsLeaf B a :=
+      ((F.role_iff a ha.1 (by omega)).1).mp ha
+    have hbB : IsLeaf B b :=
+      ((F.role_iff b hb.1 hbn).1).mp hb
+    have hA := finite_leaf_right_oneSplit_bit_iff_marker_one
+      F.source_diary a b hab hbn ha hb
+    have hB := finite_leaf_right_oneSplit_bit_iff_marker_one
+      F.target_diary a b hab hbn haB hbB
+    have hSign := hPres a b hab hbn ha hb
+    tauto
+  · right
+    intro a b hab hbn ha hb
+    have haB : IsLeaf B a :=
+      ((F.role_iff a ha.1 (by omega)).1).mp ha
+    have hbB : IsLeaf B b :=
+      ((F.role_iff b hb.1 hbn).1).mp hb
+    have hA := finite_leaf_right_oneSplit_bit_iff_marker_one
+      F.source_diary a b hab hbn ha hb
+    have hB := finite_leaf_right_oneSplit_bit_iff_marker_one
+      F.target_diary a b hab hbn haB hbB
+    have hSign := hRev a b hab hbn ha hb
+    tauto
+
 end DiaryLeafPriority
 end ThreeUniformDiaries
