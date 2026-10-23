@@ -674,3 +674,5 @@ import ThreeUniformDiaries.DiaryFiniteFaithfulFlipSignature
 import ThreeUniformDiaries.DiaryFiniteFixedFlipSignature
 
 import ThreeUniformDiaries.DiaryFiniteUnconditionalFlipOrbitBound
+
+import ThreeUniformDiaries.DiaryFiniteCanonicalTargetAnchorCover
