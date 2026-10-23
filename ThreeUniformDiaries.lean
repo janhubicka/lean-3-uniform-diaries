@@ -672,3 +672,5 @@ import ThreeUniformDiaries.DiaryFiniteE3SplitWitnessRigidity
 import ThreeUniformDiaries.DiaryFiniteFaithfulFlipSignature
 
 import ThreeUniformDiaries.DiaryFiniteFixedFlipSignature
+
+import ThreeUniformDiaries.DiaryFiniteUnconditionalFlipOrbitBound
