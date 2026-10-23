@@ -2056,3 +2056,5 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_positive_twoSplit_parent_code_eq_witness
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_twoSplit_positive_parent_profile_unique
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_signRooted_positive_twoSplit_parent_codes_agree
