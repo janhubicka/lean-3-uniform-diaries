@@ -696,3 +696,5 @@ import ThreeUniformDiaries.DiaryFiniteSignRootedRawTerminalSupport
 import ThreeUniformDiaries.DiaryFiniteSignRootedRawTypePreservation
 
 import ThreeUniformDiaries.DiaryFiniteSignRootedRawCrossType
+
+import ThreeUniformDiaries.DiaryFiniteSignRootedRawVTwoCompatibility
