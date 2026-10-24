@@ -691,4 +691,8 @@ import ThreeUniformDiaries.DiaryFiniteSignRootedVTwoParentCompatibility
 
 import ThreeUniformDiaries.DiaryFiniteSignRootedRawAmalgam
 
+import ThreeUniformDiaries.DiaryFiniteSignRootedRawTerminalSupport
+
+import ThreeUniformDiaries.DiaryFiniteSignRootedRawTypePreservation
+
 import ThreeUniformDiaries.DiaryFiniteCanonicalSignRootedCarrier
