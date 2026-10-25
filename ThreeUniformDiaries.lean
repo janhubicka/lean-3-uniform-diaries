@@ -706,3 +706,5 @@ import ThreeUniformDiaries.DiaryFiniteSignRootedRawVOneCompatibility
 import ThreeUniformDiaries.DiaryFiniteSignRootedCrossMarkerExtension
 
 import ThreeUniformDiaries.DiaryFiniteSignRootedOffBranchPrefix
+
+import ThreeUniformDiaries.DiaryFiniteSignRootedMarkerTypeStability
