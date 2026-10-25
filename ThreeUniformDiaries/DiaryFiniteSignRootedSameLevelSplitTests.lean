@@ -13,7 +13,7 @@ earlier vertices of the eventual enumerated pre-diary.
 These tests are not covered by the existing raw predecessor
 type comparisons, which quantify over source levels < s.
 Fortunately, all raw nodes of original source level s have
-the SAME source role. If s is a genuine one-/two-split,
+the SAME source role. If s is a genuine one-split or two-split,
 then Y is NOT a source leaf, so no newly added Devlin marker
 edge can use it as the middle vertex. If Y is not the chosen
 branch's node at s, raw terminal locality makes ALL raw edges
