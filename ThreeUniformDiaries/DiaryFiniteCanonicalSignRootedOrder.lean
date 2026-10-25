@@ -1,5 +1,5 @@
 import ThreeUniformDiaries.DiaryFiniteCanonicalSignRootedCarrier
-import ThreeUniformDiaries.DiaryFiniteSignRootedOrderedMarkerCoverage
+import ThreeUniformDiaries.DiaryFiniteSignRootedOrderedMarkerComparison
 
 /-!
 # A concrete level-first strict total order on the finite raw flip carrier
@@ -146,6 +146,66 @@ theorem finiteCanonicalNodeBefore_source_branch
     ⟨(finiteCanonicalSignRootedFamily DA).node c y,hy⟩
     (by simpa only [FiniteSignRootedFlipFamily.node_level]
       using hxy)
+
+
+/-- A TOTAL-ORDER CANDIDATE relation on the ambient raw node type:
+strictly smaller source levels are ordered first even outside
+the finite realised carrier, and source-level ties inside the
+carrier are broken by the finite canonical tie rank. -/
+noncomputable def finiteCanonicalNodeBeforeAmbient
+    {A : Ordered3Graph Nat} {n : Nat}
+    (DA : FiniteRoleDiaryBlock A n)
+    (X Y : FiniteSignRootedNode A n) : Prop :=
+  X.1 < Y.1 ∨
+    (X.1 = Y.1 ∧ finiteCanonicalNodeBeforeExternal DA X Y)
+
+/-- Unlike the restricted external subtype order, this ambient
+relation satisfies the source-level monotonicity hypothesis of
+the ordered Devlin-marker stability theorem ON ALL raw nodes. -/
+theorem finiteCanonicalNodeBeforeAmbient_extends_levels
+    {A : Ordered3Graph Nat} {n : Nat}
+    (DA : FiniteRoleDiaryBlock A n) :
+    (finiteCanonicalSignRootedFamily DA).ExtendsSourceLevels
+      (finiteCanonicalNodeBeforeAmbient DA) := by
+  intro X Y hXY
+  exact Or.inl hXY
+
+/-- Any two DISTINCT members of the finite canonical raw carrier
+are comparable by the ambient order (ties included). -/
+theorem finiteCanonicalNodeBeforeAmbient_total_on_carrier
+    {A : Ordered3Graph Nat} {n : Nat}
+    (DA : FiniteRoleDiaryBlock A n)
+    (X Y : FiniteSignRootedNode A n)
+    (hX : X ∈ finiteCanonicalSignRootedNodeSet DA)
+    (hY : Y ∈ finiteCanonicalSignRootedNodeSet DA)
+    (hNe : X ≠ Y) :
+    finiteCanonicalNodeBeforeAmbient DA X Y ∨
+      finiteCanonicalNodeBeforeAmbient DA Y X := by
+  let x : FiniteCanonicalSignRootedVertex DA := ⟨X,hX⟩
+  let y : FiniteCanonicalSignRootedVertex DA := ⟨Y,hY⟩
+  have hxy : x ≠ y := by
+    intro h
+    exact hNe (congrArg Subtype.val h)
+  rcases finiteCanonicalNodeBefore_total_of_ne DA x y hxy with
+      hBefore | hAfter
+  · change
+      X.1 < Y.1 ∨
+      (X.1 = Y.1 ∧
+        finiteCanonicalNodeTieRank DA x <
+          finiteCanonicalNodeTieRank DA y) at hBefore
+    rcases hBefore with hLevel | hTie
+    · exact Or.inl (Or.inl hLevel)
+    · exact Or.inl (Or.inr
+        ⟨hTie.1,⟨hX,hY,Or.inr hTie⟩⟩)
+  · change
+      Y.1 < X.1 ∨
+      (Y.1 = X.1 ∧
+        finiteCanonicalNodeTieRank DA y <
+          finiteCanonicalNodeTieRank DA x) at hAfter
+    rcases hAfter with hLevel | hTie
+    · exact Or.inr (Or.inl hLevel)
+    · exact Or.inr (Or.inr
+        ⟨hTie.1,⟨hY,hX,Or.inr hTie⟩⟩)
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
