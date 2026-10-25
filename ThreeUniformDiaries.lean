@@ -709,4 +709,6 @@ import ThreeUniformDiaries.DiaryFiniteSignRootedOffBranchPrefix
 
 import ThreeUniformDiaries.DiaryFiniteSignRootedOrderedMarkerCoverage
 
+import ThreeUniformDiaries.DiaryFiniteSignRootedMarkerTypeStability
+
 import ThreeUniformDiaries.DiaryFiniteSignRootedOrderedMarkerComparison
