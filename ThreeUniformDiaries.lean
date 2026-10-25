@@ -701,4 +701,6 @@ import ThreeUniformDiaries.DiaryFiniteSignRootedRawCrossType
 
 import ThreeUniformDiaries.DiaryFiniteSignRootedRawVTwoCompatibility
 
+import ThreeUniformDiaries.DiaryFiniteSignRootedRawVOneCompatibility
+
 import ThreeUniformDiaries.DiaryFiniteSignRootedCrossMarkerExtension
