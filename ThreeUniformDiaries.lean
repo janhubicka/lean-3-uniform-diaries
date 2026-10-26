@@ -748,3 +748,5 @@ import ThreeUniformDiaries.DiaryFiniteCanonicalCausalMarkerGraph
 import ThreeUniformDiaries.DiaryFiniteCanonicalExactMarkerRanks
 
 import ThreeUniformDiaries.DiaryFiniteCanonicalRankedRawOneMeet
+
+import ThreeUniformDiaries.DiaryFiniteCanonicalCausalOriginalOneMeet
