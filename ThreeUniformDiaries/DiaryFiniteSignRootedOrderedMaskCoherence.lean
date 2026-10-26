@@ -160,8 +160,7 @@ theorem finiteCanonicalSignRooted_orderedMask_sharedSplit
     (finiteCanonicalSignRootedFamily DA).OrderedOffBranchLeafPair
       (finiteCanonicalNodeBeforeAmbient DA)
       Y ((finiteCanonicalSignRootedFamily DA).node j v) := by
-  exact (finiteCanonicalSignRootedFamily DA).
-    orderedOffBranch_sharedSplit_rank_predecessor
+  exact (finiteCanonicalSignRootedFamily DA).orderedOffBranch_sharedSplit_rank_predecessor
     (finiteCanonicalNodeBeforeAmbient DA)
     (finiteCanonicalNodeBeforeAmbient_extends_levels DA)
     (finiteCanonicalNodeBeforeAmbient_levelFirstStrictOrder DA)
