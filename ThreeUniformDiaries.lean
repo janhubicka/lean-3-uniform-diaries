@@ -736,3 +736,5 @@ import ThreeUniformDiaries.DiaryCausalOriginalBranchV3
 import ThreeUniformDiaries.DiaryCausalOriginalMeetPreservation
 
 import ThreeUniformDiaries.DiaryFiniteSignRootedOrderedMaskCoherence
+
+import ThreeUniformDiaries.DiaryFiniteCanonicalSignRootedRank
