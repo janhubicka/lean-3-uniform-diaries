@@ -724,3 +724,5 @@ import ThreeUniformDiaries.DiaryFiniteSignRootedOrderedCutSupport
 import ThreeUniformDiaries.DiaryFiniteSignRootedRankCutParentTransport
 
 import ThreeUniformDiaries.DiaryLexEarlierMiddleColumnCausality
+
+import ThreeUniformDiaries.DiaryLexEarlierTypeCongruence
