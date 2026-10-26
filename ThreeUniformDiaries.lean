@@ -722,3 +722,5 @@ import ThreeUniformDiaries.DiaryFiniteSignRootedSameLevelSplitTests
 import ThreeUniformDiaries.DiaryFiniteSignRootedOrderedCutSupport
 
 import ThreeUniformDiaries.DiaryFiniteSignRootedRankCutParentTransport
+
+import ThreeUniformDiaries.DiaryLexEarlierMiddleColumnCausality
