@@ -1,4 +1,5 @@
 import ThreeUniformDiaries.DiaryLexEarlierMiddleColumnCausality
+import ThreeUniformDiaries.DiarySourceLexFirstAuxBit
 
 /-!
 # LexEarlier respects the earlier singleton type of its later argument
@@ -9,11 +10,10 @@ a different, complementary fact: if u and v have identical singleton
 type below s and y <= s < min(u,v), then their literal lexicographic
 comparison against y coincides.
 
-The proper-meet case uses the FULL pointed capped two-meet. It is
-important to assume that H only has edges with strictly increasing
-first two coordinates. Without that assumption, when the pointed
-two-meet is capped at m the non-increasing term E(m,m,u) could
-differ between u and v, despite equality of their singleton types.
+The proper-meet case uses the FULL pointed capped two-meet. Its
+apparent capped case q=m is impossible: the already verified
+first-difference lemma makes the pointed auxiliary meet strictly
+smaller than m, without ANY edge-order or diary axioms.
 
 The result is for any ordered-edge ternary graph, with no role or
 diary hypotheses. It is a type-conditioned orientation congruence,
@@ -132,12 +132,12 @@ theorem twoMeetLevel_pointed_right_congr
       simpa only [min_self] using hBound
     exact Nat.le_findGreatest hCap hAgree
 
-/-- The literal lexicographic comparison has a precise type-
-congruence property. This is the useful replacement for
-orientation uniformity on all unrelated later leaves. -/
+/-- The literal lexicographic comparison has unconditional
+type-congruence for arbitrary ternary edge predicates. The proper
+singleton-meet case already enforces a strictly earlier pointed
+two-meet, so no edge-order assumption is needed. -/
 theorem lexEarlier_right_congr_of_sameOneType
     (H : Ordered3Graph Nat)
-    (hOrdered : ∀ x y z : Nat, H.edge x y z → x < y)
     (s y u v : Nat)
     (hys : y ≤ s) (hyu : y < u) (hyv : y < v)
     (hUV : H.SameOneTypeBelow s u v) :
@@ -154,23 +154,17 @@ theorem lexEarlier_right_congr_of_sameOneType
     have hTwo : H.twoMeetLevel m y m u =
         H.twoMeetLevel m y m v :=
       twoMeetLevel_pointed_right_congr H s m y u v hms hUV
+    have hAuxLt : H.auxMeetLevel m y m u < m :=
+      (onePass_source_mixedAux_first_difference
+        H m y u hm (lt_trans hm hyu) (by dsimp [m])).1
+    have hQLt : H.twoMeetLevel m y m v < m := by
+      rw [← hTwo, H.twoMeetLevel_eq_min m y m u hm (lt_trans hm hyu)]
+      exact lt_of_le_of_lt (min_le_left _ _) hAuxLt
     have hEdge :
         H.edge (H.twoMeetLevel m y m u) m u ↔
           H.edge (H.twoMeetLevel m y m v) m v := by
       rw [hTwo]
-      by_cases hq : H.twoMeetLevel m y m v < m
-      · exact hUV hq hms
-      · have hqBound : H.twoMeetLevel m y m v ≤ m := by
-          simpa only [min_self] using H.twoMeetLevel_le_min m y m v
-        have hqm : H.twoMeetLevel m y m v = m := by omega
-        rw [hqm]
-        have heU : ¬ H.edge m m u := by
-          intro he
-          exact (Nat.lt_irrefl m) (hOrdered m m u he)
-        have heV : ¬ H.edge m m v := by
-          intro he
-          exact (Nat.lt_irrefl m) (hOrdered m m v he)
-        exact iff_of_false heU heV
+      exact hUV hQLt hms
     have hCore :
         ((y < u ∧ m = y) ∨
          (m < min y u ∧ H.edge (H.twoMeetLevel m y m u) m u)) ↔
