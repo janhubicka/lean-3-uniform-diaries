@@ -74,19 +74,22 @@ theorem finiteCanonicalMarker_zero_rank
     finiteCanonicalNodeAt DA i 0 (by omega)
   have hEmpty : finiteCanonicalNodePredecessors DA m0 = ∅ := by
     ext Y
-    simp only [Finset.not_mem_empty, iff_false]
-    intro hY
-    have hBefore : finiteCanonicalNodeBefore DA Y m0 :=
-      (finiteCanonicalNodePredecessors_mem_iff DA m0 Y).mp hY
-    have hm0 : m0.val.1 = 0 := by
-      simp only [m0,finiteCanonicalNodeAt_level]
-    have hYL : Y.val.1 = 0 := by
-      rcases hBefore with hLt | ⟨hTie,_⟩ <;> omega
-    have hEq : Y = m0 :=
-      finiteCanonicalMarker_unique_at_level DA i 0 (by omega)
-        (by omega) Y hYL
-    rw [hEq] at hBefore
-    exact (finiteCanonicalNodeBefore_irrefl DA m0) hBefore
+    constructor
+    · intro hY
+      have hBefore : finiteCanonicalNodeBefore DA Y m0 :=
+        (finiteCanonicalNodePredecessors_mem_iff DA m0 Y).mp hY
+      have hm0 : m0.val.1 = 0 := by
+        simp only [m0,finiteCanonicalNodeAt_level]
+      have hYL : Y.val.1 = 0 := by
+        rcases hBefore with hLt | ⟨hTie,_⟩ <;> omega
+      have hEq : Y = m0 :=
+        finiteCanonicalMarker_unique_at_level DA i 0 (by omega)
+          (by omega) Y hYL
+      rw [hEq] at hBefore
+      exact False.elim ((finiteCanonicalNodeBefore_irrefl DA m0) hBefore)
+    · intro hY
+      have hFalse : False := by simpa using hY
+      exact hFalse.elim
   change (finiteCanonicalNodePredecessors DA m0).card = 0
   rw [hEmpty]
   rfl
