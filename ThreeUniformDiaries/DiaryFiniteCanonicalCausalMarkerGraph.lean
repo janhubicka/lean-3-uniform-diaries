@@ -85,8 +85,7 @@ theorem finiteCanonicalRankedRawGraph_no_edge_of_mask
   subst Y'
   subst Z'
   exact hOff.separated
-    ((finiteCanonicalSignRootedFamily DA).
-      raw_edge_implies_shared_branch_pair X'.val Y.val Z.val hRaw)
+    ((finiteCanonicalSignRootedFamily DA).raw_edge_implies_shared_branch_pair X'.val Y.val Z.val hRaw)
 
 /-- The CONCRETE literal-V3 completed sign-rooted ternary graph
 on the bounded, numerically enumerated finite canonical carrier. -/
