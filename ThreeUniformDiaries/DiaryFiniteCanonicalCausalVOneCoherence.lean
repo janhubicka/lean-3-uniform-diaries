@@ -180,13 +180,16 @@ theorem finiteCanonicalCausalMarkerGraph_sharedOneSplit_positive_parent
     (finiteCanonicalNodeAt DA j v hvn)).val
   have hma : m ≤ a := (finiteCanonicalNodeAt_index_lt
     DA i s u hsu hun).le
-  have hmb : m ≤ b := (finiteCanonicalNodeAt_index_lt
-    DA j s v hsv hvn).le_of_eq (by
-      have hEq : finiteCanonicalNodeAt DA i s hsn =
-          finiteCanonicalNodeAt DA j s hsn := Subtype.ext hShared
-      exact congrArg
-        (fun T : FiniteCanonicalSignRootedVertex DA =>
-          (finiteCanonicalNodeIndex DA T).val) hEq)
+  have hmb : m ≤ b := by
+    have hEq : finiteCanonicalNodeAt DA i s hsn =
+        finiteCanonicalNodeAt DA j s hsn := Subtype.ext hShared
+    have hRankEq := congrArg
+      (fun T : FiniteCanonicalSignRootedVertex DA =>
+        (finiteCanonicalNodeIndex DA T).val) hEq
+    have hJlt := finiteCanonicalNodeAt_index_lt DA j s v hsv hvn
+    dsimp only [m,b]
+    rw [hRankEq]
+    omega
   have huA : IsLeaf A u :=
     ((F.flip i).role_iff u hu.1 hun).1.mpr hu
   have hvA : IsLeaf A v :=
