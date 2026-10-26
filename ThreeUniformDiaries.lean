@@ -752,3 +752,5 @@ import ThreeUniformDiaries.DiaryFiniteCanonicalRankedRawOneMeet
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalOriginalOneMeet
 
 import ThreeUniformDiaries.DiaryFiniteCanonicalRankedRawLex
+
+import ThreeUniformDiaries.DiaryFiniteCanonicalCausalOriginalV3
