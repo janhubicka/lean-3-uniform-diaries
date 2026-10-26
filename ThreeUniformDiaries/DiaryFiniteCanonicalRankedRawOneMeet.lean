@@ -83,7 +83,8 @@ theorem finiteCanonicalRankedRaw_oneType_at_source_cut
   have hXYrank : (finiteCanonicalNodeIndex DA X).val <
       (finiteCanonicalNodeIndex DA Y).val := by omega
   have hYSrank : (finiteCanonicalNodeIndex DA Y).val <
-      (finiteCanonicalNodeIndex DA S).val := by omega
+      (finiteCanonicalNodeIndex DA S).val := by
+    simpa only [hYval,S] using hyS
   have hBeforeXY : finiteCanonicalNodeBefore DA X Y :=
     (finiteCanonicalNodeBefore_iff_rank_lt DA X Y).mpr hXYrank
   have hBeforeYS : finiteCanonicalNodeBefore DA Y S :=
@@ -162,7 +163,9 @@ theorem finiteCanonicalRankedRaw_original_proper_oneMeet_exact
   let U := finiteCanonicalNodeAt DA i u hun
   let V := finiteCanonicalNodeAt DA i v hvn
   have hSourceSame : (F.graph i).SameOneTypeBelow s u v := by
-    simpa only [hSourceMeet] using (F.graph i).oneMeetLevel_agree u v
+    have h := (F.graph i).oneMeetLevel_agree u v
+    rw [hSourceMeet] at h
+    exact h
   have hRankSame : R.SameOneTypeBelow
       (finiteCanonicalNodeIndex DA S).val
       (finiteCanonicalNodeIndex DA U).val
