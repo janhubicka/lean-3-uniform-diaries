@@ -2150,3 +2150,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.oneMeetLevel_right_congr
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.twoMeetLevel_pointed_right_congr
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.lexEarlier_right_congr_of_sameOneType
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.causalMarker_preserves_parent_oneType
