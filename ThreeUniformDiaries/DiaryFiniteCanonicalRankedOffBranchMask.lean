@@ -159,8 +159,7 @@ theorem finiteCanonicalRankedOffBranchMask_same_branch_false
   have hActual := (finiteCanonicalRankedOffBranchMask_iff DA
     (finiteCanonicalNodeAt DA i u (by omega))
     (finiteCanonicalNodeAt DA i v hvn)).mp h
-  exact ((finiteCanonicalSignRootedFamily DA).
-    orderedOffBranch_same_source_branch_false
+  exact ((finiteCanonicalSignRootedFamily DA).orderedOffBranch_same_source_branch_false
       (finiteCanonicalNodeBeforeAmbient DA) i u v huv hvn) hActual
 
 /-- The actual mask NEVER selects a split-node index as
@@ -182,8 +181,7 @@ theorem finiteCanonicalRankedOffBranchMask_split_middle_false
   have hYLevel : (finiteCanonicalNodeAt DA i s hsn).val.1 = s := by
     simp only [finiteCanonicalNodeAt,
       FiniteSignRootedFlipFamily.node_level]
-  exact ((finiteCanonicalSignRootedFamily DA).
-    orderedOffBranch_splitLevel_middle_false
+  exact ((finiteCanonicalSignRootedFamily DA).orderedOffBranch_splitLevel_middle_false
       (finiteCanonicalNodeBeforeAmbient DA) s hs
       (finiteCanonicalNodeAt DA i s hsn).val Z.val hYLevel)
       hOff
