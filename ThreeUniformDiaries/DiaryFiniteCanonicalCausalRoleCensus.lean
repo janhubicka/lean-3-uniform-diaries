@@ -180,6 +180,7 @@ theorem finiteCanonicalCausalMarkerGraph_leaf_census
       (finiteCanonicalNodeIndex DA
         (finiteCanonicalNodeAt DA i z hzn)).val = k := by
   obtain ⟨i,z,hzn,hIndex⟩ := finiteCanonicalNodeIndex_census DA k hBound
+  have hk3 : 3 ≤ k := hk.1
   have hz3 : 3 ≤ z := by
     by_contra h
     have hzSmall : z < 3 := by omega
