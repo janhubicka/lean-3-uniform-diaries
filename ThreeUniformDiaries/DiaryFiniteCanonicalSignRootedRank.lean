@@ -63,7 +63,7 @@ theorem finiteCanonicalNodeRank_lt_of_before
       finiteCanonicalNodePredecessors DA Y := by
     intro Z hZ
     apply (finiteCanonicalNodePredecessors_mem_iff DA Y Z).mpr
-    exact finiteCanonicalNodeBefore_trans DA
+    exact finiteCanonicalNodeBefore_trans DA Z X Y
       ((finiteCanonicalNodePredecessors_mem_iff DA X Z).mp hZ) hXY
   have hNe : finiteCanonicalNodePredecessors DA X ≠
       finiteCanonicalNodePredecessors DA Y := by
