@@ -101,7 +101,7 @@ theorem finiteCanonicalRankedRawGraph_branch_edge_iff
         (finiteCanonicalNodeAt DA i y (by omega))).val
       (finiteCanonicalNodeIndex DA
         (finiteCanonicalNodeAt DA i z hzn)).val ↔
-      (finiteCanonicalSignRootedFamily DA).graph i |>.edge x y z := by
+      ((finiteCanonicalSignRootedFamily DA).graph i).edge x y z := by
   have hRank := finiteCanonicalRankedRawGraph_edge_iff DA
     (finiteCanonicalNodeAt DA i x (by omega))
     (finiteCanonicalNodeAt DA i y (by omega))
