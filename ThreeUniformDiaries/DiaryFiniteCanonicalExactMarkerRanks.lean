@@ -73,8 +73,9 @@ theorem finiteCanonicalMarker_zero_rank
   let m0 : FiniteCanonicalSignRootedVertex DA :=
     finiteCanonicalNodeAt DA i 0 (by omega)
   have hEmpty : finiteCanonicalNodePredecessors DA m0 = ∅ := by
-    apply Finset.eq_empty_iff_forall_not_mem.mpr
-    intro Y hY
+    ext Y
+    simp only [Finset.not_mem_empty, iff_false]
+    intro hY
     have hBefore : finiteCanonicalNodeBefore DA Y m0 :=
       (finiteCanonicalNodePredecessors_mem_iff DA m0 Y).mp hY
     have hm0 : m0.val.1 = 0 := by
@@ -112,15 +113,16 @@ theorem finiteCanonicalMarker_one_rank
       (finiteCanonicalNodePredecessors_mem_iff DA m1 Y).mp hY
     have hm1 : m1.val.1 = 1 := by
       simp only [m1,finiteCanonicalNodeAt_level]
+    have hBeforeOrig := hBefore
     have hYlt : Y.val.1 < 1 := by
       rcases hBefore with hLt | ⟨hTie,_⟩
       · omega
       · have hEq : Y = m1 :=
           finiteCanonicalMarker_unique_at_level DA i 1
             (by omega) (by omega) Y (by omega)
-        rw [hEq] at hBefore
+        rw [hEq] at hBeforeOrig
         exact False.elim ((finiteCanonicalNodeBefore_irrefl DA m1)
-          hBefore)
+          hBeforeOrig)
     have hEq : Y = m0 :=
       finiteCanonicalMarker_unique_at_level DA i 0 (by omega)
         (by omega) Y (by omega)
@@ -164,15 +166,16 @@ theorem finiteCanonicalMarker_two_rank
       (finiteCanonicalNodePredecessors_mem_iff DA m2 Y).mp hY
     have hm2 : m2.val.1 = 2 := by
       simp only [m2,finiteCanonicalNodeAt_level]
+    have hBeforeOrig := hBefore
     have hYlt : Y.val.1 < 2 := by
       rcases hBefore with hLt | ⟨hTie,_⟩
       · omega
       · have hEq : Y = m2 :=
           finiteCanonicalMarker_unique_at_level DA i 2
             (by omega) (by omega) Y (by omega)
-        rw [hEq] at hBefore
+        rw [hEq] at hBeforeOrig
         exact False.elim ((finiteCanonicalNodeBefore_irrefl DA m2)
-          hBefore)
+          hBeforeOrig)
     have hYcases : Y.val.1 = 0 ∨ Y.val.1 = 1 := by omega
     rcases hYcases with h0 | h1
     · have hEq : Y = m0 :=
