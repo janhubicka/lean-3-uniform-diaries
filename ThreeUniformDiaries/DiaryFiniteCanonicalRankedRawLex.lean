@@ -57,8 +57,8 @@ theorem finiteCanonicalRankedRaw_pointedAuxMeet_exact
         (finiteCanonicalNodeAt DA i v hvn)).val =
       (finiteCanonicalNodeIndex DA
         (finiteCanonicalNodeAt DA i
-          ((finiteCanonicalSignRootedFamily DA).graph i).auxMeetLevel
-            s u s v (by
+          (((finiteCanonicalSignRootedFamily DA).graph i).auxMeetLevel
+            s u s v) (by
               have hq := onePass_source_mixedAux_first_difference
                 ((finiteCanonicalSignRootedFamily DA).graph i)
                 s u v hsu hsv hSourceMeet
