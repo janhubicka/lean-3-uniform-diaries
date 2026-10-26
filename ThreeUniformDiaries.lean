@@ -728,3 +728,5 @@ import ThreeUniformDiaries.DiaryLexEarlierMiddleColumnCausality
 import ThreeUniformDiaries.DiaryLexEarlierTypeCongruence
 
 import ThreeUniformDiaries.DiaryCausalMarkerTypeTransport
+
+import ThreeUniformDiaries.DiaryCausalLiteralMarkerCompletion
