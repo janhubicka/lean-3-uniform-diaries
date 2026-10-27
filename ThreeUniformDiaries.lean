@@ -764,3 +764,5 @@ import ThreeUniformDiaries.DiaryFiniteCanonicalCausalVOneCoherence
 import ThreeUniformDiaries.DiaryFiniteCanonicalRankedRawVTwo
 
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalVTwoCoherence
+
+import ThreeUniformDiaries.DiaryFiniteCanonicalCausalSourceEdgeCensus
