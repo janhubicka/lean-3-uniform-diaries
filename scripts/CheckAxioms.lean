@@ -2257,3 +2257,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteCanonicalCausalMarkerGraph_global_oneSplit_coherent
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteCanonicalCausalMarkerGraph_global_twoSplit_coherent
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteCanonicalCausalMarkerGraph_global_oneSplit_witness
