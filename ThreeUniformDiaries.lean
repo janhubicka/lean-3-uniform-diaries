@@ -772,3 +772,5 @@ import ThreeUniformDiaries.DiaryFiniteCanonicalCausalGlobalVOne
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalGlobalVTwo
 
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalEdgeShapeRoles
+
+import ThreeUniformDiaries.DiaryFiniteCanonicalCausalPermittedEdges
