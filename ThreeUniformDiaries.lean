@@ -762,3 +762,5 @@ import ThreeUniformDiaries.DiaryFiniteCanonicalCausalGlobalV3
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalVOneCoherence
 
 import ThreeUniformDiaries.DiaryFiniteCanonicalRankedRawVTwo
+
+import ThreeUniformDiaries.DiaryFiniteCanonicalCausalVTwoCoherence
