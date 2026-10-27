@@ -767,4 +767,8 @@ import ThreeUniformDiaries.DiaryFiniteCanonicalCausalVTwoCoherence
 
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalSourceEdgeCensus
 
+import ThreeUniformDiaries.DiaryFiniteCanonicalCausalGlobalVOne
+
+import ThreeUniformDiaries.DiaryFiniteCanonicalCausalGlobalVTwo
+
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalOneSplitWitness
