@@ -2,34 +2,28 @@ import ThreeUniformDiaries.DiaryFiniteCanonicalCausalRoleCensus
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalVTwoCoherence
 
 /-!
-# Source-branch witnesses for every non-Devlin edge of the causal graph
+# Source-branch witnesses for non-Devlin edges of the causal graph
 
-The actual causal marker extension adds NEW edges only with first
-numerical coordinate 1 or 2. Every edge with first coordinate 0,
-or with first coordinate at a genuine 1-/2-split, must already be
-present in the indexed RAW sign-rooted relational union.
+The causal extension inserts new edges only with first numerical
+coordinate 1 or 2. Every edge whose first coordinate is zero
+or a genuine source split must already occur in the ranked raw
+sign-rooted relational union.
 
-Unpack an arbitrary edge of this RAW union: its three vertices
-are the images, under the verified finite predecessor-count
-enumeration, of a genuine increasing source triple from SOME
-canonical flip branch. This witnesses its full induced source
-edge data, not merely a positive abstract Boolean table.
+Each raw triple is represented on some canonical source flip
+branch, at the exact original source coordinates. We package
+the source coordinates as Fin n so their boundedness is available
+inside the existential statement, instead of relying on a
+conjunction to provide bounds to earlier terms.
 
-The zero-rank node is exactly the common original marker 0;
-no positive source-level vertex can occupy numerical index zero.
-Thus every completed zero-first-coordinate edge has an actual
-source witness beginning with marker 0, a useful input for the
-global V1 positive-incidence census. The analogous non-Devlin
-statement is the input for global V2 coherence.
-
-No completed global V1/V2 or absorber theorem is asserted here.
+This is an edge-source census; global V1/V2, witnesses and
+general flip absorption are separate obligations.
 -/
 
 namespace ThreeUniformDiaries
 namespace DiaryLeafPriority
 
-/-- Literal causal marker completion cannot alter any
-edge whose first coordinate is neither marker 1 nor marker 2. -/
+/-- The literal causal completion cannot add any edge whose
+first vertex is not the Devlin marker 1 or 2. -/
 theorem finiteCanonicalCausalMarkerGraph_edge_iff_raw_of_nonDevlin
     {A : Ordered3Graph Nat} {n : Nat}
     (DA : FiniteRoleDiaryBlock A n)
@@ -42,26 +36,27 @@ theorem finiteCanonicalCausalMarkerGraph_edge_iff_raw_of_nonDevlin
     (finiteCanonicalRankedOffBranchMask DA)
     (finiteCanonicalRankedOffBranchMask_later DA) x y z
   simpa [finiteCanonicalCausalMarkerGraph,
-    CausalMarkerColumn,hx1,hx2] using h
+    CausalMarkerColumn, hx1, hx2] using h
 
-/-- Every actual RAW edge in the finite ranked sign-rooted
-union has an explicit source-branch representation preserving
-its original increasing triple and genuine edge incidence. -/
+/-- Every raw edge admits an actual source-flip witness at
+the same numerical indices, with all source coordinates
+bounded by n and their genuine source edge incidence. -/
 theorem finiteCanonicalRankedRawGraph_edge_source_witness
     {A : Ordered3Graph Nat} {n : Nat}
     (DA : FiniteRoleDiaryBlock A n)
     (x y z : Nat)
     (he : (finiteCanonicalRankedRawGraph DA).edge x y z) :
     ∃ (i : FiniteCanonicalFlipIndex A n)
-      (a b c : Nat),
-      a < b ∧ b < c ∧ c < n ∧
+      (a b c : Fin n),
+      a.val < b.val ∧ b.val < c.val ∧
       (finiteCanonicalNodeIndex DA
-        (finiteCanonicalNodeAt DA i a (by omega))).val = x ∧
+        (finiteCanonicalNodeAt DA i a.val a.isLt)).val = x ∧
       (finiteCanonicalNodeIndex DA
-        (finiteCanonicalNodeAt DA i b (by omega))).val = y ∧
+        (finiteCanonicalNodeAt DA i b.val b.isLt)).val = y ∧
       (finiteCanonicalNodeIndex DA
-        (finiteCanonicalNodeAt DA i c (by omega))).val = z ∧
-      ((finiteCanonicalSignRootedFamily DA).graph i).edge a b c := by
+        (finiteCanonicalNodeAt DA i c.val c.isLt)).val = z ∧
+      ((finiteCanonicalSignRootedFamily DA).graph i).edge
+        a.val b.val c.val := by
   rcases he with ⟨X,Y,Z,hX,hY,hZ,hEdge⟩
   rcases hEdge with ⟨i,a,b,c,hab,hbc,hcn,hNa,hNb,hNc,hSrc⟩
   have hXa : X = finiteCanonicalNodeAt DA i a (by omega) :=
@@ -70,13 +65,14 @@ theorem finiteCanonicalRankedRawGraph_edge_source_witness
     Subtype.ext hNb.symm
   have hZc : Z = finiteCanonicalNodeAt DA i c hcn :=
     Subtype.ext hNc.symm
-  refine ⟨i,a,b,c,hab,hbc,hcn,?_,?_,?_,hSrc⟩
+  refine ⟨i, ⟨a, by omega⟩, ⟨b, by omega⟩, ⟨c,hcn⟩,
+    hab,hbc,?_,?_,?_,hSrc⟩
   · simpa only [← hXa] using hX
   · simpa only [← hYb] using hY
   · simpa only [← hZc] using hZ
 
-/-- In every canonical source branch, numerical rank zero is
-occupied by its original marker-zero vertex and NOTHING ELSE. -/
+/-- Marker zero is the only vertex of rank zero in a
+canonical source branch. -/
 theorem finiteCanonicalNodeAt_rank_zero_iff
     {A : Ordered3Graph Nat} {n : Nat}
     (DA : FiniteRoleDiaryBlock A n)
@@ -100,38 +96,40 @@ theorem finiteCanonicalNodeAt_rank_zero_iff
     subst a
     exact finiteCanonicalMarker_zero_rank DA i
 
-/-- An edge of the completed graph beginning at marker 0
-comes from a genuine positive source triple beginning at
-the original marker 0, on SOME canonical flip branch.
-Both remaining indexed endpoints are exactly represented. -/
+/-- Every edge of the completed graph starting with zero
+is witnessed by an actual source-flip triple (0,b,c)
+at the given numbered final vertices. -/
 theorem finiteCanonicalCausalMarkerGraph_zero_edge_source_witness
     {A : Ordered3Graph Nat} {n : Nat}
     (DA : FiniteRoleDiaryBlock A n)
     (y z : Nat)
     (he : (finiteCanonicalCausalMarkerGraph DA).edge 0 y z) :
     ∃ (i : FiniteCanonicalFlipIndex A n)
-      (b c : Nat),
-      0 < b ∧ b < c ∧ c < n ∧
+      (b c : Fin n),
+      0 < b.val ∧ b.val < c.val ∧
       (finiteCanonicalNodeIndex DA
-        (finiteCanonicalNodeAt DA i b (by omega))).val = y ∧
+        (finiteCanonicalNodeAt DA i b.val b.isLt)).val = y ∧
       (finiteCanonicalNodeIndex DA
-        (finiteCanonicalNodeAt DA i c (by omega))).val = z ∧
-      ((finiteCanonicalSignRootedFamily DA).graph i).edge 0 b c := by
+        (finiteCanonicalNodeAt DA i c.val c.isLt)).val = z ∧
+      ((finiteCanonicalSignRootedFamily DA).graph i).edge
+        0 b.val c.val := by
   have hRaw :
       (finiteCanonicalRankedRawGraph DA).edge 0 y z :=
     (finiteCanonicalCausalMarkerGraph_edge_iff_raw_of_nonDevlin
       DA 0 y z (by omega) (by omega)).mp he
-  obtain ⟨i,a,b,c,hab,hbc,hcn,hX,hY,hZ,hSrc⟩ :=
+  obtain ⟨i,a,b,c,hab,hbc,hX,hY,hZ,hSrc⟩ :=
     finiteCanonicalRankedRawGraph_edge_source_witness
       DA 0 y z hRaw
-  have ha0 : a = 0 :=
-    (finiteCanonicalNodeAt_rank_zero_iff DA i a (by omega)).mp hX
-  subst a
-  exact ⟨i,b,c,hab,hbc,hcn,hY,hZ,hSrc⟩
+  have ha0 : a.val = 0 :=
+    (finiteCanonicalNodeAt_rank_zero_iff DA i a.val a.isLt).mp hX
+  have hzeroSource :
+      ((finiteCanonicalSignRootedFamily DA).graph i).edge
+        0 b.val c.val := by
+    simpa only [ha0] using hSrc
+  exact ⟨i,b,c,by omega,hbc,hY,hZ,hzeroSource⟩
 
-/-- A positive edge whose first vertex is not a Devlin marker
-has its entire source-branch edge table and rank coordinates
-available for the global positive-class coherence proof. -/
+/-- All non-Devlin completed edges have a fully bounded
+source-branch witness; no new mixed E2/E3 edges arise. -/
 theorem finiteCanonicalCausalMarkerGraph_nonDevlin_source_witness
     {A : Ordered3Graph Nat} {n : Nat}
     (DA : FiniteRoleDiaryBlock A n)
@@ -139,15 +137,16 @@ theorem finiteCanonicalCausalMarkerGraph_nonDevlin_source_witness
     (hx1 : x ≠ 1) (hx2 : x ≠ 2)
     (he : (finiteCanonicalCausalMarkerGraph DA).edge x y z) :
     ∃ (i : FiniteCanonicalFlipIndex A n)
-      (a b c : Nat),
-      a < b ∧ b < c ∧ c < n ∧
+      (a b c : Fin n),
+      a.val < b.val ∧ b.val < c.val ∧
       (finiteCanonicalNodeIndex DA
-        (finiteCanonicalNodeAt DA i a (by omega))).val = x ∧
+        (finiteCanonicalNodeAt DA i a.val a.isLt)).val = x ∧
       (finiteCanonicalNodeIndex DA
-        (finiteCanonicalNodeAt DA i b (by omega))).val = y ∧
+        (finiteCanonicalNodeAt DA i b.val b.isLt)).val = y ∧
       (finiteCanonicalNodeIndex DA
-        (finiteCanonicalNodeAt DA i c (by omega))).val = z ∧
-      ((finiteCanonicalSignRootedFamily DA).graph i).edge a b c := by
+        (finiteCanonicalNodeAt DA i c.val c.isLt)).val = z ∧
+      ((finiteCanonicalSignRootedFamily DA).graph i).edge
+        a.val b.val c.val := by
   exact finiteCanonicalRankedRawGraph_edge_source_witness DA x y z
     ((finiteCanonicalCausalMarkerGraph_edge_iff_raw_of_nonDevlin
       DA x y z hx1 hx2).mp he)
