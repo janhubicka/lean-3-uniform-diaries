@@ -102,7 +102,7 @@ theorem exists_countableDiary_simultaneousCanonicalSourceFlips
     apply Finset.mem_union.mpr
     exact Or.inr (Finset.mem_image.mpr
       ⟨u, Finset.mem_Ico.mpr ⟨hu3,hun⟩,rfl⟩)
-  obtain ⟨bits,hDiary,hOne,hTwo,hEdge⟩ :=
+  obtain ⟨bits,hDiary,hFamily,hEdge⟩ :=
     exists_countableDiary_completes_protectedFamily
       (finiteCanonicalCausalMarkerGraph_finitePrediary DA) fam
       (fun i => finiteCanonicalCausalMarkerGraph_original_protected_picture DA i)
@@ -118,7 +118,7 @@ theorem exists_countableDiary_simultaneousCanonicalSourceFlips
         (f (((finiteCanonicalSignRootedFamily DA).graph i).oneMeetLevel u v))
     calc
       _ = onePassOldImage C (H.oneMeetLevel (f u) (f v)) :=
-        hOne i (f u) (f v)
+        (hFamily i).1 (f u) (f v)
           (hMarked i u hu3 hun) (hMarked i v hv3 hvn)
       _ = onePassOldImage C
             (f (((finiteCanonicalSignRootedFamily DA).graph i).oneMeetLevel u v)) :=
@@ -135,7 +135,7 @@ theorem exists_countableDiary_simultaneousCanonicalSourceFlips
     calc
       _ = onePassOldImage C
             (H.twoMeetLevel (f a) (f b) (f c) (f d)) :=
-        hTwo i (f a) (f b) (f c) (f d)
+        (hFamily i).2 (f a) (f b) (f c) (f d)
           (hMarked i a ha3 han) (hMarked i b hb3 hbn)
           (hMarked i c hc3 hcn) (hMarked i d hd3 hdn)
           (E.strictMono hab) (E.strictMono hcd)
