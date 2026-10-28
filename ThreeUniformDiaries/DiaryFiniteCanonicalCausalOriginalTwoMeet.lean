@@ -106,7 +106,7 @@ theorem finiteCanonicalCausalMarkerGraph_original_twoMeet_exact_at_twoSplit
   have hUpper : G.twoMeetLevel aa bb cc dd ≤ m := by
     by_contra h
     have hGt : m < G.twoMeetLevel aa bb cc dd := by omega
-    exact hFinalDiff ((G.twoMeetLevel_agree aa bb cc dd).2.2 m hGt)
+    exact hFinalDiff ((G.twoMeetLevel_agree aa bb cc dd).2.2 (a := m) hGt)
   change G.twoMeetLevel aa bb cc dd = m
   omega
 
