@@ -151,7 +151,7 @@ theorem exists_finitePrefixSplitWitness_window
 all images of source vertices, across ALL canonical source flips,
 are bounded by a single explicit cut: the old image of the
 finite causal carrier size N. We can enlarge this cut ONCE to
-contain actual 1-/2-split witnesses for every split below it.
+contain actual one-split and two-split witnesses for every split below it.
 This is a genuine finite window, not yet a finite diary. -/
 theorem exists_canonicalSourceOrbit_finiteWitnessWindow
     {A : Ordered3Graph Nat} {n : Nat}
