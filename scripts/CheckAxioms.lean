@@ -2301,3 +2301,5 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteCanonicalSourceRankMap_roles_iff
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteCanonicalCausalMarkerGraph_original_protected_picture
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_countableDiary_completes_protectedFamily
