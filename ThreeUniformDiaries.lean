@@ -793,4 +793,8 @@ import ThreeUniformDiaries.DiaryFiniteCanonicalCausalCommonFirstCap
 
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalMarkerOnePairMeet
 
+import ThreeUniformDiaries.DiaryFiniteCanonicalCausalSourceLeafMeets
+
+import ThreeUniformDiaries.DiaryFiniteCanonicalCausalOriginalSOne
+
 import ThreeUniformDiaries.DiaryFiniteCanonicalSourceRankMap
