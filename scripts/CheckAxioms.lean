@@ -2292,3 +2292,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteCanonicalCausalMarkerGraph_original_leaf_twoMeets_exact
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteCanonicalCausalMarkerGraph_original_distinctLeaf_S1
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_countableDiary_completes_protectedFamily
