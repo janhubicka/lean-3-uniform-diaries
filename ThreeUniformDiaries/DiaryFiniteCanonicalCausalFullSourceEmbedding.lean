@@ -229,10 +229,8 @@ theorem finiteCanonicalCausalMarkerGraph_sourceProtectedPicture
     FiniteProtectedMeetPicture
       (finiteCanonicalCausalMarkerGraph DA)
       (finiteMeetImage n (finiteCanonicalSourceRankMap DA i)) := by
-  exact
-    (finiteCanonicalCausalMarkerGraph_sourceFiniteMeetEmbedding DA i).
-      protected_picture
-        ((finiteCanonicalSignRootedFamily DA).flip i).target_diary
+  exact (finiteCanonicalCausalMarkerGraph_sourceFiniteMeetEmbedding DA i).protected_picture
+    ((finiteCanonicalSignRootedFamily DA).flip i).target_diary
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
