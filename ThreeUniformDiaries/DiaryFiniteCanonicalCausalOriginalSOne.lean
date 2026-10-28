@@ -1,4 +1,5 @@
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalOriginalOneMeet
+import ThreeUniformDiaries.DiaryFiniteCanonicalCausalRoleCensus
 import ThreeUniformDiaries.DiaryFiniteBlockProtectedS2
 
 /-!
