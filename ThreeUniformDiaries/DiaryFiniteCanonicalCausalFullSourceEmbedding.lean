@@ -1,6 +1,7 @@
 import ThreeUniformDiaries.DiaryFiniteCanonicalSourceRankMap
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalSourceLeafMeets
 import ThreeUniformDiaries.DiaryFiniteInducedAllMeetTransport
+import ThreeUniformDiaries.DiaryFiniteCanonicalCausalPrediaryAssembly
 
 /-!
 # Complete meet embeddings of every original canonical flip branch
@@ -121,10 +122,11 @@ theorem finiteCanonicalCausalMarkerGraph_sourceLeafPreembedding
       have hExact :=
         finiteCanonicalCausalMarkerGraph_original_proper_oneMeet_exact
           DA i s u v hsA hsn hsu hsv hun hvn huA hvA rfl
-      simpa only [f,
-        finiteCanonicalSourceRankMap_of_lt DA i u hun,
+      change G.oneMeetLevel (f u) (f v) = f s
+      rw [finiteCanonicalSourceRankMap_of_lt DA i u hun,
         finiteCanonicalSourceRankMap_of_lt DA i v hvn,
-        finiteCanonicalSourceRankMap_of_lt DA i s hsn] using hExact
+        finiteCanonicalSourceRankMap_of_lt DA i s hsn]
+      exact hExact
   · intro a b c d hab hcd ha3 han hb3 hbn
         hc3 hcn hd3 hdn ha hb hc hd
     have haA : IsLeaf A a :=
@@ -143,12 +145,13 @@ theorem finiteCanonicalCausalMarkerGraph_sourceLeafPreembedding
     have hExact :=
       finiteCanonicalCausalMarkerGraph_original_leaf_twoMeets_exact
         DA i a b c d hab hcd hbn hdn haA hbA hcA hdA
-    simpa only [f,
-      finiteCanonicalSourceRankMap_of_lt DA i a han,
+    change G.twoMeetLevel (f a) (f b) (f c) (f d) = f m
+    rw [finiteCanonicalSourceRankMap_of_lt DA i a han,
       finiteCanonicalSourceRankMap_of_lt DA i b hbn,
       finiteCanonicalSourceRankMap_of_lt DA i c hcn,
       finiteCanonicalSourceRankMap_of_lt DA i d hdn,
-      finiteCanonicalSourceRankMap_of_lt DA i m hmBound] using hExact
+      finiteCanonicalSourceRankMap_of_lt DA i m hmBound]
+    exact hExact
 
 /-- Exact induced-triple reflection holds for ALL source
 triples, not just triples whose three source vertices are leaves. -/
