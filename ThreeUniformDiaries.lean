@@ -809,4 +809,6 @@ import ThreeUniformDiaries.DiaryFiniteCanonicalCausalCountableFlipOrbit
 
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalFullTarget
 
+import ThreeUniformDiaries.DiaryFiniteCanonicalCausalRankIntersections
+
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalCrossSourcePairTypes
