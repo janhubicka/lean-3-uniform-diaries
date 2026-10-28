@@ -806,3 +806,5 @@ import ThreeUniformDiaries.DiaryFiniteUniformProtectedFamilyCompletion
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalFullSourceEmbedding
 
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalCountableFlipOrbit
+
+import ThreeUniformDiaries.DiaryFinitePrefixSplitWitnessWindow
