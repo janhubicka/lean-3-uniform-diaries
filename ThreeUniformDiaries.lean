@@ -778,3 +778,5 @@ import ThreeUniformDiaries.DiaryFiniteCanonicalCausalEdgeShapeRoles
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalPermittedEdges
 
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalOriginalTwoType
+
+import ThreeUniformDiaries.DiaryFiniteCanonicalCausalOriginalTwoMeet
