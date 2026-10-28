@@ -106,7 +106,7 @@ theorem finiteCanonicalCausalMarkerGraph_edge_support
       constructor
       · omega
       · simpa only [hZ] using hzBound
-  exact ⟨hOrder.1,hOrder.2.1,hSupport.1,hSupport.2⟩
+  exact ⟨hOrder.1,hOrder.2,hSupport.1,hSupport.2⟩
 
 /-- The EXACT finite edge frame of the causal canonical
 sign-rooted graph, not just an abstract ordered edge set. -/
