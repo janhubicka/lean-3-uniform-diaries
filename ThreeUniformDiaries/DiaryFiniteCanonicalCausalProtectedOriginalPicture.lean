@@ -86,6 +86,7 @@ theorem finiteCanonicalCausalMarkerGraph_original_protected_picture
     have h2x : 2 < x := by omega
     have hGreater := hMono h2x
     rw [hMarkerTwo] at hGreater
+    change 3 ≤ f x
     omega
   · intro u v hu hv hLeafU hLeafV hne
     rcases Finset.mem_image.mp hu with ⟨a,ha,rfl⟩
@@ -128,12 +129,12 @@ theorem finiteCanonicalCausalMarkerGraph_original_protected_picture
       by_contra hnot
       have hba : b0 ≤ a0 := by omega
       have hMon := hMono.monotone hba
-      omega
+      exact (not_lt_of_ge hMon) hab
     have hcd0 : c0 < d0 := by
       by_contra hnot
       have hdc : d0 ≤ c0 := by omega
       have hMon := hMono.monotone hdc
-      omega
+      exact (not_lt_of_ge hMon) hcd
     have hHa : IsLeaf A a0 :=
       (finiteCanonicalSourceRankMap_roles_iff
         DA i a0 ha3 han).1.mp hLeafA
