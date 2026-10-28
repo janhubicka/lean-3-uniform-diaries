@@ -799,4 +799,8 @@ import ThreeUniformDiaries.DiaryFiniteCanonicalCausalOriginalSOne
 
 import ThreeUniformDiaries.DiaryFiniteCanonicalSourceRankMap
 
+import ThreeUniformDiaries.DiaryFiniteCanonicalCausalProtectedOriginalPicture
+
+import ThreeUniformDiaries.DiaryFiniteUniformProtectedFamilyCompletion
+
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalFullSourceEmbedding
