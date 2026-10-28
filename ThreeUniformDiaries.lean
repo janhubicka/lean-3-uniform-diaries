@@ -784,3 +784,5 @@ import ThreeUniformDiaries.DiaryFiniteCanonicalCausalOriginalTwoMeet
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalTwoSplitWitness
 
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalFiniteFrame
+
+import ThreeUniformDiaries.DiaryFiniteCanonicalCausalPrediaryAssembly
