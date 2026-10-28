@@ -797,4 +797,6 @@ import ThreeUniformDiaries.DiaryFiniteCanonicalCausalSourceLeafMeets
 
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalOriginalSOne
 
+import ThreeUniformDiaries.DiaryFiniteCanonicalSourceRankMap
+
 import ThreeUniformDiaries.DiaryFiniteUniformProtectedFamilyCompletion
