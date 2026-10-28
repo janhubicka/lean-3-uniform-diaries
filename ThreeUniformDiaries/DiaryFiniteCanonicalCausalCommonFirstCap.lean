@@ -7,7 +7,7 @@ import ThreeUniformDiaries.DiaryFiniteCanonicalCausalVTwoCoherence
 
 The manuscript's exact S2 alternative includes the CAPPED case:
 the ordered source pairs (a,b) and (a,d) have twoMeetLevel exactly a.
-The source vertex a is a LEAF, not a 1-/2-split. Consequently the
+The source vertex a is a LEAF, not a one/two-split. Consequently the
 earlier split-only mask-coherence lemma cannot transport the full
 pair type through the numerical cut corresponding to a.
 
