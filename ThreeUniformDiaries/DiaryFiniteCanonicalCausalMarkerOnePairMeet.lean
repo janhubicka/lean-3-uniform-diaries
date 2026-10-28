@@ -39,6 +39,7 @@ theorem permitted_no_zero_edge_through_leaf
     (u v : Nat) (hu : IsLeaf H u) :
     ¬ H.edge 0 u v := by
   intro he
+  have hu3 : 3 ≤ u := hu.1
   rcases hE 0 u v he with hE1 | hE2 | hE3 | hE4 | hE5
   · rcases hE1 with ⟨_, huMark, _⟩
     rcases huMark with hu1 | hu2 <;> omega
@@ -79,6 +80,7 @@ theorem permitted_marker_one_pair_meet_distinguishes
     (hc : IsLeaf H c) (hd : IsLeaf H d)
     (hMeet : H.twoMeetLevel a b c d = 1) :
     ¬ (H.edge 1 a b ↔ H.edge 1 c d) := by
+  classical
   have hNotNext : ¬ H.SameTwoTypeBelow 2 a b c d := by
     intro hNext
     have hCap : 2 ≤ min a c := by
@@ -137,6 +139,7 @@ theorem finiteCanonicalCausalMarkerGraph_original_markerOne_twoMeet_exact
         (finiteCanonicalNodeAt DA i c (by omega))).val
       (finiteCanonicalNodeIndex DA
         (finiteCanonicalNodeAt DA i d hdn)).val = 1 := by
+  classical
   let F := finiteCanonicalSignRootedFamily DA
   let G := finiteCanonicalCausalMarkerGraph DA
   let aa := (finiteCanonicalNodeIndex DA
@@ -181,13 +184,19 @@ theorem finiteCanonicalCausalMarkerGraph_original_markerOne_twoMeet_exact
         have hn := DA.prediary.frame.length_ge_three
         omega))).val = 1 :=
     finiteCanonicalMarker_one_rank DA i
+  have haAfterOne : 1 < a := by
+    have ha3 := ha.1
+    omega
+  have hcAfterOne : 1 < c := by
+    have hc3 := hc.1
+    omega
   have hEdgeAB : G.edge 1 aa bb ↔ (F.graph i).edge 1 a b := by
     have h := finiteCanonicalCausalMarkerGraph_branch_edge_iff
-      DA i 1 a b (by omega) hab hbn
+      DA i 1 a b haAfterOne hab hbn
     simpa only [hOneRank] using h
   have hEdgeCD : G.edge 1 cc dd ↔ (F.graph i).edge 1 c d := by
     have h := finiteCanonicalCausalMarkerGraph_branch_edge_iff
-      DA i 1 c d (by omega) hcd hdn
+      DA i 1 c d hcAfterOne hcd hdn
     simpa only [hOneRank] using h
   have hDiffFinal : ¬ (G.edge 1 aa bb ↔ G.edge 1 cc dd) := by
     intro h
