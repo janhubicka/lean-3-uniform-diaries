@@ -776,3 +776,5 @@ import ThreeUniformDiaries.DiaryFiniteCanonicalCausalOneSplitWitness
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalEdgeShapeRoles
 
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalPermittedEdges
+
+import ThreeUniformDiaries.DiaryFiniteCanonicalCausalFiniteFrame
