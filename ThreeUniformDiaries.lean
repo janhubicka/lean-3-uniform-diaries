@@ -785,4 +785,6 @@ import ThreeUniformDiaries.DiaryFiniteCanonicalCausalTwoSplitWitness
 
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalFiniteFrame
 
+import ThreeUniformDiaries.DiaryFiniteCanonicalCausalPrediaryAssembly
+
 import ThreeUniformDiaries.DiaryFiniteCanonicalRankedSameBranchMaskLeafCut
