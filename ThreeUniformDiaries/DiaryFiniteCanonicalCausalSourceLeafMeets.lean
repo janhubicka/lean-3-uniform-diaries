@@ -59,7 +59,11 @@ theorem finiteCanonicalCausalMarkerGraph_original_leaf_twoMeets_exact
       (finiteCanonicalNodeIndex DA
         (finiteCanonicalNodeAt DA i
           (((finiteCanonicalSignRootedFamily DA).graph i).twoMeetLevel
-            a b c d) (by omega))).val := by
+            a b c d) (by
+              have hBound :=
+                ((finiteCanonicalSignRootedFamily DA).graph i).twoMeetLevel_le_min
+                  a b c d
+              omega))).val := by
   classical
   let F := finiteCanonicalSignRootedFamily DA
   let G := finiteCanonicalCausalMarkerGraph DA
@@ -94,27 +98,21 @@ theorem finiteCanonicalCausalMarkerGraph_original_leaf_twoMeets_exact
       finiteCanonicalCausalMarkerGraph_original_markerOne_twoMeet_exact
         DA i a b c d hab hcd hbn hdn ha hb hc hd hMarker
     have hMarkerRank : (finiteCanonicalNodeIndex DA
-        (finiteCanonicalNodeAt DA i 1 (by
-          have hn := DA.prediary.frame.length_ge_three
-          omega))).val = 1 :=
-      finiteCanonicalMarker_one_rank DA i
-    change G.twoMeetLevel
-        (finiteCanonicalNodeIndex DA (finiteCanonicalNodeAt DA i a han)).val
-        (finiteCanonicalNodeIndex DA (finiteCanonicalNodeAt DA i b hbn)).val
-        (finiteCanonicalNodeIndex DA (finiteCanonicalNodeAt DA i c hcn)).val
-        (finiteCanonicalNodeIndex DA (finiteCanonicalNodeAt DA i d hdn)).val =
-      (finiteCanonicalNodeIndex DA (finiteCanonicalNodeAt DA i m hmBound)).val
-    rw [show m = 1 from hMarker]
+        (finiteCanonicalNodeAt DA i m hmBound)).val = 1 :=
+      (finiteCanonicalMarker_index_of_lt_three DA i m
+        (by omega) hmBound).trans hMarker
     exact hTarget.trans hMarkerRank.symm
   · have hmn : m < n := hmBound
+    have hSplitM : IsTwoSplit (F.graph i) m := hSplit
     have hmA : IsTwoSplit A m :=
-      ((F.flip i).role_iff m hSplit.1 hmn).2.2.mpr hSplit
+      ((F.flip i).role_iff m hSplitM.1 hmn).2.2.mpr hSplitM
     have hma : m < a := by
       have hcap := (F.graph i).twoMeetLevel_le_min a b c d
       have hne : m ≠ a := by
         intro heq
         have hx : IsTwoSplit (F.graph i) a := by
-          simpa only [heq] using hSplit
+          rw [← heq]
+          exact hSplitM
         exact hFa.2.2 hx.2.2
       dsimp [m]
       omega
@@ -123,7 +121,8 @@ theorem finiteCanonicalCausalMarkerGraph_original_leaf_twoMeets_exact
       have hne : m ≠ c := by
         intro heq
         have hx : IsTwoSplit (F.graph i) c := by
-          simpa only [heq] using hSplit
+          rw [← heq]
+          exact hSplitM
         exact hFc.2.2 hx.2.2
       dsimp [m]
       omega
@@ -133,14 +132,18 @@ theorem finiteCanonicalCausalMarkerGraph_original_leaf_twoMeets_exact
   · subst c
     have h := finiteCanonicalCausalMarkerGraph_original_commonFirst_twoMeet_exact
       DA i a b d hab hcd hbn hdn hb hd hCap
-    change G.twoMeetLevel
-        (finiteCanonicalNodeIndex DA (finiteCanonicalNodeAt DA i a han)).val
-        (finiteCanonicalNodeIndex DA (finiteCanonicalNodeAt DA i b hbn)).val
-        (finiteCanonicalNodeIndex DA (finiteCanonicalNodeAt DA i a han)).val
-        (finiteCanonicalNodeIndex DA (finiteCanonicalNodeAt DA i d hdn)).val =
-      (finiteCanonicalNodeIndex DA (finiteCanonicalNodeAt DA i m hmBound)).val
-    rw [show m = a from hCap]
-    exact h
+    have hRankEq :
+        (finiteCanonicalNodeIndex DA
+          (finiteCanonicalNodeAt DA i m hmBound)).val =
+        (finiteCanonicalNodeIndex DA
+          (finiteCanonicalNodeAt DA i a han)).val := by
+      have hEqFin : (⟨m,hmBound⟩ : Fin n) = ⟨a,han⟩ :=
+        Fin.ext hCap
+      exact congrArg
+        (fun t : Fin n =>
+          (finiteCanonicalNodeIndex DA
+            (finiteCanonicalNodeAt DA i t.val t.isLt)).val) hEqFin
+    exact h.trans hRankEq.symm
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
