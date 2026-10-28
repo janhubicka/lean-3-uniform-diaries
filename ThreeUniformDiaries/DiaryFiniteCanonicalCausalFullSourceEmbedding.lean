@@ -123,6 +123,7 @@ theorem finiteCanonicalCausalMarkerGraph_sourceLeafPreembedding
         finiteCanonicalCausalMarkerGraph_original_proper_oneMeet_exact
           DA i s u v hsA hsn hsu hsv hun hvn huA hvA rfl
       change G.oneMeetLevel (f u) (f v) = f s
+      dsimp only [f]
       rw [finiteCanonicalSourceRankMap_of_lt DA i u hun,
         finiteCanonicalSourceRankMap_of_lt DA i v hvn,
         finiteCanonicalSourceRankMap_of_lt DA i s hsn]
@@ -146,6 +147,7 @@ theorem finiteCanonicalCausalMarkerGraph_sourceLeafPreembedding
       finiteCanonicalCausalMarkerGraph_original_leaf_twoMeets_exact
         DA i a b c d hab hcd hbn hdn haA hbA hcA hdA
     change G.twoMeetLevel (f a) (f b) (f c) (f d) = f m
+    dsimp only [f]
     rw [finiteCanonicalSourceRankMap_of_lt DA i a han,
       finiteCanonicalSourceRankMap_of_lt DA i b hbn,
       finiteCanonicalSourceRankMap_of_lt DA i c hcn,
