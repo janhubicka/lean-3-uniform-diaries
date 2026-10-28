@@ -1,29 +1,29 @@
 import ThreeUniformDiaries.DiaryFiniteCanonicalCausalFullSourceEmbedding
-import ThreeUniformDiaries.DiaryFiniteCanonicalCausalProtectedOriginalPicture
-import ThreeUniformDiaries.DiaryFiniteUniformProtectedFamilyCompletion
+import ThreeUniformDiaries.DiaryFiniteFamilyCountableCompletion
 
 /-!
-# Simultaneous exact canonical-flip copies inside one countable diary
+# A common countable diary with full embeddings of all canonical source flips
 
-The finite canonical sign-rooted causal graph is a genuine V/E pre-diary.
-Each canonical SOURCE flip embeds into it as a full induced numerical-meet
-copy; each entire source image is a protected finite S1/S2 picture.
-Uniform relative completion chooses ONE dummy tail and ONE countable
-RoleDiary for all these separately protected pictures.
+Every canonical SOURCE flip is an induced full numerical-meet copy of
+the actual causal finite V/E pre-diary. The previously verified
+FiniteMeetEmbedding.through_countable_completion theorem carries
+each such finite embedding through ANY one common dummy-tail
+prediary and its one-pass completion.
 
-This module composes those already checked interfaces. In the resulting
-single countable diary, EVERY original canonical source flip has its
-original induced edge/nonedge table and every nonmarker numerical singleton
-and full ordered-pair meet is preserved by an explicit common-target map.
+Choose the dummy-tail prediary ONCE, independently of the flip
+index. Every source branch then embeds into the same countable
+RoleDiary with all FiniteMeetEmbedding fields: strict order,
+markers, all source roles, edges AND nonedges, singleton and full
+ordered-pair numerical meets including mixed split/leaf cases.
 
-This does NOT make every target flip preserve a source copy. In particular
-it does not assert universal flip absorption or the 3-uniform lower bound.
+This does not give a finite diary absorber or assert that EVERY
+genuine flip of a fixed finite target contains the unflipped source.
 -/
 
 namespace ThreeUniformDiaries
 namespace DiaryLeafPriority
 
-/-- The common dummy-tail carrier used for all canonical source flips. -/
+/-- One common dummy-tail carrier for all canonical source flips. -/
 noncomputable def canonicalCausalCountableCarrier
     {A : Ordered3Graph Nat} {n : Nat}
     (DA : FiniteRoleDiaryBlock A n) (bits : Nat → Bool) :
@@ -32,8 +32,7 @@ noncomputable def canonicalCausalCountableCarrier
     (finiteCanonicalCausalMarkerGraph DA)
     (Fintype.card (FiniteCanonicalSignRootedVertex DA)) bits
 
-/-- The actual source-to-countable numerical map, with the same
-countable carrier for every canonical source-flip index. -/
+/-- The complete concrete source-to-countable vertex map. -/
 noncomputable def canonicalCausalCountableSourceMap
     {A : Ordered3Graph Nat} {n : Nat}
     (DA : FiniteRoleDiaryBlock A n) (bits : Nat → Bool)
@@ -41,12 +40,48 @@ noncomputable def canonicalCausalCountableSourceMap
   onePassOldImage (canonicalCausalCountableCarrier DA bits)
     (finiteCanonicalSourceRankMap DA i u)
 
-/-- All original canonical SOURCE flips have exact induced edge tables
-and every nonmarker singleton/full numerical meet preserved
-simultaneously inside ONE actual countable diary.
+/-- Strong simultaneous source-orbit embedding theorem.
 
-This theorem is strictly weaker than the still-open assertion that
-every genuine flip of some fixed finite target absorbs the source. -/
+One choice of countable RoleDiary works for EVERY genuine canonical
+source flip, and every induced finite-meet embedding has ALL of its
+structure fields checked. The source flip itself, not the original
+unflipped source, is the embedded finite structure. -/
+theorem exists_countableDiary_simultaneousCanonicalSourceFlips_fullEmbedding
+    {A : Ordered3Graph Nat} {n : Nat}
+    (DA : FiniteRoleDiaryBlock A n) :
+    ∃ bits : Nat → Bool,
+      RoleDiary
+        (onePassRawTarget (canonicalCausalCountableCarrier DA bits)) ∧
+      (∀ i : FiniteCanonicalFlipIndex A n,
+        FiniteMeetEmbedding
+          ((finiteCanonicalSignRootedFamily DA).graph i)
+          (onePassRawTarget (canonicalCausalCountableCarrier DA bits))
+          n (canonicalCausalCountableSourceMap DA bits i)) := by
+  let F := finiteCanonicalSignRootedFamily DA
+  let G := finiteCanonicalCausalMarkerGraph DA
+  let N := Fintype.card (FiniteCanonicalSignRootedVertex DA)
+  have PG : FiniteRolePrediaryBlock G N :=
+    finiteCanonicalCausalMarkerGraph_finitePrediary DA
+  obtain ⟨bits,PT⟩ := exists_finiteDummyTailCarrier_prediary PG
+  refine ⟨bits, onePassRawTarget_isDiary PT, ?_⟩
+  intro i
+  have E : FiniteMeetEmbedding (F.graph i) G n
+      (finiteCanonicalSourceRankMap DA i) :=
+    finiteCanonicalCausalMarkerGraph_sourceFiniteMeetEmbedding DA i
+  have hRange : ∀ u : Nat, 3 ≤ u → u < n →
+      finiteCanonicalSourceRankMap DA i u < N := by
+    intro u _hun3 hun
+    exact finiteCanonicalSourceRankMap_lt_carrier DA i u hun
+  change FiniteMeetEmbedding (F.graph i)
+    (onePassRawTarget (finiteDummyTailCarrier G N bits)) n
+    (fun u => onePassOldImage (finiteDummyTailCarrier G N bits)
+      (finiteCanonicalSourceRankMap DA i u))
+  exact E.through_countable_completion PG
+    (F.flip i).target_diary hRange bits PT
+
+/-- The explicit edge and exact numerical-meet form of the stronger
+common-countable-diary embedding theorem. All equations hold within
+each individual source flip; no cross-branch equation is asserted. -/
 theorem exists_countableDiary_simultaneousCanonicalSourceFlips
     {A : Ordered3Graph Nat} {n : Nat}
     (DA : FiniteRoleDiaryBlock A n) :
@@ -78,85 +113,16 @@ theorem exists_countableDiary_simultaneousCanonicalSourceFlips
           (canonicalCausalCountableSourceMap DA bits i b)
           (canonicalCausalCountableSourceMap DA bits i c) ↔
           ((finiteCanonicalSignRootedFamily DA).graph i).edge a b c)) := by
-  classical
-  let H := finiteCanonicalCausalMarkerGraph DA
-  let N := Fintype.card (FiniteCanonicalSignRootedVertex DA)
-  let fam : FiniteCanonicalFlipIndex A n → Finset Nat :=
-    fun i => finiteMeetImage n (finiteCanonicalSourceRankMap DA i)
-  have hBound :
-      ∀ (i : FiniteCanonicalFlipIndex A n) (u : Nat),
-        u ∈ fam i → u < N := by
-    intro i u hu
-    change u ∈ finiteMeetImage n (finiteCanonicalSourceRankMap DA i) at hu
-    rcases Finset.mem_image.mp hu with ⟨z,hz,rfl⟩
-    exact finiteCanonicalSourceRankMap_lt_carrier DA i z
-      (Finset.mem_Ico.mp hz).2
-  have hMarked :
-      ∀ (i : FiniteCanonicalFlipIndex A n) (u : Nat),
-        3 ≤ u → u < n →
-        finiteCanonicalSourceRankMap DA i u ∈
-          finiteProtectedWithMarkers (fam i) := by
-    intro i u hu3 hun
-    change finiteCanonicalSourceRankMap DA i u ∈
-      Finset.range 3 ∪ finiteMeetImage n (finiteCanonicalSourceRankMap DA i)
-    apply Finset.mem_union.mpr
-    exact Or.inr (Finset.mem_image.mpr
-      ⟨u, Finset.mem_Ico.mpr ⟨hu3,hun⟩,rfl⟩)
-  obtain ⟨bits,hDiary,hFamily,hEdge⟩ :=
-    exists_countableDiary_completes_protectedFamily
-      (finiteCanonicalCausalMarkerGraph_finitePrediary DA) fam
-      (fun i => finiteCanonicalCausalMarkerGraph_original_protected_picture DA i)
-      hBound
-  refine ⟨bits,hDiary,?_,?_,?_⟩
+  obtain ⟨bits,hD,hEmb⟩ :=
+    exists_countableDiary_simultaneousCanonicalSourceFlips_fullEmbedding DA
+  refine ⟨bits,hD,?_,?_,?_⟩
   · intro i u v hu3 hun hv3 hvn
-    let f := finiteCanonicalSourceRankMap DA i
-    let C := canonicalCausalCountableCarrier DA bits
-    have E := finiteCanonicalCausalMarkerGraph_sourceFiniteMeetEmbedding DA i
-    change (onePassRawTarget C).oneMeetLevel
-      (onePassOldImage C (f u)) (onePassOldImage C (f v)) =
-      onePassOldImage C
-        (f (((finiteCanonicalSignRootedFamily DA).graph i).oneMeetLevel u v))
-    calc
-      _ = onePassOldImage C (H.oneMeetLevel (f u) (f v)) :=
-        (hFamily i).1 (f u) (f v)
-          (hMarked i u hu3 hun) (hMarked i v hv3 hvn)
-      _ = onePassOldImage C
-            (f (((finiteCanonicalSignRootedFamily DA).graph i).oneMeetLevel u v)) :=
-        congrArg (onePassOldImage C) (E.oneMeet u v hu3 hun hv3 hvn)
+    exact (hEmb i).oneMeet u v hu3 hun hv3 hvn
   · intro i a b c d hab hcd ha3 han hb3 hbn hc3 hcn hd3 hdn
-    let f := finiteCanonicalSourceRankMap DA i
-    let C := canonicalCausalCountableCarrier DA bits
-    have E := finiteCanonicalCausalMarkerGraph_sourceFiniteMeetEmbedding DA i
-    change (onePassRawTarget C).twoMeetLevel
-      (onePassOldImage C (f a)) (onePassOldImage C (f b))
-      (onePassOldImage C (f c)) (onePassOldImage C (f d)) =
-      onePassOldImage C
-        (f (((finiteCanonicalSignRootedFamily DA).graph i).twoMeetLevel a b c d))
-    calc
-      _ = onePassOldImage C
-            (H.twoMeetLevel (f a) (f b) (f c) (f d)) :=
-        (hFamily i).2 (f a) (f b) (f c) (f d)
-          (hMarked i a ha3 han) (hMarked i b hb3 hbn)
-          (hMarked i c hc3 hcn) (hMarked i d hd3 hdn)
-          (E.strictMono hab) (E.strictMono hcd)
-      _ = onePassOldImage C
-            (f (((finiteCanonicalSignRootedFamily DA).graph i).twoMeetLevel a b c d)) :=
-        congrArg (onePassOldImage C)
-          (E.twoMeet a b c d hab hcd
-            ha3 han hb3 hbn hc3 hcn hd3 hdn)
+    exact (hEmb i).twoMeet a b c d hab hcd
+      ha3 han hb3 hbn hc3 hcn hd3 hdn
   · intro i a b c hab hbc hcn
-    let f := finiteCanonicalSourceRankMap DA i
-    let C := canonicalCausalCountableCarrier DA bits
-    have E := finiteCanonicalCausalMarkerGraph_sourceFiniteMeetEmbedding DA i
-    have hcnN : f c < N :=
-      finiteCanonicalSourceRankMap_lt_carrier DA i c hcn
-    change (onePassRawTarget C).edge
-      (onePassOldImage C (f a))
-      (onePassOldImage C (f b))
-      (onePassOldImage C (f c)) ↔
-      ((finiteCanonicalSignRootedFamily DA).graph i).edge a b c
-    exact (hEdge (f a) (f b) (f c) hcnN).trans
-      (E.edge_iff a b c hab hbc hcn)
+    exact (hEmb i).edge_iff a b c hab hbc hcn
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
