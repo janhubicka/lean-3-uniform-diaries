@@ -1,3 +1,4 @@
+import ThreeUniformDiaries.DiaryFiniteCanonicalSignRootedCarrier
 import ThreeUniformDiaries.DiaryFiniteExplicitCanonicalFeedback
 import ThreeUniformDiaries.DiaryFiniteCanonicalLiteralEdgeSeparation
 
