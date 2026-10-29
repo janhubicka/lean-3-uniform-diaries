@@ -61,6 +61,7 @@ theorem finiteCanonicalCausalMarkerGraph_crossTwoMeet_exact_at_sharedSplit
         (finiteCanonicalNodeAt DA j z hzn)).val =
       (finiteCanonicalNodeIndex DA
         (finiteCanonicalNodeAt DA i s hsn)).val := by
+  classical
   let F := finiteCanonicalSignRootedFamily DA
   let G := finiteCanonicalCausalMarkerGraph DA
   let m := (finiteCanonicalNodeIndex DA
