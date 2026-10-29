@@ -1,4 +1,5 @@
 import ThreeUniformDiaries.DiaryFiniteCanonicalSharedSourcePairCodes
+import ThreeUniformDiaries.DiaryFiniteCanonicalSourceRankMap
 
 /-!
 # The source-fixed E3 witness detects actual causal branch separation
@@ -50,12 +51,13 @@ theorem finiteCanonical_firstS2Bit_causes_crossTwoMeet
       (F.graph j).edge s.val.val W.a W.b) :=
     finiteCanonicalSignRooted_selected_pair_E3_different
       DA i j s hDiff
+  have han : W.a < n := lt_trans W.hab W.hbn
   have haI : IsLeaf (F.graph i) W.a :=
-    ((F.flip i).role_iff W.a W.ha.1 (by omega)).1.mp W.ha
+    ((F.flip i).role_iff W.a W.ha.1 han).1.mp W.ha
   have hbI : IsLeaf (F.graph i) W.b :=
     ((F.flip i).role_iff W.b W.hb.1 W.hbn).1.mp W.hb
   have haJ : IsLeaf (F.graph j) W.a :=
-    ((F.flip j).role_iff W.a W.ha.1 (by omega)).1.mp W.ha
+    ((F.flip j).role_iff W.a W.ha.1 han).1.mp W.ha
   have hbJ : IsLeaf (F.graph j) W.b :=
     ((F.flip j).role_iff W.b W.hb.1 W.hbn).1.mp W.hb
   have h := finiteCanonicalCausalMarkerGraph_crossTwoMeet_exact_at_sharedSplit
@@ -64,7 +66,6 @@ theorem finiteCanonical_firstS2Bit_causes_crossTwoMeet
     W.hab W.hab W.hbn W.hbn
     W.hsa W.hsa
     haI hbI haJ hbJ hCode hE3
-  have han : W.a < n := by omega
   simpa only [finiteCanonicalSourceRankMap_of_lt DA i W.a han,
     finiteCanonicalSourceRankMap_of_lt DA i W.b W.hbn,
     finiteCanonicalSourceRankMap_of_lt DA j W.a han,
