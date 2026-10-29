@@ -66,6 +66,12 @@ theorem finiteCanonical_firstS2Bit_causes_crossTwoMeet
     W.hab W.hab W.hbn W.hbn
     W.hsa W.hsa
     haI hbI haJ hbJ hCode hE3
+  change (finiteCanonicalCausalMarkerGraph DA).twoMeetLevel
+    (finiteCanonicalSourceRankMap DA i W.a)
+    (finiteCanonicalSourceRankMap DA i W.b)
+    (finiteCanonicalSourceRankMap DA j W.a)
+    (finiteCanonicalSourceRankMap DA j W.b) =
+    finiteCanonicalSourceRankMap DA i s.val.val
   simpa only [finiteCanonicalSourceRankMap_of_lt DA i W.a han,
     finiteCanonicalSourceRankMap_of_lt DA i W.b W.hbn,
     finiteCanonicalSourceRankMap_of_lt DA j W.a han,
