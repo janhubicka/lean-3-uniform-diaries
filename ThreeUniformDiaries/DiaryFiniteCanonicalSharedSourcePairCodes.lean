@@ -112,7 +112,8 @@ theorem finiteCanonicalSignRooted_selected_pair_E3_different
   let W := finiteSelectedS2Witness DA s
   change decide ((F.graph i).edge s.val.val W.a W.b) ≠
     decide ((F.graph j).edge s.val.val W.a W.b) at hDiff
-  dsimp only
+  change ¬ ((F.graph i).edge s.val.val W.a W.b ↔
+    (F.graph j).edge s.val.val W.a W.b)
   by_cases hi : (F.graph i).edge s.val.val W.a W.b <;>
     by_cases hj : (F.graph j).edge s.val.val W.a W.b <;> simp_all
 
