@@ -73,6 +73,8 @@ theorem canonicalCausalOrbitFinite_crossTwoMeet_of_causal
   have hRankShared : ri s = rj s := by
     have heq : finiteCanonicalNodeAt DA i s hsn =
         finiteCanonicalNodeAt DA j s hsn := Subtype.ext hShared
+    change finiteCanonicalSourceRankMap DA i s =
+      finiteCanonicalSourceRankMap DA j s
     rw [finiteCanonicalSourceRankMap_of_lt DA i s hsn,
         finiteCanonicalSourceRankMap_of_lt DA j s hsn]
     exact congrArg
