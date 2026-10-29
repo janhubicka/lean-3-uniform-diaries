@@ -183,7 +183,11 @@ theorem exists_finiteDiary_strong_both_flip_directions
     obtain ⟨i,hGraph⟩ :=
       finiteCanonicalSignRootedFamily_complete DA hFlip
     refine ⟨maps i, ?_⟩
-    simpa only [hGraph] using hMaps i
+    have hCopy : FiniteBoundedMeetEmbedding
+        ((finiteCanonicalSignRootedFamily DA).graph i)
+        B n k (maps i) := hMaps i
+    rw [hGraph] at hCopy
+    exact hCopy
   exact ⟨B,k,hFull,hAllFlips,hAbs⟩
 
 /-- In particular every finite diary has an actual bounded
