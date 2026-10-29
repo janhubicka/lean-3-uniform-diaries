@@ -378,13 +378,16 @@ The missing finite protected-copy factorisation is now Lean verified
   jointly containing any finite family of finite diary inputs, all
   by induced, marker- and mixed-meet-preserving embeddings.
 
-**Still open:** the MUCH STRONGER assertion that **every flip of the
-finite target** contains the prescribed source diary; and the final
-diary unavoidability conclusion. Ordinary finite joint embedding
-of all flips of the source DOES NOT imply this absorption property.
-The V2 shared-root obstruction rules out the raw chronological
-flip-prefix amalgam. The original generic cut-zero orientation lemma
-as worded is not certified merely by the alternative four-tail proof.
+**Resolved by 29 October 2026:** the stronger assertion that EVERY
+genuine flip of one finite target embeds the original source is now
+proved by the causal sign-rooted construction
+(`exists_finiteDiary_strong_both_flip_directions`, merged PR #952).
+Ordinary finite joint embedding alone would NOT have implied it:
+the proof separately establishes cross-branch two-split meets
+and injectivity of the concrete geometric feedback. The V2
+shared-root obstruction still rules out the old chronological
+raw prefix-tree argument. Final diary unavoidability and the
+original generic cut-zero orientation statement are separate.
 
 
 
@@ -418,23 +421,22 @@ source flip codes and the finite set of realisable target flip
 codes. This is a correct finite certificate, NOT evidence that a
 suitable coherent copy family exists for every diary.
 
-**Outstanding:** construct, for every finite source diary A,
-a finite diary B such that EVERY genuine target flip T of B
-contains a fully protected copy of the unflipped A. The old
-one-fixed-copy-per-source-flip injective-feedback hypothesis
-is stronger than needed. The verified multivalued covering
-criterion allows DIFFERENT canonical source-flip copies and
-embedding tables for different target flips. Both V2
-positive-pair coherence and the coupled split orientations
-rule out naive independent Boolean choices. The manuscript
+**Resolved in PR #952:** the required finite every-target-flip
+absorber exists for every source diary. The earlier multivalued
+positive-anchor covering criterion remains valid, but the final
+proof uses the concrete sign-rooted copies, the first differing
+genuine E3 witness bit, and its preserved cross-branch meet.
+No independent Boolean flip coordinates or arbitrary
+Classical.choose maps are substituted. The manuscript
 circulation text remains frozen.
 
 
 ### Verified positive-anchor flip covering and constrained finite signatures (23 October 2026)
 
-These results are merged on Lean `main` with full builds, strict
-transitive axiom audits and finite regressions. Their exact scope
-is important: NONE constructs a general absorber.
+These 23 October component results were merged on Lean `main`
+with full builds, strict transitive axiom audits and finite regressions.
+Taken alone they did NOT construct a general absorber; the subsequent
+sign-rooted geometry and cross-branch meet transport do so in PR #952.
 
 - `DiaryFinitePositiveAnchorCompletion` and
   `DiaryFinitePositiveAnchorEquivalence` (PRs #857--#858):
@@ -483,14 +485,47 @@ is important: NONE constructs a general absorber.
   count; no Boolean independence or efficient algorithm
   for listing them is asserted.
 
-**Actual remaining gate:** find a uniform geometric construction
-which, for each finite A, supplies a B passing this exact
-canonical-target multivalued positive-anchor covering test.
-Finite-family joint embedding, a conditional feedback
-permutation, the small six-to-nine-vertex absorber, and the
-finite cardinality bound do NOT supply that construction.
-Final diary unavoidability and the lower-bound theorem remain
-unverified.
+### Verified unconditional strong finite flip absorption (29 October 2026)
+
+Merged [PR #952](https://github.com/janhubicka/lean-3-uniform-diaries/pull/952)
+(commit `7786736705bd6d09ff36e5449fc826f4a67ed51d`) exports:
+
+- `DiaryLeafPriority.exists_finiteDiary_strong_both_flip_directions`:
+  for every `FiniteRoleDiaryBlock A n` there is one finite full
+  diary B carrying bounded induced, all-numerical-meet embeddings
+  of **every genuine source flip**, and satisfying
+  `AbsorbsEveryTargetFlipInside A B n k`: **every genuine
+  target flip** contains the fixed UNFLIPPED source A.
+- `DiaryLeafPriority.exists_finiteDiary_universal_flip_absorber`:
+  the strong second assertion as a standalone unconditional theorem.
+- `canonicalCausalOrbitFiniteTarget_firstS2CrossMeet`: the exact
+  cross-copy two-split meet persists through dummy-tail extension,
+  one-pass full completion and finite leaf-meet support.
+
+The true constrained source flip orbit has one GLOBAL Devlin sign
+and one source-fixed genuine S2 witness bit per two-split. Distinct
+signs remain distinct in every target flip. At the FIRST differing
+true S2 bit with equal signs, the corresponding two source leaf
+pairs have a full meet at their shared image of the source split.
+Every target flip must still give opposite E3 incidences there.
+Hence the feedback on explicit canonical branch maps is injective,
+and thus surjective on the finite realisable orbit; the baseline
+source has a preimage in every target flip. This uses neither
+independent free Boolean coordinates nor arbitrary chosen maps.
+
+Exact integrated CI: **9886 Lean build jobs**; **747 local Lean files**
+without `sorry`, `admit` or local axioms/constants; **2224 theorem
+endpoints** with only `Classical.choice`, `Quot.sound` and `propext`;
+both finite regressions green (**44592** auxiliary configurations
+and **118324** exact-meet embeddings, including **21318** respecting).
+
+**Still open:** combining finite absorption and countable diary
+pre-embeddings into the manuscript's final unavoidability theorem,
+and repairing the independently identified upper-bound proof
+(including its circular invocation of the final strong Ramsey
+theorem). The frozen circulation `main.tex` is unchanged. An
+English proof and adversarial report live in the manuscript
+repository's sign-rooted notes.
 
 ## Removed historical adapters
 
