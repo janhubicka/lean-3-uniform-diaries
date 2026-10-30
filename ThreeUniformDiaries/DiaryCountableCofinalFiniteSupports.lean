@@ -216,7 +216,7 @@ theorem countableDiaryFiniteSupport_contains_finset
   | empty =>
       refine ⟨0,?_⟩
       intro u hu
-      exact False.elim (Finset.not_mem_empty u hu)
+      simp at hu
   | @insert a S ha ih =>
       obtain ⟨n,hn⟩ := ih
       obtain ⟨m,hm⟩ :=
