@@ -2351,3 +2351,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.DiaryPreembeddingSpec.role_iff
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteMeetEmbedding.comp_diaryPreembedding
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_finiteDiary_copy_in_generic_leaf_range
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.DiaryPreembeddingSpec.role_iff
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.DiaryPreembeddingSpec.comp_finiteMeetEmbedding
