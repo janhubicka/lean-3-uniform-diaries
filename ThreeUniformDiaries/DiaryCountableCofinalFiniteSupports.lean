@@ -201,5 +201,51 @@ theorem countableDiaryFiniteSupport_eventually_contains
       exact mem_finiteLeafMeetSupport_marker G
         (countableDiaryLeafPrefix G n) u hlt⟩
 
+
+/-- Any FINITE set of original countable-diary vertices lies
+inside ONE sufficiently long generated finite full-diary support.
+This uniform finite-set form is more convenient than pointwise
+eventual membership in the later countable fusion problem. -/
+theorem countableDiaryFiniteSupport_contains_finset
+    {G : Ordered3Graph Nat} (D : RoleDiary G)
+    (U : Finset Nat) :
+    ∃ m : Nat, ∀ u : Nat, u ∈ U →
+      u ∈ countableDiaryFiniteSupport G m := by
+  classical
+  induction U using Finset.induction with
+  | empty =>
+      refine ⟨0,?_⟩
+      intro u hu
+      exact False.elim (Finset.not_mem_empty u hu)
+  | @insert a S ha ih =>
+      obtain ⟨n,hn⟩ := ih
+      obtain ⟨m,hm⟩ :=
+        countableDiaryFiniteSupport_eventually_contains D a
+      refine ⟨max m n,?_⟩
+      intro u hu
+      rcases Finset.mem_insert.mp hu with rfl | hOld
+      · exact hm (max m n) (le_max_left m n)
+      · exact (countableDiaryFiniteSupport_mono
+          G n (max m n) (le_max_right m n))
+            (hn u hOld)
+
+/-- Hence every finite subset of a countable full diary is
+contained in a genuine finite full diary obtained by the
+same canonical leaf-meet support construction. The result
+does not assert that the increasing inclusion is itself an
+all-mixed-meet embedding or that coherent target copies exist. -/
+theorem exists_finite_full_support_containing_finset
+    {G : Ordered3Graph Nat} (D : RoleDiary G)
+    (U : Finset Nat) :
+    ∃ m : Nat,
+      FiniteRoleDiaryBlock
+        (finiteSupportGraph G (countableDiaryFiniteSupport G m))
+        (countableDiaryFiniteSupport G m).card ∧
+      (∀ u : Nat, u ∈ U →
+        u ∈ countableDiaryFiniteSupport G m) := by
+  obtain ⟨m,hU⟩ :=
+    countableDiaryFiniteSupport_contains_finset D U
+  exact ⟨m,countableDiaryFiniteSupport_is_finiteDiary D m,hU⟩
+
 end DiaryLeafPriority
 end ThreeUniformDiaries
