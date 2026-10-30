@@ -519,13 +519,44 @@ endpoints** with only `Classical.choice`, `Quot.sound` and `propext`;
 both finite regressions green (**44592** auxiliary configurations
 and **118324** exact-meet embeddings, including **21318** respecting).
 
-**Still open:** combining finite absorption and countable diary
-pre-embeddings into the manuscript's final unavoidability theorem,
-and repairing the independently identified upper-bound proof
-(including its circular invocation of the final strong Ramsey
-theorem). The frozen circulation `main.tex` is unchanged. An
-English proof and adversarial report live in the manuscript
-repository's sign-rooted notes.
+### Verified finite-source generic leaf unavoidability (30 October 2026)
+
+Merged [PR #953](https://github.com/janhubicka/lean-3-uniform-diaries/pull/953)
+and [PR #954](https://github.com/janhubicka/lean-3-uniform-diaries/pull/954)
+(commit `e32afbb3950bcb2066f87aff0fb1fd724acb3120`) complete the
+FINITELY GENERATED lower-bound application. Given ANY finite full
+diary A, countable full RoleDiary K, and any unordered induced
+embedding F of the enumerated generic hypergraph into K whose
+image consists of genuine leaves, there is a strictly increasing
+marker-fixing induced copy g of the ENTIRE finite diary A in K,
+with all source leaf images inside F[G], preserving exact singleton
+and full ordered-pair meets of source leaves. There is NO
+assumption that F was order-preserving, and edges AND nonedges
+of source triples involving splits are also induced.
+
+This uses the genuine countable positive-cut four-tail
+preembedding H→K, the verified single finite B→H completion,
+the exact induced finite leaf-meet support flip of B inside K,
+and the unrestricted finite target-flip absorption #952.
+No global preservation of arbitrary MIXED ambient meets is
+claimed for the countable composition. PR #954 passed an
+exact-head full build (9888 jobs), a 749-file no-admissions check,
+2230 theorem endpoints with only the expected kernel axioms,
+and both finite regressions (44592 auxiliary configurations;
+118324 exact-meet embeddings).
+
+**Still open:** the manuscript's printed
+`thm:unavoidable` quantifies over an ARBITRARY COUNTABLE source
+diary, not just a finite one. Independent finite copies do not
+automatically yield one coherent countable embedding. PR #955
+introduces cofinal nested finite leaf-meet supports and PR #956
+is a conditional compatible-stage gluing interface; neither
+constructs the needed relatively extending stage embeddings.
+The manuscript upper-bound proof also needs a separate repair
+of its circular invocation of the final strong Ramsey theorem.
+The frozen circulation `main.tex` is unchanged; the manuscript
+repository's standalone sign-rooted notes contain the finite
+proof and adversarial audit.
 
 ## Removed historical adapters
 
