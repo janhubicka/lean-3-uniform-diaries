@@ -186,7 +186,7 @@ theorem exists_finiteDiary_copy_in_generic_leaf_range
     {A K : Ordered3Graph Nat} {n : Nat}
     (DA : FiniteRoleDiaryBlock A n)
     (G : GenericEnumerated3Graph)
-    (F : UnorderedEmbedding G.graph K)
+    (F : Ordered3Graph.UnorderedEmbedding G.graph K)
     (hFleaf : ∀ t, IsLeaf K (F t))
     (DK : RoleDiary K) :
     ∃ (m : Nat) (g : Nat → Nat),
