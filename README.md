@@ -558,6 +558,25 @@ The frozen circulation `main.tex` is unchanged; the manuscript
 repository's standalone sign-rooted notes contain the finite
 proof and adversarial audit.
 
+### Verified finite diary embedding in a generic leaf range (30 October 2026)
+
+PR #959, merged as `5cd858269bbcc78d8d774e42d9e0d4ac0d77cdb0`, exports
+`FiniteLeafPreembedding.toMeetEmbedding_into_countable` and
+`exists_finiteDiary_full_embedding_in_generic_leaf_range`.
+The E-only marker dichotomy for mixed singleton and auxiliary meets
+now holds in countable full target diaries, so an induced finite
+leaf preembedding is a genuine full finite meet embedding.
+
+For every finite full source diary A, every prescribed unordered
+generic-to-leaf embedding into a countable full diary K contains
+an induced full meet-preserving copy of A, with all A leaves in
+the ORIGINAL generic image. Exact-head CI passed 9889 jobs,
+750 local sources without admissions, 2238 axiom endpoints (only
+the three expected kernel axioms), and both exhaustive regressions.
+
+This proves finite-source diary unavoidability only; the infinite
+source version still requires coherent gluing of finite embeddings.
+
 ## Removed historical adapters
 
 The preceding proof once passed through several conditional
