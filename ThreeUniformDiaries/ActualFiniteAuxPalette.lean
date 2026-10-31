@@ -62,7 +62,10 @@ theorem actualFiniteAuxRamsey_finiteFamily_palette
     simp [selected, hA]
   have hm : selected A ∈ family.map selected :=
     List.mem_map.mpr ⟨A, hA, rfl⟩
-  exact hc.trans hs.symm ▸ hm
+  have hχ : χ A (e.postcompose u hu) = selected A :=
+    hc.trans hs.symm
+  rw [hχ]
+  exact hm
 
 /-- At cut zero every finite source embedding fixes the empty
 prefix, so no artificial fixed-prefix hypothesis survives.
