@@ -96,8 +96,8 @@ theorem exists_coherentDiaryStages_of_relative_extensions
         (∀ u : Nat, u ∈ countableDiaryFiniteSupport H m →
           g u = p.1 u)} := by
     intro m p
-    obtain ⟨g,hg,hAgree⟩ := hExtend m p.1 p.2
-    exact ⟨g,hg,hAgree⟩
+    let h := hExtend m p.1 p.2
+    exact ⟨Classical.choose h, Classical.choose_spec h⟩
   let stages : ∀ m : Nat,
       {f : Nat → Nat // AdmissibleCofinalDiaryStage H K F m f} :=
     Nat.rec start (fun m p => ⟨(step m p).1,(step m p).2.1⟩)
