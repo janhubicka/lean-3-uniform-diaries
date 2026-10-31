@@ -25,32 +25,42 @@ all permutations, including the two adjacent transpositions. -/
 theorem unorderedEdge_swap_first
     (G : Ordered3Graph Nat) (a b c : Nat) :
     G.unorderedEdge a b c ↔ G.unorderedEdge b a c := by
-  unfold unorderedEdge
-  constructor <;> intro h <;> convert h using 1 <;> ac_rfl
+  have hEq : G.unorderedEdge a b c = G.unorderedEdge b a c := by
+    unfold unorderedEdge
+    ac_rfl
+  rw [hEq]
 
 theorem unorderedEdge_swap_last
     (G : Ordered3Graph Nat) (a b c : Nat) :
     G.unorderedEdge a b c ↔ G.unorderedEdge a c b := by
-  unfold unorderedEdge
-  constructor <;> intro h <;> convert h using 1 <;> ac_rfl
+  have hEq : G.unorderedEdge a b c = G.unorderedEdge a c b := by
+    unfold unorderedEdge
+    ac_rfl
+  rw [hEq]
 
 theorem unorderedEdge_rotate
     (G : Ordered3Graph Nat) (a b c : Nat) :
     G.unorderedEdge a b c ↔ G.unorderedEdge b c a := by
-  unfold unorderedEdge
-  constructor <;> intro h <;> convert h using 1 <;> ac_rfl
+  have hEq : G.unorderedEdge a b c = G.unorderedEdge b c a := by
+    unfold unorderedEdge
+    ac_rfl
+  rw [hEq]
 
 theorem unorderedEdge_rotate_back
     (G : Ordered3Graph Nat) (a b c : Nat) :
     G.unorderedEdge a b c ↔ G.unorderedEdge c a b := by
-  unfold unorderedEdge
-  constructor <;> intro h <;> convert h using 1 <;> ac_rfl
+  have hEq : G.unorderedEdge a b c = G.unorderedEdge c a b := by
+    unfold unorderedEdge
+    ac_rfl
+  rw [hEq]
 
 theorem unorderedEdge_reverse
     (G : Ordered3Graph Nat) (a b c : Nat) :
     G.unorderedEdge a b c ↔ G.unorderedEdge c b a := by
-  unfold unorderedEdge
-  constructor <;> intro h <;> convert h using 1 <;> ac_rfl
+  have hEq : G.unorderedEdge a b c = G.unorderedEdge c b a := by
+    unfold unorderedEdge
+    ac_rfl
+  rw [hEq]
 
 namespace UnorderedEmbedding
 
