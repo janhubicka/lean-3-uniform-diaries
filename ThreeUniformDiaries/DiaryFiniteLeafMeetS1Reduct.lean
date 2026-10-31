@@ -75,7 +75,7 @@ theorem finiteSupportIndex_lt_of_image_lt
 one-split as its exact new singleton meet. This is stated
 using membership in L so that source witnesses are genuinely
 present in the generated finite support. -/
-theorem finiteLeafMeetSupport_selected_S1
+theorem finiteLeafMeetSupport_selected_S1_exact_and_role
     (D : RoleDiary G)
     (hLeaves : ∀ u : Nat, u ∈ L → IsLeaf G u)
     (i j : Nat)
@@ -84,6 +84,11 @@ theorem finiteLeafMeetSupport_selected_S1
     (hij : i < j)
     (hUi : finiteSupportIndex (finiteLeafMeetSupport G L) i ∈ L)
     (hVj : finiteSupportIndex (finiteLeafMeetSupport G L) j ∈ L) :
+    G.oneMeetLevel
+        (finiteSupportIndex (finiteLeafMeetSupport G L) i)
+        (finiteSupportIndex (finiteLeafMeetSupport G L) j) =
+      finiteSupportIndex (finiteLeafMeetSupport G L)
+        ((finiteSupportGraph G (finiteLeafMeetSupport G L)).oneMeetLevel i j) ∧
     IsOneSplit (finiteSupportGraph G (finiteLeafMeetSupport G L))
       ((finiteSupportGraph G (finiteLeafMeetSupport G L)).oneMeetLevel i j) := by
   classical
@@ -136,7 +141,24 @@ theorem finiteLeafMeetSupport_selected_S1
       D h0 h1 h2 i j k u v m hi hj hk
       hij hk3 hki hkj rfl rfl hkm hSourceSplit rfl
   rw [hExact]
-  exact hTargetSplit
+  exact ⟨hkm.symm,hTargetSplit⟩
+
+/-- The original S1 role conclusion follows from the stronger
+EXACT numerical singleton-meet transport, with no duplicate
+first-disagreement proof. -/
+theorem finiteLeafMeetSupport_selected_S1
+    (D : RoleDiary G)
+    (hLeaves : ∀ u : Nat, u ∈ L → IsLeaf G u)
+    (i j : Nat)
+    (hi : i < (finiteLeafMeetSupport G L).card)
+    (hj : j < (finiteLeafMeetSupport G L).card)
+    (hij : i < j)
+    (hUi : finiteSupportIndex (finiteLeafMeetSupport G L) i ∈ L)
+    (hVj : finiteSupportIndex (finiteLeafMeetSupport G L) j ∈ L) :
+    IsOneSplit (finiteSupportGraph G (finiteLeafMeetSupport G L))
+      ((finiteSupportGraph G (finiteLeafMeetSupport G L)).oneMeetLevel i j) :=
+  (finiteLeafMeetSupport_selected_S1_exact_and_role
+    D hLeaves i j hi hj hij hUi hVj).2
 
 /-- Genuine finite target leaves are exactly old selected leaves,
 so the preceding proof gives the complete bounded S1 axiom on
