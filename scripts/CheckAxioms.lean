@@ -1,6 +1,7 @@
 import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.PairPattern.aux_eq_full
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.actualFiniteAuxRamsey_palette_of_covered_codes
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.PairPattern.aux_transfer
 #print axioms ThreeUniformDiaries.Ordered3Graph.twoMeetLevel_eq_min
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.auxMeetLevel_eq_twoMeetLevel_of_diary_cases
@@ -48,7 +49,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.actualFiniteAuxRamsey_finiteFamily
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.actualFiniteAuxRamsey_finiteFamily_palette
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.actualFiniteAuxRamsey_zeroCut_palette
-#print axioms ThreeUniformDiaries.ATRFiniteDecoder.actualFiniteAuxRamsey_palette_of_covered_codes
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.enumNodeFintype
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.oneVertexSource_mem
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.twoVertexSource_mem
