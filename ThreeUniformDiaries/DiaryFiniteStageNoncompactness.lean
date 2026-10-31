@@ -29,6 +29,7 @@ theorem finite_decreasing_exists (n : Nat) :
   have hi := i.isLt
   have hj := j.isLt
   have hstrict : i.val < j.val := hij
+  change n - j.val < n - i.val
   omega
 
 /-- All shorter initial segments remain strictly decreasing. -/
