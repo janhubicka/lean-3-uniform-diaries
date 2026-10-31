@@ -92,16 +92,16 @@ theorem FiniteMeetEmbedding.image_leafMeetSupport_subset
       obtain ⟨b, ⟨hb3, hbn⟩, rfl⟩ := hLift w hw
       obtain ⟨c, ⟨hc3, hcn⟩, rfl⟩ := hLift y hy
       obtain ⟨d, ⟨hd3, hdn⟩, rfl⟩ := hLift z hz
+      have hvw' : f a < f b := by simpa using hvw
+      have hyz' : f c < f d := by simpa using hyz
       have hab : a < b := by
         by_contra h
-        have hba : b ≤ a := by omega
-        have hmon := E.strictMono.monotone hba
-        omega
+        have hba : b ≤ a := Nat.le_of_not_gt h
+        exact (not_lt_of_ge (E.strictMono.monotone hba)) hvw'
       have hcd : c < d := by
         by_contra h
-        have hdc : d ≤ c := by omega
-        have hmon := E.strictMono.monotone hdc
-        omega
+        have hdc : d ≤ c := Nat.le_of_not_gt h
+        exact (not_lt_of_ge (E.strictMono.monotone hdc)) hyz'
       have hMeet := E.twoMeet a b c d hab hcd
         ha3 han hb3 hbn hc3 hcn hd3 hdn
       have hBound : H.twoMeetLevel a b c d < n := by
@@ -118,21 +118,22 @@ a third ambient graph. -/
 theorem FiniteMeetEmbedding.range_eq_image_leafMeetSupport
     (D : FiniteRoleDiaryBlock H n)
     (E : FiniteMeetEmbedding H T n f)
-    (hn : 3 ≤ n) :
+    (hn : 3 ≤ n)
+    (L : Finset Nat)
+    (hL : ∀ u : Nat, u ∈ L ↔
+      3 ≤ u ∧ u < n ∧ IsLeaf H u) :
     (Finset.range n).image f =
-      finiteLeafMeetSupport T
-        (((Finset.Ico 3 n).filter (fun u => IsLeaf H u)).image f) := by
+      finiteLeafMeetSupport T (L.image f) := by
   classical
-  let L : Finset Nat := (Finset.Ico 3 n).filter (fun u => IsLeaf H u)
   have hRange : ∀ u : Nat, u ∈ L → 3 ≤ u ∧ u < n := by
     intro u hu
-    exact Finset.mem_Ico.mp (Finset.mem_filter.mp hu).1
+    have h := (hL u).mp hu
+    exact ⟨h.1, h.2.1⟩
   have hLeaves : ∀ u : Nat, 3 ≤ u → u < n →
       IsLeaf H u → f u ∈ L.image f := by
     intro u hu3 hun hLeaf
     apply Finset.mem_image.mpr
-    exact ⟨u, Finset.mem_filter.mpr
-      ⟨Finset.mem_Ico.mpr ⟨hu3, hun⟩, hLeaf⟩, rfl⟩
+    exact ⟨u, (hL u).mpr ⟨hu3, hun, hLeaf⟩, rfl⟩
   apply Finset.Subset.antisymm
   · intro x hx
     obtain ⟨u, hu, hfu⟩ := Finset.mem_image.mp hx
