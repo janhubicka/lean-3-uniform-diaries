@@ -2396,3 +2396,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.AdmissibleCofinalDiaryStage.restrict
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.CofinalDiaryStageCompatible.restrict
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.CofinalDiaryStageCompatible.trans
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteStageNoncompactness.finite_decreasing_exists
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteStageNoncompactness.no_infinite_decreasing
