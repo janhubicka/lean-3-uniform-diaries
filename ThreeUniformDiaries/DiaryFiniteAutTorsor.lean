@@ -104,7 +104,7 @@ theorem finiteLabelledCopy_unique_automorphism
       _ = v (s j) := by rw [hij]
       _ = w j := hs j
   have hsurj : Function.Surjective s :=
-    Finite.surjective_of_injective s hinj
+    Finite.surjective_of_injective hinj
   let p : Equiv.Perm (Fin n) :=
     Equiv.ofBijective s ⟨hinj, hsurj⟩
   have hp (i : Fin n) : w i = v (p i) := by
