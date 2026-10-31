@@ -1,4 +1,5 @@
 import ThreeUniformDiaries.DiaryLeafGeneratedStageCompatibility
+import ThreeUniformDiaries.DiaryOneNewLeafSupportSuccessor
 
 /-!
 # Every nonleaf stage extends automatically
