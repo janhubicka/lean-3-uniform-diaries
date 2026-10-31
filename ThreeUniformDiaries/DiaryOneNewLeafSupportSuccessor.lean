@@ -62,6 +62,7 @@ theorem countableDiaryFiniteSupport_succ
         finiteLeafMeetSupport H
           (insert m (countableDiaryLeafPrefix H m))
       else countableDiaryFiniteSupport H m := by
+  classical
   by_cases hm : IsLeaf H m
   · simpa only [countableDiaryFiniteSupport,
       countableDiaryLeafPrefix_succ, if_pos hm]
