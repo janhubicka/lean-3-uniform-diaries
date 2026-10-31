@@ -53,6 +53,7 @@ theorem one_split_marker_incidence
   have h0 : 0 ∈ countableDiaryFiniteSupport H m :=
     mem_finiteLeafMeetSupport_marker H
       (countableDiaryLeafPrefix H m) 0 (by omega)
+  have hs3 : 3 ≤ s := hSplit.1
   exact P.induced_old_pairs 0 s h0 hs (by omega) hsu
 
 /-- Likewise, the profile includes the 2-split/earlier-leaf
