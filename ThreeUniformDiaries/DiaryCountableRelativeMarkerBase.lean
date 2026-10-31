@@ -77,15 +77,12 @@ theorem AdmissibleCofinalDiaryStage.marker_base
     have h3 := hSplit.1
     omega
   · intro a b c ha hb hc hab hbc
-    have ha0 : a = 0 := by
-      have h := hSmall a ha
-      omega
-    have hb1 : b = 1 := by
-      have h := hSmall b hb
-      omega
-    have hc2 : c = 2 := by
-      have h := hSmall c hc
-      omega
+    have haSmall := hSmall a ha
+    have hbSmall := hSmall b hb
+    have hcSmall := hSmall c hc
+    have ha0 : a = 0 := by omega
+    have hb1 : b = 1 := by omega
+    have hc2 : c = 2 := by omega
     subst a
     subst b
     subst c
