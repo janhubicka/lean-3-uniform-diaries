@@ -109,7 +109,7 @@ theorem eq_on_support_of_selected_leaves
           (P.leaf_twoMeet a b c d
             hA hB hC hD hab hcd hLA hLB hLC hLD).symm
         _ = K.twoMeetLevel (g a) (g b) (g c) (g d) := by
-          rw [hLeaves a ha, hLeaves b hb,
+          simp only [hLeaves a ha, hLeaves b hb,
             hLeaves c hc, hLeaves d hd]
         _ = g (H.twoMeetLevel a b c d) :=
           Q.leaf_twoMeet a b c d
