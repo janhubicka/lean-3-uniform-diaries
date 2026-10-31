@@ -2393,3 +2393,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.unorderedEdge_swap_last
 #print axioms ThreeUniformDiaries.Ordered3Graph.UnorderedEmbedding.edge_iff_distinct
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_finiteDiary_full_embedding_in_universal_leaf_range
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.CoherentCofinalDiarySupportMaps.stage_admissible
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.certifiedDiaryFusion_iff_coherent
