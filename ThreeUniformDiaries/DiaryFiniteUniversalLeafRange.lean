@@ -26,31 +26,31 @@ theorem unorderedEdge_swap_first
     (G : Ordered3Graph Nat) (a b c : Nat) :
     G.unorderedEdge a b c ↔ G.unorderedEdge b a c := by
   unfold unorderedEdge
-  ac_rfl
+  constructor <;> intro h <;> convert h using 1 <;> ac_rfl
 
 theorem unorderedEdge_swap_last
     (G : Ordered3Graph Nat) (a b c : Nat) :
     G.unorderedEdge a b c ↔ G.unorderedEdge a c b := by
   unfold unorderedEdge
-  ac_rfl
+  constructor <;> intro h <;> convert h using 1 <;> ac_rfl
 
 theorem unorderedEdge_rotate
     (G : Ordered3Graph Nat) (a b c : Nat) :
     G.unorderedEdge a b c ↔ G.unorderedEdge b c a := by
   unfold unorderedEdge
-  ac_rfl
+  constructor <;> intro h <;> convert h using 1 <;> ac_rfl
 
 theorem unorderedEdge_rotate_back
     (G : Ordered3Graph Nat) (a b c : Nat) :
     G.unorderedEdge a b c ↔ G.unorderedEdge c a b := by
   unfold unorderedEdge
-  ac_rfl
+  constructor <;> intro h <;> convert h using 1 <;> ac_rfl
 
 theorem unorderedEdge_reverse
     (G : Ordered3Graph Nat) (a b c : Nat) :
     G.unorderedEdge a b c ↔ G.unorderedEdge c b a := by
   unfold unorderedEdge
-  ac_rfl
+  constructor <;> intro h <;> convert h using 1 <;> ac_rfl
 
 namespace UnorderedEmbedding
 
