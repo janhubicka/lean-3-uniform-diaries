@@ -45,7 +45,7 @@ noncomputable def finiteHypergraphAut_equiv_sameRangeCopies
       FiniteLabelledCopiesSameRange A K v :=
     fun σ => ⟨fun i => v (σ.val i),
       finiteLabelledCopy_relabel hv σ,
-      finiteLabelledCopy_relabel_range v σ⟩
+      finiteLabelledCopy_relabel_range (A := A) (K := K) v σ⟩
   let backward : FiniteLabelledCopiesSameRange A K v →
       FiniteHypergraphAut A n :=
     fun w => Classical.choose
@@ -99,6 +99,8 @@ theorem finiteLabelledCopiesSameRange_card_eq_aut
     Fintype.card (FiniteLabelledCopiesSameRange A K v) =
       Fintype.card (FiniteHypergraphAut A n) := by
   classical
+  letI : Fintype (FiniteLabelledCopiesSameRange A K v) :=
+    finiteLabelledCopiesSameRangeFintype v hv
   exact Fintype.card_congr
     (finiteHypergraphAut_equiv_sameRangeCopies v hv).symm
 
