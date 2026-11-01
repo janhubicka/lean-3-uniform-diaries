@@ -15,7 +15,7 @@ AUXILIARY-TYPE-RESPECTING embedding, including mixed split/leaf
 tests at omitted target enumeration levels.
 
 The proof combines:
-1. exact S1/S2 selected-leaf numerical meet transport (Track B #988);
+1. exact S1/S2 selected-leaf numerical meet transport (merged Track B #988);
 2. a global strict monotonisation of the finite support index (#996);
 3. marker/role/induced support representation and complete finite
    leaf-preembedding to ATR conversion (Track A #998/#995/#993).
