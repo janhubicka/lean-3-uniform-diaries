@@ -30,8 +30,9 @@ open Ordered3Graph
 whose complete genuine leaves induce the given unordered A. -/
 noncomputable def allGenuineMarkedDiaryFinset
     {a : Nat} (A : EnumNode a) :
-    Finset (MarkedFiniteSource 0 a) :=
-  (allGenuineMarkedDiaryShapes A).toFinset
+    Finset (MarkedFiniteSource 0 a) := by
+  classical
+  exact (allGenuineMarkedDiaryShapes A).toFinset
 
 /-- Forget the marking, and deduplicate the resulting full finite
 diary source diagrams. These are enumerated source shapes, not
@@ -82,24 +83,27 @@ noncomputable def allGenuineMarked_unmarkedSigmaEquiv
     {a : Nat} (A : EnumNode a) :
     (↑(allGenuineMarkedDiaryFinset A)) ≃
       (Σ S : ↑(allGenuineUnmarkedDiarySources A),
-        GenuineDiaryMarkingFibre A S.val) where
-  toFun := fun T =>
-    ⟨⟨T.val.source, Finset.mem_image.mpr
-      ⟨T.val,T.property,rfl⟩⟩,
-      ⟨T.val.marked,
-        (mem_allGenuineMarkedDiaryFinset_iff A T.val).mp
-          T.property⟩⟩
-  invFun := fun Q =>
-    ⟨⟨Q.1.val,Q.2.val⟩,
-      (mem_allGenuineMarkedDiaryFinset_iff A
-        ⟨Q.1.val,Q.2.val⟩).mpr Q.2.property⟩
-  left_inv := by
-    rintro ⟨T,hT⟩
+        GenuineDiaryMarkingFibre A S.val) := by
+  classical
+  refine {
+    toFun := fun T =>
+      ⟨⟨T.val.source, Finset.mem_image.mpr
+        ⟨T.val, T.property, rfl⟩⟩,
+        ⟨T.val.marked,
+          (mem_allGenuineMarkedDiaryFinset_iff A T.val).mp
+            T.property⟩⟩
+    invFun := fun Q =>
+      ⟨⟨Q.1.val, Q.2.val⟩,
+        (mem_allGenuineMarkedDiaryFinset_iff A
+          ⟨Q.1.val, Q.2.val⟩).mpr Q.2.property⟩
+    left_inv := ?_
+    right_inv := ?_
+  }
+  · rintro ⟨T, hT⟩
     apply Subtype.ext
     cases T
     rfl
-  right_inv := by
-    rintro ⟨⟨S,hS⟩,⟨p,hp⟩⟩
+  · rintro ⟨⟨S, hS⟩, ⟨p, hp⟩⟩
     rfl
 
 /-- Every source in the unmarked family supplies a concrete
