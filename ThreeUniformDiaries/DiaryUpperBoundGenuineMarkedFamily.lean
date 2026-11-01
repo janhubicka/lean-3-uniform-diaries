@@ -98,7 +98,7 @@ theorem genuineMarkedDiaryFamily_sound
     (S : MarkedFiniteSource 0 a)
     (hS : S ∈ genuineMarkedDiaryFamily A M) :
     IsGenuineMarkedDiaryShape A S :=
-  (mem_genuineMarkedDiaryFamily A M S).mp hS |>.2
+  ((mem_genuineMarkedDiaryFamily A M S).mp hS).2
 
 /-- This is the precise finite candidate count. It is a
 mathematically defined sharp-family parameter, not yet identified
