@@ -40,22 +40,24 @@ theorem FiniteRoleDiaryBlock.leaf_coordinate_meet_not_twoSplit
     (hu : IsLeaf A u) (hv : IsLeaf A v) :
     1 < A.oneMeetLevel u v ∧
       ¬ IsTwoSplit A (A.oneMeetLevel u v) := by
-  rcases lt_trichotomy u v with huv | heq | hvu
-  · have hSplit : IsOneSplit A (A.oneMeetLevel u v) :=
-      DA.singleton_meets u v huv hvn hu hv
-    refine ⟨by omega, ?_⟩
-    intro hTwo
-    exact hTwo.2.1 hSplit.2.1
+  by_cases heq : u = v
   · subst v
-    have hself : A.oneMeetLevel u u = u := A.oneMeetLevel_self u
+    have hself : A.oneMeetLevel u u = u := by
+      have hbound : A.oneMeetLevel u u ≤ u := by
+        simpa only [min_self] using A.oneMeetLevel_le_min u u
+      have hagree : A.SameOneTypeBelow u u u := by
+        intro a b hab hb
+        exact Iff.rfl
+      have hbelow : u ≤ A.oneMeetLevel u u :=
+        Nat.le_findGreatest (by simp) hagree
+      exact Nat.le_antisymm hbound hbelow
     rw [hself]
-    refine ⟨by omega, ?_⟩
+    refine ⟨by have hu3 := hu.1; omega, ?_⟩
     intro hTwo
     exact hu.2.2 hTwo.2.2
-  · have hSplit : IsOneSplit A (A.oneMeetLevel v u) :=
-      DA.singleton_meets v u hvu hun hv hu
-    rw [finiteBlock_oneMeet_comm A u v]
-    refine ⟨by omega, ?_⟩
+  · have hSplit : IsOneSplit A (A.oneMeetLevel u v) :=
+      finiteRoleDiary_s1_unordered DA u v hun hvn hu hv heq
+    refine ⟨by have hm3 := hSplit.1; omega, ?_⟩
     intro hTwo
     exact hTwo.2.1 hSplit.2.1
 
