@@ -43,6 +43,7 @@ theorem FiniteRoleDiaryBlock.leaf_coordinate_meet_not_twoSplit
   by_cases heq : u = v
   · subst v
     have hself : A.oneMeetLevel u u = u := by
+      classical
       have hbound : A.oneMeetLevel u u ≤ u := by
         simpa only [min_self] using A.oneMeetLevel_le_min u u
       have hagree : A.SameOneTypeBelow u u u := by
