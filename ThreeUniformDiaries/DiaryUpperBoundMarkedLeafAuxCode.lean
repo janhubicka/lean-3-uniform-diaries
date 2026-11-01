@@ -53,7 +53,10 @@ theorem finiteLeafTuple_has_marked_actualAuxCode
           (∀ i : Fin a, v i = e.image (marked i)) ∧
           (∀ i : Fin a,
             IsLeaf (finiteSupportGraph G (finiteLeafMeetSupport G L))
-              (marked i).val) := by
+              (marked i).val) ∧
+          (∀ j : Fin (finiteLeafMeetSupport G L).card,
+            e.image j =
+              finiteSupportIndex (finiteLeafMeetSupport G L) j.val) := by
   classical
   let L : Finset Nat := (Finset.univ : Finset (Fin a)).image v
   let S : Finset Nat := finiteLeafMeetSupport G L
@@ -80,7 +83,7 @@ theorem finiteLeafTuple_has_marked_actualAuxCode
   let e : ThreeUniformDiaries.Ordered3Graph.FiniteAuxEmbeddingImage
       (H.initialSegment S.card).toOrdered3Graph G S.card :=
     finiteLeafMeetSupport_actualAuxCode D hLeaves
-  refine ⟨L, rfl, hLeaves, e, marked, ?_, ?_⟩
+  refine ⟨L, rfl, hLeaves, e, marked, ?_, ?_, ?_⟩
   · intro i
     have hCode : e.image (marked i) =
         finiteSupportIndexTotal S (chosen i) := by
@@ -103,6 +106,10 @@ theorem finiteLeafTuple_has_marked_actualAuxCode
       (finiteSupportGraph_leaf_iff
         (G := G) (S := S) h0 h1 h2
         (chosen i) hi3 (chosen_spec i).1).mpr hOldLeaf
+  · intro j
+    change finiteSupportIndexTotal S j.val =
+      finiteSupportIndex S j.val
+    exact finiteSupportIndexTotal_inside S j.val j.isLt
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
