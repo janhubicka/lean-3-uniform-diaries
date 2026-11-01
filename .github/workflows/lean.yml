@@ -68,3 +68,6 @@ jobs:
 
       - name: Exhaustive finite exact-meet interface regression
         run: python3 scripts/check_finite_exact_meets.py
+
+      - name: Adversarial finite pre-diary seed V3 regression
+        run: python3 scripts/check_prediary_seed_v3.py
