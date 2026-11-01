@@ -45,7 +45,9 @@ theorem auxMeetLevel_lt_proper_firstOneMeet
   have hauxBound : H.auxMeetLevel r t r a ≤ r := by
     simpa only [min_self] using H.auxMeetLevel_le_min r t r a
   by_contra hn
-  have hauxEq : H.auxMeetLevel r t r a = r := by omega
+  have hauxEq : H.auxMeetLevel r t r a = r := by
+    change ¬ H.auxMeetLevel r t r a < r at hn
+    omega
   have hOldAgree : H.SameOneTypeBelow r t a := by
     change H.SameOneTypeBelow (H.oneMeetLevel t a) t a
     exact H.oneMeetLevel_agree t a
@@ -57,7 +59,7 @@ theorem auxMeetLevel_lt_proper_firstOneMeet
     · exact hOldAgree hxy hBefore
     · have hyeq : y = r := by omega
       subst y
-      exact hAux x hxy
+      exact hAux hxy
   have hBeyond : r + 1 ≤ H.oneMeetLevel t a :=
     Nat.le_findGreatest (by omega) hNext
   change r + 1 ≤ r at hBeyond
