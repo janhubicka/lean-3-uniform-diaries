@@ -37,16 +37,16 @@ theorem oneMeetLevel_eq_of_common_one_prefix
     apply Nat.le_findGreatest hqMax
     intro x y hxy hy
     have hOne := H.oneMeetLevel_agree t a
-    have hTA := hOne x y hxy hy
-    have hABxy := hAB x y hxy (by omega)
+    have hTA := hOne hxy hy
+    have hABxy := hAB hxy (by omega)
     exact hTA.trans hABxy
   · have hqBound := H.oneMeetLevel_le_min t b
     have hqMax : H.oneMeetLevel t b ≤ min t a := by omega
     apply Nat.le_findGreatest hqMax
     intro x y hxy hy
     have hOne := H.oneMeetLevel_agree t b
-    have hTB := hOne x y hxy hy
-    have hABxy := hAB x y hxy (by omega)
+    have hTB := hOne hxy hy
+    have hABxy := hAB hxy (by omega)
     exact hTB.trans hABxy.symm
 
 /-- The auxiliary meet between (r,t) and (r,a) does not change
@@ -68,16 +68,16 @@ theorem auxMeetLevel_eq_of_common_one_prefix
     apply Nat.le_findGreatest hqMax
     intro x hx
     have hAux := H.auxMeetLevel_agree r t r a
-    have hTA := hAux x hx
-    have hABxr := hAB x r (by omega) (by omega)
+    have hTA := hAux hx
+    have hABxr := hAB (a := x) (b := r) (by omega) (by omega)
     exact hTA.trans hABxr
   · have hqBound := H.auxMeetLevel_le_min r t r b
     have hqMax : H.auxMeetLevel r t r b ≤ min r r := hqBound
     apply Nat.le_findGreatest hqMax
     intro x hx
     have hAux := H.auxMeetLevel_agree r t r b
-    have hTB := hAux x hx
-    have hABxr := hAB x r (by omega) (by omega)
+    have hTB := hAux hx
+    have hABxr := hAB (a := x) (b := r) (by omega) (by omega)
     exact hTB.trans hABxr.symm
 
 /-- At a proper comparison column r<t, the corresponding
