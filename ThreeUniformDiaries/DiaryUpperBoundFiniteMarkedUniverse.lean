@@ -95,7 +95,7 @@ theorem boundedATRUniverse_mem_size
   obtain ⟨C,_,hEq⟩ := List.mem_map.mp hMem
   rw [← hEq]
   change C.1.val + 1 ≤ M
-  exact C.1.isLt
+  omega
 
 end ATRFiniteDecoder
 end ThreeUniformDiaries
