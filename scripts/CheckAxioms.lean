@@ -2469,6 +2469,8 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.finiteLabelledCopy_relabel
 #print axioms ThreeUniformDiaries.Ordered3Graph.finiteLabelledCopy_relabel_range
 #print axioms ThreeUniformDiaries.Ordered3Graph.finiteLabelledCopy_unique_automorphism
+#print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.unorderedEdge_iff_all
+#print axioms ThreeUniformDiaries.Ordered3Graph.IsFiniteLabelledCopy.map_orderedEmbedding
 #print axioms ThreeUniformDiaries.Ordered3Graph.FiniteAuxEmbedding.unorderedEdge_iff_actual
 #print axioms ThreeUniformDiaries.Ordered3Graph.FiniteAuxEmbedding.pullback_labelledCopy
 #print axioms ThreeUniformDiaries.Ordered3Graph.FiniteAuxEmbeddingImage.pullback_labelledCopy
