@@ -44,7 +44,7 @@ noncomputable def finiteLabelledCopyFibre_equiv_aut
       FiniteLabelledCopyFibre A K n v :=
     fun σ => ⟨(fun i => v (σ.val i)),
       finiteLabelledCopy_relabel hv σ,
-      finiteLabelledCopy_relabel_range v σ⟩
+      finiteLabelledCopy_relabel_range (A := A) (K := K) v σ⟩
   have hf_inj : Function.Injective f := by
     intro σ τ h
     apply Subtype.ext
