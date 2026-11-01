@@ -70,24 +70,34 @@ theorem protected_colour_persists
   have h := hcolour (e.postcompose h hh) hfixNew
   simpa only [FiniteAuxEmbeddingImage.postcompose_comp] using h
 
-/-- Simultaneous homogeneity for an arbitrary finite list of
-possibly different actual finite ATR sources over the same cut.
-Every source is coloured on its own finite-image code space.
-The ONE output embedding fixes the protected prefix and
-homogenises all listed sources. -/
-theorem actualFiniteAuxRamsey_finiteFamily
+/-- An individually coloured occurrence of a finite source. Two tasks may
+have the SAME finite source graph but DIFFERENT colour pullbacks, for
+instance from distinct leaf identifications or diary enumerations. -/
+structure FiniteATRColourTask
+    (G : GenericEnumerated3Graph) (n : Nat) (κ : Type) where
+  source : ProtectedSource n
+  colour : source.Code G → κ
+
+/-- Simultaneous homogeneity for a finite list of independently coloured
+OCCURRENCES, not merely distinct source shapes. In particular duplicate
+shapes with different colourings remain separate obligations.
+
+This is the exact finite-colouring iteration needed for the upper-bound
+argument. It follows from the unconditional ATR theorem with genuine
+finite embedding images and the already checked postcomposition laws.
+It does not assume diary unavoidability or the final degree formula. -/
+theorem actualFiniteAuxRamsey_taskFamily
     (G : GenericEnumerated3Graph) (n : Nat)
     {κ : Type} [Fintype κ] [Nonempty κ]
-    (χ : ∀ A : ProtectedSource n, A.Code G → κ)
-    (family : List (ProtectedSource n)) :
+    (tasks : List (FiniteATRColourTask G n κ)) :
     ∃ (u : Embedding G.graph G.graph)
       (hu : u.AuxTypeRespecting),
       (∀ t < n, u t = t) ∧
-      ∀ A ∈ family,
-        ∃ color : κ, ∀ e : A.Code G,
-          A.FixesPrefix G e →
-          χ A (e.postcompose u hu) = color := by
-  induction family with
+      ∀ P ∈ tasks,
+        ∃ color : κ, ∀ e : P.source.Code G,
+          P.source.FixesPrefix G e →
+          P.colour (e.postcompose u hu) = color := by
+  induction tasks with
   | nil =>
       let u : Embedding G.graph G.graph := {
         toFun := fun i => i
@@ -103,15 +113,16 @@ theorem actualFiniteAuxRamsey_finiteFamily
       refine ⟨u, hu, ?_, ?_⟩
       · intro t ht
         rfl
-      · intro A hmem
+      · intro P hmem
         exact False.elim (List.not_mem_nil hmem)
-  | cons A rest ih =>
+  | cons P rest ih =>
       obtain ⟨g, hg, hfixg, hrest⟩ := ih
-      let ρ : A.Code G → κ :=
-        fun e => χ A (e.postcompose g hg)
-      obtain ⟨h, hh, hfixh, colorA, hcolA⟩ :=
+      let ρ : P.source.Code G → κ :=
+        fun e => P.colour (e.postcompose g hg)
+      obtain ⟨h, hh, hfixh, colorP, hcolP⟩ :=
         actualFiniteAuxRamsey_allFinite G
-          (n := n) (k := A.k) A.cut_le A.picture ρ
+          (n := n) (k := P.source.k) P.source.cut_le
+          P.source.picture ρ
       let u : Embedding G.graph G.graph := g.comp h
       have hu : u.AuxTypeRespecting := hg.comp hh
       have hfixu : ∀ t < n, u t = t := by
@@ -119,21 +130,71 @@ theorem actualFiniteAuxRamsey_finiteFamily
         change g (h t) = t
         rw [hfixh t ht, hfixg t ht]
       refine ⟨u, hu, hfixu, ?_⟩
-      intro B hmem
-      rcases List.mem_cons.mp hmem with hBA | hBrest
-      · subst B
-        refine ⟨colorA, ?_⟩
+      intro Q hmem
+      rcases List.mem_cons.mp hmem with hQP | hQrest
+      · subst Q
+        refine ⟨colorP, ?_⟩
         intro e he
-        have hc : ρ (e.postcompose h hh) = colorA :=
-          hcolA e he
-        change χ A ((e.postcompose h hh).postcompose g hg) =
-          colorA at hc
+        have hc : ρ (e.postcompose h hh) = colorP :=
+          hcolP e he
+        change P.colour ((e.postcompose h hh).postcompose g hg) =
+          colorP at hc
         simpa only [FiniteAuxEmbeddingImage.postcompose_comp] using hc
-      · obtain ⟨colorB, hcolB⟩ := hrest B hBrest
-        refine ⟨colorB, ?_⟩
+      · obtain ⟨colorQ, hcolQ⟩ := hrest Q hQrest
+        refine ⟨colorQ, ?_⟩
         intro e he
-        exact protected_colour_persists G n B (χ B)
-          g h hg hh hfixh colorB hcolB e he
+        exact protected_colour_persists G n Q.source Q.colour
+          g h hg hh hfixh colorQ hcolQ e he
+
+/-- The existing shape-indexed finite-family interface is a special
+case. Reusing the occurrence-indexed theorem avoids maintaining two
+separate induction/composition arguments. -/
+theorem actualFiniteAuxRamsey_finiteFamily
+    (G : GenericEnumerated3Graph) (n : Nat)
+    {κ : Type} [Fintype κ] [Nonempty κ]
+    (χ : ∀ A : ProtectedSource n, A.Code G → κ)
+    (family : List (ProtectedSource n)) :
+    ∃ (u : Embedding G.graph G.graph)
+      (hu : u.AuxTypeRespecting),
+      (∀ t < n, u t = t) ∧
+      ∀ A ∈ family,
+        ∃ color : κ, ∀ e : A.Code G,
+          A.FixesPrefix G e →
+          χ A (e.postcompose u hu) = color := by
+  let tasks : List (FiniteATRColourTask G n κ) :=
+    family.map (fun A => ⟨A, χ A⟩)
+  obtain ⟨u, hu, hfix, hall⟩ :=
+    actualFiniteAuxRamsey_taskFamily G n tasks
+  refine ⟨u, hu, hfix, ?_⟩
+  intro A hA
+  have hmem : (⟨A, χ A⟩ : FiniteATRColourTask G n κ) ∈ tasks := by
+    exact List.mem_map.mpr ⟨A, hA, rfl⟩
+  exact hall ⟨A, χ A⟩ hmem
+
+/-- Regression: two different colours on the SAME source must be
+homogenised together. Deduplicating the source shapes would not
+establish this statement. -/
+theorem actualFiniteAuxRamsey_twoColours_sameSource
+    (G : GenericEnumerated3Graph) (n : Nat)
+    {κ : Type} [Fintype κ] [Nonempty κ]
+    (A : ProtectedSource n)
+    (χ₀ χ₁ : A.Code G → κ) :
+    ∃ (u : Embedding G.graph G.graph)
+      (hu : u.AuxTypeRespecting),
+      (∀ t < n, u t = t) ∧
+      (∃ color₀ : κ, ∀ e : A.Code G,
+        A.FixesPrefix G e →
+        χ₀ (e.postcompose u hu) = color₀) ∧
+      (∃ color₁ : κ, ∀ e : A.Code G,
+        A.FixesPrefix G e →
+        χ₁ (e.postcompose u hu) = color₁) := by
+  let P : FiniteATRColourTask G n κ := ⟨A, χ₀⟩
+  let Q : FiniteATRColourTask G n κ := ⟨A, χ₁⟩
+  obtain ⟨u, hu, hfix, hall⟩ :=
+    actualFiniteAuxRamsey_taskFamily G n [P, Q]
+  obtain ⟨color₀, hcol₀⟩ := hall P (by simp)
+  obtain ⟨color₁, hcol₁⟩ := hall Q (by simp)
+  exact ⟨u, hu, hfix, ⟨color₀, hcol₀⟩, ⟨color₁, hcol₁⟩⟩
 
 end ATRFiniteDecoder
 end ThreeUniformDiaries
