@@ -38,7 +38,8 @@ theorem unorderedEdge_iff_actual
   have hOrder (i j : Fin m) :
       i.val < j.val ↔ f i.val < f j.val := by
     constructor
-    · exact E.strictMono
+    · intro hij
+      exact E.strictMono hij
     · intro h
       by_contra hn
       have hji : j.val ≤ i.val := Nat.le_of_not_gt hn
