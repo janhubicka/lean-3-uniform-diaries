@@ -103,7 +103,7 @@ theorem genuineMarkedDiaryFamily_sound
 /-- This is the precise finite candidate count. It is a
 mathematically defined sharp-family parameter, not yet identified
 with any other published diary-count notation. -/
-def genuineMarkedDiaryCount {a : Nat}
+noncomputable def genuineMarkedDiaryCount {a : Nat}
     (A : EnumNode a) (M : Nat) : Nat :=
   (genuineMarkedDiaryFamily A M).length
 
