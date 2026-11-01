@@ -47,7 +47,7 @@ theorem finiteSupportIndex_min_below
 support satisfy S2. The three original source alternatives
 are handled by three exact finite first-disagreement theorems,
 not by a nonexistent backwards generic type-transfer rule. -/
-theorem finiteLeafMeetSupport_reindexed_S2
+theorem finiteLeafMeetSupport_reindexed_S2_exact_and_role
     (D : RoleDiary G)
     (hLeaves : ∀ u : Nat, u ∈ L → IsLeaf G u)
     (i j p q : Nat)
@@ -60,11 +60,18 @@ theorem finiteLeafMeetSupport_reindexed_S2
     (hjLeaf : IsLeaf (finiteSupportGraph G (finiteLeafMeetSupport G L)) j)
     (hpLeaf : IsLeaf (finiteSupportGraph G (finiteLeafMeetSupport G L)) p)
     (hqLeaf : IsLeaf (finiteSupportGraph G (finiteLeafMeetSupport G L)) q) :
-    (finiteSupportGraph G (finiteLeafMeetSupport G L)).twoMeetLevel i j p q =
+    G.twoMeetLevel
+        (finiteSupportIndex (finiteLeafMeetSupport G L) i)
+        (finiteSupportIndex (finiteLeafMeetSupport G L) j)
+        (finiteSupportIndex (finiteLeafMeetSupport G L) p)
+        (finiteSupportIndex (finiteLeafMeetSupport G L) q) =
+      finiteSupportIndex (finiteLeafMeetSupport G L)
+        ((finiteSupportGraph G (finiteLeafMeetSupport G L)).twoMeetLevel i j p q) ∧
+    ((finiteSupportGraph G (finiteLeafMeetSupport G L)).twoMeetLevel i j p q =
       min i p ∨
-    (finiteSupportGraph G (finiteLeafMeetSupport G L)).twoMeetLevel i j p q = 1 ∨
-    IsTwoSplit (finiteSupportGraph G (finiteLeafMeetSupport G L))
-      ((finiteSupportGraph G (finiteLeafMeetSupport G L)).twoMeetLevel i j p q) := by
+     (finiteSupportGraph G (finiteLeafMeetSupport G L)).twoMeetLevel i j p q = 1 ∨
+     IsTwoSplit (finiteSupportGraph G (finiteLeafMeetSupport G L))
+       ((finiteSupportGraph G (finiteLeafMeetSupport G L)).twoMeetLevel i j p q)) := by
   classical
   let S := finiteLeafMeetSupport G L
   let H := finiteSupportGraph G S
@@ -100,14 +107,21 @@ theorem finiteLeafMeetSupport_reindexed_S2
         G.twoMeetLevel A B C E = finiteSupportIndex S (min i p) := by
       rw [hCap]
       exact (finiteSupportIndex_min_below S i p hi hp).symm
-    left
-    exact finiteSupportGraph_capped_twoMeet_exact
-      (G := G) (S := S) i j p q hi hj hp hq hij hpq hCapIndex
-  · right
-    left
-    exact finiteSupportGraph_twoMeet_exact_at_marker_one
-      D h0 h1 h2 i j p q hi hj hp hq hij hpq
-      hiLeaf.1 hpLeaf.1 hALeaf hBLeaf hCLeaf hELeaf hMarker
+    have hNewCap : H.twoMeetLevel i j p q = min i p :=
+      finiteSupportGraph_capped_twoMeet_exact
+        (G := G) (S := S) i j p q hi hj hp hq hij hpq hCapIndex
+    refine ⟨?_, Or.inl hNewCap⟩
+    rw [hNewCap]
+    exact hCapIndex
+  · have hNewMarker : H.twoMeetLevel i j p q = 1 :=
+      finiteSupportGraph_twoMeet_exact_at_marker_one
+        D h0 h1 h2 i j p q hi hj hp hq hij hpq
+        hiLeaf.1 hpLeaf.1 hALeaf hBLeaf hCLeaf hELeaf hMarker
+    have hIndexOne : finiteSupportIndex S 1 = 1 :=
+      (finiteSupportIndex_initial_markers S h0 h1 h2).2.2.1
+    refine ⟨?_, Or.inr (Or.inl hNewMarker)⟩
+    rw [hNewMarker,hIndexOne]
+    exact hMarker
   · have hmMem : m ∈ S :=
       mem_finiteLeafMeetSupport_twoMeet G L
         A B C E hAB hCE hAi hBj hCp hEq
@@ -149,9 +163,35 @@ theorem finiteLeafMeetSupport_reindexed_S2
         (by simpa only [hkm] using hSplitM)
         (by simpa only [hkm] using (show
           G.twoMeetLevel A B C E = m from rfl))
-    right
-    rw [hExact]
-    exact Or.inr hIndexedSplit
+    refine ⟨?_, Or.inr (Or.inr ?_)⟩
+    · rw [hExact]
+      exact hkm.symm
+    · rw [hExact]
+      exact hIndexedSplit
+
+/-- Original finite S2 dichotomy. The implementation now reuses the
+STRONGER exact numerical leaf-pair meet transport proved above. -/
+theorem finiteLeafMeetSupport_reindexed_S2
+    (D : RoleDiary G)
+    (hLeaves : ∀ u : Nat, u ∈ L → IsLeaf G u)
+    (i j p q : Nat)
+    (hi : i < (finiteLeafMeetSupport G L).card)
+    (hj : j < (finiteLeafMeetSupport G L).card)
+    (hp : p < (finiteLeafMeetSupport G L).card)
+    (hq : q < (finiteLeafMeetSupport G L).card)
+    (hij : i < j) (hpq : p < q)
+    (hiLeaf : IsLeaf (finiteSupportGraph G (finiteLeafMeetSupport G L)) i)
+    (hjLeaf : IsLeaf (finiteSupportGraph G (finiteLeafMeetSupport G L)) j)
+    (hpLeaf : IsLeaf (finiteSupportGraph G (finiteLeafMeetSupport G L)) p)
+    (hqLeaf : IsLeaf (finiteSupportGraph G (finiteLeafMeetSupport G L)) q) :
+    (finiteSupportGraph G (finiteLeafMeetSupport G L)).twoMeetLevel i j p q =
+      min i p ∨
+    (finiteSupportGraph G (finiteLeafMeetSupport G L)).twoMeetLevel i j p q = 1 ∨
+    IsTwoSplit (finiteSupportGraph G (finiteLeafMeetSupport G L))
+      ((finiteSupportGraph G (finiteLeafMeetSupport G L)).twoMeetLevel i j p q) :=
+  (finiteLeafMeetSupport_reindexed_S2_exact_and_role
+    D hLeaves i j p q hi hj hp hq hij hpq
+    hiLeaf hjLeaf hpLeaf hqLeaf).2
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
