@@ -1,96 +1,56 @@
-import ThreeUniformDiaries.DiaryUpperBoundMarkedAutFibre
+import ThreeUniformDiaries.DiaryGenuineMarkingFibreCardinality
 
 /-!
-# Track B: exact genuine markings count for a fixed finite diary
+# Track B compatibility API for genuine finite-diary marking fibres
 
-For a fixed complete finite diary whose leaves form one labelled
-copy of A, every other genuine exhaustive marking is obtained by
-precomposing the chosen marking with a unique source automorphism.
+The concrete automorphism torsor, its actual marking-fibre Fintype,
+and the exact |Aut(A)| cardinality were already proven in
+`DiaryGenuineMarkingFibreCardinality` (verified Track C PR #1015).
 
-We turn the already verified source-level uniqueness theorem into
-a genuine equivalence of finite types and an exact cardinality
-calculation. This is the precise per-diary factor |Aut(A)|.
+This file retains the established Track B names as thin wrappers
+rather than maintaining a second copy of the complete
+injectivity/surjectivity and preservation-of-roles argument.
 
-The final global sum over all different unmarked diary shapes is
-a separate obligation; neither Ramsey nor unavoidability enters.
+The full finite diary source is unchanged by relabelling.
+No countable lower bound, diary Ramsey theorem, or upper-bound
+source-code factorisation is used.
 -/
 
 namespace ThreeUniformDiaries
 namespace ATRFiniteDecoder
 
 open Ordered3Graph
-open DiaryLeafPriority
 
-/-- The genuine exhaustive leaf markings of one fixed unmarked
-source diary. -/
-def GenuineMarkingsOfDiary
+/-- Compatibility name for the same true full-leaf marking fibre
+used by the verified Track C automorphism calculation. -/
+abbrev GenuineMarkingsOfDiary
     {a : Nat} (A : EnumNode a)
     (S : ProtectedSource 0) : Type :=
-  { q : Fin a → Fin (S.k + 1) //
-      IsGenuineMarkedDiaryShape A ⟨S, q⟩ }
+  GenuineDiaryMarkingFibre A S
 
-/-- Every valid marking of the same diary is a unique
-Aut(A)-relabel of a chosen marking. -/
+/-- The existing Track B equivalence is the exact same verified
+automorphism torsor, with the chosen marking as basepoint. -/
 noncomputable def genuineMarkingsOfDiary_equiv_aut
     {a : Nat} (A : EnumNode a)
     (S : ProtectedSource 0)
     (p : Fin a → Fin (S.k + 1))
     (hp : IsGenuineMarkedDiaryShape A ⟨S, p⟩) :
     FiniteHypergraphAut A.toOrdered3Graph a ≃
-      GenuineMarkingsOfDiary A S := by
-  classical
-  have hpCopy : IsFiniteLabelledCopy
-      A.toOrdered3Graph S.picture.toOrdered3Graph a
-      (fun i => (p i).val) := by
-    dsimp [IsGenuineMarkedDiaryShape] at hp
-    exact hp.2.1
-  have hForward (σ : FiniteHypergraphAut A.toOrdered3Graph a) :
-      IsGenuineMarkedDiaryShape A ⟨S, fun i => p (σ.val i)⟩ := by
-    dsimp [IsGenuineMarkedDiaryShape] at hp ⊢
-    rcases hp with ⟨hDiary,hCopy,hLeaf,hCover⟩
-    refine ⟨hDiary, finiteLabelledCopy_relabel hCopy σ, ?_, ?_⟩
-    · intro i
-      exact hLeaf (σ.val i)
-    · intro u hu3 hum huLeaf
-      obtain ⟨j,hj⟩ := hCover u hu3 hum huLeaf
-      refine ⟨σ.val.symm j, ?_⟩
-      simpa only [Equiv.apply_symm_apply] using hj
-  let forward : FiniteHypergraphAut A.toOrdered3Graph a →
       GenuineMarkingsOfDiary A S :=
-    fun σ => ⟨fun i => p (σ.val i), hForward σ⟩
-  have hinj : Function.Injective forward := by
-    intro σ τ h
-    apply Subtype.ext
-    apply Equiv.ext
-    intro i
-    apply hpCopy.1
-    exact congrArg
-      (fun q : GenuineMarkingsOfDiary A S => (q.val i).val) h
-  have hsurj : Function.Surjective forward := by
-    intro q
-    obtain ⟨σ,hσ,_⟩ :=
-      genuineMarkedDiaryShape_unique_aut_between_markings
-        A S p q.val hp q.property
-    refine ⟨σ, ?_⟩
-    apply Subtype.ext
-    funext i
-    apply Fin.ext
-    exact (hσ i).symm
-  exact Equiv.ofBijective forward ⟨hinj,hsurj⟩
+  genuineDiaryMarkingFibre_equiv_aut A S ⟨p, hp⟩
 
-/-- Finiteness of the genuine marking fibre is transported from
-the finite actual automorphism group. -/
+/-- Preserve the previously exported Fintype interface, now
+obtained from one canonical construction. -/
 noncomputable def genuineMarkingsOfDiaryFintype
     {a : Nat} (A : EnumNode a)
     (S : ProtectedSource 0)
     (p : Fin a → Fin (S.k + 1))
     (hp : IsGenuineMarkedDiaryShape A ⟨S, p⟩) :
     Fintype (GenuineMarkingsOfDiary A S) :=
-  Fintype.ofEquiv (FiniteHypergraphAut A.toOrdered3Graph a)
-    (genuineMarkingsOfDiary_equiv_aut A S p hp)
+  genuineDiaryMarkingFibre_fintype A S ⟨p, hp⟩
 
-/-- Exact cardinality of all valid markings of one genuine diary:
-the number is precisely the size of the actual source Aut(A). -/
+/-- Exact count of full-leaf genuine markings, reusing the
+single verified Track C theorem without an independent proof. -/
 theorem genuineMarkingsOfDiary_card_eq_aut
     {a : Nat} (A : EnumNode a)
     (S : ProtectedSource 0)
@@ -98,12 +58,8 @@ theorem genuineMarkingsOfDiary_card_eq_aut
     (hp : IsGenuineMarkedDiaryShape A ⟨S, p⟩) :
     @Fintype.card (GenuineMarkingsOfDiary A S)
       (genuineMarkingsOfDiaryFintype A S p hp) =
-        Fintype.card (FiniteHypergraphAut A.toOrdered3Graph a) := by
-  classical
-  letI : Fintype (GenuineMarkingsOfDiary A S) :=
-    genuineMarkingsOfDiaryFintype A S p hp
-  exact Fintype.card_congr
-    (genuineMarkingsOfDiary_equiv_aut A S p hp).symm
+        Fintype.card (FiniteHypergraphAut A.toOrdered3Graph a) :=
+  genuineDiaryMarkingFibre_card_eq_aut A S ⟨p, hp⟩
 
 end ATRFiniteDecoder
 end ThreeUniformDiaries
