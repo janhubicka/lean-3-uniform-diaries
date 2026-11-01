@@ -2504,3 +2504,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.oneMeetLevel_eq_of_common_one_prefix
 #print axioms ThreeUniformDiaries.Ordered3Graph.auxMeetLevel_eq_of_common_one_prefix
 #print axioms ThreeUniformDiaries.Ordered3Graph.twoMeetLevel_eq_of_common_one_prefix
+#print axioms ThreeUniformDiaries.Ordered3Graph.auxMeetLevel_lt_proper_firstOneMeet
+#print axioms ThreeUniformDiaries.Ordered3Graph.lexEarlier_eq_of_common_one_prefix
