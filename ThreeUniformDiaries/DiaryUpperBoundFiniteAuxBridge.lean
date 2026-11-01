@@ -125,7 +125,9 @@ theorem FiniteLeafPreembedding.toFiniteAuxEmbedding_of_induced
     ThreeUniformDiaries.Ordered3Graph.FiniteAuxEmbedding A T f n := by
   refine {
     strictMono := P.strictMono
-    edge_iff := hInduced
+    edge_iff := by
+      intro a b c hab hbc hc
+      exact (hInduced a b c hab hbc hc).symm
     one := ?_
     aux := ?_
   }
