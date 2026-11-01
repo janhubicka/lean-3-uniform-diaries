@@ -5,8 +5,10 @@ import ThreeUniformDiaries.DiaryFiniteLeafMeetCompleteReduct
 # Track A: exact finite ATR factorisation of a leaf-generated diary support
 
 This is the *assembly lemma* for the upper-bound factorisation. It is
-conditional only on exact numerical S1/S2 meet preservation along the
+conditional only on exact numerical S1/S2 meet preservation along a
 strictly increasing total extension of the actual finite support index.
+The full finite induced-diary-to-ATR bridge is integrated on main;
+this module does not duplicate its marker or mixed-meet proofs.
 
 All remaining requirements of a genuine finite auxiliary embedding
 are proved from:
