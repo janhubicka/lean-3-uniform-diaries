@@ -33,7 +33,8 @@ noncomputable def shiftedDiarySeed_embedding (H : Ordered3Graph Nat) :
   toFun := fun u => u + 3
   strictMono := by
     intro i j hij
-    omega
+    change i + 3 < j + 3
+    exact Nat.add_lt_add_right hij 3
   edge_iff := by
     intro a b c hab hbc
     exact (shiftedDiarySeed_leaf_edge_iff H a b c hab hbc).symm
@@ -42,7 +43,7 @@ noncomputable def shiftedDiarySeed_embedding (H : Ordered3Graph Nat) :
 reduct of a full countable diary, assuming just the actual
 lexicographic V3 transport through the three-marker seed.
 
-No source 1-/2-type old-cut preservation is assumed, and no
+No source singleton/two-type old-cut preservation is assumed, and no
 diary Ramsey theorem or countable unavoidability is used. -/
 theorem exists_countable_full_diary_with_exact_leaf_reduct_of_seed_lex
     (H : Ordered3Graph Nat)
