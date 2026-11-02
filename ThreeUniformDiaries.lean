@@ -875,3 +875,4 @@ import ThreeUniformDiaries.DiaryUpperBoundGenuineMarkingFibreCard
 import ThreeUniformDiaries.DiaryLexColumnPrefixMeets
 import ThreeUniformDiaries.DiaryLexColumnPrefixEarlier
 import ThreeUniformDiaries.DiaryShiftedSeedExactOneMeet
+import ThreeUniformDiaries.DiaryShiftedSeedAuxPrefix
