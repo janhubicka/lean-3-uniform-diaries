@@ -39,9 +39,8 @@ theorem countableDiaryFiniteSupport_first_leaf
     (hEmpty : countableDiaryLeafPrefix H m = ∅) :
     countableDiaryFiniteSupport H (m + 1) =
       Finset.range 3 ∪ {m} := by
-  rw [countableDiaryFiniteSupport_succ_of_leaf H m hm,
-    hEmpty, Finset.insert_empty]
-  exact finiteLeafMeetSupport_singleton H m
+  rw [countableDiaryFiniteSupport_succ_of_leaf H m hm, hEmpty]
+  simpa using finiteLeafMeetSupport_singleton H m
 
 /-- A full diary has no edge whose increasing vertices are
 chosen from the three markers and a single genuine leaf.
