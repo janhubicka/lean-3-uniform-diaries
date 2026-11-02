@@ -109,7 +109,7 @@ theorem to_full
     by_cases ham : a = m
     · subst a
       have hVal : g m = v := by
-        simpa only [q,candidateLeafImage,if_pos rfl] using hChosenA
+        simpa [q,candidateLeafImage] using hChosenA
       rw [hVal]
       exact hNewLeaf
     · have ha3 : 3 ≤ a :=
@@ -124,7 +124,7 @@ theorem to_full
         mem_finiteLeafMeetSupport_leaf H
           (countableDiaryLeafPrefix H m) a haOld
       have hVal : g a = f a := by
-        simpa only [q,candidateLeafImage,if_neg ham] using hChosenA
+        simpa [q,candidateLeafImage,ham] using hChosenA
       rw [hVal]
       exact P.leaf_role a haSupported (hLSource a ha)
   have hRoleLeaf : ∀ a : Nat,
@@ -204,6 +204,7 @@ theorem to_full
     have hsAbove : 2 < g s := by
       have hs3 : 3 ≤ s := hTwo.1
       have hOrd := C.ordered 2 s h2Support hs (by omega)
+      change g 2 < g s at hOrd
       rw [hg2] at hOrd
       exact hOrd
     have hSourceLe :
