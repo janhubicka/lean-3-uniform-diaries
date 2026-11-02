@@ -876,3 +876,4 @@ import ThreeUniformDiaries.DiaryLexColumnPrefixMeets
 import ThreeUniformDiaries.DiaryLexColumnPrefixEarlier
 import ThreeUniformDiaries.DiaryShiftedSeedExactOneMeet
 import ThreeUniformDiaries.DiaryShiftedSeedAuxPrefix
+import ThreeUniformDiaries.DiaryShiftedSeedExactAuxMeet
