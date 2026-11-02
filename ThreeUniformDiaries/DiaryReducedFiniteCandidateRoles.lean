@@ -1,4 +1,5 @@
-import ThreeUniformDiaries.DiaryFiniteCandidateCriterion
+import ThreeUniformDiaries.DiaryFiniteReservedCandidateCriterion
+import ThreeUniformDiaries.DiaryFutureReserveFusion
 import ThreeUniformDiaries.DiaryFiniteLeafMeetRoleSupport
 
 /-!
@@ -268,6 +269,63 @@ theorem iff_full
   · intro C
     exact ⟨C.functional,C.range,C.ordered,C.induced_edge⟩
 
+
+/-- Exact relative successor criterion with the redundant
+role checks removed for a genuine diary target and prescribed
+leaf-valued outer map. -/
+theorem relative_successor_iff_reduced_candidate
+    (DH : RoleDiary H) (DK : RoleDiary K)
+    (P : AdmissibleCofinalDiaryStage H K F m f)
+    (hm : IsLeaf H m)
+    (hFleaf : ∀ t : Nat, IsLeaf K (F t)) :
+    (∃ g : Nat → Nat,
+      AdmissibleCofinalDiaryStage H K F (m + 1) g ∧
+      (∀ a : Nat, a ∈ countableDiaryLeafPrefix H m →
+        g a = f a) ∧ g m = v) ↔
+    ReducedFiniteNewLeafCandidateCondition H K F m f v := by
+  exact (AdmissibleCofinalDiaryStage.relative_successor_iff_finite_candidate
+    DH P hm v).trans (iff_full DH DK P hm hFleaf).symm
+
 end ReducedFiniteNewLeafCandidateCondition
+
+/-- Conditional countable diary unavoidability with a smaller,
+more geometrically transparent finite realization obligation.
+Because source/target are genuine diaries and the prescribed F-image
+already consists of actual target leaves, no independent finite
+role checks are required: S1/S2 and strict order provide them.
+
+The remaining finite hypothesis still asks for correct edge/nonedge
+incidence, a functional numerical generator table, and a future-order
+reserve at EVERY new source leaf. No theorem produces those values. -/
+theorem exists_fullDiaryEmbedding_of_reduced_reserved_candidates
+    {H K : Ordered3Graph Nat}
+    (DH : RoleDiary H) (DK : RoleDiary K)
+    (F : Nat → Nat)
+    (hFleaf : ∀ t : Nat, IsLeaf K (F t))
+    (hRealize : ∀ m : Nat, IsLeaf H m →
+      ∀ f : Nat → Nat,
+        ReservedDiaryStage H K F m f →
+        ∃ v : Nat,
+          ReducedFiniteNewLeafCandidateCondition H K F m f v ∧
+          FutureOrderReserve H (m + 1)
+            (candidateNewLeafTableMap H K m f v)) :
+    ∃ e : Ordered3Graph.Embedding H K,
+      (∀ u : Nat, IsLeaf H u → ∃ t : Nat, e u = F t) ∧
+      (∀ u v : Nat, 3 ≤ u → 3 ≤ v →
+        K.oneMeetLevel (e u) (e v) =
+          e (H.oneMeetLevel u v)) ∧
+      (∀ a b c d : Nat, a < b → c < d →
+        3 ≤ a → 3 ≤ c →
+        K.twoMeetLevel (e a) (e b) (e c) (e d) =
+          e (H.twoMeetLevel a b c d)) := by
+  apply exists_fullDiaryEmbedding_of_reserved_new_leaf_extensions DH DK F
+  intro m hm f hf
+  obtain ⟨v,hReduced,hReserve⟩ := hRealize m hm f hf
+  obtain ⟨g,Q,hKeep,hNew,hReserveG⟩ :=
+    (AdmissibleCofinalDiaryStage.reserved_successor_iff_finite_reserved_candidate
+      DH hf.1 hm v).mpr
+        ⟨hReduced.to_full DH DK hf.1 hm hFleaf,hReserve⟩
+  exact ⟨g,⟨Q,hReserveG⟩,hKeep⟩
+
 end DiaryLeafPriority
 end ThreeUniformDiaries
