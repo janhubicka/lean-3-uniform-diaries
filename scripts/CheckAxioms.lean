@@ -2508,3 +2508,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.lexEarlier_eq_of_common_one_prefix
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.shiftedDiarySeed_sameOneTypeBelow_of_source
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.shiftedDiarySeed_oneMeetLevel_exact
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.shiftedDiarySeed_sameAuxTypeBelow_of_source
