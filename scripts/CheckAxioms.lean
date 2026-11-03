@@ -12,6 +12,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.shiftedDiarySeed_twoMeetLevel_exact_of_properOneMeet
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.shiftedDiarySeed_lexEarlier_iff
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_countable_full_diary_with_exact_leaf_reduct
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.actualFiniteAuxRamsey_sharp_upper
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.PairPattern.aux_eq_full
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.PairPattern.aux_transfer
