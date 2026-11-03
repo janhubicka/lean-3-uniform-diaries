@@ -96,6 +96,7 @@ theorem FiniteMeetEmbedding.canonical_leafSupport_card_and_index
     simp
   refine ⟨hCard, ?_⟩
   intro i hi
+  change finiteSupportIndex S i = f i
   rw [hSupport]
   exact finiteSupportIndex_rangeImage_eq n f E.strictMono i hi
 
@@ -119,7 +120,9 @@ theorem FiniteMeetEmbedding.canonical_leafSupport_edge_iff
   let S := finiteLeafMeetSupport T (L.image f)
   obtain ⟨hCard,hIndex⟩ :=
     E.canonical_leafSupport_card_and_index D L hL
-  have hsc : c < S.card := by omega
+  have hsc : c < S.card := by
+    rw [hCard]
+    exact hc
   have ha : a < n := by omega
   have hb : b < n := by omega
   calc
