@@ -27,8 +27,31 @@ theorem finiteLeafMeetSupport_singleton
     finiteLeafMeetSupport H ({m} : Finset Nat) =
       Finset.range 3 ∪ {m} := by
   classical
+  have hOnePairs :
+      ((({m} : Finset Nat).product ({m} : Finset Nat)).filter
+        (fun p : Nat × Nat => p.1 ≠ p.2)) = ∅ := by
+    ext p
+    constructor
+    · intro hp
+      obtain ⟨hPair, hNe⟩ := Finset.mem_filter.mp hp
+      obtain ⟨ha, hb⟩ := Finset.mem_product.mp hPair
+      have hEqA : p.1 = m := Finset.mem_singleton.mp ha
+      have hEqB : p.2 = m := Finset.mem_singleton.mp hb
+      exact False.elim (hNe (hEqA.trans hEqB.symm))
+    · simp
+  have hOrderedPairs :
+      finiteOrderedLeafPairs ({m} : Finset Nat) = ∅ := by
+    ext p
+    constructor
+    · intro hp
+      obtain ⟨hPair, hLt⟩ := Finset.mem_filter.mp hp
+      obtain ⟨ha, hb⟩ := Finset.mem_product.mp hPair
+      have hEqA : p.1 = m := Finset.mem_singleton.mp ha
+      have hEqB : p.2 = m := Finset.mem_singleton.mp hb
+      omega
+    · simp
   simp [finiteLeafMeetSupport, finiteOneMeetSupport,
-    finiteTwoMeetSupport, finiteOrderedLeafPairs]
+    finiteTwoMeetSupport, hOnePairs, hOrderedPairs]
 
 /-- If no earlier source leaves have been selected, adding the
 first leaf gives exactly four supported vertices: markers and
@@ -81,12 +104,16 @@ theorem RoleDiary.no_edge_in_marker_leaf_support
       subst c
       exact hm.2.2 he
   · have hOne : IsOneSplit H b := hE2.2.1
+    have hb3 : 3 ≤ b := hOne.1
     omega
   · have hTwo : IsTwoSplit H a := hE3.1
+    have ha3 : 3 ≤ a := hTwo.1
     omega
   · have hLeafB : IsLeaf H b := hE4.2.1
+    have hb3 : 3 ≤ b := hLeafB.1
     omega
   · have hLeafA : IsLeaf H a := hE5.1
+    have ha3 : 3 ≤ a := hLeafA.1
     omega
 
 /-- A FIRST source leaf m can always be placed at any prescribed
@@ -246,7 +273,7 @@ theorem exists_reserved_successor_of_first_leaf
   refine ⟨g,⟨hStage,hReserve⟩,?_⟩
   intro u hu
   rw [hEmpty] at hu
-  exact False.elim (Finset.not_mem_empty u hu)
+  simp at hu
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
