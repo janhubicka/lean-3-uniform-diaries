@@ -1,5 +1,9 @@
 import ThreeUniformDiaries
 
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.twoMeetLevel_self_pair
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.no_twoSplit_in_twoLeafMeetSupport
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.second_leaf_support_no_twoSplit
+
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_finite_diary_with_exact_induced_leaf_prefix
 
 #print axioms ThreeUniformDiaries.Ordered3Graph.oneMeetLevel_eq_of_common_one_prefix
