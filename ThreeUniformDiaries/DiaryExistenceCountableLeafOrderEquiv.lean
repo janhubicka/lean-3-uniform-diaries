@@ -68,7 +68,7 @@ theorem exists_countable_diary_order_equiv_leaf_reduct
         exact (lt_asymm hab hRev)
   · intro a b c hab hbc
     change D.edge (e a) (e b) (e c) ↔ H.edge a b c
-    exact (e.edge_iff a b c hab hbc).symm
+    exact (e.edge_iff hab hbc).symm
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
