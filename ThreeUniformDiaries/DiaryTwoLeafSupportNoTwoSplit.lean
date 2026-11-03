@@ -101,7 +101,7 @@ theorem RoleDiary.second_leaf_support_no_twoSplit
       ({a,m} : Finset Nat) := by
     simpa only [Finset.insert_comm] using
       ((countableDiaryLeafPrefix_succ_of_leaf H m hm).trans
-        (congrArg (Finset.insert m) hOld))
+        (congrArg (fun L : Finset Nat => insert m L) hOld))
   change s ∈ finiteLeafMeetSupport H
     (countableDiaryLeafPrefix H (m + 1)) at hs
   rw [hNew] at hs
