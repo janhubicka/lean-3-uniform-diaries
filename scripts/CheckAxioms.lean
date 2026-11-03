@@ -1,5 +1,7 @@
 import ThreeUniformDiaries
 
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_finite_diary_exact_EnumNode_leaf_reduct
+
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.twoMeetLevel_self_pair
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.no_twoSplit_in_twoLeafMeetSupport
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.second_leaf_support_no_twoSplit
