@@ -39,9 +39,9 @@ def IsIncreasingPresentationOf
     {a : Nat} (A P : EnumNode a) : Prop :=
   ∃ σ : Equiv.Perm (Fin a),
     ∀ i j k : Fin a, i < j → j < k →
-      P.toOrdered3Graph.edge i.val j.val k.val ↔
+      (P.toOrdered3Graph.edge i.val j.val k.val ↔
         A.toOrdered3Graph.unorderedEdge
-          (σ.symm i).val (σ.symm j).val (σ.symm k).val
+          (σ.symm i).val (σ.symm j).val (σ.symm k).val)
 
 /-- The finite, deduplicated universe of ALL different increasing
 ordered presentations of the given underlying unordered A. -/
