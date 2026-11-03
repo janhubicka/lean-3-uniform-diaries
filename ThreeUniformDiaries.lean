@@ -878,3 +878,4 @@ import ThreeUniformDiaries.DiaryShiftedSeedExactOneMeet
 import ThreeUniformDiaries.DiaryShiftedSeedAuxPrefix
 import ThreeUniformDiaries.DiaryShiftedSeedExactAuxMeet
 import ThreeUniformDiaries.DiaryShiftedSeedExactTwoMeet
+import ThreeUniformDiaries.DiaryShiftedSeedExactLexEarlier
