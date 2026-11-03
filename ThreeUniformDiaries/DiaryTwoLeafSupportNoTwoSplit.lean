@@ -22,7 +22,7 @@ namespace DiaryLeafPriority
 /-- Reflexivity of the full two-type relation shows that any
 ordered pair meets itself at its first coordinate (the cap).
 No diary axioms are needed. -/
-theorem Ordered3Graph.twoMeetLevel_self
+theorem twoMeetLevel_self_pair
     (H : Ordered3Graph Nat) (a b : Nat) :
     H.twoMeetLevel a b a b = a := by
   classical
@@ -82,7 +82,7 @@ theorem RoleDiary.no_twoSplit_in_twoLeafMeetSupport
   have hMeet' : H.twoMeetLevel a b a b = s := by
     simpa only [hxA, hyB, huA, hvB] using hMeet
   have hsA : a = s :=
-    (Ordered3Graph.twoMeetLevel_self H a b).symm.trans hMeet'
+    (twoMeetLevel_self_pair H a b).symm.trans hMeet'
   subst s
   exact ha.2.2 hTwo.2.2
 
