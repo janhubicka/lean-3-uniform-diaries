@@ -1,5 +1,7 @@
 import ThreeUniformDiaries
 
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_finite_diary_with_exact_induced_leaf_prefix
+
 #print axioms ThreeUniformDiaries.Ordered3Graph.oneMeetLevel_eq_of_common_one_prefix
 #print axioms ThreeUniformDiaries.Ordered3Graph.auxMeetLevel_eq_of_common_one_prefix
 #print axioms ThreeUniformDiaries.Ordered3Graph.twoMeetLevel_eq_of_common_one_prefix
