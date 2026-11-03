@@ -68,23 +68,24 @@ theorem exists_finite_diary_with_exact_induced_leaf_prefix
   · intro u hu
     have hs := finiteSupportLift_spec S n (fun u => e u) hRange u hu
     have hOldLeaf : IsLeaf D (e u) := hLeaf u
+    have hIndex : finiteSupportIndex S (f u) = e u := hs.2
     have hf3 : 3 ≤ f u := by
       by_contra hn
       have hSmall : f u = 0 ∨ f u = 1 ∨ f u = 2 := by omega
       rcases hSmall with hRank0 | hRank1 | hRank2
-      · rw [hRank0, hMarkers.2.1] at hs
+      · rw [hRank0, hMarkers.2.1] at hIndex
         have hge := hOldLeaf.1
         omega
-      · rw [hRank1, hMarkers.2.2.1] at hs
+      · rw [hRank1, hMarkers.2.2.1] at hIndex
         have hge := hOldLeaf.1
         omega
-      · rw [hRank2, hMarkers.2.2.2] at hs
+      · rw [hRank2, hMarkers.2.2.2] at hIndex
         have hge := hOldLeaf.1
         omega
     refine ⟨hs.1, ?_⟩
     apply (finiteSupportGraph_leaf_iff
       (G := D) h0 h1 h2 (f u) hf3 hs.1).mpr
-    simpa only [hs.2] using hOldLeaf
+    simpa only [hIndex] using hOldLeaf
   · intro v hv hvLeaf
     have hv3 : 3 ≤ v := hvLeaf.1
     have hOldInL : finiteSupportIndex S v ∈ L :=
@@ -118,7 +119,7 @@ theorem exists_finite_diary_with_exact_induced_leaf_prefix
           (f a) (f b) (f c) hfab hfbc hfc.1
       _ ↔ H.edge a b c := by
         rw [hfa.2, hfb.2, hfc.2]
-        exact (e.edge_iff a b c hab hbc).symm
+        exact (e.edge_iff hab hbc).symm
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
