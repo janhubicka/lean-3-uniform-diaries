@@ -20,6 +20,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_countable_full_diary_with_exact_leaf_reduct
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.actualFiniteAuxRamsey_sharp_upper
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.actualFiniteAuxRamsey_sharp_unlabelled_upper
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.actualFiniteAuxRamsey_sharp_upper_on_embeddings
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.PairPattern.aux_eq_full
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.PairPattern.aux_transfer
