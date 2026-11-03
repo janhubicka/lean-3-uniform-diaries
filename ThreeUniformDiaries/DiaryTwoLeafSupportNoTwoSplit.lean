@@ -1,4 +1,5 @@
 import ThreeUniformDiaries.DiaryFiniteLeafMeetRoleSupport
+import ThreeUniformDiaries.DiaryOneNewLeafSupportSuccessor
 import ThreeUniformDiaries.TwoTypeMeetLevel
 
 /-!
