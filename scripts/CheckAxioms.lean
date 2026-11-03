@@ -2000,7 +2000,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.Ordered3Graph.twoMeetLevel_eq_of_aux_first_disagreement
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.smallFlipSource_frame
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.smallFlipSource_leaf_meet
-#print axioms ThreeUniformDiaries.DiaryLeafPriority.Ordered3Graph.twoMeetLevel_self_eq
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.twoMeetLevel_self_pair_eq
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.smallFlipSource_is_finiteDiary
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.smallFlipTarget_frame
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.smallFlipTarget_meet_6_7
