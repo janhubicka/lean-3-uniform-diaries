@@ -38,10 +38,10 @@ theorem allGenuineUnmarkedDiarySources_has_increasingPresentation
     ∃ (hCard : S.leafPositions.card = a)
       (σ : Equiv.Perm (Fin a)),
       ∀ (i j k : Fin a), i < j → j < k →
-      (S.increasingLeafEnum a hCard).toOrdered3Graph.edge
+      ((S.increasingLeafEnum a hCard).toOrdered3Graph.edge
         i.val j.val k.val ↔
       A.toOrdered3Graph.unorderedEdge
-        (σ.symm i).val (σ.symm j).val (σ.symm k).val := by
+        (σ.symm i).val (σ.symm j).val (σ.symm k).val) := by
   classical
   let p : GenuineDiaryMarkingFibre A S :=
     Classical.choice
@@ -85,10 +85,10 @@ theorem realizedOrderedLeafPresentation_has_A_presentation
       ∃ (hCard : S.leafPositions.card = a)
         (σ : Equiv.Perm (Fin a)),
         ∀ (i j k : Fin a), i < j → j < k →
-        (S.increasingLeafEnum a hCard).toOrdered3Graph.edge
+        ((S.increasingLeafEnum a hCard).toOrdered3Graph.edge
           i.val j.val k.val ↔
         A.toOrdered3Graph.unorderedEdge
-          (σ.symm i).val (σ.symm j).val (σ.symm k).val := by
+          (σ.symm i).val (σ.symm j).val (σ.symm k).val) := by
   classical
   change P ∈ (allGenuineUnmarkedDiarySources A).image
       (fun S => S.orderedLeafEdgeSignature) at hP
