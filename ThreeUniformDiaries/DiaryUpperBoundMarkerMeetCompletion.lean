@@ -255,6 +255,7 @@ private theorem sameOneTypeBelow_iff_le_meet
     (H : Ordered3Graph Nat) (l u v : Nat)
     (hl : l ≤ min u v) :
     H.SameOneTypeBelow l u v ↔ l ≤ H.oneMeetLevel u v := by
+  classical
   constructor
   · intro h
     exact Nat.le_findGreatest hl h
@@ -268,6 +269,7 @@ private theorem sameTwoTypeBelow_iff_le_meet
     (hl : l ≤ min a c) :
     H.SameTwoTypeBelow l a b c d ↔
       l ≤ H.twoMeetLevel a b c d := by
+  classical
   constructor
   · intro h
     exact Nat.le_findGreatest hl h
@@ -288,7 +290,8 @@ private theorem le_iff_image_le
     (e : Embedding H K) (x y : Nat) :
     x ≤ y ↔ e x ≤ e y := by
   constructor
-  · exact e.strictMono.monotone
+  · intro h
+    exact e.strictMono.monotone h
   · intro h
     by_contra hn
     have hyx : y < x := by omega
