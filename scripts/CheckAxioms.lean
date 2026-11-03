@@ -2613,3 +2613,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.oneMeetLevel_comm
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.twoLeafSupport_eq
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.second_leaf_support_eq_six
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.second_leaf_reserve_iff_three_gaps
