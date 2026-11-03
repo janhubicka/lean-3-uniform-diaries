@@ -75,9 +75,8 @@ theorem actualFiniteAuxRamsey_sharp_unlabelled_upper_orderedDiarySum
     ∃ w : UnorderedEmbedding U U,
       ∃ palette : List κ,
         palette.length =
-          ∑ P ∈ allIncreasingPresentations A,
-            (unmarkedDiariesOfIncreasingPresentation A P).card
-          ∧
+          (∑ P ∈ allIncreasingPresentations A,
+            (unmarkedDiariesOfIncreasingPresentation A P).card) ∧
         ∀ v : Fin a → Nat,
           IsInducedLabelledCopy A U v →
           χ ((Finset.univ : Finset (Fin a)).image
