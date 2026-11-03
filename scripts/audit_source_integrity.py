@@ -92,13 +92,17 @@ modules = {
 imports = {}
 for module, path in modules.items():
     code = executable_text(path.read_text(encoding="utf-8"))
-    imports[module] = {
+    imported = [
         name
         for line in code.splitlines()
         if line.lstrip().startswith("import ")
         for name in line.strip()[len("import "):].split()
-        if name in modules
-    }
+    ]
+    if module == "ThreeUniformDiaries":
+        duplicates = sorted({name for name in imported if imported.count(name) > 1})
+        if duplicates:
+            raise SystemExit("FAIL: duplicate umbrella imports:\n" + "\n".join(duplicates))
+    imports[module] = {name for name in imported if name in modules}
 reachable = set()
 frontier = ["ThreeUniformDiaries"]
 while frontier:
