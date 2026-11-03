@@ -1,4 +1,5 @@
 import ThreeUniformDiaries.AuxTypes
+import ThreeUniformDiaries.DiaryExistenceFiniteEnumNode
 import ThreeUniformDiaries.DiaryExistenceFiniteExactLeafReduct
 import ThreeUniformDiaries.DiaryLexColumnPrefixMeets
 import ThreeUniformDiaries.DiaryLexColumnPrefixEarlier
