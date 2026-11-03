@@ -32,6 +32,7 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.all_exact_meets_of_nonmarker_and_markers
 #print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.typeRespecting_of_all_exact_meets
 #print axioms ThreeUniformDiaries.Ordered3Graph.Embedding.typeRespecting_of_nonmarker_exact_meets_and_markers
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.actualFiniteAuxRamsey_fullDiary_upper_of_reserved_candidates
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.PairPattern.aux_eq_full
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.PairPattern.aux_transfer
