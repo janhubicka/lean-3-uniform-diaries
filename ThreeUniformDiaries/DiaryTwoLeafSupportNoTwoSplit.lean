@@ -83,7 +83,7 @@ theorem RoleDiary.no_twoSplit_in_twoLeafMeetSupport
     simpa only [hxA, hyB, huA, hvB] using hMeet
   have hsA : a = s :=
     (twoMeetLevel_self_pair H a b).symm.trans hMeet'
-  subst s
+  rw [← hsA] at hTwo
   exact ha.2.2 hTwo.2.2
 
 /-- For the second genuine source leaf, its newly generated
@@ -99,8 +99,9 @@ theorem RoleDiary.second_leaf_support_no_twoSplit
     ¬ IsTwoSplit H s := by
   have hNew : countableDiaryLeafPrefix H (m + 1) =
       ({a,m} : Finset Nat) := by
-    rw [countableDiaryLeafPrefix_succ_of_leaf H m hm, hOld]
-    simp only [Finset.insert_comm]
+    simpa only [Finset.insert_comm] using
+      ((countableDiaryLeafPrefix_succ_of_leaf H m hm).trans
+        (congrArg (Finset.insert m) hOld))
   change s ∈ finiteLeafMeetSupport H
     (countableDiaryLeafPrefix H (m + 1)) at hs
   rw [hNew] at hs
