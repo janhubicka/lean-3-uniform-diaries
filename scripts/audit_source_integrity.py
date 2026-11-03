@@ -81,3 +81,34 @@ if problems:
     raise SystemExit("FAIL: untrusted proof admissions / local axioms:\n" +
                      "\n".join(problems))
 print(f"PASS: {len(files)} Lean files contain no sorry, admit, locally declared axiom or constant")
+
+# A successful umbrella build must not hide uncompiled local modules.
+# Missing imports are a common way old exploratory proof branches evade
+# Lean kernel/axiom verification even though the source scan sees them.
+modules = {
+    ".".join(path.relative_to(ROOT).with_suffix("").parts): path
+    for path in files
+}
+imports = {}
+for module, path in modules.items():
+    code = executable_text(path.read_text(encoding="utf-8"))
+    imports[module] = {
+        name
+        for line in code.splitlines()
+        if line.lstrip().startswith("import ")
+        for name in line.strip()[len("import "):].split()
+        if name in modules
+    }
+reachable = set()
+frontier = ["ThreeUniformDiaries"]
+while frontier:
+    module = frontier.pop()
+    if module in reachable:
+        continue
+    reachable.add(module)
+    frontier.extend(imports.get(module, set()) - reachable)
+orphaned = sorted(modules.keys() - reachable)
+if orphaned:
+    raise SystemExit("FAIL: Lean modules not compiled by default library target:\n"
+                     + "\n".join(orphaned))
+print(f"PASS: all {len(files)} local Lean modules are reachable from ThreeUniformDiaries")
