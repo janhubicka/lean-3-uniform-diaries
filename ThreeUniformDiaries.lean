@@ -1,4 +1,5 @@
 import ThreeUniformDiaries.AuxTypes
+import ThreeUniformDiaries.DiaryExistenceCountableLeafOrderEquiv
 import ThreeUniformDiaries.DiaryExistenceFiniteLeafOrderEquiv
 import ThreeUniformDiaries.DiaryExistenceFiniteEnumNode
 import ThreeUniformDiaries.DiaryExistenceFiniteExactLeafReduct
