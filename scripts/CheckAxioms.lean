@@ -1,5 +1,7 @@
 import ThreeUniformDiaries
 
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_countable_diary_order_equiv_leaf_reduct
+
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_finite_diary_order_equiv_leaf_reduct
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_finite_diary_exact_EnumNode_leaf_reduct
