@@ -64,8 +64,11 @@ noncomputable def canonicalGenericEnumerated3Graph :
     calc
       pairCodedGenericEdge i.val j.val v ↔ (i,j) ∈ S := by
         simp [pairCodedGenericEdge, v, Nat.unpair_pair,
-          hij, hJV, i.isLt, j.isLt, hDecode]
-        rfl
+          hij, hJV, i.isLt, j.isLt]
+        change (i,j) ∈
+          ((Encodable.decode (Encodable.encode S) :
+            Option (Finset (Fin m × Fin m))).getD ∅) ↔ (i,j) ∈ S
+        simp only [hDecode, Option.getD_some]
       _ ↔ pattern i j = true := hS
 
 /-- There exists at least one actual enumerated generic 3-hypergraph.
