@@ -163,7 +163,6 @@ theorem canonicalMarkedDiaryColour_unavoidable
         exact (hImages i).symm
       _ = L.image g := by
         simp only [L, Finset.image_image, Function.comp_def]
-        rfl
 
   let S : Finset Nat := finiteLeafMeetSupport K (L.image g)
   obtain ⟨hCard, hIndex⟩ :=
