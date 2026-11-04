@@ -930,3 +930,4 @@ import ThreeUniformDiaries.DiaryFirstLeafInjectiveRange
 import ThreeUniformDiaries.DiaryReducedFiniteCandidateRoles
 import ThreeUniformDiaries.DiaryTwoLeafMarkerOrientation
 import ThreeUniformDiaries.DiaryNewLeafOneMeetGapBounds
+import ThreeUniformDiaries.DiaryNewLeafRightBitAndGaps
