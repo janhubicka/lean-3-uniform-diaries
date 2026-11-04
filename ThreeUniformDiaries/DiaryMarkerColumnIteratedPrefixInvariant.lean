@@ -1,27 +1,32 @@
 import ThreeUniformDiaries.DiaryMarkerColumnPrefixInvariant
 
 /-!
-# Track B: finite chronological marker-column induction
+# Track B: finite chronological leaf-pair marker-column induction
 
-The merged one-column lemma says that adding the missing two Devlin
-marker bits at an earlier position q cannot destroy an existing
-singleton-prefix equality through q+1. Extend this to ANY later cut m:
-updates at q < m use the one-column theorem, and those at q >= m
-are invisible to the m-prefix.
+Merged PR #1112 proves the one-column common-prefix invariant.
+We first extend it to an arbitrary later cut m, then define a GENUINE
+LEAF-PAIR update: the earlier position q and the later endpoint z must
+both be leaves in the frozen original raw graph. The earlier q guard
+is enforced by advanceOriginalLeafColumn; the later z guard is inside
+fillMissingDevlinLeafColumn.
 
-Then iterate exactly the columns whose ORIGINAL vertices are leaves.
-No marker is inserted at a split, and no later update can split a
-raw singleton-prefix equality. This is a structural invariant only:
-the global V3, all protected mixed meets, enriched quotient and flip
-absorption are separate mathematical obligations.
+This fixes an adversarially found edge-shape defect in an earlier draft:
+filling a column at an original leaf q for all z>q (including splits)
+would introduce forbidden Devlin marker edges. No such extra edges
+are inserted here.
+
+The final theorem is a one-way preservation of raw singleton-prefix
+equalities on ORIGINAL LEAVES through ANY finite stage. It does not
+assert global V3, a raw enriched flip quotient, protected mixed meets,
+or target flip absorption.
 -/
 
 namespace ThreeUniformDiaries
 namespace Ordered3Graph
 
-/-- Inserting the missing Devlin markers at q preserves every
-old one-type equality through an arbitrary cut m at or before
-both target vertices, not only through q+1. -/
+/-- Inserting missing markers at q preserves every old singleton
+equality through an arbitrary cut m at or before both compared
+vertices, whether q lies before the cut or after it. -/
 theorem fillMissingDevlinColumn_preserves_one_prefix_at_cut
     (R : Ordered3Graph Nat) (q m a b : Nat)
     (hq : 3 ≤ q) (hCap : m ≤ min a b)
@@ -69,18 +74,58 @@ theorem fillMissingDevlinColumn_preserves_one_prefix_at_cut
            (i = 2 ∧ ¬ DiaryLeafPriority.LexEarlier R q b))))
     simpa [hjq] using hRaw
 
-/-- Add the marker column at q precisely if q is a genuine
-leaf in the ORIGINAL raw graph; otherwise leave the current
-graph unchanged. Role edges are never modified by this step. -/
-noncomputable def advanceOriginalLeafColumn
-    (R G : Ordered3Graph Nat) (q : Nat) : Ordered3Graph Nat := by
-  classical
-  exact if DiaryLeafPriority.IsLeaf R q then
-    fillMissingDevlinColumn G q else G
+/-- Corrected leaf-pair constructor: target endpoint z is
+explicitly required to be a leaf of the original raw source.
+The q-leaf guard is implemented separately in the iteration. -/
+def fillMissingDevlinLeafColumn
+    (source G : Ordered3Graph Nat) (q : Nat) :
+    Ordered3Graph Nat where
+  edge x y z :=
+    G.edge x y z ∨
+    (y = q ∧ q < z ∧ DiaryLeafPriority.IsLeaf source z ∧
+      MissingDevlinPair G q z ∧
+      ((x = 1 ∧ DiaryLeafPriority.LexEarlier G q z) ∨
+       (x = 2 ∧ ¬ DiaryLeafPriority.LexEarlier G q z)))
 
-/-- Stage n of the chronological assignment: process original
-positions q < n in increasing order, touching only original leaves.
-This recurrence uses the evolving graph for LexEarlier choices. -/
+/-- At a genuine original leaf endpoint z, the corrected
+constructor agrees with the unrestricted generic column API. -/
+theorem fillMissingDevlinLeafColumn_edge_iff_of_leaf
+    (source G : Ordered3Graph Nat) (q x y z : Nat)
+    (hz : DiaryLeafPriority.IsLeaf source z) :
+    (fillMissingDevlinLeafColumn source G q).edge x y z ↔
+      (fillMissingDevlinColumn G q).edge x y z := by
+  simp [fillMissingDevlinLeafColumn, fillMissingDevlinColumn, hz]
+
+/-- Exact arbitrary-cut singleton-prefix preservation for two
+original LEAVES under the corrected role-safe leaf-pair update. -/
+theorem fillMissingDevlinLeafColumn_preserves_one_prefix_at_cut
+    (source G : Ordered3Graph Nat) (q m a b : Nat)
+    (hq : 3 ≤ q)
+    (ha : DiaryLeafPriority.IsLeaf source a)
+    (hb : DiaryLeafPriority.IsLeaf source b)
+    (hCap : m ≤ min a b)
+    (hs : G.SameOneTypeBelow m a b) :
+    (fillMissingDevlinLeafColumn source G q).SameOneTypeBelow m a b := by
+  have hUnrestricted :=
+    fillMissingDevlinColumn_preserves_one_prefix_at_cut
+      G q m a b hq hCap hs
+  intro i j hij hjm
+  rw [fillMissingDevlinLeafColumn_edge_iff_of_leaf source G q i j a ha,
+      fillMissingDevlinLeafColumn_edge_iff_of_leaf source G q i j b hb]
+  exact hUnrestricted hij hjm
+
+/-- Advance at q only if q is an original leaf; the fill
+constructor additionally checks that its later endpoint is an
+original leaf, preventing marker edges into split vertices. -/
+noncomputable def advanceOriginalLeafColumn
+    (source G : Ordered3Graph Nat) (q : Nat) :
+    Ordered3Graph Nat := by
+  classical
+  exact if DiaryLeafPriority.IsLeaf source q then
+    fillMissingDevlinLeafColumn source G q else G
+
+/-- Process all original leaf columns q<n in increasing order.
+Each new orientation reads LexEarlier in the evolving graph. -/
 noncomputable def fillOriginalLeafColumns
     (R : Ordered3Graph Nat) (n : Nat) : Ordered3Graph Nat := by
   classical
@@ -96,13 +141,14 @@ theorem fillOriginalLeafColumns_succ
       advanceOriginalLeafColumn R (fillOriginalLeafColumns R n) n := by
   simp [fillOriginalLeafColumns]
 
-/-- Every raw singleton equality below m survives ANY finite
-number of chronological leaf-column assignments, including
-columns before m. This is the finite global form of the
-common-prefix preservation invariant; it does not assert
-that raw-distinct types remain distinct. -/
+/-- Every raw singleton-type equality of ORIGINAL LEAVES at a
+cut m≤min(a,b) survives an arbitrary finite number of the
+role-safe chronological leaf-pair assignments. Only the
+forward preservation is asserted. -/
 theorem fillOriginalLeafColumns_preserves_raw_one_prefix
     (R : Ordered3Graph Nat) (n m a b : Nat)
+    (ha : DiaryLeafPriority.IsLeaf R a)
+    (hb : DiaryLeafPriority.IsLeaf R b)
     (hCap : m ≤ min a b)
     (hs : R.SameOneTypeBelow m a b) :
     (fillOriginalLeafColumns R n).SameOneTypeBelow m a b := by
@@ -114,8 +160,9 @@ theorem fillOriginalLeafColumns_preserves_raw_one_prefix
       by_cases hLeaf : DiaryLeafPriority.IsLeaf R n
       · have hQ : 3 ≤ n := hLeaf.1
         have hStep :=
-          fillMissingDevlinColumn_preserves_one_prefix_at_cut
-            (fillOriginalLeafColumns R n) n m a b hQ hCap ih
+          fillMissingDevlinLeafColumn_preserves_one_prefix_at_cut
+            R (fillOriginalLeafColumns R n) n m a b
+            hQ ha hb hCap ih
         simpa [advanceOriginalLeafColumn, hLeaf] using hStep
       · simpa [advanceOriginalLeafColumn, hLeaf] using ih
 
