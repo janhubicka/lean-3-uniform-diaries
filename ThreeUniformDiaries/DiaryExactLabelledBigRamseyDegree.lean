@@ -64,7 +64,7 @@ theorem exactDiaryCount_is_labelledBigRamseyBound
       G U hUniversal A χ
   refine ⟨w, palette.toFinset, ?_, ?_⟩
   · calc
-      palette.toFinset.card ≤ palette.length := List.toFinset_card_le
+      palette.toFinset.card ≤ palette.length := List.toFinset_card_le palette
       _ = (∑ P ∈ allIncreasingPresentations A,
           (unmarkedDiariesOfIncreasingPresentation A P).card) *
             Fintype.card (FiniteHypergraphAut A.toOrdered3Graph a) :=
