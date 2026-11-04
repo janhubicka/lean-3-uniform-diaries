@@ -113,16 +113,16 @@ theorem twoLeaf_induced_edge_iff_right_bit
     · subst x
       subst y
       subst z
-      simpa only [h0Image,h1Image,hsImage] using htOne.2.1
+      simpa only [h0Image,h1Image,hMeet] using htOne.2.1
     · subst x
       subst y
       rcases hzAB with hzA | hzB
       · subst z
         have hK : K.edge 0 t c := hLeft.mp he
-        simpa only [h0Image,hsImage,hA] using hK
+        simpa only [h0Image,hMeet,hA] using hK
       · subst z
         have hK : K.edge 0 t d := hBit.mp he
-        simpa only [h0Image,hsImage,hB] using hK
+        simpa only [h0Image,hMeet,hB] using hK
     · subst y
       subst z
       rcases hx12 with hx1 | hx2
@@ -160,13 +160,13 @@ theorem twoLeaf_induced_edge_iff_right_bit
           hInject z a hz haMem (hZC.trans hA.symm)
         subst z
         have hK : K.edge 0 t c := by
-          simpa only [h0Image,hsImage,hA] using he
+          simpa only [h0Image,hMeet,hA] using he
         exact hLeft.mpr hK
       · have hzB : z = b :=
           hInject z b hz hbMem (hZD.trans hB.symm)
         subst z
         have hK : K.edge 0 t d := by
-          simpa only [h0Image,hsImage,hB] using he
+          simpa only [h0Image,hMeet,hB] using he
         exact hBit.mpr hK
     · have hyA : y = a :=
         hInject y a hy haMem (hYC.trans hA.symm)
