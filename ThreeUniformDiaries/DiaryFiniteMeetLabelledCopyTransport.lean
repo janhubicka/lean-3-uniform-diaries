@@ -20,7 +20,7 @@ or lower big Ramsey degree assumption here.
 namespace ThreeUniformDiaries
 namespace DiaryLeafPriority
 
-open Ordered3Graph
+open _root_.ThreeUniformDiaries.Ordered3Graph
 
 /-- Under a bounded finite FULL meet embedding, the symmetric
 unordered hyperedge predicate is preserved AND reflected on any
@@ -56,7 +56,7 @@ theorem FiniteMeetEmbedding.unorderedEdge_iff_actual
       have hjk' := (hOrder j k).mpr hjk
       exact ⟨hij', hjk',
         (E.edge_iff i.val j.val k.val hij' hjk' k.isLt).mp he⟩
-  unfold Ordered3Graph.unorderedEdge
+  unfold _root_.ThreeUniformDiaries.Ordered3Graph.unorderedEdge
   exact or_congr (hTriple a b c)
     (or_congr (hTriple a c b)
       (or_congr (hTriple b a c)
