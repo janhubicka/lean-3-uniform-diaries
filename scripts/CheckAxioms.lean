@@ -1,4 +1,5 @@
 import ThreeUniformDiaries
+#print axioms ThreeUniformDiaries.nonempty_genericEnumerated3Graph
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_countable_diary_order_equiv_leaf_reduct
 
