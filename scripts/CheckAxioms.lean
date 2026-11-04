@@ -2663,3 +2663,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.second_leaf_reserve_iff_three_gaps
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.twoLeafSupportedEdge_shapes
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.twoLeaf_induced_edge_iff_right_bit
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.second_leaf_fixed_v_reserved_successor_iff
