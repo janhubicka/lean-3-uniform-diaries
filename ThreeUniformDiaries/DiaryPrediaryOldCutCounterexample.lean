@@ -188,5 +188,65 @@ theorem oldCutFiveVertex_no_finite_preserving_completion
     (f 3) (f 4) (hf (by omega)) hf4 h3 h4
     (hPreserve oldCutFiveVertex_sameOneBelowThree)
 
+
+/-- The literal manuscript-strength contradiction: even assuming
+the finite embedding fixes all three markers and preserves/refects
+ALL source triples below five, its two leaf images must be true
+target leaves. The false old-cut clause would then violate S1.
+
+The hypothesis tests only source vertices < 5; no artificial
+zero-extended source tail is ever treated as part of the finite
+pre-diary. -/
+theorem oldCutFiveVertex_no_markerFixed_induced_oldCut_completion
+    {K : Ordered3Graph Nat} {n : Nat}
+    (D : FiniteRoleDiaryBlock K n)
+    (f : Nat → Nat) (hf : StrictMono f)
+    (hf0 : f 0 = 0) (hf1 : f 1 = 1) (hf2 : f 2 = 2)
+    (hf4 : f 4 < n)
+    (hInduced : ∀ x y z : Nat,
+      x < y → y < z → z < 5 →
+      (K.edge (f x) (f y) (f z) ↔
+        oldCutFiveVertexPrediary.edge x y z)) :
+    ¬ (oldCutFiveVertexPrediary.SameOneTypeBelow 3 3 4 →
+       K.SameOneTypeBelow (f 3) (f 3) (f 4)) := by
+  have hge3 : 3 ≤ f 3 := by
+    have h := hf (show (2 : Nat) < 3 by omega)
+    rw [hf2] at h
+    omega
+  have hge4 : 3 ≤ f 4 := by
+    have h := hf (show (2 : Nat) < 4 by omega)
+    rw [hf2] at h
+    omega
+  have hLeaf3 : IsLeaf K (f 3) := by
+    refine ⟨hge3, ?_, ?_⟩
+    · intro he
+      have hTarget : K.edge (f 0) (f 1) (f 3) := by
+        simpa only [hf0, hf1] using he
+      have hSource := (hInduced 0 1 3
+        (by omega) (by omega) (by omega)).mp hTarget
+      simpa [oldCutFiveVertexPrediary] using hSource
+    · intro he
+      have hTarget : K.edge (f 0) (f 2) (f 3) := by
+        simpa only [hf0, hf2] using he
+      have hSource := (hInduced 0 2 3
+        (by omega) (by omega) (by omega)).mp hTarget
+      simpa [oldCutFiveVertexPrediary] using hSource
+  have hLeaf4 : IsLeaf K (f 4) := by
+    refine ⟨hge4, ?_, ?_⟩
+    · intro he
+      have hTarget : K.edge (f 0) (f 1) (f 4) := by
+        simpa only [hf0, hf1] using he
+      have hSource := (hInduced 0 1 4
+        (by omega) (by omega) (by omega)).mp hTarget
+      simpa [oldCutFiveVertexPrediary] using hSource
+    · intro he
+      have hTarget : K.edge (f 0) (f 2) (f 4) := by
+        simpa only [hf0, hf2] using he
+      have hSource := (hInduced 0 2 4
+        (by omega) (by omega) (by omega)).mp hTarget
+      simpa [oldCutFiveVertexPrediary] using hSource
+  exact oldCutFiveVertex_no_finite_preserving_completion
+    D f hf hf4 hLeaf3 hLeaf4
+
 end DiaryLeafPriority
 end ThreeUniformDiaries
