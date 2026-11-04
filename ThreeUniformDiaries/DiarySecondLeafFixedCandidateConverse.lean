@@ -214,7 +214,6 @@ theorem RoleDiary.second_leaf_fixed_v_reserved_successor_iff
             subst z
             change K.oneMeetLevel (g a) (g m) = g s
             rw [hGA,hGM,hGS]
-            rfl
         · rcases hzCases with hZA | hZM
           · subst u
             subst z
