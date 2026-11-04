@@ -1,79 +1,74 @@
 import ThreeUniformDiaries.GenericExtensionStep
 
 /-!
-# An explicit enumerated generic 3-uniform hypergraph exists
+# Explicit existence of an enumerated generic 3-uniform hypergraph
 
-The existing GenericEnumerated3Graph API takes an actual ordered graph
-and assumes its finite initial-segment extension property. The upper
-Ramsey theorems had so far carried an explicit G parameter. We now
-construct one concrete G with **no genericity existence assumption**.
+Every finite Boolean pattern on pairs below m is encoded as an ordinary
+finite set of pairs of natural numbers. Put that finite set's encoded
+number into the second component of Nat.pair m code. The pairing
+function makes the new vertex v at least m, and Nat.unpair recovers
+the encoded finite adjacency table.
 
-Use Nat.pair m code to enumerate all finite patterns on pairs of the
-first m vertices. The left pairing coordinate satisfies
-m ≤ Nat.pair m code. Decode the second coordinate as the finite set
-of ordered pairs on Fin m whose incident triple is an edge. For any
-specified pattern, choose the vertex encoding exactly that finite set.
-Nat.unpair_pair and Encodable.encodek prove its prescribed adjacency
-table verbatim.
-
-All actual edges are restricted to increasing triples; missing
-or undecodable codes simply produce nonedges. No Fraïssé limit,
-choice of an unspecified generic graph, or Ramsey theorem is used.
+We deliberately decode an ordinary Finset (Nat × Nat), rather than
+a dependent Finset (Fin m × Fin m). This avoids transporting finite
+index types through the equalities for Nat.unpair_pair. No abstract
+generic existence assumption or Ramsey theorem is used.
 -/
 
 namespace ThreeUniformDiaries
 
-/-- Encode an increasing edge (a,b,c) through the finite pair-pattern
-stored in the Nat.unpair code of its last vertex c. -/
-noncomputable def pairCodedGenericEdge (a b c : Nat) : Prop := by
-  classical
-  let m := (Nat.unpair c).1
-  exact a < b ∧ b < c ∧
-    (if ha : a < m then
-      if hb : b < m then
-        (⟨a,ha⟩,⟨b,hb⟩) ∈
-          ((Encodable.decode (Nat.unpair c).2 :
-            Option (Finset (Fin m × Fin m))).getD ∅)
-      else False
-    else False)
+/-- A 3-edge is read from the ordinary finite pair table encoded
+in its greatest vertex, with the increasing-triple condition explicit. -/
+noncomputable def pairCodedGenericEdge (a b c : Nat) : Prop :=
+  a < b ∧ b < c ∧
+    (a,b) ∈ ((Encodable.decode (Nat.unpair c).2 :
+      Option (Finset (Nat × Nat))).getD ∅)
 
-/-- A concrete witness to the full enumerated generic extension
-property, not merely a finite-stage source embedding. -/
+/-- An actual generically extendible enumerated 3-hypergraph. -/
 noncomputable def canonicalGenericEnumerated3Graph :
     GenericEnumerated3Graph where
   graph := ⟨pairCodedGenericEdge⟩
   extension := by
     classical
     intro m pattern
-    let S : Finset (Fin m × Fin m) :=
-      Finset.univ.filter
-        (fun p => p.1 < p.2 ∧ pattern p.1 p.2 = true)
+    let S : Finset (Nat × Nat) :=
+      ((Finset.univ : Finset (Fin m × Fin m)).filter
+        (fun p => p.1 < p.2 ∧ pattern p.1 p.2 = true)).image
+        (fun p => (p.1.val, p.2.val))
     let v : Nat := Nat.pair m (Encodable.encode S)
     have hvm : m ≤ v := Nat.left_le_pair m (Encodable.encode S)
     refine ⟨v, hvm, ?_⟩
     intro i j hij
     have hJV : j.val < v := lt_of_lt_of_le j.isLt hvm
-    have hS : (i,j) ∈ S ↔ pattern i j = true := by
-      simp [S, hij]
+    have hS : (i.val,j.val) ∈ S ↔ pattern i j = true := by
+      constructor
+      · intro h
+        obtain ⟨p, hp, heq⟩ := Finset.mem_image.mp h
+        have hi : p.1 = i := Fin.ext (congrArg Prod.fst heq)
+        have hj : p.2 = j := Fin.ext (congrArg Prod.snd heq)
+        have hbit : pattern p.1 p.2 = true :=
+          (Finset.mem_filter.mp hp).2.2
+        simpa only [hi,hj] using hbit
+      · intro h
+        apply Finset.mem_image.mpr
+        refine ⟨(i,j), ?_, rfl⟩
+        exact Finset.mem_filter.mpr
+          ⟨Finset.mem_univ _, ⟨hij, h⟩⟩
     have hDecode :
         (Encodable.decode (Encodable.encode S) :
-          Option (Finset (Fin m × Fin m))) = some S :=
+          Option (Finset (Nat × Nat))) = some S :=
       Encodable.encodek S
     change pairCodedGenericEdge i.val j.val v ↔
       pattern i j = true
     calc
-      pairCodedGenericEdge i.val j.val v ↔ (i,j) ∈ S := by
+      pairCodedGenericEdge i.val j.val v ↔
+          (i.val,j.val) ∈ S := by
         simp [pairCodedGenericEdge, v, Nat.unpair_pair,
-          hij, hJV, i.isLt, j.isLt]
-        change (i,j) ∈
-          ((Encodable.decode (Encodable.encode S) :
-            Option (Finset (Fin m × Fin m))).getD ∅) ↔ (i,j) ∈ S
-        simp only [hDecode, Option.getD_some]
+          hij, hJV, hDecode]
       _ ↔ pattern i j = true := hS
 
-/-- There exists at least one actual enumerated generic 3-hypergraph.
-Thus a theorem quantified over G can be instantiated without
-postulating a generic existence axiom. -/
+/-- A concrete enumerated generic hypergraph exists, rather than
+only a structure parametrised by an unproved extension property. -/
 theorem nonempty_genericEnumerated3Graph :
     Nonempty GenericEnumerated3Graph :=
   ⟨canonicalGenericEnumerated3Graph⟩
