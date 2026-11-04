@@ -28,6 +28,7 @@ three-graph, even before imposing diary V/E/S constraints. -/
 theorem oneMeetLevel_comm
     (H : Ordered3Graph Nat) (a b : Nat) :
     H.oneMeetLevel a b = H.oneMeetLevel b a := by
+  classical
   have habBound : H.oneMeetLevel a b ≤ min b a := by
     simpa only [min_comm] using H.oneMeetLevel_le_min a b
   have hbaBound : H.oneMeetLevel b a ≤ min a b := by
