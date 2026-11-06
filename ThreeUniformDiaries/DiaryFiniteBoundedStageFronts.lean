@@ -202,7 +202,7 @@ theorem admissibleBoundedStageFront_contains_normalized
   unfold admissibleBoundedStageFront
   apply Finset.mem_filter.mpr
   exact ⟨canonicalSupportMap_mem_boundedSupportCodes
-      _ b f hBound, P.normalize DH F m f⟩
+      _ b f hBound, AdmissibleCofinalDiaryStage.normalize DH F m f P⟩
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
