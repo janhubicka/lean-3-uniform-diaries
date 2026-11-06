@@ -111,7 +111,6 @@ theorem emptySource_markedDiaryCount_eq_one
   rw [markedDiaryCount_eq_orderedDiarySum_mul_aut A,
       emptySource_allIncreasingDiarySum_eq_one A,
       emptySource_finiteHypergraphAut_card_eq_one A]
-  norm_num
 
 end ATRFiniteDecoder
 end ThreeUniformDiaries
