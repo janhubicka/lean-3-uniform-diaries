@@ -82,6 +82,8 @@ theorem isUnlabelledBigRamseyBound_iff_onActualCopies
             (Finset.univ : Finset (Fin a)).image q.val :=
       ⟨v.postcompose w, rfl⟩
     have hv := hCover v
+    change total ((Finset.univ : Finset (Fin a)).image
+      (v.postcompose w).val) ∈ palette at hv
     simpa only [total, dif_pos hReal] using hv
   · intro hBound κ _ _ χ
     let restricted : GenuineUnlabelledCopies A U → κ :=
@@ -90,6 +92,8 @@ theorem isUnlabelledBigRamseyBound_iff_onActualCopies
       hBound κ restricted
     refine ⟨w, palette, hCard, ?_⟩
     intro v
+    change χ ((Finset.univ : Finset (Fin a)).image
+      (v.postcompose w).val) ∈ palette
     simpa only [restricted] using hCover v
 
 end ATRFiniteDecoder
