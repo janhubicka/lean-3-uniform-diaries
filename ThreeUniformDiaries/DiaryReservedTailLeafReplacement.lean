@@ -118,7 +118,7 @@ theorem ReservedDiaryStage.replace_new_leaf_of_same_tail_type
       by_cases hwEq : w = m
       · subst w
         rw [hOther u huNe,hNew]
-        exact (P.1.ordered u m hu hmS huw).trans_le hvLater
+        exact lt_of_lt_of_le (P.1.ordered u m hu hmS huw) hvLater
       · rw [hOther u huNe,hOther w hwEq]
         exact P.1.ordered u w hu hw huw
     · rw [hOther 0 (by have hm3 := hm.1; omega)]
