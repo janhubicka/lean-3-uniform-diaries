@@ -40,8 +40,8 @@ def HasCofinalCertifiedDiaryFusion
     (F : UnorderedEmbedding U H) : Prop :=
   ∀ w₀ : UnorderedEmbedding U U,
     ∃ i : UnorderedEmbedding U U,
-      CertifiedDiaryFusionData D H
-        (fun t => F (w₀ (i t)))
+      Nonempty (CertifiedDiaryFusionData D H
+        (fun t => F (w₀ (i t))))
 
 /-- The previously used uniform 'for every w' certificate
 condition implies the cofinal condition, by choosing
@@ -65,8 +65,8 @@ theorem hasCofinalCertifiedDiaryFusion_of_all
       rfl
   }
   refine ⟨identity, ?_⟩
-  change CertifiedDiaryFusionData D H (fun t => F (w₀ t))
-  exact hAll w₀
+  change Nonempty (CertifiedDiaryFusionData D H (fun t => F (w₀ t)))
+  exact ⟨hAll w₀⟩
 
 /-- Sharp labelled diary upper palette with a fully
 TypeRespecting diary selfembedding under only COFINAL
@@ -110,7 +110,9 @@ theorem actualFiniteAuxRamsey_allDiaryLeaf_upper_of_cofinalCertifiedFusion
   obtain ⟨w₀, palette, hLength, hBound⟩ :=
     actualFiniteAuxRamsey_sharp_upper_on_embeddings_noGeneric
       U hUniversal A χU
-  obtain ⟨i, C⟩ := hCofinal w₀
+  obtain ⟨i, hC⟩ := hCofinal w₀
+  let C : CertifiedDiaryFusionData D H
+      (fun t => F (w₀ (i t))) := Classical.choice hC
   let w : UnorderedEmbedding U U := w₀.comp i
   have hCertificate :
       CertifiedDiaryFusionData D H (fun t => F (w t)) := by
