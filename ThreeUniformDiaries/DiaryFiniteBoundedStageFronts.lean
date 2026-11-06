@@ -85,7 +85,7 @@ theorem boundedSupportCodes_mem_bound
 normalisation. In particular RHS meet images are still on the
 support; this uses its exact one-/two-meet closure on selected
 genuine source leaves. -/
-theorem AdmissibleCofinalDiaryStage.normalize
+theorem AdmissibleCofinalDiaryStage.normalize_on_support
     {H K : Ordered3Graph Nat}
     (DH : RoleDiary H) (F : Nat → Nat)
     (m : Nat) (f : Nat → Nat)
@@ -202,7 +202,7 @@ theorem admissibleBoundedStageFront_contains_normalized
   unfold admissibleBoundedStageFront
   apply Finset.mem_filter.mpr
   exact ⟨canonicalSupportMap_mem_boundedSupportCodes
-      _ b f hBound, AdmissibleCofinalDiaryStage.normalize DH F m f P⟩
+      _ b f hBound, AdmissibleCofinalDiaryStage.normalize_on_support DH F m f P⟩
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
