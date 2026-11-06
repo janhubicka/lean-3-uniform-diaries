@@ -106,13 +106,13 @@ theorem fillOriginalLeafColumns_sameAux_iff_of_fixed_pairs
   · intro h i hi
     exact (fillOriginalLeafColumns_edge_iff_of_fixed_pair
       R n i a b hAB).symm.trans
-        ((h i hi).trans
+        ((h (a := i) hi).trans
           (fillOriginalLeafColumns_edge_iff_of_fixed_pair
             R n i c d hCD))
   · intro h i hi
     exact (fillOriginalLeafColumns_edge_iff_of_fixed_pair
       R n i a b hAB).trans
-        ((h i hi).trans
+        ((h (a := i) hi).trans
           (fillOriginalLeafColumns_edge_iff_of_fixed_pair
             R n i c d hCD).symm)
 
