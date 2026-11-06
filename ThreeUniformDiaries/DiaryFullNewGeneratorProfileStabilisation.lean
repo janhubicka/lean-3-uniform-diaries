@@ -28,7 +28,7 @@ profiles, not merely a finite set of Nat coordinates. -/
 theorem finite_choice_persistent_of_downward_type
     {α : Type*} [DecidableEq α]
     (W : Finset α) (P : α → Nat → Prop)
-    (hDown : ∀ v n k : Nat, k ≤ n → P v n → P v k)
+    (hDown : ∀ (v : α) (n k : Nat), k ≤ n → P v n → P v k)
     (hCover : ∀ n : Nat, ∃ v : α, v ∈ W ∧ P v n) :
     ∃ v : α, v ∈ W ∧ ∀ n : Nat, P v n := by
   classical
