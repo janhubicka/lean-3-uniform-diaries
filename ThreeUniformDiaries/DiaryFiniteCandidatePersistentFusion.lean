@@ -143,7 +143,7 @@ theorem persistent_reserved_marker_base
   obtain ⟨g,Q⟩ :=
     exists_independent_reserved_stage_in_universal_leaf_range
       DH DK G hUniversal F hFleaf n
-  refine ⟨g,Q,?_⟩
+  refine ⟨g,by simpa only [Nat.zero_add] using Q,?_⟩
   intro u hu
   rw [countableDiaryFiniteSupport_zero_eq] at hu
   have hSmall : u < 3 := Finset.mem_range.mp hu
