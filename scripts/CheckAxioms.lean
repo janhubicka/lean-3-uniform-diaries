@@ -2695,3 +2695,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_independent_reserved_stage_in_universal_leaf_range
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.ReservedDiaryStage.restrict
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_reserved_map_for_all_stages_up_to
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finite_choice_persistent_of_downward
