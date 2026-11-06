@@ -58,7 +58,7 @@ theorem old_new_oneMeet_stabilizes_over_finite_horizons
       (K.oneMeetLevel_le_min (f a) (g m)).trans
         (min_le_left _ _)
     refine ⟨r,?_ ,g,Q,hOld,rfl⟩
-    exact Finset.mem_range.mpr (by dsimp [W]; omega)
+    exact Finset.mem_range.mpr (by omega)
   obtain ⟨r,hr,hAll⟩ :=
     finite_choice_persistent_of_downward W P hDown hFinite
   refine ⟨r,?_,hAll⟩
