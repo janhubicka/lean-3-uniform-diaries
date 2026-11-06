@@ -76,7 +76,8 @@ theorem persistent_stage_has_stable_new_nonleaf_record
       ReservedDiaryStage H K F (m + 1 + n) g ∧
       CofinalDiaryStageCompatible H m f g ∧
       (fun u : T => g u.val) = p
-  have hDown : ∀ p n k : Nat, k ≤ n → R p n → R p k := by
+  have hDown : ∀ (p : T → Nat) (n k : Nat),
+      k ≤ n → R p n → R p k := by
     intro p n k hkn
     rintro ⟨g,Q,hOld,hProfile⟩
     exact ⟨g,Q.restrict (by omega),hOld,hProfile⟩
