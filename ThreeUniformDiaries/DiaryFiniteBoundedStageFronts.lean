@@ -83,7 +83,7 @@ theorem boundedSupportCodes_mem_bound
 
 /-- All admissible stage constraints survive canonical support
 normalisation. In particular RHS meet images are still on the
-support; this uses its exact one-/two-meet closure on selected
+support; this uses its exact singleton- and pair-meet closure on selected
 genuine source leaves. -/
 theorem AdmissibleCofinalDiaryStage.normalize_on_support
     {H K : Ordered3Graph Nat}
