@@ -31,8 +31,6 @@ from previously verified finite predicates.
 namespace ThreeUniformDiaries
 namespace DiaryLeafPriority
 
-open Ordered3Graph
-
 /-- The actual certified Safe-stage fusion structure, assembled from
 a role-diary source H, a role-diary target K, a countably universal
 U with prescribed unordered induced leaf map F:U→K, and independent
@@ -44,8 +42,8 @@ input, not silently derived from separate finite-horizon copies. -/
 noncomputable def certifiedFusion_of_persistent_finite_covers
     {H U K : Ordered3Graph Nat}
     (DH : RoleDiary H) (DK : RoleDiary K)
-    (hUniversal : CountablyUniversal U)
-    (F : UnorderedEmbedding U K)
+    (hUniversal : _root_.ThreeUniformDiaries.Ordered3Graph.CountablyUniversal U)
+    (F : _root_.ThreeUniformDiaries.Ordered3Graph.UnorderedEmbedding U K)
     (hFleaf : ∀ t : Nat, IsLeaf K (F t))
     (hFiniteCover : ∀ m : Nat, IsLeaf H m →
       ∀ f : Nat → Nat,
@@ -79,8 +77,8 @@ COFINAL Safe-fusion Track A upper interface. -/
 theorem nonempty_certifiedFusion_of_persistent_finite_covers
     {H U K : Ordered3Graph Nat}
     (DH : RoleDiary H) (DK : RoleDiary K)
-    (hUniversal : CountablyUniversal U)
-    (F : UnorderedEmbedding U K)
+    (hUniversal : _root_.ThreeUniformDiaries.Ordered3Graph.CountablyUniversal U)
+    (F : _root_.ThreeUniformDiaries.Ordered3Graph.UnorderedEmbedding U K)
     (hFleaf : ∀ t : Nat, IsLeaf K (F t))
     (hFiniteCover : ∀ m : Nat, IsLeaf H m →
       ∀ f : Nat → Nat,
