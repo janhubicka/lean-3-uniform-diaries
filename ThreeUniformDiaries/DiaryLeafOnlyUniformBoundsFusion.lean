@@ -103,7 +103,7 @@ theorem pointwiseBounds_of_uniform_leaf_bounds
       Finset.mem_range.mpr hEarly
     have hSup : maps m u ≤
         (Finset.range (a+1)).sup (fun k => maps k u) :=
-      Finset.le_sup hm
+      Finset.le_sup (f := fun k : Nat => maps k u) hm
     have hBound : maps m u < max (leafCap a)
         ((Finset.range (a+1)).sup (fun k => maps k u)+1) :=
       lt_of_lt_of_le (Nat.lt_succ_of_le hSup)
