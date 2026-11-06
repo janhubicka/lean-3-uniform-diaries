@@ -1,5 +1,6 @@
 import ThreeUniformDiaries.DiaryCountableCertifiedFusion
 import ThreeUniformDiaries.DiaryCofinalStageRestrictions
+import ThreeUniformDiaries.DiaryCountableRelativeMarkerBase
 
 /-!
 # Track B: finitely many stage choices suffice for countable fusion
