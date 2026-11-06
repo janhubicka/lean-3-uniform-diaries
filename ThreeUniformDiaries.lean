@@ -995,3 +995,4 @@ import ThreeUniformDiaries.DiaryTailSingletonTypeCone
 import ThreeUniformDiaries.DiaryTailFullPairMeetCone
 import ThreeUniformDiaries.DiaryNewLeafMaxSupport
 import ThreeUniformDiaries.DiaryReservedTailLeafReplacement
+import ThreeUniformDiaries.DiaryCanonicalTailTypeCone
