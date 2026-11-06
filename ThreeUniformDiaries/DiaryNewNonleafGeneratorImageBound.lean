@@ -133,7 +133,8 @@ theorem new_nonleaf_generator_image_le_old_leaf_sup
       have haOld : a ∈ L := by
         rcases hSelectedCases a ha with haM | hOld
         · have hbBound := hSelectedLeM b hb
-          omega
+          have hmb : m < b := by simpa only [haM] using hab
+          exact False.elim ((not_lt_of_ge hbBound) hmb)
         · exact hOld
       have hMapped : g u =
           K.twoMeetLevel (g a) (g b) (g c) (g d) := by
