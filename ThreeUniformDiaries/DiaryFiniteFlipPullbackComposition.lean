@@ -83,8 +83,11 @@ theorem finiteDiaryPullbackGraph_comp_sourceFlip
         (finiteDiaryPullbackGraph T m g) n f) n :=
     finiteDiaryPullbackGraph_is_sourceFlip
       DA E.toMeetEmbedding E.image_bound FB
-  have hEq :=
-    finiteDiaryPullbackGraph_comp_of_bounded E g
+  have hEq :
+      finiteDiaryPullbackGraph
+        (finiteDiaryPullbackGraph T m g) n f =
+      finiteDiaryPullbackGraph T n (fun u => g (f u)) :=
+    finiteDiaryPullbackGraph_comp_of_bounded (T := T) E g
   refine ⟨FB, ?_, hEq⟩
   rw [hEq] at FAraw
   exact FAraw
