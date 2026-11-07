@@ -2824,3 +2824,4 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.mem_tailOneTypeCode_iff
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.tailOneTypeCode_eq_iff_sameOneTypeBelow
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.tailOneTypeCode_mem_finite_powerset
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.ReservedDiaryStage.replace_new_leaf_of_equal_finite_tail_code
