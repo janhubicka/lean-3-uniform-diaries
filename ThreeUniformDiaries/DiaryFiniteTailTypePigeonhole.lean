@@ -65,5 +65,53 @@ theorem exists_cofinal_tailOneTypeCode
     (fun n => tailOneTypeCode K B (F n))
     (fun n => tailOneTypeCode_mem_finite_powerset K B (F n))
 
+
+/-- An injection of Nat into Nat eventually escapes every bounded
+target interval: each of its finitely many possible small output
+values has at most one preimage. No monotonicity is assumed. -/
+theorem injective_nat_eventually_above
+    (F : Nat → Nat) (hInj : Function.Injective F)
+    (M : Nat) :
+    ∃ N : Nat, ∀ n : Nat, N ≤ n → M < F n := by
+  classical
+  let pre (t : Nat) : Nat :=
+    if ht : ∃ n : Nat, F n = t then Classical.choose ht else 0
+  let N : Nat := ((Finset.range (M + 1)).sup pre) + 1
+  refine ⟨N,?_⟩
+  intro n hn
+  by_contra hNot
+  have hFBound : F n ≤ M := by omega
+  have hMem : F n ∈ Finset.range (M + 1) :=
+    Finset.mem_range.mpr (by omega)
+  have hExists : ∃ k : Nat, F k = F n := ⟨n,rfl⟩
+  have hPreEq : F (pre (F n)) = F n := by
+    simpa only [pre,dif_pos hExists] using
+      (Classical.choose_spec hExists)
+  have hEq : pre (F n) = n := hInj hPreEq
+  have hSup : pre (F n) ≤ (Finset.range (M + 1)).sup pre :=
+    Finset.le_sup (f := pre) hMem
+  dsimp [N] at hn
+  omega
+
+/-- For an INJECTIVE prescribed outer leaf map, SOME complete mixed
+singleton type cone contains arbitrarily large target positions.
+The cone is chosen after seeing the map F; it is NOT guaranteed
+to be the one required by any fixed old diary stage. -/
+theorem exists_numerically_unbounded_tailOneTypeCode_fiber
+    (K : Ordered3Graph Nat) (B : Nat)
+    (F : Nat → Nat) (hInj : Function.Injective F) :
+    ∃ p : Finset (Nat × Nat),
+      p ∈ (tailOneTypeTests B).powerset ∧
+      ∀ M : Nat, ∃ n : Nat, M < F n ∧
+        tailOneTypeCode K B (F n) = p := by
+  obtain ⟨p,hp,hCofinal⟩ :=
+    exists_cofinal_tailOneTypeCode K B F
+  refine ⟨p,hp,?_⟩
+  intro M
+  obtain ⟨N,hEscape⟩ := injective_nat_eventually_above F hInj M
+  obtain ⟨n,hn,hCode⟩ := hCofinal N
+  exact ⟨n,hEscape n hn,hCode⟩
+
+
 end DiaryLeafPriority
 end ThreeUniformDiaries
