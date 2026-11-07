@@ -78,9 +78,10 @@ theorem ReservedDiaryStage.replace_new_leaf_of_same_tail_type
       ⟨hm.1,by omega,hm⟩
   have hMax (u : Nat) (hu : u ∈ S) : u ≤ m :=
     countableDiaryFiniteSupport_succ_le_new_leaf H m u hm hu
-  have hOther (u : Nat) (hu : u ≠ m) : g u = g0 u :=
+  have hOther (u : Nat) (hu : u ≠ m) :
+      replaceAt g0 m v u = g0 u :=
     replaceAt_other g0 m v u hu
-  have hNew : g m = v := replaceAt_eq g0 m v
+  have hNew : replaceAt g0 m v m = v := replaceAt_eq g0 m v
   have hOldLt (u : Nat) (hu : u ∈ S) (hum : u < m) :
       g0 u < g0 m :=
     P.1.ordered u m hu hmS hum
