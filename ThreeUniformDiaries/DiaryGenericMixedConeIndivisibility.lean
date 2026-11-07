@@ -120,5 +120,66 @@ theorem exists_generic_selfcopy_in_one_mixed_singleton_cone
   exact generic_finite_vertex_colouring_monochromatic G
     (fun t => DiaryLowerBoundColors.singletonColour K B (F t))
 
+
+/-- Under the EXACT manuscript outer-range hypothesis, a
+countably universal unordered U embedded into genuine target leaves
+contains an induced copy of the WHOLE enumerated generic
+3-hypergraph inside one complete mixed singleton-type cone.
+
+The embedding is genuinely UNORDERED, so no spurious monotonicity
+assumption on F or the intermediate universal inclusion is added.
+All output leaves lie inside the ORIGINAL specified F[U].
+The winning mixed colour is existential, not prescribed by an old
+stage, and this does not establish relative tail realization. -/
+theorem exists_generic_leaf_subcopy_in_some_mixed_singleton_cone
+    {U K : Ordered3Graph Nat}
+    (G : GenericEnumerated3Graph)
+    (hUniversal : Ordered3Graph.CountablyUniversal U)
+    (F : Ordered3Graph.UnorderedEmbedding U K)
+    (hFleaf : ∀ t : Nat, IsLeaf K (F t))
+    (B : Nat) :
+    ∃ j : Ordered3Graph.UnorderedEmbedding G.graph K,
+      (∀ t : Nat, IsLeaf K (j t)) ∧
+      (∀ t : Nat, ∃ s : Nat, j t = F s) ∧
+      ∃ p : Fin B → Fin B → Bool,
+        ∀ t : Nat,
+          DiaryLowerBoundColors.singletonColour K B (j t) = p := by
+  classical
+  let i : Ordered3Graph.UnorderedEmbedding G.graph U :=
+    Classical.choice (hUniversal G.graph)
+  let Fi : Nat → Nat := fun t => F (i t)
+  obtain ⟨u,hu,p,hMono⟩ :=
+    exists_generic_selfcopy_in_one_mixed_singleton_cone G K B Fi
+  let j : Ordered3Graph.UnorderedEmbedding G.graph K := {
+    toFun := fun t => F (i (u t))
+    injective := by
+      intro a b hEq
+      apply u.strictMono.injective
+      apply i.injective
+      exact F.injective hEq
+    edge_iff := by
+      intro a b c hab hbc
+      calc
+        G.graph.unorderedEdge a b c ↔ G.graph.edge a b c :=
+          G.graph.unorderedEdge_iff_of_lt a b c hab hbc
+        _ ↔ G.graph.edge (u a) (u b) (u c) :=
+          u.edge_iff hab hbc
+        _ ↔ G.graph.unorderedEdge (u a) (u b) (u c) :=
+          (G.graph.unorderedEdge_iff_of_lt
+            (u a) (u b) (u c)
+            (u.strictMono hab) (u.strictMono hbc)).symm
+        _ ↔ K.unorderedEdge (F (i (u a)))
+            (F (i (u b))) (F (i (u c))) :=
+          (F.comp i).edge_iff (u a) (u b) (u c)
+            (u.strictMono hab) (u.strictMono hbc)
+  }
+  refine ⟨j,?_,?_,p,?_⟩
+  · intro t
+    exact hFleaf (i (u t))
+  · intro t
+    exact ⟨i (u t),rfl⟩
+  · intro t
+    exact hMono t
+
 end DiaryLeafPriority
 end ThreeUniformDiaries
