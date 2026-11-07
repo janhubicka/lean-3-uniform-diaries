@@ -49,7 +49,10 @@ theorem countableDiaryFiniteSupport_succ_le_new_leaf
       have hCap : H.oneMeetLevel a b ≤ a :=
         (H.oneMeetLevel_le_min a b).trans (min_le_left _ _)
       have haM := hSelected a ha
-      omega
+      calc
+        u = H.oneMeetLevel a b := hEq.symm
+        _ ≤ a := hCap
+        _ ≤ m := haM
     · change u ∈
         ((finiteOrderedLeafPairs L).product
           (finiteOrderedLeafPairs L)).image
@@ -63,7 +66,10 @@ theorem countableDiaryFiniteSupport_succ_le_new_leaf
       have hCap : H.twoMeetLevel a b c d ≤ a :=
         (H.twoMeetLevel_le_min a b c d).trans (min_le_left _ _)
       have haM := hSelected a ha
-      omega
+      calc
+        u = H.twoMeetLevel a b c d := hEq.symm
+        _ ≤ a := hCap
+        _ ≤ m := haM
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
