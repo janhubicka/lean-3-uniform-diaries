@@ -1014,3 +1014,5 @@ import ThreeUniformDiaries.DiaryCanonicalTailTypeCone
 import ThreeUniformDiaries.DiarySingletonColourCofinalCone
 import ThreeUniformDiaries.DiarySingletonColourTailReplacement
 import ThreeUniformDiaries.DiaryUniformOldStageTailColour
+
+import ThreeUniformDiaries.DiaryFixedJointProfileColourEscape
