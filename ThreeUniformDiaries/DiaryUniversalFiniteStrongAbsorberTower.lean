@@ -187,5 +187,31 @@ theorem universalStrongAbsorberTower_absorbs_any_finite_size
       (by simpa only [hEq] using DA)
   simpa only [hEq] using hRaw
 
+
+/-- The SAME later target tower stage absorbs an arbitrary prescribed
+finite list of source diaries, even when their finite frames have
+DIFFERENT sizes (all at least 4). Choose a stage beyond the largest
+source frame, then use the verified persistence across the tower.
+
+This is target-side uniformity only. It does not select a compatible
+family of source embeddings inside the successive target flips. -/
+theorem universalStrongAbsorberTower_eventually_absorbs_finiteFamily
+    (Ds : List FiniteDiaryInput)
+    (hFour : ∀ D : FiniteDiaryInput, D ∈ Ds → 4 ≤ D.bound) :
+    ∃ j : Nat,
+      ∀ D : FiniteDiaryInput, D ∈ Ds →
+        AbsorbsEveryTargetFlipInside
+          D.graph (universalStrongAbsorberTower j).graph
+          D.bound (universalStrongAbsorberTower j).bound := by
+  classical
+  let M : Nat := Ds.toFinset.sup (fun D : FiniteDiaryInput => D.bound)
+  refine ⟨M, ?_⟩
+  intro D hD
+  have hMem : D ∈ Ds.toFinset := by simpa using hD
+  have hBound : D.bound ≤ M := Finset.le_sup hMem
+  have hLate : D.bound - 3 ≤ M := by omega
+  exact universalStrongAbsorberTower_absorbs_any_finite_size
+    D.bound M (hFour D hD) hLate D.graph D.diary
+
 end DiaryLeafPriority
 end ThreeUniformDiaries
