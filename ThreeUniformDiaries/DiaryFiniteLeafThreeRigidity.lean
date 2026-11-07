@@ -1,5 +1,6 @@
 import ThreeUniformDiaries.DiaryFiniteFamilyJointEmbedding
 import ThreeUniformDiaries.DiaryFiniteRoleBlockInterface
+import ThreeUniformDiaries.DiaryFiniteBoundedUniversality
 
 /-!
 # Track B: concrete obstruction to literal initial-segment diary extensions
@@ -143,6 +144,30 @@ theorem no_literal_larger_finite_diary_extending_leaf_three
   intro DG
   have hSmall := DG.leaf_three_forces_bound_four hLeaf3
   omega
+
+
+/-- The obstruction persists even when the old four-vertex
+source is required to embed by a genuine BOUNDED PROTECTED
+finite meet embedding: NO such copy can fix all four
+original vertex ranks in any larger genuine full target.
+
+This separates the actual existential protected-copy theorem
+from the false identity-on-old-prefix strengthening. -/
+theorem no_bounded_full_target_extension_fixing_first_four
+    {C : Ordered3Graph Nat} {l : Nat}
+    (DC : FiniteRoleDiaryBlock C l)
+    (hLarge : 4 < l) :
+    ¬ ∃ f : Nat → Nat,
+      FiniteBoundedMeetEmbedding finiteEmptyThree C 4 l f ∧
+      (∀ u : Nat, u < 4 → f u = u) := by
+  rintro ⟨f,E,hFix⟩
+  have hLeafImage : IsLeaf C (f 3) :=
+    (E.toMeetEmbedding.leaf_iff 3 (by omega) (by omega)).mpr
+      finiteEmptyThree_leaf_three
+  have hLeaf3 : IsLeaf C 3 := by
+    simpa only [hFix 3 (by omega)] using hLeafImage
+  exact (no_literal_larger_finite_diary_extending_leaf_three
+    hLarge hLeaf3) DC
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
