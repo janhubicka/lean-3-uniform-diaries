@@ -82,6 +82,9 @@ theorem ReservedDiaryStage.replace_new_leaf_of_same_tail_type
       replaceAt g0 m v u = g0 u :=
     replaceAt_other g0 m v u hu
   have hNew : replaceAt g0 m v m = v := replaceAt_eq g0 m v
+  have hOtherG (u : Nat) (hu : u ≠ m) : g u = g0 u :=
+    replaceAt_other g0 m v u hu
+  have hNewG : g m = v := replaceAt_eq g0 m v
   have hOldLt (u : Nat) (hu : u ∈ S) (hum : u < m) :
       g0 u < g0 m :=
     P.1.ordered u m hu hmS hum
@@ -97,7 +100,7 @@ theorem ReservedDiaryStage.replace_new_leaf_of_same_tail_type
   have hNewAfterOld (u : Nat) (hu : u ∈ S) (hum : u < m) :
       K.oneMeetLevel (g u) (g m) =
         K.oneMeetLevel (g0 u) (g0 m) := by
-    rw [hOther u (ne_of_lt hum),hNew]
+    rw [hOtherG u (ne_of_lt hum),hNewG]
     exact hOldMeet u hu hum
   refine ⟨?_,?_⟩
   · refine {
@@ -210,7 +213,7 @@ theorem ReservedDiaryStage.replace_new_leaf_of_same_tail_type
           calc
             K.oneMeetLevel (g a) (g b) =
                 K.oneMeetLevel (g0 a) (g0 b) := by
-                  rw [hOther a haM,hOther b hbM]
+                  rw [hOtherG a haM,hOtherG b hbM]
             _ = g0 (H.oneMeetLevel a b) :=
                   P.1.leaf_oneMeet a b ha hb hLa hLb
             _ = g (H.oneMeetLevel a b) :=
@@ -225,17 +228,17 @@ theorem ReservedDiaryStage.replace_new_leaf_of_same_tail_type
       have hbTail : K.SameOneTypeBelow B (g0 b) (g b) := by
         by_cases hbM : b = m
         · subst b
-          rw [hNew]
+          rw [hNewG]
           exact hTail
-        · rw [hOther b hbM]
+        · rw [hOtherG b hbM]
           intro x y _ _
           exact Iff.rfl
       have hdTail : K.SameOneTypeBelow B (g0 d) (g d) := by
         by_cases hdM : d = m
         · subst d
-          rw [hNew]
+          rw [hNewG]
           exact hTail
-        · rw [hOther d hdM]
+        · rw [hOtherG d hdM]
           intro x y _ _
           exact Iff.rfl
       have hTwoEq :
@@ -252,7 +255,7 @@ theorem ReservedDiaryStage.replace_new_leaf_of_same_tail_type
       calc
         K.twoMeetLevel (g a) (g b) (g c) (g d) =
             K.twoMeetLevel (g0 a) (g b) (g0 c) (g d) := by
-              rw [hOther a haNe,hOther c hcNe]
+              rw [hOtherG a haNe,hOtherG c hcNe]
         _ = K.twoMeetLevel (g0 a) (g0 b) (g0 c) (g0 d) :=
               hTwoEq.symm
         _ = g0 (H.twoMeetLevel a b c d) :=
