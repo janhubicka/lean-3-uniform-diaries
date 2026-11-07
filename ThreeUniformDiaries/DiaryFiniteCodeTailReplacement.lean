@@ -17,7 +17,7 @@ hidden hypothesis.
 The conclusion preserves all roles, induced triples/nontriples,
 numeric S1/S2 meets, leaf range and future order reserve.
 
-This is a DECIDABLE FINITE TABLE criterion for a SUPPLIED v,
+This is a FINITE TABLE criterion for a SUPPLIED v,
 not a theorem producing such a v or a countable coherent choice.
 -/
 
