@@ -999,3 +999,4 @@ import ThreeUniformDiaries.DiaryNewLeafMaxSupport
 import ThreeUniformDiaries.DiarySecondLeafTailTypeReplacement
 import ThreeUniformDiaries.DiaryReservedTailLeafReplacement
 import ThreeUniformDiaries.DiaryCanonicalTailTypeCone
+import ThreeUniformDiaries.DiaryFiniteTailUnaryTypeCodes
