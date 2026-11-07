@@ -89,12 +89,18 @@ theorem RoleDiary.second_leaf_successor_of_same_tail_type
       _ ↔ K.edge 0 r v := by rw [hMeet]
   have hGap₃New : w + (m - a) ≤ v :=
     hGap₃.trans hvLater
+  have hGap₁New : H.oneMeetLevel a m ≤ r := by
+    calc
+      H.oneMeetLevel a m ≤ r₀ := hGap₁
+      _ = r := hMeet
+  have hGap₂New : r + (a - H.oneMeetLevel a m) ≤ f a := by
+    calc
+      r + (a - H.oneMeetLevel a m) =
+          r₀ + (a - H.oneMeetLevel a m) := by rw [hMeet]
+      _ ≤ f a := hGap₂
   apply (DH.second_leaf_fixed_v_reserved_successor_iff
     DK F f a m v ha hm ham hOld P hvLeaf hvRange).mpr
-  exact ⟨hNewBit,
-    by simpa only [r,←hMeet] using hGap₁,
-    by simpa only [r,←hMeet] using hGap₂,
-    hGap₃New⟩
+  exact ⟨hNewBit,hGap₁New,hGap₂New,hGap₃New⟩
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
