@@ -1,4 +1,5 @@
 import ThreeUniformDiaries
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.universalStrongAbsorberTower_eventually_absorbs_finiteFamily
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.universalStrongAbsorberTower_absorbs_any_finite_size
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteDiaryInput.boundedIdentity
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.universalStrongAbsorberTower_succ
