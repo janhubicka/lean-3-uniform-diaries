@@ -47,5 +47,43 @@ theorem ReservedDiaryStage.replace_new_leaf_of_equal_singletonColour
   exact ReservedDiaryStage.replace_new_leaf_in_canonical_type_cone
     hm P hType hvLater hvLeaf hvRange
 
+
+/-- If the PARTICULAR mixed singleton colour of a supplied valid
+new-leaf image occurs at arbitrarily high target indices in the
+original F-range, then it has arbitrarily high valid ONE-STEP
+replacements fixing every other supported vertex.
+
+This is a relative abundance theorem for immediate successors,
+not a persistent successor theorem: a candidate may still fail
+to admit a compatible continuation at a later source horizon. -/
+theorem ReservedDiaryStage.exists_arbitrarily_late_new_leaf_in_type_cone
+    {H K : Ordered3Graph Nat} {F g0 : Nat → Nat}
+    {m : Nat}
+    (hm : IsLeaf H m)
+    (P : ReservedDiaryStage H K F (m + 1) g0)
+    (hFleaf : ∀ t : Nat, IsLeaf K (F t))
+    (hCone : ∀ M : Nat, ∃ t : Nat,
+      M < F t ∧
+      DiaryLowerBoundColors.singletonColour K
+        (canonicalTailTypeCut H m g0) (F t) =
+      DiaryLowerBoundColors.singletonColour K
+        (canonicalTailTypeCut H m g0) (g0 m)) :
+    ∀ M : Nat, ∃ g : Nat → Nat,
+      ReservedDiaryStage H K F (m + 1) g ∧
+      (∀ u : Nat, u ∈ countableDiaryFiniteSupport H (m + 1) →
+        u ≠ m → g u = g0 u) ∧ M < g m := by
+  intro M
+  obtain ⟨t,hHigh,hColour⟩ := hCone (max M (g0 m))
+  have hLater : g0 m ≤ F t := by omega
+  let g := replaceAt g0 m (F t)
+  have hReserved : ReservedDiaryStage H K F (m + 1) g :=
+    ReservedDiaryStage.replace_new_leaf_of_equal_singletonColour
+      hm P hColour.symm hLater (hFleaf t) ⟨t,rfl⟩
+  refine ⟨g,hReserved,?_,?_⟩
+  · intro u _hu hNe
+    exact replaceAt_other g0 m (F t) u hNe
+  · have hM : M < F t := by omega
+    simpa only [g,replaceAt_eq] using hM
+
 end DiaryLeafPriority
 end ThreeUniformDiaries
