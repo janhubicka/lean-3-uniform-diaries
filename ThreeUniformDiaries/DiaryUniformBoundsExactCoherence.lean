@@ -105,7 +105,9 @@ theorem exists_coherentStages_iff_uniform_pointwise_bounds
     intro u hu
     have hImage : P.limit u = P.map m u :=
       P.limit_eq_stage m u hu
-    omega
+    change P.map m u < P.limit u + 1
+    rw [← hImage]
+    exact Nat.lt_succ_self _
   · rintro ⟨cap,hEvery⟩
     let front : FiniteCofinalDiaryFronts DH K F :=
       finiteDiaryFronts_of_pointwiseBounds DH F cap hEvery
