@@ -62,8 +62,9 @@ with no change in the (trivial) finite split/type profile. -/
 theorem tailConeEscapingHorizon_arbitrarily_late
     (n B : Nat) :
     ∃ v : Nat, B < v ∧ tailConeEscapingHorizon v n := by
-  refine ⟨B + n + 1, ?_, ?_⟩ <;>
-    dsimp [tailConeEscapingHorizon] <;> omega
+  refine ⟨B + n + 1, by omega, ?_⟩
+  change n ≤ B + n + 1
+  omega
 
 /-- Every fixed candidate eventually fails at a later finite horizon. -/
 theorem tailConeEscapingHorizon_each_candidate_dies
