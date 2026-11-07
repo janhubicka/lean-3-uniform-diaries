@@ -76,9 +76,12 @@ noncomputable def FiniteDiaryInput.nextUniformAbsorber
           AbsorbsEveryTargetFlipInside
             A C.graph n C.bound) } := by
   classical
-  obtain ⟨C,k,DC,hOld,hAll⟩ :=
-    exists_finiteDiary_extension_universal_strong_at_size B n
-  exact ⟨⟨C,k,DC⟩,hOld,hAll⟩
+  let h := exists_finiteDiary_extension_universal_strong_at_size B n
+  let C : Ordered3Graph Nat := Classical.choose h
+  let hc := Classical.choose_spec h
+  let k : Nat := Classical.choose hc
+  let hk := Classical.choose_spec hc
+  exact ⟨⟨C,k,hk.1⟩,hk.2⟩
 
 /-- Genuine finite full target at each stage. The first target
 is the verified four-vertex, one-leaf diary. At successor stage
