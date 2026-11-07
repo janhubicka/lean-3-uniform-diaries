@@ -1,6 +1,7 @@
 import ThreeUniformDiaries.DiaryFiniteSingletonColour
 import ThreeUniformDiaries.ActualFiniteAuxRamseyAll
 import ThreeUniformDiaries.FiniteAuxEmbeddingPostcomposition
+import ThreeUniformDiaries.DiaryFiniteUniversalLeafRange
 
 /-!
 # Finite vertex colourings admit a generic monochromatic self-copy
