@@ -128,17 +128,17 @@ theorem bounded_range_values_have_bounded_preimage_indices
       (∃ t : Nat, F t = y) →
       ∃ t : Nat, t < T ∧ F t = y := by
   classical
-  let section : Nat → Nat := fun y =>
+  let sectionIndex : Nat → Nat := fun y =>
     if hy : ∃ t : Nat, F t = y then Classical.choose hy else 0
-  refine ⟨(Finset.range (B + 1)).sup section + 1, ?_⟩
+  refine ⟨(Finset.range (B + 1)).sup sectionIndex + 1, ?_⟩
   intro y hy hRange
-  refine ⟨section y, ?_, ?_⟩
+  refine ⟨sectionIndex y, ?_, ?_⟩
   · have hMem : y ∈ Finset.range (B + 1) :=
       Finset.mem_range.mpr (by omega)
-    have hBound : section y ≤ (Finset.range (B + 1)).sup section :=
-      Finset.le_sup (f := section) hMem
+    have hBound : sectionIndex y ≤ (Finset.range (B + 1)).sup sectionIndex :=
+      Finset.le_sup (f := sectionIndex) hMem
     omega
-  · dsimp [section]
+  · dsimp [sectionIndex]
     simp only [dif_pos hRange]
     exact Classical.choose_spec hRange
 
