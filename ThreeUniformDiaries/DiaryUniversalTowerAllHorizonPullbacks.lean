@@ -67,18 +67,11 @@ theorem universalStrongAbsorberTower_forwardMap_spec
         universalStrongAbsorberTower_forwardMap_zero] using
         (universalStrongAbsorberTower i).boundedIdentity
   | succ k ih =>
-      have hStep :
-          FiniteBoundedMeetEmbedding
-            (universalStrongAbsorberTower (i+k)).graph
-            (universalStrongAbsorberTower (i+(k+1))).graph
-            (universalStrongAbsorberTower (i+k)).bound
-            (universalStrongAbsorberTower (i+(k+1))).bound
-            (universalStrongAbsorberTower_stepMap (i+k)) := by
-        simpa only [Nat.add_succ, Nat.add_assoc] using
-          universalStrongAbsorberTower_stepMap_spec (i+k)
-      have hComp := ih.comp hStep
+      have hComp := ih.comp
+        (universalStrongAbsorberTower_stepMap_spec (i+k))
         (universalStrongAbsorberTower (i+k)).diary.prediary.frame.length_ge_three
-      simpa only [universalStrongAbsorberTower_forwardMap_succ] using hComp
+      simpa only [Nat.add_succ,
+        universalStrongAbsorberTower_forwardMap_succ] using hComp
 
 /-- Pulling back an actual finite flip of ANY later tower target
 along the FIXED selected composite produces a genuine finite flip
@@ -116,7 +109,7 @@ theorem universalStrongAbsorberTower_forwardPullback_succ_eq
     finiteDiaryPullbackGraph T
       (universalStrongAbsorberTower i).bound
       (universalStrongAbsorberTower_forwardMap i (k+1)) := by
-  have h := finiteDiaryPullbackGraph_comp_of_bounded
+  have h := finiteDiaryPullbackGraph_comp_of_bounded (T := T)
     (universalStrongAbsorberTower_forwardMap_spec i k)
     (universalStrongAbsorberTower_stepMap (i+k))
   simpa only [universalStrongAbsorberTower_forwardMap_succ] using h
