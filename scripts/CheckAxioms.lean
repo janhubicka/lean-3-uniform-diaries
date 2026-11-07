@@ -1,4 +1,5 @@
 import ThreeUniformDiaries
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.no_bounded_full_target_extension_fixing_first_four
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteEmptyThree_four_is_finiteDiary
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteEmptyThree_leaf_three
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteRoleDiaryBlock.leaf_three_unique
