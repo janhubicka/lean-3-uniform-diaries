@@ -119,5 +119,89 @@ theorem persistent_fixedProfile_of_bounded_preimage_index
   rw [hEq]
   exact Finset.le_sup (f := F) (Finset.mem_range.mpr ht)
 
+/-- For ANY function F, a bounded finite set of target NUMBERS
+in its range has a uniformly bounded choice of preimage INDICES.
+Neither monotonicity nor injectivity of F is needed. -/
+theorem bounded_range_values_have_bounded_preimage_indices
+    (F : Nat → Nat) (B : Nat) :
+    ∃ T : Nat, ∀ y : Nat, y ≤ B →
+      (∃ t : Nat, F t = y) →
+      ∃ t : Nat, t < T ∧ F t = y := by
+  classical
+  let section : Nat → Nat := fun y =>
+    if hy : ∃ t : Nat, F t = y then Classical.choose hy else 0
+  refine ⟨(Finset.range (B + 1)).sup section + 1, ?_⟩
+  intro y hy hRange
+  refine ⟨section y, ?_, ?_⟩
+  · have hMem : y ∈ Finset.range (B + 1) :=
+      Finset.mem_range.mpr (by omega)
+    have hBound : section y ≤ (Finset.range (B + 1)).sup section :=
+      Finset.le_sup (f := section) hMem
+    omega
+  · dsimp [section]
+    simp only [dif_pos hRange]
+    exact Classical.choose_spec hRange
+
+/-- The next leaf lies in F[Nat] by genuine reserved-stage
+admissibility. Thus a bound on its target NUMERICAL image is
+EQUIVALENT to a bound on a CHOSEN preimage index, with exactly
+the same fixed nonleaf split profile at every finite horizon.
+
+This holds even when F is unordered or noninjective. -/
+theorem fixedProfile_uniform_imageBound_iff_preimageIndexBound
+    {H K : Ordered3Graph Nat} {F f : Nat → Nat} {m : Nat}
+    (hm : IsLeaf H m)
+    (p : ({u : Nat // u ∈ newNonleafGeneratorSupport H m} → Nat)) :
+    HasUniformNextLeafBoundWithFixedProfile H K F f m p ↔
+      (∃ T : Nat, ∀ n : Nat, ∃ g : Nat → Nat,
+        ReservedDiaryStage H K F (m + 1 + n) g ∧
+        CofinalDiaryStageCompatible H m f g ∧
+        (∀ u : {u : Nat // u ∈ newNonleafGeneratorSupport H m},
+          g u.val = p u) ∧
+        ∃ t : Nat, t < T ∧ g m = F t) := by
+  classical
+  constructor
+  · rintro ⟨B, hBound⟩
+    obtain ⟨T, hSection⟩ :=
+      bounded_range_values_have_bounded_preimage_indices F B
+    refine ⟨T, ?_⟩
+    intro n
+    obtain ⟨g, Q, hOld, hp, hNumeric⟩ := hBound n
+    have hmSupported :
+        m ∈ countableDiaryFiniteSupport H (m + 1 + n) := by
+      exact mem_finiteLeafMeetSupport_leaf H
+        (countableDiaryLeafPrefix H (m + 1 + n)) m
+        ((mem_countableDiaryLeafPrefix_iff H (m + 1 + n) m).mpr
+          ⟨hm.1, by omega, hm⟩)
+    obtain ⟨t, ht⟩ := Q.1.leaf_range m hmSupported hm
+    obtain ⟨t', ht', htEq⟩ :=
+      hSection (g m) hNumeric ⟨t, ht.symm⟩
+    exact ⟨g, Q, hOld, hp, t', ht', htEq.symm⟩
+  · rintro ⟨T, hIndex⟩
+    refine ⟨(Finset.range T).sup F, ?_⟩
+    intro n
+    obtain ⟨g, Q, hOld, hp, t, ht, hEq⟩ := hIndex n
+    refine ⟨g, Q, hOld, hp, ?_⟩
+    rw [hEq]
+    exact Finset.le_sup (f := F) (Finset.mem_range.mpr ht)
+
+/-- The fixed full profile has a persistent next-leaf image
+IFF the next leaf has a uniformly bounded chosen preimage
+INDEX at every horizon. The injectivity/ordering of F is
+irrelevant: only actual leaf-range membership is used. -/
+theorem persistent_fixedProfile_iff_bounded_preimage_index
+    {H K : Ordered3Graph Nat} {F f : Nat → Nat} {m : Nat}
+    (hm : IsLeaf H m)
+    (p : ({u : Nat // u ∈ newNonleafGeneratorSupport H m} → Nat)) :
+    HasPersistentNextLeafWithFixedProfile H K F f m p ↔
+      (∃ T : Nat, ∀ n : Nat, ∃ g : Nat → Nat,
+        ReservedDiaryStage H K F (m + 1 + n) g ∧
+        CofinalDiaryStageCompatible H m f g ∧
+        (∀ u : {u : Nat // u ∈ newNonleafGeneratorSupport H m},
+          g u.val = p u) ∧
+        ∃ t : Nat, t < T ∧ g m = F t) :=
+  (persistent_fixedProfile_iff_uniform_nextLeaf_bound hm p).trans
+    (fixedProfile_uniform_imageBound_iff_preimageIndexBound hm p)
+
 end DiaryLeafPriority
 end ThreeUniformDiaries
