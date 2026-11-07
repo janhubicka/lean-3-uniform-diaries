@@ -162,5 +162,30 @@ theorem universalStrongAbsorberTower_absorbs_earlier_size
   exact absorbsEveryTargetFlipInside_of_target_embedding
     (universalStrongAbsorberTower (i+1)).diary hAbs Ef
 
+
+/-- A single sufficiently late tower stage absorbs EVERY full
+finite source diary of any specified frame n >= 4, not merely
+the exact frame size named when that stage was constructed.
+The bound on the target stage j is explicit: j >= n-3.
+
+The result is uniform over ALL finite source edge tables of
+this n, inside EVERY genuine target flip. It does NOT pick
+compatible source copies for different n. -/
+theorem universalStrongAbsorberTower_absorbs_any_finite_size
+    (n j : Nat) (hn : 4 ≤ n) (hj : n - 3 ≤ j) :
+    ∀ A : Ordered3Graph Nat,
+      FiniteRoleDiaryBlock A n →
+        AbsorbsEveryTargetFlipInside
+          A (universalStrongAbsorberTower j).graph
+          n (universalStrongAbsorberTower j).bound := by
+  intro A DA
+  have hEq : (n - 4) + 4 = n := by omega
+  have hLate : (n - 4) + 1 ≤ j := by omega
+  have hRaw :=
+    universalStrongAbsorberTower_absorbs_earlier_size
+      (n - 4) j hLate A
+      (by simpa only [hEq] using DA)
+  simpa only [hEq] using hRaw
+
 end DiaryLeafPriority
 end ThreeUniformDiaries
