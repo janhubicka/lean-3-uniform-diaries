@@ -1033,4 +1033,8 @@ import ThreeUniformDiaries.DiaryEventualJointProfileColourEscape
 
 import ThreeUniformDiaries.DiaryCoherentVirtualMixedType
 import ThreeUniformDiaries.DiarySourceFiniteCutStabilization
+
+import ThreeUniformDiaries.DiaryOuterGenericLeafPatternRealization
+import ThreeUniformDiaries.DiaryOldLeafPairGenericSuccessor
+
 import ThreeUniformDiaries.DiaryMonochromaticLeafMeetObstruction
