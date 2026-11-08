@@ -1,5 +1,4 @@
 import ThreeUniformDiaries.DiaryCofinalBoundedCountableFusion
-import ThreeUniformDiaries.DiaryFixedProfileUniformBoundCriterion
 
 /-!
 # Track C: persistent next-leaf successor iff cofinally bounded choices
@@ -10,13 +9,13 @@ finitely persistent next reserved stage compatible with one old
 support map f is equivalent to a *single* uniform numerical bound
 on next-leaf images realized at cofinally high finite horizons.
 
-In the forward implication choose the complete nonleaf-generator
-profile prescribed by a persistent successor and apply the already
-verified fixed-profile persistence/quantitative-bound equivalence.
-Forget that profile and take the exact horizons n=N.
-In the reverse implication restrict cofinally bounded witnesses to
-all earlier finite horizons to obtain one finite next-image cover;
-the verified finite-choice successor theorem then applies.
+For the forward implication, any persistent successor comes with
+compatible maps at every horizon. Compatibility on the entire
+new-stage support fixes the new leaf image and the old support.
+Hence the persistent successor's own leaf image gives a bound.
+For the reverse implication, cofinally bounded horizon witnesses
+supply a finite next-image cover, and finite-choice persistence
+constructs the desired successor.
 
 This characterizes the missing geometric assumption; it does NOT
 assert that such a bound exists in any arbitrary target diary or
@@ -40,17 +39,19 @@ theorem persistentSuccessor_iff_cofinalBoundedNextLeafImages
   classical
   constructor
   · rintro ⟨g0, P0, hOld0⟩
-    let p :
-        ({u : Nat // u ∈ newNonleafGeneratorSupport H m} → Nat) :=
-      fun u => g0 u.val
-    have hFixed : HasPersistentNextLeafWithFixedProfile H K F f m p :=
-      ⟨g0, P0, hOld0, by intro u; rfl⟩
-    have hUniform : HasUniformNextLeafBoundWithFixedProfile H K F f m p :=
-      (persistent_fixedProfile_iff_uniform_nextLeaf_bound hm p).mp hFixed
-    obtain ⟨B, hEvery⟩ := hUniform
-    refine ⟨B, ?_⟩
+    refine ⟨g0 m, ?_⟩
     intro N
-    obtain ⟨gN, QN, hOldN, _hProfile, hBound⟩ := hEvery N
+    obtain ⟨gN, QN, hCompat⟩ := P0.2 N
+    have hOldN : CofinalDiaryStageCompatible H m f gN :=
+      CofinalDiaryStageCompatible.trans (Nat.le_succ m) hOld0 hCompat
+    have hmSupported :
+        m ∈ countableDiaryFiniteSupport H (m + 1) :=
+      mem_finiteLeafMeetSupport_leaf H
+        (countableDiaryLeafPrefix H (m + 1)) m
+        ((mem_countableDiaryLeafPrefix_iff H (m + 1) m).mpr
+          ⟨hm.1, by omega, hm⟩)
+    have hBound : gN m ≤ g0 m := by
+      rw [hCompat m hmSupported]
     exact ⟨N, le_rfl, gN, QN, hOldN, hBound⟩
   · intro hCofinal
     exact exists_persistent_reserved_successor_of_finite_cover hm
