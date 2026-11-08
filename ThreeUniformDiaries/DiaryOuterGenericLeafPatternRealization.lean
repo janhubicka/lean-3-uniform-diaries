@@ -152,7 +152,7 @@ theorem exists_outer_generic_vertex_negative_on_bounded_pairs
   refine ⟨t, ht, ?_⟩
   intro i j hij hjB hEdge
   have hFalse := (hPattern i j hij hjB).mp hEdge
-  exact Bool.noConfusion hFalse
+  cases hFalse
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
