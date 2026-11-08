@@ -1027,3 +1027,4 @@ import ThreeUniformDiaries.DiaryFixedJointProfileColourEscape
 import ThreeUniformDiaries.DiaryEventualJointProfileColourEscape
 
 import ThreeUniformDiaries.DiaryCoherentVirtualMixedType
+import ThreeUniformDiaries.DiarySourceFiniteCutStabilization
