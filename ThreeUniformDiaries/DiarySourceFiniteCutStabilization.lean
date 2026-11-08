@@ -1,4 +1,4 @@
-import ThreeUniformDiaries.DiaryCofinalStageRestrictions
+import ThreeUniformDiaries.DiaryFiniteCandidatePersistentFusion
 
 /-!
 # Track A: eventual stabilization of canonical SOURCE support below any cut
@@ -21,6 +21,20 @@ No RoleDiary or genericity hypothesis is needed for this finite fact.
 
 namespace ThreeUniformDiaries
 namespace DiaryLeafPriority
+
+/-- Every FINITELY PERSISTENT reserved old stage has an actual
+compatible immediate reserved successor. This is just the horizon-1
+case of persistence. In particular the remaining no-escape problem
+is not existence of an immediate extension, but selecting an
+immediate extension that is ITSELF finitely persistent. -/
+theorem PersistentReservedDiaryStage.has_compatible_immediate_successor
+    {H K : Ordered3Graph Nat} {F f : Nat → Nat} {m : Nat}
+    (P : PersistentReservedDiaryStage H K F m f) :
+    ∃ g : Nat → Nat,
+      ReservedDiaryStage H K F (m + 1) g ∧
+      CofinalDiaryStageCompatible H m f g :=
+  P.2 1
+
 
 /-- For each fixed source cut B, the finite canonical supports have a
 stationary intersection with [0,B) after some finite source horizon.
