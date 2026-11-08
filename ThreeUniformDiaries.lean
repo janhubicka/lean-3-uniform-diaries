@@ -1019,3 +1019,5 @@ import ThreeUniformDiaries.DiaryUniformOldStageTailColour
 
 import ThreeUniformDiaries.DiaryFixedJointProfileColourEscape
 import ThreeUniformDiaries.DiaryEventualJointProfileColourEscape
+
+import ThreeUniformDiaries.DiaryCoherentVirtualMixedType
