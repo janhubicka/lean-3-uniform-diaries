@@ -1030,3 +1030,5 @@ import ThreeUniformDiaries.DiaryCoherentVirtualMixedType
 import ThreeUniformDiaries.DiaryMonochromaticLeafMeetObstruction
 
 import ThreeUniformDiaries.DiaryEscapingVirtualTypeOmission
+
+import ThreeUniformDiaries.DiaryPersistentOrOmittedVirtualType
