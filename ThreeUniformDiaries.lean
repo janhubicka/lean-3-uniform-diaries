@@ -1028,3 +1028,5 @@ import ThreeUniformDiaries.DiaryEventualJointProfileColourEscape
 
 import ThreeUniformDiaries.DiaryCoherentVirtualMixedType
 import ThreeUniformDiaries.DiaryOuterGenericLeafPatternRealization
+
+import ThreeUniformDiaries.DiaryOldLeafPairGenericSuccessor
