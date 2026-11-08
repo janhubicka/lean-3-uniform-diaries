@@ -2929,3 +2929,6 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.DiaryPreembeddingSpec.marker_role_edge_bits
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.DiaryPreembeddingSpec.leaf_pair_marker_bits_of_oneSplit_bits
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.DiaryPreembeddingSpec.induced_iff_E2_E3
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.DiaryPreembeddingSpec.induced_and_all_meets_of_E2_E3
