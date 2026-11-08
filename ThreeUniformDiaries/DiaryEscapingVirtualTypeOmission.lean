@@ -50,7 +50,9 @@ theorem RoleDiary.eventually_avoids_fixed_leaf_colour
     have h :=
       DK.distinct_leaves_have_different_colour_at_min
         u (v n) hu (hv n) hNe
-    simpa only [min_eq_left hlt.le] using h
+    have hMin : min u (v n) = u := min_eq_left hlt.le
+    rw [hMin] at h
+    exact h
   exact hDiff hEqual.symm
 
 /-- Eventual numerical escape excludes the possibility that a
