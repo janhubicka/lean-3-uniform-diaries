@@ -61,10 +61,10 @@ theorem persistent_stage_persistent_or_omitted_virtual_mixed_type
           HasJointProfileColourHorizon H K F f m p c0 n) ∧
         (HasPersistentNextLeafWithJointProfileColour
           H K F f m p c0 ∨
-        ∃ c∞ : (B : Nat) → Fin B → Fin B → Bool,
+        ∃ cInf : (B : Nat) → Fin B → Fin B → Bool,
           (∀ (B : Nat) (x y : Fin B),
-            c∞ (B + 1) x.castSucc y.castSucc = c∞ B x y) ∧
-          c∞ (oldStageTailCut H m f) = c0 ∧
+            cInf (B + 1) x.castSucc y.castSucc = cInf B x y) ∧
+          cInf (oldStageTailCut H m f) = c0 ∧
           (∀ B N : Nat, ∃ n : Nat, N ≤ n ∧
             ∃ g : Nat → Nat,
               ReservedDiaryStage H K F (m + 1 + n) g ∧
@@ -75,10 +75,10 @@ theorem persistent_stage_persistent_or_omitted_virtual_mixed_type
               DiaryLowerBoundColors.singletonColour K
                 (oldStageTailCut H m f) (g m) = c0 ∧
               DiaryLowerBoundColors.singletonColour K B (g m) =
-                c∞ B) ∧
+                cInf B) ∧
           (¬ ∃ v : Nat, IsLeaf K v ∧
             ∀ B : Nat,
-              DiaryLowerBoundColors.singletonColour K B v = c∞ B)) := by
+              DiaryLowerBoundColors.singletonColour K B v = cInf B)) := by
   classical
   obtain ⟨p, c0, hAll⟩ :=
     persistent_stage_has_stable_profile_and_old_stage_colour hm P
@@ -119,10 +119,10 @@ theorem persistent_stage_persistent_or_omitted_virtual_mixed_type
       intro n hn
       exact hN n hn (g n) (hg n).1
         (hg n).2.1 (hg n).2.2.1 (hg n).2.2.2
-    obtain ⟨c∞, hProject, hRecur⟩ :=
+    obtain ⟨cInf, hProject, hRecur⟩ :=
       exists_coherent_cofinal_mixed_singleton_type K v
     have hAtOldCut :
-        c∞ (oldStageTailCut H m f) = c0 := by
+        cInf (oldStageTailCut H m f) = c0 := by
       obtain ⟨n, _hn, hMask⟩ :=
         hRecur (oldStageTailCut H m f) 0
       exact hMask.symm.trans (hg n).2.2.2
@@ -130,10 +130,10 @@ theorem persistent_stage_persistent_or_omitted_virtual_mixed_type
         ¬ ∃ w : Nat, IsLeaf K w ∧
           ∀ B : Nat,
             DiaryLowerBoundColors.singletonColour K B w =
-              c∞ B :=
+              cInf B :=
       DK.escaping_recurrent_full_mixed_type_omitted
-        v hv hEscaping c∞ hRecur
-    refine ⟨c∞, hProject, hAtOldCut, ?_, hOmitted⟩
+        v hv hEscaping cInf hRecur
+    refine ⟨cInf, hProject, hAtOldCut, ?_, hOmitted⟩
     intro B N
     obtain ⟨n, hn, hMask⟩ := hRecur B N
     exact ⟨n, hn, g n, (hg n).1, (hg n).2.1,
