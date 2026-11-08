@@ -24,7 +24,7 @@ equivalent to preserving only the E2 and E3 mixed branch families:
     edge(twoSplit,leaf,leaf).
 Neither family can be omitted without further geometry.
 The already checked countable mixed-meet transfer upgrades this
-induced pre-embedding to exact all-nonmarker one-/two-meets.
+induced pre-embedding to exact all-nonmarker one- and two-meets.
 
 This is a precise *conditional* reduction, not a method for
 constructing suitable relative next leaves or proving
