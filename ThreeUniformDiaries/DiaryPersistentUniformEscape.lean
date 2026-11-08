@@ -52,7 +52,8 @@ theorem persistent_next_leaf_or_eventual_uniform_escape
     constructor
     · obtain ⟨g, Q, hOld⟩ := P.2 (n + 1)
       refine ⟨g, ?_, hOld⟩
-      convert Q using 1 <;> omega
+      have hEq : m + (n + 1) = m + 1 + n := by omega
+      simpa only [hEq] using Q
     · intro g Q hOld
       have QN : ReservedDiaryStage H K F (m + 1 + N) g :=
         Q.restrict (by omega)
