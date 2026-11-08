@@ -70,7 +70,7 @@ theorem generic_allPositiveMixedSingletonMask_cofinally_realized
       change x.val < y.val
       exact hxy
     have hPositive : allPositiveMixedSingletonMask m xx yy = true := by
-      simp [allPositiveMixedSingletonMask, hxy]
+      simp [allPositiveMixedSingletonMask, hxy']
     have hEdge : G.graph.edge x.val y.val v :=
       (hPattern xx yy hxy').mpr hPositive
     simp [DiaryLowerBoundColors.singletonColour,
