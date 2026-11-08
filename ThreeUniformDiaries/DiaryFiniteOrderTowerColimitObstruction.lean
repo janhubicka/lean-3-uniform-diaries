@@ -76,8 +76,7 @@ private theorem leftInsertTower_rank_three_descends
   have hlt : g (n+1) 3 < g (n+1) 4 :=
     hMono (n+1) (by omega)
   have hEq : g n 3 = g (n+1) 4 := by
-    simpa only [rightBlockImage, Nat.reduceLT, if_false,
-      Nat.reduceAdd] using hCompat n 3 (by omega)
+    simpa [rightBlockImage] using hCompat n 3 (by omega)
   exact hlt.trans_le (le_of_eq hEq.symm)
 
 /-- There is NO coherent family of increasing Nat embeddings
