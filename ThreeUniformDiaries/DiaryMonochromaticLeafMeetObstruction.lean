@@ -133,5 +133,55 @@ theorem AdmissibleCofinalDiaryStage.no_small_meet_in_monochromatic_leaf_range
     ha hb hLa hLb hBa hBb hMono
   omega
 
+/-- In a genuine full diary, TWO distinct target leaves necessarily
+have different complete mixed singleton colours already at the cut
+min(a,b). Their numeric meet is a genuine one-split strictly
+below both leaf vertices, by S1 and role disjointness. -/
+theorem RoleDiary.distinct_leaves_have_different_colour_at_min
+    {K : Ordered3Graph Nat} (DK : RoleDiary K)
+    (a b : Nat) (ha : IsLeaf K a) (hb : IsLeaf K b)
+    (hne : a ≠ b) :
+    DiaryLowerBoundColors.singletonColour K (min a b) a ≠
+      DiaryLowerBoundColors.singletonColour K (min a b) b := by
+  intro hEqual
+  have hs : IsOneSplit K (K.oneMeetLevel a b) :=
+    DK.singleton_meets a b ha hb hne
+  have hCap : K.oneMeetLevel a b ≤ min a b :=
+    K.oneMeetLevel_le_min a b
+  have hNeA : K.oneMeetLevel a b ≠ a := by
+    intro he
+    have hSplit : IsOneSplit K a := by simpa only [he] using hs
+    exact ha.2.1 hSplit.2.1
+  have hNeB : K.oneMeetLevel a b ≠ b := by
+    intro he
+    have hSplit : IsOneSplit K b := by simpa only [he] using hs
+    exact hb.2.1 hSplit.2.1
+  have hStrict : K.oneMeetLevel a b < min a b := by
+    have haLe := hCap.trans (min_le_left a b)
+    have hbLe := hCap.trans (min_le_right a b)
+    omega
+  have hType : K.SameOneTypeBelow (min a b) a b :=
+    (DiaryLowerBoundColors.singletonColour_eq_iff K (min a b) a b).mp hEqual
+  have hLower : min a b ≤ K.oneMeetLevel a b := by
+    classical
+    exact Nat.le_findGreatest (le_refl _) hType
+  omega
+
+/-- A complete countable mixed singleton type, even if all
+its finite prefixes are realizable, has AT MOST ONE realizing
+genuine target diary leaf. Saturation or a nested all-cut
+monochromatic generic copy cannot be inferred from finite
+Ramsey monochromatizations. -/
+theorem RoleDiary.full_singleton_colour_type_unique_on_leaves
+    {K : Ordered3Graph Nat} (DK : RoleDiary K)
+    (a b : Nat) (ha : IsLeaf K a) (hb : IsLeaf K b)
+    (hAll : ∀ B : Nat,
+      DiaryLowerBoundColors.singletonColour K B a =
+        DiaryLowerBoundColors.singletonColour K B b) :
+    a = b := by
+  by_contra hne
+  exact DK.distinct_leaves_have_different_colour_at_min
+    a b ha hb hne (hAll (min a b))
+
 end DiaryLeafPriority
 end ThreeUniformDiaries
