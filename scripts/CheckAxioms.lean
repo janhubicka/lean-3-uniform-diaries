@@ -3017,3 +3017,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.GenericEnumerated3Graph.exists_countable_induced_embedding_extending_stage
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.PersistentReservedDiaryStage.future_oneSplit_slot
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.PersistentReservedDiaryStage.future_twoSplit_slot
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.exists_infinite_high_oneSplit_cone
