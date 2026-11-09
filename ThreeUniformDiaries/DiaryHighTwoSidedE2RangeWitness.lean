@@ -47,6 +47,7 @@ theorem RoleDiary.exists_high_two_sided_E2_split_in_leaf_range
     DK.exists_arbitrarily_high_oneSplit_in_injective_leaf_range
       F hInj hLeaves B N
   let s := K.oneMeetLevel (F i) (F j)
+  have hs : IsOneSplit K s := hSplit
   have hNe : F i ≠ F j := by
     intro h
     exact (ne_of_lt hij) (hInj h)
@@ -55,21 +56,21 @@ theorem RoleDiary.exists_high_two_sided_E2_split_in_leaf_range
   have hNeI : s ≠ F i := by
     intro hEq
     have hBad : IsOneSplit K (F i) := by
-      simpa only [hEq] using hSplit
+      simpa only [hEq] using hs
     exact (hLeaves i).2.1 hBad.2.1
   have hNeJ : s ≠ F j := by
     intro hEq
     have hBad : IsOneSplit K (F j) := by
-      simpa only [hEq] using hSplit
+      simpa only [hEq] using hs
     exact (hLeaves j).2.1 hBad.2.1
   have hSi : s < F i := by omega
   have hSj : s < F j := by omega
   have hOpp :
       ¬ (K.edge 0 s (F i) ↔ K.edge 0 s (F j)) :=
     DK.oneSplit_witness_opposite_marker
-      s (F i) (F j) hSplit
+      s (F i) (F j) hs
       (hLeaves i) (hLeaves j) hSi hSj rfl
-  refine ⟨i, j, s, hi, hij, hHigh, hSplit, rfl, hSi, hSj, ?_⟩
+  refine ⟨i, j, s, hi, hij, hHigh, hs, rfl, hSi, hSj, ?_⟩
   tauto
 
 end DiaryLeafPriority
