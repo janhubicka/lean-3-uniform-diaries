@@ -1066,3 +1066,5 @@ import ThreeUniformDiaries.DiaryRelativeGenericFiniteSeed
 import ThreeUniformDiaries.DiaryPersistentFutureRoleSlots
 
 import ThreeUniformDiaries.DiaryInfiniteHighOneSplitCone
+
+import ThreeUniformDiaries.DiaryHighTwoSidedE2RangeWitness

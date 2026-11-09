@@ -3019,3 +3019,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.PersistentReservedDiaryStage.future_twoSplit_slot
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.exists_infinite_high_oneSplit_cone
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.exists_high_two_sided_E2_split_in_leaf_range
