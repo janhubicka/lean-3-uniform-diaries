@@ -1,0 +1,97 @@
+name: Temporary Track C offline-source transport
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/agent-track-c-offline-transport.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  transport:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cache Lean toolchain
+        uses: actions/cache@v4
+        with:
+          path: ~/.elan/toolchains
+          key: lean-toolchain-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}
+      - name: Cache Lake workspace
+        uses: actions/cache@v4
+        with:
+          path: .lake
+          key: lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lakefile.toml') }}-${{ github.sha }}
+          restore-keys: |
+            lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lakefile.toml') }}-
+      - name: Install pinned Lean
+        run: |
+          set -euo pipefail
+          curl -fsSL https://elan.lean-lang.org/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Build precisely pinned sources and dependencies
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+          lake build ThreeUniformDiaries
+      - name: Package sources and compiled non-mathlib dependencies
+        run: |
+          set -euo pipefail
+          mkdir -p transfer
+          git rev-parse HEAD > transfer/SOURCE_SHA
+          cp lean-toolchain lakefile.toml lake-manifest.json transfer/
+          tar --exclude='./.git' --exclude='./.lake' --exclude='./transfer'             -I 'zstd -T0 -3' -cf transfer/source.tar.zst .
+          tar --exclude='*/.git' --exclude='./.lake/packages/mathlib'             -I 'zstd -T0 -3' -cf transfer/extras.tar.zst               .lake/packages .lake/build
+          (cd transfer; sha256sum source.tar.zst extras.tar.zst > SHA256SUMS)
+          (cd transfer; split -b 250000000 -d -a 2 extras.tar.zst extras.tar.zst.part-)
+          (cd transfer; sha256sum extras.tar.zst.part-* > PART_SHA256SUMS)
+          rm transfer/extras.tar.zst
+          ls -lh transfer
+      - uses: actions/upload-artifact@v4
+        with:
+          name: track-c-20261109-source
+          path: |
+            transfer/SOURCE_SHA
+            transfer/lean-toolchain
+            transfer/lakefile.toml
+            transfer/lake-manifest.json
+            transfer/source.tar.zst
+            transfer/SHA256SUMS
+            transfer/PART_SHA256SUMS
+          compression-level: 0
+          retention-days: 2
+      - uses: actions/upload-artifact@v4
+        with:
+          name: track-c-20261109-extras-part-00
+          path: transfer/extras.tar.zst.part-00
+          compression-level: 0
+          retention-days: 2
+      - uses: actions/upload-artifact@v4
+        with:
+          name: track-c-20261109-extras-part-01
+          path: transfer/extras.tar.zst.part-01
+          compression-level: 0
+          retention-days: 2
+          if-no-files-found: ignore
+      - uses: actions/upload-artifact@v4
+        with:
+          name: track-c-20261109-extras-part-02
+          path: transfer/extras.tar.zst.part-02
+          compression-level: 0
+          retention-days: 2
+          if-no-files-found: ignore
+      - uses: actions/upload-artifact@v4
+        with:
+          name: track-c-20261109-extras-part-03
+          path: transfer/extras.tar.zst.part-03
+          compression-level: 0
+          retention-days: 2
+          if-no-files-found: ignore
+      - uses: actions/upload-artifact@v4
+        with:
+          name: track-c-20261109-extras-part-04
+          path: transfer/extras.tar.zst.part-04
+          compression-level: 0
+          retention-days: 2
+          if-no-files-found: ignore
