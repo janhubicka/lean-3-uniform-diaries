@@ -70,7 +70,7 @@ theorem RoleDiary.exists_infinite_high_oneSplit_cone
     Nat.rec (pick start) (fun _ prev => pick (prev + 1))
   have hStep (k : Nat) : indices k < indices (k + 1) := by
     change indices k < pick (indices k + 1)
-    exact (Nat.lt_succ_self _).trans_le (hPick (indices k + 1)).1
+    exact lt_of_lt_of_le (Nat.lt_succ_self _) (hPick (indices k + 1)).1
   have hMono : StrictMono indices :=
     strictMono_nat_of_lt_succ hStep
   have hAbove (k : Nat) : start ≤ indices k := by
