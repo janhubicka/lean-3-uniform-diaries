@@ -1,0 +1,62 @@
+name: Temporary Track B local source transport
+
+on:
+  push:
+    branches:
+      - track-b-local-source-transport-20261109
+
+jobs:
+  package-sources:
+    runs-on: macos-15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Install repository-pinned Lean for Lake resolution
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL https://elan.lean-lang.org/elan-init.sh -o /tmp/elan-init.sh
+          sh /tmp/elan-init.sh -y --default-toolchain none --no-modify-path
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          export PATH="$HOME/.elan/bin:$PATH"
+          lake --version
+
+      - name: Resolve exact pinned source dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PATH="$HOME/.elan/bin:$PATH"
+          lake --keep-toolchain update
+          for p in milliken successor-tree-lean ramsey-space-todorcevic; do
+            test -f ".lake/packages/$p/lakefile.toml"
+            printf '%s ' "$p"
+            git -C ".lake/packages/$p" rev-parse HEAD
+          done
+
+      - name: Package current source and only non-mathlib dependency sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p transport
+          git archive --format=tar HEAD | gzip -6 > transport/diaries-project-source.tar.gz
+          tar -czf transport/diaries-pinned-deps.tar.gz lake-manifest.json \
+            .lake/packages/milliken \
+            .lake/packages/successor-tree-lean \
+            .lake/packages/ramsey-space-todorcevic
+          git rev-parse HEAD > transport/SOURCE_SHA
+          cp lean-toolchain lakefile.toml transport/
+          (cd transport && shasum -a 256 diaries-project-source.tar.gz diaries-pinned-deps.tar.gz > SHA256SUMS)
+          ls -lh transport
+          cat transport/SOURCE_SHA
+
+      - name: Upload short-lived local source bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: track-b-diaries-local-sources-20261109
+          path: transport/
+          compression-level: 0
+          retention-days: 1
