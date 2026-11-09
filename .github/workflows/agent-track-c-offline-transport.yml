@@ -95,3 +95,38 @@ jobs:
           compression-level: 0
           retention-days: 2
           if-no-files-found: ignore
+      - uses: actions/upload-artifact@v4
+        with:
+          name: track-c-20261109-extras-part-05
+          path: transfer/extras.tar.zst.part-05
+          compression-level: 0
+          retention-days: 2
+          if-no-files-found: ignore
+      - uses: actions/upload-artifact@v4
+        with:
+          name: track-c-20261109-extras-part-06
+          path: transfer/extras.tar.zst.part-06
+          compression-level: 0
+          retention-days: 2
+          if-no-files-found: ignore
+      - uses: actions/upload-artifact@v4
+        with:
+          name: track-c-20261109-extras-part-07
+          path: transfer/extras.tar.zst.part-07
+          compression-level: 0
+          retention-days: 2
+          if-no-files-found: ignore
+      - uses: actions/upload-artifact@v4
+        with:
+          name: track-c-20261109-extras-part-08
+          path: transfer/extras.tar.zst.part-08
+          compression-level: 0
+          retention-days: 2
+          if-no-files-found: ignore
+      - uses: actions/upload-artifact@v4
+        with:
+          name: track-c-20261109-extras-part-09
+          path: transfer/extras.tar.zst.part-09
+          compression-level: 0
+          retention-days: 2
+          if-no-files-found: ignore
