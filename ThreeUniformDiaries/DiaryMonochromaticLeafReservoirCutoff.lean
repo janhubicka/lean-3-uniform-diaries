@@ -106,5 +106,44 @@ theorem RoleDiary.not_all_cut_monochromatic_leaf_range
   dsimp [B] at hBound
   omega
 
+
+/-- Stronger no-go statement for a VARYING family of (possibly
+non-injective, non-generic) leaf reservoirs R(B,·).  If every
+reservoir contains two FIXED genuine leaves a,b, they CANNOT
+be monochromatic below every increasing cut B.
+
+No nesting hypothesis on the reservoirs is needed: the cut
+oneMeet(a,b)+1 already separates the two retained leaves.
+This rules out repeated global monochromatization with all old
+selected leaves kept INSIDE each future reservoir. -/
+theorem RoleDiary.no_all_cut_monochromatic_reservoirs_retaining_pair
+    {K : Ordered3Graph Nat} (DK : RoleDiary K)
+    {a b : Nat}
+    (ha : IsLeaf K a) (hb : IsLeaf K b) (hNe : a ≠ b)
+    (R : Nat → Nat → Nat)
+    (hRetainA : ∀ B : Nat, ∃ i : Nat, R B i = a)
+    (hRetainB : ∀ B : Nat, ∃ j : Nat, R B j = b) :
+    ¬ (∀ B : Nat, ∃ c : Fin B → Fin B → Bool,
+      ∀ i : Nat,
+        DiaryLowerBoundColors.singletonColour K B (R B i) = c) := by
+  intro hAll
+  let B := K.oneMeetLevel a b + 1
+  obtain ⟨i, hi⟩ := hRetainA B
+  obtain ⟨j, hj⟩ := hRetainB B
+  obtain ⟨c, hColour⟩ := hAll B
+  have hA :
+      DiaryLowerBoundColors.singletonColour K B a = c := by
+    rw [← hi]
+    exact hColour i
+  have hB :
+      DiaryLowerBoundColors.singletonColour K B b = c := by
+    rw [← hj]
+    exact hColour j
+  have hCut : B ≤ K.oneMeetLevel a b :=
+    (DK.singletonColour_eq_iff_cut_le_oneMeet
+      ha hb hNe B).mp (hA.trans hB.symm)
+  dsimp [B] at hCut
+  omega
+
 end DiaryLeafPriority
 end ThreeUniformDiaries
