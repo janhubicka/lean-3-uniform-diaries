@@ -59,7 +59,7 @@ theorem RoleDiary.monochromatic_leaf_range_iff_pairwise_oneMeet_ge
     · have hPos : 0 < i := by omega
       have hNe : F 0 ≠ F i := by
         intro he
-        exact hi (hInjective he).symm
+        exact hi ((hInjective he).symm)
       have hEq :
           DiaryLowerBoundColors.singletonColour K B (F 0) =
             DiaryLowerBoundColors.singletonColour K B (F i) :=
