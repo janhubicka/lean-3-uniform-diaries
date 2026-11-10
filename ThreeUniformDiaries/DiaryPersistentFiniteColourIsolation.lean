@@ -1,5 +1,6 @@
 import ThreeUniformDiaries.DiaryExactSingletonColourSplitCut
 import ThreeUniformDiaries.DiaryPersistentSuccessorBoundEquivalence
+import ThreeUniformDiaries.DiaryFixedJointProfileColourEscape
 
 /-!
 # Track A: one FINITE cut isolates each genuine leaf; realized recurring virtual
@@ -158,6 +159,94 @@ theorem no_persistent_successor_implies_cofinal_virtual_type_omitted
   exact hNo
     (persistent_successor_of_realized_cofinal_virtual_singleton_type
       DK hm c hRecur u hu hRealized)
+
+
+/-- The genuinely FIBRE-SPECIFIC realization theorem. Fix the entire
+new nonleaf-generator image profile p, the complete old-cut mixed
+singleton colour c₀, AND one coherent virtual all-cut colour cInf.
+
+If this exact (p,c₀,cInf)-fibre is nonempty at arbitrarily late
+compatible finite horizons and cInf is realized by a genuine target
+leaf v, the isolated finite colour at cut v forces that SAME v at
+every selected horizon. Restriction gives one uniform next-leaf
+bound while retaining BOTH p and c₀. The already verified
+fixed-fibre finite-choice theorem then yields the persistent
+successor INSIDE THE SAME prescribed fibre. -/
+theorem persistent_fixed_fibre_of_realized_cofinal_virtual_type
+    {H K : Ordered3Graph Nat} {F f : Nat → Nat} {m : Nat}
+    (DK : RoleDiary K)
+    (hm : IsLeaf H m)
+    (p : ({u : Nat // u ∈ newNonleafGeneratorSupport H m} → Nat))
+    (c₀ : Fin (oldStageTailCut H m f) →
+      Fin (oldStageTailCut H m f) → Bool)
+    (cInf : (B : Nat) → Fin B → Fin B → Bool)
+    (hRecur : ∀ B N : Nat, ∃ n : Nat, N ≤ n ∧
+      ∃ g : Nat → Nat,
+        ReservedDiaryStage H K F (m + 1 + n) g ∧
+        CofinalDiaryStageCompatible H m f g ∧
+        (∀ u : {u : Nat // u ∈ newNonleafGeneratorSupport H m},
+          g u.val = p u) ∧
+        DiaryLowerBoundColors.singletonColour K
+          (oldStageTailCut H m f) (g m) = c₀ ∧
+        DiaryLowerBoundColors.singletonColour K B (g m) = cInf B)
+    (v : Nat) (hv : IsLeaf K v)
+    (hRealized : ∀ B : Nat,
+      DiaryLowerBoundColors.singletonColour K B v = cInf B) :
+    HasPersistentNextLeafWithJointProfileColour H K F f m p c₀ := by
+  apply (persistent_jointProfileColour_iff_uniform_nextLeaf_bound
+    hm p c₀).mpr
+  refine ⟨v, ?_⟩
+  intro N
+  obtain ⟨n, hn, g, Q, hOld, hProfile, hOldColour, hMask⟩ :=
+    hRecur v N
+  have QN : ReservedDiaryStage H K F (m + 1 + N) g :=
+    Q.restrict (by omega)
+  have hmSelected : m ∈ countableDiaryLeafPrefix H (m + 1 + n) :=
+    (mem_countableDiaryLeafPrefix_iff H (m + 1 + n) m).mpr
+      ⟨hm.1, by omega, hm⟩
+  have hmSupported : m ∈ countableDiaryFiniteSupport H (m + 1 + n) :=
+    mem_finiteLeafMeetSupport_leaf H
+      (countableDiaryLeafPrefix H (m + 1 + n)) m hmSelected
+  have hTargetLeaf : IsLeaf K (g m) :=
+    Q.1.leaf_role m hmSupported hm
+  have hEq : v = g m :=
+    (DK.singletonColour_self_cut_isolates_leaf
+      v (g m) hv hTargetLeaf).mp
+      ((hRealized v).trans hMask.symm)
+  refine ⟨g, QN, hOld, hProfile, hOldColour, ?_⟩
+  omega
+
+/-- Direct omission INSIDE ONE FIXED profile/old-cut colour fibre,
+without constructing any escaping numerical sequence. This is the
+right-strength replacement for the omission step in the existing
+persistent-or-omitted-virtual-type dichotomy. The no-successor
+hypothesis is for THIS fibre, not all possible next-leaf profiles. -/
+theorem no_persistent_fixed_fibre_implies_virtual_type_omitted
+    {H K : Ordered3Graph Nat} {F f : Nat → Nat} {m : Nat}
+    (DK : RoleDiary K)
+    (hm : IsLeaf H m)
+    (p : ({u : Nat // u ∈ newNonleafGeneratorSupport H m} → Nat))
+    (c₀ : Fin (oldStageTailCut H m f) →
+      Fin (oldStageTailCut H m f) → Bool)
+    (cInf : (B : Nat) → Fin B → Fin B → Bool)
+    (hRecur : ∀ B N : Nat, ∃ n : Nat, N ≤ n ∧
+      ∃ g : Nat → Nat,
+        ReservedDiaryStage H K F (m + 1 + n) g ∧
+        CofinalDiaryStageCompatible H m f g ∧
+        (∀ u : {u : Nat // u ∈ newNonleafGeneratorSupport H m},
+          g u.val = p u) ∧
+        DiaryLowerBoundColors.singletonColour K
+          (oldStageTailCut H m f) (g m) = c₀ ∧
+        DiaryLowerBoundColors.singletonColour K B (g m) = cInf B)
+    (hNo : ¬ HasPersistentNextLeafWithJointProfileColour
+      H K F f m p c₀) :
+    ¬ ∃ v : Nat, IsLeaf K v ∧
+      ∀ B : Nat,
+        DiaryLowerBoundColors.singletonColour K B v = cInf B := by
+  rintro ⟨v, hv, hRealized⟩
+  exact hNo
+    (persistent_fixed_fibre_of_realized_cofinal_virtual_type
+      DK hm p c₀ cInf hRecur v hv hRealized)
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
