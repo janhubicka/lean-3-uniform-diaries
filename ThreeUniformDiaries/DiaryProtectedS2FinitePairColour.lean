@@ -37,8 +37,9 @@ SameTwoTypeBelow predicate and numeric S2 meet. -/
 noncomputable def fullTwoTypeColour
     (K : Ordered3Graph Nat) (B u₀ u₁ : Nat) :
     ((Fin B → Fin B → Bool) × (Fin B → Fin B → Bool)) ×
-      (Fin B → Bool) :=
-  ((DiaryLowerBoundColors.singletonColour K B u₀,
+      (Fin B → Bool) := by
+  classical
+  exact ((DiaryLowerBoundColors.singletonColour K B u₀,
     DiaryLowerBoundColors.singletonColour K B u₁),
     fun z => decide (K.edge z.val u₀ u₁))
 
