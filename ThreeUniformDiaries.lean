@@ -1068,3 +1068,4 @@ import ThreeUniformDiaries.DiaryPersistentFutureRoleSlots
 import ThreeUniformDiaries.DiaryInfiniteHighOneSplitCone
 
 import ThreeUniformDiaries.DiaryHighTwoSidedE2RangeWitness
+import ThreeUniformDiaries.DiaryExactSingletonColourSplitCut
