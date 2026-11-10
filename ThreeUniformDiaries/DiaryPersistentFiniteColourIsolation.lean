@@ -129,5 +129,35 @@ theorem persistent_successor_of_realized_cofinal_virtual_singleton_type
   refine ⟨n, hn, g, Q, hOld, ?_⟩
   exact hColour.trans (hRealized u).symm
 
+
+/-- Direct contrapositive: if there is NO compatible persistent new
+leaf, EVERY full mixed singleton type that recurs cofinally in
+genuine compatible finite reserved horizons is omitted by actual
+target diary leaves. This bypasses construction of any escaping
+sequence or all-cut diagonal virtual-type selection in the proof
+of omission for an ALREADY SUPPLIED recurrent type.
+
+The recurrence itself must still be proved from genuine finite
+horizons; this statement supplies no bound and no type saturation. -/
+theorem no_persistent_successor_implies_cofinal_virtual_type_omitted
+    {H K : Ordered3Graph Nat} {F f : Nat → Nat} {m : Nat}
+    (DK : RoleDiary K)
+    (hm : IsLeaf H m)
+    (hNo : ¬ ∃ g : Nat → Nat,
+      PersistentReservedDiaryStage H K F (m + 1) g ∧
+      CofinalDiaryStageCompatible H m f g)
+    (c : (B : Nat) → Fin B → Fin B → Bool)
+    (hRecur : ∀ B N : Nat, ∃ n : Nat, N ≤ n ∧
+      ∃ g : Nat → Nat,
+        ReservedDiaryStage H K F (m + 1 + n) g ∧
+        CofinalDiaryStageCompatible H m f g ∧
+        DiaryLowerBoundColors.singletonColour K B (g m) = c B) :
+    ¬ ∃ u : Nat, IsLeaf K u ∧
+      ∀ B : Nat, DiaryLowerBoundColors.singletonColour K B u = c B := by
+  rintro ⟨u, hu, hRealized⟩
+  exact hNo
+    (persistent_successor_of_realized_cofinal_virtual_singleton_type
+      DK hm c hRecur u hu hRealized)
+
 end DiaryLeafPriority
 end ThreeUniformDiaries
