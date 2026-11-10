@@ -64,7 +64,9 @@ theorem RoleDiary.singletonColour_eq_iff_cut_le_oneMeet
     have hBelow : s < B := by omega
     have hSame : K.SameOneTypeBelow B a b :=
       (DiaryLowerBoundColors.singletonColour_eq_iff K B a b).mp hEq
-    exact hOpp (hSame 0 s hsZero hBelow)
+    have hBit : K.edge 0 s a ↔ K.edge 0 s b :=
+      hSame hsZero hBelow
+    exact hOpp hBit
   · intro hB
     apply (DiaryLowerBoundColors.singletonColour_eq_iff K B a b).mpr
     intro x y hxy hyB
