@@ -109,17 +109,17 @@ theorem AdmissibleCofinalDiaryStage.old_new_oneMeet_profile_iff_two_cut_tests
         DiaryLowerBoundColors.singletonColour K (targetMeet a) v) ∧
       (DiaryLowerBoundColors.singletonColour K (targetMeet a + 1) (f a) ≠
         DiaryLowerBoundColors.singletonColour K (targetMeet a + 1) v)) := by
-  apply DK.finite_old_leaf_oneMeet_profile_iff_two_cut_tests
-    (countableDiaryLeafPrefix H m) f v
-  · intro a ha
+  have hOld : ∀ a : Nat,
+      a ∈ countableDiaryLeafPrefix H m → IsLeaf K (f a) := by
+    intro a ha
     have hSupport : a ∈ countableDiaryFiniteSupport H m :=
       mem_finiteLeafMeetSupport_leaf H (countableDiaryLeafPrefix H m) a ha
     have hLeaf : IsLeaf H a :=
       ((mem_countableDiaryLeafPrefix_iff H m a).mp ha).2.2
     exact P.leaf_role a hSupport hLeaf
-  · exact hv
-  · intro a ha
-    exact ne_of_lt (hAbove a ha)
+  exact DK.finite_old_leaf_oneMeet_profile_iff_two_cut_tests
+    (countableDiaryLeafPrefix H m) f v
+    hOld hv (fun a ha => ne_of_lt (hAbove a ha)) targetMeet
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
