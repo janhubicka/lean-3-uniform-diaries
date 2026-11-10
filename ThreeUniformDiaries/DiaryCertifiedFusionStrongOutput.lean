@@ -1,4 +1,5 @@
 import ThreeUniformDiaries.DiaryCofinalBoundedCountableFusion
+import ThreeUniformDiaries.DiaryUpperBoundMarkerMeetCompletion
 
 /-!
 # Critical-path interface audit: the fused embedding retains its diary certificate
@@ -22,7 +23,8 @@ namespace ThreeUniformDiaries
 namespace DiaryLeafPriority
 
 /-- The coherent fusion witness is an induced graph embedding AND
-a genuine role- and marker-preserving diary preembedding. Both
+a genuine role- and marker-preserving diary preembedding, AND a full
+TypeRespecting map by the existing certified marker-completion theorem. All
 certificates describe literally the same underlying function. -/
 theorem CertifiedDiaryFusionData.exists_full_embedding_with_spec
     {H K : Ordered3Graph Nat} {DH : RoleDiary H}
@@ -31,6 +33,7 @@ theorem CertifiedDiaryFusionData.exists_full_embedding_with_spec
     (DK : RoleDiary K) :
     ∃ e : Ordered3Graph.Embedding H K,
       DiaryPreembeddingSpec H K (fun u : Nat => e u) ∧
+      e.TypeRespecting ∧
       (∀ u : Nat, IsLeaf H u → ∃ t : Nat, e u = F t) ∧
       (∀ u v : Nat, 3 ≤ u → 3 ≤ v →
         K.oneMeetLevel (e u) (e v) =
@@ -47,7 +50,10 @@ theorem CertifiedDiaryFusionData.exists_full_embedding_with_spec
   have hSpec : DiaryPreembeddingSpec H K (fun u : Nat => e u) := by
     rw [hFun]
     exact P.limit_is_diaryPreembedding
-  refine ⟨e, hSpec, ?_, hOne, hTwo⟩
+  have hTypeRespecting : e.TypeRespecting :=
+    e.typeRespecting_of_nonmarker_exact_meets_and_markers
+      hSpec.marker_zero hSpec.marker_one hSpec.marker_two hOne hTwo
+  refine ⟨e, hSpec, hTypeRespecting, ?_, hOne, hTwo⟩
   intro u hu
   obtain ⟨t, ht⟩ := P.limit_leaf_range F hRange u hu
   exact ⟨t, (heq u).trans ht⟩
@@ -68,6 +74,7 @@ theorem exists_fullDiaryEmbedding_of_persistent_finite_covers_with_spec
         FiniteHorizonNextLeafCover H K F m f) :
     ∃ e : Ordered3Graph.Embedding H K,
       DiaryPreembeddingSpec H K (fun u : Nat => e u) ∧
+      e.TypeRespecting ∧
       (∀ u : Nat, IsLeaf H u → ∃ t : Nat, e u = F t) ∧
       (∀ u v : Nat, 3 ≤ u → 3 ≤ v →
         K.oneMeetLevel (e u) (e v) =
@@ -111,6 +118,7 @@ theorem exists_fullDiaryEmbedding_of_cofinal_bounded_leaf_images_with_spec
         HasCofinalBoundedNextLeafImages H K F f m) :
     ∃ e : Ordered3Graph.Embedding H K,
       DiaryPreembeddingSpec H K (fun u : Nat => e u) ∧
+      e.TypeRespecting ∧
       (∀ u : Nat, IsLeaf H u → ∃ t : Nat, e u = F t) ∧
       (∀ u v : Nat, 3 ≤ u → 3 ≤ v →
         K.oneMeetLevel (e u) (e v) =
