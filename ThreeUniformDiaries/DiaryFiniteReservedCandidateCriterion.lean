@@ -1,3 +1,4 @@
+import ThreeUniformDiaries.DiaryFunctionalCandidateOldSupport
 import ThreeUniformDiaries.DiaryFiniteCandidateCriterion
 import ThreeUniformDiaries.DiaryFutureOrderReserve
 
