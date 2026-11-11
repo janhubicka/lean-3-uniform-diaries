@@ -97,9 +97,9 @@ theorem AdmissibleCofinalDiaryStage.functional_candidate_table_preserves_old_sup
         _ = K.oneMeetLevel (f a) (f b) := by
           rw [hOldLeafVal a ha, hOldLeafVal b hb]
         _ = f (H.oneMeetLevel a b) :=
-          (P.leaf_oneMeet a b
+          P.leaf_oneMeet a b
             (hOldSupported a ha) (hOldSupported b hb)
-            (hOldLeafRole a ha) (hOldLeafRole b hb)).symm
+            (hOldLeafRole a ha) (hOldLeafRole b hb)
         _ = f u := congrArg f hEq
     · change u ∈
         ((finiteOrderedLeafPairs Lold).product
@@ -130,12 +130,12 @@ theorem AdmissibleCofinalDiaryStage.functional_candidate_table_preserves_old_sup
           rw [hOldLeafVal a ha, hOldLeafVal b hb,
             hOldLeafVal c hc, hOldLeafVal d hd]
         _ = f (H.twoMeetLevel a b c d) :=
-          (P.leaf_twoMeet a b c d
+          P.leaf_twoMeet a b c d
             (hOldSupported a ha) (hOldSupported b hb)
             (hOldSupported c hc) (hOldSupported d hd)
             hab hcd
             (hOldLeafRole a ha) (hOldLeafRole b hb)
-            (hOldLeafRole c hc) (hOldLeafRole d hd)).symm
+            (hOldLeafRole c hc) (hOldLeafRole d hd)
         _ = f u := congrArg f hEq
 
 /-- In particular the functionality field of the existing precise
