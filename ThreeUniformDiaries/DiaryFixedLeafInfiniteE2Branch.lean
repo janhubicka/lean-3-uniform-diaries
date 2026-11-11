@@ -117,8 +117,14 @@ theorem RoleDiary.fixed_leaf_infinite_constant_E2_branch
     omega
   have hSameMeet (k : Nat) :
       K.oneMeetLevel w (F (indices k)) = s := by
-    change K.oneMeetLevel w (F (base + pos k)) = s
-    exact (hPick (pos k)).2
+    cases k with
+    | zero =>
+        change K.oneMeetLevel w (F (base + pick 0)) = s
+        exact (hPick 0).2
+    | succ k =>
+        change K.oneMeetLevel w
+          (F (base + pick (pos k + 1))) = s
+        exact (hPick (pos k + 1)).2
   have hs : IsOneSplit K s := by
     have h := hSplit (pos 0)
     rw [hSameMeet 0] at h
