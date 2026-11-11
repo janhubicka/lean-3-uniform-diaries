@@ -1,3 +1,4 @@
+import ThreeUniformDiaries.DiaryCofinalJointFiniteColourPersistence
 import ThreeUniformDiaries.DiaryFiniteColourStageCompatibility
 import ThreeUniformDiaries.DiaryExactSingletonColourSplitCut
 import ThreeUniformDiaries.DiaryCountableRelativeStepExtension
