@@ -1,6 +1,7 @@
 import ThreeUniformDiaries.DiaryFiniteLeafSupportCoversPrefix
 import ThreeUniformDiaries.DiaryFiniteProtectedFactorization
 import ThreeUniformDiaries.DiaryFiniteBoundedUniversality
+import ThreeUniformDiaries.DiaryNoLiteralFiniteFullDiaryEndExtension
 
 /-!
 # Track B: finite full compression preserves a supplied bounded ambient copy literally
