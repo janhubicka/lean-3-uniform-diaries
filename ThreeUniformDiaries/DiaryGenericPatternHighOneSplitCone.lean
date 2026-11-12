@@ -1,3 +1,4 @@
+import ThreeUniformDiaries.DiaryGenericBadColourSubcopies
 import ThreeUniformDiaries.DiaryCofinalBadGenericNextLeafColour
 import ThreeUniformDiaries.DiaryFiniteCandidateOldColourDichotomy
 import ThreeUniformDiaries.DiaryOldStageFullS2E3CofinalProfile
