@@ -114,7 +114,8 @@ theorem exists_proper_growth_after
         have hBack := hNever (N+k) (by omega)
         have hEq : T.size ((N+k)+1) = T.size (N+k) := by omega
         calc
-          T.size (N+(k+1)) = T.size ((N+k)+1) := by omega
+          T.size (N+(k+1)) = T.size ((N+k)+1) := by
+            rw [Nat.add_succ]
           _ = T.size (N+k) := hEq
           _ = T.size N := ih
   obtain ⟨j,hBig⟩ := hUnbounded (T.size N)
