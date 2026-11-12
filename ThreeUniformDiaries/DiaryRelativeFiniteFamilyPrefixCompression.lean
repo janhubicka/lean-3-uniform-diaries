@@ -26,9 +26,10 @@ or countable-source flip absorption.
 namespace ThreeUniformDiaries
 namespace DiaryLeafPriority
 
-/-- Extend a finite prescribed set of genuine ambient leaves by
-finitely many witnesses generating EVERY ambient vertex below a
-prescribed numerical cut. -/
+/-- Extend a set of genuine ambient leaves by finitely many
+additional leaves whose meets generate a given complete numerical
+prefix. Reuse the already validated cofinal full-diary support theorem,
+not a duplicate induction on V1/V2 witness tuples. -/
 theorem RoleDiary.exists_leafSupport_covering_prefix_and_leaves
     {G : Ordered3Graph Nat} (DG : RoleDiary G)
     (p : Nat) (W : Finset Nat)
@@ -38,29 +39,33 @@ theorem RoleDiary.exists_leafSupport_covering_prefix_and_leaves
       (∀ u : Nat, u ∈ L → IsLeaf G u) ∧
       (∀ u : Nat, u < p → u ∈ finiteLeafMeetSupport G L) := by
   classical
-  obtain ⟨N,hPrefix⟩ :=
-    DG.exists_leafMeetSupport_covering_prefix p
-  let M : Nat := max N (W.sup id + 1)
-  let L : Finset Nat := finiteLeavesBefore G M
+  obtain ⟨L₀,hLeaves₀,_hFinite,hRanks⟩ :=
+    DG.exists_finite_full_diary_retaining_prefix p
+  let L : Finset Nat := L₀ ∪ W
   refine ⟨L,?_,?_,?_⟩
   · intro u hu
-    have hLe : u ≤ W.sup id := Finset.le_sup hu
-    change u ∈ (Finset.range M).filter (IsLeaf G)
-    exact Finset.mem_filter.mpr
-      ⟨Finset.mem_range.mpr (by dsimp [M]; omega),hW u hu⟩
+    exact Finset.mem_union.mpr (Or.inr hu)
   · intro u hu
-    change u ∈ (Finset.range M).filter (IsLeaf G) at hu
-    exact (Finset.mem_filter.mp hu).2
+    rcases Finset.mem_union.mp hu with hL | hWmem
+    · exact hLeaves₀ u hL
+    · exact hW u hWmem
   · intro u hu
-    have hSub : finiteLeavesBefore G N ⊆ L :=
-      finiteLeavesBefore_mono G N M (le_max_left _ _)
-    exact finiteLeafMeetSupport_mono G hSub (hPrefix u hu)
+    obtain ⟨hCard,hIndex⟩ := hRanks u hu
+    have hMem : u ∈ finiteLeafMeetSupport G L₀ := by
+      have h := finiteSupportIndex_mem
+        (finiteLeafMeetSupport G L₀) u hCard
+      rw [hIndex] at h
+      exact h
+    have hSub : L₀ ⊆ L := by
+      intro x hx
+      exact Finset.mem_union.mpr (Or.inl hx)
+    exact finiteLeafMeetSupport_mono G L₀ L hSub hMem
 
 /-- Any already given finite family of genuine finite diary
 embeddings into ONE full countable target can be factored into a
 single genuinely FINITE full diary while retaining an arbitrary
 ambient numerical prefix LITERALLY and preserving all exact
-mixed numerical one-/two-type meets of the family copies.
+mixed numerical singleton and full pair-type meets of the family copies.
 
 The countable ambient and its source-copy embeddings are INPUTS:
 this does not solve the missing protected relative absorber
