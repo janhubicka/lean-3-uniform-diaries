@@ -33,6 +33,14 @@ compatible reserved successor exists in other colours.
 namespace ThreeUniformDiaries
 namespace DiaryLeafPriority
 
+/-- Noncomputable Boolean choice of the OPPOSITE of a specified
+old source pair's required next-leaf E5 bit. Defined separately
+so theorem statements need no implicit Decidable proposition. -/
+noncomputable def oppositeOldPairE5Bit
+    (H : Ordered3Graph Nat) (a b m : Nat) : Bool := by
+  classical
+  exact decide (¬ H.edge a b m)
+
 /-- Wrong E5 incidence at even ONE fixed ordered old selected pair
 makes the entire complete singleton colour of v impossible for
 a compatible reserved next-leaf image.
@@ -113,13 +121,13 @@ theorem ReservedDiaryStage.exists_cofinal_bad_generic_next_leaf_colour
     let B := oldStageTailCut H m f
     ∃ c : Fin B → Fin B → Bool,
       HasCofinalGenericPairPatternColour G K F B
-        (fun _ _ => decide (¬ H.edge a b m)) c ∧
+        (fun _ _ => oppositeOldPairE5Bit H a b m) c ∧
       (∀ w : Nat, HasCompatibleReservedNextLeaf H K F f m w →
         DiaryLowerBoundColors.singletonColour K B w ≠ c) := by
   classical
   let B := oldStageTailCut H m f
   let chi : Nat → Nat → Bool :=
-    fun _ _ => decide (¬ H.edge a b m)
+    fun _ _ => oppositeOldPairE5Bit H a b m
   have haOld : a ∈ countableDiaryFiniteSupport H m :=
     mem_finiteLeafMeetSupport_leaf H
       (countableDiaryLeafPrefix H m) a ha
@@ -158,7 +166,7 @@ theorem ReservedDiaryStage.exists_cofinal_bad_generic_next_leaf_colour
       (K.edge (f a) (f b) (F t) ↔ ¬ H.edge a b m) := by
     have h := hPair i j hIJ hJB
     rw [← hi, ← hj] at h
-    simpa [chi, decide_eq_true_eq] using h
+    simpa [chi, oppositeOldPairE5Bit, decide_eq_true_eq] using h
   have hWrong :
       ¬ (H.edge a b m ↔ K.edge (f a) (f b) (F t)) := by
     intro hActual
