@@ -53,6 +53,40 @@ theorem stableRank_strict (T : FiniteOrderTransitionTower)
       hKv (max Ku Kv) (le_max_right _ _)] at h
   exact h
 
+
+/-- The stable-rank maps form a coherent cocone over the selected
+finite-frame transitions; this is stronger than independent embeddings
+of the separate finite stages. -/
+theorem stableRank_step (T : FiniteOrderTransitionTower)
+    (hb : T.BoundedRanks) (n u : Nat) (hu : u < T.size n) :
+    T.stableRank hb (n+1) (T.step n u) =
+      T.stableRank hb n u := by
+  obtain ⟨Kold,hOld⟩ := T.stableRank_spec hb n u hu
+  obtain ⟨Knew,hNew⟩ :=
+    T.stableRank_spec hb (n+1) (T.step n u)
+      (T.step_bound n u hu)
+  let k : Nat := max Kold Knew
+  have h1 := hOld (k+1) (by dsimp [k]; omega)
+  have h2 := hNew k (by dsimp [k]; omega)
+  rw [T.forward_shift n k u, h2] at h1
+  exact h1
+
+/-- Naturality of the eventual-rank map with EVERY finite-horizon
+composite, not just a single successor. -/
+theorem stableRank_forward (T : FiniteOrderTransitionTower)
+    (hb : T.BoundedRanks) (n k u : Nat) (hu : u < T.size n) :
+    T.stableRank hb (n+k) (T.forward n k u) =
+      T.stableRank hb n u := by
+  induction k with
+  | zero =>
+      simp only [Nat.add_zero, forward_zero]
+  | succ k ih =>
+      have hStep :=
+        T.stableRank_step hb (n+k) (T.forward n k u)
+          (T.forward_bound n k u hu)
+      have h := hStep.trans ih
+      simpa only [Nat.add_succ, forward_succ] using h
+
 end FiniteOrderTransitionTower
 
 namespace FiniteInducedEdgeTower
