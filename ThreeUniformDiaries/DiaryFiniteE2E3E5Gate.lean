@@ -62,7 +62,9 @@ theorem RoleDiary.finite_induced_iff_E2_E3_E5
   · intro hInduced
     refine ⟨?_, ?_, ?_⟩
     · intro s b hsS hbS hs hb hsb
-      have h0s : 0 < s := by omega
+      have h0s : 0 < s := by
+        have hs3 := hs.1
+        omega
       simpa only [h0] using hInduced 0 s b h0S hsS hbS h0s hsb
     · intro s a b hsS haS hbS hs ha hb hsa hab
       exact hInduced s a b hsS haS hbS hsa hab
