@@ -1,3 +1,4 @@
+import ThreeUniformDiaries.DiaryCofinalBadGenericNextLeafColour
 import ThreeUniformDiaries.DiaryOldStageFullS2E3CofinalProfile
 import ThreeUniformDiaries.DiaryFunctionalCandidateFullInducedColourStability
 import ThreeUniformDiaries.DiaryNewNewS2NoCap
