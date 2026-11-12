@@ -1,3 +1,4 @@
+import ThreeUniformDiaries.DiaryCofinalGenericNewNewS2E3Profile
 import ThreeUniformDiaries.DiaryOldStageCofinalE5S1E2Profile
 import ThreeUniformDiaries.DiaryCofinalGenericE5RootS1E2Sign
 import ThreeUniformDiaries.DiaryCofinalGenericE5RootS1JointProfile
