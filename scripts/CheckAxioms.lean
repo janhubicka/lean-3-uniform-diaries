@@ -3161,3 +3161,5 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.ReservedDiaryStage.wrong_old_pair_E5_bit_forbids_compatible_colour
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.ReservedDiaryStage.exists_cofinal_bad_generic_next_leaf_colour
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.exists_bad_cofinal_generic_monochromatic_subcopies_for_old_stage
