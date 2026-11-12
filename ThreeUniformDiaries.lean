@@ -1110,3 +1110,5 @@ import ThreeUniformDiaries.DiaryGenericCompleteOneNewS1S2
 import ThreeUniformDiaries.DiaryAnchoredGenericReservedSuccessorCone
 
 import ThreeUniformDiaries.DiaryFiniteSupportProtectedPrefixRanks
+
+import ThreeUniformDiaries.DiaryFiniteLeafSupportCoversPrefix
