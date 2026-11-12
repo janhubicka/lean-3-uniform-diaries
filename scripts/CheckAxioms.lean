@@ -3157,3 +3157,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportLift_fixed_prefix
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.exists_finite_full_diary_retaining_prefix
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.FiniteMeetEmbedding.exists_finiteFull_compression_preserving_bounded_image
