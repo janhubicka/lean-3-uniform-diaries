@@ -47,7 +47,7 @@ theorem fullFiniteDiaryPrefix_forces_onePass_event
     DA (onePassRawTarget_isDiary PH) hn hAK
 
 /-- The above obstruction has a concrete finite witness:
-an actual one-/two-event block inserted at a nonmarker old
+an actual singleton-or-pair event block inserted at a nonmarker old
 index in the complete finite FULL diary prefix, moving
 that original vertex strictly to the right. -/
 theorem fullFiniteDiaryPrefix_exists_moving_onePass_block
