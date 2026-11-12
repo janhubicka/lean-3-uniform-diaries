@@ -99,8 +99,8 @@ theorem RoleDiary.exists_old_leaf_image_with_unbounded_reserved_new_leaf
     obtain ⟨g,Q,hGI,hGJ⟩ := hR
     exact hNoWitness ⟨j,g,by omega,Q,hGI,hGJ⟩
   obtain ⟨u,hFMono,hAvoid⟩ :=
-    G.exists_generic_selfembedding_avoiding_finite_forward
-      (fun t : Nat => F t) F.injective R hFinite
+    GenericEnumerated3Graph.exists_generic_selfembedding_avoiding_finite_forward
+      G (fun t : Nat => F t) F.injective R hFinite
   have hUniversal : Ordered3Graph.CountablyUniversal G.graph := by
     intro L
     obtain ⟨h,hMono,hInduced⟩ := G.exists_countable_induced_embedding L
