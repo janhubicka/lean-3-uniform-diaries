@@ -39,6 +39,7 @@ genuine leaf. -/
 theorem finiteLeavesBefore_mono
     (G : Ordered3Graph Nat) (N M : Nat) (hNM : N ≤ M) :
     finiteLeavesBefore G N ⊆ finiteLeavesBefore G M := by
+  classical
   intro u hu
   change u ∈ (Finset.range N).filter (IsLeaf G) at hu
   change u ∈ (Finset.range M).filter (IsLeaf G)
@@ -193,6 +194,7 @@ theorem RoleDiary.exists_finite_full_diary_retaining_prefix
       (∀ u : Nat, u < p →
         u < (finiteLeafMeetSupport G L).card ∧
         finiteSupportIndex (finiteLeafMeetSupport G L) u = u) := by
+  classical
   obtain ⟨N,hPrefix⟩ := D.exists_leafMeetSupport_covering_prefix p
   let L : Finset Nat := finiteLeavesBefore G N
   have hLeaves : ∀ u : Nat, u ∈ L → IsLeaf G u := by
