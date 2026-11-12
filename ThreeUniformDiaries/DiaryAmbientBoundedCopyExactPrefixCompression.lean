@@ -101,7 +101,11 @@ theorem FiniteMeetEmbedding.exists_finiteFull_compression_preserving_bounded_ima
     have hbIndex := (hKeep b hb).2
     have hcIndex := (hKeep c hcP).2
     have hEdge := finiteSupportGraph_edge_iff G S a b c hab hbc hcM
-    simpa only [C,haIndex,hbIndex,hcIndex] using hEdge
+    change finiteSupportIndex S a = a at haIndex
+    change finiteSupportIndex S b = b at hbIndex
+    change finiteSupportIndex S c = c at hcIndex
+    rw [haIndex, hbIndex, hcIndex] at hEdge
+    exact hEdge
   have hFour : 4 ≤ m := by
     have hBound3 := hBound 3 (by omega : 3 < n)
     have hMono3 : g 2 < g 3 := hG.strictMono (by omega : 2 < 3)
