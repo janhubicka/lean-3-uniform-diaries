@@ -1,3 +1,4 @@
+import ThreeUniformDiaries.DiaryReducedFiniteCandidateCriterion
 import ThreeUniformDiaries.DiaryCandidateE2E3E5Gate
 import ThreeUniformDiaries.DiaryFiniteE2E3E5Gate
 import ThreeUniformDiaries.DiaryPreembeddingMixedEdgeGate
