@@ -83,7 +83,9 @@ theorem AdmissibleCofinalDiaryStage.candidate_terminal_edge_stable_of_old_cut_co
   calc
     K.edge (g x) (g y) v ↔ K.edge (g x) (g y) w := hBit
     _ ↔ K.edge (h x) (h y) w := by
-      rw [hSameNonleaf x hx hxNe, hSameNonleaf y hy hyNe]
+      have hxEq : g x = h x := hSameNonleaf x hx hxNe
+      have hyEq : g y = h y := hSameNonleaf y hy hyNe
+      rw [hxEq, hyEq]
 
 /-- Equivalently, for a genuine full finite candidate at the
 original new-leaf image v, the predicate saying that ALL terminal
