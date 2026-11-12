@@ -1,3 +1,5 @@
+import ThreeUniformDiaries.DiaryGenericCandidateE5Conditional
+import ThreeUniformDiaries.DiaryCandidateFreshIncidenceGate
 import ThreeUniformDiaries.DiaryReducedFiniteCandidateCriterion
 import ThreeUniformDiaries.DiaryFiniteE2E3E5Gate
 import ThreeUniformDiaries.DiaryPreembeddingMixedEdgeGate
