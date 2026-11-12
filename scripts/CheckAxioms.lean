@@ -3072,3 +3072,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.second_leaf_rooted_split_cofinal_successor_iff
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.finite_induced_iff_E2_E3_E5
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.functional_candidate_induced_of_E2_E3_E5
