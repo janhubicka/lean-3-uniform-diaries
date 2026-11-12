@@ -24,15 +24,26 @@ absorbers. That positive relative extension remains open.
 namespace ThreeUniformDiaries
 namespace DiaryLeafPriority
 
+/-- Selected germ event count, using classical decidability for
+the two actual marker-role predicates in this NONCOMPUTABLE
+finite counting function. -/
+noncomputable def onePassSelectedGermEventCount
+    (H : Ordered3Graph Nat) (m : Nat) : Nat := by
+  classical
+  exact
+    (if IsTwoSplit H m then 0 else (selectedTwoGerms H m).card) +
+    (if IsLeaf H m then (selectedOneGerms H m).card else 0)
+
 /-- Concrete size of a genuine one-pass event block at a
 nonmarker original vertex, expressed directly by its two
 finite sets of realised selected successor germs. -/
 theorem onePassBlockSize_eq_selectedGermCounts
     (H : Ordered3Graph Nat) (m : Nat) (hm : 3 ≤ m) :
-    onePassBlockSize H m =
-      (if IsTwoSplit H m then 0 else (selectedTwoGerms H m).card) +
-      (if IsLeaf H m then (selectedOneGerms H m).card else 0) := by
+    onePassBlockSize H m = onePassSelectedGermEventCount H m := by
   classical
+  change onePassBlockSize H m =
+    (if IsTwoSplit H m then 0 else (selectedTwoGerms H m).card) +
+    (if IsLeaf H m then (selectedOneGerms H m).card else 0)
   have hNot : ¬ m < 3 := by omega
   simp [onePassBlockSize, onePassBlock, hNot,
     sortOneGermsDescending_length]
@@ -59,6 +70,9 @@ theorem onePassNoEventsBelow_iff_noSelectedGerms
   · intro hNo m hm3 hmp
     have hEq := hNo m hmp
     rw [onePassBlockSize_eq_selectedGermCounts H m hm3] at hEq
+    change
+      ((if IsTwoSplit H m then 0 else (selectedTwoGerms H m).card) +
+        (if IsLeaf H m then (selectedOneGerms H m).card else 0)) = 0 at hEq
     constructor
     · intro hNotTwo
       simp only [if_neg hNotTwo] at hEq
@@ -81,8 +95,11 @@ theorem onePassNoEventsBelow_iff_noSelectedGerms
         split_ifs with h
         · exact hLocal.2 h
         · rfl
-      rw [onePassBlockSize_eq_selectedGermCounts H m hm3,
-        hPair, hOne]
+      rw [onePassBlockSize_eq_selectedGermCounts H m hm3]
+      change
+        ((if IsTwoSplit H m then 0 else (selectedTwoGerms H m).card) +
+          (if IsLeaf H m then (selectedOneGerms H m).card else 0)) = 0
+      rw [hPair, hOne]
     · have hSmall : m < 3 := by omega
       simp [onePassBlockSize, onePassBlock, hSmall]
 
