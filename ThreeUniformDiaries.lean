@@ -1101,3 +1101,5 @@ import ThreeUniformDiaries.DiaryConditionalEdgeColimitExactPrefixTransfer
 import ThreeUniformDiaries.DiaryFiniteStageUniformStableRanks
 
 import ThreeUniformDiaries.DiarySelectedStableStageExactMeets
+
+import ThreeUniformDiaries.DiarySelectedColimitSplitWitnesses
