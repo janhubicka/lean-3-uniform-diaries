@@ -78,8 +78,8 @@ theorem exists_generic_selfembedding_avoiding_finite_old_sets
       Finset.le_sup (f := cutoff) hMem
     exact (hCutoff A y (hAB.trans hBy)) hRA
   obtain ⟨u,hFMono,hAvoid⟩ :=
-    G.exists_generic_selfembedding_avoiding_finite_forward
-      F hInj Bad hBoundBad
+    exists_generic_selfembedding_avoiding_finite_forward
+      G F hInj Bad hBoundBad
   refine ⟨u,hFMono,?_⟩
   intro j A hNonempty hEarlier
   cases j with
@@ -88,6 +88,7 @@ theorem exists_generic_selfembedding_avoiding_finite_old_sets
       obtain ⟨i,hi,_⟩ := hEarlier x hx
       omega
   | succ k =>
+      intro hRA
       have hSub : A ⊆ Finset.range (u k + 1) := by
         intro x hx
         obtain ⟨i,hi,hxEq⟩ := hEarlier x hx
@@ -97,8 +98,7 @@ theorem exists_generic_selfembedding_avoiding_finite_old_sets
         apply Finset.mem_range.mpr
         omega
       have hBad : Bad (u k) (u (k + 1)) :=
-        ⟨A,hSub,by simpa using
-          (show R A (u (k + 1)) from by assumption)⟩
+        ⟨A,hSub,hRA⟩
       exact (hAvoid k (k + 1) (Nat.lt_succ_self k)) hBad
 
 end GenericEnumerated3Graph
