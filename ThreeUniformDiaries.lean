@@ -1108,3 +1108,5 @@ import ThreeUniformDiaries.DiaryCofinalGenericE5S1E2S2E3Profile
 
 import ThreeUniformDiaries.DiarySelectedTowerUnavoidableMotion
 import ThreeUniformDiaries.DiarySelectedAbsorberProtectedReserve
+
+import ThreeUniformDiaries.DiaryProtectedReservePermanentTail
