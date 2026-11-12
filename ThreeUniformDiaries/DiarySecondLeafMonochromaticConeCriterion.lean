@@ -103,7 +103,7 @@ theorem RoleDiary.second_leaf_fixed_colour_cone_good_iff_favourable_split
       (hMono t).symm
     exact (same_complete_singletonColour_fixes_all_oneNew_meets
       K B (f a) (f a) (f a) (J 0) (J t)
-      hCut hCut (hJAbove 0) (hJAbove t) hColour).1
+      hCut hCut (hJAbove 0) (hJAbove t) hColour).1.symm
   have hE2 (t : Nat) :
       (K.edge 0 s (J t) ↔ ¬ K.edge 0 s (f a)) := by
     have hOpp :
