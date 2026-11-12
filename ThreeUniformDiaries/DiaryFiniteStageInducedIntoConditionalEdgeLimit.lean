@@ -87,6 +87,41 @@ theorem stableRank_forward (T : FiniteOrderTransitionTower)
       have h := hStep.trans ih
       simpa only [Nat.add_succ, forward_succ] using h
 
+
+/-- The coherent eventual-rank cocone is jointly surjective onto Nat
+when the selected finite frame sizes are unbounded. Every numerical
+rank is eventually a literally fixed old vertex in some finite frame.
+This does not require a false literal end-extension of whole diaries. -/
+theorem stableRank_jointly_surjective (T : FiniteOrderTransitionTower)
+    (hb : T.BoundedRanks)
+    (hUnbounded : ∀ v : Nat, ∃ n : Nat, v < T.size n) :
+    ∀ v : Nat, ∃ n u : Nat,
+      u < T.size n ∧ T.stableRank hb n u = v := by
+  intro v
+  obtain ⟨N,hFix⟩ :=
+    T.exists_eventually_fixed_initial_segments hb hUnbounded (v+1)
+  obtain ⟨n₀,hSize⟩ := hUnbounded v
+  let n : Nat := max N n₀
+  have hN : N ≤ n := le_max_left _ _
+  have hn₀ : n₀ ≤ n := le_max_right _ _
+  have hv : v < T.size n :=
+    lt_of_lt_of_le hSize (T.size_mono n₀ n hn₀)
+  have hStepFixed : ∀ m : Nat, N ≤ m → T.step m v = v := by
+    intro m hm
+    have hEq : N+(m-N) = m := by omega
+    simpa only [hEq] using hFix (m-N) v (by omega)
+  have hForward : ∀ k : Nat, T.forward n k v = v := by
+    intro k
+    induction k with
+    | zero => rfl
+    | succ k ih =>
+        rw [T.forward_succ, ih]
+        exact hStepFixed (n+k) (by omega)
+  obtain ⟨K,hStable⟩ := T.stableRank_spec hb n v hv
+  have hValue := hStable K (le_refl K)
+  rw [hForward K] at hValue
+  exact ⟨n,v,hv,hValue.symm⟩
+
 end FiniteOrderTransitionTower
 
 namespace FiniteInducedEdgeTower
