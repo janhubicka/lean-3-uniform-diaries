@@ -1111,3 +1111,5 @@ import ThreeUniformDiaries.DiaryAnchoredGenericReservedSuccessorCone
 import ThreeUniformDiaries.DiaryReservedOldColourTailDichotomy
 
 import ThreeUniformDiaries.DiaryOnePassProtectedPrefixEventCriterion
+
+import ThreeUniformDiaries.DiaryOnePassFullProtectedPrefix
