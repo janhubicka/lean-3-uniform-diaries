@@ -1,3 +1,4 @@
+import ThreeUniformDiaries.DiaryCofinalGenericE5RootS1E2Sign
 import ThreeUniformDiaries.DiaryCofinalGenericE5RootS1JointProfile
 import ThreeUniformDiaries.DiaryStableGenericPairPatternColour
 import ThreeUniformDiaries.DiaryExactSingletonColourSplitCut
