@@ -2,6 +2,7 @@ import ThreeUniformDiaries.DiaryGenericLocallyFiniteForwardAvoidance
 import ThreeUniformDiaries.DiaryIndependentReservedStageExistence
 import ThreeUniformDiaries.DiaryReservedFiniteHorizonCompatibility
 import ThreeUniformDiaries.DiarySecondLeafFavourableSplitCriterion
+import ThreeUniformDiaries.DiaryUpperBoundDirectTransfer
 
 /-!
 # Track D: finite diary unavoidability forces an unbounded second-leaf root
