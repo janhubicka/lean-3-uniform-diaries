@@ -31,7 +31,23 @@ private theorem unorderedEdge_swap_first
     (K : Ordered3Graph Nat) (x y z : Nat) :
     K.unorderedEdge x y z ↔ K.unorderedEdge y x z := by
   unfold Ordered3Graph.unorderedEdge
-  tauto
+  constructor
+  · intro h
+    rcases h with h | h | h | h | h | h
+    · exact Or.inr (Or.inr (Or.inl h))
+    · exact Or.inr (Or.inr (Or.inr (Or.inl h)))
+    · exact Or.inl h
+    · exact Or.inr (Or.inl h)
+    · exact Or.inr (Or.inr (Or.inr (Or.inr (Or.inr h))))
+    · exact Or.inr (Or.inr (Or.inr (Or.inr (Or.inl h))))
+  · intro h
+    rcases h with h | h | h | h | h | h
+    · exact Or.inr (Or.inr (Or.inl h))
+    · exact Or.inr (Or.inr (Or.inr (Or.inl h)))
+    · exact Or.inl h
+    · exact Or.inr (Or.inl h)
+    · exact Or.inr (Or.inr (Or.inr (Or.inr (Or.inr h))))
+    · exact Or.inr (Or.inr (Or.inr (Or.inr (Or.inl h))))
 
 /-- In the original arbitrary UNORDERED induced generic true-leaf
 range of a full target RoleDiary K, for any genuine old reserved
