@@ -129,6 +129,24 @@ theorem exists_proper_growth_after
   rw [hIdx] at hEq
   omega
 
+
+/-- If two successive finite linear-order frames have the same
+cardinality, a bounded strictly increasing transition is literally
+the identity on its TRUE finite source frame. Only finite-frame
+strictness is needed; the total Nat map is unconstrained outside. -/
+theorem step_identity_of_equal_frame_size
+    (T : FiniteOrderTransitionTower) (n : Nat)
+    (hEq : T.size (n+1) = T.size n)
+    (u : Nat) (hu : u < T.size n) :
+    T.step n u = u := by
+  have hLast : T.size n - 1 < T.size n := by omega
+  have hLower := T.step_ge_index n (T.size n - 1) hLast
+  have hBound := T.step_bound n (T.size n - 1) hLast
+  have hFixedLast : T.step n (T.size n - 1) = T.size n - 1 := by
+    omega
+  exact T.step_fixed_below n (T.size n - 1)
+    hLast hFixedLast u (by omega)
+
 end FiniteOrderTransitionTower
 
 /-- The actual selected absorber tower has properly growing
@@ -159,6 +177,39 @@ theorem selectedAbsorberTower_movement_arbitrarily_late
   obtain ⟨u,hu3,hu,hMove⟩ :=
     selectedAbsorberTower_properGrowth_moves_old_rank n hGrow
   exact ⟨n,u,hN,hu3,hu,hMove⟩
+
+
+/-- Exact per-step movement criterion for the real selected FULL
+finite-diary tower: an old vertex moves iff the finite target frame
+strictly grows. A same-size selected embedding cannot permute the
+linear order; a proper growth cannot literally preserve all old
+vertices by the finite no-end-extension obstruction. -/
+theorem selectedAbsorberTower_moves_old_rank_iff_properGrowth
+    (n : Nat) :
+    (∃ u : Nat,
+      u < (universalStrongAbsorberTower n).bound ∧
+      universalStrongAbsorberTower_stepMap n u ≠ u) ↔
+    (universalStrongAbsorberTower n).bound <
+      (universalStrongAbsorberTower (n+1)).bound := by
+  constructor
+  · rintro ⟨u,hu,hMove⟩
+    have hMono := selectedAbsorberFiniteOrderTower.size_le_succ n
+    have hSize :
+        (universalStrongAbsorberTower n).bound ≤
+          (universalStrongAbsorberTower (n+1)).bound := by
+      simpa only [selectedAbsorberFiniteOrderTower] using hMono
+    by_contra hNot
+    have hEq :
+        (universalStrongAbsorberTower (n+1)).bound =
+          (universalStrongAbsorberTower n).bound := by omega
+    have hSame : universalStrongAbsorberTower_stepMap n u = u := by
+      exact selectedAbsorberFiniteOrderTower.step_identity_of_equal_frame_size
+        n hEq u hu
+    exact hMove hSame
+  · intro hGrow
+    obtain ⟨u,_hu3,hu,hMove⟩ :=
+      selectedAbsorberTower_properGrowth_moves_old_rank n hGrow
+    exact ⟨u,hu,hMove⟩
 
 /-- If the actual tower nevertheless has bounded forward ranks,
 then the mandatory motions at future strictly growing stages
