@@ -3163,3 +3163,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.ReservedDiaryStage.exists_cofinal_bad_generic_next_leaf_colour
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.exists_bad_cofinal_generic_monochromatic_subcopies_for_old_stage
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.second_leaf_fixed_colour_cone_good_iff_favourable_split
