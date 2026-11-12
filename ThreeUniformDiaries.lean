@@ -1123,3 +1123,5 @@ import ThreeUniformDiaries.DiaryRelativeFiniteFamilyPrefixCompression
 
 import ThreeUniformDiaries.DiaryOnePassFullProtectedPrefix
 import ThreeUniformDiaries.DiaryNoCountableLiteralFiniteFullPrefix
+
+import ThreeUniformDiaries.DiaryOnePassSelectedGermProtectedCut
