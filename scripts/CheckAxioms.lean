@@ -3140,3 +3140,5 @@ import ThreeUniformDiaries
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.exists_cofinal_generic_joint_complete_S2_numeric_profile
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.exists_cofinal_generic_joint_complete_S2_E3_profile
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.exists_cofinal_old_stage_required_E5_full_target_pair_profile
