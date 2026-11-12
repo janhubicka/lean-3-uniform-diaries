@@ -93,7 +93,7 @@ theorem candidate_generator_row_at_new_leaf_iff
         have hmLeA : m ≤ a := by
           rw [← hSource]
           exact hCap
-        exact (not_lt_of_ge hmLeA) haLtM
+        exact False.elim ((not_lt_of_ge hmLeA) haLtM)
   · intro hz
     subst z
     have hmL : m ∈ L :=
