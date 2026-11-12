@@ -71,13 +71,18 @@ theorem selectedAbsorberLimit_oneSplit_witness
   intro s hs
   obtain ⟨n,u,hu,hValue⟩ :=
     T.stableRank_jointly_surjective hb hUnbounded s
+  have hNonmarker : 3 ≤ T.stableRank hb n u := by
+    rw [hValue]
+    exact hs.1
   have hu3 : 3 ≤ u :=
     selectedAbsorberTower_stableRank_nonmarker_preimage hb n u hu
-      (by simpa only [hValue] using hs.1)
+      hNonmarker
   have hsFinite : IsOneSplit (universalStrongAbsorberTower n).graph u := by
     apply (selectedAbsorberFiniteStage_roles_in_conditionalLimit
       hb n u hu3 hu).2.1.mp
-    simpa only [hValue] using hs
+    change IsOneSplit K (T.stableRank hb n u)
+    rw [hValue]
+    exact hs
   obtain ⟨a,b,han,hbn,ha,hbLeaf,hua,hub,hMeet⟩ :=
     (universalStrongAbsorberTower n).diary.prediary.one_split_witness
       u hsFinite hu
@@ -120,13 +125,18 @@ theorem selectedAbsorberLimit_twoSplit_witness
   intro s hs
   obtain ⟨n,u,hu,hValue⟩ :=
     T.stableRank_jointly_surjective hb hUnbounded s
+  have hNonmarker : 3 ≤ T.stableRank hb n u := by
+    rw [hValue]
+    exact hs.1
   have hu3 : 3 ≤ u :=
     selectedAbsorberTower_stableRank_nonmarker_preimage hb n u hu
-      (by simpa only [hValue] using hs.1)
+      hNonmarker
   have hsFinite : IsTwoSplit (universalStrongAbsorberTower n).graph u := by
     apply (selectedAbsorberFiniteStage_roles_in_conditionalLimit
       hb n u hu3 hu).2.2.mp
-    simpa only [hValue] using hs
+    change IsTwoSplit K (T.stableRank hb n u)
+    rw [hValue]
+    exact hs
   obtain ⟨a,b,c,d,hab,hcd,han,hbn,hcn,hdn,ha,hbLeaf,hc,hd,
       hua,huc,hMeet⟩ :=
     (universalStrongAbsorberTower n).diary.prediary.two_split_witness
