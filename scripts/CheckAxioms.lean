@@ -3157,3 +3157,6 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportLift_fixed_prefix
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.exists_finite_full_diary_retaining_prefix
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.no_literal_full_finite_diary_prefix_in_countable
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.no_literal_full_finite_diary_prefix_of_induced
