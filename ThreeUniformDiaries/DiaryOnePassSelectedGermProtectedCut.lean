@@ -45,8 +45,10 @@ theorem onePassBlockSize_eq_selectedGermCounts
     (if IsTwoSplit H m then 0 else (selectedTwoGerms H m).card) +
     (if IsLeaf H m then (selectedOneGerms H m).card else 0)
   have hNot : ¬ m < 3 := by omega
-  simp [onePassBlockSize, onePassBlock, hNot,
-    sortOneGermsDescending_length]
+  by_cases hTwo : IsTwoSplit H m <;>
+    by_cases hLeaf : IsLeaf H m <;>
+      simp [onePassBlockSize, onePassBlock, hNot, hTwo, hLeaf,
+        sortOneGermsDescending_length]
 
 /-- The exact germ-level condition needed to leave every
 old rank below the protected cut p untouched in the actual
