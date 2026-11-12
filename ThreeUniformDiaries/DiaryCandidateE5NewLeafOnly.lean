@@ -77,7 +77,7 @@ theorem AdmissibleCofinalDiaryStage.functional_candidate_E5_iff_old_leaf_pair_bi
       finiteGeneratorTableValue_eq_of_mem
         (candidateNewLeafGeneratorTable H K m f v)
         hFunctional m (candidateLeafImage f m v m) hRow
-    simpa only [candidateLeafImage, if_pos rfl] using hValue
+    simpa [candidateLeafImage] using hValue
   have hLLeaf (x : Nat) (hx : x ∈ L) : IsLeaf H x :=
     ((mem_countableDiaryLeafPrefix_iff H (m + 1) x).mp hx).2.2
   have hSelected (x : Nat)
