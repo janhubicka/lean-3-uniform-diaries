@@ -179,7 +179,7 @@ noncomputable def forwardAvoidStages
     (n : Nat) → FiniteGenericForwardAvoidStage G F R n
   | 0 => FiniteGenericForwardAvoidStage.empty G F R
   | n + 1 => Classical.choose
-      ((G.forwardAvoidStages F R hInj hFinite n).exists_extend
+      ((forwardAvoidStages G F R hInj hFinite n).exists_extend
         hInj hFinite)
 
 /-- Literal agreement of successive selected source indices. -/
@@ -190,11 +190,11 @@ theorem forwardAvoidStages_succ_old
     (hFinite : ∀ x : Nat, ∃ B : Nat, ∀ y : Nat,
       B ≤ F y → ¬ R x y)
     (n : Nat) (i : Fin n) :
-    ((G.forwardAvoidStages F R hInj hFinite (n + 1)).base.image
+    ((forwardAvoidStages G F R hInj hFinite (n + 1)).base.image
       (Fin.castSucc i)).val =
-    ((G.forwardAvoidStages F R hInj hFinite n).base.image i).val := by
+    ((forwardAvoidStages G F R hInj hFinite n).base.image i).val := by
   exact (Classical.choose_spec
-    ((G.forwardAvoidStages F R hInj hFinite n).exists_extend
+    ((forwardAvoidStages G F R hInj hFinite n).exists_extend
       hInj hFinite)) i
 
 /-- Stable finite stage images across all later stages. -/
@@ -205,20 +205,20 @@ theorem forwardAvoidStages_stable
     (hFinite : ∀ x : Nat, ∃ B : Nat, ∀ y : Nat,
       B ≤ F y → ¬ R x y)
     (n m : Nat) (hnm : n ≤ m) (i : Fin n) :
-    ((G.forwardAvoidStages F R hInj hFinite m).base.image
+    ((forwardAvoidStages G F R hInj hFinite m).base.image
       ⟨i.val, by omega⟩).val =
-    ((G.forwardAvoidStages F R hInj hFinite n).base.image i).val := by
+    ((forwardAvoidStages G F R hInj hFinite n).base.image i).val := by
   induction m, hnm using Nat.le_induction with
   | base => rfl
   | succ m hnm ih =>
       calc
-        ((G.forwardAvoidStages F R hInj hFinite (m + 1)).base.image
+        ((forwardAvoidStages G F R hInj hFinite (m + 1)).base.image
           ⟨i.val, by omega⟩).val =
-          ((G.forwardAvoidStages F R hInj hFinite m).base.image
+          ((forwardAvoidStages G F R hInj hFinite m).base.image
             ⟨i.val, by omega⟩).val := by
-            exact G.forwardAvoidStages_succ_old F R hInj hFinite
+            exact forwardAvoidStages_succ_old G F R hInj hFinite
               m ⟨i.val, by omega⟩
-        _ = ((G.forwardAvoidStages F R hInj hFinite n).base.image i).val :=
+        _ = ((forwardAvoidStages G F R hInj hFinite n).base.image i).val :=
           ih
 
 /-- The pointwise limit of the coherently chosen finite stages. -/
@@ -229,7 +229,7 @@ noncomputable def forwardAvoidEmbedding
     (hFinite : ∀ x : Nat, ∃ B : Nat, ∀ y : Nat,
       B ≤ F y → ¬ R x y)
     (i : Nat) : Nat :=
-  ((G.forwardAvoidStages F R hInj hFinite (i + 1)).base.image
+  ((forwardAvoidStages G F R hInj hFinite (i + 1)).base.image
     (Fin.last i)).val
 
 theorem forwardAvoidEmbedding_at_stage
@@ -239,10 +239,10 @@ theorem forwardAvoidEmbedding_at_stage
     (hFinite : ∀ x : Nat, ∃ B : Nat, ∀ y : Nat,
       B ≤ F y → ¬ R x y)
     {i n : Nat} (hin : i < n) :
-    ((G.forwardAvoidStages F R hInj hFinite n).base.image
+    ((forwardAvoidStages G F R hInj hFinite n).base.image
       ⟨i,hin⟩).val =
-    G.forwardAvoidEmbedding F R hInj hFinite i := by
-  have hi := G.forwardAvoidStages_stable F R hInj hFinite
+    forwardAvoidEmbedding G F R hInj hFinite i := by
+  have hi := forwardAvoidStages_stable G F R hInj hFinite
     (i + 1) n (by omega) (Fin.last i)
   simpa [forwardAvoidEmbedding] using hi
 
@@ -258,40 +258,40 @@ theorem exists_generic_selfembedding_avoiding_finite_forward
     ∃ u : Ordered3Graph.Embedding G.graph G.graph,
       StrictMono (fun t : Nat => F (u t)) ∧
       ∀ i j : Nat, i < j → ¬ R (u i) (u j) := by
-  let f := G.forwardAvoidEmbedding F R hInj hFinite
+  let f := forwardAvoidEmbedding G F R hInj hFinite
   have hf : StrictMono f := by
     intro a b hab
-    let S := G.forwardAvoidStages F R hInj hFinite (b + 1)
+    let S := forwardAvoidStages G F R hInj hFinite (b + 1)
     have h := S.base.mono
       (show (⟨a, by omega⟩ : Fin (b + 1)) < Fin.last b from hab)
     change (S.base.image ⟨a, by omega⟩).val <
       (S.base.image (Fin.last b)).val at h
     simpa [f,forwardAvoidEmbedding,S,
-      G.forwardAvoidEmbedding_at_stage F R hInj hFinite
+      forwardAvoidEmbedding_at_stage G F R hInj hFinite
         (show a < b + 1 by omega)] using h
   have hFmono : StrictMono (fun t : Nat => F (f t)) := by
     intro a b hab
-    let S := G.forwardAvoidStages F R hInj hFinite (b + 1)
+    let S := forwardAvoidStages G F R hInj hFinite (b + 1)
     have h := S.target_order
       (show (⟨a,by omega⟩ : Fin (b + 1)) < Fin.last b from hab)
     change F (S.base.image ⟨a,by omega⟩).val <
       F (S.base.image (Fin.last b)).val at h
     simpa [f,forwardAvoidEmbedding,S,
-      G.forwardAvoidEmbedding_at_stage F R hInj hFinite
+      forwardAvoidEmbedding_at_stage G F R hInj hFinite
         (show a < b + 1 by omega)] using h
   have hEdge : ∀ a b c : Nat, a < b → b < c →
       (G.graph.edge a b c ↔ G.graph.edge (f a) (f b) (f c)) := by
     intro a b c hab hbc
-    let S := G.forwardAvoidStages F R hInj hFinite (c + 1)
+    let S := forwardAvoidStages G F R hInj hFinite (c + 1)
     have h := S.base.edge_iff
       ⟨a,by omega⟩ ⟨b,by omega⟩ (Fin.last c)
       (show a < b from hab) (show b < c from hbc)
     have ha : (S.base.image ⟨a,by omega⟩).val = f a :=
-      G.forwardAvoidEmbedding_at_stage F R hInj hFinite (by omega)
+      forwardAvoidEmbedding_at_stage G F R hInj hFinite (by omega)
     have hb : (S.base.image ⟨b,by omega⟩).val = f b :=
-      G.forwardAvoidEmbedding_at_stage F R hInj hFinite (by omega)
+      forwardAvoidEmbedding_at_stage G F R hInj hFinite (by omega)
     have hc : (S.base.image (Fin.last c)).val = f c :=
-      G.forwardAvoidEmbedding_at_stage F R hInj hFinite
+      forwardAvoidEmbedding_at_stage G F R hInj hFinite
         (Nat.lt_succ_self c)
     rw [ha,hb,hc] at h
     exact h
@@ -302,13 +302,13 @@ theorem exists_generic_selfembedding_avoiding_finite_forward
   }
   refine ⟨u,hFmono,?_⟩
   intro i j hij
-  let S := G.forwardAvoidStages F R hInj hFinite (j + 1)
+  let S := forwardAvoidStages G F R hInj hFinite (j + 1)
   have h := S.avoids
     (⟨i,by omega⟩ : Fin (j+1)) (Fin.last j) hij
   have hi : (S.base.image ⟨i,by omega⟩).val = f i :=
-    G.forwardAvoidEmbedding_at_stage F R hInj hFinite (by omega)
+    forwardAvoidEmbedding_at_stage G F R hInj hFinite (by omega)
   have hj : (S.base.image (Fin.last j)).val = f j :=
-    G.forwardAvoidEmbedding_at_stage F R hInj hFinite
+    forwardAvoidEmbedding_at_stage G F R hInj hFinite
       (Nat.lt_succ_self j)
   simpa [u,hi,hj] using h
 
