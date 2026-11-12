@@ -1,3 +1,4 @@
+import ThreeUniformDiaries.DiaryFunctionalCandidateTerminalColourGate
 import ThreeUniformDiaries.DiaryFunctionalCandidateOldCutBound
 import ThreeUniformDiaries.DiaryCofinalGenericNewNewS2E3Profile
 import ThreeUniformDiaries.DiaryOldStageCofinalE5S1E2Profile
