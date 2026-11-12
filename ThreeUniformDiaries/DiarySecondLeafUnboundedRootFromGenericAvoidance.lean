@@ -96,7 +96,8 @@ theorem RoleDiary.exists_old_leaf_image_with_unbounded_reserved_new_leaf
     apply hNoBound
     refine ⟨M + 1,?_⟩
     intro j hj hR
-    exact hNoWitness ⟨j,Classical.choose hR,by omega,?_⟩
+    obtain ⟨g,Q,hGI,hGJ⟩ := hR
+    exact hNoWitness ⟨j,g,by omega,Q,hGI,hGJ⟩
   obtain ⟨u,hFMono,hAvoid⟩ :=
     G.exists_generic_selfembedding_avoiding_finite_forward
       (fun t : Nat => F t) F.injective R hFinite
