@@ -151,7 +151,7 @@ theorem RoleDiary.second_leaf_generic_monochromatic_cone_good_iff_favourable_spl
       exact hCompat x
         (mem_finiteLeafMeetSupport_leaf H
           (countableDiaryLeafPrefix H m) x hx)
-    exact ⟨hLarge, t, hUisJ, g, Q, hKeep, hAtU⟩
+    exact ⟨hLarge, ⟨t, hUisJ⟩, g, Q, hKeep, hAtU⟩
   · intro hGoodCones
     apply hIff.mpr
     intro M
