@@ -1,3 +1,4 @@
+import ThreeUniformDiaries.DiarySecondLeafGenericGoodConeCriterion
 import ThreeUniformDiaries.DiarySecondLeafMonochromaticConeCriterion
 import ThreeUniformDiaries.DiaryGenericBadColourSubcopies
 import ThreeUniformDiaries.DiaryCofinalBadGenericNextLeafColour
