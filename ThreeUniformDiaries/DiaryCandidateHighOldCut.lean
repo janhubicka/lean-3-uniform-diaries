@@ -88,8 +88,7 @@ theorem AdmissibleCofinalDiaryStage.full_candidate_newLeaf_ge_oldStageTailCut
       mem_finiteLeafMeetSupport_leaf H L a ha
     have h := hOldBelow a haS
     omega
-  change max ((countableDiaryFiniteSupport H m).sup f)
-    ((countableDiaryLeafPrefix H m).sup f) + 1 ≤ v
+  change max (S.sup f) (L.sup f) + 1 ≤ v
   omega
 
 /-- The second candidate's FINITE generator table and induced
