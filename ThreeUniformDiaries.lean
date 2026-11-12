@@ -1097,3 +1097,5 @@ import ThreeUniformDiaries.DiarySecondLeafFavourableSplitCriterion
 import ThreeUniformDiaries.DiarySecondLeafDeepReservedCone
 
 import ThreeUniformDiaries.DiaryConditionalEdgeColimitExactPrefixTransfer
+
+import ThreeUniformDiaries.DiaryFiniteStageUniformStableRanks
