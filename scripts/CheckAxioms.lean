@@ -3104,3 +3104,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.exists_cofinal_generic_E5_pattern_and_finiteRootMeetProfile
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.exists_cofinal_generic_E5_pattern_and_finiteRoot_S1_E2
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiary.exists_cofinal_old_stage_E5_and_root_S1_E2_profile
