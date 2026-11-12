@@ -58,9 +58,11 @@ theorem cut_unbounded
   obtain ⟨n,hLarge⟩ := universalStrongAbsorberTower_unbounded_frame R
   have hu : R < selectedAbsorberFiniteOrderTower.size n := by
     simpa only [selectedAbsorberFiniteOrderTower] using hLarge
-  have hGe := selectedAbsorberFiniteOrderTower.step_ge_index n R hu
+  have hGe : R ≤ universalStrongAbsorberTower_stepMap n R := by
+    simpa only [selectedAbsorberFiniteOrderTower] using
+      selectedAbsorberFiniteOrderTower.step_ge_index n R hu
   have hReserve := H.reserves_old_images n R hLarge
-  exact ⟨n+1, by omega⟩
+  exact ⟨n+1, lt_of_le_of_lt hGe hReserve⟩
 
 /-- Whenever the selected finite full diary grows properly, the
 current protected prefix CANNOT be the entire current frame.
