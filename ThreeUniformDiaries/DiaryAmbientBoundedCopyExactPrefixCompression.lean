@@ -42,6 +42,7 @@ p vertices, including nonedge reflection. -/
 theorem FiniteMeetEmbedding.exists_finiteFull_compression_preserving_bounded_image
     {A G : Ordered3Graph Nat} {n : Nat} {f : Nat → Nat}
     (DA : FiniteRoleDiaryBlock A n)
+    (hn : 4 ≤ n)
     (DG : RoleDiary G)
     (E : FiniteMeetEmbedding A G n f)
     (p : Nat)
@@ -101,14 +102,9 @@ theorem FiniteMeetEmbedding.exists_finiteFull_compression_preserving_bounded_ima
     have hEdge := finiteSupportGraph_edge_iff G S a b c hab hbc hcM
     simpa only [C,haIndex,hbIndex,hcIndex] using hEdge
   have hFour : 4 ≤ m := by
-    have hN := DA.prediary.frame.length_ge_three
-    have hImage3 : 2 < n := by omega
-    have hBound3 := hBound 2 hImage3
-    have hMarker2 := hG.marker_two
-    have hRank2 : g 2 = 2 := hMarker2
-    rw [hRank2] at hBound3
-    have hLeafLast : IsLeaf C (m-1) :=
-      hFinite.last_is_leaf (by omega)
+    have hBound3 := hBound 3 (by omega : 3 < n)
+    have hMono3 : g 2 < g 3 := hG.strictMono (by omega : 2 < 3)
+    rw [hG.marker_two] at hMono3
     omega
   have hLast : IsLeaf C (m-1) := hFinite.last_is_leaf hFour
   have hBelowLast : ∀ u : Nat, u < n → g u < m-1 := by
