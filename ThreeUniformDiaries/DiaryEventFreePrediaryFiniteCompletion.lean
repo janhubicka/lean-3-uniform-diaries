@@ -74,6 +74,7 @@ theorem exists_finiteFullDiary_retaining_eventFree_prediary_prefix
   have h3q : 3 < q := by dsimp [q]; omega
   have hFour : 4 ≤ m := by
     have h3m := (hKeep 3 h3q).1
+    change 3 < m at h3m
     omega
   have hLast : IsLeaf C (m-1) :=
     DC.last_is_leaf hFour
