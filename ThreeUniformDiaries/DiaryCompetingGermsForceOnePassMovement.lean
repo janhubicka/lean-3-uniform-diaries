@@ -6,7 +6,7 @@ import Lean.Elab.Tactic.Omega
 # Track B: competing realised germ children force one-pass movement
 
 The earlier exact germ-count theorem evaluates how many actual
-one-/two-split events one-pass completion inserts at source cut m.
+singleton and pair split events one-pass completion inserts at source cut m.
 Here is its more geometric consequence, phrased using the genuine
 global realised type-germ data rather than selected list membership:
 
@@ -46,9 +46,8 @@ theorem realised_oneGerm_parent_unique_of_noSelected
   apply (realised_oneGerm_eq_iff_selected_bits H m g h
     hg hh hParent).mp
   intro c hc
-  have hFalse : False := by
-    simpa only [hEmpty, Finset.not_mem_empty] using hc
-  exact False.elim hFalse
+  rw [hEmpty] at hc
+  simp at hc
 
 /-- If no selected pair germ exists at m, each realised
 full ordered-pair parent has at most ONE child pair germ. -/
@@ -66,9 +65,8 @@ theorem realised_twoGerm_parent_unique_of_noSelected
   apply (realised_twoGerm_eq_iff_selected_bits H m g h
     hg hh hParent).mp
   intro c hc
-  have hFalse : False := by
-    simpa only [hEmpty, Finset.not_mem_empty] using hc
-  exact False.elim hFalse
+  rw [hEmpty] at hc
+  simp at hc
 
 /-- TWO different realised one-germ children of the same
 old singleton parent at a genuine leaf m force a positive
