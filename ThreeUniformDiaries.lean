@@ -1143,3 +1143,5 @@ import ThreeUniformDiaries.DiaryDummyTailUniformOldGerms
 import ThreeUniformDiaries.DiaryDummyTailOldFirstPairGerms
 
 import ThreeUniformDiaries.DiaryDummyTailFiniteRealisedGermCensus
+
+import ThreeUniformDiaries.DiaryDummyTailGermExplicitFiniteSets
