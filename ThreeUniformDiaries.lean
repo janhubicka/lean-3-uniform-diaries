@@ -1139,3 +1139,5 @@ import ThreeUniformDiaries.DiaryProtectedReserveTwoSlotGrowth
 import ThreeUniformDiaries.DiaryRelativeFamilyExactOldImageCompression
 
 import ThreeUniformDiaries.DiaryDummyTailUniformOldGerms
+
+import ThreeUniformDiaries.DiaryDummyTailOldFirstPairGerms
