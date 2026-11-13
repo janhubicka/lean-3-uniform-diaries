@@ -1,16 +1,14 @@
 import ThreeUniformDiaries.DiaryFiniteGoodOldCutCandidateColours
-import ThreeUniformDiaries.DiaryGenericOldStageRequiredE5Copy
-import ThreeUniformDiaries.DiaryGenericCompleteOneNewS1S2
+import ThreeUniformDiaries.DiaryOldCutE5NumericReservedGenericCones
 
 /-!
 # Track C: source-correct E5 generic cones have an exact finite-candidate dichotomy
 
 Fix an ACTUAL reserved old support f and genuine new source leaf m.
-First construct an entire induced generic subcopy J of the ORIGINAL
-prescribed F-range in which EVERY leaf realizes ALL source-required
-old-pair E5 edge AND nonedge bits. Then apply uniform generic complete
-S1 and BOTH S2 numerical profile homogenization INSIDE J, choosing the
-COMPLETE mixed singleton colour at the ACTUAL old-support cut
+Use the independently verified exact-old-cut E5/S1/S2 reservoir theorem
+to obtain an induced generic subcopy J of the ORIGINAL prescribed F-range
+with ALL source-required old-pair E5 edge/nonedge bits. That theorem
+already homogenizes the COMPLETE mixed singleton colour at the cut
 B = oldStageTailCut H m f, not merely at the selected-old-leaf cut.
 
 The same B-colour c occurs on arbitrarily late genuine induced generic
@@ -74,63 +72,32 @@ theorem ReservedDiaryStage.exists_source_E5_generic_cones_with_exact_candidate_p
               (FiniteNewLeafCandidateCondition H K F m f (J (u n)) ↔
                 c ∈ goodOldCutCandidateColours H K F f m) := by
   classical
-  let L := countableDiaryLeafPrefix H m
-  let W := L.image f
   let B := oldStageTailCut H m f
-  obtain ⟨J,hRange,hE5⟩ :=
-    P.exists_generic_leaf_subcopy_realizing_all_required_old_E5
-      G F hFLeaf f 0
-  have hJLeaves (t : Nat) : IsLeaf K (J t) :=
-    (hRange t).2.1
-  have hRoots (w : Nat) (hw : w ∈ W) : IsLeaf K w := by
-    obtain ⟨a,ha,hfa⟩ := Finset.mem_image.mp hw
-    have haSupport : a ∈ countableDiaryFiniteSupport H m :=
-      mem_finiteLeafMeetSupport_leaf H L a ha
-    have haLeaf : IsLeaf H a :=
-      ((mem_countableDiaryLeafPrefix_iff H m a).mp ha).2.2
-    have hLeaf := P.1.leaf_role a haSupport haLeaf
-    simpa only [hfa] using hLeaf
-  have hWBound :
-      W.sup (fun w : Nat => w) ≤ L.sup f := by
-    apply Finset.sup_le
-    intro w hw
-    obtain ⟨a,ha,hfa⟩ := Finset.mem_image.mp hw
-    simpa only [hfa] using (Finset.le_sup (f := f) ha)
-  have hCut : W.sup (fun w : Nat => w) < B := by
-    change W.sup (fun w : Nat => w) <
-      max ((countableDiaryFiniteSupport H m).sup f) (L.sup f) + 1
-    exact lt_of_le_of_lt
-      (hWBound.trans (le_max_right _ _)) (Nat.lt_succ_self _)
-  obtain ⟨c,_p,_q,_r,_hOne,_hCross,_hNewNew,hAll⟩ :=
-    DK.exists_uniform_generic_complete_oneNew_S1_S2_profiles
-      G J hJLeaves W hRoots B hCut
-  refine ⟨J, ?_, c, ?_⟩
-  · intro t
-    obtain ⟨_hHigh,hLeaf,i,hi⟩ := hRange t
-    exact ⟨hLeaf,⟨i,hi⟩,hE5 t⟩
-  · intro M
-    obtain ⟨u,hu,hUniform⟩ := hAll (max M B)
-    refine ⟨u,hu,?_⟩
-    intro t
-    obtain ⟨hHigh,hLeaf,hColour,_hOne,_hCross,_hNewNew⟩ :=
-      hUniform t
-    have hM : M < J (u t) :=
-      lt_of_le_of_lt (le_max_left _ _) hHigh
-    have hB : B ≤ J (u t) :=
-      (le_max_right _ _).trans hHigh.le
-    have hF : ∃ i : Nat, J (u t) = F i := by
-      obtain ⟨_hAbove,_hLeaf,i,hi⟩ := hRange (u t)
-      exact ⟨i,hi⟩
-    have hCandidateIff :=
-      P.1.full_candidate_iff_good_oldCut_colour
-        hm hB hLeaf hF
-    refine ⟨hM,hColour,?_⟩
-    calc
-      FiniteNewLeafCandidateCondition H K F m f (J (u t)) ↔
-          DiaryLowerBoundColors.singletonColour K B (J (u t)) ∈
-            goodOldCutCandidateColours H K F f m := hCandidateIff
-      _ ↔ c ∈ goodOldCutCandidateColours H K F f m := by
-        rw [hColour]
+  obtain ⟨J,hJ,c,_p,_q,_r,_hOne,_hCross,_hNewNew,hAll⟩ :=
+    DK.exists_uniform_source_E5_generic_full_oldCut_S1_S2_cones
+      G F hFLeaf f P
+  refine ⟨J,hJ,c,?_⟩
+  intro M
+  obtain ⟨u,hu,hUniform⟩ := hAll (max M B)
+  refine ⟨u,hu,?_⟩
+  intro t
+  obtain ⟨hHigh,hColour,_hE5,_hOneMeet,_hCrossMeet,_hNewMeet⟩ :=
+    hUniform t
+  have hLeaf : IsLeaf K (J (u t)) := (hJ (u t)).1
+  have hF : ∃ i : Nat, J (u t) = F i := (hJ (u t)).2.1
+  have hM : M < J (u t) :=
+    lt_of_le_of_lt (le_max_left _ _) hHigh
+  have hB : B ≤ J (u t) :=
+    (le_max_right _ _).trans hHigh.le
+  have hCandidateIff :=
+    P.1.full_candidate_iff_good_oldCut_colour hm hB hLeaf hF
+  refine ⟨hM,hColour,?_⟩
+  calc
+    FiniteNewLeafCandidateCondition H K F m f (J (u t)) ↔
+        DiaryLowerBoundColors.singletonColour K B (J (u t)) ∈
+          goodOldCutCandidateColours H K F f m := hCandidateIff
+    _ ↔ c ∈ goodOldCutCandidateColours H K F f m := by
+      rw [hColour]
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
