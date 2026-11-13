@@ -1,5 +1,6 @@
 import ThreeUniformDiaries.DiaryUniformBoundedOldStageGenericAvoidance
 import ThreeUniformDiaries.DiaryIndependentReservedStageExistence
+import ThreeUniformDiaries.DiaryGenericFiniteOldSupportUnboundedNextLeaf
 
 /-!
 # Track D: genuine next-stage witnesses must move old supports under refinement
@@ -174,6 +175,75 @@ theorem RoleDiary.exists_nonvacuous_generic_refinement_forcing_old_support_escap
       ReservedDiaryStage H K (fun t : Nat => F t) (m + 1) g :=
     Q.weaken_leaf_range hJInsideF
   exact ⟨J, hRange, hAll, g, QOriginal, n, hn⟩
+
+/-- There is a quantifier-correct RE-STABILIZATION after arbitrary
+old-support drift: for every B,M choose ONE induced unordered generic
+refinement J beyond M such that all actual next-stage witnesses with
+new image in J must move the old leaf b to at least B; nevertheless,
+one newly selected COMPLETE old reserved support f with f(b)>=B
+has genuine compatible next-leaf images cofinally high INSIDE J.
+
+The single f is chosen AFTER the refinement J, but BEFORE the
+successor lower bound N. The compatible next stages still vary with N,
+and NO fixed new-leaf image is asserted to survive later source
+horizons. This does not contradict generic elimination of any
+preassigned old f, nor prove countable diary unavoidability. -/
+theorem RoleDiary.exists_refinement_with_drift_and_recurrent_fixed_old_support
+    {H K : Ordered3Graph Nat}
+    (DH : RoleDiary H) (DK : RoleDiary K)
+    (G : GenericEnumerated3Graph)
+    (F : Ordered3Graph.UnorderedEmbedding G.graph K)
+    (hFLeaf : ∀ t : Nat, IsLeaf K (F t))
+    {m a b : Nat}
+    (hm : IsLeaf H m)
+    (ha : a ∈ countableDiaryLeafPrefix H m)
+    (hb : b ∈ countableDiaryLeafPrefix H m)
+    (hab : a < b)
+    (B M : Nat) :
+    ∃ J : Ordered3Graph.UnorderedEmbedding G.graph K,
+      (∀ n : Nat, M < J n ∧ IsLeaf K (J n) ∧
+        ∃ t : Nat, J n = F t) ∧
+      (∀ g : Nat → Nat,
+        ReservedDiaryStage H K (fun t : Nat => F t) (m + 1) g →
+        ∀ n : Nat, g m = J n → B ≤ g b) ∧
+      ∃ f : Nat → Nat,
+        ReservedDiaryStage H K (fun t : Nat => F t) m f ∧
+        B ≤ f b ∧
+        (∀ N : Nat, ∃ t : Nat, ∃ g : Nat → Nat,
+          N < J t ∧
+          ReservedDiaryStage H K (fun t : Nat => F t) (m + 1) g ∧
+          CofinalDiaryStageCompatible H m f g ∧
+          g m = J t) := by
+  classical
+  obtain ⟨J, hRange, hForce⟩ :=
+    exists_generic_refinement_forcing_old_support_escape
+      G F hFLeaf hm ha hb hab B M
+  have hJLeaf (t : Nat) : IsLeaf K (J t) :=
+    (hRange t).2.1
+  have hJInF (t : Nat) : ∃ i : Nat, J t = F i :=
+    (hRange t).2.2
+  obtain ⟨f, Pf, hRec⟩ :=
+    DH.exists_some_fixed_old_support_with_unbounded_reserved_next_leaf
+      DK G J hJLeaf m hm (⟨a, ha⟩)
+  have PfOriginal :
+      ReservedDiaryStage H K (fun t : Nat => F t) m f :=
+    Pf.weaken_leaf_range hJInF
+  have hbSupport : b ∈ countableDiaryFiniteSupport H m :=
+    mem_finiteLeafMeetSupport_leaf H
+      (countableDiaryLeafPrefix H m) b hb
+  have hfBound : B ≤ f b := by
+    obtain ⟨t, g, _hAbove, Q, hOld, hNew⟩ := hRec 0
+    have QOriginal :
+        ReservedDiaryStage H K (fun t : Nat => F t) (m + 1) g :=
+      Q.weaken_leaf_range hJInF
+    have hBound : B ≤ g b := hForce g QOriginal t hNew
+    rw [hOld b hbSupport] at hBound
+    exact hBound
+  refine ⟨J, hRange, hForce, f, PfOriginal, hfBound, ?_⟩
+  intro N
+  obtain ⟨t, g, hHigh, Q, hOld, hNew⟩ := hRec N
+  exact ⟨t, g, hHigh, Q.weaken_leaf_range hJInF, hOld, hNew⟩
+
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
