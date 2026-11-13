@@ -1,3 +1,4 @@
+import ThreeUniformDiaries.DiaryGenericOldStageRequiredE5Copy
 import ThreeUniformDiaries.DiaryGenericTargetOldE5PatternCopy
 import ThreeUniformDiaries.DiarySecondLeafGenericGoodConeCriterion
 import ThreeUniformDiaries.DiaryGenericGoodOrBadColourCone
