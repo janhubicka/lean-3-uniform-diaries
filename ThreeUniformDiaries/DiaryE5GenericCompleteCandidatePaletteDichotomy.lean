@@ -125,7 +125,12 @@ theorem ReservedDiaryStage.exists_source_E5_generic_cones_with_exact_candidate_p
       P.1.full_candidate_iff_good_oldCut_colour
         hm hB hLeaf hF
     refine ⟨hM,hColour,?_⟩
-    simpa only [hColour] using hCandidateIff
+    calc
+      FiniteNewLeafCandidateCondition H K F m f (J (u t)) ↔
+          DiaryLowerBoundColors.singletonColour K B (J (u t)) ∈
+            goodOldCutCandidateColours H K F f m := hCandidateIff
+      _ ↔ c ∈ goodOldCutCandidateColours H K F f m := by
+        rw [hColour]
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
