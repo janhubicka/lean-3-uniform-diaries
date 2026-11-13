@@ -1140,3 +1140,5 @@ import ThreeUniformDiaries.DiaryRelativeFamilyExactOldImageCompression
 
 import ThreeUniformDiaries.DiaryCompetingGermsForceOnePassMovement
 import ThreeUniformDiaries.DiaryRelativeFiniteStrongAbsorberFromAmbient
+
+import ThreeUniformDiaries.DiaryDummyTailUniformOldGerms
