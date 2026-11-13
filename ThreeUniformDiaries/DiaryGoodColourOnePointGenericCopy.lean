@@ -266,8 +266,24 @@ theorem exists_generic_leaf_subcopy_in_prescribed_colour_of_onePointExtensions
     exists_monochromatic_generic_selfcopy_of_onePointExtensions
       G (fun i : Nat =>
         DiaryLowerBoundColors.singletonColour K Cut (F i) = c) hExt
-  let J : Ordered3Graph.UnorderedEmbedding G.graph K :=
-    F.comp u.asUnordered
+  let J : Ordered3Graph.UnorderedEmbedding G.graph K := {
+    toFun := fun n => F (u n)
+    injective := F.injective.comp u.strictMono.injective
+    edge_iff := by
+      intro a b d hab hbd
+      calc
+        G.graph.unorderedEdge a b d ↔ G.graph.edge a b d :=
+          G.graph.unorderedEdge_iff_of_lt a b d hab hbd
+        _ ↔ G.graph.edge (u a) (u b) (u d) :=
+          u.edge_iff hab hbd
+        _ ↔ G.graph.unorderedEdge (u a) (u b) (u d) :=
+          (G.graph.unorderedEdge_iff_of_lt
+            (u a) (u b) (u d)
+            (u.strictMono hab) (u.strictMono hbd)).symm
+        _ ↔ K.unorderedEdge (F (u a)) (F (u b)) (F (u d)) :=
+          F.edge_iff (u a) (u b) (u d)
+            (u.strictMono hab) (u.strictMono hbd)
+  }
   refine ⟨J, ?_⟩
   intro i
   change IsLeaf K (F (u i)) ∧
