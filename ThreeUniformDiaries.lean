@@ -1161,3 +1161,5 @@ import ThreeUniformDiaries.DiaryChosenFiniteGoodColourBridge
 
 import ThreeUniformDiaries.DiaryDummyTailFiniteEventFreeTest
 import ThreeUniformDiaries.DiaryGenericRefinementForcesOldSupportEscape
+
+import ThreeUniformDiaries.DiaryDummyTailFullFrameEventFreeObstruction
