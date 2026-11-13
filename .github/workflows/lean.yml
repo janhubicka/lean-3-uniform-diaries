@@ -49,6 +49,9 @@ jobs:
       - name: Audit all local Lean sources for admissions and axioms
         run: python3 scripts/audit_source_integrity.py
 
+      - name: Report non-umbrella proof dependency hygiene (informational)
+        run: python3 scripts/report_proof_dependency_hygiene.py
+
       - name: Audit complete exported theorem axiom reports
         run: |
           mkdir -p proof-audit
