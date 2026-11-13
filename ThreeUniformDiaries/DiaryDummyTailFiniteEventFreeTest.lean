@@ -145,8 +145,8 @@ theorem finiteDummyTail_selectedOneGerms_eq_finite
       (fun h => some h ≠ oneDefaultGerm T m h.1) ↔
     g ∈ (finiteDummyTailOneGermCensus H n bits m).filter
       (fun h => some h ≠ finiteDummyTailOneDefaultGerm H n bits m h.1)
-  simp only [Finset.mem_filter, hR,
-    finiteDummyTail_oneDefaultGerm_eq_finite H n FH bits m hm]
+  simp only [Finset.mem_filter, hR]
+  rw [finiteDummyTail_oneDefaultGerm_eq_finite H n FH bits m hm g.1]
 
 /-- Exact identification of the true selected pair-event Finset
 with its explicit finite old/tail representative computation. -/
@@ -169,8 +169,8 @@ theorem finiteDummyTail_selectedTwoGerms_eq_finite
       (fun h => some h ≠ twoDefaultGerm T m h.1) ↔
     g ∈ (finiteDummyTailTwoGermCensus H n bits m).filter
       (fun h => some h ≠ finiteDummyTailTwoDefaultGerm H n bits m h.1)
-  simp only [Finset.mem_filter, hR,
-    finiteDummyTail_twoDefaultGerm_eq_finite H n FH bits m hm]
+  simp only [Finset.mem_filter, hR]
+  rw [finiteDummyTail_twoDefaultGerm_eq_finite H n FH bits m hm g.1]
 
 /-- An EXPLICIT finite compatibility test for no selected
 one-pass events below a protected old cut p<=n.
