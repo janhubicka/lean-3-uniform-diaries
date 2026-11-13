@@ -1,5 +1,6 @@
 import ThreeUniformDiaries.DiaryDummyTailFiniteEventFreeTest
 import ThreeUniformDiaries.DiaryFullPrefixMustOnePassMove
+import ThreeUniformDiaries.DiaryEventFreePrediaryFiniteCompletion
 import Lean.Elab.Tactic.Omega
 
 /-!
@@ -29,6 +30,56 @@ a bounded selected absorber tower, or countable flip absorption.
 
 namespace ThreeUniformDiaries
 namespace DiaryLeafPriority
+
+/-- An ACTUAL finite selected-germ compatibility certificate,
+together with a SUPPLIED global dummy-tail RolePrediary, yields a
+genuine full finite diary protecting every old vertex below a
+(possibly proper) cut p<=n, including all exact old numeric meets.
+The existence of suitable cross bits and a suitable prediary is
+not provided by this conditional theorem. -/
+theorem finiteDummyTail_finiteTest_yields_fullFiniteRelativeCompletion
+    {H : Ordered3Graph Nat} {n : Nat}
+    (PH : FiniteRolePrediaryBlock H n)
+    (bits : Nat → Bool)
+    (PT : RolePrediary (finiteDummyTailCarrier H n bits))
+    (p : Nat) (hp : p ≤ n)
+    (hFinite : FiniteDummyTailEventFreeTest H n bits p) :
+    ∃ (C : Ordered3Graph Nat) (m : Nat),
+      FiniteRoleDiaryBlock C m ∧
+      p < m ∧
+      LiteralOldPrefixAgreement H C p ∧
+      (∀ u : Nat, u < p →
+        (IsLeaf H u ↔ IsLeaf C u) ∧
+        (IsOneSplit H u ↔ IsOneSplit C u) ∧
+        (IsTwoSplit H u ↔ IsTwoSplit C u)) ∧
+      (∀ u v : Nat, u < p → v < p →
+        H.oneMeetLevel u v = C.oneMeetLevel u v) ∧
+      (∀ a b c d : Nat, a < p → b < p → c < p → d < p →
+        H.twoMeetLevel a b c d = C.twoMeetLevel a b c d) ∧
+      (IsLeaf C (m-1) ∧ p ≤ m-1) := by
+  have hNoEvents :
+      OnePassNoEventsBelow (finiteDummyTailCarrier H n bits) p :=
+    (finiteDummyTail_noEventsBelow_iff_finiteTest
+      H n PH.frame bits p hp).mpr hFinite
+  obtain ⟨C,m,DC,hpm,hTailC,_hRoles,_hOne,_hTwo,hLast⟩ :=
+    exists_finiteFullDiary_retaining_eventFree_prediary_prefix
+      PT p hNoEvents
+  have hOldTail :
+      LiteralOldPrefixAgreement H (finiteDummyTailCarrier H n bits) p := by
+    intro a b c hc
+    exact (finiteDummyTailCarrier_finite_edge_iff
+      PH.frame bits a b c (lt_of_lt_of_le hc hp)).symm
+  have hOldC : LiteralOldPrefixAgreement H C p := by
+    intro a b c hc
+    exact (hOldTail a b c hc).trans (hTailC a b c hc)
+  refine ⟨C,m,DC,hpm,hOldC,?_,?_,?_,hLast⟩
+  · intro u hu
+    exact role_iff_of_literalOldPrefix hOldC u hu
+  · intro u v hu hv
+    exact oneMeetLevel_eq_of_literalOldPrefix hOldC u v hu hv
+  · intro a b c d ha hb hc hd
+    exact twoMeetLevel_eq_of_literalOldPrefix
+      hOldC a b c d ha hb hc hd
 
 /-- A GLOBAL dummy-tail prediary extending an actual full finite
 diary cannot have an event-free one-pass schedule on the entire
