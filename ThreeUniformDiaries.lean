@@ -1137,3 +1137,5 @@ import ThreeUniformDiaries.DiaryOnePassSelectedGermProtectedCut
 import ThreeUniformDiaries.DiaryProtectedReserveTwoSlotGrowth
 
 import ThreeUniformDiaries.DiaryRelativeFamilyExactOldImageCompression
+
+import ThreeUniformDiaries.DiaryRelativeFiniteStrongAbsorberFromAmbient
