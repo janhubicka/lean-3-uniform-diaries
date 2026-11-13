@@ -103,5 +103,41 @@ theorem exists_generic_leaf_subcopy_avoiding_all_bounded_old_stages
       hm ha hb hab hBound hWrong (J n) hGood
   exact hNoColour rfl
 
+/-- There is NO uniform numerical bound B on the second-old-leaf
+image such that every unordered induced generic target-leaf subcopy
+contains even one compatible reserved immediate successor over an
+old genuine stage satisfying f(b)<B. This is an explicit NEGATION
+of the tempting finite/bounded-old-support generic hitting premise.
+
+The generic subcopy is unordered. The theorem does not assert the
+corresponding negation for aux-type-respecting source selfcopies. -/
+theorem no_uniform_bounded_old_stage_hitting_on_unordered_generic_copies
+    {H K : Ordered3Graph Nat}
+    (G : GenericEnumerated3Graph)
+    (F : Ordered3Graph.UnorderedEmbedding G.graph K)
+    (hFLeaf : ∀ t : Nat, IsLeaf K (F t))
+    {m a b : Nat}
+    (hm : IsLeaf H m)
+    (ha : a ∈ countableDiaryLeafPrefix H m)
+    (hb : b ∈ countableDiaryLeafPrefix H m)
+    (hab : a < b)
+    (B : Nat) :
+    ¬ (∀ J : Ordered3Graph.UnorderedEmbedding G.graph K,
+      (∀ n : Nat, IsLeaf K (J n) ∧
+        ∃ t : Nat, J n = F t) →
+      ∃ f : Nat → Nat,
+        ReservedDiaryStage H K (fun t : Nat => F t) m f ∧
+        f b < B ∧
+        ∃ n : Nat, HasCompatibleReservedNextLeaf H K
+          (fun t : Nat => F t) f m (J n)) := by
+  intro hCover
+  obtain ⟨J, hRange, hAvoid⟩ :=
+    exists_generic_leaf_subcopy_avoiding_all_bounded_old_stages
+      G F hFLeaf hm ha hb hab B 0
+  obtain ⟨f, P, hBound, n, hGood⟩ :=
+    hCover J (fun n => ⟨(hRange n).2.2.1, (hRange n).2.2.2⟩)
+  exact hAvoid f P hBound n hGood
+
+
 end DiaryLeafPriority
 end ThreeUniformDiaries
