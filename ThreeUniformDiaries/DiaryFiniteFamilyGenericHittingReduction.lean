@@ -94,7 +94,7 @@ theorem generic_reserved_next_leaf_cone_of_finitely_hitting_old_stages
         HasCompatibleReservedNextLeaf H K
           (fun t : Nat => F t) (stages i) m (F (u n)) := by
   obtain ⟨i, u, hu, hAll⟩ :=
-    G.exists_generic_copy_in_one_finitely_hitting_piece
+    GenericEnumerated3Graph.exists_generic_copy_in_one_finitely_hitting_piece G
       (fun i : Fin k => fun n : Nat =>
         HasCompatibleReservedNextLeaf H K
           (fun t : Nat => F t) (stages i) m (F n))
