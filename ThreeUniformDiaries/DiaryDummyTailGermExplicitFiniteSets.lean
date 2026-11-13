@@ -89,7 +89,7 @@ theorem finiteDummyTail_realisedOneGerms_eq_finiteCensus
           (fun u => oneGermCode T m u) ∪
         {oneGermCode T m n}
       exact Finset.mem_union.mpr
-        (Or.inr (Finset.mem_singleton.mpr hTail))
+        (Or.inr (Finset.mem_singleton.mpr hTail.symm))
   · intro h
     change g ∈ ((Finset.Ico m n).filter (fun u => IsLeaf H u)).image
           (fun u => oneGermCode T m u) ∪
@@ -100,7 +100,7 @@ theorem finiteDummyTail_realisedOneGerms_eq_finiteCensus
       obtain ⟨hmu,hun⟩ := Finset.mem_Ico.mp huRange
       exact hCensus.mpr (Or.inl ⟨u,hmu,hun,hLeaf,hCode⟩)
     · exact hCensus.mpr
-        (Or.inr (Finset.mem_singleton.mp hTail))
+        (Or.inr ((Finset.mem_singleton.mp hTail).symm))
 
 /-- The ACTUAL globally realised full pair-germ Finset of the
 infinite dummy-tail carrier is exactly the explicit finite
@@ -153,7 +153,7 @@ theorem finiteDummyTail_realisedTwoGerms_eq_finiteCensus
           ⟨Finset.mem_Ico.mpr ⟨hma,han⟩,hLa⟩,hCode⟩
     · exact Finset.mem_union.mpr
         (Or.inr (Finset.mem_union.mpr
-          (Or.inr (Finset.mem_singleton.mpr hTail))))
+          (Or.inr (Finset.mem_singleton.mpr hTail.symm))))
   · intro hg
     rcases Finset.mem_union.mp hg with hOld | hLater
     · obtain ⟨⟨a,b⟩,habIn,hCode⟩ := Finset.mem_image.mp hOld
@@ -172,7 +172,7 @@ theorem finiteDummyTail_realisedTwoGerms_eq_finiteCensus
         exact hCensus.mpr
           (Or.inr (Or.inl ⟨a,hma,han,hLa,hCode⟩))
       · exact hCensus.mpr
-          (Or.inr (Or.inr (Finset.mem_singleton.mp hTail)))
+          (Or.inr (Or.inr ((Finset.mem_singleton.mp hTail).symm)))
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
