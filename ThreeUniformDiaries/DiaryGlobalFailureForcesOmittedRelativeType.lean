@@ -148,7 +148,7 @@ theorem exists_omitted_joint_mixed_type_of_no_full_embedding
     exists_persistent_leaf_without_persistent_successor_of_no_full_embedding
       DH DK G hUniversal F hFLeaf hNo
   obtain ⟨p, c0, hAll, hDich⟩ :=
-    DK.persistent_stage_persistent_or_omitted_virtual_mixed_type hm P
+    persistent_stage_persistent_or_omitted_virtual_mixed_type DK hm P
   rcases hDich with hSucc | ⟨cInf, hProj, hOldColour, hRecur, hOmitted⟩
   · obtain ⟨g, Pg, hKeep, _hProfile, _hColour⟩ := hSucc
     exact False.elim (hNoSucc ⟨g, Pg, hKeep⟩)
