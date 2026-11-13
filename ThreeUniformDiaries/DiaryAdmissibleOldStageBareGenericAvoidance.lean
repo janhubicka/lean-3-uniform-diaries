@@ -249,8 +249,8 @@ theorem exists_generic_refinement_forcing_admissible_old_support_escape
       rfl
     have C : FiniteNewLeafCandidateCondition
         H K (fun t : Nat => F t) m g (J n) :=
-      P.relative_successor_implies_finite_candidate
-        Q hm hKeep hNew
+      AdmissibleCofinalDiaryStage.relative_successor_implies_finite_candidate
+        (f := g) Q hm hKeep hNew
     exact (hBad g P hBound n) C
 
 end DiaryLeafPriority
