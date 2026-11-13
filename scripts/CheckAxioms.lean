@@ -3225,3 +3225,5 @@ import ThreeUniformDiaries
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.SelectedAbsorberProtectedReserve.two_fresh_positions_each_step
 
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_finiteDiary_preserving_one_exact_image_and_family
+
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_relative_finite_strong_absorber_of_common_ambient
