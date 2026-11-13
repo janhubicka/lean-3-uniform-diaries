@@ -139,5 +139,86 @@ theorem no_uniform_bounded_old_stage_hitting_on_unordered_generic_copies
   exact hAvoid f P hBound n hGood
 
 
+/-- A stronger direct corollary: for EVERY finite list of genuine
+complete old support stages, one induced unordered generic target leaf
+subcopy avoids ALL of the listed compatible next-leaf successors.
+
+No uniform bound is assumed: take B strictly above the finitely
+many b-images and apply the stronger all-bounded-stages theorem.
+The bound is selected only AFTER receiving the finite list. -/
+theorem exists_generic_leaf_subcopy_avoiding_any_finite_old_stage_family
+    {H K : Ordered3Graph Nat}
+    (G : GenericEnumerated3Graph)
+    (F : Ordered3Graph.UnorderedEmbedding G.graph K)
+    (hFLeaf : ∀ t : Nat, IsLeaf K (F t))
+    {m a b : Nat}
+    (hm : IsLeaf H m)
+    (ha : a ∈ countableDiaryLeafPrefix H m)
+    (hb : b ∈ countableDiaryLeafPrefix H m)
+    (hab : a < b)
+    (k : Nat) (stages : Fin k → Nat → Nat)
+    (hStages : ∀ i : Fin k,
+      ReservedDiaryStage H K (fun t : Nat => F t) m (stages i))
+    (M : Nat) :
+    ∃ J : Ordered3Graph.UnorderedEmbedding G.graph K,
+      (∀ n : Nat, M < J n ∧ IsLeaf K (J n) ∧
+        ∃ t : Nat, J n = F t) ∧
+      (∀ i : Fin k, ∀ n : Nat,
+        ¬ HasCompatibleReservedNextLeaf H K
+          (fun t : Nat => F t) (stages i) m (J n)) := by
+  classical
+  let B : Nat :=
+    (Finset.univ : Finset (Fin k)).sup (fun i => stages i b) + 1
+  obtain ⟨J, hRange, hAvoid⟩ :=
+    exists_generic_leaf_subcopy_avoiding_all_bounded_old_stages
+      G F hFLeaf hm ha hb hab B M
+  refine ⟨J, ?_, ?_⟩
+  · intro n
+    exact ⟨(hRange n).1, (hRange n).2.2.1, (hRange n).2.2.2⟩
+  · intro i n
+    have hBound : stages i b < B := by
+      have hLe : stages i b ≤
+          (Finset.univ : Finset (Fin k)).sup (fun j => stages j b) :=
+        Finset.le_sup (f := fun j : Fin k => stages j b)
+          (Finset.mem_univ i)
+      exact Nat.lt_succ_of_le hLe
+    exact hAvoid (stages i) (hStages i) hBound n
+
+/-- No fixed FINITE family of genuine old reserved stages can meet
+every UNORDERED induced generic target leaf subcopy by compatible
+next-leaf images. This is exact quantifier negation, not a mere
+failure of one candidate construction.
+
+It remains compatible with the conditional finite-family theorem
+for AUX-TYPE-RESPECTING generic *source selfembeddings*, since the
+generic E5-pattern refinement here is only unordered induced. -/
+theorem no_finite_old_stages_hit_every_unordered_generic_copy
+    {H K : Ordered3Graph Nat}
+    (G : GenericEnumerated3Graph)
+    (F : Ordered3Graph.UnorderedEmbedding G.graph K)
+    (hFLeaf : ∀ t : Nat, IsLeaf K (F t))
+    {m a b : Nat}
+    (hm : IsLeaf H m)
+    (ha : a ∈ countableDiaryLeafPrefix H m)
+    (hb : b ∈ countableDiaryLeafPrefix H m)
+    (hab : a < b)
+    (k : Nat) (stages : Fin k → Nat → Nat)
+    (hStages : ∀ i : Fin k,
+      ReservedDiaryStage H K (fun t : Nat => F t) m (stages i)) :
+    ¬ (∀ J : Ordered3Graph.UnorderedEmbedding G.graph K,
+      (∀ n : Nat, IsLeaf K (J n) ∧
+        ∃ t : Nat, J n = F t) →
+      ∃ i : Fin k, ∃ n : Nat,
+        HasCompatibleReservedNextLeaf H K
+          (fun t : Nat => F t) (stages i) m (J n)) := by
+  intro hHit
+  obtain ⟨J, hRange, hAvoid⟩ :=
+    exists_generic_leaf_subcopy_avoiding_any_finite_old_stage_family
+      G F hFLeaf hm ha hb hab k stages hStages 0
+  obtain ⟨i, n, hGood⟩ :=
+    hHit J (fun n => (hRange n).2)
+  exact hAvoid i n hGood
+
+
 end DiaryLeafPriority
 end ThreeUniformDiaries
