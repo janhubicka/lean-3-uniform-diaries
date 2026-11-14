@@ -44,6 +44,7 @@ theorem max_selected_leaf_at_true_successor
     have hlt : L.max' hNonempty < m + 1 :=
       ((mem_countableDiaryLeafPrefix_iff H (m + 1)
         (L.max' hNonempty)).mp hb).2.1
+    change L.max' hNonempty < m + 1 at hlt
     omega
   · exact Finset.le_max' L m hmMem
 
