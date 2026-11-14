@@ -1179,3 +1179,5 @@ import ThreeUniformDiaries.DiaryGenericRefinementForcesOldSupportEscape
 import ThreeUniformDiaries.DiaryDummyTailFullFrameEventFreeObstruction
 
 import ThreeUniformDiaries.DiaryDummyTailOrientationRigidity
+
+import ThreeUniformDiaries.DiaryDummyTailExactFirstObstruction
