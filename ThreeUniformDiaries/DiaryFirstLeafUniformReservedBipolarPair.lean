@@ -1,5 +1,6 @@
 import ThreeUniformDiaries.DiaryFirstLeafAllHorizonGenericReservedUnification
 import ThreeUniformDiaries.DiaryMonochromaticGenericBipolarPair
+import ThreeUniformDiaries.DiaryAllVerticesColourGenericExtensions
 
 /-!
 # Track C: a selected BIPOLAR E5 pair among first-leaf reserved successors
@@ -178,10 +179,11 @@ theorem RoleDiary.exists_first_leaf_all_horizon_good_colour_with_all_generic_fin
     DH.exists_first_leaf_all_horizon_good_colour_and_whole_generic_successor_cones
       DK G F hFLeaf m hm hFirst
   refine ⟨f,Pf,c,hAll,?_,hCones⟩
-  intro n s _hOldColour
-  obtain ⟨hBound,hBits⟩ := s.newVertex_spec
-  exact ⟨s.newVertex,hBound,
-    hColourAll (F s.newVertex) (hFLeaf s.newVertex),hBits⟩
+  exact G.has_generic_colour_onePointExtensions_of_all
+    (fun t : Nat =>
+      DiaryLowerBoundColors.singletonColour K
+        (oldStageTailCut H m f) (F t) = c)
+    (fun t => hColourAll (F t) (hFLeaf t))
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
