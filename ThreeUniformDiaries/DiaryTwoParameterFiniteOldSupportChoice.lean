@@ -69,30 +69,38 @@ theorem finite_choice_persistent_of_two_downward_parameters
   exact hDownM v n k M (le_max_right n M)
     (hDownN v k n k (le_max_left n M) (hAll k))
 
-/-- The actual old reserved stage support can be chosen UNIFORMLY
-across ALL later finite source horizons if its admissible values
-lie in one fixed FINITE palette W of total old maps.
+/-- A FINITE palette of literal image profiles on the actual
+finite old support S_m suffices to select ONE genuine old
+reserved stage f that has compatible arbitrarily late genuine
+reserved witnesses at ALL future finite horizons.
 
-At every source horizon n, one palette map f_n must support
-genuinely reserved (m+1+n)-horizon witnesses with arbitrarily
-large new image. The theorem stabilizes one f for all n and M.
-It does not stabilize g(m): its witness still varies with n,M.
-No old-map palette is produced here. -/
-theorem exists_one_old_support_for_all_finite_horizons_of_finite_palette
+Unlike a finite palette of TOTAL functions Nat→Nat, this assumes
+only finitely many possibilities for the data that matters:
+  p(u) = g(u) for u in countableDiaryFiniteSupport H m.
+
+At each horizon q=m+1+n and target bound M there must be an
+ACTUAL q-horizon reserved witness g whose old support profile
+lies in the SAME finite W, selected before q,M. Finite diagonal
+choice stabilizes one profile p across all q,M; pick f from an
+actual witness and restrict it to the old m stage.
+
+NO proof of this finite profile cover W is supplied; in particular
+the merged independent q-horizon witness theorem does not give W.
+Further, g(m) still varies, so no persistent fixed new-leaf image
+or countable diary unavoidability follows. -/
+theorem exists_one_old_support_for_all_finite_horizons_of_finite_profile_palette
     {H K : Ordered3Graph Nat}
     (F : Nat → Nat) (m : Nat)
-    (W : Finset (Nat → Nat))
-    (hEachHorizon : ∀ n : Nat,
-      ∃ f : Nat → Nat,
-        f ∈ W ∧
-        ReservedDiaryStage H K F m f ∧
-        ∀ M : Nat, ∃ t : Nat, ∃ g : Nat → Nat,
-          M < F t ∧
-          ReservedDiaryStage H K F (m + 1 + n) g ∧
-          CofinalDiaryStageCompatible H m f g ∧
-          g m = F t) :
+    (W : Finset
+      ({u : Nat // u ∈ countableDiaryFiniteSupport H m} → Nat))
+    (hCover : ∀ n M : Nat,
+      ∃ t : Nat, ∃ g : Nat → Nat,
+        M < F t ∧
+        ReservedDiaryStage H K F (m + 1 + n) g ∧
+        g m = F t ∧
+        (fun u : {u : Nat //
+          u ∈ countableDiaryFiniteSupport H m} => g u.val) ∈ W) :
     ∃ f : Nat → Nat,
-      f ∈ W ∧
       ReservedDiaryStage H K F m f ∧
       ∀ n M : Nat, ∃ t : Nat, ∃ g : Nat → Nat,
         M < F t ∧
@@ -100,35 +108,49 @@ theorem exists_one_old_support_for_all_finite_horizons_of_finite_palette
         CofinalDiaryStageCompatible H m f g ∧
         g m = F t := by
   classical
-  let P : (Nat → Nat) → Nat → Nat → Prop := fun f n M =>
-    ReservedDiaryStage H K F m f ∧
-      ∃ t : Nat, ∃ g : Nat → Nat,
-        M < F t ∧
-        ReservedDiaryStage H K F (m + 1 + n) g ∧
-        CofinalDiaryStageCompatible H m f g ∧
-        g m = F t
-  have hDownN : ∀ (f : Nat → Nat) (n k M : Nat),
-      k ≤ n → P f n M → P f k M := by
-    intro f n k M hkn h
-    obtain ⟨Pf, t, g, hHigh, Q, hOld, hAt⟩ := h
-    exact ⟨Pf, t, g, hHigh, Q.restrict (by omega), hOld, hAt⟩
-  have hDownM : ∀ (f : Nat → Nat) (n M L : Nat),
-      L ≤ M → P f n M → P f n L := by
-    intro f n M L hLM h
-    obtain ⟨Pf, t, g, hHigh, Q, hOld, hAt⟩ := h
-    exact ⟨Pf, t, g, lt_of_le_of_lt hLM hHigh, Q, hOld, hAt⟩
-  have hCover : ∀ n M : Nat,
-      ∃ f : Nat → Nat, f ∈ W ∧ P f n M := by
+  let T := {u : Nat // u ∈ countableDiaryFiniteSupport H m}
+  let Profile : (Nat → Nat) → T → Nat :=
+    fun g u => g u.val
+  let P : (T → Nat) → Nat → Nat → Prop := fun p n M =>
+    ∃ t : Nat, ∃ g : Nat → Nat,
+      M < F t ∧
+      ReservedDiaryStage H K F (m + 1 + n) g ∧
+      g m = F t ∧
+      ∀ u : T, g u.val = p u
+  have hDownN : ∀ (p : T → Nat) (n k M : Nat),
+      k ≤ n → P p n M → P p k M := by
+    intro p n k M hkn
+    rintro ⟨t, g, hHigh, Q, hAt, hProfile⟩
+    exact ⟨t, g, hHigh, Q.restrict (by omega), hAt, hProfile⟩
+  have hDownM : ∀ (p : T → Nat) (n M L : Nat),
+      L ≤ M → P p n M → P p n L := by
+    intro p n M L hLM
+    rintro ⟨t, g, hHigh, Q, hAt, hProfile⟩
+    exact ⟨t, g, lt_of_le_of_lt hLM hHigh, Q, hAt, hProfile⟩
+  have hFiniteCover : ∀ n M : Nat,
+      ∃ p : T → Nat, p ∈ W ∧ P p n M := by
     intro n M
-    obtain ⟨f, hf, Pf, hAll⟩ := hEachHorizon n
-    obtain ⟨t, g, hHigh, Q, hOld, hAt⟩ := hAll M
-    exact ⟨f, hf, Pf, t, g, hHigh, Q, hOld, hAt⟩
-  obtain ⟨f, hf, hAll⟩ :=
+    obtain ⟨t, g, hHigh, Q, hAt, hW⟩ := hCover n M
+    have hpW : Profile g ∈ W := by
+      simpa only [Profile] using hW
+    refine ⟨Profile g, hpW, t, g, hHigh, Q, hAt, ?_⟩
+    intro u
+    rfl
+  obtain ⟨p, hp, hAll⟩ :=
     finite_choice_persistent_of_two_downward_parameters
-      W P hDownN hDownM hCover
-  refine ⟨f, hf, (hAll 0 0).1, ?_⟩
+      W P hDownN hDownM hFiniteCover
+  obtain ⟨t₀, g₀, hHigh₀, Q₀, hAt₀, hProfile₀⟩ :=
+    hAll 0 0
+  have P₀ : ReservedDiaryStage H K F m g₀ :=
+    Q₀.restrict (by omega)
+  refine ⟨g₀, P₀, ?_⟩
   intro n M
-  exact (hAll n M).2
+  obtain ⟨t, g, hHigh, Q, hAt, hProfile⟩ := hAll n M
+  have hCompatible : CofinalDiaryStageCompatible H m g₀ g := by
+    intro x hx
+    let u : T := ⟨x, hx⟩
+    exact (hProfile u).trans (hProfile₀ u).symm
+  exact ⟨t, g, hHigh, Q, hCompatible, hAt⟩
 
 /-- The finite palette hypothesis above CANNOT be simply omitted:
 for the infinite palette of all natural-number profile values,
