@@ -108,7 +108,7 @@ theorem RoleDiary.first_leaf_original_range_has_all_generic_colour_extensions
     exact DK.genuine_leaves_same_singletonColour_below_marker_cut
       B hB (hFLeaf t) (hFLeaf 0)
   exact ⟨hAll,
-    G.has_generic_colour_onePointExtensions_of_all
+    ThreeUniformDiaries.DiaryLeafPriority.GenericEnumerated3Graph.has_generic_colour_onePointExtensions_of_all G
       (fun t : Nat =>
         DiaryLowerBoundColors.singletonColour K B (F t) = c)
       hAll⟩
