@@ -39,6 +39,33 @@ horizons, and no full diary unavoidability is claimed.
 namespace ThreeUniformDiaries
 namespace DiaryLeafPriority
 
+/-- Transport a genuine reserved diary stage along a containment of
+true-leaf ranges. All source/target structural conditions and future
+order reserve are unchanged; only the leaf-range witness is composed. -/
+private theorem weaken_reserved_stage_leaf_range
+    {H K : Ordered3Graph Nat} {F J f : Nat → Nat} {m : Nat}
+    (P : ReservedDiaryStage H K J m f)
+    (hRange : ∀ t : Nat, ∃ i : Nat, J t = F i) :
+    ReservedDiaryStage H K F m f := by
+  refine ⟨?_, P.2⟩
+  refine {
+    ordered := P.1.ordered
+    marker_zero := P.1.marker_zero
+    marker_one := P.1.marker_one
+    marker_two := P.1.marker_two
+    leaf_role := P.1.leaf_role
+    one_split_role := P.1.one_split_role
+    two_split_role := P.1.two_split_role
+    induced_edge := P.1.induced_edge
+    leaf_oneMeet := P.1.leaf_oneMeet
+    leaf_twoMeet := P.1.leaf_twoMeet
+    leaf_range := ?_
+  }
+  intro u hu hLeaf
+  obtain ⟨i, hi⟩ := P.1.leaf_range u hu hLeaf
+  obtain ⟨j, hj⟩ := hRange i
+  exact ⟨j, hi.trans hj⟩
+
 /-- UNCONDITIONAL high-root selection for the SECOND true source
 diary leaf m with exactly one older selected genuine leaf a.
 
@@ -104,7 +131,7 @@ theorem RoleDiary.exists_arbitrarily_high_favourable_second_leaf_root_with_cofin
     exact (hRange i).1
   have PF : ReservedDiaryStage H K
       (fun t : Nat => F t) m f :=
-    PJ.weaken_leaf_range hJInsideF
+    weaken_reserved_stage_leaf_range PJ hJInsideF
   refine ⟨f, PF, hB, s, hsRole, hsBelow,
     hBit, hGap1, hGap2, ?_⟩
   intro M
@@ -115,7 +142,7 @@ theorem RoleDiary.exists_arbitrarily_high_favourable_second_leaf_root_with_cofin
   obtain ⟨t, hAtF⟩ := hJInsideF j
   have QF : ReservedDiaryStage H K
       (fun t : Nat => F t) (m + 1) g :=
-    QJ.weaken_leaf_range hJInsideF
+    weaken_reserved_stage_leaf_range QJ hJInsideF
   have hOldKeep : CofinalDiaryStageCompatible H m f g :=
     PF.1.successor_compatible_of_selected_leaf_agreement
       QF.1 hKeep
