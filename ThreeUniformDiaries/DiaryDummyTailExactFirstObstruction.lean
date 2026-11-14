@@ -30,7 +30,7 @@ namespace DiaryLeafPriority
 there is a first old nonmarker selected-germ obstruction p<n.
 The finite event-free compatibility test succeeds at exactly the cuts
 q<=p. It yields a genuine finite full diary retaining the whole
-literal prefix below p and its exact capped one-/two-meets.
+literal prefix below p and its exact capped singleton and full pair meets.
 
 No existence of a larger protected proper prefix, no recursive
 protected absorber, no selected bounded-rank tower, and no coherent
