@@ -179,7 +179,7 @@ theorem RoleDiary.exists_first_leaf_all_horizon_good_colour_with_all_generic_fin
     DH.exists_first_leaf_all_horizon_good_colour_and_whole_generic_successor_cones
       DK G F hFLeaf m hm hFirst
   refine ⟨f,Pf,c,hAll,?_,hCones⟩
-  exact G.has_generic_colour_onePointExtensions_of_all
+  exact ThreeUniformDiaries.DiaryLeafPriority.GenericEnumerated3Graph.has_generic_colour_onePointExtensions_of_all G
     (fun t : Nat =>
       DiaryLowerBoundColors.singletonColour K
         (oldStageTailCut H m f) (F t) = c)
