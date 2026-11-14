@@ -1,4 +1,5 @@
 import ThreeUniformDiaries.DiaryGoodColourOnePointGenericCopy
+import ThreeUniformDiaries.DiarySingletonColourCofinalCone
 
 /-!
 # Track A: one SELECTED monochromatic generic pair realizes BOTH later edge bits
@@ -119,6 +120,73 @@ theorem exists_bipolar_pair_of_monochromatic_ordered_generic_copy
   · intro M
     obtain ⟨z, hM, hY, hCZ, hBit⟩ := hBoth M false
     refine ⟨z, hM, hY, hCZ, ?_⟩
+    intro he
+    have hAbsurd : (false : Bool) = true := hBit.mp he
+    cases hAbsurd
+
+/-- The fully UNORDERED target version needed by Track A:
+if C contains an ACTUAL unordered induced generic G-copy J in an
+arbitrary target ordered 3-graph K, then the fixed distinct target
+pair x=J(0), y=J(1) has cofinally late SAME-C third vertices
+realizing BOTH the symmetric E5 triple and its nonedge.
+
+No monotonicity of J in target numerical order is assumed.
+The elementary injective finite-preimage bound guarantees that
+late source vertices map past every fixed target cutoff.
+This is a NECESSARY condition for generically rich C, not a
+proof that any selected anchored old-cut colour satisfies it. -/
+theorem exists_unordered_bipolar_pair_of_monochromatic_generic_leaf_copy
+    (G : GenericEnumerated3Graph)
+    (K : Ordered3Graph Nat)
+    (C : Nat → Prop)
+    (J : Ordered3Graph.UnorderedEmbedding G.graph K)
+    (hC : ∀ n : Nat, C (J n)) :
+    ∃ x y : Nat,
+      x ≠ y ∧ C x ∧ C y ∧
+      (∀ M : Nat, ∃ z : Nat,
+        M < z ∧ max x y < z ∧ C z ∧
+        K.unorderedEdge x y z) ∧
+      (∀ M : Nat, ∃ z : Nat,
+        M < z ∧ max x y < z ∧ C z ∧
+        ¬ K.unorderedEdge x y z) := by
+  have hDistinct : J 0 ≠ J 1 := by
+    intro h
+    have h01 : (0 : Nat) = 1 := J.injective h
+    omega
+  have hBoth (M : Nat) (bit : Bool) :
+      ∃ z : Nat,
+        M < z ∧ max (J 0) (J 1) < z ∧ C z ∧
+        (K.unorderedEdge (J 0) (J 1) z ↔ bit = true) := by
+    obtain ⟨N, hLarge⟩ :=
+      injective_nat_eventually_above_bound
+        (fun n : Nat => J n) J.injective
+        (max M (max (J 0) (J 1)))
+    obtain ⟨v, hNv, h1v, hBit⟩ :=
+      _root_.ThreeUniformDiaries.DiaryLeafPriority.GenericEnumerated3Graph.exists_late_vertex_realizing_pair_bit
+        G 0 1 N (by omega) bit
+    have hHigh : max M (max (J 0) (J 1)) < J v :=
+      hLarge v (Nat.le_of_lt hNv)
+    have hSource :
+        G.graph.unorderedEdge 0 1 v ↔
+          G.graph.edge 0 1 v :=
+      G.graph.unorderedEdge_iff_of_lt 0 1 v (by omega) h1v
+    have hTransport :
+        G.graph.unorderedEdge 0 1 v ↔
+          K.unorderedEdge (J 0) (J 1) (J v) :=
+      J.edge_iff 0 1 v (by omega) h1v
+    have hTargetBit :
+        K.unorderedEdge (J 0) (J 1) (J v) ↔ bit = true :=
+      hTransport.symm.trans (hSource.trans hBit)
+    refine ⟨J v, ?_, ?_, hC v, hTargetBit⟩
+    · exact lt_of_le_of_lt (le_max_left _ _) hHigh
+    · exact lt_of_le_of_lt (le_max_right _ _) hHigh
+  refine ⟨J 0, J 1, hDistinct, hC 0, hC 1, ?_, ?_⟩
+  · intro M
+    obtain ⟨z, hMz, hOld, hCZ, hBit⟩ := hBoth M true
+    exact ⟨z, hMz, hOld, hCZ, hBit.mpr rfl⟩
+  · intro M
+    obtain ⟨z, hMz, hOld, hCZ, hBit⟩ := hBoth M false
+    refine ⟨z, hMz, hOld, hCZ, ?_⟩
     intro he
     have hAbsurd : (false : Bool) = true := hBit.mp he
     cases hAbsurd
