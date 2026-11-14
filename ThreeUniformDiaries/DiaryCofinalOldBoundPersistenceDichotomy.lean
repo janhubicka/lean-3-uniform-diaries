@@ -149,6 +149,111 @@ theorem noPersistentOldSupport_iff_eventualOldLeafEscape
     have hOldSmall := hSmall a ha
     omega
 
+/-- When at least one old source leaf was selected, it is enough
+to bound ONE specific source coordinate: the LAST genuine selected
+source leaf b = max L_m. Every reserved stage preserves order,
+so all earlier selected-leaf images lie below the image of b.
+
+Consequently cofinally many reserved horizon stages with bounded
+image of this ONE fixed b give a persistent COMPLETE old S1/S2
+support via the preceding finite-vector criterion. -/
+theorem persistentOldSupport_iff_cofinalBoundedLastOldLeaf
+    (H K : Ordered3Graph Nat) (F : Nat → Nat) (m : Nat)
+    (hOldNonempty : (countableDiaryLeafPrefix H m).Nonempty) :
+    (∃ f : Nat → Nat, PersistentReservedDiaryStage H K F m f) ↔
+      (∃ B : Nat, ∀ N : Nat,
+        ∃ n : Nat, N ≤ n ∧
+          ∃ g : Nat → Nat,
+            ReservedDiaryStage H K F (m + n) g ∧
+            g ((countableDiaryLeafPrefix H m).max' hOldNonempty) ≤ B) := by
+  classical
+  let L := countableDiaryLeafPrefix H m
+  let b := L.max' hOldNonempty
+  have hb : b ∈ L := Finset.max'_mem L hOldNonempty
+  constructor
+  · intro hPersistent
+    obtain ⟨B, hAll⟩ :=
+      (persistentOldSupport_iff_cofinalBoundedOldLeafImages
+        H K F m).mp hPersistent
+    refine ⟨B, ?_⟩
+    intro N
+    obtain ⟨n, hn, g, Q, hOldBound⟩ := hAll N
+    exact ⟨n, hn, g, Q, hOldBound b hb⟩
+  · rintro ⟨B, hAll⟩
+    apply (persistentOldSupport_iff_cofinalBoundedOldLeafImages
+      H K F m).mpr
+    refine ⟨B, ?_⟩
+    intro N
+    obtain ⟨n, hn, g, Q, hBoundLast⟩ := hAll N
+    refine ⟨n, hn, g, Q, ?_⟩
+    intro a ha
+    have hab : a ≤ b := Finset.le_max' L a ha
+    have haOld : a ∈ countableDiaryFiniteSupport H m :=
+      mem_finiteLeafMeetSupport_leaf H L a ha
+    have hbOld : b ∈ countableDiaryFiniteSupport H m :=
+      mem_finiteLeafMeetSupport_leaf H L b hb
+    have haSupported : a ∈ countableDiaryFiniteSupport H (m + n) :=
+      (countableDiaryFiniteSupport_mono H m (m + n) (by omega)) haOld
+    have hbSupported : b ∈ countableDiaryFiniteSupport H (m + n) :=
+      (countableDiaryFiniteSupport_mono H m (m + n) (by omega)) hbOld
+    rcases lt_or_eq_of_le hab with hlt | heq
+    · have hOrder := Q.1.ordered a b haSupported hbSupported hlt
+      omega
+    · simpa only [heq] using hBoundLast
+
+/-- In the nonempty-old-prefix case, NO persistent old support
+is equivalent to eventual escape of ONE CANONICALLY CHOSEN,
+SOURCE-FIXED old leaf b=max L_m: every sufficiently late genuine
+reserved horizon stage sends b above each target bound B.
+
+This improves the preceding some-old-leaf escape statement by
+commuting the choice of b BEFORE all bounds and future horizons.
+It does NOT prevent a different f at each finite source horizon. -/
+theorem noPersistentOldSupport_iff_eventualLastOldLeafEscape
+    (H K : Ordered3Graph Nat) (F : Nat → Nat) (m : Nat)
+    (hOldNonempty : (countableDiaryLeafPrefix H m).Nonempty) :
+    (¬ ∃ f : Nat → Nat, PersistentReservedDiaryStage H K F m f) ↔
+      (∀ B : Nat, ∃ N : Nat, ∀ n : Nat, N ≤ n →
+        ∀ g : Nat → Nat,
+          ReservedDiaryStage H K F (m + n) g →
+          B < g ((countableDiaryLeafPrefix H m).max' hOldNonempty)) := by
+  classical
+  let L := countableDiaryLeafPrefix H m
+  let b := L.max' hOldNonempty
+  have hb : b ∈ L := Finset.max'_mem L hOldNonempty
+  constructor
+  · intro hNo
+    have hEscape :=
+      (noPersistentOldSupport_iff_eventualOldLeafEscape H K F m).mp hNo
+    intro B
+    obtain ⟨N, hTail⟩ := hEscape B
+    refine ⟨N, ?_⟩
+    intro n hn g Q
+    obtain ⟨a, ha, hBig⟩ := hTail n hn g Q
+    have hab : a ≤ b := Finset.le_max' L a ha
+    have haOld : a ∈ countableDiaryFiniteSupport H m :=
+      mem_finiteLeafMeetSupport_leaf H L a ha
+    have hbOld : b ∈ countableDiaryFiniteSupport H m :=
+      mem_finiteLeafMeetSupport_leaf H L b hb
+    have haSupported : a ∈ countableDiaryFiniteSupport H (m + n) :=
+      (countableDiaryFiniteSupport_mono H m (m + n) (by omega)) haOld
+    have hbSupported : b ∈ countableDiaryFiniteSupport H (m + n) :=
+      (countableDiaryFiniteSupport_mono H m (m + n) (by omega)) hbOld
+    rcases lt_or_eq_of_le hab with hlt | heq
+    · have hOrder := Q.1.ordered a b haSupported hbSupported hlt
+      omega
+    · simpa only [← heq] using hBig
+  · intro hEscape
+    intro hPersistent
+    obtain ⟨f, Pf⟩ := hPersistent
+    obtain ⟨N, hTail⟩ := hEscape (f b)
+    obtain ⟨g, Q, hKeep⟩ := Pf.2 N
+    have hbOld : b ∈ countableDiaryFiniteSupport H m :=
+      mem_finiteLeafMeetSupport_leaf H L b hb
+    have hEq : g b = f b := hKeep b hbOld
+    have hBig := hTail N (le_refl N) g Q
+    omega
+
 /-- In genuine full source/target diaries, independently certified
 finite reserved stages exist at EVERY source horizon inside the
 original unordered induced generic target leaf range.
