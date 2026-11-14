@@ -101,7 +101,7 @@ theorem exists_one_old_support_for_all_finite_horizons_of_finite_profile_palette
         (fun u : {u : Nat //
           u ∈ countableDiaryFiniteSupport H m} => g u.val) ∈ W) :
     ∃ f : Nat → Nat,
-      ReservedDiaryStage H K F m f ∧
+      PersistentReservedDiaryStage H K F m f ∧
       ∀ n M : Nat, ∃ t : Nat, ∃ g : Nat → Nat,
         M < F t ∧
         ReservedDiaryStage H K F (m + 1 + n) g ∧
@@ -143,14 +143,25 @@ theorem exists_one_old_support_for_all_finite_horizons_of_finite_profile_palette
     hAll 0 0
   have P₀ : ReservedDiaryStage H K F m g₀ :=
     Q₀.restrict (by omega)
-  refine ⟨g₀, P₀, ?_⟩
-  intro n M
-  obtain ⟨t, g, hHigh, Q, hAt, hProfile⟩ := hAll n M
-  have hCompatible : CofinalDiaryStageCompatible H m g₀ g := by
-    intro x hx
-    let u : T := ⟨x, hx⟩
-    exact (hProfile u).trans (hProfile₀ u).symm
-  exact ⟨t, g, hHigh, Q, hCompatible, hAt⟩
+  have hAllCompatible : ∀ n M : Nat,
+      ∃ t : Nat, ∃ g : Nat → Nat,
+        M < F t ∧
+        ReservedDiaryStage H K F (m + 1 + n) g ∧
+        CofinalDiaryStageCompatible H m g₀ g ∧
+        g m = F t := by
+    intro n M
+    obtain ⟨t, g, hHigh, Q, hAt, hProfile⟩ := hAll n M
+    have hCompatible : CofinalDiaryStageCompatible H m g₀ g := by
+      intro x hx
+      let u : T := ⟨x, hx⟩
+      exact (hProfile u).trans (hProfile₀ u).symm
+    exact ⟨t, g, hHigh, Q, hCompatible, hAt⟩
+  have hPersistent : PersistentReservedDiaryStage H K F m g₀ := by
+    refine ⟨P₀, ?_⟩
+    intro n
+    obtain ⟨t, g, hHigh, Q, hCompat, hAt⟩ := hAllCompatible n 0
+    exact ⟨g, Q.restrict (by omega), hCompat⟩
+  exact ⟨g₀, hPersistent, hAllCompatible⟩
 
 /-- The finite palette hypothesis above CANNOT be simply omitted:
 for the infinite palette of all natural-number profile values,
