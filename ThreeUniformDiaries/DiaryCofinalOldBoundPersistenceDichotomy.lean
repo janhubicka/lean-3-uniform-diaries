@@ -185,6 +185,7 @@ theorem persistentOldSupport_iff_cofinalBoundedLastOldLeaf
     refine ⟨B, ?_⟩
     intro N
     obtain ⟨n, hn, g, Q, hBoundLast⟩ := hAll N
+    change g b ≤ B at hBoundLast
     refine ⟨n, hn, g, Q, ?_⟩
     intro a ha
     have hab : a ≤ b := Finset.le_max' L a ha
@@ -230,6 +231,7 @@ theorem noPersistentOldSupport_iff_eventualLastOldLeafEscape
     refine ⟨N, ?_⟩
     intro n hn g Q
     obtain ⟨a, ha, hBig⟩ := hTail n hn g Q
+    change B < g b
     have hab : a ≤ b := Finset.le_max' L a ha
     have haOld : a ∈ countableDiaryFiniteSupport H m :=
       mem_finiteLeafMeetSupport_leaf H L a ha
@@ -242,7 +244,7 @@ theorem noPersistentOldSupport_iff_eventualLastOldLeafEscape
     rcases lt_or_eq_of_le hab with hlt | heq
     · have hOrder := Q.1.ordered a b haSupported hbSupported hlt
       omega
-    · simpa only [← heq] using hBig
+    · simpa only [heq] using hBig
   · intro hEscape
     intro hPersistent
     obtain ⟨f, Pf⟩ := hPersistent
@@ -252,6 +254,7 @@ theorem noPersistentOldSupport_iff_eventualLastOldLeafEscape
       mem_finiteLeafMeetSupport_leaf H L b hb
     have hEq : g b = f b := hKeep b hbOld
     have hBig := hTail N (le_refl N) g Q
+    change f b < g b at hBig
     omega
 
 /-- In genuine full source/target diaries, independently certified
