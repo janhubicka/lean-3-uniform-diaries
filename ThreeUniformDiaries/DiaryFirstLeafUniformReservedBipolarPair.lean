@@ -121,5 +121,67 @@ theorem RoleDiary.exists_first_leaf_all_horizon_old_support_with_bipolar_reserve
       J hC
   exact ⟨f,Pf,c,hAll,x,y,hNe,hCx,hCy,hPos,hNeg⟩
 
+
+/-- At the FIRST source leaf, one persistent old f and complete c
+can be chosen before ALL finite source horizons and target bounds
+so that ACTUAL compatible q-horizon reserved witnesses recur
+cofinally, and the SAME source-index colour predicate has the
+ENTIRE generic one-point extension property at EVERY finite n.
+
+The proof is exact: full target RoleDiary marker-colour rigidity
+makes the selected c TRUE on EVERY original generic source
+index t. Thus a usual generic extension of an arbitrary
+finite increasing induced stage s automatically has colour c.
+This includes the first nontrivial E5 table at n=2 and ALL
+larger n. The same f supports arbitrarily high ENTIRE generic
+copies of genuine compatible reserved IMMEDIATE successors.
+
+Nothing asserts that every generic extension selected in c
+admits a RESERVED q-horizon continuation for arbitrary q,
+nor that a single new image persists through all horizons. -/
+theorem RoleDiary.exists_first_leaf_all_horizon_good_colour_with_all_generic_finite_extensions
+    {H K : Ordered3Graph Nat}
+    (DH : RoleDiary H) (DK : RoleDiary K)
+    (G : GenericEnumerated3Graph)
+    (F : Ordered3Graph.UnorderedEmbedding G.graph K)
+    (hFLeaf : ∀ t : Nat, IsLeaf K (F t))
+    (m : Nat) (hm : IsLeaf H m)
+    (hFirst : countableDiaryLeafPrefix H m = ∅) :
+    ∃ f : Nat → Nat,
+      PersistentReservedDiaryStage H K
+        (fun t : Nat => F t) m f ∧
+      ∃ c : Fin (oldStageTailCut H m f) →
+          Fin (oldStageTailCut H m f) → Bool,
+        (∀ n M : Nat,
+          ∃ t : Nat, ∃ g : Nat → Nat,
+            M < F t ∧
+            ReservedDiaryStage H K
+              (fun t : Nat => F t) (m + 1 + n) g ∧
+            CofinalDiaryStageCompatible H m f g ∧
+            g m = F t ∧
+            DiaryLowerBoundColors.singletonColour K
+              (oldStageTailCut H m f) (F t) = c) ∧
+        HasGenericColourOnePointExtensions G
+          (fun t : Nat =>
+            DiaryLowerBoundColors.singletonColour K
+              (oldStageTailCut H m f) (F t) = c) ∧
+        (∀ M : Nat,
+          ∃ J : Ordered3Graph.UnorderedEmbedding G.graph K,
+            ∀ i : Nat,
+              M < J i ∧
+              IsLeaf K (J i) ∧
+              (∃ t : Nat, J i = F t) ∧
+              HasCompatibleReservedNextLeaf H K
+                (fun t : Nat => F t) f m (J i)) := by
+  classical
+  obtain ⟨f,Pf,c,_hPalette,hColourAll,_hFinite,hAll,_hTail,hCones⟩ :=
+    DH.exists_first_leaf_all_horizon_good_colour_and_whole_generic_successor_cones
+      DK G F hFLeaf m hm hFirst
+  refine ⟨f,Pf,c,hAll,?_,hCones⟩
+  intro n s _hOldColour
+  obtain ⟨hBound,hBits⟩ := s.newVertex_spec
+  exact ⟨s.newVertex,hBound,
+    hColourAll (F s.newVertex) (hFLeaf s.newVertex),hBits⟩
+
 end DiaryLeafPriority
 end ThreeUniformDiaries
