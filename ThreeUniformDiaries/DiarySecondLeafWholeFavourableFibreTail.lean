@@ -1,4 +1,5 @@
 import ThreeUniformDiaries.DiarySecondLeafCofinalRootedSplitCriterion
+import ThreeUniformDiaries.DiaryReservedOldColourTailDichotomy
 
 /-!
 # Track A: full eventual reserved-successor saturation of a favourable second-leaf fibre
