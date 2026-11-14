@@ -145,7 +145,11 @@ theorem RoleDiary.exists_fixed_horizon_cofinal_good_oldCut_colour
         DiaryLowerBoundColors.singletonColour K B w ∈
           goodOldCutCandidateColours H K
             (fun t : Nat => F t) f m := by
-      simpa only [hwColour] using hPalette
+      change DiaryLowerBoundColors.singletonColour K
+        (oldStageTailCut H m f) w ∈
+          goodOldCutCandidateColours H K (fun t : Nat => F t) f m
+      rw [hwColour]
+      exact hPalette
     exact (Pf.1.full_candidate_iff_good_oldCut_colour
       hm hw hwLeaf hwRange).mpr hMember
   · intro t hLater hColour
