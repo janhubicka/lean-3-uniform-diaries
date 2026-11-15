@@ -36,13 +36,15 @@ namespace ThreeUniformDiaries
 namespace DiaryLeafPriority
 
 /-- One fixed complete old-pair E5 pattern q, with the additional
-horizon-dependent LOWER bound N<v. The pattern itself never changes
-with N; only the numerical tail cutoff moves. -/
+horizon-dependent LOWER bound N<v and the genuine increasing-triple
+requirement a<v for every protected old vertex a. The pattern itself
+never changes with N; only the numerical tail cutoff moves. -/
 def GenericOldPairHorizonTail
     (G : GenericEnumerated3Graph)
     (A : Finset Nat) (q : Nat → Nat → Bool)
     (N v : Nat) : Prop :=
   N < v ∧
+    (∀ a : Nat, a ∈ A → a < v) ∧
     ∀ a b : Nat, a ∈ A → b ∈ A → a < b →
       (G.graph.edge a b v ↔ q a b = true)
 
@@ -54,7 +56,7 @@ theorem generic_oldPairHorizonTail_antitone
     {N M v : Nat} (hNM : N ≤ M)
     (h : GenericOldPairHorizonTail G A q M v) :
     GenericOldPairHorizonTail G A q N v := by
-  exact ⟨lt_of_le_of_lt hNM h.1, h.2⟩
+  exact ⟨lt_of_le_of_lt hNM h.1, h.2.1, h.2.2⟩
 
 /-- At EVERY source horizon N, the allowed tail contains a
 COMPLETE increasing induced copy of G, preserving ALL edge and
@@ -67,12 +69,12 @@ theorem GenericEnumerated3Graph.exists_induced_generic_copy_in_oldPair_horizon_t
     (N : Nat) :
     ∃ u : Ordered3Graph.Embedding G.graph G.graph,
       ∀ i : Nat, GenericOldPairHorizonTail G A q N (u i) := by
-  obtain ⟨u, hLate, _hA, hPattern⟩ :=
+  obtain ⟨u, hLate, hAboveOld, hPattern⟩ :=
     G.exists_induced_generic_selfcopy_in_oldPair_fibre A q N
   refine ⟨u, ?_⟩
   intro i
-  exact ⟨hLate i, fun a b ha hb hab =>
-    hPattern i a b ha hb hab⟩
+  exact ⟨hLate i, (fun a ha => hAboveOld i a ha),
+    (fun a b ha hb hab => hPattern i a b ha hb hab)⟩
 
 /-- In fact, EACH finite intersection of horizon fibres contains
 an entire induced generic copy: choose one copy above the LARGEST
