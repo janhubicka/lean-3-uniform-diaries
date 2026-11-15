@@ -79,7 +79,7 @@ theorem RoleDiary.no_persistent_relative_pair_iff_nonvacuous_two_level_index_esc
               ReservedDiaryStage H K (fun t : Nat => F t)
                 (m + 1 + n) g →
               CofinalDiaryStageCompatible H m f g →
-              ∀ t : Nat, t < T → g m ≠ F t))) := by
+              ∀ t : Nat, t < T → g m ≠ F t)))) := by
   classical
   constructor
   · intro hNoPair
