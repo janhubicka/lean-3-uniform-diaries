@@ -147,13 +147,18 @@ theorem RoleDiary.no_persistent_pair_iff_nonvacuous_global_next_index_escape
     · exact exists_independent_reserved_stage_in_universal_leaf_range
         DH DK G hUniversal F hFLeaf (m + 1 + n)
     · exact hAll n hn
-  · intro hNonvacuous
-    apply (not_congr hIff).mpr
-    apply hIndex.mpr
-    intro T
-    obtain ⟨N, hAll⟩ := hNonvacuous T
-    exact ⟨N, fun n hn g Q t ht =>
-      (hAll n hn).2 g Q t ht⟩
+  · intro hNonvacuous hPair
+    have hEsc :
+        ∀ T : Nat, ∃ N : Nat, ∀ n : Nat, N ≤ n →
+          ∀ g : Nat → Nat,
+            ReservedDiaryStage H K (fun t : Nat => F t)
+              (m + 1 + n) g →
+            ∀ t : Nat, t < T → g m ≠ F t := by
+      intro T
+      obtain ⟨N, hAll⟩ := hNonvacuous T
+      exact ⟨N, fun n hn g Q t ht =>
+        (hAll n hn).2 g Q t ht⟩
+    exact (hIndex.mpr hEsc) (hIff.mp hPair)
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
