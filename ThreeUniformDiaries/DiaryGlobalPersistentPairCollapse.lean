@@ -77,6 +77,31 @@ theorem persistent_relative_pair_iff_persistent_next_stage
     exact ⟨g, Pg.restrict_to_earlier (Nat.le_succ m),
       g, Pg, CofinalDiaryStageCompatible.refl g m⟩
 
+/-- Direct positive GLOBAL pair criterion in the original prescribed
+F-preimage indices. At a genuine new source leaf m, existence of
+SOME persistent old/next compatible pair is equivalent to ONE
+finite original F-index prefix containing actual new-leaf images in
+cofinally late genuine reserved future stages.
+
+The old f is NOT fixed in advance. Persistent finite-support
+compactness selects it from the bounded new images. The criterion
+does not imply relative successor extension for a SPECIFIED f. -/
+theorem persistent_relative_pair_iff_cofinalBoundedNewLeafIndex
+    (H K : Ordered3Graph Nat) (F : Nat → Nat)
+    (m : Nat) (hm : IsLeaf H m) :
+    (∃ f : Nat → Nat,
+      PersistentReservedDiaryStage H K F m f ∧
+      ∃ g : Nat → Nat,
+        PersistentReservedDiaryStage H K F (m + 1) g ∧
+        CofinalDiaryStageCompatible H m f g) ↔
+    (∃ T : Nat, ∀ N : Nat,
+      ∃ n : Nat, N ≤ n ∧
+        ∃ g : Nat → Nat,
+          ReservedDiaryStage H K F (m + 1 + n) g ∧
+          ∃ t : Nat, t < T ∧ g m = F t) := by
+  exact (persistent_relative_pair_iff_persistent_next_stage H K F m).trans
+    (persistentNextStage_iff_cofinalBoundedNewLeafIndex H K F m hm)
+
 /-- Exact NONVACUOUS global failure recognition in a genuine
 full diary with original UNORDERED induced generic true-leaf F.
 
