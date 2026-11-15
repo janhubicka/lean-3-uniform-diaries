@@ -1,5 +1,4 @@
 import ThreeUniformDiaries.DiaryGenericE5PatternFibreCopy
-import ThreeUniformDiaries.DiaryTailConePersistenceCounterexample
 
 /-!
 # Track D: even WHOLE nested generic old-E5 cones do not give a persistent image
