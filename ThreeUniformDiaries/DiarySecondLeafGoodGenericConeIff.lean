@@ -139,5 +139,88 @@ theorem RoleDiary.second_leaf_good_generic_cones_iff_favourable_generic_rooted_f
         (J t) hLate hLeaf hRange hMeet
     exact ⟨hAboveM, hLeaf, hRange, hGood⟩
 
+/-- One SINGLE all-good unordered induced generic target copy already
+suffices to establish the whole arbitrarily-high generic successor
+criterion, because an actual generic copy contains whole generic
+refinements above every numerical bound.
+
+Consequently existence of just one induced generic target leaf
+subcopy whose every vertex is an ACTUAL full-old-support-compatible
+reserved immediate second-leaf successor is equivalent to existence
+of ONE favourable exact rooted S1 split with arbitrarily high WHOLE
+induced generic copies of the original F range in its split fibre.
+
+The selected first generic copy need NOT be numerically increasing,
+monochromatic for a complete old-cut colour, or above f(a).
+Nothing proves existence of either side unconditionally. -/
+theorem RoleDiary.second_leaf_one_good_generic_cone_iff_favourable_generic_rooted_fibre
+    {H K : Ordered3Graph Nat}
+    (DH : RoleDiary H) (DK : RoleDiary K)
+    (G : GenericEnumerated3Graph)
+    (F : Ordered3Graph.UnorderedEmbedding G.graph K)
+    (hFLeaf : ∀ t : Nat, IsLeaf K (F t))
+    (a m : Nat)
+    (ha : IsLeaf H a) (hm : IsLeaf H m) (ham : a < m)
+    (hOld : countableDiaryLeafPrefix H m = {a})
+    (f : Nat → Nat)
+    (P : ReservedDiaryStage H K (fun t : Nat => F t) m f) :
+    (∃ J : Ordered3Graph.UnorderedEmbedding G.graph K,
+      ∀ t : Nat,
+        IsLeaf K (J t) ∧
+        (∃ i : Nat, J t = F i) ∧
+        HasCompatibleReservedNextLeaf H K
+          (fun i : Nat => F i) f m (J t)) ↔
+    (∃ s : Nat,
+      IsOneSplit K s ∧ s < f a ∧
+      (H.edge 0 (H.oneMeetLevel a m) m ↔
+        ¬ K.edge 0 s (f a)) ∧
+      H.oneMeetLevel a m ≤ s ∧
+      s + (a - H.oneMeetLevel a m) ≤ f a ∧
+      ∀ M : Nat,
+        ∃ J : Ordered3Graph.UnorderedEmbedding G.graph K,
+          ∀ t : Nat,
+            M < J t ∧ IsLeaf K (J t) ∧
+            (∃ i : Nat, J t = F i) ∧
+            K.oneMeetLevel (f a) (J t) = s) := by
+  classical
+  have hGate :=
+    DH.second_leaf_good_generic_cones_iff_favourable_generic_rooted_fibre
+      DK G F hFLeaf a m ha hm ham hOld f P
+  constructor
+  · rintro ⟨J, hGoodJ⟩
+    have hJLeaf (t : Nat) : IsLeaf K (J t) :=
+      (hGoodJ t).1
+    have hJInF (t : Nat) : ∃ i : Nat, J t = F i :=
+      (hGoodJ t).2.1
+    have hJGood (t : Nat) : HasCompatibleReservedNextLeaf H K
+        (fun i : Nat => F i) f m (J t) :=
+      (hGoodJ t).2.2
+    have haSelected : a ∈ countableDiaryLeafPrefix H m := by
+      rw [hOld]
+      simp
+    have haSupported : a ∈ countableDiaryFiniteSupport H m :=
+      mem_finiteLeafMeetSupport_leaf H
+        (countableDiaryLeafPrefix H m) a haSelected
+    have hwLeaf : IsLeaf K (f a) :=
+      P.1.leaf_role a haSupported ha
+    obtain ⟨_s, _hsRole, _hsBelow, hGenericJ⟩ :=
+      DK.exists_one_root_split_with_generic_subcopies_all_bounds
+        G J hJLeaf (f a) hwLeaf
+    apply hGate.mp
+    intro M
+    obtain ⟨u, _hu, hAll⟩ := hGenericJ M
+    let U : Ordered3Graph.UnorderedEmbedding G.graph K :=
+      J.comp u.asUnordered
+    refine ⟨U, ?_⟩
+    intro t
+    exact ⟨(hAll t).1, hJLeaf (u t),
+      hJInF (u t), hJGood (u t)⟩
+  · intro hRight
+    obtain ⟨J, hAll⟩ := (hGate.mpr hRight) 0
+    refine ⟨J, ?_⟩
+    intro t
+    exact ⟨(hAll t).2.1,
+      (hAll t).2.2.1, (hAll t).2.2.2⟩
+
 end DiaryLeafPriority
 end ThreeUniformDiaries
