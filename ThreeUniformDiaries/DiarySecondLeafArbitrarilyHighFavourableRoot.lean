@@ -42,7 +42,7 @@ namespace DiaryLeafPriority
 /-- Transport a genuine reserved diary stage along a containment of
 true-leaf ranges. All source/target structural conditions and future
 order reserve are unchanged; only the leaf-range witness is composed. -/
-private theorem weaken_reserved_stage_leaf_range
+theorem weaken_reserved_stage_leaf_range
     {H K : Ordered3Graph Nat} {F J f : Nat → Nat} {m : Nat}
     (P : ReservedDiaryStage H K J m f)
     (hRange : ∀ t : Nat, ∃ i : Nat, J t = F i) :
