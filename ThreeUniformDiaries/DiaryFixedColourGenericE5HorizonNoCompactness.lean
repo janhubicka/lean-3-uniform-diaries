@@ -1,5 +1,6 @@
 import ThreeUniformDiaries.DiaryGenericE5NestedHorizonNoCompactness
 import ThreeUniformDiaries.DiaryGenericMixedConeIndivisibility
+import ThreeUniformDiaries.DiarySingletonColourCofinalCone
 
 /-!
 # Track D: a FIXED full singleton colour AND old E5 mask still do not
