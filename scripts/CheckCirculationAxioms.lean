@@ -1,0 +1,218 @@
+import ThreeUniformDiaries.ActualFiniteAuxRamseyAll
+import ThreeUniformDiaries.BranchCountability
+import ThreeUniformDiaries.DiaryAuxTransferWitness
+import ThreeUniformDiaries.DiaryBigRamseyRelabelInvariance
+import ThreeUniformDiaries.DiaryCountableCertifiedFusion
+import ThreeUniformDiaries.DiaryCountableRelativeMarkerBase
+import ThreeUniformDiaries.DiaryCountableRelativeStepExtension
+import ThreeUniformDiaries.DiaryExactDegreeRelabelInvariance
+import ThreeUniformDiaries.DiaryExactLabelledBigRamseyDegree
+import ThreeUniformDiaries.DiaryExactLabelledBigRamseyDegreeNoGeneric
+import ThreeUniformDiaries.DiaryExistenceCountableLeafOrderEquiv
+import ThreeUniformDiaries.DiaryExistenceFiniteLeafOrderEquiv
+import ThreeUniformDiaries.DiaryFiniteInducedMeetsIntoCountable
+import ThreeUniformDiaries.DiaryFiniteUniversalLeafRange
+import ThreeUniformDiaries.DiaryFlipRootTypeObstruction
+import ThreeUniformDiaries.DiaryLeafGeneratedStageCompatibility
+import ThreeUniformDiaries.DiaryLowerCanonicalColourUnavoidability
+import ThreeUniformDiaries.DiaryLowerExactCountUnconditionalLeafModel
+import ThreeUniformDiaries.DiarySharpUnlabelledUnconditionalUpper
+import ThreeUniformDiaries.DiarySharpUpperNoGenericParameter
+import ThreeUniformDiaries.DiarySharpUpperOnEmbeddings
+import ThreeUniformDiaries.DiaryUnorderedPresentationRelabelInvariance
+import ThreeUniformDiaries.DiaryUpperBoundAllLeafCertifiedFusion
+import ThreeUniformDiaries.DiaryUpperBoundAllLeafCertifiedOrderedSum
+import ThreeUniformDiaries.DiaryUpperBoundFullDiaryTypeRespectingLift
+import ThreeUniformDiaries.DiaryUpperBoundSharpFromSeedLex
+import ThreeUniformDiaries.DiaryUpperBoundSharpUnconditional
+import ThreeUniformDiaries.DiaryUpperBoundUnorderedDirectTransfer
+import ThreeUniformDiaries.DiaryUpperBoundUnorderedLeafCopyNoGeneric
+import ThreeUniformDiaries.ExactMeetAembFullRelativeMap
+import ThreeUniformDiaries.FiniteAembCompletePrefix
+import ThreeUniformDiaries.InfiniteAuxFullMeets
+import ThreeUniformDiaries.InfiniteAuxGeometricComposition
+import ThreeUniformDiaries.InfiniteAuxMeetClosedImage
+import ThreeUniformDiaries.InfiniteCanonicalFixedPrefix
+import ThreeUniformDiaries.InfiniteEnumFullMeets
+import ThreeUniformDiaries.InfiniteGeometricImageMeetClosed
+import ThreeUniformDiaries.InfiniteGeometricRelativeBranchComposition
+import ThreeUniformDiaries.InfiniteOneFullMeets
+import ThreeUniformDiaries.InfiniteStrongRelativeLevels
+import ThreeUniformDiaries.InfiniteStrongRelativeSiblingMeets
+import ThreeUniformDiaries.InfiniteStrongSelectedAncestors
+import ThreeUniformDiaries.InfiniteVectorGeometricComposition
+import ThreeUniformDiaries.RelativeCompletionIteratedLayers
+import ThreeUniformDiaries.RelativeCompletionMeetClosure
+import ThreeUniformDiaries.RelativeCompletionNextLayer
+import ThreeUniformDiaries.RelativeFiniteStrongCompletion
+import ThreeUniformDiaries.RelativeInfiniteStrongCompletion
+import ThreeUniformDiaries.RelativeLevelFiniteness
+import ThreeUniformDiaries.RelativeProtectedConeChoice
+import ThreeUniformDiaries.RelativeStrongAmbientTransitivity
+import ThreeUniformDiaries.SizeFirstEnumeration
+import ThreeUniformDiaries.SizeFirstFixedPrefix
+import ThreeUniformDiaries.SizeFirstParentSchedule
+import ThreeUniformDiaries.SuccessorUniqueness
+import ThreeUniformDiaries.TypeRepresentation
+import ThreeUniformDiaries.UniversalAuxBranchEmbedding
+
+/-!
+# Narrow proof-audit surface for frozen non-appendix 3-uniform circulation
+
+Snapshot of janhubicka/3-uniform-diaries/main.tex blob
+933a25e5b097730dc4200317f16abc5f7552f327
+with source-marker pin 9508b2bb25ec72f72a43d7640ead01500802da29.
+
+The exact Lean declarations below are taken from the manuscript's
+43 GREEN marker occurrences, its 21 main-text BRD/unavoidability/upper
+ORANGE partial critical-path marker occurrences, and four direct
+numerical BRD lower-bound dependencies. Duplicate green marker
+occurrences correspond to ONE theorem endpoint. This script imports
+ONLY the required modules, NOT the global ThreeUniformDiaries umbrella.
+
+GREEN = manuscript theorem marked verified; ORANGE = imported theorem
+may be conditional and MUST NOT be mistaken for its printed claim.
+No text, proof, or marker changes to the frozen circulation follow.
+Strictly validate ALL these #print axioms outputs by the standard
+scripts/check_axiom_log.py gate; allow only standard axioms.
+-/
+
+
+-- GREEN exact published theorem markers
+-- ThreeUniformDiaries/DiaryExistenceCountableLeafOrderEquiv.lean ; manuscript lines 269
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_countable_diary_order_equiv_leaf_reduct
+-- ThreeUniformDiaries/DiaryExistenceFiniteLeafOrderEquiv.lean ; manuscript lines 270
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_finite_diary_order_equiv_leaf_reduct
+-- ThreeUniformDiaries/ActualFiniteAuxRamseyAll.lean ; manuscript lines 831
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.actualFiniteAuxRamsey_allFinite
+-- ThreeUniformDiaries/TypeRepresentation.lean ; manuscript lines 874
+#print axioms ThreeUniformDiaries.EnumNode.oneType_eq_iff_sameOneTypeBelow
+-- ThreeUniformDiaries/TypeRepresentation.lean ; manuscript lines 875
+#print axioms ThreeUniformDiaries.EnumNode.auxType_eq_iff_sameAuxTypeBelow
+-- ThreeUniformDiaries/SuccessorUniqueness.lean ; manuscript lines 959
+#print axioms ThreeUniformDiaries.AuxNode.succ_eq_iff
+-- ThreeUniformDiaries/SuccessorUniqueness.lean ; manuscript lines 960
+#print axioms ThreeUniformDiaries.OneNode.succ_eq_iff
+-- ThreeUniformDiaries/SuccessorUniqueness.lean ; manuscript lines 961
+#print axioms ThreeUniformDiaries.EnumNode.succ_eq_iff
+-- ThreeUniformDiaries/InfiniteAuxFullMeets.lean ; manuscript lines 1311
+#print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_preserves_meet
+-- ThreeUniformDiaries/InfiniteOneFullMeets.lean ; manuscript lines 1313
+#print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_preserves_meet
+-- ThreeUniformDiaries/InfiniteEnumFullMeets.lean ; manuscript lines 1316
+#print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_preserves_meet
+-- ThreeUniformDiaries/InfiniteAuxMeetClosedImage.lean ; manuscript lines 1320
+#print axioms ThreeUniformDiaries.CoordNode.infiniteAuxImage_meetClosed
+-- ThreeUniformDiaries/InfiniteGeometricImageMeetClosed.lean ; manuscript lines 1321
+#print axioms ThreeUniformDiaries.CoordNode.infiniteOneImage_meetClosed
+-- ThreeUniformDiaries/InfiniteGeometricImageMeetClosed.lean ; manuscript lines 1322
+#print axioms ThreeUniformDiaries.CoordNode.infiniteEnumImage_meetClosed
+-- ThreeUniformDiaries/InfiniteCanonicalFixedPrefix.lean ; manuscript lines 1331
+#print axioms ThreeUniformDiaries.CoordNode.infiniteAuxCanonicalMap_fixed_prefix
+-- ThreeUniformDiaries/InfiniteCanonicalFixedPrefix.lean ; manuscript lines 1332
+#print axioms ThreeUniformDiaries.CoordNode.infiniteOneCanonicalMap_fixed_prefix
+-- ThreeUniformDiaries/InfiniteCanonicalFixedPrefix.lean ; manuscript lines 1333
+#print axioms ThreeUniformDiaries.CoordNode.infiniteEnumCanonicalMap_fixed_prefix
+-- ThreeUniformDiaries/InfiniteStrongSelectedAncestors.lean ; manuscript lines 1339
+#print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPicture_selected_truncate_mem
+-- ThreeUniformDiaries/InfiniteStrongRelativeLevels.lean ; manuscript lines 1340
+#print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPicture_later_relative_exists
+-- ThreeUniformDiaries/InfiniteStrongRelativeSiblingMeets.lean ; manuscript lines 1348
+#print axioms ThreeUniformDiaries.CoordNode.infiniteStrongPicture_relative_sibling_descendant_meet
+-- ThreeUniformDiaries/RelativeCompletionMeetClosure.lean ; manuscript lines 1349
+#print axioms ThreeUniformDiaries.CoordNode.relativeCompletionPrefix_meetClosed
+-- ThreeUniformDiaries/RelativeProtectedConeChoice.lean ; manuscript lines 1350
+#print axioms ThreeUniformDiaries.CoordNode.relativeProtectedChoice_below_prescribed
+-- ThreeUniformDiaries/RelativeCompletionNextLayer.lean ; manuscript lines 1351
+#print axioms ThreeUniformDiaries.CoordNode.relativeNextLayer_unique_child
+-- ThreeUniformDiaries/RelativeCompletionIteratedLayers.lean ; manuscript lines 1352
+#print axioms ThreeUniformDiaries.CoordNode.relativeCompletionLayers_contains_prescribed
+-- ThreeUniformDiaries/RelativeFiniteStrongCompletion.lean ; manuscript lines 1363
+#print axioms ThreeUniformDiaries.CoordNode.exists_relative_finite_strong_completion
+-- ThreeUniformDiaries/RelativeInfiniteStrongCompletion.lean ; manuscript lines 1364
+#print axioms ThreeUniformDiaries.CoordNode.exists_relative_infinite_strong_completion
+-- ThreeUniformDiaries/RelativeStrongAmbientTransitivity.lean ; manuscript lines 1370
+#print axioms ThreeUniformDiaries.CoordNode.relativeInfiniteStrongPicture_to_ambient
+-- ThreeUniformDiaries/InfiniteAuxGeometricComposition.lean ; manuscript lines 1391
+#print axioms ThreeUniformDiaries.CoordNode.exists_infiniteAux_geometric_composition
+-- ThreeUniformDiaries/InfiniteVectorGeometricComposition.lean ; manuscript lines 1404
+#print axioms ThreeUniformDiaries.CoordNode.exists_infiniteVector_geometric_composition
+-- ThreeUniformDiaries/InfiniteGeometricRelativeBranchComposition.lean ; manuscript lines 1421
+#print axioms ThreeUniformDiaries.CoordNode.infiniteVectorGeometric_relativeMapBranch_comp
+-- ThreeUniformDiaries/UniversalAuxBranchEmbedding.lean ; manuscript lines 1433
+#print axioms ThreeUniformDiaries.exists_universal_exactMeetEmbedding
+-- ThreeUniformDiaries/BranchCountability.lean ; manuscript lines 1446
+#print axioms ThreeUniformDiaries.relativeBranchNodeCountable
+-- ThreeUniformDiaries/RelativeLevelFiniteness.lean ; manuscript lines 1447
+#print axioms ThreeUniformDiaries.relativeBranch_level_finite
+-- ThreeUniformDiaries/SizeFirstEnumeration.lean ; manuscript lines 1453
+#print axioms ThreeUniformDiaries.relativeBranchSizeFirst_length_mono
+-- ThreeUniformDiaries/SizeFirstFixedPrefix.lean ; manuscript lines 1455
+#print axioms ThreeUniformDiaries.SizeFirstBranchPresentation.graph_initialSegment_eq
+-- ThreeUniformDiaries/SizeFirstParentSchedule.lean ; manuscript lines 1458
+#print axioms ThreeUniformDiaries.SizeFirstBranchPresentation.sourceNodeParent_index_lt
+-- ThreeUniformDiaries/UniversalAuxBranchEmbedding.lean ; manuscript lines 1566
+#print axioms ThreeUniformDiaries.exists_universal_auxEmbedding
+-- ThreeUniformDiaries/ExactMeetAembFullRelativeMap.lean ; manuscript lines 1584,1645,1692
+#print axioms ThreeUniformDiaries.EnumNode.exists_exactMeetAemb_full_relative_map
+-- ThreeUniformDiaries/FiniteAembCompletePrefix.lean ; manuscript lines 1640
+#print axioms ThreeUniformDiaries.EnumNode.threeCandidate_fullPrefix
+-- ThreeUniformDiaries/DiaryAuxTransferWitness.lean ; manuscript lines 1801
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RoleDiaryMeets.leaf_aux_transfer
+-- ThreeUniformDiaries/DiaryFlipRootTypeObstruction.lean ; manuscript lines 2255
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.RolePrediary.no_common_twoSplit_of_opposite_positive_markers
+
+-- ORANGE partial critical-path endpoints (proof cores ONLY)
+-- ThreeUniformDiaries/DiaryExactLabelledBigRamseyDegreeNoGeneric.lean ; manuscript lines 229
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.labelledBigRamseyBound_iff_exactDiaryCount_le_noGeneric
+-- ThreeUniformDiaries/DiaryExactLabelledBigRamseyDegreeNoGeneric.lean ; manuscript lines 230
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.exactDiaryCount_is_unique_minimal_labelledBigRamseyBound
+-- ThreeUniformDiaries/DiaryUnorderedPresentationRelabelInvariance.lean ; manuscript lines 231
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.allGenuineUnmarkedDiarySources_eq_of_relabelling
+-- ThreeUniformDiaries/DiaryExactDegreeRelabelInvariance.lean ; manuscript lines 232
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.exactOrderedDiaryDegree_eq_of_relabelling
+-- ThreeUniformDiaries/DiaryBigRamseyRelabelInvariance.lean ; manuscript lines 233
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.labelledBigRamseyBound_iff_of_unordered_relabelling
+-- ThreeUniformDiaries/DiaryFiniteInducedMeetsIntoCountable.lean ; manuscript lines 348
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_finiteDiary_full_embedding_in_generic_leaf_range
+-- ThreeUniformDiaries/DiaryFiniteUniversalLeafRange.lean ; manuscript lines 349
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_finiteDiary_full_embedding_in_universal_leaf_range
+-- ThreeUniformDiaries/DiaryCountableRelativeStepExtension.lean ; manuscript lines 350
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_fullDiaryEmbedding_of_relative_extensions
+-- ThreeUniformDiaries/DiaryCountableRelativeMarkerBase.lean ; manuscript lines 351
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_fullDiaryEmbedding_of_relative_extension
+-- ThreeUniformDiaries/DiaryCountableCertifiedFusion.lean ; manuscript lines 352
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.CertifiedDiaryFusionData.exists_full_embedding
+-- ThreeUniformDiaries/DiaryLeafGeneratedStageCompatibility.lean ; manuscript lines 353
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.exists_fullDiaryEmbedding_of_relative_leaf_extensions
+-- ThreeUniformDiaries/DiaryUpperBoundSharpUnconditional.lean ; manuscript lines 2875
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.actualFiniteAuxRamsey_sharp_upper
+-- ThreeUniformDiaries/DiarySharpUnlabelledUnconditionalUpper.lean ; manuscript lines 2876
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.actualFiniteAuxRamsey_sharp_unlabelled_upper
+-- ThreeUniformDiaries/DiarySharpUpperOnEmbeddings.lean ; manuscript lines 2877
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.actualFiniteAuxRamsey_sharp_upper_on_embeddings
+-- ThreeUniformDiaries/DiaryUpperBoundFullDiaryTypeRespectingLift.lean ; manuscript lines 2878
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.actualFiniteAuxRamsey_fullDiary_upper_of_reserved_candidates
+-- ThreeUniformDiaries/DiaryUpperBoundAllLeafCertifiedFusion.lean ; manuscript lines 2879
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.actualFiniteAuxRamsey_allDiaryLeaf_upper_of_certified_fusion
+-- ThreeUniformDiaries/DiaryUpperBoundAllLeafCertifiedOrderedSum.lean ; manuscript lines 2880
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.actualFiniteAuxRamsey_allDiaryLeaf_upper_orderedDiarySum_of_certified_fusion
+-- ThreeUniformDiaries/DiarySharpUpperNoGenericParameter.lean ; manuscript lines 2881
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.actualFiniteAuxRamsey_sharp_upper_on_embeddings_noGeneric
+-- ThreeUniformDiaries/DiaryUpperBoundUnorderedLeafCopyNoGeneric.lean ; manuscript lines 2882
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.actualFiniteAuxRamsey_allDiaryLeaf_upper_unorderedF_noGeneric
+-- ThreeUniformDiaries/DiaryUpperBoundUnorderedDirectTransfer.lean ; manuscript lines 2883
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.actualFiniteAuxRamsey_direct_upper_unordered_of_bounded_factorisation
+-- ThreeUniformDiaries/DiaryUpperBoundSharpFromSeedLex.lean ; manuscript lines 2884
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.actualFiniteAuxRamsey_sharp_upper_of_shiftedSeedLex
+
+-- NUMERICAL BRD lower-bound core dependencies (not new green paper claims)
+-- ThreeUniformDiaries/DiaryLowerExactCountUnconditionalLeafModel.lean ; imported lower-proof dependency
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.exists_unavoidableMarkedDiaryColour_in_universal
+-- ThreeUniformDiaries/DiaryLowerExactCountUnconditionalLeafModel.lean ; imported lower-proof dependency
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.universal_exactMarkedDiary_lower_palette
+-- ThreeUniformDiaries/DiaryLowerCanonicalColourUnavoidability.lean ; imported lower-proof dependency
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.canonicalMarkedDiaryColour_unavoidable
+-- ThreeUniformDiaries/DiaryExactLabelledBigRamseyDegree.lean ; imported lower-proof dependency
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.labelledBigRamseyBound_ge_exactDiaryCount
+

@@ -66,6 +66,20 @@ jobs:
             exit 1
           }
 
+      - name: Audit focused non-appendix circulation theorem endpoints
+        run: |
+          mkdir -p proof-audit
+          lake env lean scripts/CheckCirculationAxioms.lean > proof-audit/circulation-axioms.log 2>&1 || {
+            echo "::error::Narrow circulation theorem audit failed (last 120 lines follow)"
+            tail -n 120 proof-audit/circulation-axioms.log
+            exit 1
+          }
+          python3 scripts/check_axiom_log.py proof-audit/circulation-axioms.log scripts/CheckCirculationAxioms.lean || {
+            echo "::error::Circulation transitive axiom audit failed (last 120 lines follow)"
+            tail -n 120 proof-audit/circulation-axioms.log
+            exit 1
+          }
+
       - name: Exhaustive finite auxiliary encoding regression
         run: python3 scripts/check_finite_aux_encoding.py
 
