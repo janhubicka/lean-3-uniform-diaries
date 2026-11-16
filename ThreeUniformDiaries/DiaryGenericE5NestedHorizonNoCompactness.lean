@@ -69,7 +69,7 @@ theorem GenericEnumerated3Graph.exists_induced_generic_copy_in_oldPair_horizon_t
     ∃ u : Ordered3Graph.Embedding G.graph G.graph,
       ∀ i : Nat, GenericOldPairHorizonTail G A q N (u i) := by
   obtain ⟨u, hLate, hAboveOld, hPattern⟩ :=
-    G.exists_induced_generic_selfcopy_in_oldPair_fibre A q N
+    _root_.ThreeUniformDiaries.DiaryLeafPriority.GenericEnumerated3Graph.exists_induced_generic_selfcopy_in_oldPair_fibre G A q N
   refine ⟨u, ?_⟩
   intro i
   exact ⟨hLate i, (fun a ha => hAboveOld i a ha),
@@ -86,7 +86,7 @@ theorem GenericEnumerated3Graph.every_finite_horizon_intersection_contains_gener
       ∀ n : Nat, n ≤ N →
         ∀ i : Nat, GenericOldPairHorizonTail G A q n (u i) := by
   obtain ⟨u, hIn⟩ :=
-    G.exists_induced_generic_copy_in_oldPair_horizon_tail A q N
+    _root_.ThreeUniformDiaries.DiaryLeafPriority.GenericEnumerated3Graph.exists_induced_generic_copy_in_oldPair_horizon_tail G A q N
   refine ⟨u, ?_⟩
   intro n hn i
   exact generic_oldPairHorizonTail_antitone G A q hn (hIn i)
