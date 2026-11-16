@@ -1,7 +1,7 @@
 import ThreeUniformDiaries.DiaryPersistentFutureRoleSlots
 
 /-!
-# Track A: all finite future one-/two-split role patterns fit in persistent old gaps
+# Track A: all finite future one- and two-split role patterns fit in persistent old gaps
 
 The earlier persistent-future-role-slot theorems give a target ONE
 or TWO split inside a fixed old image gap for each requested single
@@ -32,7 +32,7 @@ namespace DiaryLeafPriority
 
 /-- Fix a finitely persistent ACTUAL reserved old stage P at source
 horizon m and two already-supported source vertices x,y. Any finite
-family T of future source genuine 1-/2-splits strictly between x,y
+family T of future source genuine 1- and 2-splits strictly between x,y
 has ONE simultaneous, order-preserving, injective placement inside
 the target gap (f(x),f(y)), preserving the role of EACH split.
 
