@@ -121,7 +121,7 @@ theorem PersistentReservedDiaryStage.exists_stable_complete_initial_prefix_below
       Finset.mem_Ioo.mpr (by omega)
     let s : {s : Nat // s ∈ T} := ⟨u, hUinT⟩
     exact (hT s).trans (hTbase s).symm
-  refine ⟨k + l, h, hY, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, hStable⟩
+  refine ⟨k + l, h, hY, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, hStable⟩
   · intro u hu
     rcases lt_or_eq_of_le hu with hlt | heq
     · have hOrder : h u < h y :=
