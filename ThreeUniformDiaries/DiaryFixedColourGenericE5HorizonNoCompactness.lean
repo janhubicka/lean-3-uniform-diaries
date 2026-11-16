@@ -67,7 +67,7 @@ theorem GenericEnumerated3Graph.exists_fixed_colour_generic_oldPair_tails_withou
           DiaryLowerBoundColors.singletonColour G.graph B x = c) := by
   classical
   obtain ⟨p, _hPAfter0, hPAboveA, hPPattern⟩ :=
-    G.exists_induced_generic_selfcopy_in_oldPair_fibre
+    _root_.ThreeUniformDiaries.DiaryLeafPriority.GenericEnumerated3Graph.exists_induced_generic_selfcopy_in_oldPair_fibre G
       A q 0
   obtain ⟨w, _hWAux, c, hColour⟩ :=
     exists_generic_selfcopy_in_one_mixed_singleton_cone
@@ -81,7 +81,7 @@ theorem GenericEnumerated3Graph.exists_fixed_colour_generic_oldPair_tails_withou
       injective_nat_eventually_above_bound
         (fun i : Nat => p (w i)) hCompInjective M
     obtain ⟨v, hVAfter, _hVOld, _hVPattern⟩ :=
-      G.exists_induced_generic_selfcopy_in_oldPair_fibre
+      _root_.ThreeUniformDiaries.DiaryLeafPriority.GenericEnumerated3Graph.exists_induced_generic_selfcopy_in_oldPair_fibre G
         (∅ : Finset Nat) (fun _ _ => false) N
     let u : Ordered3Graph.Embedding G.graph G.graph := {
       toFun := fun i : Nat => p (w (v i))
