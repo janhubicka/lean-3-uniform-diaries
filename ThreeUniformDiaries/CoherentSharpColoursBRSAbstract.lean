@@ -152,7 +152,7 @@ theorem inducedProfile_eq_of_colour_eq
       (fun j => (i j).val)
   · rw [C.inducedRelation_iff_subcopy_colour A σ i hi v,
         C.inducedRelation_iff_subcopy_colour A σ i hi w]
-    exact (C.coherent A σ.source i hi v w hSame).to_iff
+    rw [C.coherent A σ.source i hi v w hSame]
   · constructor
     · intro h
       have hB : IsInducedLabelledCopy σ.source U
