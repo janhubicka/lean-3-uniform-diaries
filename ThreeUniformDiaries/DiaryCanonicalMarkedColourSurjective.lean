@@ -18,6 +18,7 @@ namespace ThreeUniformDiaries
 namespace ATRFiniteDecoder
 
 open _root_.ThreeUniformDiaries.Ordered3Graph
+open DiaryLeafPriority
 
 /-- If every marked colour is present inside every U-selfcopy,
 then the colouring genuinely uses ALL its advertised palette.
