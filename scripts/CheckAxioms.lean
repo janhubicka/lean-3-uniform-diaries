@@ -1,4 +1,5 @@
 import ThreeUniformDiaries
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteLeafMeetSupport_nested_rank_twoMeet
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteLeafMeetSupport_nested_rank_oneMeet
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.canonicalMarkedExpansionRelation_iff
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.canonicalMarkedExpansionRelation_existsUnique
