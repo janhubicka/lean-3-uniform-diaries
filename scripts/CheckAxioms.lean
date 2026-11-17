@@ -1,4 +1,5 @@
 import ThreeUniformDiaries
+#print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteLeafMeetSupport_nested_complete
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportGraph_nested_rank_eq
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportRank_nested_rank_image
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportRank_injOn_subset
