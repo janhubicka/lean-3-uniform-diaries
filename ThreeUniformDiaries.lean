@@ -1,3 +1,4 @@
+import ThreeUniformDiaries.DiaryCanonicalMarkedNestedOneMeet
 import ThreeUniformDiaries.DiaryCanonicalMarkedExpansionRelations
 import ThreeUniformDiaries.DiaryCanonicalMarkedColourSurjective
 import ThreeUniformDiaries.DiaryCanonicalMarkedRawRestriction
