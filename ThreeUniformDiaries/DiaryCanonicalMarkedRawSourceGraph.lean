@@ -88,13 +88,18 @@ theorem MarkedFiniteSource.rawRestrict_source_graph
       finiteSupportGraph P.source.picture.toOrdered3Graph
         (markedRestrictionSupport P i) := by
   classical
-  unfold MarkedFiniteSource.rawRestrict
-  dsimp [markedRestrictionSupport]
-  simpa only [EnumNode.toOrdered3Graph_cast] using
-    (finiteSupportGraph_zeroExtended_eq
-      P.source.picture.toOrdered3Graph
-      (finiteLeafMeetSupport P.source.picture.toOrdered3Graph
-        (markedRestrictionLeaves P i)))
+  let H : Ordered3Graph Nat := P.source.picture.toOrdered3Graph
+  let L : Finset Nat := markedRestrictionLeaves P i
+  let S : Finset Nat := finiteLeafMeetSupport H L
+  have hCard : 1 ≤ S.card := by
+    exact (by decide : 1 ≤ 3).trans
+      (finiteLeafMeetSupport_reindex_markers H L).1
+  have hk : S.card - 1 + 1 = S.card :=
+    Nat.sub_add_cancel hCard
+  change (hk.symm ▸ (finiteSupportGraph H S).initialSegment S.card).toOrdered3Graph =
+    finiteSupportGraph H S
+  exact (EnumNode.toOrdered3Graph_cast hk _).trans
+    (finiteSupportGraph_zeroExtended_eq H S)
 
 end ATRFiniteDecoder
 end ThreeUniformDiaries
