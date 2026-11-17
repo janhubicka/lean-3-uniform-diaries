@@ -1,3 +1,4 @@
+import ThreeUniformDiaries.CoherentSharpColoursBRSAbstract
 import ThreeUniformDiaries.DiaryCanonicalMarkedRestrictionFunctorial
 import ThreeUniformDiaries.DiaryCanonicalMarkedSubcopyComposition
 import ThreeUniformDiaries.DiaryCanonicalMarkedColourNaturality
