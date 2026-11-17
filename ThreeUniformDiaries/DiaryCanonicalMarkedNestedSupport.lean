@@ -54,16 +54,23 @@ theorem finiteLeafMeetSupport_nested_rank_image
     · intro hx
       exact Finset.mem_image.mpr
         ⟨x,hx,hFix x (Finset.mem_range.mp hx)⟩
-  have hOne := finiteOneMeetSupport_nested_rank_image
-    D L L' hLeaves hSub
-  have hTwo := finiteTwoMeetSupport_nested_rank_image
-    D L L' hLeaves hSub
+  have hOne :
+      (finiteOneMeetSupport K L').image r =
+        finiteOneMeetSupport H (L'.image r) := by
+    exact finiteOneMeetSupport_nested_rank_image
+      D L L' hLeaves hSub
+  have hTwo :
+      (finiteTwoMeetSupport K L').image r =
+        finiteTwoMeetSupport H (L'.image r) := by
+    exact finiteTwoMeetSupport_nested_rank_image
+      D L L' hLeaves hSub
   change (((Finset.range 3 ∪ L') ∪
       (finiteOneMeetSupport K L' ∪ finiteTwoMeetSupport K L')).image r) =
     ((Finset.range 3 ∪ L'.image r) ∪
       (finiteOneMeetSupport H (L'.image r) ∪
        finiteTwoMeetSupport H (L'.image r)))
-  simp only [Finset.image_union, hImageMarkers, hOne, hTwo]
+  simp only [Finset.image_union, hImageMarkers]
+  rw [hOne, hTwo]
 
 end DiaryLeafPriority
 end ThreeUniformDiaries
