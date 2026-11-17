@@ -1,4 +1,6 @@
 import ThreeUniformDiaries
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.MarkedFiniteSource.rawRestrict_marked_rank
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.MarkedFiniteSource.rawRestrict_marked_value
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.finiteLeafMeetSupport_subtuple_subset
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.colourRestrictionOfFibres_apply
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.colourRestrictionOfFibres_unique
