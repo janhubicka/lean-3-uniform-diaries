@@ -30,6 +30,7 @@ labelled embeddings into U. Surjectivity is part of the interface;
 it is not inferred merely from the numerical degree. -/
 structure CoherentFiniteColourSystem (U : Ordered3Graph Nat) where
   Palette : (n : Nat) → EnumNode n → Type
+  finitePalette : ∀ {n : Nat} (A : EnumNode n), Finite (Palette n A)
   colour : {n : Nat} → (A : EnumNode n) →
     GenuineFiniteEmbeddings A U → Palette n A
   surj : ∀ {n : Nat} (A : EnumNode n),
