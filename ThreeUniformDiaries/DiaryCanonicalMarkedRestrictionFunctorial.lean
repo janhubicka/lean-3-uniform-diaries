@@ -147,7 +147,7 @@ theorem canonicalMarkedDiaryRestriction_comp
     _ = ρj (canonicalMarkedDiaryColour DK F hFLeaf B
         (v.precompose i hi)) := hJ.symm
     _ = ρj (ρi (canonicalMarkedDiaryColour DK F hFLeaf A v)) := by
-          rw [hI]
+          rw [← hI]
 
 end ATRFiniteDecoder
 end ThreeUniformDiaries
