@@ -22,7 +22,15 @@ namespace ThreeUniformDiaries
 namespace ATRFiniteDecoder
 namespace CoherentFiniteColourSystem
 
+open _root_.ThreeUniformDiaries.Ordered3Graph
+
 variable {U : Ordered3Graph Nat} (C : CoherentFiniteColourSystem U)
+
+noncomputable instance paletteFintype {a : Nat} (A : EnumNode a) :
+    Fintype (C.Palette a A) := by
+  classical
+  letI : Finite (C.Palette a A) := C.finitePalette A
+  exact Fintype.ofFinite _
 
 /-- Genuine finite expansion types are the FULL induced relation
 profiles actually realized by some finite induced A-embedding. -/
@@ -89,16 +97,12 @@ the colours were originally constructed. -/
 noncomputable instance realizedProfileFintype {a : Nat} (A : EnumNode a) :
     Fintype (C.RealizedProfile A) := by
   classical
-  letI : Finite (C.Palette a A) := C.finitePalette A
-  letI : Fintype (C.Palette a A) := Fintype.ofFinite _
   exact Fintype.ofEquiv (C.Palette a A) (C.paletteEquivRealizedProfiles A)
 
 theorem realizedProfile_card {a : Nat} (A : EnumNode a) :
     Fintype.card (C.RealizedProfile A) =
       Fintype.card (C.Palette a A) := by
   classical
-  letI : Finite (C.Palette a A) := C.finitePalette A
-  letI : Fintype (C.Palette a A) := Fintype.ofFinite _
   exact Fintype.card_congr (C.paletteEquivRealizedProfiles A).symm
 
 /-- EVERY complete finite induced expansion type is unavoidable
