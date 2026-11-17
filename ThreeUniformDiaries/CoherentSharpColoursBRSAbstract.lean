@@ -158,12 +158,12 @@ theorem inducedProfile_eq_of_colour_eq
       have hB : IsInducedLabelledCopy σ.source U
           (fun j => v.val (i j)) := h.1
       exact False.elim
-        (hi ((C.labelledSubcopy_iff_in_source A σ.source v i).mp hB))
+        (hi ((labelledSubcopy_iff_in_source A σ.source v i).mp hB))
     · intro h
       have hB : IsInducedLabelledCopy σ.source U
           (fun j => w.val (i j)) := h.1
       exact False.elim
-        (hi ((C.labelledSubcopy_iff_in_source A σ.source w i).mp hB))
+        (hi ((labelledSubcopy_iff_in_source A σ.source w i).mp hB))
 
 /-- A full finite induced expansion profile can distinguish two
 actual A-copies if and only if their top A-colours differ.
