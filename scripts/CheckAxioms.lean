@@ -1,4 +1,7 @@
 import ThreeUniformDiaries
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.canonicalMarkedDiaryRestriction_spec
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.canonicalMarkedDiaryRestriction_id
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.canonicalMarkedDiaryRestriction_comp
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.finiteLabelledEmbedding_id
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.finiteLabelledEmbedding_comp
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.GenuineFiniteEmbeddings.precompose_id
