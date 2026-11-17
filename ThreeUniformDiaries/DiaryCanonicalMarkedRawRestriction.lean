@@ -52,8 +52,9 @@ noncomputable def MarkedFiniteSource.rawRestrict
   let L : Finset Nat := markedRestrictionLeaves P i
   let S : Finset Nat := finiteLeafMeetSupport H L
   have hCard : 1 ≤ S.card := by
-    have h := (finiteLeafMeetSupport_reindex_markers H L).1
-    omega
+    change 1 ≤ (finiteLeafMeetSupport H L).card
+    exact (by decide : 1 ≤ 3).trans
+      (finiteLeafMeetSupport_reindex_markers H L).1
   have hk : S.card - 1 + 1 = S.card := Nat.sub_add_cancel hCard
   let source : ProtectedSource 0 := {
     k := S.card - 1
