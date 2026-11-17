@@ -53,6 +53,14 @@ end DiaryLeafPriority
 namespace ATRFiniteDecoder
 open DiaryLeafPriority
 
+/-- Changing a dependent EnumNode size index along an equality
+does not change its zero-extended ordered ternary graph. -/
+theorem EnumNode.toOrdered3Graph_cast
+    {n m : Nat} (h : n = m) (E : EnumNode m) :
+    (h.symm ▸ E).toOrdered3Graph = E.toOrdered3Graph := by
+  cases h
+  rfl
+
 /-- The raw restriction's size is exactly the finite S1/S2
 support cardinality, not a loose upper bound. -/
 theorem MarkedFiniteSource.rawRestrict_source_size
@@ -63,6 +71,13 @@ theorem MarkedFiniteSource.rawRestrict_source_size
   classical
   unfold MarkedFiniteSource.rawRestrict
   dsimp [markedRestrictionSupport]
+  have hCard : 3 ≤
+      (finiteLeafMeetSupport P.source.picture.toOrdered3Graph
+        (markedRestrictionLeaves P i)).card :=
+    (finiteLeafMeetSupport_reindex_markers
+      P.source.picture.toOrdered3Graph
+      (markedRestrictionLeaves P i)).1
+  omega
 
 /-- The complete graph table of the raw restricted code is
 the canonical finite induced graph of its selected support. -/
@@ -75,9 +90,11 @@ theorem MarkedFiniteSource.rawRestrict_source_graph
   classical
   unfold MarkedFiniteSource.rawRestrict
   dsimp [markedRestrictionSupport]
-  exact finiteSupportGraph_zeroExtended_eq _
-    (finiteLeafMeetSupport _
-      (markedRestrictionLeaves P i))
+  simpa only [EnumNode.toOrdered3Graph_cast] using
+    (finiteSupportGraph_zeroExtended_eq
+      P.source.picture.toOrdered3Graph
+      (finiteLeafMeetSupport P.source.picture.toOrdered3Graph
+        (markedRestrictionLeaves P i)))
 
 end ATRFiniteDecoder
 end ThreeUniformDiaries
