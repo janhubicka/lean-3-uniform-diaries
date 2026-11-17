@@ -32,16 +32,26 @@ noncomputable instance relationSymbolCountable :
     inferInstance
   letI : Countable (Σ n : Nat, Σ A : EnumNode n,
     C.Palette n A) := inferInstance
-  apply Countable.of_injective
-    (fun σ : C.RelationSymbol =>
-      (⟨σ.arity, ⟨σ.source, σ.colour⟩⟩ :
-        Σ n : Nat, Σ A : EnumNode n, C.Palette n A))
+  obtain ⟨encode, hEncode⟩ :=
+    (countable_iff_exists_injective
+      (Σ n : Nat, Σ A : EnumNode n, C.Palette n A)).mp
+        (by infer_instance)
+  apply (countable_iff_exists_injective (C.RelationSymbol)).mpr
+  refine ⟨(fun σ : C.RelationSymbol =>
+      encode (⟨σ.arity, ⟨σ.source, σ.colour⟩⟩ :
+        Σ n : Nat, Σ A : EnumNode n, C.Palette n A)), ?_⟩
   intro s t h
+  have heq :
+      (⟨s.arity, ⟨s.source, s.colour⟩⟩ :
+        Σ n : Nat, Σ A : EnumNode n, C.Palette n A) =
+      (⟨t.arity, ⟨t.source, t.colour⟩⟩ :
+        Σ n : Nat, Σ A : EnumNode n, C.Palette n A) :=
+    hEncode h
   cases s with
   | mk sn sA sd =>
     cases t with
     | mk tn tA td =>
-      cases h
+      cases heq
       rfl
 
 end CoherentFiniteColourSystem
