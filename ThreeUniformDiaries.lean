@@ -1,3 +1,4 @@
+import ThreeUniformDiaries.DiaryCanonicalMarkedColourNaturality
 import ThreeUniformDiaries.DiaryCanonicalMarkedSubcopy
 import ThreeUniformDiaries.DiaryCanonicalMarkedNaturality
 import ThreeUniformDiaries.DiaryCanonicalMarkedRawSourceGraph
