@@ -38,7 +38,10 @@ theorem finiteTwoMeetSupport_nested_rank_image
     have hra := finiteSupportRank_spec S a (hSelected a ha)
     have hrb := finiteSupportRank_spec S b (hSelected b hb)
     have hIncl := finiteSupportIndex_strictMono S (r a) (r b) h hrb.1
-    simpa only [hra.2,hrb.2] using hIncl
+    change finiteSupportIndex S (finiteSupportRank S a) <
+      finiteSupportIndex S (finiteSupportRank S b) at hIncl
+    rw [hra.2,hrb.2] at hIncl
+    exact hIncl
   have hRankPair (a b : Nat)
       (ha : a ∈ L') (hb : b ∈ L') (hab : a < b) :
       (r a,r b) ∈ finiteOrderedLeafPairs (L'.image r) := by
