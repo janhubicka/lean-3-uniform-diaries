@@ -1,4 +1,8 @@
 import ThreeUniformDiaries
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.finiteLabelledEmbedding_id
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.finiteLabelledEmbedding_comp
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.GenuineFiniteEmbeddings.precompose_id
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.GenuineFiniteEmbeddings.precompose_comp
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.EnumNode.toOrdered3Graph_cast
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.canonicalMarkedDiaryColour_restrict_raw
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.canonicalMarkedDiaryColour_restrict_fibre
