@@ -1,3 +1,4 @@
+import ThreeUniformDiaries.DiaryCanonicalMarkedRawRestriction
 import ThreeUniformDiaries.DiaryCanonicalMarkedRestrictionFactor
 import ThreeUniformDiaries.AuxTypes
 import ThreeUniformDiaries.DiaryNonvacuousAdmissibleOldSupportEscape
