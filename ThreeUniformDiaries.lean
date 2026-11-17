@@ -1,3 +1,4 @@
+import ThreeUniformDiaries.DiaryCanonicalMarkedNestedReindex
 import ThreeUniformDiaries.DiaryCanonicalMarkedNestedSupport
 import ThreeUniformDiaries.DiaryCanonicalMarkedNestedTwoSupport
 import ThreeUniformDiaries.DiaryCanonicalMarkedNestedOneSupport
