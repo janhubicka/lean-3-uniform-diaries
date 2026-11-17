@@ -1,4 +1,5 @@
 import ThreeUniformDiaries
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.isInducedLabelledCopy_precompose
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.canonicalMarkedSourceOfLeaves_rawRestrict
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.canonicalMarkedSource_rawRestrict_genuine
 #print axioms ThreeUniformDiaries.DiaryLeafPriority.finiteSupportGraph_zeroExtended_eq
