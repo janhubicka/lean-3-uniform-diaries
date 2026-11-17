@@ -1,4 +1,5 @@
 import ThreeUniformDiaries
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.EnumNode.toOrdered3Graph_cast
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.canonicalMarkedDiaryColour_restrict_raw
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.canonicalMarkedDiaryColour_restrict_fibre
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.canonicalMarkedDiaryColour_restriction_existsUnique
