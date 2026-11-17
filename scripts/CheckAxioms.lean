@@ -1,4 +1,6 @@
 import ThreeUniformDiaries
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.unavoidableMarkedColours_surjective
+#print axioms ThreeUniformDiaries.ATRFiniteDecoder.canonicalMarkedDiaryColour_surjective
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.MarkedFiniteSource.rawRestrict_marked_rank
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.MarkedFiniteSource.rawRestrict_marked_value
 #print axioms ThreeUniformDiaries.ATRFiniteDecoder.finiteLeafMeetSupport_subtuple_subset
